@@ -22,6 +22,9 @@
     <Filter Include="Core\Serialization">
       <UniqueIdentifier>{58b534a6-6bf7-4013-bac1-9b7a18357bf1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Time">
+      <UniqueIdentifier>{76af717d-9a6f-4da7-a951-c275249467b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Math\UnrealMathUtility.cpp">
@@ -48,6 +51,12 @@
     <ClCompile Include="Source\Core\Misc\DirectoryHelper.cpp">
       <Filter>Core\Misc</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Time\Timer.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Time\TimeEvent.cpp">
+      <Filter>Time</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Math\UnrealMathUtility.h">
@@ -73,6 +82,12 @@
     </ClInclude>
     <ClInclude Include="Source\Core\Misc\DirectoryHelper.h">
       <Filter>Core\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Time\Timer.h">
+      <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Time\TimeEvent.h">
+      <Filter>Time</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -29,6 +29,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Source\Time\TimeEvent.cpp" />
+    <ClCompile Include="Source\Time\Timer.cpp" />
     <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +41,8 @@
     <ClInclude Include="Source\Core\Serialization\Archive.h" />
     <ClInclude Include="Source\Math\UnrealMathUtility.h" />
     <ClInclude Include="Source\pch.h" />
+    <ClInclude Include="Source\Time\TimeEvent.h" />
+    <ClInclude Include="Source\Time\Timer.h" />
     <ClInclude Include="Source\WorldPartition\DebugHelpers.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
