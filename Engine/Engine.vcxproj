@@ -19,15 +19,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Core\Delegates\Delegate.cpp" />
+    <ClCompile Include="Source\Core\Misc\DirectoryHelper.cpp" />
+    <ClCompile Include="Source\Core\Misc\FileHelper.cpp" />
+    <ClCompile Include="Source\Core\Misc\Paths.cpp" />
+    <ClCompile Include="Source\Core\Serialization\Archive.cpp" />
     <ClCompile Include="Source\Math\UnrealMathUtility.cpp" />
     <ClCompile Include="Source\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Core\Delegates\Delegate.h" />
+    <ClInclude Include="Source\Core\Misc\DirectoryHelper.h" />
+    <ClInclude Include="Source\Core\Misc\FileHelper.h" />
+    <ClInclude Include="Source\Core\Misc\Paths.h" />
+    <ClInclude Include="Source\Core\Serialization\Archive.h" />
     <ClInclude Include="Source\Math\UnrealMathUtility.h" />
     <ClInclude Include="Source\pch.h" />
+    <ClInclude Include="Source\WorldPartition\DebugHelpers.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -127,6 +139,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,6 +158,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

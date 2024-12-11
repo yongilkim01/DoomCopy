@@ -3,15 +3,6 @@
 #include <string>
 #include <functional>
 
-// FVector로 통일하겠습니다.
-// FVector xy
-// FVector3D xyz
-// FVector4D xyzw
-// FVector4D == FVector;
-
-// #include <DirectXMath.h>
-
-
 class UEngineMath
 {
 public:

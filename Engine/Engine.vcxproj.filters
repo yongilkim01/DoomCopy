@@ -7,6 +7,21 @@
     <Filter Include="pch">
       <UniqueIdentifier>{479f833a-7ec7-477e-bafc-db0db95811d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{286a5737-4a8f-49a1-a9a2-d4a6ddefe048}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{57a416c6-81b6-47aa-beeb-11c6c9d9bbdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Delegates">
+      <UniqueIdentifier>{ccb54f37-2626-4dcf-9e83-485f44a39467}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Misc">
+      <UniqueIdentifier>{b40d5a80-9a83-4dcd-8a7d-c30d5bed47a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Serialization">
+      <UniqueIdentifier>{58b534a6-6bf7-4013-bac1-9b7a18357bf1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Math\UnrealMathUtility.cpp">
@@ -15,6 +30,24 @@
     <ClCompile Include="Source\pch.cpp">
       <Filter>pch</Filter>
     </ClCompile>
+    <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Delegates\Delegate.cpp">
+      <Filter>Core\Delegates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Misc\Paths.cpp">
+      <Filter>Core\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Misc\FileHelper.cpp">
+      <Filter>Core\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Serialization\Archive.cpp">
+      <Filter>Core\Serialization</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Misc\DirectoryHelper.cpp">
+      <Filter>Core\Misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Math\UnrealMathUtility.h">
@@ -22,6 +55,24 @@
     </ClInclude>
     <ClInclude Include="Source\pch.h">
       <Filter>pch</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WorldPartition\DebugHelpers.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Delegates\Delegate.h">
+      <Filter>Core\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Misc\Paths.h">
+      <Filter>Core\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Misc\FileHelper.h">
+      <Filter>Core\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Serialization\Archive.h">
+      <Filter>Core\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Misc\DirectoryHelper.h">
+      <Filter>Core\Misc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
