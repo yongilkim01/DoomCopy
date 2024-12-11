@@ -25,6 +25,9 @@
     <Filter Include="Time">
       <UniqueIdentifier>{76af717d-9a6f-4da7-a951-c275249467b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Containers">
+      <UniqueIdentifier>{10191daa-5a81-48c6-996c-3693cfd16c98}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Math\UnrealMathUtility.cpp">
@@ -57,6 +60,9 @@
     <ClCompile Include="Source\Time\TimeEvent.cpp">
       <Filter>Time</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Core\Containers\UnrealString.cpp">
+      <Filter>Core\Containers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Math\UnrealMathUtility.h">
@@ -88,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="Source\Time\TimeEvent.h">
       <Filter>Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Containers\UnrealString.h">
+      <Filter>Core\Containers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

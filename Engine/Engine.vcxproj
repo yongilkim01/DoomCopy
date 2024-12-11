@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Core\Containers\UnrealString.cpp" />
     <ClCompile Include="Source\Core\Delegates\Delegate.cpp" />
     <ClCompile Include="Source\Core\Misc\DirectoryHelper.cpp" />
     <ClCompile Include="Source\Core\Misc\FileHelper.cpp" />
@@ -34,6 +35,7 @@
     <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Core\Containers\UnrealString.h" />
     <ClInclude Include="Source\Core\Delegates\Delegate.h" />
     <ClInclude Include="Source\Core\Misc\DirectoryHelper.h" />
     <ClInclude Include="Source\Core\Misc\FileHelper.h" />
