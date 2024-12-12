@@ -28,6 +28,15 @@
     <Filter Include="Core\Containers">
       <UniqueIdentifier>{10191daa-5a81-48c6-996c-3693cfd16c98}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{edf51e24-bbfc-4c3a-b002-830b501e89ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramework">
+      <UniqueIdentifier>{245410b1-9ccf-4a68-b184-c19e54a6b315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{69093daa-6f31-42e2-acaf-15f1ece144fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Math\EngineMath.cpp">
@@ -60,8 +69,26 @@
     <ClCompile Include="Source\Time\TimeEvent.cpp">
       <Filter>Time</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Core\Containers\UnrealString.cpp">
+    <ClCompile Include="Source\Core\Containers\EngineString.cpp">
       <Filter>Core\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\EngineCore.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\ActorComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameFramework\Actor.cpp">
+      <Filter>GameFramework</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameFramework\Character.cpp">
+      <Filter>GameFramework</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameFramework\Pawn.cpp">
+      <Filter>GameFramework</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Platform\Window.cpp">
+      <Filter>Platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,9 +122,27 @@
     <ClInclude Include="Source\Time\TimeEvent.h">
       <Filter>Time</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Core\Containers\UnrealString.h">
+    <ClInclude Include="Source\Core\Containers\EngineString.h">
       <Filter>Core\Containers</Filter>
     </ClInclude>
     <ClInclude Include="Source\EngineDefine.h" />
+    <ClInclude Include="Source\Core\EngineCore.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\ActorComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameFramework\Actor.h">
+      <Filter>GameFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameFramework\Character.h">
+      <Filter>GameFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameFramework\Pawn.h">
+      <Filter>GameFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Platform\Window.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

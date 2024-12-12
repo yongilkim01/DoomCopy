@@ -5,7 +5,7 @@
 
 #include "EngineDefine.h"
 
-class UEngineMath
+class ENGINE_API FMath
 {
 public:
 	// 상수 정의
@@ -114,7 +114,7 @@ public:
 
 	static float GetVectorAngleDeg(const FVector& _Left, const FVector& _Right)
 	{
-		return GetVectorAngleRad(_Left, _Right) * UEngineMath::R2D;
+		return GetVectorAngleRad(_Left, _Right) * FMath::R2D;
 	}
 
 	static float GetVectorAngleRad(const FVector& _Left, const FVector& _Right)
@@ -170,16 +170,16 @@ public:
 		// 라디안 각도체계를 기반으로 sinf(_Angle) cosf
 
 		// 근본함수는 라디안 개념으로 만들고
-		return AngleToVectorRad(_Angle * UEngineMath::D2R);
+		return AngleToVectorRad(_Angle * FMath::D2R);
 	}
 
 
 	static FVector Lerp(FVector _A, FVector _B, float _Alpha)
 	{
 		FVector Result;
-		_Alpha = UEngineMath::Clamp(_Alpha, 0.0f, 1.0f);
-		Result.X = UEngineMath::Lerp(_A.X, _B.X, _Alpha);
-		Result.Y = UEngineMath::Lerp(_A.Y, _B.Y, _Alpha);
+		_Alpha = FMath::Clamp(_Alpha, 0.0f, 1.0f);
+		Result.X = FMath::Lerp(_A.X, _B.X, _Alpha);
+		Result.Y = FMath::Lerp(_A.Y, _B.Y, _Alpha);
 		return Result;
 	}
 
@@ -243,7 +243,7 @@ public:
 	// 빗변의 길이입니다.
 	float Length() const
 	{
-		return UEngineMath::Sqrt(X * X + Y * Y + Z * Z);
+		return FMath::Sqrt(X * X + Y * Y + Z * Z);
 	}
 
 	POINT ConvertWindowPOINT()
@@ -275,7 +275,7 @@ public:
 	// 
 	void RotationXDeg(float _Angle)
 	{
-		RotationXRad(_Angle * UEngineMath::D2R);
+		RotationXRad(_Angle * FMath::D2R);
 	}
 
 	void RotationXRad(float _Angle)
@@ -287,7 +287,7 @@ public:
 
 	FVector RotationXDegReturn(float _Angle)
 	{
-		return RotationXRadReturn(_Angle * UEngineMath::D2R);
+		return RotationXRadReturn(_Angle * FMath::D2R);
 	}
 
 	FVector RotationXRadReturn(float _Angle)
@@ -302,7 +302,7 @@ public:
 	// 
 	void RotationYDeg(float _Angle)
 	{
-		RotationYRad(_Angle * UEngineMath::D2R);
+		RotationYRad(_Angle * FMath::D2R);
 	}
 
 	void RotationYRad(float _Angle)
@@ -314,7 +314,7 @@ public:
 
 	FVector RotationYDegReturn(float _Angle)
 	{
-		return RotationYRadReturn(_Angle * UEngineMath::D2R);
+		return RotationYRadReturn(_Angle * FMath::D2R);
 	}
 
 	FVector RotationYRadReturn(float _Angle)
@@ -328,7 +328,7 @@ public:
 	// 
 	void RotationZDeg(float _Angle)
 	{
-		RotationZRad(_Angle * UEngineMath::D2R);
+		RotationZRad(_Angle * FMath::D2R);
 	}
 
 	void RotationZRad(float _Angle)
@@ -340,7 +340,7 @@ public:
 
 	FVector RotationZDegReturn(float _Angle)
 	{
-		return RotationZRadReturn(_Angle * UEngineMath::D2R);
+		return RotationZRadReturn(_Angle * FMath::D2R);
 	}
 
 	FVector RotationZRadReturn(float _Angle)
@@ -686,7 +686,7 @@ public:
 	// _FovAngle => x축에서 바라봤을대의 각도를 알려달라.
 	void PerspectiveFovDeg(float _FovAngle, float _Width, float _Height, float _Near, float _Far)
 	{
-		PerspectiveFovRad(_FovAngle * UEngineMath::D2R, _Width, _Height, _Near, _Far);
+		PerspectiveFovRad(_FovAngle * FMath::D2R, _Width, _Height, _Near, _Far);
 	}
 
 	void PerspectiveFovRad(float _FovAngle, float _Width, float _Height, float _Near, float _Far)
@@ -743,7 +743,7 @@ public:
 
 	void RotationXDeg(float _Angle)
 	{
-		RotationXRad(_Angle * UEngineMath::D2R);
+		RotationXRad(_Angle * FMath::D2R);
 	}
 
 	void RotationXRad(float _Angle)
@@ -757,7 +757,7 @@ public:
 
 	void RotationYDeg(float _Angle)
 	{
-		RotationYRad(_Angle * UEngineMath::D2R);
+		RotationYRad(_Angle * FMath::D2R);
 	}
 
 	void RotationYRad(float _Angle)
@@ -771,7 +771,7 @@ public:
 
 	void RotationZDeg(float _Angle)
 	{
-		RotationZRad(_Angle * UEngineMath::D2R);
+		RotationZRad(_Angle * FMath::D2R);
 	}
 
 	void RotationZRad(float _Angle)

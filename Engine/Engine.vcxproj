@@ -19,31 +19,43 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Core\Containers\UnrealString.cpp" />
+    <ClCompile Include="Source\Components\ActorComponent.cpp" />
+    <ClCompile Include="Source\Core\Containers\EngineString.cpp" />
     <ClCompile Include="Source\Core\Delegates\Delegate.cpp" />
+    <ClCompile Include="Source\Core\EngineCore.cpp" />
     <ClCompile Include="Source\Core\Misc\DirectoryHelper.cpp" />
     <ClCompile Include="Source\Core\Misc\FileHelper.cpp" />
     <ClCompile Include="Source\Core\Misc\Paths.cpp" />
     <ClCompile Include="Source\Core\Serialization\Archive.cpp" />
+    <ClCompile Include="Source\GameFramework\Actor.cpp" />
+    <ClCompile Include="Source\GameFramework\Character.cpp" />
+    <ClCompile Include="Source\GameFramework\Pawn.cpp" />
     <ClCompile Include="Source\Math\EngineMath.cpp" />
     <ClCompile Include="Source\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Source\Platform\Window.cpp" />
     <ClCompile Include="Source\Time\TimeEvent.cpp" />
     <ClCompile Include="Source\Time\Timer.cpp" />
     <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Core\Containers\UnrealString.h" />
+    <ClInclude Include="Source\Components\ActorComponent.h" />
+    <ClInclude Include="Source\Core\Containers\EngineString.h" />
     <ClInclude Include="Source\Core\Delegates\Delegate.h" />
+    <ClInclude Include="Source\Core\EngineCore.h" />
     <ClInclude Include="Source\Core\Misc\DirectoryHelper.h" />
     <ClInclude Include="Source\Core\Misc\FileHelper.h" />
     <ClInclude Include="Source\Core\Misc\Paths.h" />
     <ClInclude Include="Source\Core\Serialization\Archive.h" />
     <ClInclude Include="Source\EngineDefine.h" />
+    <ClInclude Include="Source\GameFramework\Actor.h" />
+    <ClInclude Include="Source\GameFramework\Character.h" />
+    <ClInclude Include="Source\GameFramework\Pawn.h" />
     <ClInclude Include="Source\Math\EngineMath.h" />
     <ClInclude Include="Source\pch.h" />
+    <ClInclude Include="Source\Platform\Window.h" />
     <ClInclude Include="Source\Time\TimeEvent.h" />
     <ClInclude Include="Source\Time\Timer.h" />
     <ClInclude Include="Source\WorldPartition\DebugHelpers.h" />
@@ -70,13 +82,13 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -151,6 +163,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)Build\Bin\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -172,6 +185,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)Build\Bin\$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
