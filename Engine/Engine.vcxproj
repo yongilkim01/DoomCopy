@@ -25,7 +25,7 @@
     <ClCompile Include="Source\Core\Misc\FileHelper.cpp" />
     <ClCompile Include="Source\Core\Misc\Paths.cpp" />
     <ClCompile Include="Source\Core\Serialization\Archive.cpp" />
-    <ClCompile Include="Source\Math\UnrealMathUtility.cpp" />
+    <ClCompile Include="Source\Math\EngineMath.cpp" />
     <ClCompile Include="Source\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -41,7 +41,8 @@
     <ClInclude Include="Source\Core\Misc\FileHelper.h" />
     <ClInclude Include="Source\Core\Misc\Paths.h" />
     <ClInclude Include="Source\Core\Serialization\Archive.h" />
-    <ClInclude Include="Source\Math\UnrealMathUtility.h" />
+    <ClInclude Include="Source\EngineDefine.h" />
+    <ClInclude Include="Source\Math\EngineMath.h" />
     <ClInclude Include="Source\pch.h" />
     <ClInclude Include="Source\Time\TimeEvent.h" />
     <ClInclude Include="Source\Time\Timer.h" />

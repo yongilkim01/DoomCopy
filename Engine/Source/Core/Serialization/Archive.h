@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 
-#include "Math/UnrealMathUtility.h"
+#include "Math/EngineMath.h"
 
 /**
  *	파일 직렬화 저장 클래스

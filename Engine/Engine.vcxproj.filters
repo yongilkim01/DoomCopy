@@ -30,7 +30,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Math\UnrealMathUtility.cpp">
+    <ClCompile Include="Source\Math\EngineMath.cpp">
       <Filter>Math</Filter>
     </ClCompile>
     <ClCompile Include="Source\pch.cpp">
@@ -65,7 +65,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Math\UnrealMathUtility.h">
+    <ClInclude Include="Source\Math\EngineMath.h">
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\pch.h">
@@ -98,5 +98,6 @@
     <ClInclude Include="Source\Core\Containers\UnrealString.h">
       <Filter>Core\Containers</Filter>
     </ClInclude>
+    <ClInclude Include="Source\EngineDefine.h" />
   </ItemGroup>
 </Project>

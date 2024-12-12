@@ -3,6 +3,8 @@
 #include <string>
 #include <functional>
 
+#include "EngineDefine.h"
+
 class UEngineMath
 {
 public:
@@ -78,18 +80,18 @@ public:
 	};
 
 
-	FVector()
+	ENGINE_API FVector()
 		: X(0.0f), Y(0.0f), Z(0.0f), W(1.0f)
 	{
 
 	}
 
-	FVector(float _X, float _Y) : X(_X), Y(_Y), Z(0.0f), W(1.0f)
+	ENGINE_API FVector(float _X, float _Y) : X(_X), Y(_Y), Z(0.0f), W(1.0f)
 	{
 
 	}
 
-	FVector(float _X, float _Y, float _Z) : X(_X), Y(_Y), Z(_Z), W(1.0f)
+	ENGINE_API FVector(float _X, float _Y, float _Z) : X(_X), Y(_Y), Z(_Z), W(1.0f)
 	{
 
 	}
@@ -370,8 +372,8 @@ public:
 		return Result;
 	}
 
-	FVector operator*(const class FMatrix& _Matrix) const;
-	FVector& operator*=(const class FMatrix& _Matrix);
+	ENGINE_API FVector operator*(const class FMatrix& _Matrix) const;
+	ENGINE_API FVector& operator*=(const class FMatrix& _Matrix);
 
 	FVector& operator-=(const FVector& _Other)
 	{
