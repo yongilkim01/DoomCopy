@@ -79,6 +79,7 @@ void UEngineCore::LoadContents(std::string_view DllName)
 	INT_PTR(__stdcall * Ptr)(std::shared_ptr<IContentsCore>&) = 
 		(INT_PTR(__stdcall*)(std::shared_ptr<IContentsCore>&))GetProcAddress(ContentsDLL, "CreateContentsCore");
 
+
 	if (nullptr == Ptr)
 	{
 		MSGASSERT("컨텐츠 코어 내부에 CreateContentsCoreDefine 메소드를 정의하지 않았습니다.");
