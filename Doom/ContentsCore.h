@@ -28,5 +28,6 @@ protected:
 	void EngineEnd();
 
 private:
-
+	const float WindowWidth = 1280;
+	const float WindowHeight = 720;
 };

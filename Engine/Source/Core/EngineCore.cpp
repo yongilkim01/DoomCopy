@@ -30,6 +30,10 @@ void UEngineCore::EngineStart(HINSTANCE Instance, std::string_view DllName)
 		{
 			// 시작할때 하고 싶은것
 			// 1. 윈도우창 크기 바꾸고 싶다.
+			UEngineInitData Data;
+			Core->EngineStart(Data);
+
+			MainWindow.SetWindowPosAndScale(Data.WindowPosition, Data.WindowSize);
 		},
 		[]()
 		{
