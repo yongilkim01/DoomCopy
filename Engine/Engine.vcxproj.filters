@@ -7,9 +7,6 @@
     <Filter Include="pch">
       <UniqueIdentifier>{479f833a-7ec7-477e-bafc-db0db95811d8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Debug">
-      <UniqueIdentifier>{286a5737-4a8f-49a1-a9a2-d4a6ddefe048}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core">
       <UniqueIdentifier>{57a416c6-81b6-47aa-beeb-11c6c9d9bbdc}</UniqueIdentifier>
     </Filter>
@@ -37,6 +34,12 @@
     <Filter Include="Platform">
       <UniqueIdentifier>{69093daa-6f31-42e2-acaf-15f1ece144fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="WorldPartition">
+      <UniqueIdentifier>{286a5737-4a8f-49a1-a9a2-d4a6ddefe048}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interfaces">
+      <UniqueIdentifier>{3c0269e8-4b02-4a43-bfec-5e81433fdaca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Math\EngineMath.cpp">
@@ -46,7 +49,7 @@
       <Filter>pch</Filter>
     </ClCompile>
     <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp">
-      <Filter>Debug</Filter>
+      <Filter>WorldPartition</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\Delegates\Delegate.cpp">
       <Filter>Core\Delegates</Filter>
@@ -99,7 +102,7 @@
       <Filter>pch</Filter>
     </ClInclude>
     <ClInclude Include="Source\WorldPartition\DebugHelpers.h">
-      <Filter>Debug</Filter>
+      <Filter>WorldPartition</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\Delegates\Delegate.h">
       <Filter>Core\Delegates</Filter>
@@ -143,6 +146,9 @@
     </ClInclude>
     <ClInclude Include="Source\Platform\Window.h">
       <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Interfaces\IContentsCore.h">
+      <Filter>Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

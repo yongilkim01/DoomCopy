@@ -4,12 +4,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "App", "App\App.vcxproj", "{A2DAB1E1-D70E-4BCA-BB42-61204B51A904}"
+	ProjectSection(ProjectDependencies) = postProject
+		{160C1F49-DD73-43EC-813E-7BEB3C3F3895} = {160C1F49-DD73-43EC-813E-7BEB3C3F3895}
+		{F7C7E682-1A2C-475D-8EAD-81137DF0570A} = {F7C7E682-1A2C-475D-8EAD-81137DF0570A}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcxproj", "{F7C7E682-1A2C-475D-8EAD-81137DF0570A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0_Engine", "0_Engine", "{E9317743-1B24-4E38-94C1-53C2841DD9F6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2_App", "2_App", "{47B3D6A2-BA5E-4A6C-A724-9731EC659385}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Doom", "Doom\Doom.vcxproj", "{160C1F49-DD73-43EC-813E-7BEB3C3F3895}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F7C7E682-1A2C-475D-8EAD-81137DF0570A} = {F7C7E682-1A2C-475D-8EAD-81137DF0570A}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_Contents", "1_Contents", "{066B1EC7-3B76-46CD-A596-C21E09228F9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +46,14 @@ Global
 		{F7C7E682-1A2C-475D-8EAD-81137DF0570A}.Release|x64.Build.0 = Release|x64
 		{F7C7E682-1A2C-475D-8EAD-81137DF0570A}.Release|x86.ActiveCfg = Release|Win32
 		{F7C7E682-1A2C-475D-8EAD-81137DF0570A}.Release|x86.Build.0 = Release|Win32
+		{160C1F49-DD73-43EC-813E-7BEB3C3F3895}.Debug|x64.ActiveCfg = Debug|x64
+		{160C1F49-DD73-43EC-813E-7BEB3C3F3895}.Debug|x64.Build.0 = Debug|x64
+		{160C1F49-DD73-43EC-813E-7BEB3C3F3895}.Debug|x86.ActiveCfg = Debug|Win32
+		{160C1F49-DD73-43EC-813E-7BEB3C3F3895}.Debug|x86.Build.0 = Debug|Win32
+		{160C1F49-DD73-43EC-813E-7BEB3C3F3895}.Release|x64.ActiveCfg = Release|x64
+		{160C1F49-DD73-43EC-813E-7BEB3C3F3895}.Release|x64.Build.0 = Release|x64
+		{160C1F49-DD73-43EC-813E-7BEB3C3F3895}.Release|x86.ActiveCfg = Release|Win32
+		{160C1F49-DD73-43EC-813E-7BEB3C3F3895}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +61,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A2DAB1E1-D70E-4BCA-BB42-61204B51A904} = {47B3D6A2-BA5E-4A6C-A724-9731EC659385}
 		{F7C7E682-1A2C-475D-8EAD-81137DF0570A} = {E9317743-1B24-4E38-94C1-53C2841DD9F6}
+		{160C1F49-DD73-43EC-813E-7BEB3C3F3895} = {066B1EC7-3B76-46CD-A596-C21E09228F9B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3FB968E-1AE5-4909-878D-250038306D68}

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="pch">
+      <UniqueIdentifier>{814e1042-457f-4c86-8a6e-900ca2e63916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0_DoomGuy">
+      <UniqueIdentifier>{aaea3ddf-772c-45d7-be20-3d7282abeae6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{65b975fc-6ad6-4121-a08c-ba27e55a248d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\DoomGuy\DoomGuy.cpp">
+      <Filter>0_DoomGuy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\contents_pch.cpp">
+      <Filter>pch</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsCore.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\DoomGuy\DoomGuy.h">
+      <Filter>0_DoomGuy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\contents_pch.h">
+      <Filter>pch</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsCore.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

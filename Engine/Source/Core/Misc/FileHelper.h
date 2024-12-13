@@ -17,6 +17,7 @@ public:
 	FFileHelper(const std::string& Path);
 	FFileHelper(std::string_view Path);
 	FFileHelper(std::filesystem::path Path);
+	FFileHelper(const FPaths& PathData);
 	~FFileHelper();
 
 	/** 파일 쓰기 읽기 메소드 */

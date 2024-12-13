@@ -3,6 +3,8 @@
 
 #include <vector>
 
+class FFileHelper;
+
 /**
  * 디렉토리 파일 순회 클래스
  */
@@ -24,6 +26,8 @@ public:
 
 	/** 디렉토리 내 모든 디렉토리들을 가져와서 UEngineDirectory 타입으로 값을 저장 후 반환하는 메소드 */
 	std::vector<class FDirectoryHelper> GetAllDirectory();
+
+	ENGINE_API FFileHelper GetFile(std::string_view FileName);
 
 protected:
 

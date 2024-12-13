@@ -2,6 +2,8 @@
 #include "DirectoryHelper.h"
 #include "FileHelper.h"
 
+#include "WorldPartition/DebugHelpers.h"
+
 FDirectoryHelper::FDirectoryHelper()
 	: FPaths()
 {
@@ -87,6 +89,19 @@ std::vector<class FDirectoryHelper> FDirectoryHelper::GetAllDirectory()
 	}
 
 	return Result;
+}
+
+ENGINE_API FFileHelper FDirectoryHelper::GetFile(std::string_view FileName)
+{
+	FPaths FilePath = Path;
+	FilePath.Append(FileName);
+
+	if (false == FilePath.IsExists())
+	{
+		MSGASSERT("존재하지 않는 파일을 객체화하려고 했습니다.");
+	}
+
+	return FFileHelper(FilePath);
 }
 
 void FDirectoryHelper::GetAllFileRecursive(std::filesystem::path Path, std::vector<class FFileHelper>& Result)

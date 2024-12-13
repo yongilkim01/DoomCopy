@@ -26,6 +26,11 @@ FFileHelper::FFileHelper(std::filesystem::path Path)
 
 }
 
+FFileHelper::FFileHelper(const FPaths& PathData)
+	: FPaths(PathData)
+{
+}
+
 FFileHelper::~FFileHelper()
 {
 	Close();

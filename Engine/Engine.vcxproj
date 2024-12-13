@@ -53,6 +53,7 @@
     <ClInclude Include="Source\GameFramework\Actor.h" />
     <ClInclude Include="Source\GameFramework\Character.h" />
     <ClInclude Include="Source\GameFramework\Pawn.h" />
+    <ClInclude Include="Source\Interfaces\IContentsCore.h" />
     <ClInclude Include="Source\Math\EngineMath.h" />
     <ClInclude Include="Source\pch.h" />
     <ClInclude Include="Source\Platform\Window.h" />

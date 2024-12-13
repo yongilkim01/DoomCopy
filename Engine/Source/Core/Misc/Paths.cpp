@@ -119,3 +119,16 @@ bool FPaths::MoveParentToDirectory(std::string_view FindPath)
 
 	return Result;
 }
+
+bool FPaths::Move(std::string_view Path)
+{
+	Append(Path);
+
+	if (false == IsExists())
+	{
+		MSGASSERT("존재하지 않는 경로로 이동하려고 했습니다.");
+		return false;
+	}
+
+	return true;
+}
