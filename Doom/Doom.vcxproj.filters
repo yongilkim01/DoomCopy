@@ -15,10 +15,10 @@
     <ClCompile Include="Source\DoomGuy\DoomGuy.cpp">
       <Filter>0_DoomGuy</Filter>
     </ClCompile>
-    <ClCompile Include="Source\contents_pch.cpp">
+    <ClCompile Include="Source\pch.cpp">
       <Filter>pch</Filter>
     </ClCompile>
-    <ClCompile Include="ContentsCore.cpp">
+    <ClCompile Include="Source\Core\DoomCore.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -26,10 +26,10 @@
     <ClInclude Include="Source\DoomGuy\DoomGuy.h">
       <Filter>0_DoomGuy</Filter>
     </ClInclude>
-    <ClInclude Include="Source\contents_pch.h">
+    <ClInclude Include="Source\pch.h">
       <Filter>pch</Filter>
     </ClInclude>
-    <ClInclude Include="ContentsCore.h">
+    <ClInclude Include="Source\Core\DoomCore.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>

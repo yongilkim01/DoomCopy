@@ -40,6 +40,9 @@
     <Filter Include="Interfaces">
       <UniqueIdentifier>{3c0269e8-4b02-4a43-bfec-5e81433fdaca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Object">
+      <UniqueIdentifier>{5e27c38f-bd23-4301-ab35-dff39009bb63}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Math\EngineMath.cpp">
@@ -92,6 +95,9 @@
     </ClCompile>
     <ClCompile Include="Source\Platform\Window.cpp">
       <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Object\Object.cpp">
+      <Filter>Core\Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +155,9 @@
     </ClInclude>
     <ClInclude Include="Source\Interfaces\IContentsCore.h">
       <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Object\Object.h">
+      <Filter>Core\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

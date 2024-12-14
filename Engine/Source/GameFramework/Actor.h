@@ -1,6 +1,6 @@
+#include "Core/Object/Object.h"
 
-
-class AActor
+class AActor : public UObject
 {
 
 };

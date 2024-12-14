@@ -1,8 +1,6 @@
 #pragma once
 #include "Paths.h"
 
-#include <vector>
-
 class FFileHelper;
 
 /**
