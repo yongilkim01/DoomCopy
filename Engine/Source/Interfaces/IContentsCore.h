@@ -2,6 +2,8 @@
 #include <Math/EngineMath.h>
 #include <WorldPartition/DebugHelpers.h>
 
+class ULevel;
+
 struct UEngineInitData
 {
 public:

@@ -43,6 +43,9 @@
     <Filter Include="Core\Object">
       <UniqueIdentifier>{5e27c38f-bd23-4301-ab35-dff39009bb63}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{d58d6257-9006-4e6f-b4d6-ffc0ae6717da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Math\EngineMath.cpp">
@@ -98,6 +101,9 @@
     </ClCompile>
     <ClCompile Include="Source\Core\Object\Object.cpp">
       <Filter>Core\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Classes\Level.cpp">
+      <Filter>Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +164,9 @@
     </ClInclude>
     <ClInclude Include="Source\Core\Object\Object.h">
       <Filter>Core\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Level.h">
+      <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

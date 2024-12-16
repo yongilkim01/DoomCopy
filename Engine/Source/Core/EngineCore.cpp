@@ -4,10 +4,12 @@
 #include "Platform/Window.h"
 #include "Misc/DirectoryHelper.h"
 #include "Misc/FileHelper.h"
+#include "Classes/Level.h"
 
 UEngineWindow UEngineCore::MainWindow;
 HMODULE UEngineCore::ContentsDLL = nullptr;
 std::shared_ptr<IContentsCore> UEngineCore::Core;
+std::map<std::string, std::shared_ptr<class ULevel>> UEngineCore::Levels;
 
 UEngineCore::UEngineCore()
 {
@@ -42,6 +44,8 @@ void UEngineCore::EngineStart(HINSTANCE Instance, std::string_view DllName)
 		[]()
 		{
 			// 엔진이 끝났을때 하고 싶은것.
+			
+			EngineEnd();
 		});
 }
 
@@ -93,4 +97,18 @@ void UEngineCore::LoadContents(std::string_view DllName)
 		MSGASSERT("컨텐츠 코어 생성에 실패했습니다.");
 		return;
 	}
+}
+
+void UEngineCore::EngineEnd()
+{
+	Levels.clear();
+}
+
+ENGINE_API std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string_view Name)
+{
+	std::shared_ptr<ULevel> Ptr = std::make_shared<ULevel>();
+	
+	Ptr->SetName(Name);
+
+	L
 }

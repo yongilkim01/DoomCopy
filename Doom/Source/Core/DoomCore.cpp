@@ -2,11 +2,15 @@
 #include "DoomCore.h"
 
 #include "Math/EngineMath.h"
+#include "Core/EngineCore.h"
+
+#pragma comment(lib, "Engine.lib")
 
 CreateContentsCoreDefine(UDoomCore);
 
 UDoomCore::UDoomCore()
 {
+
 }
 
 UDoomCore::~UDoomCore()
@@ -20,6 +24,8 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 
 	Data.WindowPosition = { width / 2.0f , height / 2.0f };
 	Data.WindowSize = { WindowWidth, WindowHeight };
+
+	UEngineCore::CreateLevel();
 }
 
 void UDoomCore::EngineTick(float DeltaTime)
