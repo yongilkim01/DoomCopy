@@ -3,6 +3,7 @@
 
 #include "Math/EngineMath.h"
 #include "Core/EngineCore.h"
+#include "Classes/Level.h"
 
 #pragma comment(lib, "Engine.lib")
 
@@ -25,7 +26,7 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 	Data.WindowPosition = { width / 2.0f , height / 2.0f };
 	Data.WindowSize = { WindowWidth, WindowHeight };
 
-	UEngineCore::CreateLevel();
+	std::shared_ptr<ULevel> Level = UEngineCore::CreateLevel<>("TitleLevel");
 }
 
 void UDoomCore::EngineTick(float DeltaTime)

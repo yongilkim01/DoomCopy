@@ -104,11 +104,14 @@ void UEngineCore::EngineEnd()
 	Levels.clear();
 }
 
-ENGINE_API std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string_view Name)
+// 새로운 레벨을 생성하는 메소드 구현부
+std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string_view Name)
 {
 	std::shared_ptr<ULevel> Ptr = std::make_shared<ULevel>();
 	
 	Ptr->SetName(Name);
 
-	L
+	Levels.insert({ Name.data(), Ptr });
+
+	return Ptr;
 }
