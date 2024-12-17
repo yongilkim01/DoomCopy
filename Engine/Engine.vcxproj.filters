@@ -46,6 +46,9 @@
     <Filter Include="Classes\Components">
       <UniqueIdentifier>{edf51e24-bbfc-4c3a-b002-830b501e89ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{bc7c05bb-979d-49e1-a451-e8f4863fb5d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Math\EngineMath.cpp">
@@ -107,6 +110,12 @@
     </ClCompile>
     <ClCompile Include="Source\Classes\Components\SceneComponent.cpp">
       <Filter>Classes\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameFramework\GameMode.cpp">
+      <Filter>GameFramework</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Renderer\EngineGraphicDevice.cpp">
+      <Filter>Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +182,12 @@
     </ClInclude>
     <ClInclude Include="Source\Classes\Components\SceneComponent.h">
       <Filter>Classes\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameFramework\GameMode.h">
+      <Filter>GameFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Renderer\EngineGraphicDevice.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -9,7 +9,7 @@
 UEngineWindow UEngineCore::MainWindow;
 HMODULE UEngineCore::ContentsDLL = nullptr;
 std::shared_ptr<IContentsCore> UEngineCore::Core;
-std::map<std::string, std::shared_ptr<class ULevel>> UEngineCore::Levels;
+std::map<std::string, std::shared_ptr<class ULevel>> UEngineCore::LevelMap;
 
 UEngineCore::UEngineCore()
 {
@@ -47,6 +47,17 @@ void UEngineCore::EngineStart(HINSTANCE Instance, std::string_view DllName)
 			
 			EngineEnd();
 		});
+}
+
+void UEngineCore::OpenLevel(std::string_view LevelName)
+{
+	if (false == LevelMap.contains(LevelName.data()))
+	{
+		MSGASSERT("만들지 않은 레벨로 변경하려고 했습니다." + std::string(LevelName));
+		return;
+	}
+
+	NextLevel = LevelMap[LevelName.data()];
 }
 
 void UEngineCore::WindowInit(HINSTANCE Instance)
@@ -99,9 +110,28 @@ void UEngineCore::LoadContents(std::string_view DllName)
 	}
 }
 
+void UEngineCore::EngineFrame()
+{
+	if (nullptr != NextLevel)
+	{
+		if (nullptr != CurLevel)
+		{
+			CurLevel->LevelChangeEnd();
+		}
+		CurLevel = NextLevel;
+
+		CurLevel->LevelChangeStart();
+	
+		NextLevel = nullptr;
+	}
+
+	CurLevel->Tick(0.0f);
+}
+
 void UEngineCore::EngineEnd()
 {
-	Levels.clear();
+	LevelMap.clear();
+	UEngineDebug::EndConsole();
 }
 
 // 새로운 레벨을 생성하는 메소드 구현부

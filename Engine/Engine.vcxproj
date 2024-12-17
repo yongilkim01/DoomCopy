@@ -38,6 +38,10 @@
     <ClCompile Include="Source\Core\Serialization\Archive.cpp" />
     <ClCompile Include="Source\GameFramework\Actor.cpp" />
     <ClCompile Include="Source\GameFramework\Character.cpp" />
+    <ClCompile Include="Source\GameFramework\GameMode.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\GameFramework\Pawn.cpp" />
     <ClCompile Include="Source\Math\EngineMath.cpp" />
     <ClCompile Include="Source\pch.cpp">
@@ -45,6 +49,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source\Platform\Window.cpp" />
+    <ClCompile Include="Source\Renderer\EngineGraphicDevice.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Time\TimeEvent.cpp" />
     <ClCompile Include="Source\Time\Timer.cpp" />
     <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp" />
@@ -70,11 +78,19 @@
     <ClInclude Include="Source\EngineDefine.h" />
     <ClInclude Include="Source\GameFramework\Actor.h" />
     <ClInclude Include="Source\GameFramework\Character.h" />
+    <ClInclude Include="Source\GameFramework\GameMode.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\GameFramework\Pawn.h" />
     <ClInclude Include="Source\Interfaces\IContentsCore.h" />
     <ClInclude Include="Source\Math\EngineMath.h" />
     <ClInclude Include="Source\pch.h" />
     <ClInclude Include="Source\Platform\Window.h" />
+    <ClInclude Include="Source\Renderer\EngineGraphicDevice.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\Time\TimeEvent.h" />
     <ClInclude Include="Source\Time\Timer.h" />
     <ClInclude Include="Source\WorldPartition\DebugHelpers.h" />

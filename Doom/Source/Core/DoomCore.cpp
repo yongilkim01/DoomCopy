@@ -5,8 +5,6 @@
 #include "Core/EngineCore.h"
 #include "Classes/Level.h"
 
-#pragma comment(lib, "Engine.lib")
-
 CreateContentsCoreDefine(UDoomCore);
 
 UDoomCore::UDoomCore()

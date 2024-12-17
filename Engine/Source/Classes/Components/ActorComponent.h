@@ -1,5 +1,6 @@
 #pragma once
 #include "Core/Object/Object.h"
+#include <memory>
 
 class AActor;
 
@@ -20,6 +21,11 @@ public:
 	UActorComponent& operator=(UActorComponent&& _Other) noexcept = delete;
 
 	std::shared_ptr<AActor> GetActor() {}
+
+	void SetOwner(AActor* NewOwner)
+	{
+		Owner = NewOwner;
+	}
 
 protected:
 

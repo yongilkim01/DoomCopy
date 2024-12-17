@@ -1,5 +1,6 @@
 #pragma once
 #include "Classes/Components/ActorComponent.h"
+#include "Math/EngineMath.h"
 
 /**
  *	Ό³Έν
@@ -20,6 +21,9 @@ public:
 protected:
 
 private:
+	FTransform Transform;
 
+	USceneComponent* Parent;
+	std::list<std::shared_ptr<USceneComponent>> Childs;
 };
 

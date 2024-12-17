@@ -11,4 +11,7 @@
 #include <iostream>
 #include <functional>
 
+#include "Core/EngineCore.h"
+#include "GameFramework/Pawn.h"
+
 #include "EngineDefine.h"
