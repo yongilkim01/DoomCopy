@@ -113,9 +113,9 @@ protected:
 private:
 	std::string Name;
 
+	bool IsActiveValue = true;
 	bool IsDebugValue = false;
-	bool IsActiveValue = false;
-	bool IsDestroyValue = true;
+	bool IsDestroyValue = false;
 	bool IsDeathTimeCheck = false;
 
 	float DeathTime = 0.0f;
