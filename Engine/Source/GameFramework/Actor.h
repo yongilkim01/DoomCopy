@@ -30,7 +30,7 @@ public:
 	virtual void LevelChangeEnd() {}
 
 	template<typename ComponentType>
-	void CreateDefaultSubObject()
+	inline std::shared_ptr<ComponentType> CreateDefaultSubObject()
 	{
 		/** 액터 컴포넌트를 상속받았는지 검사 */
 		static_assert(std::is_base_of_v<UActorComponent, ComponentType>, 

@@ -10,6 +10,21 @@
     <Filter Include="Core">
       <UniqueIdentifier>{65b975fc-6ad6-4121-a08c-ba27e55a248d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="1_GameMode">
+      <UniqueIdentifier>{4187ed8d-8c2c-45a3-8072-dc8f31dcb832}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_GameMode\0_Title">
+      <UniqueIdentifier>{2068ac7d-2712-4ada-877f-9e1c362b356e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_GameMode\1_Round1">
+      <UniqueIdentifier>{4c6df9d0-05e7-4298-b333-2bb9e2e1a9a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Actor">
+      <UniqueIdentifier>{a9e83b51-d9fd-4b93-93e5-40a2acbaa453}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Actor\0_Title">
+      <UniqueIdentifier>{d89f4c95-63c6-4f70-9b45-974948ef870e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\DoomGuy\DoomGuy.cpp">
@@ -21,6 +36,15 @@
     <ClCompile Include="Source\Core\DoomCore.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GameMode\Round1GameMode.cpp">
+      <Filter>1_GameMode\1_Round1</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameMode\TitleGameMode.cpp">
+      <Filter>1_GameMode\0_Title</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Actor\TitleLogo.cpp">
+      <Filter>2_Actor\0_Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DoomGuy\DoomGuy.h">
@@ -31,6 +55,15 @@
     </ClInclude>
     <ClInclude Include="Source\Core\DoomCore.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameMode\Round1GameMode.h">
+      <Filter>1_GameMode\1_Round1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameMode\TitleGameMode.h">
+      <Filter>1_GameMode\0_Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Actor\TitleLogo.h">
+      <Filter>2_Actor\0_Title</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

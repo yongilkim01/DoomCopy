@@ -2,6 +2,7 @@
 
 #include "Core/Object/Object.h"
 #include "WorldPartition/DebugHelpers.h"
+//#include "GameFramework/Actor.h"
 
 class URenderer;
 class AActor;
@@ -34,7 +35,7 @@ public:
 	std::shared_ptr<ActorType> SpawnActor()
 	{
 		// 템플릿으로 전달받은 액터 타입이 액터를 상속받지 않았을 경우 체크
-		static_aseert(std::is_base_of_v<AActor, ActorType>, "액터를 상속받지 않은 클래스");
+		static_assert(std::is_base_of_v<AActor, ActorType>, "액터를 상속받지 않은 클래스");
 		
 		if (false == std::is_base_of_v<AActor, ActorType>)
 		{

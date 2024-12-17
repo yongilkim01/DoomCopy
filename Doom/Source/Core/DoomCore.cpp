@@ -1,9 +1,12 @@
 #include "pch.h"
 #include "DoomCore.h"
 
-#include "Math/EngineMath.h"
-#include "Core/EngineCore.h"
-#include "Classes/Level.h"
+#include "GameMode/TitleGameMode.h"
+
+#include <Math/EngineMath.h>
+#include <Core/EngineCore.h>
+#include <Classes/Level.h>
+#include <GameFramework/Actor.h>
 
 CreateContentsCoreDefine(UDoomCore);
 
@@ -24,7 +27,8 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 	Data.WindowPosition = { width / 2.0f , height / 2.0f };
 	Data.WindowSize = { WindowWidth, WindowHeight };
 
-	std::shared_ptr<ULevel> Level = UEngineCore::CreateLevel<>("TitleLevel");
+	UEngineCore::CreateLevel<ATitleGameMode, AActor>("TitleLevel");
+	UEngineCore::OpenLevel("TitleLevel");
 }
 
 void UDoomCore::EngineTick(float DeltaTime)

@@ -35,8 +35,24 @@ public:
 	 *	오브젝트 객체가 파괴되기까지 시간을 체크하는 메소드
 	 *	@param DeltaTime: 엔진 델타타임
 	 */
-	virtual void ReleaseTimeCheck(float DeltaTime);
-	virtual void ReleaseCheck(float DeltaTime);
+	virtual void ReleaseTimeCheck(float DeltaTime)
+	{
+		if (false == IsDeathTimeCheck)
+		{
+			return;
+		}
+
+		CurDeathTime += DeltaTime;
+
+		if (DeathTime <= CurDeathTime)
+		{
+			IsDestroyValue = true;
+		}
+	}
+	virtual void ReleaseCheck(float DeltaTime)
+	{
+
+	}
 
 	/** 겟, 셋 메소드 */
 	std::string GetName() const

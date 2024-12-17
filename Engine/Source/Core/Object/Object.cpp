@@ -23,22 +23,3 @@ void UObject::Destroy(float Time)
 
 	IsDestroyValue = true;
 }
-
-void UObject::ReleaseTimeCheck(float DeltaTime)
-{
-	if (false == IsDeathTimeCheck)
-	{
-		return;
-	}
-
-	CurDeathTime += DeltaTime;
-
-	if (DeathTime <= CurDeathTime)
-	{
-		IsDestroyValue = true;
-	}
-}
-
-void UObject::ReleaseCheck(float DeltaTime)
-{
-}
