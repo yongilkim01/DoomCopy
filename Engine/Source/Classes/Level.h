@@ -4,6 +4,7 @@
 #include "WorldPartition/DebugHelpers.h"
 
 class URenderer;
+class AActor;
 
 /**
  *	엔진 레벨 클래스
