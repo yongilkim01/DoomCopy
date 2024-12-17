@@ -1,6 +1,7 @@
 #pragma once
 #include "EngineDefine.h"
 #include "Platform/Window.h"
+#include "Renderer/EngineGraphicDevice.h"
 #include "Interfaces/IContentsCore.h"
 #include "Classes/Level.h"
 
@@ -69,6 +70,7 @@ private:
 	 */
 	static void EngineEnd();
 
+	ENGINE_API static UEngineGraphicDevice Device;
 	static UEngineWindow MainWindow;
 	static HMODULE ContentsDLL;
 	static std::shared_ptr<IContentsCore> Core;

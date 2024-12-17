@@ -2,8 +2,8 @@
 #include "Core/Object/Object.h"
 #include "WorldPartition/DebugHelpers.h"
 #include "EngineDefine.h"
+#include "Classes/Components/SceneComponent.h"
 
-class USceneComponent;
 class UActorComponent;
 
 /**
@@ -32,39 +32,41 @@ public:
 	template<typename ComponentType>
 	void CreateDefaultSubObject()
 	{
-		static_assert(std::is_base_of_v<UActorComponent, ComponentType>, "액터 컴포넌트를 상속받지 않은 클래스를 CreateDefaultSubObject하려고 시도");
-
+		/** 액터 컴포넌트를 상속받았는지 검사 */
+		static_assert(std::is_base_of_v<UActorComponent, ComponentType>, 
+			"액터 컴포넌트를 상속받지 않은 클래스를 CreateDefaultSubObject하려고 시도");
 		if (false == std::is_base_of_v<UActorComponent, ComponentType>)
 		{
-			MSGASSERT("ActorComponent를 상속받지 않은 클래스를 CreateDefaultSubObject 시도");
+			MSGASSERT("액터 컴포넌트를 상속받지 않은 클래스를 CreateDefaultSubObject하려고 시도");
 			return nullptr;
 		}
 
 		char* ComponentMemory = new char[sizeof(ComponentType)];
 
 		UActorComponent* ComponentPtr = reinterpret_cast<ComponentType*>(ComponentMemory);
-		PtrComponent->SetOwner(this);
+		ComponentPtr->SetOwner(this);
 
 		ComponentType* NewPtr = reinterpret_cast<ComponentType*>(ComponentMemory);
 
 		std::shared_ptr<ComponentType> NewComponent(new(ComponentMemory)ComponentType());
 
+		/** 컴포넌트가 SceneComponent일 경우 */
 		if (std::is_base_of_v<USceneComponent, ComponentType>)
 		{
 			if (nullptr != RootComponent)
 			{
-				MSGASSERT("아직 기하구조를 만들지 않았습니다.");
+				MSGASSERT("Root component가 할당되지 않았습니다.");
 			}
 
 			RootComponent = NewComponent;
 		}
 		else if (std::is_base_of_v<UActorComponent, ComponentType>)
 		{
-
+			ActorComponentList.push_back(NewComponent);
 		}
 		else
 		{
-			MSGASSERT("말도 안됨");
+			MSGASSERT("어떤 컴포넌트도 아닙니다.");
 		}
 
 		return NewComponent;

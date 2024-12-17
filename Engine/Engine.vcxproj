@@ -53,6 +53,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Source\Renderer\Renderer.cpp" />
     <ClCompile Include="Source\Time\TimeEvent.cpp" />
     <ClCompile Include="Source\Time\Timer.cpp" />
     <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp" />
@@ -91,6 +92,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Source\Renderer\Renderer.h" />
     <ClInclude Include="Source\Time\TimeEvent.h" />
     <ClInclude Include="Source\Time\Timer.h" />
     <ClInclude Include="Source\WorldPartition\DebugHelpers.h" />

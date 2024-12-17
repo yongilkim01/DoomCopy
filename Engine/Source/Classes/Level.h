@@ -2,8 +2,8 @@
 
 #include "Core/Object/Object.h"
 #include "WorldPartition/DebugHelpers.h"
-#include "EngineDefine.h"
-#include "GameFramework/Actor.h"
+
+class URenderer;
 
 /**
  *	엔진 레벨 클래스
@@ -25,6 +25,9 @@ public:
 	void LevelChangeEnd();
 
 	void Tick(float DeltaTime);
+	void Render(float DeltaTime);
+
+	void ChangeRenderGroup(int PrevGroupOrder, std::shared_ptr<URenderer> Renderer);
 
 	template<typename ActorType>
 	std::shared_ptr<ActorType> SpawnActor()
@@ -56,4 +59,6 @@ protected:
 private:
 	std::list<std::shared_ptr<AActor>> BeginPlayList;
 	std::list<std::shared_ptr<AActor>> AllActorList;
+	std::map<int, std::list<std::shared_ptr<URenderer>>> RendererMap;
+
 };

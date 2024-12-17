@@ -6,9 +6,14 @@
 #include "Misc/FileHelper.h"
 #include "Classes/Level.h"
 
+UEngineGraphicDevice UEngineCore::Device;
 UEngineWindow UEngineCore::MainWindow;
 HMODULE UEngineCore::ContentsDLL = nullptr;
 std::shared_ptr<IContentsCore> UEngineCore::Core;
+
+std::shared_ptr<ULevel> UEngineCore::NextLevel;
+std::shared_ptr<ULevel> UEngineCore::CurLevel = nullptr;
+
 std::map<std::string, std::shared_ptr<class ULevel>> UEngineCore::LevelMap;
 
 UEngineCore::UEngineCore()
@@ -18,6 +23,8 @@ UEngineCore::UEngineCore()
 UEngineCore::~UEngineCore()
 {
 }
+
+
 
 void UEngineCore::EngineStart(HINSTANCE Instance, std::string_view DllName)
 {
@@ -30,34 +37,25 @@ void UEngineCore::EngineStart(HINSTANCE Instance, std::string_view DllName)
 	UEngineWindow::WindowMessageLoop(
 		[]()
 		{
-			// 시작할때 하고 싶은것
-			// 1. 윈도우창 크기 바꾸고 싶다.
+			// 엔진이 시작할 때 하고 싶은것
+			Device.CreateDeviceAndContext();
 			UEngineInitData Data;
 			Core->EngineStart(Data);
 
 			MainWindow.SetWindowPosAndScale(Data.WindowPosition, Data.WindowSize);
+
+			Device.CreateBackBuffer(MainWindow);
 		},
 		[]()
 		{
-			// 엔진이 돌아갈때 하고 싶은것
+			// 엔진이 돌아갈 때 하고 싶은것
+			EngineFrame();
 		},
 		[]()
 		{
-			// 엔진이 끝났을때 하고 싶은것.
-			
+			// 엔진이 끝났을 때 하고 싶은것
 			EngineEnd();
 		});
-}
-
-void UEngineCore::OpenLevel(std::string_view LevelName)
-{
-	if (false == LevelMap.contains(LevelName.data()))
-	{
-		MSGASSERT("만들지 않은 레벨로 변경하려고 했습니다." + std::string(LevelName));
-		return;
-	}
-
-	NextLevel = LevelMap[LevelName.data()];
 }
 
 void UEngineCore::WindowInit(HINSTANCE Instance)
@@ -126,6 +124,7 @@ void UEngineCore::EngineFrame()
 	}
 
 	CurLevel->Tick(0.0f);
+	CurLevel->Render(0.0f);
 }
 
 void UEngineCore::EngineEnd()
@@ -138,10 +137,11 @@ void UEngineCore::EngineEnd()
 std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string_view Name)
 {
 	std::shared_ptr<ULevel> Ptr = std::make_shared<ULevel>();
-	
 	Ptr->SetName(Name);
 
-	Levels.insert({ Name.data(), Ptr });
+	LevelMap.insert({ Name.data(), Ptr });
+
+	std::cout << "New level create" << std::endl;
 
 	return Ptr;
 }

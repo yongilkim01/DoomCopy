@@ -20,6 +20,12 @@ public:
 	UObject& operator=(const UObject& Other) = delete;
 	UObject& operator=(UObject&& Other) noexcept = delete;
 
+	template<typename ChildPtrType>
+	std::shared_ptr<ChildPtrType> GetThis()
+	{
+		return std::static_pointer_cast<ChildPtrType>(shared_from_this());
+	}
+
 	/**
 	 *	오브젝트 객체가 몇 초 뒤에 파괴되는 메소드
 	 *	@param Time: 오브젝트 객체가 파괴되는 딜레이 타임
@@ -77,6 +83,14 @@ public:
 	{
 		IsDebugValue = !IsDebugValue;
 	}
+	int GetOrder()
+	{
+		return Order;
+	}
+	virtual void SetOrder(int NewOrder)
+	{
+		Order = NewOrder;
+	}
 
 protected:
 
@@ -91,4 +105,5 @@ private:
 	float DeathTime = 0.0f;
 	float CurDeathTime = 0.0f;
 
+	int Order = 0;
 };
