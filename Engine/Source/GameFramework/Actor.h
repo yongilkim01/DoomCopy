@@ -13,4 +13,6 @@ public:
 	AActor(AActor&& Other) noexcept = delete;
 	AActor& operator=(const AActor& Other) = delete;
 	AActor& operator=(AActor&& Other) noexcept = delete;
+
+	void CreateDefaultSubObject() {}
 };

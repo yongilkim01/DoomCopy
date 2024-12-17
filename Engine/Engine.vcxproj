@@ -19,8 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Classes\Components\ActorComponent.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Source\Classes\Components\SceneComponent.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Classes\Level.cpp" />
-    <ClCompile Include="Source\Components\ActorComponent.cpp" />
     <ClCompile Include="Source\Core\Containers\EngineString.cpp" />
     <ClCompile Include="Source\Core\Delegates\Delegate.cpp" />
     <ClCompile Include="Source\Core\EngineCore.cpp" />
@@ -43,8 +50,15 @@
     <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Classes\Components\ActorComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Components\SceneComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\Classes\Level.h" />
-    <ClInclude Include="Source\Components\ActorComponent.h" />
     <ClInclude Include="Source\Core\Containers\EngineString.h" />
     <ClInclude Include="Source\Core\Delegates\Delegate.h" />
     <ClInclude Include="Source\Core\EngineCore.h" />

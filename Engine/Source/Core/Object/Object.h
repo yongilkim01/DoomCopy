@@ -1,12 +1,13 @@
 #pragma once
 #include <string>
+#include <memory>
 
 #include "EngineDefine.h"
 
 /**
  *	엔진 최상위 오브젝트 클래스 
  */
-class UObject
+class UObject : public std::enable_shared_from_this<UObject>
 {
 public:
 	/** 생성자, 소멸자 */

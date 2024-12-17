@@ -25,9 +25,6 @@
     <Filter Include="Core\Containers">
       <UniqueIdentifier>{10191daa-5a81-48c6-996c-3693cfd16c98}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components">
-      <UniqueIdentifier>{edf51e24-bbfc-4c3a-b002-830b501e89ca}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameFramework">
       <UniqueIdentifier>{245410b1-9ccf-4a68-b184-c19e54a6b315}</UniqueIdentifier>
     </Filter>
@@ -45,6 +42,9 @@
     </Filter>
     <Filter Include="Classes">
       <UniqueIdentifier>{d58d6257-9006-4e6f-b4d6-ffc0ae6717da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Components">
+      <UniqueIdentifier>{edf51e24-bbfc-4c3a-b002-830b501e89ca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -84,9 +84,6 @@
     <ClCompile Include="Source\Core\EngineCore.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Components\ActorComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="Source\GameFramework\Actor.cpp">
       <Filter>GameFramework</Filter>
     </ClCompile>
@@ -104,6 +101,12 @@
     </ClCompile>
     <ClCompile Include="Source\Classes\Level.cpp">
       <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Classes\Components\ActorComponent.cpp">
+      <Filter>Classes\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Classes\Components\SceneComponent.cpp">
+      <Filter>Classes\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -144,9 +147,6 @@
     <ClInclude Include="Source\Core\EngineCore.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Components\ActorComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="Source\GameFramework\Actor.h">
       <Filter>GameFramework</Filter>
     </ClInclude>
@@ -167,6 +167,12 @@
     </ClInclude>
     <ClInclude Include="Source\Classes\Level.h">
       <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Components\ActorComponent.h">
+      <Filter>Classes\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Components\SceneComponent.h">
+      <Filter>Classes\Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
