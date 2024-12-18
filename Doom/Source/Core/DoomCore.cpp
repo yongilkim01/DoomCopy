@@ -5,7 +5,7 @@
 
 #include <Math/EngineMath.h>
 #include <Core/EngineCore.h>
-#include <Classes/Level.h>
+#include <Classes/Engine/Level.h>
 #include <GameFramework/Actor.h>
 
 CreateContentsCoreDefine(UDoomCore);

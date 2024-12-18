@@ -49,6 +49,9 @@
     <Filter Include="Renderer">
       <UniqueIdentifier>{bc7c05bb-979d-49e1-a451-e8f4863fb5d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Engine">
+      <UniqueIdentifier>{71eb8a37-cc70-4570-96ed-167f0dd29e3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Math\EngineMath.cpp">
@@ -102,9 +105,6 @@
     <ClCompile Include="Source\Core\Object\Object.cpp">
       <Filter>Core\Object</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Classes\Level.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Classes\Components\ActorComponent.cpp">
       <Filter>Classes\Components</Filter>
     </ClCompile>
@@ -119,6 +119,9 @@
     </ClCompile>
     <ClCompile Include="Source\Renderer\Renderer.cpp">
       <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Classes\Engine\Level.cpp">
+      <Filter>Classes\Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -177,9 +180,6 @@
     <ClInclude Include="Source\Core\Object\Object.h">
       <Filter>Core\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Classes\Level.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Classes\Components\ActorComponent.h">
       <Filter>Classes\Components</Filter>
     </ClInclude>
@@ -194,6 +194,9 @@
     </ClInclude>
     <ClInclude Include="Source\Renderer\Renderer.h">
       <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Engine\Level.h">
+      <Filter>Classes\Engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

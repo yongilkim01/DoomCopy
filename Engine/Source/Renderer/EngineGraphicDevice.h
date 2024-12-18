@@ -37,4 +37,3 @@ private:
 	ID3D11DeviceContext* Context = nullptr;
 
 };
-
