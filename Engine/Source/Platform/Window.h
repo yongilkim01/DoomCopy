@@ -50,6 +50,10 @@ public:
 	}
 	void SetWindowPosAndScale(FVector Position, FVector Scale);
 	FVector GetMousePos();
+	HWND GetWindowHandle() const
+	{
+		return WindowHandle;
+	}
 
 protected:
 

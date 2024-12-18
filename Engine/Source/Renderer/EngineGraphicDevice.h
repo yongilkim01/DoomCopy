@@ -26,8 +26,13 @@ public:
 	UEngineGraphicDevice& operator=(const UEngineGraphicDevice& Other) = delete;
 	UEngineGraphicDevice& operator=(UEngineGraphicDevice&& Other) noexcept = delete;
 
-	/** DirectX 초기화 메소드 */
+	/** 
+	 *	Device, DeviceContext 초기화 메소드
+	 */
 	void CreateDeviceAndContext();
+	/**
+	 *	SwapChain을 이용한 Backbuffer 초기화 메소드
+	 */
 	void CreateBackBuffer(const UEngineWindow& EngineWindow);
 
 	void Release();
@@ -42,5 +47,6 @@ protected:
 private:
 	ID3D11Device* Device = nullptr;
 	ID3D11DeviceContext* DeviceContext = nullptr;
+	IDXGISwapChain* BackBuffer = nullptr;
 
 };

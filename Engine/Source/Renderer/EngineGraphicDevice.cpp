@@ -58,6 +58,15 @@ void UEngineGraphicDevice::CreateDeviceAndContext()
 	if (nullptr == DeviceContext)
 	{
 		MSGASSERT("그래픽 콘텍스트 디바이스 생성에 실패했습니다.");
+		return;
+	}
+
+	HR = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
+
+	if (HR != S_OK)
+	{
+		MSGASSERT("멀티스레드 지정 실패");
+		return;
 	}
 
 	Adapter->Release();
@@ -65,7 +74,26 @@ void UEngineGraphicDevice::CreateDeviceAndContext()
 
 void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& EngineWindow)
 {
-	int a = 0;
+	FVector Size = EngineWindow.GetWindowSize();
+
+	DXGI_SWAP_CHAIN_DESC desc;
+	ZeroMemory(&desc, sizeof(DXGI_SWAP_CHAIN_DESC));
+
+	desc.BufferCount = 2;
+	desc.BufferDesc.Width = Size.iX();
+	desc.BufferDesc.Height = Size.iY();
+	desc.OutputWindow = EngineWindow.GetWindowHandle();
+	desc.Windowed = true;
+	desc.BufferDesc.RefreshRate.Denominator = 1;									// 주사율
+	desc.BufferDesc.RefreshRate.Numerator = 60;										// 1초에 60회 갱신을 할 수 있으면 해라
+	desc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;							// 백버퍼 색 범위
+	desc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;		// 모니터나 윈도우에 픽셀이 갱신되는 순서를 가장 빠른걸로 지정
+	desc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
+	desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT | DXGI_USAGE_SHADER_INPUT;	// BackBuffer를 화면에 그려지는 용도와 쉐이더에서 사용할 수 있는 용도로 지정
+	desc.SampleDesc.Quality = 0;													// 샘플링은 픽셀 쉐이더와 관련
+	desc.SampleDesc.Count = 1;														// 샘플링 점 개수
+	desc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;										// 버퍼 스왑을 하는 방법을 순번에 상관없이 준비되는 순으로 지정
+	desc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 }
 
 // 가장 퍼포먼스가 좋은 그래픽 장치 하드웨어를 찾는 메소드
