@@ -140,6 +140,7 @@ void UEngineCore::EngineEnd()
 {
 	LevelMap.clear();
 	UEngineDebug::EndConsole();
+	Device.Release();
 }
 
 // 새로운 레벨을 생성하는 메소드 구현부

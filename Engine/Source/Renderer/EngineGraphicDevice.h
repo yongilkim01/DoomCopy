@@ -26,14 +26,21 @@ public:
 	UEngineGraphicDevice& operator=(const UEngineGraphicDevice& Other) = delete;
 	UEngineGraphicDevice& operator=(UEngineGraphicDevice&& Other) noexcept = delete;
 
+	/** DirectX 초기화 메소드 */
 	void CreateDeviceAndContext();
 	void CreateBackBuffer(const UEngineWindow& EngineWindow);
-	void GetHighPerformanceAdapter();
+
+	void Release();
+
+	/**
+	 * 더 좋은 퍼포먼스를 보일 수 있는 그래픽 장치 하드웨어를 찾는 메소드
+	 */
+	IDXGIAdapter* GetHighPerformanceAdapter();
 
 protected:
 
 private:
 	ID3D11Device* Device = nullptr;
-	ID3D11DeviceContext* Context = nullptr;
+	ID3D11DeviceContext* DeviceContext = nullptr;
 
 };
