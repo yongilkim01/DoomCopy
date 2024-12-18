@@ -123,6 +123,9 @@
     <ClCompile Include="Source\Classes\Engine\Level.cpp">
       <Filter>Classes\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Classes\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Math\EngineMath.h">
@@ -196,6 +199,9 @@
       <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Engine\Level.h">
+      <Filter>Classes\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
       <Filter>Classes\Engine</Filter>
     </ClInclude>
   </ItemGroup>

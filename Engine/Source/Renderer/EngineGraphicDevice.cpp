@@ -25,9 +25,27 @@ void UEngineGraphicDevice::Release()
 	}
 }
 
+void UEngineGraphicDevice::RenderStart()
+{
+	FVector ClearColor;
+	ClearColor = FVector(0.0f, 0.0f, 1.0f, 1.0f);
+	DeviceContext->ClearRenderTargetView(RenderTargetView, ClearColor.Arr1D);
+}
+
+void UEngineGraphicDevice::RenderEnd()
+{
+	HRESULT hr = SwapChain->Present(0, 0);
+
+	if (hr == DXGI_ERROR_DEVICE_REMOVED || hr == DXGI_ERROR_DEVICE_RESET)
+	{
+		MSGASSERT("해상도 변경이나 디바이스 관련 설정 런타임 도중 수정");
+		return;
+	}
+}
+
 void UEngineGraphicDevice::CreateDeviceAndContext()
 {
-	IDXGIAdapter* Adapter =  GetHighPerformanceAdapter();
+	MainAdapter =  GetHighPerformanceAdapter();
 
 	int IFlag = 0;
 
@@ -38,7 +56,7 @@ void UEngineGraphicDevice::CreateDeviceAndContext()
 	D3D_FEATURE_LEVEL ResultLevl;
 
 	HRESULT HR = D3D11CreateDevice(
-		Adapter,
+		MainAdapter,
 		D3D_DRIVER_TYPE::D3D_DRIVER_TYPE_UNKNOWN,	// 내가 전달해준 Adapter로 디바이스를 생성
 		nullptr,									// 특정 단계(레스터라이제이션: 렌더링 파이프라인 일부)를 작성한 DLL로 대체
 		IFlag,
@@ -69,7 +87,6 @@ void UEngineGraphicDevice::CreateDeviceAndContext()
 		return;
 	}
 
-	Adapter->Release();
 }
 
 void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& EngineWindow)
@@ -94,6 +111,31 @@ void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& EngineWindow)
 	desc.SampleDesc.Count = 1;														// 샘플링 점 개수
 	desc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;										// 버퍼 스왑을 하는 방법을 순번에 상관없이 준비되는 순으로 지정
 	desc.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
+
+	IDXGIFactory* PtrFactory = nullptr;
+
+	MainAdapter->GetParent(__uuidof(IDXGIFactory), reinterpret_cast<void**>(&PtrFactory));
+
+	PtrFactory->CreateSwapChain(Device, &desc, &SwapChain);
+	PtrFactory->Release();
+	MainAdapter->Release();
+
+	if (nullptr == SwapChain)
+	{
+		MSGASSERT("스왑체인 제작에 실패했습니다.");
+	}
+
+	DXBackBufferTexture = nullptr;
+	if (S_OK != SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D),
+									reinterpret_cast<void**>(&DXBackBufferTexture)))
+	{
+		MSGASSERT("백버퍼 텍스처를 얻어올 때 실패했습니다.");
+	}
+
+	if (S_OK != Device->CreateRenderTargetView(DXBackBufferTexture, nullptr, &RenderTargetView))
+	{
+		MSGASSERT("렌더 타겟 뷰 생성에 실패했습니다.")
+	}
 }
 
 // 가장 퍼포먼스가 좋은 그래픽 장치 하드웨어를 찾는 메소드

@@ -60,6 +60,10 @@
     <ClCompile Include="Source\Time\TimeEvent.cpp" />
     <ClCompile Include="Source\Time\Timer.cpp" />
     <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp" />
+    <ClCompile Include="Texture.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Classes\Components\ActorComponent.h">
@@ -102,6 +106,10 @@
     <ClInclude Include="Source\Time\TimeEvent.h" />
     <ClInclude Include="Source\Time\Timer.h" />
     <ClInclude Include="Source\WorldPartition\DebugHelpers.h" />
+    <ClInclude Include="Texture.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

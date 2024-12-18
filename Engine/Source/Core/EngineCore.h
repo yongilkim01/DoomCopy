@@ -43,6 +43,8 @@ public:
 		return NewLevel;
 	}
 
+	ENGINE_API static UEngineGraphicDevice Device;
+
 protected:
 
 private:
@@ -70,7 +72,6 @@ private:
 	 */
 	static void EngineEnd();
 
-	ENGINE_API static UEngineGraphicDevice Device;
 	static UEngineWindow MainWindow;
 	static HMODULE ContentsDLL;
 	static std::shared_ptr<IContentsCore> Core;

@@ -26,6 +26,14 @@ public:
 	UEngineGraphicDevice& operator=(const UEngineGraphicDevice& Other) = delete;
 	UEngineGraphicDevice& operator=(UEngineGraphicDevice&& Other) noexcept = delete;
 
+	/**
+	 *	렌더러 과정 처음에 넣는 메소드
+	 */
+	void RenderStart();
+	/**
+	 *	렌더러 과정 마지막에 넣는 메소드
+	 */
+	void RenderEnd();
 	/** 
 	 *	Device, DeviceContext 초기화 메소드
 	 */
@@ -47,6 +55,9 @@ protected:
 private:
 	ID3D11Device* Device = nullptr;
 	ID3D11DeviceContext* DeviceContext = nullptr;
-	IDXGISwapChain* BackBuffer = nullptr;
+	IDXGISwapChain* SwapChain = nullptr;
+	IDXGIAdapter* MainAdapter = nullptr;
+	ID3D11Texture2D* DXBackBufferTexture = nullptr;
+	ID3D11RenderTargetView* RenderTargetView = nullptr;
 
 };
