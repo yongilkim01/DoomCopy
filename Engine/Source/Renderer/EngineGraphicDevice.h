@@ -60,6 +60,10 @@ public:
 	{
 		return DeviceContext.Get();
 	}
+	ENGINE_API ID3D11RenderTargetView* GetRenderTargetView()
+	{
+		return RenderTargetView.Get();
+	}
 
 
 protected:

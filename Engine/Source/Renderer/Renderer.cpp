@@ -4,6 +4,7 @@
 #include "Classes/Engine/Level.h"
 #include "Core/Misc/DirectoryHelper.h"
 #include "Core/Containers/EngineString.h"
+#include "Core/EngineCore.h"
 
 URenderer::URenderer()
 {
@@ -16,11 +17,26 @@ URenderer::~URenderer()
 void URenderer::BeginPlay()
 {
 	SetOrder(0);
+
+	InputAssembler1Init();
+	VertexShaderInit();
+	InputAssembler2Init();
+	RasterizerInit();
+	PixelShaderInit();
 }
 
 void URenderer::Render(float DeltaTime)
 {
 	// TODO: Rendering pipeline
+	InputAssembler1Setting();
+	VertexShaderSetting();
+	InputAssembler2Setting();
+	RasterizerSetting();
+	PixelShaderSetting();
+	OutPutMergeSetting();
+
+	UEngineCore::Device.GetDeviceContext()->DrawIndexed(6, 0, 0);
+
 }
 
 void URenderer::InputAssembler1Init()
@@ -109,7 +125,9 @@ void URenderer::InputAssembler1Layout()
 
 void URenderer::VertexShaderInit()
 {
-	std::string Path = "D:\Projects\DoomCopy\Engine\Shaders\SpriteShader.fx";
+	//std::string Path = "D:\Projects\DoomCopy\Engine\Shaders\SpriteShader.fx";
+	std::string Path = "C:/Users/yongi/OneDrive/projects/DoomCopy/Engine/Shaders/SpriteShader.fx";
+	//std::string Path = "../../../../../Shaders/SpriteShader.fx";
 	//std::string Path = "D:\Projects\DoomCopy\Engine\Source\Renderer\Renderer.cpp";
 
 	std::wstring WPath = UEngineString::AnsiToUnicode(Path);
@@ -195,7 +213,7 @@ void URenderer::InputAssembler2Init()
 void URenderer::InputAssembler2Setting()
 {
 	int Offset = 0;
-.
+
 	UEngineCore::Device.GetDeviceContext()->IASetIndexBuffer(IndexBuffer.Get(), DXGI_FORMAT_R32_UINT, Offset);
 
 	UEngineCore::Device.GetDeviceContext()->IASetPrimitiveTopology(Topology);
@@ -226,14 +244,69 @@ void URenderer::RasterizerSetting()
 
 void URenderer::PixelShaderInit()
 {
+	std::string Path = "C:/Users/yongi/OneDrive/projects/DoomCopy/Engine/Shaders/SpriteShader.fx";
+
+	std::wstring WPath = UEngineString::AnsiToUnicode(Path);
+
+	// 버전을 만든다.
+	std::string PSVersion = "ps_5_0";
+
+	int Flag0 = 0;
+	int Flag1 = 0;
+
+#ifdef _DEBUG
+	Flag0 = D3D10_SHADER_DEBUG;
+#endif
+
+	Flag0 |= D3DCOMPILE_PACK_MATRIX_ROW_MAJOR;
+
+	D3DCompileFromFile(
+		WPath.c_str(),
+		nullptr, // Define TEST 등으로 전처리기를 넣을수.
+		nullptr,
+		"PixelToWorld",
+		PSVersion.c_str(),
+		Flag0,
+		Flag1,
+		&PSShaderCodeBlob,
+		&PSErrorCodeBlob
+	);
+
+	if (nullptr == PSShaderCodeBlob)
+	{
+		std::string ErrString = reinterpret_cast<char*>(PSErrorCodeBlob->GetBufferPointer());
+		MSGASSERT("쉐이더 코드 중간빌드에서 실패했습니다\n" + ErrString);
+		return;
+	}
+
+	HRESULT Result = UEngineCore::Device.GetDevice()->CreatePixelShader(
+		PSShaderCodeBlob->GetBufferPointer(),
+		PSShaderCodeBlob->GetBufferSize(),
+		nullptr,
+		&PixelShader
+	);
+
+	if (S_OK != Result)
+	{
+		MSGASSERT("픽셀 쉐이더 생성에 실패");
+	}
 }
 
 void URenderer::PixelShaderSetting()
 {
+	UEngineCore::Device.GetDeviceContext()->PSSetShader(PixelShader.Get(), nullptr, 0);
+
 }
 
 void URenderer::OutPutMergeSetting()
 {
+
+	ID3D11RenderTargetView* RTV = UEngineCore::Device.GetRenderTargetView();
+
+	ID3D11RenderTargetView* ArrRtv[16] = { 0 };
+	ArrRtv[0] = RTV; // SV_Target0
+
+	UEngineCore::Device.GetDeviceContext()->OMSetRenderTargets(1, &ArrRtv[0], nullptr);
 }
 
 void URenderer::SetOrder(int NewOrder)
