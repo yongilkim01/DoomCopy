@@ -42,14 +42,12 @@ void URenderer::Render(float DeltaTime)
 void URenderer::InputAssembler1Init()
 {
 	std::vector<EngineVertex> Vertexes;
-	Vertexes.resize(6);
+	Vertexes.resize(4);
 
-	Vertexes[0] = EngineVertex{ FVector(-0.5f, 0.5f, -0.5f), {} };
-	Vertexes[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.5f), {} };
-	Vertexes[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.5f), {} };
-	Vertexes[3] = EngineVertex{ FVector(0.5f, 0.5f, -0.5f), {} };
-	Vertexes[4] = EngineVertex{ FVector(0.5f, -0.5f, -0.5f), {} };
-	Vertexes[5] = EngineVertex{ FVector(-0.5f, -0.5f, -0.5f), {} };
+	Vertexes[0] = EngineVertex{ FVector(-0.5f, 0.5f, -0.0f), {} };
+	Vertexes[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.0f), {} };
+	Vertexes[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.0f), {} };
+	Vertexes[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {} };
 
 	D3D11_BUFFER_DESC desc;
 	ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
