@@ -2,8 +2,10 @@
 #include "EngineDefine.h"
 #include "Platform/Window.h"
 
+#include <wrl.h>
 #include <d3d11_4.h>
 #include <d3dcompiler.h>
+#include "Platform/Window.h"
 
 #pragma comment(lib, "d3d11")
 #pragma comment(lib, "d3dcompiler") 
@@ -27,14 +29,6 @@ public:
 	UEngineGraphicDevice& operator=(UEngineGraphicDevice&& Other) noexcept = delete;
 
 	/**
-	 *	렌더러 과정 처음에 넣는 메소드
-	 */
-	void RenderStart();
-	/**
-	 *	렌더러 과정 마지막에 넣는 메소드
-	 */
-	void RenderEnd();
-	/** 
 	 *	Device, DeviceContext 초기화 메소드
 	 */
 	void CreateDeviceAndContext();
@@ -42,22 +36,39 @@ public:
 	 *	SwapChain을 이용한 Backbuffer 초기화 메소드
 	 */
 	void CreateBackBuffer(const UEngineWindow& EngineWindow);
-
-	void Release();
-
 	/**
 	 * 더 좋은 퍼포먼스를 보일 수 있는 그래픽 장치 하드웨어를 찾는 메소드
 	 */
 	IDXGIAdapter* GetHighPerformanceAdapter();
+	/**
+	 *	렌더러 과정 처음에 넣는 메소드
+	 */
+	void RenderStart();
+	/**
+	 *	렌더러 과정 마지막에 넣는 메소드
+	 */
+	void RenderEnd();
+	void Release();
+
+
+	/** 겟, 셋 메소드 */
+	ENGINE_API ID3D11Device* GetDevice()
+	{
+		return Device.Get();
+	}
+	ENGINE_API ID3D11DeviceContext* GetDeviceContext()
+	{
+		return DeviceContext.Get();
+	}
+
 
 protected:
 
 private:
-	ID3D11Device* Device = nullptr;
-	ID3D11DeviceContext* DeviceContext = nullptr;
-	IDXGISwapChain* SwapChain = nullptr;
-	IDXGIAdapter* MainAdapter = nullptr;
-	ID3D11Texture2D* DXBackBufferTexture = nullptr;
-	ID3D11RenderTargetView* RenderTargetView = nullptr;
-
+	Microsoft::WRL::ComPtr<ID3D11Device> Device = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11DeviceContext> DeviceContext = nullptr;
+	Microsoft::WRL::ComPtr<IDXGISwapChain> SwapChain = nullptr;
+	Microsoft::WRL::ComPtr<IDXGIAdapter> MainAdapter = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11Texture2D> DXBackBufferTexture = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> RenderTargetView = nullptr;
 };

@@ -43,6 +43,7 @@ public:
 		return NewLevel;
 	}
 
+	/** °Ù, ¼Â ¸Þ¼Òµå */
 	ENGINE_API static UEngineGraphicDevice Device;
 
 protected:

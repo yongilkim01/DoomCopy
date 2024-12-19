@@ -6,6 +6,7 @@
 HINSTANCE UEngineWindow::hInstance = nullptr;
 std::map<std::string, WNDCLASSEX> UEngineWindow::WindowClasses;
 int WindowCount = 0;
+// bool UEngineWindow::LoopActive = true;
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {

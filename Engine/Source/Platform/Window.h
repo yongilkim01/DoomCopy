@@ -58,8 +58,10 @@ public:
 protected:
 
 private:
-	static HINSTANCE hInstance;
-	static std::map<std::string, WNDCLASSEXA> WindowClasses;
+	ENGINE_API static HINSTANCE hInstance;
+	ENGINE_API static std::map<std::string, WNDCLASSEXA> WindowClasses;
+
+	inline static bool LoopActive = true;
 
 	FVector WindowSize;
 	HWND WindowHandle = nullptr;

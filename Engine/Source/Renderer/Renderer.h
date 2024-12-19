@@ -1,6 +1,13 @@
 #pragma once
 #include "Classes/Components/SceneComponent.h"
 
+struct EngineVertex
+{
+public:
+	FVector Position;
+	FVector Color;
+};
+
 /**
  *	렌더러 클래스
  */
@@ -30,4 +37,8 @@ private:
 	/** URenderer 메소드 */
 	virtual void Render(float DeltaTime);
 
+public:
+	ID3D11Buffer* VertexBuffer = nullptr;
+	void InputAssembler1Init();
+	void InputAssembler1Setting();
 };

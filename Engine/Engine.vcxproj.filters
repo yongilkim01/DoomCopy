@@ -52,6 +52,9 @@
     <Filter Include="Classes\Engine">
       <UniqueIdentifier>{71eb8a37-cc70-4570-96ed-167f0dd29e3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{e171648f-698f-4f41-af7e-3f6044ef48f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Math\EngineMath.cpp">
@@ -204,5 +207,10 @@
     <ClInclude Include="Texture.h">
       <Filter>Classes\Engine</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shaders\SpriteShader.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
