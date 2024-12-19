@@ -3,9 +3,8 @@
 
 struct EngineVertex
 {
-public:
-	FVector Position;
-	FVector Color;
+	FVector POSITION;
+	FVector COLOR;
 };
 
 /**
@@ -26,8 +25,27 @@ public:
 	URenderer& operator=(const URenderer& Other) = delete;
 	URenderer& operator=(URenderer&& Other) noexcept = delete;
 
+	/** 초기화 메소드 */
+	void InputAssembler1Init();
+	void InputAssembler1Setting();
+	void InputAssembler1Layout();
+
+	void VertexShaderInit();
+	void VertexShaderSetting();
+
+	void InputAssembler2Init();
+	void InputAssembler2Setting();
+
+	void RasterizerInit();
+	void RasterizerSetting();
+
+	void PixelShaderInit();
+	void PixelShaderSetting();
+
+	void OutPutMergeSetting();
+
 	/** UObject 상속 메소드 */
-	void SetOrder(int NewOrder) override;
+	virtual void SetOrder(int NewOrder) override;
 
 protected:
 	/** UObject 상속 메소드 */
@@ -37,8 +55,21 @@ private:
 	/** URenderer 메소드 */
 	virtual void Render(float DeltaTime);
 
-public:
-	ID3D11Buffer* VertexBuffer = nullptr;
-	void InputAssembler1Init();
-	void InputAssembler1Setting();
+public:	
+	Microsoft::WRL::ComPtr<ID3D11Buffer> VertexBuffer = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11InputLayout> InputLayout = nullptr;
+
+	Microsoft::WRL::ComPtr<ID3DBlob> VSShaderCodeBlob = nullptr;
+	Microsoft::WRL::ComPtr<ID3DBlob> VSErrorCodeBlob = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11VertexShader> VertexShader = nullptr;
+
+	D3D11_PRIMITIVE_TOPOLOGY Topology = D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+	Microsoft::WRL::ComPtr<ID3D11Buffer> IndexBuffer = nullptr;
+
+	D3D11_VIEWPORT ViewPortInfo;
+	Microsoft::WRL::ComPtr<ID3D11RasterizerState> RasterizerState = nullptr;
+
+	Microsoft::WRL::ComPtr<ID3DBlob> PSShaderCodeBlob = nullptr;
+	Microsoft::WRL::ComPtr<ID3DBlob> PSErrorCodeBlob = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11PixelShader> PixelShader = nullptr;
 };
