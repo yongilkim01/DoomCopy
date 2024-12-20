@@ -10,29 +10,38 @@ struct EngineVertex
 
 struct VertexShaderOutPut
 {
-	float4 SVPOSITION : SV_POSITION;
+	float4 SVPOSITION : SV_POSITION; // 뷰포트행렬이 곱해지는 포지션입니다.
+	float4 NEWPOSITION : POSITION; // 
 	float4 COLOR : COLOR;
 };
 
+// 내가 원하는 크기로사각형들을 만든다. 
 // 버텍스쉐이더를 다 만들었다.
 VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
 {
+	// float4x4 WVP;
+	
 	VertexShaderOutPut OutPut;
 	// _Vertex 0.5, 0.5
 	OutPut.SVPOSITION = _Vertex.POSITION;
+	OutPut.NEWPOSITION = _Vertex.POSITION;
+	//OutPut.SVPOSITION *= Projection;
 	OutPut.COLOR = _Vertex.COLOR;
 	return OutPut;
 }
 
+// 이미지를 샘플링해서 이미지를 보이게 만들고
 float4 PixelToWorld(VertexShaderOutPut _Vertex) : SV_Target0
 {
-    float a = _Vertex.SVPOSITION.x - 640.0f;
-    float b = _Vertex.SVPOSITION.y - 360.0f;
-    float r = 50.0f;
-    if (a * a + b * b <= r * r)
-    {
-        return float4(1.0f, 0.0f, 0.0f, 1.0f);
-    }
-    return float4(0.0f, 1.0f, 0.0f, 1.0f);
-
+	
+	if (_Vertex.NEWPOSITION.x < 0)
+	{
+		return float4(1.0f, 0.0f, 0.0f, 1.0f);
+	}
+	else
+	{
+		return float4(0.0f, 1.0f, 0.0f, 1.0f);
+	}
+	
+	return _Vertex.COLOR;
 }

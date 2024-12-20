@@ -1,6 +1,8 @@
 #pragma once
 #include <GameFramework/Actor.h>
 
+class URenderer;
+
 // Ό³Έν :
 class ATitleLogo : public AActor
 {
@@ -20,6 +22,6 @@ protected:
 	void Tick(float DeltaTime) override;
 
 private:
-
+	std::shared_ptr<URenderer> LogoRenderer;
 };
 

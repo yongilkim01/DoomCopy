@@ -17,6 +17,13 @@ public:
 	USceneComponent& operator=(const USceneComponent& _Other) = delete;
 	USceneComponent& operator=(USceneComponent&& _Other) noexcept = delete;
 
+	/** °Ù, ¼Â ¸Þ¼Òµå */
+	void SetRealativeScale3D(const FVector& NewScale)
+	{
+		Transform.Scale = NewScale;
+		Transform.Transfor
+
+	}
 protected:
 
 private:

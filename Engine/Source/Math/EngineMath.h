@@ -3,6 +3,9 @@
 #include <string>
 #include <functional>
 
+#include <DirectXMath.h>
+#include <DirectXCollision.h>
+
 #include "EngineDefine.h"
 
 class ENGINE_API FMath
@@ -77,6 +80,7 @@ public:
 
 		float Arr2D[1][4];
 		float Arr1D[4];
+		DirectX::XMVECTOR DirectVector;
 	};
 
 
@@ -488,6 +492,7 @@ public:
 		float Arr2D[4][4] = { 0, };
 		FVector ArrVector[4];
 		float Arr1D[16];
+		DirectX::XMMATRIX DirectMatrix;
 
 		struct
 		{
@@ -553,38 +558,21 @@ public:
 
 	void Scale(const FVector& _Value)
 	{
-		Arr2D[0][0] = _Value.X;
-		Arr2D[1][1] = _Value.Y;
-		Arr2D[2][2] = _Value.Z;
+		DirectMatrix = DirectX::XMMatrixScalingFromVector(_Value.DirectVector);
 	}
 
 	void Position(const FVector& _Value)
 	{
-		Arr2D[3][0] = _Value.X;
-		Arr2D[3][1] = _Value.Y;
-		Arr2D[3][2] = _Value.Z;
+		DirectMatrix = DirectX::XMMatrixTranslationFromVector(_Value.DirectVector);
 	}
 
 	void RotationDeg(const FVector& _Angle)
 	{
-		FMatrix RotX;
-		FMatrix RotY;
-		FMatrix RotZ;
-
-		// 아래와 같이 만드는게 훨신더 빠르겠지만 안합니다.
-		/*Arr2D[1][1] = cosf(_Angle.X) * ;
-		Arr2D[1][2] = -sinf(_Angle.X);
-		Arr2D[2][1] = sinf(_Angle.X);
-		Arr2D[2][2] = cosf(_Angle.X) * cosf(_Angle.Y);*/
-
-		RotX.RotationXDeg(_Angle.X);
-		RotY.RotationYDeg(_Angle.Y);
-		RotZ.RotationZDeg(_Angle.Z);
-
-		// 순서를 바꿔줘야 할때가 있습니다.
-		// 짐벌락이라는 현상이 발생하기 때문에
-		// RotY * RotZ * RotX;
-		*this = RotX * RotY * RotZ;
+		RotationRad(_Angle * FMath::D2R);
+	}
+	void RotationRad(const FVector& _Angle)
+	{
+		DirectMatrix = DirectX::XMMatrixRotationRollPitchYawFromVector(_Angle.DirectVector);
 	}
 
 	void Transpose()
@@ -798,10 +786,26 @@ enum class ECollisionType
 	//OBB,
 };
 
-// 대부분 오브젝트에서 크기와 위치는 한쌍입니다.
-// 그래서 그 2가지를 모두 묶는 자료형을 만들어서 그걸 써요.
-class FTransform
+struct FTransform
 {
+	// transformupdate는 
+	// 아래의 값들을 다 적용해서
+	// WVP를 만들어내는 함수이다.
+	FVector Scale = { 1.0f, 1.0f, 1.0f };
+	FVector Rotation;
+	FVector Location;
+
+	FMatrix ScaleMat;
+	FMatrix RotationMat;
+	FMatrix LocationMat;
+	FMatrix World;
+	FMatrix View;
+	FMatrix Projection;
+	FMatrix WVP;
+
+public:
+	ENGINE_API void TransformUpdate();
+
 private:
 	friend class CollisionFunctionInit;
 
@@ -819,16 +823,6 @@ public:
 
 	static bool CirCleToCirCle(const FTransform& _Left, const FTransform& _Right);
 	static bool CirCleToRect(const FTransform& _Left, const FTransform& _Right);
-
-
-	FVector Scale;
-	FVector Rotation;
-	FVector Location;
-
-	FMatrix World;
-	FMatrix View;
-	FMatrix Projection;
-	FMatrix WVP;
 
 	FVector ZAxisCenterLeftTop() const
 	{

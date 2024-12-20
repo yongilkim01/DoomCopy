@@ -2,10 +2,12 @@
 #include "TitleLogo.h"
 
 #include <Renderer/Renderer.h>
+#include <Math/EngineMath.h>
 
 ATitleLogo::ATitleLogo()
 {
-	std::shared_ptr<URenderer> Renderer = CreateDefaultSubObject<URenderer>();
+	LogoRenderer = CreateDefaultSubObject<URenderer>();
+	//SetActorRela
 }
 
 ATitleLogo::~ATitleLogo()

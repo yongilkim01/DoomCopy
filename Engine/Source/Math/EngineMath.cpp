@@ -58,6 +58,15 @@ public:
 CollisionFunctionInit Inst = CollisionFunctionInit();
 
 
+void FTransform::TransformUpdate()
+{
+	ScaleMat.Scale(Scale);
+	RotationMat.RotationDeg(Rotation);
+	LocationMat.Position(Location);
+
+	World = ScaleMat * RotationMat * LocationMat;
+}
+
 bool FTransform::Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right)
 {
 	return FTransform::AllCollisionFunction[static_cast<int>(_LeftType)][static_cast<int>(_RightType)](_Left, _Right);
