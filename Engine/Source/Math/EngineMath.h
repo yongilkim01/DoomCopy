@@ -8,6 +8,14 @@
 
 #include "EngineDefine.h"
 
+enum class ECollisionType
+{
+	Point,
+	Rect,
+	CirCle,
+	Max
+};
+
 class ENGINE_API FMath
 {
 public:
@@ -21,32 +29,38 @@ public:
 	static const float D2R;
 	static const float R2D;
 
-	static float Sqrt(float _Value)
+	static float Sqrt(float Value)
 	{
-		return ::sqrtf(_Value);
+		return ::sqrtf(Value);
 	}
 
 	template <typename DataType>
-	DataType ClampMax(DataType value, DataType maxValue)
+	DataType ClampMax(DataType Value, DataType MaxValue)
 	{
-		return (value > maxValue) ? maxValue : value;
+		return (Value > MaxValue) ? MaxValue : Value;
 	}
 
 	template <typename DataType>
-	DataType ClampMin(DataType value, DataType minValue)
+	DataType ClampMin(DataType Value, DataType MinValue)
 	{
-		return (value < minValue) ? minValue : value;
+		return (Value < MinValue) ? MinValue : Value;
 	}
 
 	template <typename DataType>
-	static DataType Clamp(DataType value, DataType minValue, DataType maxValue)
+	static DataType Clamp(DataType Value, DataType MinValue, DataType MaxValue)
 	{
-		if (value < minValue)
-			return minValue;
-		else if (value > maxValue)
-			return maxValue;
+		if (Value < MinValue)
+		{
+			return MinValue;
+		}
+		else if (Value > MaxValue)
+		{
+			return MaxValue;
+		}
 		else
-			return value;
+		{
+			return Value;
+		}
 	}
 
 	template <typename DataType>
@@ -80,139 +94,41 @@ public:
 
 		float Arr2D[1][4];
 		float Arr1D[4];
+
+		/** DirectX Simd 연산 전용 벡터 */
 		DirectX::XMVECTOR DirectVector;
 	};
-
 
 	ENGINE_API FVector()
 		: X(0.0f), Y(0.0f), Z(0.0f), W(1.0f)
 	{
 
 	}
-
-	ENGINE_API FVector(float _X, float _Y) : X(_X), Y(_Y), Z(0.0f), W(1.0f)
+	ENGINE_API FVector(float InX, float InY)
+		: X(InX), Y(InY), Z(0.0f), W(1.0f)
 	{
 
 	}
-
-	ENGINE_API FVector(float _X, float _Y, float _Z) : X(_X), Y(_Y), Z(_Z), W(1.0f)
+	ENGINE_API FVector(float InX, float InY, float InZ) 
+		: X(InX), Y(InY), Z(InZ), W(1.0f)
 	{
 
 	}
-
-	FVector(float _X, float _Y, float _Z, float _W) : X(_X), Y(_Y), Z(_Z), W(_W)
+	FVector(float InX, float InY, float InZ, float InW) 
+		: X(InX), Y(InY), Z(InZ), W(InW)
 	{
 
 	}
-
-
-	FVector(int _X, int _Y) : X(static_cast<float>(_X)), Y(static_cast<float>(_Y)), Z(0.0f), W(1.0f)
+	FVector(int InX, int InY) 
+		: X(static_cast<float>(InX)), Y(static_cast<float>(InY)), Z(0.0f), W(1.0f)
 	{
 
 	}
-
-	FVector(long _X, long _Y) : X(static_cast<float>(_X)), Y(static_cast<float>(_Y)), Z(0.0f), W(1.0f)
+	FVector(long InX, long InY) 
+		: X(static_cast<float>(InX)), Y(static_cast<float>(InY)), Z(0.0f), W(1.0f)
 	{
 
 	}
-
-	static float GetVectorAngleDeg(const FVector& _Left, const FVector& _Right)
-	{
-		return GetVectorAngleRad(_Left, _Right) * FMath::R2D;
-	}
-
-	static float GetVectorAngleRad(const FVector& _Left, const FVector& _Right)
-	{
-		FVector LCopy = _Left;
-		FVector RCopy = _Right;
-		LCopy.Normalize();
-		RCopy.Normalize();
-
-		// Cos은 라디안인가요?
-		// cos(라디안) => CosRad
-		// cos(라디안)
-		float CosRad = Dot(LCopy, RCopy);
-
-		// cos 의 역함수 
-		// cos(각도) => 결과
-		// acos(결과) => 각도
-		// cos함수의 역함수
-		return acos(CosRad);
-	}
-
-	static FVector Cross(const FVector& _Left, const FVector& _Right)
-	{
-		FVector Result;
-		Result.X = _Left.Y * _Right.Z - _Left.Z * _Right.Y;
-		Result.Y = _Left.Z * _Right.X - _Left.X * _Right.Z;
-		Result.Z = _Left.X * _Right.Y - _Left.Y * _Right.X;
-		return Result;
-	}
-
-	static float Dot(const FVector& _Left, const FVector& _Right)
-	{
-		float LeftLen = _Left.Length();
-		float RightLen = _Right.Length();
-
-		// LeftLen* RightLen* cosf(angle);
-
-		return _Left.X * _Right.X + _Left.Y * _Right.Y + _Left.Z * _Right.Z;
-	}
-
-	static FVector Normalize(FVector _Value)
-	{
-		_Value.Normalize();
-		return _Value;
-	}
-
-	// 360도 개념으로 넣어줘라.
-	static FVector AngleToVectorDeg(float _Angle)
-	{
-		// 360분법을 => 라디안으로 바꾸는 값을 만들어야 한다.
-		// 360 => 6.28
-
-		// 라디안 각도체계를 기반으로 sinf(_Angle) cosf
-
-		// 근본함수는 라디안 개념으로 만들고
-		return AngleToVectorRad(_Angle * FMath::D2R);
-	}
-
-
-	static FVector Lerp(FVector _A, FVector _B, float _Alpha)
-	{
-		FVector Result;
-		_Alpha = FMath::Clamp(_Alpha, 0.0f, 1.0f);
-		Result.X = FMath::Lerp(_A.X, _B.X, _Alpha);
-		Result.Y = FMath::Lerp(_A.Y, _B.Y, _Alpha);
-		return Result;
-	}
-
-	//          Rad 라디안을 넣어주면 
-	// 여기에서 나온 결과값이 리턴해줄수 있는건
-	// 길이가 1인 벡터이다.
-	// static입니까?
-	static FVector AngleToVectorRad(float _Angle)
-	{
-		// 특정 각도를 가리키는 벡터를 만들수 있다고 해죠?
-		// 벡터 길이와 방향을 생각해라.
-		// 방향은 정해졌는데 길이는 1인 벡터를 만들어내는 겁니다.
-
-		// 0도일때의 밑변      0도일대의 높이
-
-		// cosf(_Angle) = 밑변
-		return { cosf(_Angle), sinf(_Angle) };
-	}
-
-	// 일반적으로 벡터와 행렬이 곱해지는 것을 트랜스폼이라고 부릅니다.
-	// 혹은 트랜슬레이션이라는 함수들이 있다.
-	static FVector Transform(const FVector& _Vector, const class FMatrix& _Matrix);
-
-	// 이동 적용할께
-	static FVector TransformCoord(const FVector& _Vector, const class FMatrix& _Matrix);
-
-	// 이동 적용하지 않을께.
-	static FVector TransformNormal(const FVector& _Vector, const class FMatrix& _Matrix);
-
 	int iX() const
 	{
 		return static_cast<int>(X);
@@ -233,30 +149,51 @@ public:
 		return Y * 0.5f;
 	}
 
-	// X든 Y든 0이있으면 터트리는 함수.
+	/**
+	 *   X 또는 Y가 0이면 true를 반환하는 함수
+	 *
+	 *   @return X 또는 Y가 0이면 true, 그렇지 않으면 false
+	 */
 	bool IsZeroed() const
 	{
 		return X == 0.0f || Y == 0.0f;
 	}
-
+	/**
+	 *   벡터의 각 요소를 절반으로 줄인 벡터를 반환하는 함수
+	 *
+	 *   @return 각 요소가 절반인 벡터
+	 */
 	FVector Half() const
 	{
 		return { X * 0.5f, Y * 0.5f };
 	}
-
-	// 빗변의 길이입니다.
+	/**
+	 *   벡터의 길이(빗변의 길이)를 계산하는 함수
+	 *
+	 *   @return 벡터의 길이
+	 */
 	float Length() const
 	{
 		return FMath::Sqrt(X * X + Y * Y + Z * Z);
 	}
-
+	/**
+	 *   벡터를 윈도우 좌표계의 POINT로 변환하는 함수
+	 *
+	 *   @return 변환된 POINT
+	 */
 	POINT ConvertWindowPOINT()
 	{
 		return { iX(), iY() };
 	}
-
+	/**
+	 *   벡터를 정수 좌표계의 FIntPoint로 변환하는 함수
+	 *
+	 *   @return 변환된 FIntPoint
+	 */
 	class FIntPoint ConvertToPoint() const;
-
+	/**
+	 *   벡터를 정규화하는 함수
+	 */
 	void Normalize()
 	{
 		float Len = Length();
@@ -268,7 +205,11 @@ public:
 		}
 		return;
 	}
-
+	/**
+	 *   정규화된 벡터를 반환하는 함수
+	 *
+	 *   @return 정규화된 벡터
+	 */
 	FVector NormalizeReturn() const
 	{
 		FVector Result = *this;
@@ -276,139 +217,310 @@ public:
 		return Result;
 	}
 
-	// 
-	void RotationXDeg(float _Angle)
+	/**
+	 *   두 벡터 사이의 각도를 도 단위로 계산하는 메소드
+	 *
+	 *   @param LVector 왼쪽 벡터
+	 *   @param RVector 오른쪽 벡터
+	 *   @return 두 벡터 사이의 각도 (도 단위)
+	 */
+	static float GetVectorAngleDeg(const FVector& LVector, const FVector& RVector)
 	{
-		RotationXRad(_Angle * FMath::D2R);
+		return GetVectorAngleRad(LVector, RVector) * FMath::R2D;
 	}
-
-	void RotationXRad(float _Angle)
+	/**
+	 *   두 벡터 사이의 각도를 라디안 단위로 계산하는 메소드
+	 *
+	 *   @param LVector 왼쪽 벡터
+	 *   @param RVector 오른쪽 벡터
+	 *   @return 두 벡터 사이의 각도 (라디안 단위)
+	 */
+	static float GetVectorAngleRad(const FVector& LVector, const FVector& RVector)
 	{
-		FVector Copy = *this;
-		Z = (Copy.Z * cosf(_Angle)) - (Copy.Y * sinf(_Angle));
-		Y = (Copy.Z * sinf(_Angle)) + (Copy.Y * cosf(_Angle));
+		FVector LCopy = LVector;
+		FVector RCopy = RVector;
+
+		LCopy.Normalize();
+		RCopy.Normalize();
+
+		float CosRad = Dot(LCopy, RCopy);
+
+		return acos(CosRad);
 	}
-
-	FVector RotationXDegReturn(float _Angle)
-	{
-		return RotationXRadReturn(_Angle * FMath::D2R);
-	}
-
-	FVector RotationXRadReturn(float _Angle)
-	{
-		FVector Result = *this;
-		Result.Z = (Z * cosf(_Angle)) - (Y * sinf(_Angle));
-		Result.Y = (Z * sinf(_Angle)) + (Y * cosf(_Angle));
-		return Result;
-	}
-
-
-	// 
-	void RotationYDeg(float _Angle)
-	{
-		RotationYRad(_Angle * FMath::D2R);
-	}
-
-	void RotationYRad(float _Angle)
-	{
-		FVector Copy = *this;
-		X = (Copy.X * cosf(_Angle)) - (Copy.Z * sinf(_Angle));
-		Z = (Copy.X * sinf(_Angle)) + (Copy.Z * cosf(_Angle));
-	}
-
-	FVector RotationYDegReturn(float _Angle)
-	{
-		return RotationYRadReturn(_Angle * FMath::D2R);
-	}
-
-	FVector RotationYRadReturn(float _Angle)
-	{
-		FVector Result = *this;
-		Result.X = (X * cosf(_Angle)) - (Z * sinf(_Angle));
-		Result.Z = (X * sinf(_Angle)) + (Z * cosf(_Angle));
-		return Result;
-	}
-
-	// 
-	void RotationZDeg(float _Angle)
-	{
-		RotationZRad(_Angle * FMath::D2R);
-	}
-
-	void RotationZRad(float _Angle)
-	{
-		FVector Copy = *this;
-		X = (Copy.X * cosf(_Angle)) - (Copy.Y * sinf(_Angle));
-		Y = (Copy.X * sinf(_Angle)) + (Copy.Y * cosf(_Angle));
-	}
-
-	FVector RotationZDegReturn(float _Angle)
-	{
-		return RotationZRadReturn(_Angle * FMath::D2R);
-	}
-
-	FVector RotationZRadReturn(float _Angle)
-	{
-		FVector Result = *this;
-		Result.X = (X * cosf(_Angle)) - (Y * sinf(_Angle));
-		Result.Y = (X * sinf(_Angle)) + (Y * cosf(_Angle));
-		return Result;
-	}
-
-	float Dot(const FVector& other) const
-	{
-		return X * other.X + Y * other.Y;
-	}
-
-	FVector operator*(float _Value) const
+	/**
+	 *   두 벡터의 외적(크로스 제품)을 계산하는 메소드
+	 *
+	 *   @param LVector 왼쪽 벡터
+	 *   @param RVector 오른쪽 벡터
+	 *   @return 두 벡터의 외적 결과
+	 */
+	static FVector Cross(const FVector& LVector, const FVector& RVector)
 	{
 		FVector Result;
-		Result.X = X * _Value;
-		Result.Y = Y * _Value;
+
+		Result.X = LVector.Y * RVector.Z - LVector.Z * RVector.Y;
+		Result.Y = LVector.Z * RVector.X - LVector.X * RVector.Z;
+		Result.Z = LVector.X * RVector.Y - LVector.Y * RVector.X;
+
 		return Result;
 	}
+	/**
+	 *   두 벡터의 내적(도트 제품)을 계산하는 메소드
+	 *
+	 *   @param LVector 왼쪽 벡터
+	 *   @param RVector 오른쪽 벡터
+	 *   @return 두 벡터의 내적 결과
+	 */
+	static float Dot(const FVector& LVector, const FVector& RVector)
+	{
+		float LeftLen = LVector.Length();
+		float RightLen = RVector.Length();
 
-	FVector operator+(const FVector& _Other) const
+		return LVector.X * RVector.X + LVector.Y * RVector.Y + LVector.Z * RVector.Z;
+	}
+	/**
+	 *   두 벡터의 내적을 계산하는 함수
+	 *
+	 *   @param other 다른 벡터
+	 *   @return 두 벡터의 내적 결과
+	 */
+	float Dot(const FVector& Other) const
+	{
+		return X * Other.X + Y * Other.Y;
+	}
+	/**
+	 *   벡터를 정규화하는 메소드
+	 *
+	 *   @param VectorValue 정규화할 벡터
+	 *   @return 정규화된 벡터
+	 */
+	static FVector Normalize(FVector VectorValue)
+	{
+		VectorValue.Normalize();
+		return VectorValue;
+	}
+	/**
+	 *   주어진 각도를 이용해 단위 벡터를 계산하는 메소드
+	 *
+	 *   @param Angle 각도(도) 단위로 표현된 값
+	 *   @return 주어진 각도에 해당하는 단위 벡터
+	 */
+	static FVector AngleToVectorDeg(float Angle)
+	{
+		return AngleToVectorRad(Angle * FMath::D2R);
+	}
+	/**
+	 *   주어진 각도를 이용해 단위 벡터를 계산하는 메소드
+	 *
+	 *   @param Angle 각도(라디안) 단위로 표현된 값
+	 *   @return 주어진 각도에 해당하는 단위 벡터
+	 */
+	static FVector AngleToVectorRad(float Angle)
+	{
+		return { cosf(Angle), sinf(Angle) };
+	}
+	/**
+	 *   주어진 두 벡터 사이의 선형 보간을 계산하는 메소드
+	 *
+	 *   @param LVector 시작 벡터
+	 *   @param RVector 종료 벡터
+	 *   @param Alpha 보간 계수 (0.0f에서 1.0f 사이의 값)
+	 *   @return Alpha에 따라 선형 보간된 벡터
+	 */
+	static FVector Lerp(FVector LVector, FVector RVector, float Alpha)
 	{
 		FVector Result;
-		Result.X = X + _Other.X;
-		Result.Y = Y + _Other.Y;
+		Alpha = FMath::Clamp(Alpha, 0.0f, 1.0f);
+		Result.X = FMath::Lerp(LVector.X, RVector.X, Alpha);
+		Result.Y = FMath::Lerp(LVector.Y, RVector.Y, Alpha);
+		return Result;
+	}
+	/**
+	 *   벡터와 행렬을 곱하여 트랜스폼을 수행하는 메소드
+	 *
+	 *   @param InVector 입력 벡터
+	 *   @param InMatrix 입력 행렬
+	 *   @return 트랜스폼된 벡터
+	 */
+	static FVector TransformVector(const FVector& InVector, const class FMatrix& InMatrix);
+	/**
+	 *   벡터에 이동 변환을 적용하여 트랜스폼을 수행하는 메소드
+	 *
+	 *   @param InVector 입력 벡터
+	 *   @param InMatrix 입력 행렬
+	 *   @return 이동 변환이 적용된 트랜스폼된 벡터
+	 */
+	static FVector TransformVectorCoord(const FVector& InVector, const class FMatrix& InMatrix);
+	/**
+	 *   벡터에 이동 변환을 적용하지 않고 트랜스폼을 수행하는 메소드
+	 *
+	 *   @param InVector 입력 벡터
+	 *   @param InMatrix 입력 행렬
+	 *   @return 이동 변환이 적용되지 않은 트랜스폼된 벡터
+	 */
+	static FVector TransformVectorNormal(const FVector& InVector, const class FMatrix& InMatrix);
+
+
+	/**
+	 *   X 축을 기준으로 벡터를 각도(도 단위)만큼 회전시키는 함수
+	 *
+	 *   @param Angle 회전 각도 (도 단위)
+	 */
+	void RotationXDeg(float Angle)
+	{
+		RotationXRad(Angle * FMath::D2R);
+	}
+	/**
+	 *   X 축을 기준으로 벡터를 각도(라디안 단위)만큼 회전시키는 함수
+	 *
+	 *   @param Angle 회전 각도 (라디안 단위)
+	 */
+	void RotationXRad(float Angle)
+	{
+		FVector Copy = *this;
+		Z = (Copy.Z * cosf(Angle)) - (Copy.Y * sinf(Angle));
+		Y = (Copy.Z * sinf(Angle)) + (Copy.Y * cosf(Angle));
+	}
+	/**
+	 *   X 축을 기준으로 벡터를 각도(도 단위)만큼 회전시키고, 결과 벡터를 반환하는 함수
+	 *
+	 *   @param Angle 회전 각도 (도 단위)
+	 *   @return 회전된 벡터
+	 */
+	FVector RotationXDegReturn(float Angle)
+	{
+		return RotationXRadReturn(Angle * FMath::D2R);
+	}
+	/**
+	 *   X 축을 기준으로 벡터를 각도(라디안 단위)만큼 회전시키고, 결과 벡터를 반환하는 함수
+	 *
+	 *   @param Angle 회전 각도 (라디안 단위)
+	 *   @return 회전된 벡터
+	 */
+	FVector RotationXRadReturn(float Angle)
+	{
+		FVector Result = *this;
+		Result.Z = (Z * cosf(Angle)) - (Y * sinf(Angle));
+		Result.Y = (Z * sinf(Angle)) + (Y * cosf(Angle));
+		return Result;
+	}
+	/**
+	 *   Y 축을 기준으로 벡터를 각도(도 단위)만큼 회전시키는 함수
+	 *
+	 *   @param Angle 회전 각도 (도 단위)
+	 */
+	void RotationYDeg(float Angle)
+	{
+		RotationYRad(Angle * FMath::D2R);
+	}
+	/**
+	 *   Y 축을 기준으로 벡터를 각도(라디안 단위)만큼 회전시키는 함수
+	 *
+	 *   @param _Angle 회전 각도 (라디안 단위)
+	 */
+	void RotationYRad(float Angle)
+	{
+		FVector Copy = *this;
+		X = (Copy.X * cosf(Angle)) - (Copy.Z * sinf(Angle));
+		Z = (Copy.X * sinf(Angle)) + (Copy.Z * cosf(Angle));
+	}
+	/**
+	 *   Y 축을 기준으로 벡터를 각도(도 단위)만큼 회전시키고, 결과 벡터를 반환하는 함수
+	 *
+	 *   @param _Angle 회전 각도 (도 단위)
+	 *   @return 회전된 벡터
+	 */
+	FVector RotationYDegReturn(float Angle)
+	{
+		return RotationYRadReturn(Angle * FMath::D2R);
+	}
+	/**
+	 *   Y 축을 기준으로 벡터를 각도(라디안 단위)만큼 회전시키고, 결과 벡터를 반환하는 함수
+	 *
+	 *   @param _Angle 회전 각도 (라디안 단위)
+	 *   @return 회전된 벡터
+	 */
+	FVector RotationYRadReturn(float Angle)
+	{
+		FVector Result = *this;
+		Result.X = (X * cosf(Angle)) - (Z * sinf(Angle));
+		Result.Z = (X * sinf(Angle)) + (Z * cosf(Angle));
+		return Result;
+	}
+	/**
+	 *   Z 축을 기준으로 벡터를 각도(도 단위)만큼 회전시키는 함수
+	 *
+	 *   @param _Angle 회전 각도 (도 단위)
+	 */
+	void RotationZDeg(float Angle)
+	{
+		RotationZRad(Angle * FMath::D2R);
+	}
+
+	/**
+	 *   Z 축을 기준으로 벡터를 각도(라디안 단위)만큼 회전시키는 함수
+	 *
+	 *   @param _Angle 회전 각도 (라디안 단위)
+	 */
+	void RotationZRad(float Angle)
+	{
+		FVector Copy = *this;
+		X = (Copy.X * cosf(Angle)) - (Copy.Y * sinf(Angle));
+		Y = (Copy.X * sinf(Angle)) + (Copy.Y * cosf(Angle));
+	}
+	/**
+	 *   Z 축을 기준으로 벡터를 각도(도 단위)만큼 회전시키고, 결과 벡터를 반환하는 함수
+	 *
+	 *   @param _Angle 회전 각도 (도 단위)
+	 *   @return 회전된 벡터
+	 */
+	FVector RotationZDegReturn(float Angle)
+	{
+		return RotationZRadReturn(Angle * FMath::D2R);
+	}
+	/**
+	 *   Z 축을 기준으로 벡터를 각도(라디안 단위)만큼 회전시키고, 결과 벡터를 반환하는 함수
+	 *
+	 *   @param _Angle 회전 각도 (라디안 단위)
+	 *   @return 회전된 벡터
+	 */
+	FVector RotationZRadReturn(float Angle)
+	{
+		FVector Result = *this;
+		Result.X = (X * cosf(Angle)) - (Y * sinf(Angle));
+		Result.Y = (X * sinf(Angle)) + (Y * cosf(Angle));
 		return Result;
 	}
 
-	ENGINE_API FVector operator*(const class FMatrix& _Matrix) const;
-	ENGINE_API FVector& operator*=(const class FMatrix& _Matrix);
-
-	FVector& operator-=(const FVector& _Other)
+	/** 오퍼레이션 */
+	ENGINE_API FVector operator*(const class FMatrix& InMatrix) const;
+	ENGINE_API FVector& operator*=(const class FMatrix& InMatrix);
+	FVector operator*(float FloatValue) const
 	{
-		X -= _Other.X;
-		Y -= _Other.Y;
+		FVector Result;
+		Result.X = X * FloatValue;
+		Result.Y = Y * FloatValue;
+		return Result;
+	}
+	FVector& operator*=(const FVector& Other)
+	{
+		X *= Other.X;
+		Y *= Other.Y;
+		Z *= Other.Z;
 		return *this;
 	}
-
-
-	FVector operator-(const FVector& _Other) const
+	FVector& operator*=(float FloatValue)
 	{
-		FVector Result;
-		Result.X = X - _Other.X;
-		Result.Y = Y - _Other.Y;
-		return Result;
+		X *= FloatValue;
+		Y *= FloatValue;
+		Z *= FloatValue;
+		return *this;
 	}
-
-	FVector operator-() const
+	FVector operator/(int IntValue) const
 	{
 		FVector Result;
-		Result.X = -X;
-		Result.Y = -Y;
-		Result.Z = -Z;
-		return Result;
-	}
-
-	FVector operator/(int _Value) const
-	{
-		FVector Result;
-		Result.X = X / _Value;
-		Result.Y = Y / _Value;
+		Result.X = X / IntValue;
+		Result.Y = Y / IntValue;
 		return Result;
 	}
 
@@ -419,51 +531,45 @@ public:
 		Result.Y = Y / Other.Y;
 		return Result;
 	}
-
-	// ture가 나오는 
-	bool operator==(const FVector& _Other) const
+	FVector operator+(const FVector& Other) const
 	{
-		return X == _Other.X && Y == _Other.Y;
+		FVector Result;
+		Result.X = X + Other.X;
+		Result.Y = Y + Other.Y;
+		return Result;
 	}
-
-	// float은 비교가 굉장히 위험
-	// const가 붙은 함수에서는 const가 붙은 함수 호출할수 없다.
-	bool EqualToInt(FVector _Other) const
+	FVector& operator+=(const FVector& Other)
 	{
-		// const FVector* const Ptr;
-		// this = nullptr;
-		return iX() == _Other.iX() && iY() == _Other.iY();
-	}
-
-	//bool Compare(FVector _Other, float _limite = 0.0f) const
-	//{
-	//	return X == _Other.X && Y == _Other.Y;
-	//}
-
-	FVector& operator+=(const FVector& _Other)
-	{
-		X += _Other.X;
-		Y += _Other.Y;
-		Z += _Other.Z;
+		X += Other.X;
+		Y += Other.Y;
+		Z += Other.Z;
 		return *this;
 	}
-
-	FVector& operator*=(const FVector& _Other)
+	FVector operator-(const FVector& Other) const
 	{
-		X *= _Other.X;
-		Y *= _Other.Y;
-		Z *= _Other.Z;
+		FVector Result;
+		Result.X = X - Other.X;
+		Result.Y = Y - Other.Y;
+		return Result;
+	}
+	FVector operator-() const
+	{
+		FVector Result;
+		Result.X = -X;
+		Result.Y = -Y;
+		Result.Z = -Z;
+		return Result;
+	}
+	FVector& operator-=(const FVector& Other)
+	{
+		X -= Other.X;
+		Y -= Other.Y;
 		return *this;
 	}
-
-	FVector& operator*=(float _Other)
+	bool operator==(const FVector& Other) const
 	{
-		X *= _Other;
-		Y *= _Other;
-		Z *= _Other;
-		return *this;
+		return X == Other.X && Y == Other.Y;
 	}
-
 
 	std::string ToString()
 	{
@@ -478,14 +584,19 @@ public:
 		Stream += "] W : [";
 		Stream += std::to_string(W);
 		Stream += "]";
+
 		return Stream;
 	}
-
 };
 
-// 행렬 은 보통 매트릭스 라고 합니다.
+using float4 = FVector;
+
+/** 
+ *	Matrix 클래스
+ */
 class FMatrix
 {
+
 public:
 	union
 	{
@@ -521,18 +632,115 @@ public:
 		Identity();
 	}
 
-	// 그래픽스 프로그래밍 모든 행렬들은 만들어질때
-	// 일단 항등행렬로 만듭니다.
-
-	// 정규화 항등행렬 만드는 함수
+	/**
+	 *   행렬을 단위 행렬로 초기화하는 함수
+	 */
 	void Identity()
 	{
-		Arr2D[0][0] = 1.0f;
-		Arr2D[1][1] = 1.0f;
-		Arr2D[2][2] = 1.0f;
-		Arr2D[3][3] = 1.0f;
+		DirectMatrix = DirectX::XMMatrixIdentity();
+	}
+	/**
+	 *   주어진 벡터 값을 사용하여 행렬에 스케일 변환을 적용하는 함수
+	 *
+	 *   @param InVectorValue 스케일 값이 포함된 벡터
+	 */
+	void Scale(const FVector& InVectorValue)
+	{
+		DirectMatrix = DirectX::XMMatrixScalingFromVector(InVectorValue.DirectVector);
+	}
+	/**
+	 *   주어진 벡터 값을 사용하여 행렬에 위치 변환을 적용하는 함수
+	 *
+	 *   @param InVectorValue 위치 값이 포함된 벡터
+	 */
+	void Position(const FVector& InVectorValue)
+	{
+		DirectMatrix = DirectX::XMMatrixTranslationFromVector(InVectorValue.DirectVector);
+	}
+	/**
+	 *   주어진 벡터 값을 사용하여 행렬에 각도(도 단위)로 회전 변환을 적용하는 함수
+	 *
+	 *   @param RotationValue 회전 각도 (도 단위)
+	 */
+	void RotationDeg(const FVector& RotationValue)
+	{
+		RotationRad(RotationValue * FMath::D2R);
+	}
+	/**
+	 *   주어진 벡터 값을 사용하여 행렬에 각도(라디안 단위)로 회전 변환을 적용하는 함수
+	 *
+	 *   @param RotationValue 회전 각도 (라디안 단위)
+	 */
+	void RotationRad(const FVector& RotationValue)
+	{
+		DirectMatrix = DirectX::XMMatrixRotationRollPitchYawFromVector(RotationValue.DirectVector);
+	}
+	/**
+	 *   주어진 위치, 방향, 위쪽 벡터 값을 사용하여 뷰 행렬을 설정하는 함수
+	 *
+	 *   @param Position 위치 벡터
+	 *   @param Direction 방향 벡터
+	 *   @param Up 위쪽 벡터
+	 */
+	void View(const FVector& Position, const FVector& Direction, const FVector& Up)
+	{
+		Identity();
+		DirectMatrix = DirectX::XMMatrixLookToLH(Position.DirectVector, Direction.DirectVector, Up.DirectVector);
+	}
+	/**
+	 *   주어진 파라미터 값을 사용하여 직교 투영 행렬을 설정하는 함수
+	 *
+	 *   @param Width 투영 너비
+	 *   @param Height 투영 높이
+	 *   @param Near 근평면 거리
+	 *   @param Far 원평면 거리
+	 */
+	void OrthographicLH(float Width, float Height, float Near, float Far)
+	{
+		Identity();
+		DirectMatrix = DirectX::XMMatrixOrthographicLH(Width, Height, Near, Far);
+	}
+	/**
+	 *   주어진 파라미터 값을 사용하여 원근 투영 행렬을 각도(도 단위)로 설정하는 함수
+	 *
+	 *   @param FovAngle 시야각 (도 단위)
+	 *   @param Width 화면 너비
+	 *   @param Height 화면 높이
+	 *   @param Near 근평면 거리
+	 *   @param Far 원평면 거리
+	 */
+	void PerspectiveFovDeg(float FovAngle, float Width, float Height, float Near, float Far)
+	{
+		PerspectiveFovRad(FovAngle * FMath::D2R, Width, Height, Near, Far);
+	}
+	/**
+	 *   주어진 파라미터 값을 사용하여 원근 투영 행렬을 각도(라디안 단위)로 설정하는 함수
+	 *
+	 *   @param FovAngle 시야각 (라디안 단위)
+	 *   @param Width 화면 너비
+	 *   @param Height 화면 높이
+	 *   @param Near 근평면 거리
+	 *   @param Far 원평면 거리
+	 */
+	void PerspectiveFovRad(float FovAngle, float Width, float Height, float Near, float Far)
+	{
+		Identity();
+		DirectMatrix = DirectX::XMMatrixPerspectiveFovLH(FovAngle, Width / Height, Near, Far);
 	}
 
+
+
+
+
+
+
+
+
+
+
+
+
+	/*
 	FVector GetFoward()
 	{
 		FVector Dir = ArrVector[2];
@@ -554,26 +762,7 @@ public:
 		return Dir;
 	}
 
-	FMatrix operator*(const FMatrix& _Value);
-
-	void Scale(const FVector& _Value)
-	{
-		DirectMatrix = DirectX::XMMatrixScalingFromVector(_Value.DirectVector);
-	}
-
-	void Position(const FVector& _Value)
-	{
-		DirectMatrix = DirectX::XMMatrixTranslationFromVector(_Value.DirectVector);
-	}
-
-	void RotationDeg(const FVector& _Angle)
-	{
-		RotationRad(_Angle * FMath::D2R);
-	}
-	void RotationRad(const FVector& _Angle)
-	{
-		DirectMatrix = DirectX::XMMatrixRotationRollPitchYawFromVector(_Angle.DirectVector);
-	}
+	FMatrix operator*(const FMatrix& InMatrixValue);
 
 	void Transpose()
 	{
@@ -590,7 +779,7 @@ public:
 	}
 
 	// View행렬의 인자입니다.
-	void View(const FVector& _Pos, const FVector& _Dir, const FVector& _Up)
+	void MyView(const FVector& _Pos, const FVector& _Dir, const FVector& _Up)
 	{
 		// _Pos 카메라가 어디서 바라보고 있나요?
 		// _Dir 어딜보고 있나요?
@@ -638,7 +827,7 @@ public:
 	// 내 앞에있는 _Near부터 보겠다. 
 
 	//                 
-	void OrthographicLH(float _Width, float _Height, float _Near, float _Far)
+	void MyOrthographicLH(float _Width, float _Height, float _Near, float _Far)
 	{
 		Identity();
 
@@ -672,12 +861,12 @@ public:
 	// 화면의 크기를 정의하기 위한 _Width, _Height X
 	// 화면의 비율을 정의하기 위한 _Width, _Height O
 	// _FovAngle => x축에서 바라봤을대의 각도를 알려달라.
-	void PerspectiveFovDeg(float _FovAngle, float _Width, float _Height, float _Near, float _Far)
+	void MyPerspectiveFovDeg(float _FovAngle, float _Width, float _Height, float _Near, float _Far)
 	{
-		PerspectiveFovRad(_FovAngle * FMath::D2R, _Width, _Height, _Near, _Far);
+		MyPerspectiveFovRad(_FovAngle * FMath::D2R, _Width, _Height, _Near, _Far);
 	}
 
-	void PerspectiveFovRad(float _FovAngle, float _Width, float _Height, float _Near, float _Far)
+	void MyPerspectiveFovRad(float _FovAngle, float _Width, float _Height, float _Near, float _Far)
 	{
 		Identity();
 
@@ -770,38 +959,30 @@ public:
 		Arr2D[1][0] = sinf(_Angle);
 		Arr2D[1][1] = cosf(_Angle);
 	}
-
+	*/
 };
 
-
-
-enum class ECollisionType
-{
-	Point,
-	Rect,
-	CirCle, // 타원이 아닌 정방원 
-	Max
-
-	//AABB,
-	//OBB,
-};
+using float4x4 = FMatrix;
 
 struct FTransform
 {
-	// transformupdate는 
-	// 아래의 값들을 다 적용해서
-	// WVP를 만들어내는 함수이다.
-	FVector Scale = { 1.0f, 1.0f, 1.0f };
-	FVector Rotation;
-	FVector Location;
+	float4 Scale;
+	float4 Rotation;
+	float4 Location;
 
-	FMatrix ScaleMat;
-	FMatrix RotationMat;
-	FMatrix LocationMat;
-	FMatrix World;
-	FMatrix View;
-	FMatrix Projection;
-	FMatrix WVP;
+	float4x4 ScaleMat;
+	float4x4 RotationMat;
+	float4x4 LocationMat;
+	float4x4 World;
+	float4x4 View;
+	float4x4 Projection;
+	float4x4 WVP;
+
+	FTransform()
+		: Scale({ 1.0f, 1.0f, 1.0f, 1.0f })
+	{
+
+	}
 
 public:
 	ENGINE_API void TransformUpdate();
@@ -961,5 +1142,3 @@ public:
 
 	}
 };
-
-using float4 = FVector;

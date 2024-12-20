@@ -172,84 +172,72 @@ bool FTransform::CirCleToRect(const FTransform& _Left, const FTransform& _Right)
 	return false;
 }
 
-FVector FVector::Transform(const FVector& _Vector, const class FMatrix& _Matrix)
+FVector FVector::TransformVector(const FVector& InVector, const class FMatrix& InMatrix)
 {
-	return _Vector * _Matrix;
+	return InVector * InMatrix;
 }
 
-FVector FVector::TransformCoord(const FVector& _Vector, const class FMatrix& _Matrix)
+FVector FVector::TransformVectorCoord(const FVector& InVector, const class FMatrix& InMatrix)
 {
-	FVector Copy = _Vector;
+	FVector Copy = InVector;
 	Copy.W = 1.0f;
-	return Copy * _Matrix;
+	return Copy * InMatrix;
 }
-
-FVector FVector::TransformNormal(const FVector& _Vector, const class FMatrix& _Matrix)
+FVector FVector::TransformVectorNormal(const FVector& InVector, const class FMatrix& InMatrix)
 {
-	FVector Copy = _Vector;
+	FVector Copy = InVector;
 	Copy.W = 0.0f;
-	return Copy * _Matrix;
+	return Copy * InMatrix;
 }
 
-FVector FVector::operator*(const class FMatrix& _Matrix) const
+FVector FVector::operator*(const class FMatrix& InMatrixValue) const
 {
 	FVector Result;
-	// 나머지 완성하고 곱해서 결과 확인해보세요.
 
-	// x y z w가 다 곱해져야 한다.
-	Result.X = Arr2D[0][0] * _Matrix.Arr2D[0][0] + Arr2D[0][1] * _Matrix.Arr2D[1][0] + Arr2D[0][2] * _Matrix.Arr2D[2][0] + Arr2D[0][3] * _Matrix.Arr2D[3][0];
-	Result.Y = Arr2D[0][0] * _Matrix.Arr2D[0][1] + Arr2D[0][1] * _Matrix.Arr2D[1][1] + Arr2D[0][2] * _Matrix.Arr2D[2][1] + Arr2D[0][3] * _Matrix.Arr2D[3][1];
-	Result.Z = Arr2D[0][0] * _Matrix.Arr2D[0][2] + Arr2D[0][1] * _Matrix.Arr2D[1][2] + Arr2D[0][2] * _Matrix.Arr2D[2][2] + Arr2D[0][3] * _Matrix.Arr2D[3][2];
-	Result.W = Arr2D[0][0] * _Matrix.Arr2D[0][3] + Arr2D[0][1] * _Matrix.Arr2D[1][3] + Arr2D[0][2] * _Matrix.Arr2D[2][3] + Arr2D[0][3] * _Matrix.Arr2D[3][3];
-
-
-	//std::cout << "X : " << Arr2D[0][0] << "*" << _Matrix.Arr2D[0][0] << "+" << Arr2D[0][1] << "*" << _Matrix.Arr2D[1][0] << "+" << Arr2D[0][2] << "*" << _Matrix.Arr2D[2][0] << "+" << Arr2D[0][3] << "*" << _Matrix.Arr2D[3][0] << std::endl;
-	//std::cout << "Y : " << Arr2D[0][0] << "*" << _Matrix.Arr2D[0][1] << "+" << Arr2D[0][1] << "*" << _Matrix.Arr2D[1][1] << "+" << Arr2D[0][2] << "*" << _Matrix.Arr2D[2][1] << "+" << Arr2D[0][3] << "*" << _Matrix.Arr2D[3][1] << std::endl;
-	//std::cout << "Z : " << Arr2D[0][0] << "*" << _Matrix.Arr2D[0][2] << "+" << Arr2D[0][1] << "*" << _Matrix.Arr2D[1][2] << "+" << Arr2D[0][2] << "*" << _Matrix.Arr2D[2][2] << "+" << Arr2D[0][3] << "*" << _Matrix.Arr2D[3][2] << std::endl;
-	//std::cout << "W : " << Arr2D[0][0] << "*" << _Matrix.Arr2D[0][3] << "+" << Arr2D[0][1] << "*" << _Matrix.Arr2D[1][3] << "+" << Arr2D[0][2] << "*" << _Matrix.Arr2D[2][3] << "+" << Arr2D[0][3] << "*" << _Matrix.Arr2D[3][3] << std::endl;
-
-	//std::cout << Result.ToString() << std::endl;
-
+	Result.X = Arr2D[0][0] * InMatrixValue.Arr2D[0][0] + Arr2D[0][1] * InMatrixValue.Arr2D[1][0] + Arr2D[0][2] * InMatrixValue.Arr2D[2][0] + Arr2D[0][3] * InMatrixValue.Arr2D[3][0];
+	Result.Y = Arr2D[0][0] * InMatrixValue.Arr2D[0][1] + Arr2D[0][1] * InMatrixValue.Arr2D[1][1] + Arr2D[0][2] * InMatrixValue.Arr2D[2][1] + Arr2D[0][3] * InMatrixValue.Arr2D[3][1];
+	Result.Z = Arr2D[0][0] * InMatrixValue.Arr2D[0][2] + Arr2D[0][1] * InMatrixValue.Arr2D[1][2] + Arr2D[0][2] * InMatrixValue.Arr2D[2][2] + Arr2D[0][3] * InMatrixValue.Arr2D[3][2];
+	Result.W = Arr2D[0][0] * InMatrixValue.Arr2D[0][3] + Arr2D[0][1] * InMatrixValue.Arr2D[1][3] + Arr2D[0][2] * InMatrixValue.Arr2D[2][3] + Arr2D[0][3] * InMatrixValue.Arr2D[3][3];
 
 	return Result;
 }
 
-FVector& FVector::operator*=(const FMatrix& _Matrix)
+FVector& FVector::operator*=(const FMatrix& InMatrixValue)
 {
 	FVector Copy = *this;
 
-	this->X = Copy.X * _Matrix.Arr2D[0][0] + Copy.Y * _Matrix.Arr2D[1][0] + Copy.Z * _Matrix.Arr2D[2][0] + Copy.W * _Matrix.Arr2D[3][0];
-	this->Y = Copy.X * _Matrix.Arr2D[0][1] + Copy.Y * _Matrix.Arr2D[1][1] + Copy.Z * _Matrix.Arr2D[2][1] + Copy.W * _Matrix.Arr2D[3][1];
-	this->Z = Copy.X * _Matrix.Arr2D[0][2] + Copy.Y * _Matrix.Arr2D[1][2] + Copy.Z * _Matrix.Arr2D[2][2] + Copy.W * _Matrix.Arr2D[3][2];
-	this->W = Copy.X * _Matrix.Arr2D[0][3] + Copy.Y * _Matrix.Arr2D[1][3] + Copy.Z * _Matrix.Arr2D[2][3] + Copy.W * _Matrix.Arr2D[3][3];
+	this->X = Copy.X * InMatrixValue.Arr2D[0][0] + Copy.Y * InMatrixValue.Arr2D[1][0] + Copy.Z * InMatrixValue.Arr2D[2][0] + Copy.W * InMatrixValue.Arr2D[3][0];
+	this->Y = Copy.X * InMatrixValue.Arr2D[0][1] + Copy.Y * InMatrixValue.Arr2D[1][1] + Copy.Z * InMatrixValue.Arr2D[2][1] + Copy.W * InMatrixValue.Arr2D[3][1];
+	this->Z = Copy.X * InMatrixValue.Arr2D[0][2] + Copy.Y * InMatrixValue.Arr2D[1][2] + Copy.Z * InMatrixValue.Arr2D[2][2] + Copy.W * InMatrixValue.Arr2D[3][2];
+	this->W = Copy.X * InMatrixValue.Arr2D[0][3] + Copy.Y * InMatrixValue.Arr2D[1][3] + Copy.Z * InMatrixValue.Arr2D[2][3] + Copy.W * InMatrixValue.Arr2D[3][3];
 
 
 	return *this;
 }
 
-FMatrix FMatrix::operator*(const FMatrix& _Matrix)
+FMatrix FMatrix::operator*(const FMatrix& InMatrixValue)
 {
 	FMatrix Result;
 
-	Result.Arr2D[0][0] = Arr2D[0][0] * _Matrix.Arr2D[0][0] + Arr2D[0][1] * _Matrix.Arr2D[1][0] + Arr2D[0][2] * _Matrix.Arr2D[2][0] + Arr2D[0][3] * _Matrix.Arr2D[3][0];
-	Result.Arr2D[0][1] = Arr2D[0][0] * _Matrix.Arr2D[0][1] + Arr2D[0][1] * _Matrix.Arr2D[1][1] + Arr2D[0][2] * _Matrix.Arr2D[2][1] + Arr2D[0][3] * _Matrix.Arr2D[3][1];
-	Result.Arr2D[0][2] = Arr2D[0][0] * _Matrix.Arr2D[0][2] + Arr2D[0][1] * _Matrix.Arr2D[1][2] + Arr2D[0][2] * _Matrix.Arr2D[2][2] + Arr2D[0][3] * _Matrix.Arr2D[3][2];
-	Result.Arr2D[0][3] = Arr2D[0][0] * _Matrix.Arr2D[0][3] + Arr2D[0][1] * _Matrix.Arr2D[1][3] + Arr2D[0][2] * _Matrix.Arr2D[2][3] + Arr2D[0][3] * _Matrix.Arr2D[3][3];
+	Result.Arr2D[0][0] = Arr2D[0][0] * InMatrixValue.Arr2D[0][0] + Arr2D[0][1] * InMatrixValue.Arr2D[1][0] + Arr2D[0][2] * InMatrixValue.Arr2D[2][0] + Arr2D[0][3] * InMatrixValue.Arr2D[3][0];
+	Result.Arr2D[0][1] = Arr2D[0][0] * InMatrixValue.Arr2D[0][1] + Arr2D[0][1] * InMatrixValue.Arr2D[1][1] + Arr2D[0][2] * InMatrixValue.Arr2D[2][1] + Arr2D[0][3] * InMatrixValue.Arr2D[3][1];
+	Result.Arr2D[0][2] = Arr2D[0][0] * InMatrixValue.Arr2D[0][2] + Arr2D[0][1] * InMatrixValue.Arr2D[1][2] + Arr2D[0][2] * InMatrixValue.Arr2D[2][2] + Arr2D[0][3] * InMatrixValue.Arr2D[3][2];
+	Result.Arr2D[0][3] = Arr2D[0][0] * InMatrixValue.Arr2D[0][3] + Arr2D[0][1] * InMatrixValue.Arr2D[1][3] + Arr2D[0][2] * InMatrixValue.Arr2D[2][3] + Arr2D[0][3] * InMatrixValue.Arr2D[3][3];
 
-	Result.Arr2D[1][0] = Arr2D[1][0] * _Matrix.Arr2D[0][0] + Arr2D[1][1] * _Matrix.Arr2D[1][0] + Arr2D[1][2] * _Matrix.Arr2D[2][0] + Arr2D[1][3] * _Matrix.Arr2D[3][0];
-	Result.Arr2D[1][1] = Arr2D[1][0] * _Matrix.Arr2D[0][1] + Arr2D[1][1] * _Matrix.Arr2D[1][1] + Arr2D[1][2] * _Matrix.Arr2D[2][1] + Arr2D[1][3] * _Matrix.Arr2D[3][1];
-	Result.Arr2D[1][2] = Arr2D[1][0] * _Matrix.Arr2D[0][2] + Arr2D[1][1] * _Matrix.Arr2D[1][2] + Arr2D[1][2] * _Matrix.Arr2D[2][2] + Arr2D[1][3] * _Matrix.Arr2D[3][2];
-	Result.Arr2D[1][3] = Arr2D[1][0] * _Matrix.Arr2D[0][3] + Arr2D[1][1] * _Matrix.Arr2D[1][3] + Arr2D[1][2] * _Matrix.Arr2D[2][3] + Arr2D[1][3] * _Matrix.Arr2D[3][3];
+	Result.Arr2D[1][0] = Arr2D[1][0] * InMatrixValue.Arr2D[0][0] + Arr2D[1][1] * InMatrixValue.Arr2D[1][0] + Arr2D[1][2] * InMatrixValue.Arr2D[2][0] + Arr2D[1][3] * InMatrixValue.Arr2D[3][0];
+	Result.Arr2D[1][1] = Arr2D[1][0] * InMatrixValue.Arr2D[0][1] + Arr2D[1][1] * InMatrixValue.Arr2D[1][1] + Arr2D[1][2] * InMatrixValue.Arr2D[2][1] + Arr2D[1][3] * InMatrixValue.Arr2D[3][1];
+	Result.Arr2D[1][2] = Arr2D[1][0] * InMatrixValue.Arr2D[0][2] + Arr2D[1][1] * InMatrixValue.Arr2D[1][2] + Arr2D[1][2] * InMatrixValue.Arr2D[2][2] + Arr2D[1][3] * InMatrixValue.Arr2D[3][2];
+	Result.Arr2D[1][3] = Arr2D[1][0] * InMatrixValue.Arr2D[0][3] + Arr2D[1][1] * InMatrixValue.Arr2D[1][3] + Arr2D[1][2] * InMatrixValue.Arr2D[2][3] + Arr2D[1][3] * InMatrixValue.Arr2D[3][3];
 
-	Result.Arr2D[2][0] = Arr2D[2][0] * _Matrix.Arr2D[0][0] + Arr2D[2][1] * _Matrix.Arr2D[1][0] + Arr2D[2][2] * _Matrix.Arr2D[2][0] + Arr2D[2][3] * _Matrix.Arr2D[3][0];
-	Result.Arr2D[2][1] = Arr2D[2][0] * _Matrix.Arr2D[0][1] + Arr2D[2][1] * _Matrix.Arr2D[1][1] + Arr2D[2][2] * _Matrix.Arr2D[2][1] + Arr2D[2][3] * _Matrix.Arr2D[3][1];
-	Result.Arr2D[2][2] = Arr2D[2][0] * _Matrix.Arr2D[0][2] + Arr2D[2][1] * _Matrix.Arr2D[1][2] + Arr2D[2][2] * _Matrix.Arr2D[2][2] + Arr2D[2][3] * _Matrix.Arr2D[3][2];
-	Result.Arr2D[2][3] = Arr2D[2][0] * _Matrix.Arr2D[0][3] + Arr2D[2][1] * _Matrix.Arr2D[1][3] + Arr2D[2][2] * _Matrix.Arr2D[2][3] + Arr2D[2][3] * _Matrix.Arr2D[3][3];
+	Result.Arr2D[2][0] = Arr2D[2][0] * InMatrixValue.Arr2D[0][0] + Arr2D[2][1] * InMatrixValue.Arr2D[1][0] + Arr2D[2][2] * InMatrixValue.Arr2D[2][0] + Arr2D[2][3] * InMatrixValue.Arr2D[3][0];
+	Result.Arr2D[2][1] = Arr2D[2][0] * InMatrixValue.Arr2D[0][1] + Arr2D[2][1] * InMatrixValue.Arr2D[1][1] + Arr2D[2][2] * InMatrixValue.Arr2D[2][1] + Arr2D[2][3] * InMatrixValue.Arr2D[3][1];
+	Result.Arr2D[2][2] = Arr2D[2][0] * InMatrixValue.Arr2D[0][2] + Arr2D[2][1] * InMatrixValue.Arr2D[1][2] + Arr2D[2][2] * InMatrixValue.Arr2D[2][2] + Arr2D[2][3] * InMatrixValue.Arr2D[3][2];
+	Result.Arr2D[2][3] = Arr2D[2][0] * InMatrixValue.Arr2D[0][3] + Arr2D[2][1] * InMatrixValue.Arr2D[1][3] + Arr2D[2][2] * InMatrixValue.Arr2D[2][3] + Arr2D[2][3] * InMatrixValue.Arr2D[3][3];
 
-	Result.Arr2D[3][0] = Arr2D[3][0] * _Matrix.Arr2D[0][0] + Arr2D[3][1] * _Matrix.Arr2D[1][0] + Arr2D[3][2] * _Matrix.Arr2D[2][0] + Arr2D[3][3] * _Matrix.Arr2D[3][0];
-	Result.Arr2D[3][1] = Arr2D[3][0] * _Matrix.Arr2D[0][1] + Arr2D[3][1] * _Matrix.Arr2D[1][1] + Arr2D[3][2] * _Matrix.Arr2D[2][1] + Arr2D[3][3] * _Matrix.Arr2D[3][1];
-	Result.Arr2D[3][2] = Arr2D[3][0] * _Matrix.Arr2D[0][2] + Arr2D[3][1] * _Matrix.Arr2D[1][2] + Arr2D[3][2] * _Matrix.Arr2D[2][2] + Arr2D[3][3] * _Matrix.Arr2D[3][2];
-	Result.Arr2D[3][3] = Arr2D[3][0] * _Matrix.Arr2D[0][3] + Arr2D[3][1] * _Matrix.Arr2D[1][3] + Arr2D[3][2] * _Matrix.Arr2D[2][3] + Arr2D[3][3] * _Matrix.Arr2D[3][3];
+	Result.Arr2D[3][0] = Arr2D[3][0] * InMatrixValue.Arr2D[0][0] + Arr2D[3][1] * InMatrixValue.Arr2D[1][0] + Arr2D[3][2] * InMatrixValue.Arr2D[2][0] + Arr2D[3][3] * InMatrixValue.Arr2D[3][0];
+	Result.Arr2D[3][1] = Arr2D[3][0] * InMatrixValue.Arr2D[0][1] + Arr2D[3][1] * InMatrixValue.Arr2D[1][1] + Arr2D[3][2] * InMatrixValue.Arr2D[2][1] + Arr2D[3][3] * InMatrixValue.Arr2D[3][1];
+	Result.Arr2D[3][2] = Arr2D[3][0] * InMatrixValue.Arr2D[0][2] + Arr2D[3][1] * InMatrixValue.Arr2D[1][2] + Arr2D[3][2] * InMatrixValue.Arr2D[2][2] + Arr2D[3][3] * InMatrixValue.Arr2D[3][2];
+	Result.Arr2D[3][3] = Arr2D[3][0] * InMatrixValue.Arr2D[0][3] + Arr2D[3][1] * InMatrixValue.Arr2D[1][3] + Arr2D[3][2] * InMatrixValue.Arr2D[2][3] + Arr2D[3][3] * InMatrixValue.Arr2D[3][3];
 
 	return Result;
 

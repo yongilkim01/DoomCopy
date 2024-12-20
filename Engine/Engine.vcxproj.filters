@@ -189,9 +189,6 @@
     <ClInclude Include="Source\Classes\Components\ActorComponent.h">
       <Filter>Classes\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Classes\Components\SceneComponent.h">
-      <Filter>Classes\Components</Filter>
-    </ClInclude>
     <ClInclude Include="Source\GameFramework\GameMode.h">
       <Filter>GameFramework</Filter>
     </ClInclude>
@@ -206,6 +203,9 @@
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>Classes\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Components\SceneComponent.h">
+      <Filter>Classes\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
