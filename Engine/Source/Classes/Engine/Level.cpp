@@ -65,7 +65,7 @@ void ULevel::Render(float DeltaTime)
 	UEngineCore::Device.RenderEnd();
 }
 
-std::shared_ptr<class ACameraActor> ULevel::SpawnCamera(int CameraOrder)
+std::shared_ptr<ACameraActor> ULevel::SpawnCamera(int CameraOrder)
 {
 	std::shared_ptr<ACameraActor> Camera = std::make_shared<ACameraActor>();
 	if (true == Cameraes.contains(CameraOrder))
@@ -88,9 +88,4 @@ void ULevel::ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_
 	std::shared_ptr<ACameraActor> Camera = Cameraes[CameraOrder];
 	Camera->GetCameraComponent()->ChangeRenderGroup(PrevGroupOrder, Renderer);
 
-}
-
-std::shared_ptr<class ACameraActor> ULevel::SpawnCamera(int Order)
-{
-	return std::shared_ptr<class ACameraActor>();
 }

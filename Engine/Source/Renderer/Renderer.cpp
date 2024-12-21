@@ -24,6 +24,7 @@ void URenderer::BeginPlay()
 	InputAssembler2Init();
 	RasterizerInit();
 	PixelShaderInit();
+	ShaderResInit();
 }
 
 void URenderer::Render(UCameraComponent* CameraComponent, float DeltaTime)
@@ -37,6 +38,7 @@ void URenderer::Render(UCameraComponent* CameraComponent, float DeltaTime)
 	RendererTransform.WVP = RendererTransform.World * RendererTransform.View * RendererTransform.Projection;
 
 	// Rendering pipeline
+	ShaderResSetting();
 	InputAssembler1Setting();
 	VertexShaderSetting();
 	InputAssembler2Setting();
@@ -315,6 +317,43 @@ void URenderer::OutPutMergeSetting()
 	ArrRtv[0] = RTV; // SV_Target0
 
 	UEngineCore::Device.GetDeviceContext()->OMSetRenderTargets(1, &ArrRtv[0], nullptr);
+}
+
+void URenderer::ShaderResInit()
+{
+	D3D11_BUFFER_DESC Desc = { 0 };
+	Desc.ByteWidth = sizeof(FTransform);
+	Desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	Desc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
+	Desc.Usage = D3D11_USAGE_DYNAMIC;
+
+	if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&Desc, nullptr, &TransformConstBuffer))
+	{
+		MSGASSERT("상수 버퍼에 생성 실패");
+		return;
+	}
+}
+
+void URenderer::ShaderResSetting()
+{
+	FTransform& RendererTransform = GetComponentTransformRef();
+
+	D3D11_MAPPED_SUBRESOURCE MappedSubResource = {};
+
+	UEngineCore::Device.GetDeviceContext()->Map(TransformConstBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &MappedSubResource);
+
+	if (nullptr == MappedSubResource.pData)
+	{
+		MSGASSERT("그래픽 카드 수정 권한 거부");
+	}
+
+	memcpy_s(MappedSubResource.pData, sizeof(FTransform), &RendererTransform, sizeof(FTransform));
+
+	UEngineCore::Device.GetDeviceContext()->Unmap(TransformConstBuffer.Get(), 0);
+
+	ID3D11Buffer* ArrPtr[16] = { TransformConstBuffer.Get() };
+
+	UEngineCore::Device.GetDeviceContext()->VSSetConstantBuffers(0, 1, ArrPtr);
 }
 
 void URenderer::SetOrder(int NewOrder)

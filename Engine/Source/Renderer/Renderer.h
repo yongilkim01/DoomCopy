@@ -48,6 +48,9 @@ public:
 
 	void OutPutMergeSetting();
 
+	void ShaderResInit();
+	void ShaderResSetting();
+
 	/** UObject 상속 메소드 */
 	virtual void SetOrder(int NewOrder) override;
 
@@ -76,4 +79,6 @@ public:
 	Microsoft::WRL::ComPtr<ID3DBlob> PSShaderCodeBlob = nullptr;
 	Microsoft::WRL::ComPtr<ID3DBlob> PSErrorCodeBlob = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> PixelShader = nullptr;
+
+	Microsoft::WRL::ComPtr<ID3D11Buffer> TransformConstBuffer = nullptr;
 };

@@ -18,19 +18,25 @@ public:
 	USceneComponent& operator=(const USceneComponent& _Other) = delete;
 	USceneComponent& operator=(USceneComponent&& _Other) noexcept = delete;
 
-	/** 겟, 셋 메소드 */
+	/** 트랜스폼 관련 메소드 */
 	void SetRealativeScale3D(const FVector& NewScale)
 	{
 		Transform.Scale = NewScale;
 		Transform.TransformUpdate();
 
 	}
-
 	void SetWorldLocation(const FVector& NewLocation)
 	{
 		Transform.Location = NewLocation;
 		Transform.TransformUpdate();
 	}
+	void AddWorldOffset(FVector DeltaLoaction)
+	{
+		Transform.Location += DeltaLoaction;
+		Transform.TransformUpdate();
+	}
+
+	/** 겟, 셋 메소드 */
 	FTransform GetComponentTransform()
 	{
 		return Transform;

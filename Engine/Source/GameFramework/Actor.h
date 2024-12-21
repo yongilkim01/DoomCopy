@@ -80,6 +80,14 @@ public:
 		}
 		RootComponent->SetWorldLocation(NewLocation);
 	}
+	void AddActorLocation(const FVector& DeltaLocation)
+	{
+		if (nullptr == RootComponent)
+		{
+			return;
+		}
+		RootComponent->AddWorldOffset(DeltaLocation);
+	}
 
 	void SetActorRelativeScale3D(const FVector& Scale)
 	{

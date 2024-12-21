@@ -24,4 +24,6 @@ void ATitleLogo::BeginPlay()
 void ATitleLogo::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
+
+	AddActorLocation(FVector{ 0.001f, 0.0f, 0.0f });
 }
