@@ -1,5 +1,6 @@
 #pragma once
 #include "Classes/Components/ActorComponent.h"
+#include "Math/EngineMath.h"
 
 /**
  *	Ό³Έν
@@ -21,7 +22,7 @@ public:
 	void SetRealativeScale3D(const FVector& NewScale)
 	{
 		Transform.Scale = NewScale;
-		Transform.Transfor
+		Transform.TransformUpdate();
 
 	}
 protected:

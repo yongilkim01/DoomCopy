@@ -632,6 +632,8 @@ public:
 		Identity();
 	}
 
+	FMatrix operator*(const FMatrix& InMatrixValue);
+
 	/**
 	 *   행렬을 단위 행렬로 초기화하는 함수
 	 */

@@ -44,10 +44,10 @@ void URenderer::InputAssembler1Init()
 	std::vector<EngineVertex> Vertexes;
 	Vertexes.resize(4);
 
-	Vertexes[0] = EngineVertex{ FVector(-0.5f, 0.5f, -0.0f), {} };
-	Vertexes[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.0f), {} };
-	Vertexes[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.0f), {} };
-	Vertexes[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {} };
+	Vertexes[0] = EngineVertex{ FVector(-0.5f, 0.5f, -0.0f), {1.0f, 0.0f, 0.0f, 1.0f} };
+	Vertexes[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.0f), {0.0f, 1.0f, 0.0f, 1.0f} };
+	Vertexes[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.0f), {0.0f, 0.0f, 1.0f, 1.0f} };
+	Vertexes[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {1.0f, 1.0f, 1.0f, 1.0f} };
 
 	D3D11_BUFFER_DESC desc;
 	ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
@@ -123,8 +123,8 @@ void URenderer::InputAssembler1Layout()
 
 void URenderer::VertexShaderInit()
 {
-	std::string Path = "D:/Projects/DoomCopy/Engine/Shaders/SpriteShader.fx";
-	//std::string Path = "C:/Users/yongi/OneDrive/projects/DoomCopy/Engine/Shaders/SpriteShader.fx";
+	//std::string Path = "D:/Projects/DoomCopy/Engine/Shaders/SpriteShader.fx";
+	std::string Path = "C:/Users/yongi/OneDrive/projects/DoomCopy/Engine/Shaders/SpriteShader.fx";
 	//std::string Path = "../../../../../Shaders/SpriteShader.fx";
 	//std::string Path = "D:\Projects\DoomCopy\Engine\Source\Renderer\Renderer.cpp";
 
@@ -242,8 +242,8 @@ void URenderer::RasterizerSetting()
 
 void URenderer::PixelShaderInit()
 {
-	std::string Path = "D:/Projects/DoomCopy/Engine/Shaders/SpriteShader.fx";
-	//std::string Path = "C:/Users/yongi/OneDrive/projects/DoomCopy/Engine/Shaders/SpriteShader.fx";
+	//std::string Path = "D:/Projects/DoomCopy/Engine/Shaders/SpriteShader.fx";
+	std::string Path = "C:/Users/yongi/OneDrive/projects/DoomCopy/Engine/Shaders/SpriteShader.fx";
 
 	std::wstring WPath = UEngineString::AnsiToUnicode(Path);
 

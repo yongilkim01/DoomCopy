@@ -72,6 +72,16 @@ public:
 		return NewComponent;
 	}
 
+	void SetActorRelativeScale3D(const FVector& Scale)
+	{
+		if (nullptr == RootComponent)
+		{
+			return;
+		}
+
+		//RootComponent->SetRealativeScale3D(Scale);
+	}
+
 	ULevel* GetWorld()
 	{
 		return World;
