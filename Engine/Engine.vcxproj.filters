@@ -58,6 +58,21 @@
     <Filter Include="Classes\Camera">
       <UniqueIdentifier>{bfb10207-285e-4df5-b15b-884b3bce7016}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{e879a830-1b4f-444e-92af-3dd0388a12a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\DirectXTex">
+      <UniqueIdentifier>{3c0c1958-ab9f-4f73-b90c-b96f2208e4c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\DirectXTex\Debug">
+      <UniqueIdentifier>{3d4cf764-d09a-457c-9327-42a8f40aadfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\DirectXTex\Include">
+      <UniqueIdentifier>{36d68be9-c7bd-451c-8769-a2decb916be6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\DirectXTex\Release">
+      <UniqueIdentifier>{0a64495f-5bc4-4494-9bfd-3f8a9d8c5d77}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Math\EngineMath.cpp">
@@ -222,10 +237,23 @@
     <ClInclude Include="Source\Math\EngineMath.h">
       <Filter>pch</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.h">
+      <Filter>ThirdParty\DirectXTex\Include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\SpriteShader.fx">
       <Filter>Shaders</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Source\ThirdParty\DirectXTex\Debug\DirectXTex.lib">
+      <Filter>ThirdParty\DirectXTex\Debug</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl">
+      <Filter>ThirdParty\DirectXTex\Include</Filter>
+    </None>
   </ItemGroup>
 </Project>

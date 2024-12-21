@@ -3,9 +3,14 @@
 
 #include "Classes/Engine/Level.h"
 #include "Core/Misc/DirectoryHelper.h"
+#include "Core/Misc/FileHelper.h"
 #include "Core/Containers/EngineString.h"
 #include "Core/EngineCore.h"
 #include "Classes/Camera/CameraComponent.h"
+
+#include "ThirdParty/DirectxTex/Include/DirectXTex.h"
+
+#pragma comment(lib, "DirectXTex.lib")
 
 URenderer::URenderer()
 {
@@ -332,6 +337,11 @@ void URenderer::ShaderResInit()
 		MSGASSERT("상수 버퍼에 생성 실패");
 		return;
 	}
+
+	FDirectoryHelper CurDirectory;
+	CurDirectory.MoveParentToDirectory("Resources");
+	FFileHelper FileHelper = CurDirectory.GetFile("Player.png");
+
 }
 
 void URenderer::ShaderResSetting()
@@ -354,6 +364,8 @@ void URenderer::ShaderResSetting()
 	ID3D11Buffer* ArrPtr[16] = { TransformConstBuffer.Get() };
 
 	UEngineCore::Device.GetDeviceContext()->VSSetConstantBuffers(0, 1, ArrPtr);
+
+	ID3D11ShaderResourceView* Ptr;
 }
 
 void URenderer::SetOrder(int NewOrder)

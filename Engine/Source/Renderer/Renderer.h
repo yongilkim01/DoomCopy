@@ -81,4 +81,7 @@ public:
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> PixelShader = nullptr;
 
 	Microsoft::WRL::ComPtr<ID3D11Buffer> TransformConstBuffer = nullptr;
+
+	Microsoft::WRL::ComPtr<ID3D11Texture2D> Texture2D = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TextureSettingView = nullptr;
 };

@@ -107,6 +107,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Source\Renderer\Renderer.h" />
+    <ClInclude Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.h" />
     <ClInclude Include="Source\Time\TimeEvent.h" />
     <ClInclude Include="Source\Time\Timer.h" />
     <ClInclude Include="Source\WorldPartition\DebugHelpers.h" />
@@ -120,6 +121,12 @@
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VertexToWorld</EntryPointName>
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VertexToWorld</EntryPointName>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Source\ThirdParty\DirectXTex\Debug\DirectXTex.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
