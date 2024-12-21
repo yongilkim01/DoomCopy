@@ -6,10 +6,10 @@ class UCameraComponent;
 
 struct EngineVertex
 {
-	FVector POSITION;
-	FVector COLOR;
+	float4 POSITION;
+	float4 TEXCOORD; // UV값이라고 불리는 존재로 텍스처가 매핑되는 비율을 지정해줍니다.
+	float4 COLOR;
 };
-
 /**
  *	렌더러 클래스
  */
@@ -83,5 +83,6 @@ public:
 	Microsoft::WRL::ComPtr<ID3D11Buffer> TransformConstBuffer = nullptr;
 
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> Texture2D = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> TextureSettingView = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> ShaderResourceView = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11SamplerState> SamplerState = nullptr;
 };

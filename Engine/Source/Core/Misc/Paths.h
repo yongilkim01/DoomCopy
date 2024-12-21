@@ -20,7 +20,7 @@ public:
 	/** 디렉토리명 + 확장자 */
 	std::string GetDirectoryName();
 	/** 확장자 */
-	std::string GetExtension();
+	ENGINE_API std::string GetExtension();
 
 	void Append(std::string_view _AppendName);
 	void MoveParent();

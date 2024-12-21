@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 
+#include "EngineDefine.h"
+
 /**
  *	엔진에서 사용하는 문자열 관련 기능 클래스
  */
@@ -16,9 +18,9 @@ public:
 	UEngineString& operator=(UEngineString&& Other) noexcept = delete;
 
 	/** 대문자 변환 메소드 */
-	static std::string ToUpper(std::string_view);
+	ENGINE_API static std::string ToUpper(std::string_view);
 	/** 유니코드 변환 메소드 */
-	static std::wstring AnsiToUnicode(std::string_view Name);
+	ENGINE_API static std::wstring AnsiToUnicode(std::string_view Name);
 protected:
 
 private:
