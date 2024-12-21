@@ -72,6 +72,15 @@ public:
 		return NewComponent;
 	}
 
+	void SetActorLocation(const FVector& NewLocation)
+	{
+		if (nullptr == RootComponent)
+		{
+			return;
+		}
+		RootComponent->SetWorldLocation(NewLocation);
+	}
+
 	void SetActorRelativeScale3D(const FVector& Scale)
 	{
 		if (nullptr == RootComponent)
@@ -79,7 +88,7 @@ public:
 			return;
 		}
 
-		//RootComponent->SetRealativeScale3D(Scale);
+		RootComponent->SetRealativeScale3D(Scale);
 	}
 
 	ULevel* GetWorld()

@@ -632,7 +632,28 @@ public:
 		Identity();
 	}
 
-	FMatrix operator*(const FMatrix& InMatrixValue);
+	FVector GetFoward()
+	{
+		FVector Dir = ArrVector[2];
+		Dir.Normalize();
+		return Dir;
+	}
+
+	FVector GetRight()
+	{
+		FVector Dir = ArrVector[0];
+		Dir.Normalize();
+		return Dir;
+	}
+
+	FVector GetUp()
+	{
+		FVector Dir = ArrVector[1];
+		Dir.Normalize();
+		return Dir;
+	}
+
+	ENGINE_API FMatrix operator*(const FMatrix& InMatrixValue);
 
 	/**
 	 *   행렬을 단위 행렬로 초기화하는 함수
@@ -743,29 +764,6 @@ public:
 
 
 	/*
-	FVector GetFoward()
-	{
-		FVector Dir = ArrVector[2];
-		Dir.Normalize();
-		return Dir;
-	}
-
-	FVector GetRight()
-	{
-		FVector Dir = ArrVector[0];
-		Dir.Normalize();
-		return Dir;
-	}
-
-	FVector GetUp()
-	{
-		FVector Dir = ArrVector[1];
-		Dir.Normalize();
-		return Dir;
-	}
-
-	FMatrix operator*(const FMatrix& InMatrixValue);
-
 	void Transpose()
 	{
 		for (size_t y = 0; y < 4; y++)

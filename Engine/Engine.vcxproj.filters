@@ -55,6 +55,9 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{e171648f-698f-4f41-af7e-3f6044ef48f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Camera">
+      <UniqueIdentifier>{bfb10207-285e-4df5-b15b-884b3bce7016}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Math\EngineMath.cpp">
@@ -129,11 +132,14 @@
     <ClCompile Include="Texture.cpp">
       <Filter>Classes\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Classes\Camera\CameraActor.cpp">
+      <Filter>Classes\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Classes\Camera\CameraComponent.cpp">
+      <Filter>Classes\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Math\EngineMath.h">
-      <Filter>Math</Filter>
-    </ClInclude>
     <ClInclude Include="Source\pch.h">
       <Filter>pch</Filter>
     </ClInclude>
@@ -206,6 +212,15 @@
     </ClInclude>
     <ClInclude Include="Source\Classes\Components\SceneComponent.h">
       <Filter>Classes\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Camera\CameraActor.h">
+      <Filter>Classes\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Camera\CameraComponent.h">
+      <Filter>Classes\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Math\EngineMath.h">
+      <Filter>pch</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

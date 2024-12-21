@@ -6,6 +6,7 @@
 
 class URenderer;
 class AActor;
+class ACameraActor;
 
 /**
  *	엔진 레벨 클래스
@@ -29,12 +30,10 @@ public:
 	void Tick(float DeltaTime);
 	void Render(float DeltaTime);
 
-	void ChangeRenderGroup(int PrevGroupOrder, std::shared_ptr<URenderer> Renderer);
-
+	void ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_ptr<class URenderer> Renderer);
 	template<typename ActorType>
 	std::shared_ptr<ActorType> SpawnActor()
 	{
-		// 템플릿으로 전달받은 액터 타입이 액터를 상속받지 않았을 경우 체크
 		static_assert(std::is_base_of_v<AActor, ActorType>, "액터를 상속받지 않은 클래스");
 
 		if (false == std::is_base_of_v<AActor, ActorType>)
@@ -56,11 +55,35 @@ public:
 		return NewActor;
 	}
 
+	template<typename EnumType>
+	std::shared_ptr<class ACameraActor> SpawnCamera(EnumType Order)
+	{
+		return SpawnCamera(static_cast<int>(Order));
+	}
+	std::shared_ptr<class ACameraActor> SpawnCamera(int Order);
+
+	/** 겟, 셋 메소드 */
+	std::shared_ptr<ACameraActor> GetMainCamera()
+	{
+		return GetCamera(0);
+	}
+
+	std::shared_ptr<ACameraActor> GetCamera(int CameraOrder)
+	{
+		if (false == Cameraes.contains(CameraOrder))
+		{
+			MSGASSERT("존재하지 않는 카메라입니다.");
+		}
+		return Cameraes[CameraOrder];
+	}
+
+
 protected:
 
 private:
 	std::list<std::shared_ptr<AActor>> BeginPlayList;
 	std::list<std::shared_ptr<AActor>> AllActorList;
 	std::map<int, std::list<std::shared_ptr<URenderer>>> RendererMap;
+	std::map<int, std::shared_ptr<ACameraActor>> Cameraes;
 
 };

@@ -5,6 +5,7 @@
 #include "Core/Misc/DirectoryHelper.h"
 #include "Core/Containers/EngineString.h"
 #include "Core/EngineCore.h"
+#include "Classes/Camera/CameraComponent.h"
 
 URenderer::URenderer()
 {
@@ -25,9 +26,17 @@ void URenderer::BeginPlay()
 	PixelShaderInit();
 }
 
-void URenderer::Render(float DeltaTime)
+void URenderer::Render(UCameraComponent* CameraComponent, float DeltaTime)
 {
-	// TODO: Rendering pipeline
+	FTransform& CameraTransform = CameraComponent->GetComponentTransformRef();
+	FTransform& RendererTransform = GetComponentTransformRef();
+
+	RendererTransform.View = CameraTransform.View;
+	RendererTransform.Projection = CameraTransform.Projection;
+
+	RendererTransform.WVP = RendererTransform.World * RendererTransform.View * RendererTransform.Projection;
+
+	// Rendering pipeline
 	InputAssembler1Setting();
 	VertexShaderSetting();
 	InputAssembler2Setting();
@@ -315,5 +324,5 @@ void URenderer::SetOrder(int NewOrder)
 	ULevel* Level = GetOwner()->GetWorld();
 
 	std::shared_ptr<URenderer> RendererPtr = GetThis<URenderer>();
-	Level->ChangeRenderGroup(PrevOrder, RendererPtr);
+	Level->ChangeRenderGroup(0, PrevOrder, RendererPtr);
 }

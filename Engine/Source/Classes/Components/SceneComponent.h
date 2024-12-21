@@ -25,10 +25,25 @@ public:
 		Transform.TransformUpdate();
 
 	}
+
+	void SetWorldLocation(const FVector& NewLocation)
+	{
+		Transform.Location = NewLocation;
+		Transform.TransformUpdate();
+	}
+	FTransform GetComponentTransform()
+	{
+		return Transform;
+	}
+	FTransform& GetComponentTransformRef()
+	{
+		return Transform;
+	}
+
 protected:
+	FTransform Transform;
 
 private:
-	FTransform Transform;
 
 	USceneComponent* Parent;
 	std::list<std::shared_ptr<USceneComponent>> Childs;

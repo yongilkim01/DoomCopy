@@ -45,6 +45,7 @@ public:
 
 	/** °Ù, ¼Â ¸Þ¼Òµå */
 	ENGINE_API static UEngineGraphicDevice Device;
+	ENGINE_API static FVector GetSceenScale();
 
 protected:
 
@@ -73,9 +74,11 @@ private:
 	 */
 	static void EngineEnd();
 
-	static UEngineWindow MainWindow;
+	ENGINE_API static UEngineWindow MainWindow;
 	static HMODULE ContentsDLL;
 	static std::shared_ptr<IContentsCore> Core;
+	static UEngineInitData InitData;
+
 	static std::map<std::string, std::shared_ptr<ULevel>> LevelMap;
 	static std::shared_ptr<ULevel> CurLevel;
 	static std::shared_ptr<ULevel> NextLevel;

@@ -4,9 +4,12 @@
 #include "Renderer/Renderer.h"
 #include "Renderer/EngineGraphicDevice.h"
 
+#include "Classes/Camera/CameraActor.h"
+#include "Classes/Camera/CameraComponent.h"
+
 ULevel::ULevel()
 {
-
+	SpawnCamera(0);
 }
 
 ULevel::~ULevel()
@@ -53,21 +56,41 @@ void ULevel::Render(float DeltaTime)
 {
 	UEngineCore::Device.RenderStart();
 
-	for (std::pair<const int, std::list<std::shared_ptr<URenderer>>>& RendererGroup : RendererMap)
+	for (std::pair<const int, std::shared_ptr<ACameraActor>>& Camera : Cameraes)
 	{
-		std::list<std::shared_ptr<URenderer>>& RendererList = RendererGroup.second;
-
-		for (std::shared_ptr<URenderer> Renderer : RendererList)
-		{
-			Renderer->Render(DeltaTime);
-		}
+		Camera.second->Tick(DeltaTime);
+		Camera.second->GetCameraComponent()->Render(DeltaTime);
 	}
 
 	UEngineCore::Device.RenderEnd();
 }
 
-void ULevel::ChangeRenderGroup(int PrevGroupOrder, std::shared_ptr<URenderer> Renderer)
+std::shared_ptr<class ACameraActor> ULevel::SpawnCamera(int CameraOrder)
 {
-	RendererMap[PrevGroupOrder].remove(Renderer);
-	RendererMap[Renderer->GetOrder()].push_back(Renderer);
+	std::shared_ptr<ACameraActor> Camera = std::make_shared<ACameraActor>();
+	if (true == Cameraes.contains(CameraOrder))
+	{
+		MSGASSERT("동일한 번호의 카메라가 이미 존재합니다");
+	}
+
+	Camera->BeginPlay();
+
+	Cameraes.insert({ CameraOrder , Camera });
+	return Camera;
+}
+
+void ULevel::ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_ptr<URenderer> Renderer)
+{
+	if (false == Cameraes.contains(CameraOrder))
+	{
+		MSGASSERT("존재하지 않는 카메라에 랜더러를 집어넣으려고 했습니다.");
+	}
+	std::shared_ptr<ACameraActor> Camera = Cameraes[CameraOrder];
+	Camera->GetCameraComponent()->ChangeRenderGroup(PrevGroupOrder, Renderer);
+
+}
+
+std::shared_ptr<class ACameraActor> ULevel::SpawnCamera(int Order)
+{
+	return std::shared_ptr<class ACameraActor>();
 }

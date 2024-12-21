@@ -40,7 +40,7 @@ public:
 	ENGINE_API void Open(std::string_view TitleName = "Window");
 
 	/** °Ù, ¼Â ¸Þ¼Òµå */
-	inline FVector GetWindowSize() const
+	ENGINE_API inline FVector GetWindowSize() const
 	{
 		return WindowSize;
 	}

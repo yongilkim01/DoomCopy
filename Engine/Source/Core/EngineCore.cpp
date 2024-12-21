@@ -10,6 +10,7 @@ UEngineGraphicDevice UEngineCore::Device;
 UEngineWindow UEngineCore::MainWindow;
 HMODULE UEngineCore::ContentsDLL = nullptr;
 std::shared_ptr<IContentsCore> UEngineCore::Core;
+UEngineInitData UEngineCore::InitData;
 
 std::shared_ptr<ULevel> UEngineCore::NextLevel;
 std::shared_ptr<ULevel> UEngineCore::CurLevel = nullptr;
@@ -48,10 +49,9 @@ void UEngineCore::EngineStart(HINSTANCE Instance, std::string_view DllName)
 		{
 			// 엔진이 시작할 때 하고 싶은것
 			Device.CreateDeviceAndContext();
-			UEngineInitData Data;
-			Core->EngineStart(Data);
+			Core->EngineStart(InitData);
 
-			MainWindow.SetWindowPosAndScale(Data.WindowPosition, Data.WindowSize);
+			MainWindow.SetWindowPosAndScale(InitData.WindowPosition, InitData.WindowSize);
 
 			Device.CreateBackBuffer(MainWindow);
 		},
@@ -141,6 +141,11 @@ void UEngineCore::EngineEnd()
 	LevelMap.clear();
 	UEngineDebug::EndConsole();
 	Device.Release();
+}
+
+FVector UEngineCore::GetSceenScale()
+{
+	return InitData.WindowSize;
 }
 
 // 새로운 레벨을 생성하는 메소드 구현부

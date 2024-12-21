@@ -1,6 +1,9 @@
 #pragma once
 #include "Classes/Components/SceneComponent.h"
 
+class ULevel;
+class UCameraComponent;
+
 struct EngineVertex
 {
 	FVector POSITION;
@@ -12,7 +15,8 @@ struct EngineVertex
  */
 class URenderer : public USceneComponent
 {
-	friend class ULevel;
+	friend ULevel;
+	friend UCameraComponent;
 
 public:
 	/** UObject 상속 메소드 */
@@ -53,7 +57,7 @@ protected:
 
 private:
 	/** URenderer 메소드 */
-	virtual void Render(float DeltaTime);
+	virtual void Render(UCameraComponent* CameraComponent, float DeltaTime);
 
 public:	
 	Microsoft::WRL::ComPtr<ID3D11Buffer> VertexBuffer = nullptr;
