@@ -154,10 +154,10 @@ void URenderer::InputAssembler1Layout()
 
 void URenderer::VertexShaderInit()
 {
-	//std::string Path = "D:/Projects/DoomCopy/Engine/Shaders/SpriteShader.fx";
-	std::string Path = "C:/Users/yongi/OneDrive/projects/DoomCopy/Engine/Shaders/SpriteShader.fx";
-	//std::string Path = "../../../../../Shaders/SpriteShader.fx";
-	//std::string Path = "D:\Projects\DoomCopy\Engine\Source\Renderer\Renderer.cpp";
+	FDirectoryHelper CurDir;
+	CurDir.MoveEngineShaderDirectory();
+	FFileHelper VSFile = CurDir.GetFile("SpriteShader.fx");
+	std::string Path = VSFile.GetPathToString();
 
 	std::wstring WPath = UEngineString::AnsiToUnicode(Path);
 
@@ -273,8 +273,10 @@ void URenderer::RasterizerSetting()
 
 void URenderer::PixelShaderInit()
 {
-	//std::string Path = "D:/Projects/DoomCopy/Engine/Shaders/SpriteShader.fx";
-	std::string Path = "C:/Users/yongi/OneDrive/projects/DoomCopy/Engine/Shaders/SpriteShader.fx";
+	FDirectoryHelper CurDir;
+	CurDir.MoveEngineShaderDirectory();
+	FFileHelper VSFile = CurDir.GetFile("SpriteShader.fx");
+	std::string Path = VSFile.GetPathToString();
 
 	std::wstring WPath = UEngineString::AnsiToUnicode(Path);
 

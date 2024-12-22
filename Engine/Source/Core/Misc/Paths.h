@@ -25,6 +25,8 @@ public:
 	void Append(std::string_view _AppendName);
 	void MoveParent();
 	bool MoveParentToDirectory(std::string_view _Path);
+	bool MoveEngineShaderDirectory();
+	bool MoveEngineDirectory();
 	bool Move(std::string_view Path);
 
 	bool IsDirectory();
