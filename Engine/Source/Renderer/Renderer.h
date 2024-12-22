@@ -30,26 +30,26 @@ public:
 	URenderer& operator=(URenderer&& Other) noexcept = delete;
 
 	/** 초기화 메소드 */
-	void InputAssembler1Init();
-	void InputAssembler1Setting();
-	void InputAssembler1Layout();
+	void InitVertexBuffer();
+	void InitVertexLayout();
+	void UpdateVertexBuffer();
 
-	void VertexShaderInit();
-	void VertexShaderSetting();
+	void InitVertexShader();
+	void UpdateVertexShader();
 
-	void InputAssembler2Init();
-	void InputAssembler2Setting();
+	void InitIndexBuffer();
+	void UpdateIndexBuffer();
 
-	void RasterizerInit();
-	void RasterizerSetting();
+	void InitRasterizer();
+	void UpdateRasterizer();
 
-	void PixelShaderInit();
-	void PixelShaderSetting();
+	void InitPixelShader();
+	void UpdatePixelShader();
 
-	void OutPutMergeSetting();
+	void InitShaderResourceView();
+	void UpdateShaderResourceView();
 
-	void ShaderResInit();
-	void ShaderResSetting();
+	void UpdateRenderTargetView();
 
 	/** UObject 상속 메소드 */
 	virtual void SetOrder(int NewOrder) override;

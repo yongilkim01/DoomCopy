@@ -25,12 +25,12 @@ void URenderer::BeginPlay()
 {
 	SetOrder(0);
 
-	InputAssembler1Init();
-	VertexShaderInit();
-	InputAssembler2Init();
-	RasterizerInit();
-	PixelShaderInit();
-	ShaderResInit();
+	InitVertexBuffer();
+	InitVertexShader();
+	InitIndexBuffer();
+	InitRasterizer();
+	InitPixelShader();
+	InitShaderResourceView();
 }
 
 void URenderer::Render(UCameraComponent* CameraComponent, float DeltaTime)
@@ -44,145 +44,179 @@ void URenderer::Render(UCameraComponent* CameraComponent, float DeltaTime)
 	RendererTransform.WVP = RendererTransform.World * RendererTransform.View * RendererTransform.Projection;
 
 	// Rendering pipeline
-	ShaderResSetting();
-	InputAssembler1Setting();
-	VertexShaderSetting();
-	InputAssembler2Setting();
-	RasterizerSetting();
-	PixelShaderSetting();
-	OutPutMergeSetting();
+	UpdateShaderResourceView();
+	UpdateVertexBuffer();
+	UpdateVertexShader();
+	UpdateIndexBuffer();
+	UpdateRasterizer();
+	UpdatePixelShader();
+	UpdateRenderTargetView();
 
 	UEngineCore::Device.GetDeviceContext()->DrawIndexed(6, 0, 0);
 
 }
 
-void URenderer::InputAssembler1Init()
+void URenderer::InitVertexBuffer()
 {
+	// Vertex 데이터를 저장할 벡터 생성 및 크기 조절
 	std::vector<EngineVertex> Vertexes;
 	Vertexes.resize(4);
 
+	// 각 Vertex의 위치, 텍스처 좌표 및 색상을 설정
 	Vertexes[0] = EngineVertex{ FVector(-0.5f, 0.5f, -0.0f), {0.0f, 0.0f}, {1.0f, 0.0f, 0.0f, 1.0f} };
 	Vertexes[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.0f), {1.0f, 0.0f} , {0.0f, 1.0f, 0.0f, 1.0f} };
 	Vertexes[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.0f), {0.0f, 1.0f} , {0.0f, 0.0f, 1.0f, 1.0f} };
 	Vertexes[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {1.0f, 1.0f} , {1.0f, 1.0f, 1.0f, 1.0f} };
 
-	D3D11_BUFFER_DESC desc;
-	ZeroMemory(&desc, sizeof(D3D11_BUFFER_DESC));
+	// 버텍스 버퍼 설명 구조체 초기화
+	D3D11_BUFFER_DESC Desc;
+	ZeroMemory(&Desc, sizeof(D3D11_BUFFER_DESC));
 
-	desc.ByteWidth = sizeof(EngineVertex) * Vertexes.size();
-	desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	desc.CPUAccessFlags = 0;
-	desc.Usage = D3D11_USAGE_DEFAULT;
+	Desc.ByteWidth = sizeof(EngineVertex) * Vertexes.size(); // 버퍼의 크기를 설정
+	Desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;				 // 버퍼의 바인딩 플래그를 버텍스 버퍼로 설정
+	Desc.CPUAccessFlags = 0;								 // CPU 접근 플래그를 설정 (기본값)
+	Desc.Usage = D3D11_USAGE_DEFAULT;						 // 버퍼의 사용 방식을 설정
 
+	// 버퍼에 초기 데이터 설정
 	D3D11_SUBRESOURCE_DATA Data;
 	Data.pSysMem = &Vertexes[0];
 
-	if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&desc, &Data, &VertexBuffer))
+	// 디바이스를 사용하여 버텍스 버퍼를 생성
+	if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&Desc, &Data, &VertexBuffer))
 	{
 		MSGASSERT("버텍스 버퍼 생성 실패");
 		return;
 	}
 
+
 }
 
-void URenderer::InputAssembler1Setting()
+void URenderer::UpdateVertexBuffer()
 {
-	UINT VertexSize = sizeof(EngineVertex);
-	UINT Offset = 0;
+	// 버텍스의 크기와 오프셋을 설정
+	UINT VertexSize = sizeof(EngineVertex); // 버텍스 하나의 크기를 설정
+	UINT Offset = 0; // 버텍스 데이터의 시작 오프셋을 설정 (0으로 설정)
 
+	// 버텍스 버퍼 배열 생성
 	ID3D11Buffer* ArrayBuffer[1];
-	ArrayBuffer[0] = VertexBuffer.Get();
+	ArrayBuffer[0] = VertexBuffer.Get(); // 생성된 버텍스 버퍼를 배열에 저장
 
-	UEngineCore::Device.GetDeviceContext()->IASetVertexBuffers(0, 1, ArrayBuffer, &VertexSize, &Offset);
+	// 버텍스 버퍼를 입력 어셈블러(IA)에 설정
+	UEngineCore::Device.GetDeviceContext()->IASetVertexBuffers(
+		0,            // 입력 슬롯의 시작 인덱스 (슬롯 0부터 시작)
+		1,            // 설정할 버퍼의 개수 (여기서는 1개)
+		ArrayBuffer,  // 버퍼 배열의 포인터
+		&VertexSize,  // 각 버텍스의 크기를 설정
+		&Offset       // 버퍼 내의 데이터 시작 오프셋을 설정
+	);
+
+	// 입력 레이아웃을 입력 어셈블러(IA)에 설정
 	UEngineCore::Device.GetDeviceContext()->IASetInputLayout(InputLayout.Get());
+
 }
 
-void URenderer::InputAssembler1Layout()
+void URenderer::InitVertexLayout()
 {
+	// Vertex 입력 레이아웃을 저장할 벡터 생성
 	std::vector<D3D11_INPUT_ELEMENT_DESC> InputLayoutData;
 
+	// POSITION 입력 요소 설명 추가
 	{
 		D3D11_INPUT_ELEMENT_DESC Desc;
-		Desc.SemanticName = "POSITION";
-		Desc.InputSlot = 0;
-		Desc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-		Desc.AlignedByteOffset = 0;
-		Desc.InputSlotClass = D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA;
-		Desc.SemanticIndex = 0;
-		Desc.InstanceDataStepRate = 0;
-		InputLayoutData.push_back(Desc);
+		Desc.SemanticName = "POSITION"; // 의미론 이름
+		Desc.InputSlot = 0; // 입력 슬롯
+		Desc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT; // 데이터 형식
+		Desc.AlignedByteOffset = 0; // 데이터의 바이트 오프셋
+		Desc.InputSlotClass = D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA; // 입력 슬롯 클래스
+		Desc.SemanticIndex = 0; // 의미론 인덱스
+		Desc.InstanceDataStepRate = 0; // 인스턴스 데이터 단계 속도
+		InputLayoutData.push_back(Desc); // 입력 레이아웃 데이터에 추가
 	}
 
+	// TEXCOORD 입력 요소 설명 추가
 	{
 		D3D11_INPUT_ELEMENT_DESC Desc;
-		Desc.SemanticName = "TEXCOORD";
-		Desc.InputSlot = 0;
-		Desc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-		Desc.AlignedByteOffset = 16;
-		Desc.InputSlotClass = D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA;
+		Desc.SemanticName = "TEXCOORD"; // 의미론 이름
+		Desc.InputSlot = 0; // 입력 슬롯
+		Desc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT; // 데이터 형식
+		Desc.AlignedByteOffset = 16; // 데이터의 바이트 오프셋
+		Desc.InputSlotClass = D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA; // 입력 슬롯 클래스
 
-		// 인스턴싱을 설명할때 이야기 하겠습니다.
-		Desc.SemanticIndex = 0;
-		Desc.InstanceDataStepRate = 0;
-		InputLayoutData.push_back(Desc);
+		// 인스턴싱 설명
+		Desc.SemanticIndex = 0; // 의미론 인덱스
+		Desc.InstanceDataStepRate = 0; // 인스턴스 데이터 단계 속도
+		InputLayoutData.push_back(Desc); // 입력 레이아웃 데이터에 추가
 	}
 
+	// COLOR 입력 요소 설명 추가
 	{
 		D3D11_INPUT_ELEMENT_DESC Desc;
-		Desc.SemanticName = "COLOR";
-		Desc.InputSlot = 0;
-		Desc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-		Desc.AlignedByteOffset = 32;
-		Desc.InputSlotClass = D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA;
-		Desc.SemanticIndex = 0;
-		Desc.InstanceDataStepRate = 0;
-		InputLayoutData.push_back(Desc);
+		Desc.SemanticName = "COLOR"; // 의미론 이름
+		Desc.InputSlot = 0; // 입력 슬롯
+		Desc.Format = DXGI_FORMAT_R32G32B32A32_FLOAT; // 데이터 형식
+		Desc.AlignedByteOffset = 32; // 데이터의 바이트 오프셋
+		Desc.InputSlotClass = D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA; // 입력 슬롯 클래스
+		Desc.SemanticIndex = 0; // 의미론 인덱스
+		Desc.InstanceDataStepRate = 0; // 인스턴스 데이터 단계 속도
+		InputLayoutData.push_back(Desc); // 입력 레이아웃 데이터에 추가
 	}
 
+	// 입력 레이아웃 생성
 	HRESULT Result = UEngineCore::Device.GetDevice()->CreateInputLayout(
-		&InputLayoutData[0],
-		static_cast<unsigned int>(InputLayoutData.size()),
-		VSShaderCodeBlob->GetBufferPointer(),
-		VSShaderCodeBlob->GetBufferSize(),
-		&InputLayout);
+		&InputLayoutData[0],                        // 입력 레이아웃 데이터 포인터
+		static_cast<unsigned int>(InputLayoutData.size()), // 입력 레이아웃 요소 개수
+		VSShaderCodeBlob->GetBufferPointer(),       // 쉐이더 코드 포인터
+		VSShaderCodeBlob->GetBufferSize(),          // 쉐이더 코드 크기
+		&InputLayout);                              // 생성된 입력 레이아웃 객체
 
+	// 입력 레이아웃 생성 실패 시 오류 처리
 	if (S_OK != Result)
 	{
 		MSGASSERT("인풋 레이아웃 생성 실패");
 	}
+
 }
 
-void URenderer::VertexShaderInit()
+void URenderer::InitVertexShader()
 {
+	// 현재 디렉토리 헬퍼 객체 생성
 	FDirectoryHelper CurDir;
+	// 엔진 쉐이더 디렉토리로 이동
 	CurDir.MoveEngineShaderDirectory();
+	// 쉐이더 파일을 가져옴
 	FFileHelper VSFile = CurDir.GetFile("SpriteShader.fx");
+	// 파일 경로를 문자열로 변환
 	std::string Path = VSFile.GetPathToString();
-
+	// 문자열 경로를 와이드 문자열로 변환
 	std::wstring WPath = UEngineString::AnsiToUnicode(Path);
-
+	// 버텍스 쉐이더 버전 설정
 	std::string VSVersion = "vs_5_0";
 
+	// 플래그 변수 초기화
 	int Flag0 = 0;
 	int Flag1 = 0;
 
+	// 디버그 모드에서 디버그 플래그 설정
 #ifdef _DEBUG
 	Flag0 = D3D10_SHADER_DEBUG;
 #endif
-	
+
+	// 행렬을 행 우선 방식으로 패킹하는 플래그 설정
 	Flag0 |= D3DCOMPILE_PACK_MATRIX_ROW_MAJOR;
 
+	// 파일에서 쉐이더를 컴파일
 	D3DCompileFromFile(
-		WPath.c_str(),
-		nullptr,
-		nullptr,
-		"VertexToWorld",
-		VSVersion.c_str(),
-		Flag0,
-		Flag1,
-		&VSShaderCodeBlob,
-		&VSErrorCodeBlob);
+		WPath.c_str(),         // 쉐이더 파일 경로
+		nullptr,               // 매크로 정의 (없음)
+		nullptr,               // 포함 파일 핸들러 (없음)
+		"VertexToWorld",       // 엔트리 포인트 함수 이름
+		VSVersion.c_str(),     // 타겟 쉐이더 모델
+		Flag0,                 // 컴파일 플래그 1
+		Flag1,                 // 컴파일 플래그 2
+		&VSShaderCodeBlob,     // 컴파일된 쉐이더 코드 블롭
+		&VSErrorCodeBlob);     // 오류 코드 블롭
 
+	// 컴파일된 쉐이더 코드 블롭이 없는 경우 오류 처리
 	if (nullptr == VSShaderCodeBlob)
 	{
 		std::string ErrString = reinterpret_cast<char*>(VSErrorCodeBlob->GetBufferPointer());
@@ -192,54 +226,64 @@ void URenderer::VertexShaderInit()
 
 	// 버텍스 쉐이더 생성
 	HRESULT Result = UEngineCore::Device.GetDevice()->CreateVertexShader(
-		VSShaderCodeBlob->GetBufferPointer(),
-		VSShaderCodeBlob->GetBufferSize(),
-		nullptr,
-		&VertexShader);
+		VSShaderCodeBlob->GetBufferPointer(), // 쉐이더 코드 포인터
+		VSShaderCodeBlob->GetBufferSize(),    // 쉐이더 코드 크기
+		nullptr,                              // 클래스 링크 (없음)
+		&VertexShader);                       // 생성된 쉐이더 객체
 
+	// 쉐이더 생성 실패 시 오류 처리
 	if (S_OK != Result)
 	{
 		MSGASSERT("버텍스 쉐이더 생성 실패");
 		return;
 	}
-	
-	InputAssembler1Layout();
+
+	// 입력 어셈블러 레이아웃 설정
+	InitVertexLayout();
+
 }
 
-void URenderer::VertexShaderSetting()
+void URenderer::UpdateVertexShader()
 {
 	UEngineCore::Device.GetDeviceContext()->VSSetShader(VertexShader.Get(), nullptr, 0);
 }
 
-void URenderer::InputAssembler2Init()
+void URenderer::InitIndexBuffer()
 {
+	// 인덱스 데이터를 저장할 벡터 생성
 	std::vector<unsigned int> Indexes;
 
+	// 인덱스 데이터 추가
 	Indexes.push_back(0);
 	Indexes.push_back(1);
 	Indexes.push_back(2);
-		 
+
 	Indexes.push_back(1);
 	Indexes.push_back(3);
 	Indexes.push_back(2);
 
+	// 인덱스 버퍼 설명 구조체 초기화
 	D3D11_BUFFER_DESC Desc = { 0 };
 
-	Desc.ByteWidth = sizeof(unsigned int) * static_cast<int>(Indexes.size());
-	Desc.BindFlags = D3D11_BIND_INDEX_BUFFER;
-	Desc.CPUAccessFlags = 0;
-	Desc.Usage = D3D11_USAGE_DEFAULT;
+	Desc.ByteWidth = sizeof(unsigned int) * static_cast<int>(Indexes.size()); // 버퍼의 크기를 설정
+	Desc.BindFlags = D3D11_BIND_INDEX_BUFFER; // 버퍼의 바인딩 플래그를 설정 (인덱스 버퍼로 사용)
+	Desc.CPUAccessFlags = 0; // CPU 접근 플래그를 설정 (기본값)
+	Desc.Usage = D3D11_USAGE_DEFAULT; // 버퍼의 사용 방식을 설정
 
+	// 버퍼에 초기 데이터 설정
 	D3D11_SUBRESOURCE_DATA Data;
-	Data.pSysMem = &Indexes[0];
+	Data.pSysMem = &Indexes[0]; // 초기 데이터 설정
+
+	// 디바이스를 사용하여 인덱스 버퍼를 생성
 	if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&Desc, &Data, &IndexBuffer))
 	{
 		MSGASSERT("인덱스 버퍼 생성 실패");
 		return;
 	}
+
 }
 
-void URenderer::InputAssembler2Setting()
+void URenderer::UpdateIndexBuffer()
 {
 	int Offset = 0;
 
@@ -248,62 +292,83 @@ void URenderer::InputAssembler2Setting()
 	UEngineCore::Device.GetDeviceContext()->IASetPrimitiveTopology(Topology);
 }
 
-void URenderer::RasterizerInit()
+void URenderer::InitRasterizer()
 {
+	// 래스터라이저 상태 설명 구조체 초기화
 	D3D11_RASTERIZER_DESC Desc = {};
 
+	// 컬링 모드를 백 페이스(뒤쪽 면을 제거)로 설정
+	// 폴리곤의 뒷면을 렌더링하지 않도록 하여 성능을 향상
 	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_BACK;
+
+	// 폴리곤 채우기 모드를 솔리드로 설정
+	// 폴리곤의 내부를 채우는 기본 렌더링 모드
 	Desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
 
+	// 디바이스를 사용하여 래스터라이저 상태를 생성
+	// GPU가 폴리곤을 렌더링하는 방식을 정의
 	UEngineCore::Device.GetDevice()->CreateRasterizerState(&Desc, RasterizerState.GetAddressOf());
 
-	ViewPortInfo.Height = 720.0f;
-	ViewPortInfo.Width = 1280.0f;
-	ViewPortInfo.TopLeftX = 0.0f;
-	ViewPortInfo.TopLeftY = 0.0f;
-	ViewPortInfo.MinDepth = 0.0f;
-	ViewPortInfo.MaxDepth = 1.0f;
+	// 뷰포트 정보 설정
+	// 뷰포트는 렌더링된 이미지가 화면에 그려질 영역을 정의합니다.
+	ViewPortInfo.Height = 720.0f; // 뷰포트의 높이를 720으로 설정
+	ViewPortInfo.Width = 1280.0f; // 뷰포트의 너비를 1280으로 설정
+	ViewPortInfo.TopLeftX = 0.0f; // 뷰포트의 시작 X 좌표를 0으로 설정 (화면의 왼쪽 가장자리)
+	ViewPortInfo.TopLeftY = 0.0f; // 뷰포트의 시작 Y 좌표를 0으로 설정 (화면의 상단 가장자리)
+	ViewPortInfo.MinDepth = 0.0f; // 뷰포트의 최소 깊이를 0.0으로 설정 (가장 가까운 깊이)
+	ViewPortInfo.MaxDepth = 1.0f; // 뷰포트의 최대 깊이를 1.0으로 설정 (가장 먼 깊이)
+
+
 }
 
-void URenderer::RasterizerSetting()
+void URenderer::UpdateRasterizer()
 {
 	UEngineCore::Device.GetDeviceContext()->RSSetViewports(1, &ViewPortInfo);
 	UEngineCore::Device.GetDeviceContext()->RSSetState(RasterizerState.Get());
 }
 
-void URenderer::PixelShaderInit()
+void URenderer::InitPixelShader()
 {
+	// 현재 디렉토리 헬퍼 객체 생성
 	FDirectoryHelper CurDir;
+	// 엔진 쉐이더 디렉토리로 이동
 	CurDir.MoveEngineShaderDirectory();
+	// 쉐이더 파일을 가져옴
 	FFileHelper VSFile = CurDir.GetFile("SpriteShader.fx");
+	// 파일 경로를 문자열로 변환
 	std::string Path = VSFile.GetPathToString();
 
+	// 문자열 경로를 와이드 문자열로 변환
 	std::wstring WPath = UEngineString::AnsiToUnicode(Path);
 
-	// 버전을 만든다.
+	// 쉐이더 버전을 정의 (픽셀 쉐이더 버전 5.0)
 	std::string PSVersion = "ps_5_0";
 
+	// 컴파일 플래그 초기화
 	int Flag0 = 0;
 	int Flag1 = 0;
 
+	// 디버그 모드에서 디버그 플래그 설정
 #ifdef _DEBUG
 	Flag0 = D3D10_SHADER_DEBUG;
 #endif
 
+	// 행렬을 행 우선 방식으로 패킹하는 플래그 설정
 	Flag0 |= D3DCOMPILE_PACK_MATRIX_ROW_MAJOR;
 
+	// 파일에서 쉐이더를 컴파일
 	D3DCompileFromFile(
-		WPath.c_str(),
-		nullptr, // Define TEST 등으로 전처리기를 넣을수.
-		nullptr,
-		"PixelToWorld",
-		PSVersion.c_str(),
-		Flag0,
-		Flag1,
-		&PSShaderCodeBlob,
-		&PSErrorCodeBlob
-	);
+		WPath.c_str(),         // 쉐이더 파일 경로
+		nullptr,               // 매크로 정의 (없음)
+		nullptr,               // 포함 파일 핸들러 (없음)
+		"PixelToWorld",        // 엔트리 포인트 함수 이름
+		PSVersion.c_str(),     // 타겟 쉐이더 모델
+		Flag0,                 // 컴파일 플래그 1
+		Flag1,                 // 컴파일 플래그 2
+		&PSShaderCodeBlob,     // 컴파일된 쉐이더 코드 블롭
+		&PSErrorCodeBlob);     // 오류 코드 블롭
 
+	// 컴파일된 쉐이더 코드 블롭이 없는 경우 오류 처리
 	if (nullptr == PSShaderCodeBlob)
 	{
 		std::string ErrString = reinterpret_cast<char*>(PSErrorCodeBlob->GetBufferPointer());
@@ -311,65 +376,88 @@ void URenderer::PixelShaderInit()
 		return;
 	}
 
+	// 픽셀 쉐이더 생성
 	HRESULT Result = UEngineCore::Device.GetDevice()->CreatePixelShader(
-		PSShaderCodeBlob->GetBufferPointer(),
-		PSShaderCodeBlob->GetBufferSize(),
-		nullptr,
-		&PixelShader
-	);
+		PSShaderCodeBlob->GetBufferPointer(), // 쉐이더 코드 포인터
+		PSShaderCodeBlob->GetBufferSize(),    // 쉐이더 코드 크기
+		nullptr,                              // 클래스 링크 (없음)
+		&PixelShader);                        // 생성된 픽셀 쉐이더 객체
 
+	// 쉐이더 생성 실패 시 오류 처리
 	if (S_OK != Result)
 	{
 		MSGASSERT("픽셀 쉐이더 생성에 실패");
 	}
+
 }
 
-void URenderer::PixelShaderSetting()
+void URenderer::UpdatePixelShader()
 {
 	UEngineCore::Device.GetDeviceContext()->PSSetShader(PixelShader.Get(), nullptr, 0);
 
 }
 
-void URenderer::OutPutMergeSetting()
+void URenderer::UpdateRenderTargetView()
 {
+	// 렌더 타겟 뷰 포인터를 가져옴
+	ID3D11RenderTargetView* RenderTargetView = UEngineCore::Device.GetRenderTargetView();
 
-	ID3D11RenderTargetView* RTV = UEngineCore::Device.GetRenderTargetView();
+	// 렌더 타겟 뷰 포인터 배열을 초기화
+	ID3D11RenderTargetView* ArrRtv[16] = { 0 }; // 최대 16개의 렌더 타겟 뷰를 가질 수 있음
+	ArrRtv[0] = RenderTargetView; // 첫 번째 렌더 타겟 뷰를 설정 (여기서는 SV_Target0)
 
-	ID3D11RenderTargetView* ArrRtv[16] = { 0 };
-	ArrRtv[0] = RTV; // SV_Target0
+	// 출력 머지(OM) 스테이지에서 렌더 타겟을 설정
+	UEngineCore::Device.GetDeviceContext()->OMSetRenderTargets(
+		1,            // 렌더 타겟 뷰의 수 (여기서는 1개)
+		&ArrRtv[0],   // 렌더 타겟 뷰 배열의 포인터
+		nullptr       // 깊이-스텐실 뷰 (여기서는 사용 안 함)
+	);
 
-	UEngineCore::Device.GetDeviceContext()->OMSetRenderTargets(1, &ArrRtv[0], nullptr);
 }
 
-void URenderer::ShaderResInit()
+void URenderer::InitShaderResourceView()
 {
-	D3D11_BUFFER_DESC Desc = { 0 };
-	Desc.ByteWidth = sizeof(FTransform);
-	Desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-	Desc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
-	Desc.Usage = D3D11_USAGE_DYNAMIC;
-
-	if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&Desc, nullptr, &TransformConstBuffer))
+	// 상수 버퍼 생성
 	{
-		MSGASSERT("상수 버퍼에 생성 실패");
-		return;
+		// 상수 버퍼 설명 구조체 초기화
+		D3D11_BUFFER_DESC Desc = { 0 };
+		Desc.ByteWidth = sizeof(FTransform); // 버퍼의 크기를 FTransform 구조체 크기로 설정
+		Desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER; // 버퍼의 바인딩 플래그를 상수 버퍼로 설정
+		Desc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE; // CPU가 버퍼에 쓰기 접근 가능하도록 설정
+		Desc.Usage = D3D11_USAGE_DYNAMIC; // 버퍼의 사용 방식을 동적으로 설정
+
+		// 디바이스를 사용하여 상수 버퍼 생성
+		if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&Desc, nullptr, &TransformConstBuffer))
+		{
+			MSGASSERT("상수 버퍼에 생성 실패");
+			return;
+		}
 	}
 
+	// 현재 디렉토리 헬퍼 객체 생성
 	FDirectoryHelper CurDirectory;
+	// 부모 디렉토리로 이동하여 "Resources" 디렉토리 설정
 	CurDirectory.MoveParentToDirectory("Resources");
+	// "Player.png" 파일을 가져옴
 	FFileHelper FileHelper = CurDirectory.GetFile("Player.png");
 
+	// 파일 경로를 문자열로 변환
 	std::string Str = FileHelper.GetPathToString();
+	// 파일 확장자를 가져옴
 	std::string Ext = FileHelper.GetExtension();
 
+	// 문자열 경로를 와이드 문자열로 변환
 	std::wstring WLoadPath = UEngineString::AnsiToUnicode(Str.c_str());
+	// 확장자를 대문자로 변환
 	std::string UpperExt = UEngineString::ToUpper(Ext.c_str());
 
-	DirectX::TexMetadata Metadata;
-	DirectX::ScratchImage ImageData;
+	DirectX::TexMetadata Metadata; // 텍스처 메타데이터 객체 생성
+	DirectX::ScratchImage ImageData; // 텍스처 이미지 데이터를 저장할 객체 생성
 
+	// 파일 확장자에 따라 적절한 함수로 파일 로드
 	if (UpperExt == ".DDS")
 	{
+		// DDS 파일 로드
 		if (S_OK != DirectX::LoadFromDDSFile(WLoadPath.c_str(), DirectX::DDS_FLAGS_NONE, &Metadata, ImageData))
 		{
 			MSGASSERT("DDS 파일 로드에 실패했습니다.");
@@ -378,6 +466,7 @@ void URenderer::ShaderResInit()
 	}
 	else if (UpperExt == ".TGA")
 	{
+		// TGA 파일 로드
 		if (S_OK != DirectX::LoadFromTGAFile(WLoadPath.c_str(), DirectX::TGA_FLAGS_NONE, &Metadata, ImageData))
 		{
 			MSGASSERT("TGA 파일 로드에 실패했습니다.");
@@ -386,6 +475,7 @@ void URenderer::ShaderResInit()
 	}
 	else
 	{
+		// 그 외의 파일 형식(WIC 사용)
 		if (S_OK != DirectX::LoadFromWICFile(WLoadPath.c_str(), DirectX::WIC_FLAGS_NONE, &Metadata, ImageData))
 		{
 			MSGASSERT(UpperExt + "파일 로드에 실패했습니다.");
@@ -393,29 +483,31 @@ void URenderer::ShaderResInit()
 		}
 	}
 
-	// 
+	// 쉐이더 리소스 뷰 생성
 	if (S_OK != DirectX::CreateShaderResourceView(
-		UEngineCore::Device.GetDevice(),
-		ImageData.GetImages(),
-		ImageData.GetImageCount(),
-		ImageData.GetMetadata(),
-		&ShaderResourceView
+		UEngineCore::Device.GetDevice(), // 디바이스 객체
+		ImageData.GetImages(),           // 이미지 데이터 배열
+		ImageData.GetImageCount(),       // 이미지 개수
+		ImageData.GetMetadata(),         // 이미지 메타데이터
+		&ShaderResourceView              // 생성된 쉐이더 리소스 뷰
 	))
 	{
-		MSGASSERT(UpperExt + "쉐이더 리소스 뷰 생성에 실패했습니다..");
+		MSGASSERT(UpperExt + "쉐이더 리소스 뷰 생성에 실패했습니다.");
 		return;
 	}
 
+	// 샘플러 상태 설명 구조체 초기화 및 설정
 	D3D11_SAMPLER_DESC SampInfo = { D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT };
+	SampInfo.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // U 좌표 텍스처 래핑 모드 설정
+	SampInfo.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // V 좌표 텍스처 래핑 모드 설정
+	SampInfo.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // W 좌표 텍스처 래핑 모드 설정
 
-	SampInfo.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
-	SampInfo.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
-	SampInfo.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
-
+	// 디바이스를 사용하여 샘플러 상태 생성
 	UEngineCore::Device.GetDevice()->CreateSamplerState(&SampInfo, &SamplerState);
+
 }
 
-void URenderer::ShaderResSetting()
+void URenderer::UpdateShaderResourceView()
 {
 	FTransform& RendererTransform = GetComponentTransformRef();
 
