@@ -2,7 +2,8 @@
 #include "TitleLogo.h"
 
 #include <Renderer/Renderer.h>
-#include <Math/EngineMath.h>
+#include <Core/Math/EngineMath.h>
+
 
 ATitleLogo::ATitleLogo()
 {

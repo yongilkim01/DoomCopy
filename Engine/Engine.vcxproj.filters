@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Math">
-      <UniqueIdentifier>{97a770f4-dfee-4b41-ac56-f340e6a81d53}</UniqueIdentifier>
-    </Filter>
     <Filter Include="pch">
       <UniqueIdentifier>{479f833a-7ec7-477e-bafc-db0db95811d8}</UniqueIdentifier>
     </Filter>
@@ -73,11 +70,11 @@
     <Filter Include="ThirdParty\DirectXTex\Release">
       <UniqueIdentifier>{0a64495f-5bc4-4494-9bfd-3f8a9d8c5d77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Math">
+      <UniqueIdentifier>{80529ff4-314e-4cdb-897e-da892e6fa0ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Math\EngineMath.cpp">
-      <Filter>Math</Filter>
-    </ClCompile>
     <ClCompile Include="Source\pch.cpp">
       <Filter>pch</Filter>
     </ClCompile>
@@ -152,6 +149,15 @@
     </ClCompile>
     <ClCompile Include="Source\Classes\Camera\CameraComponent.cpp">
       <Filter>Classes\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Classes\Engine\StaticMesh.cpp">
+      <Filter>Classes\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Classes\Engine\SkeletalMesh.cpp">
+      <Filter>Classes\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Math\EngineMath.cpp">
+      <Filter>Core\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -234,11 +240,17 @@
     <ClInclude Include="Source\Classes\Camera\CameraComponent.h">
       <Filter>Classes\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Math\EngineMath.h">
-      <Filter>pch</Filter>
-    </ClInclude>
     <ClInclude Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.h">
       <Filter>ThirdParty\DirectXTex\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Engine\StaticMesh.h">
+      <Filter>Classes\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Engine\SkeletalMesh.h">
+      <Filter>Classes\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Math\EngineMath.h">
+      <Filter>Core\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

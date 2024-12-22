@@ -1,6 +1,6 @@
 #pragma once
 #include "Classes/Components/ActorComponent.h"
-#include "Math/EngineMath.h"
+#include "Core/Math/EngineMath.h"
 
 /**
  *	Ό³Έν

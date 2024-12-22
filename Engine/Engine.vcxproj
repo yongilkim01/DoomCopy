@@ -33,9 +33,12 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Source\Classes\Engine\SkeletalMesh.cpp" />
+    <ClCompile Include="Source\Classes\Engine\StaticMesh.cpp" />
     <ClCompile Include="Source\Core\Containers\EngineString.cpp" />
     <ClCompile Include="Source\Core\Delegates\Delegate.cpp" />
     <ClCompile Include="Source\Core\EngineCore.cpp" />
+    <ClCompile Include="Source\Core\Math\EngineMath.cpp" />
     <ClCompile Include="Source\Core\Misc\DirectoryHelper.cpp" />
     <ClCompile Include="Source\Core\Misc\FileHelper.cpp" />
     <ClCompile Include="Source\Core\Misc\Paths.cpp" />
@@ -48,7 +51,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Pawn.cpp" />
-    <ClCompile Include="Source\Math\EngineMath.cpp" />
     <ClCompile Include="Source\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -82,9 +84,12 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Source\Classes\Engine\SkeletalMesh.h" />
+    <ClInclude Include="Source\Classes\Engine\StaticMesh.h" />
     <ClInclude Include="Source\Core\Containers\EngineString.h" />
     <ClInclude Include="Source\Core\Delegates\Delegate.h" />
     <ClInclude Include="Source\Core\EngineCore.h" />
+    <ClInclude Include="Source\Core\Math\EngineMath.h" />
     <ClInclude Include="Source\Core\Misc\DirectoryHelper.h" />
     <ClInclude Include="Source\Core\Misc\FileHelper.h" />
     <ClInclude Include="Source\Core\Misc\Paths.h" />
@@ -99,7 +104,6 @@
     </ClInclude>
     <ClInclude Include="Source\GameFramework\Pawn.h" />
     <ClInclude Include="Source\Interfaces\IContentsCore.h" />
-    <ClInclude Include="Source\Math\EngineMath.h" />
     <ClInclude Include="Source\pch.h" />
     <ClInclude Include="Source\Platform\Window.h" />
     <ClInclude Include="Source\Renderer\EngineGraphicDevice.h">

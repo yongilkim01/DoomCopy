@@ -109,22 +109,22 @@ public:
 	{
 
 	}
-	ENGINE_API FVector(float InX, float InY, float InZ) 
+	ENGINE_API FVector(float InX, float InY, float InZ)
 		: X(InX), Y(InY), Z(InZ), W(1.0f)
 	{
 
 	}
-	FVector(float InX, float InY, float InZ, float InW) 
+	FVector(float InX, float InY, float InZ, float InW)
 		: X(InX), Y(InY), Z(InZ), W(InW)
 	{
 
 	}
-	FVector(int InX, int InY) 
+	FVector(int InX, int InY)
 		: X(static_cast<float>(InX)), Y(static_cast<float>(InY)), Z(0.0f), W(1.0f)
 	{
 
 	}
-	FVector(long InX, long InY) 
+	FVector(long InX, long InY)
 		: X(static_cast<float>(InX)), Y(static_cast<float>(InY)), Z(0.0f), W(1.0f)
 	{
 
@@ -591,7 +591,7 @@ public:
 
 using float4 = FVector;
 
-/** 
+/**
  *	Matrix 클래스
  */
 class FMatrix
@@ -801,7 +801,7 @@ public:
 		ArrVector[0].W = 0.0f;
 
 		// 나의 회전행렬 구했죠?
-		// 90 
+		// 90
 		Transpose();
 
 		FMatrix OrginRot = *this;
@@ -822,21 +822,21 @@ public:
 
 	// _Widht 너비와 <= 윈도우 크기 넣는게 일반적
 	// _Height 높의 화면을
-	// 
+	//
 	// 내 앞에있는 _Far거리 안에 있는 애들까지 보겠다.
-	// 내 앞에있는 _Near부터 보겠다. 
+	// 내 앞에있는 _Near부터 보겠다.
 
-	//                 
+	//
 	void MyOrthographicLH(float _Width, float _Height, float _Near, float _Far)
 	{
 		Identity();
 
 		// 1000;
 		// 250 * (2 / 1000);
-		// 크기를 바꾸는 행렬이다 
-		// 직교는 더더욱 
+		// 크기를 바꾸는 행렬이다
+		// 직교는 더더욱
 
-		//                      11      1      
+		//                      11      1
 		float fRange = 1.0f / (_Far - _Near);
 
 		// [*][ ][ ][ ]
@@ -856,7 +856,7 @@ public:
 
 	}
 
-	// 인자중의 하나는 
+	// 인자중의 하나는
 
 	// 화면의 크기를 정의하기 위한 _Width, _Height X
 	// 화면의 비율을 정의하기 위한 _Width, _Height O
@@ -909,7 +909,7 @@ public:
 		// Y축 반전
 		Arr2D[1][1] = -_Height * 0.5f;
 
-		// 화면 2~3뿌릴건데 그중에서 누가 앞에오고 뒤에오고를 결정하려면 
+		// 화면 2~3뿌릴건데 그중에서 누가 앞에오고 뒤에오고를 결정하려면
 		Arr2D[2][2] = _ZMax != 0.0f ? 1.0f : _ZMin / _ZMax;
 
 		Arr2D[3][0] = Arr2D[0][0] + _Left;
