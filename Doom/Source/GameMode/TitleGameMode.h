@@ -1,15 +1,17 @@
 #pragma once
 #include "GameFramework/Actor.h"
 
-// 설명 :
+/**
+ *	타이틀 게임모드 클래스
+ */
 class ATitleGameMode : public AActor
 {
 public:
-	// constrcuter destructer
+	/** 생성자, 소멸자 */
 	ATitleGameMode();
 	~ATitleGameMode();
 
-	// delete Function
+	/** 객체 값 복사 방지 */
 	ATitleGameMode(const ATitleGameMode& Other) = delete;
 	ATitleGameMode(ATitleGameMode&& Other) noexcept = delete;
 	ATitleGameMode& operator=(const ATitleGameMode& Other) = delete;
@@ -22,4 +24,3 @@ protected:
 private:
 
 };
-

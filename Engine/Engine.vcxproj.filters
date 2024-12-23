@@ -159,6 +159,9 @@
     <ClCompile Include="Source\Core\Math\EngineMath.cpp">
       <Filter>Core\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Classes\Engine\PaperSpriteComponent.cpp">
+      <Filter>Classes\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
@@ -251,6 +254,9 @@
     </ClInclude>
     <ClInclude Include="Source\Core\Math\EngineMath.h">
       <Filter>Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Engine\PaperSpriteComponent.h">
+      <Filter>Classes\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

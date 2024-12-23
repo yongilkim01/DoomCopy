@@ -33,6 +33,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Source\Classes\Engine\PaperSpriteComponent.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Classes\Engine\SkeletalMesh.cpp" />
     <ClCompile Include="Source\Classes\Engine\StaticMesh.cpp" />
     <ClCompile Include="Source\Core\Containers\EngineString.cpp" />
@@ -81,6 +85,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Source\Classes\Engine\Level.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Engine\PaperSpriteComponent.h">
       <SubType>
       </SubType>
     </ClInclude>

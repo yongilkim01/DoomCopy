@@ -13,6 +13,14 @@
 
 #pragma comment(lib, "DirectXTex.lib")
 
+/*
+	렌더링 파이프 라인
+
+	-------------------
+	|   Vertex Data	  |
+	-------------------
+*/
+
 URenderer::URenderer()
 {
 }
@@ -28,9 +36,16 @@ void URenderer::BeginPlay()
 {
 	SetOrder(0);
 
+	// 버텍스 버퍼 생성
 	InitVertexBuffer();
+
+	// 버텍스 셰이더 생성
 	InitVertexShader();
+
+	// 인덱스 셰이더 생성
 	InitIndexBuffer();
+
+
 	InitRasterizer();
 	InitPixelShader();
 	InitShaderResourceView();
@@ -67,9 +82,9 @@ void URenderer::InitVertexBuffer()
 
 	// 각 Vertex의 위치, 텍스처 좌표 및 색상을 설정
 	Vertexes[0] = EngineVertex{ FVector(-0.5f, 0.5f, -0.0f), {0.0f, 0.0f}, {1.0f, 0.0f, 0.0f, 1.0f} };
-	Vertexes[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.0f), {1.0f, 0.0f} , {0.0f, 1.0f, 0.0f, 1.0f} };
-	Vertexes[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.0f), {0.0f, 1.0f} , {0.0f, 0.0f, 1.0f, 1.0f} };
-	Vertexes[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {1.0f, 1.0f} , {1.0f, 1.0f, 1.0f, 1.0f} };
+	Vertexes[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.0f), {2.0f, 0.0f} , {0.0f, 1.0f, 0.0f, 1.0f} };
+	Vertexes[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.0f), {0.0f, 2.0f} , {0.0f, 0.0f, 1.0f, 1.0f} };
+	Vertexes[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {2.0f, 2.0f} , {1.0f, 1.0f, 1.0f, 1.0f} };
 
 	// 버텍스 버퍼 설명 구조체 초기화
 	D3D11_BUFFER_DESC Desc;
@@ -85,7 +100,7 @@ void URenderer::InitVertexBuffer()
 	Data.pSysMem = &Vertexes[0];
 
 	// 디바이스를 사용하여 버텍스 버퍼를 생성
-	if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&Desc, &Data, &VertexBuffer))
+	if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&Desc, &Data, VertexBuffer.GetAddressOf()))
 	{
 		MSGASSERT("버텍스 버퍼 생성 실패");
 		return;
@@ -400,6 +415,7 @@ void URenderer::UpdatePixelShader()
 
 }
 
+// 그리기 위한 백지 준비 과정
 void URenderer::UpdateRenderTargetView()
 {
 	// 렌더 타겟 뷰 포인터를 가져옴
@@ -441,8 +457,9 @@ void URenderer::InitShaderResourceView()
 	FDirectoryHelper CurDirectory;
 	// 부모 디렉토리로 이동하여 "Resources" 디렉토리 설정
 	CurDirectory.MoveParentToDirectory("Resources");
+	CurDirectory.MoveParentToDirectory("TitleLevel");
 	// "Player.png" 파일을 가져옴
-	FFileHelper FileHelper = CurDirectory.GetFile("Player.png");
+	FFileHelper FileHelper = CurDirectory.GetFile("TitleLogo.png");
 
 	// 파일 경로를 문자열로 변환
 	std::string Str = FileHelper.GetPathToString();
@@ -500,13 +517,13 @@ void URenderer::InitShaderResourceView()
 	}
 
 	// 샘플러 상태 설명 구조체 초기화 및 설정
-	D3D11_SAMPLER_DESC SampInfo = { D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT };
-	SampInfo.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // U 좌표 텍스처 래핑 모드 설정
-	SampInfo.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // V 좌표 텍스처 래핑 모드 설정
-	SampInfo.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // W 좌표 텍스처 래핑 모드 설정
+	D3D11_SAMPLER_DESC SamplerDesc = { D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT };
+	SamplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // U 좌표 텍스처 래핑 모드 설정
+	SamplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // V 좌표 텍스처 래핑 모드 설정
+	SamplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // W 좌표 텍스처 래핑 모드 설정
 
 	// 디바이스를 사용하여 샘플러 상태 생성
-	UEngineCore::Device.GetDevice()->CreateSamplerState(&SampInfo, &SamplerState);
+	UEngineCore::Device.GetDevice()->CreateSamplerState(&SamplerDesc, &SamplerState);
 
 }
 
@@ -529,7 +546,6 @@ void URenderer::UpdateShaderResourceView()
 
 	ID3D11Buffer* ArrPtr[16] = { TransformConstBuffer.Get() };
 	UEngineCore::Device.GetDeviceContext()->VSSetConstantBuffers(0, 1, ArrPtr);
-
 
 	ID3D11ShaderResourceView* ArrSRV[16] = { ShaderResourceView.Get() };
 	UEngineCore::Device.GetDeviceContext()->PSSetShaderResources(0, 1, ArrSRV);

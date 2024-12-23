@@ -34,6 +34,8 @@ public:
 	void CreateDeviceAndContext();
 	/**
 	 *	SwapChain을 이용한 Backbuffer 초기화 메소드
+	 * 
+	 *	@param EngineWindow - 백버퍼를 할당할 윈도우 클래스
 	 */
 	void CreateBackBuffer(const UEngineWindow& EngineWindow);
 	/**
