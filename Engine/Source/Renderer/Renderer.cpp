@@ -11,7 +11,11 @@
 
 #include "ThirdParty/DirectxTex/Include/DirectXTex.h"
 
-#pragma comment(lib, "DirectXTex.lib")
+#ifdef _DEBUG
+#pragma comment(lib, "DirectXTex_Debug.lib")
+#else
+#pragma comment(lib, "DirectXTex_Release.lib")
+#endif
 
 /*
 	렌더링 파이프 라인
@@ -81,10 +85,10 @@ void URenderer::InitVertexBuffer()
 	Vertexes.resize(4);
 
 	// 각 Vertex의 위치, 텍스처 좌표 및 색상을 설정
-	Vertexes[0] = EngineVertex{ FVector(-0.5f, 0.5f, -0.0f), {0.0f, 0.0f}, {1.0f, 0.0f, 0.0f, 1.0f} };
-	Vertexes[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.0f), {2.0f, 0.0f} , {0.0f, 1.0f, 0.0f, 1.0f} };
-	Vertexes[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.0f), {0.0f, 2.0f} , {0.0f, 0.0f, 1.0f, 1.0f} };
-	Vertexes[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {2.0f, 2.0f} , {1.0f, 1.0f, 1.0f, 1.0f} };
+	Vertexes[0] = EngineVertex{ FVector(-0.5f, 0.5f, -0.0f), {0.0f , 0.0f }, {1.0f, 0.0f, 0.0f, 1.0f} };
+	Vertexes[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.0f), {1.0f , 0.0f } , {0.0f, 1.0f, 0.0f, 1.0f} };
+	Vertexes[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.0f), {0.0f , 1.0f } , {0.0f, 0.0f, 1.0f, 1.0f} };
+	Vertexes[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {1.0f , 1.0f } , {1.0f, 1.0f, 1.0f, 1.0f} };
 
 	// 버텍스 버퍼 설명 구조체 초기화
 	D3D11_BUFFER_DESC Desc;
@@ -329,8 +333,8 @@ void URenderer::InitRasterizer()
 
 	// 뷰포트 정보 설정
 	// 뷰포트는 렌더링된 이미지가 화면에 그려질 영역을 정의합니다.
-	ViewPortInfo.Height = 720.0f; // 뷰포트의 높이를 720으로 설정
 	ViewPortInfo.Width = 1280.0f; // 뷰포트의 너비를 1280으로 설정
+	ViewPortInfo.Height = 720.0f; // 뷰포트의 높이를 720으로 설정
 	ViewPortInfo.TopLeftX = 0.0f; // 뷰포트의 시작 X 좌표를 0으로 설정 (화면의 왼쪽 가장자리)
 	ViewPortInfo.TopLeftY = 0.0f; // 뷰포트의 시작 Y 좌표를 0으로 설정 (화면의 상단 가장자리)
 	ViewPortInfo.MinDepth = 0.0f; // 뷰포트의 최소 깊이를 0.0으로 설정 (가장 가까운 깊이)
@@ -446,7 +450,7 @@ void URenderer::InitShaderResourceView()
 		Desc.Usage = D3D11_USAGE_DYNAMIC; // 버퍼의 사용 방식을 동적으로 설정
 
 		// 디바이스를 사용하여 상수 버퍼 생성
-		if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&Desc, nullptr, &TransformConstBuffer))
+		if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&Desc, nullptr, &ConstantBuffer))
 		{
 			MSGASSERT("상수 버퍼에 생성 실패");
 			return;
@@ -505,11 +509,11 @@ void URenderer::InitShaderResourceView()
 
 	// 쉐이더 리소스 뷰 생성
 	if (S_OK != DirectX::CreateShaderResourceView(
-		UEngineCore::Device.GetDevice(), // 디바이스 객체
-		ImageData.GetImages(),           // 이미지 데이터 배열
-		ImageData.GetImageCount(),       // 이미지 개수
-		ImageData.GetMetadata(),         // 이미지 메타데이터
-		&ShaderResourceView              // 생성된 쉐이더 리소스 뷰
+		UEngineCore::Device.GetDevice(),	// 디바이스 객체
+		ImageData.GetImages(),				// 이미지 데이터 배열
+		ImageData.GetImageCount(),			// 이미지 개수
+		ImageData.GetMetadata(),			// 이미지 메타데이터
+		ShaderResourceView.GetAddressOf()   // 생성된 쉐이더 리소스 뷰
 	))
 	{
 		MSGASSERT(UpperExt + "쉐이더 리소스 뷰 생성에 실패했습니다.");
@@ -518,9 +522,20 @@ void URenderer::InitShaderResourceView()
 
 	// 샘플러 상태 설명 구조체 초기화 및 설정
 	D3D11_SAMPLER_DESC SamplerDesc = { D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT };
-	SamplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // U 좌표 텍스처 래핑 모드 설정
-	SamplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // V 좌표 텍스처 래핑 모드 설정
-	SamplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // W 좌표 텍스처 래핑 모드 설정
+	SamplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_BORDER; // U 좌표 텍스처 래핑 모드 설정
+	SamplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_BORDER; // V 좌표 텍스처 래핑 모드 설정
+	SamplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_CLAMP; // W 좌표 텍스처 래핑 모드 설정
+
+	SamplerDesc.BorderColor[0] = 0.0f;
+	SamplerDesc.BorderColor[1] = 0.0f;
+	SamplerDesc.BorderColor[2] = 0.0f;
+	SamplerDesc.BorderColor[3] = 0.0f;
+
+	SamplerDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+
+	//SamplerDesc.MaxLOD = 0.0f;
+	//SamplerDesc.MinLOD = 0.0f;
+
 
 	// 디바이스를 사용하여 샘플러 상태 생성
 	UEngineCore::Device.GetDevice()->CreateSamplerState(&SamplerDesc, &SamplerState);
@@ -533,7 +548,7 @@ void URenderer::UpdateShaderResourceView()
 
 	D3D11_MAPPED_SUBRESOURCE MappedSubResource = {};
 
-	UEngineCore::Device.GetDeviceContext()->Map(TransformConstBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &MappedSubResource);
+	UEngineCore::Device.GetDeviceContext()->Map(ConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &MappedSubResource);
 
 	if (nullptr == MappedSubResource.pData)
 	{
@@ -542,9 +557,9 @@ void URenderer::UpdateShaderResourceView()
 
 	memcpy_s(MappedSubResource.pData, sizeof(FTransform), &RendererTransform, sizeof(FTransform));
 
-	UEngineCore::Device.GetDeviceContext()->Unmap(TransformConstBuffer.Get(), 0);
+	UEngineCore::Device.GetDeviceContext()->Unmap(ConstantBuffer.Get(), 0);
 
-	ID3D11Buffer* ArrPtr[16] = { TransformConstBuffer.Get() };
+	ID3D11Buffer* ArrPtr[16] = { ConstantBuffer.Get() };
 	UEngineCore::Device.GetDeviceContext()->VSSetConstantBuffers(0, 1, ArrPtr);
 
 	ID3D11ShaderResourceView* ArrSRV[16] = { ShaderResourceView.Get() };

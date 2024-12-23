@@ -29,6 +29,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Source\Classes\Engine\AssetManager.cpp" />
     <ClCompile Include="Source\Classes\Engine\Level.cpp">
       <SubType>
       </SubType>
@@ -84,6 +85,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Source\Classes\Engine\AssetManager.h" />
     <ClInclude Include="Source\Classes\Engine\Level.h">
       <SubType>
       </SubType>
@@ -135,10 +137,11 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="Source\ThirdParty\DirectXTex\Debug\DirectXTex.lib" />
+    <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl" />
+    <Library Include="Source\ThirdParty\DirectXTex\Debug\DirectXTex_Debug.lib" />
+    <Library Include="Source\ThirdParty\DirectXTex\Release\DirectXTex_Release.lib" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

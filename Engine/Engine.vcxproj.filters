@@ -162,6 +162,9 @@
     <ClCompile Include="Source\Classes\Engine\PaperSpriteComponent.cpp">
       <Filter>Classes\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Classes\Engine\AssetManager.cpp">
+      <Filter>Classes\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
@@ -258,6 +261,9 @@
     <ClInclude Include="Source\Classes\Engine\PaperSpriteComponent.h">
       <Filter>Classes\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Classes\Engine\AssetManager.h">
+      <Filter>Classes\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\SpriteShader.fx">
@@ -265,13 +271,16 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="Source\ThirdParty\DirectXTex\Debug\DirectXTex.lib">
-      <Filter>ThirdParty\DirectXTex\Debug</Filter>
-    </Library>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl">
       <Filter>ThirdParty\DirectXTex\Include</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Source\ThirdParty\DirectXTex\Debug\DirectXTex_Debug.lib">
+      <Filter>ThirdParty\DirectXTex\Debug</Filter>
+    </Library>
+    <Library Include="Source\ThirdParty\DirectXTex\Release\DirectXTex_Release.lib">
+      <Filter>ThirdParty\DirectXTex\Release</Filter>
+    </Library>
   </ItemGroup>
 </Project>

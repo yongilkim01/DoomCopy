@@ -80,7 +80,7 @@ public:
 	Microsoft::WRL::ComPtr<ID3DBlob> PSErrorCodeBlob = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> PixelShader = nullptr;
 
-	Microsoft::WRL::ComPtr<ID3D11Buffer> TransformConstBuffer = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11Buffer> ConstantBuffer = nullptr;
 
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> Texture2D = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> ShaderResourceView = nullptr;

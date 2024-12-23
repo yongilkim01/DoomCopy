@@ -1,9 +1,10 @@
 #pragma once
+#include "Renderer/Renderer.h"
 
 /**
  *	설명
  */
-class UPaperSpriteComponent
+class UPaperSpriteComponent : public URenderer
 {
 public:
 	/** 생성자, 소멸자 */
