@@ -12,7 +12,7 @@ class UObject : public std::enable_shared_from_this<UObject>
 public:
 	/** 생성자, 소멸자 */
 	ENGINE_API UObject();
-	ENGINE_API ~UObject();
+	ENGINE_API virtual ~UObject();
 
 	/** 객체 값 복사 방지 */
 	UObject(const UObject& Other) = delete;

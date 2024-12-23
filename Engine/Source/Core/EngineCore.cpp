@@ -25,16 +25,6 @@ UEngineCore::~UEngineCore()
 {
 }
 
-void UEngineCore::OpenLevel(std::string_view LevelName)
-{
-	if (false == LevelMap.contains(LevelName.data()))
-	{
-		MSGASSERT("존재하지 않는 레벨입니다. " + std::string(LevelName));
-		return;
-	}
-
-	NextLevel = LevelMap[LevelName.data()];
-}
 
 void UEngineCore::EngineStart(HINSTANCE Instance, std::string_view DllName)
 {
@@ -138,9 +128,13 @@ void UEngineCore::EngineFrame()
 
 void UEngineCore::EngineEnd()
 {
-	LevelMap.clear();
-	UEngineDebug::EndConsole();
 	Device.Release();
+
+	CurLevel = nullptr;
+	NextLevel = nullptr;
+	LevelMap.clear();
+
+	UEngineDebug::EndConsole();
 }
 
 FVector UEngineCore::GetSceenScale()
@@ -159,4 +153,15 @@ std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string_view Name)
 	std::cout << "New level create" << std::endl;
 
 	return Ptr;
+}
+
+void UEngineCore::OpenLevel(std::string_view LevelName)
+{
+	if (false == LevelMap.contains(LevelName.data()))
+	{
+		MSGASSERT("존재하지 않는 레벨입니다. " + std::string(LevelName));
+		return;
+	}
+
+	NextLevel = LevelMap[LevelName.data()];
 }

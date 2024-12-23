@@ -19,6 +19,9 @@ URenderer::URenderer()
 
 URenderer::~URenderer()
 {
+	VertexBuffer = nullptr;
+	VSShaderCodeBlob = nullptr;
+	VSErrorCodeBlob = nullptr;
 }
 
 void URenderer::BeginPlay()

@@ -120,23 +120,14 @@ void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& EngineWindow)
 		MSGASSERT("스왑체인 제작에 실패했습니다.");
 	}
 
-	ID3D11Texture2D* TexturePtr = nullptr;
-	if (S_OK != SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>
-		(&TexturePtr)))
+	if (S_OK != SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(DXBackBufferTexture.GetAddressOf())))
 	{
-		MSGASSERT("백버퍼 텍스처를 얻어오는데 실패했습니다.");
-	};
-
-	DXBackBufferTexture = TexturePtr;
-
-	if (DXBackBufferTexture == nullptr)
-	{
-		return;
+		MSGASSERT("백버퍼 텍스처 로드 실패");
 	}
 
 	if (S_OK != Device->CreateRenderTargetView(DXBackBufferTexture.Get(), nullptr, &RenderTargetView))
 	{
-		MSGASSERT("텍스처 수정권한 획득에 실패했습니다");
+		MSGASSERT("텍스처 수정권한 할당 실패");
 	}
 }
 
