@@ -25,7 +25,7 @@ FDirectoryHelper::~FDirectoryHelper()
 
 }
 
-std::vector<class FFileHelper> FDirectoryHelper::GetAllFile(bool IsRecursive /* = true */)
+std::vector<class FFileHelper> FDirectoryHelper::GetAllFile(bool IsRecursive, std::vector<std::string> Exts)
 {
 	// °á°ú¸¦ ¹ÝÈ¯ÇÒ º¤ÅÍ °´Ã¼
 	std::vector<class FFileHelper> Result;

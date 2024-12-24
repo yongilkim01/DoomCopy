@@ -18,6 +18,7 @@ public:
 	UDoomCore& operator=(UDoomCore&& Other) noexcept = delete;
 
 	/** 클래스 메소드 */
+	void InitWindowSize(UEngineInitData& Data);
 
 	/** 겟, 셋 메소드 */
 

@@ -1,11 +1,11 @@
 #pragma once
 #include "Core/Object/Object.h"
 #include "Core/Misc/Paths.h"
+#include "Core/Containers/EngineString.h"
 
 /**
  *	Ό³Έν
  */
-template<typename AssetType>
 class UAssetManager  : public UObject
 {
 public:
@@ -19,18 +19,40 @@ public:
 	UAssetManager& operator=(const UAssetManager& Other) = delete;
 	UAssetManager& operator=(UAssetManager&& Other) noexcept = delete;
 
-	static std::shared_ptr<AssetType> Find(std::string_view FindResourceName)
+	static std::string ToUpperName(std::string_view Name)
 	{
-		return AssetMap[FindResourceName];
+		return UEngineString::ToUpper(Name);
 	}
 
-protected:
+	template<typename AssetType>
+	static std::shared_ptr<AssetType> Find(std::string_view AssetName)
+	{
+		const type_info& Info = typeid(AssetType);
+		return std::dynamic_pointer_cast<AssetType>(Find(Info.name(), AssetName.data()));
+	}
+	static std::shared_ptr<UAssetManager> Find(std::string_view AssetName, std::string_view Name);
 
-private:
+	static bool Contains(std::string_view AssetName)
+	{
+		return AssetMap.contains(AssetName.data());
+	}
+	static void Release()
+	{
+		AssetMap.clear();
+	}
+
+	template<typename AssetType>
+	ENGINE_API static void AddAsset(std::shared_ptr<UAssetManager> Asset, std::string_view AssetName, std::string_view AssetPath)
+	{
+		const type_info& Info = typeid(AssetType);
+		AddAsset(Asset, Info.name(), AssetName, AssetPath);
+	}
+	ENGINE_API static void AddAsset(std::shared_ptr<UAssetManager> Asset, const std::string_view InfoName, std::string_view AssetName, std::string_view AssetPath);
+	
+
+protected:
 	FPaths Path;
 
-	static std::map<std::string, std::shared_ptr<AssetType>> AssetMap;
+private:
+	ENGINE_API static inline std::map<std::string, std::map<std::string, std::shared_ptr<UAssetManager>>> AssetMap;
 };
-
-template<typename AssetType>
-std::map<std::string, std::shared_ptr<AssetType>> UAssetManager<AssetType>::AssetMap;

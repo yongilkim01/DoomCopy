@@ -40,6 +40,10 @@
     </ClCompile>
     <ClCompile Include="Source\Classes\Engine\SkeletalMesh.cpp" />
     <ClCompile Include="Source\Classes\Engine\StaticMesh.cpp" />
+    <ClCompile Include="Source\Classes\Engine\Texture.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Core\Containers\EngineString.cpp" />
     <ClCompile Include="Source\Core\Delegates\Delegate.cpp" />
     <ClCompile Include="Source\Core\EngineCore.cpp" />
@@ -69,10 +73,6 @@
     <ClCompile Include="Source\Time\TimeEvent.cpp" />
     <ClCompile Include="Source\Time\Timer.cpp" />
     <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp" />
-    <ClCompile Include="Texture.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Classes\Camera\CameraActor.h" />
@@ -96,6 +96,10 @@
     </ClInclude>
     <ClInclude Include="Source\Classes\Engine\SkeletalMesh.h" />
     <ClInclude Include="Source\Classes\Engine\StaticMesh.h" />
+    <ClInclude Include="Source\Classes\Engine\Texture.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\Core\Containers\EngineString.h" />
     <ClInclude Include="Source\Core\Delegates\Delegate.h" />
     <ClInclude Include="Source\Core\EngineCore.h" />
@@ -125,10 +129,6 @@
     <ClInclude Include="Source\Time\TimeEvent.h" />
     <ClInclude Include="Source\Time\Timer.h" />
     <ClInclude Include="Source\WorldPartition\DebugHelpers.h" />
-    <ClInclude Include="Texture.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\SpriteShader.fx">

@@ -141,9 +141,6 @@
     <ClCompile Include="Source\Classes\Engine\Level.cpp">
       <Filter>Classes\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Classes\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Classes\Camera\CameraActor.cpp">
       <Filter>Classes\Camera</Filter>
     </ClCompile>
@@ -163,6 +160,9 @@
       <Filter>Classes\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Source\Classes\Engine\AssetManager.cpp">
+      <Filter>Classes\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Classes\Engine\Texture.cpp">
       <Filter>Classes\Engine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -234,9 +234,6 @@
     <ClInclude Include="Source\Classes\Engine\Level.h">
       <Filter>Classes\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Classes\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Classes\Components\SceneComponent.h">
       <Filter>Classes\Components</Filter>
     </ClInclude>
@@ -262,6 +259,9 @@
       <Filter>Classes\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Engine\AssetManager.h">
+      <Filter>Classes\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Engine\Texture.h">
       <Filter>Classes\Engine</Filter>
     </ClInclude>
   </ItemGroup>
