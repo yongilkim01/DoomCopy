@@ -3,6 +3,8 @@
 #include "FileHelper.h"
 
 #include "WorldPartition/DebugHelpers.h"
+#include "Core/Misc/FileHelper.h"
+#include "Core/Containers/EngineString.h"
 
 FDirectoryHelper::FDirectoryHelper()
 	: FPaths()
@@ -25,7 +27,7 @@ FDirectoryHelper::~FDirectoryHelper()
 
 }
 
-std::vector<class FFileHelper> FDirectoryHelper::GetAllFile(bool IsRecursive, std::vector<std::string> Exts)
+std::vector<class FFileHelper> FDirectoryHelper::GetAllFile(bool IsRecursive /* = true */)
 {
 	// 결과를 반환할 벡터 객체
 	std::vector<class FFileHelper> Result;
@@ -62,6 +64,80 @@ std::vector<class FFileHelper> FDirectoryHelper::GetAllFile(bool IsRecursive, st
 	}
 	// 결과 벡터 반환
 	return Result;
+}
+
+std::vector<class FFileHelper> FDirectoryHelper::GetAllFile(bool IsRecursive, std::vector<std::string> Exts)
+{
+	std::vector<std::string> UpperExtensionVector;
+
+	for (size_t i = 0; i < Exts.size(); i++)
+	{
+		UpperExtensionVector.push_back(UEngineString::ToUpper(Exts[i]));
+	}
+
+	// 결과를 반환할 벡터 객체
+	std::vector<FFileHelper> Result;
+
+	// 디렉토리 내 항목을 순회하는 이터레이터 타입 변수를 통해서 지정된 디렉토리 내에 어떤 파일 들이 있는지를 검사
+	std::filesystem::directory_iterator Diriter = std::filesystem::directory_iterator(Path);
+
+	// 디렉토리 이터레이터가 끝에 도달할 때까지 반복
+	while (false == Diriter._At_end())
+	{
+		// 현재 파일 경로를 가져옴
+		std::filesystem::path FilePath = *Diriter;
+
+		// 파일 경로를 FPaths 객체로 변환
+		FPaths Path = FPaths(FilePath);
+
+		// 현재 경로가 디렉토리인지 확인
+		if (true == Path.IsDirectory())
+		{
+			// 재귀적으로 파일을 검색할 경우
+			if (true == IsRecursive)
+			{
+				// 재귀적으로 파일을 검색
+				GetAllFileRecursive(FilePath, Result);
+			}
+
+			// 다음 이터레이터로 이동
+			++Diriter;
+			continue;
+		}
+
+		// 파일 확장자를 검사하기 위한 플래그 초기화
+		bool Check = true;
+
+		// 허용된 확장자 목록과 현재 파일의 확장자를 비교
+		for (size_t i = 0; i < UpperExtensionVector.size(); i++)
+		{
+			// 현재 파일의 확장자를 대문자로 변환
+			std::string CurUpperExt = UEngineString::ToUpper(Path.GetExtension());
+
+			// 현재 파일의 확장자가 허용된 확장자 목록에 있는지 확인
+			if (CurUpperExt == UpperExtensionVector[i])
+			{
+				Check = false; // 허용된 확장자이면 Check를 false로 설정
+				break;
+			}
+		}
+
+		// 허용되지 않은 확장자인 경우 다음 파일로 이동
+		if (true == Check)
+		{
+			++Diriter;
+			continue;
+		}
+
+		// 결과 벡터에 파일을 추가
+		Result.push_back(FFileHelper(FilePath));
+		// 다음 이터레이터로 이동
+		++Diriter;
+	}
+
+	// 결과 반환
+	return Result;
+
 }
 
 std::vector<class FDirectoryHelper> FDirectoryHelper::GetAllDirectory()
