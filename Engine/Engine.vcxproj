@@ -71,6 +71,12 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Source\Renderer\Renderer.cpp" />
+    <ClCompile Include="Source\ThirdParty\imgui\imgui.cpp" />
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_draw.cpp" />
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_impl_dx11.cpp" />
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_tables.cpp" />
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\Time\TimeEvent.cpp" />
     <ClCompile Include="Source\Time\Timer.cpp" />
     <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp" />
@@ -128,6 +134,14 @@
     </ClInclude>
     <ClInclude Include="Source\Renderer\Renderer.h" />
     <ClInclude Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.h" />
+    <ClInclude Include="Source\ThirdParty\imgui\imconfig.h" />
+    <ClInclude Include="Source\ThirdParty\imgui\imgui.h" />
+    <ClInclude Include="Source\ThirdParty\imgui\imgui_impl_dx11.h" />
+    <ClInclude Include="Source\ThirdParty\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="Source\ThirdParty\imgui\imgui_internal.h" />
+    <ClInclude Include="Source\ThirdParty\imgui\imstb_rectpack.h" />
+    <ClInclude Include="Source\ThirdParty\imgui\imstb_textedit.h" />
+    <ClInclude Include="Source\ThirdParty\imgui\imstb_truetype.h" />
     <ClInclude Include="Source\Time\TimeEvent.h" />
     <ClInclude Include="Source\Time\Timer.h" />
     <ClInclude Include="Source\WorldPartition\DebugHelpers.h" />

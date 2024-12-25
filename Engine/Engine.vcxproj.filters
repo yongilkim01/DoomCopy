@@ -73,6 +73,15 @@
     <Filter Include="Core\Math">
       <UniqueIdentifier>{80529ff4-314e-4cdb-897e-da892e6fa0ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty\imgui">
+      <UniqueIdentifier>{0ff88ebd-e2fa-47a6-9e91-f5856f69051f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\imgui\Private">
+      <UniqueIdentifier>{cd5c5011-9655-491c-812a-a7deb3be243b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\imgui\Public">
+      <UniqueIdentifier>{d793d633-7701-4ca0-a88f-4d5d1ba6cc23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp">
@@ -167,6 +176,24 @@
     </ClCompile>
     <ClCompile Include="Source\Classes\Engine\PaperSprite.cpp">
       <Filter>Classes\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_widgets.cpp">
+      <Filter>ThirdParty\imgui\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_tables.cpp">
+      <Filter>ThirdParty\imgui\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_impl_win32.cpp">
+      <Filter>ThirdParty\imgui\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_impl_dx11.cpp">
+      <Filter>ThirdParty\imgui\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\imgui\imgui_draw.cpp">
+      <Filter>ThirdParty\imgui\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ThirdParty\imgui\imgui.cpp">
+      <Filter>ThirdParty\imgui\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -269,6 +296,30 @@
     </ClInclude>
     <ClInclude Include="Source\Classes\Engine\PaperSprite.h">
       <Filter>Classes\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ThirdParty\imgui\imstb_truetype.h">
+      <Filter>ThirdParty\imgui\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ThirdParty\imgui\imstb_textedit.h">
+      <Filter>ThirdParty\imgui\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ThirdParty\imgui\imstb_rectpack.h">
+      <Filter>ThirdParty\imgui\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ThirdParty\imgui\imgui_internal.h">
+      <Filter>ThirdParty\imgui\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ThirdParty\imgui\imgui_impl_win32.h">
+      <Filter>ThirdParty\imgui\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ThirdParty\imgui\imgui_impl_dx11.h">
+      <Filter>ThirdParty\imgui\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ThirdParty\imgui\imgui.h">
+      <Filter>ThirdParty\imgui\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ThirdParty\imgui\imconfig.h">
+      <Filter>ThirdParty\imgui\Public</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
