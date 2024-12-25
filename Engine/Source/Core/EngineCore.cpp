@@ -5,12 +5,14 @@
 #include "Misc/DirectoryHelper.h"
 #include "Misc/FileHelper.h"
 #include "Classes/Engine/Level.h"
+#include "Classes/Engine/AssetManager.h"
 
 UEngineGraphicDevice UEngineCore::Device;
 UEngineWindow UEngineCore::MainWindow;
 HMODULE UEngineCore::ContentsDLL = nullptr;
 std::shared_ptr<IContentsCore> UEngineCore::Core;
 UEngineInitData UEngineCore::InitData;
+UEngineTimer UEngineCore::Timer;
 
 std::shared_ptr<ULevel> UEngineCore::NextLevel;
 std::shared_ptr<ULevel> UEngineCore::CurLevel = nullptr;
@@ -120,15 +122,22 @@ void UEngineCore::EngineFrame()
 		CurLevel->LevelChangeStart();
 	
 		NextLevel = nullptr;
+		Timer.TimeStart();
 	}
 
-	CurLevel->Tick(0.0f);
-	CurLevel->Render(0.0f);
+	Timer.TimeCheck();
+
+	float DeltaTime = Timer.GetDeltaTime();
+
+	CurLevel->Tick(DeltaTime);
+	CurLevel->Render(DeltaTime);
 }
 
 void UEngineCore::EngineEnd()
 {
 	Device.Release();
+
+	UAssetManager::Release();
 
 	CurLevel = nullptr;
 	NextLevel = nullptr;

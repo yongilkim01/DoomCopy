@@ -1,13 +1,15 @@
 #pragma once
 #include "Classes/Components/SceneComponent.h"
+#include "Classes/Engine/PaperSprite.h"
 
 class ULevel;
 class UCameraComponent;
+class UTexture;
 
 struct EngineVertex
 {
 	float4 POSITION;
-	float4 TEXCOORD; // UV값이라고 불리는 존재로 텍스처가 매핑되는 비율을 지정해줍니다.
+	float4 TEXCOORD;
 	float4 COLOR;
 };
 /**
@@ -15,7 +17,6 @@ struct EngineVertex
  */
 class URenderer : public USceneComponent
 {
-	friend ULevel;
 	friend UCameraComponent;
 
 public:
@@ -51,6 +52,10 @@ public:
 
 	void UpdateRenderTargetView();
 
+	/** URenderer 메소드 */
+	ENGINE_API void SetSpriteData(size_t Index);
+	void SetTexture(std::string_view TextureName);
+
 	/** UObject 상속 메소드 */
 	virtual void SetOrder(int NewOrder) override;
 
@@ -81,8 +86,11 @@ public:
 	Microsoft::WRL::ComPtr<ID3D11PixelShader> PixelShader = nullptr;
 
 	Microsoft::WRL::ComPtr<ID3D11Buffer> ConstantBuffer = nullptr;
-
-	Microsoft::WRL::ComPtr<ID3D11Texture2D> Texture2D = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> ShaderResourceView = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> SamplerState = nullptr;
+		
+private:
+	FPaperSpriteData SpriteData;
+	std::shared_ptr<UPaperSprite> Sprite = nullptr;
+	Microsoft::WRL::ComPtr<ID3D11Buffer> SpriteConstantBuffer = nullptr; // 스프라이트용 상수버퍼
+
 };

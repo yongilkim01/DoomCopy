@@ -4,6 +4,7 @@
 #include "Renderer/EngineGraphicDevice.h"
 #include "Interfaces/IContentsCore.h"
 #include "Classes/Engine/Level.h"
+#include "Time/Timer.h"
 
 #include <memory>
 
@@ -78,6 +79,8 @@ private:
 	static HMODULE ContentsDLL;
 	static std::shared_ptr<IContentsCore> Core;
 	static UEngineInitData InitData;
+
+	static UEngineTimer Timer;
 
 	static std::map<std::string, std::shared_ptr<ULevel>> LevelMap;
 	static std::shared_ptr<ULevel> CurLevel;

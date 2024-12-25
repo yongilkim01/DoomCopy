@@ -2,28 +2,14 @@
 #include "Renderer.h"
 
 #include "Classes/Engine/Level.h"
+#include "Classes/Engine/Texture.h"
+#include "Classes/Camera/CameraComponent.h"
+
 #include "Core/Misc/DirectoryHelper.h"
 #include "Core/Misc/FileHelper.h"
 #include "Core/Containers/EngineString.h"
 #include "Core/EngineCore.h"
-#include "Classes/Camera/CameraComponent.h"
-#include "Core/Containers/EngineString.h"
-
-#include "ThirdParty/DirectxTex/Include/DirectXTex.h"
-
-#ifdef _DEBUG
-#pragma comment(lib, "DirectXTex_Debug.lib")
-#else
-#pragma comment(lib, "DirectXTex_Release.lib")
-#endif
-
-/*
-	렌더링 파이프 라인
-
-	-------------------
-	|   Vertex Data	  |
-	-------------------
-*/
+#include "Classes/Engine/PaperSprite.h"
 
 URenderer::URenderer()
 {
@@ -450,74 +436,27 @@ void URenderer::InitShaderResourceView()
 		Desc.Usage = D3D11_USAGE_DYNAMIC; // 버퍼의 사용 방식을 동적으로 설정
 
 		// 디바이스를 사용하여 상수 버퍼 생성
-		if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&Desc, nullptr, &ConstantBuffer))
+		if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&Desc, nullptr, ConstantBuffer.GetAddressOf()))
 		{
 			MSGASSERT("상수 버퍼에 생성 실패");
 			return;
 		}
 	}
-
-	// 현재 디렉토리 헬퍼 객체 생성
-	FDirectoryHelper CurDirectory;
-	// 부모 디렉토리로 이동하여 "Resources" 디렉토리 설정
-	CurDirectory.MoveParentToDirectory("Resources");
-	CurDirectory.MoveParentToDirectory("TitleLevel");
-	// "Player.png" 파일을 가져옴
-	FFileHelper FileHelper = CurDirectory.GetFile("TitleLogo.png");
-
-	// 파일 경로를 문자열로 변환
-	std::string Str = FileHelper.GetPathToString();
-	// 파일 확장자를 가져옴
-	std::string Ext = FileHelper.GetExtension();
-
-	// 문자열 경로를 와이드 문자열로 변환
-	std::wstring WLoadPath = UEngineString::AnsiToUnicode(Str.c_str());
-	// 확장자를 대문자로 변환
-	std::string UpperExt = UEngineString::ToUpper(Ext.c_str());
-
-	DirectX::TexMetadata Metadata; // 텍스처 메타데이터 객체 생성
-	DirectX::ScratchImage ImageData; // 텍스처 이미지 데이터를 저장할 객체 생성
-
-	// 파일 확장자에 따라 적절한 함수로 파일 로드
-	if (UpperExt == ".DDS")
+	// 스프라이트용 상수 버퍼 생성
 	{
-		// DDS 파일 로드
-		if (S_OK != DirectX::LoadFromDDSFile(WLoadPath.c_str(), DirectX::DDS_FLAGS_NONE, &Metadata, ImageData))
+		// 상수 버퍼 설명 구조체 초기화
+		D3D11_BUFFER_DESC Desc = { 0 };
+		Desc.ByteWidth = sizeof(FPaperSpriteData); // 버퍼의 크기를 FTransform 구조체 크기로 설정
+		Desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER; // 버퍼의 바인딩 플래그를 상수 버퍼로 설정
+		Desc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE; // CPU가 버퍼에 쓰기 접근 가능하도록 설정
+		Desc.Usage = D3D11_USAGE_DYNAMIC; // 버퍼의 사용 방식을 동적으로 설정
+
+		// 디바이스를 사용하여 상수 버퍼 생성
+		if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&Desc, nullptr, SpriteConstantBuffer.GetAddressOf()))
 		{
-			MSGASSERT("DDS 파일 로드에 실패했습니다.");
+			MSGASSERT("스프라이트용 상수 버퍼에 생성 실패");
 			return;
 		}
-	}
-	else if (UpperExt == ".TGA")
-	{
-		// TGA 파일 로드
-		if (S_OK != DirectX::LoadFromTGAFile(WLoadPath.c_str(), DirectX::TGA_FLAGS_NONE, &Metadata, ImageData))
-		{
-			MSGASSERT("TGA 파일 로드에 실패했습니다.");
-			return;
-		}
-	}
-	else
-	{
-		// 그 외의 파일 형식(WIC 사용)
-		if (S_OK != DirectX::LoadFromWICFile(WLoadPath.c_str(), DirectX::WIC_FLAGS_NONE, &Metadata, ImageData))
-		{
-			MSGASSERT(UpperExt + "파일 로드에 실패했습니다.");
-			return;
-		}
-	}
-
-	// 쉐이더 리소스 뷰 생성
-	if (S_OK != DirectX::CreateShaderResourceView(
-		UEngineCore::Device.GetDevice(),	// 디바이스 객체
-		ImageData.GetImages(),				// 이미지 데이터 배열
-		ImageData.GetImageCount(),			// 이미지 개수
-		ImageData.GetMetadata(),			// 이미지 메타데이터
-		ShaderResourceView.GetAddressOf()   // 생성된 쉐이더 리소스 뷰
-	))
-	{
-		MSGASSERT(UpperExt + "쉐이더 리소스 뷰 생성에 실패했습니다.");
-		return;
 	}
 
 	// 샘플러 상태 설명 구조체 초기화 및 설정
@@ -544,29 +483,67 @@ void URenderer::InitShaderResourceView()
 
 void URenderer::UpdateShaderResourceView()
 {
-	FTransform& RendererTransform = GetComponentTransformRef();
-
-	D3D11_MAPPED_SUBRESOURCE MappedSubResource = {};
-
-	UEngineCore::Device.GetDeviceContext()->Map(ConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &MappedSubResource);
-
-	if (nullptr == MappedSubResource.pData)
 	{
-		MSGASSERT("그래픽 카드 수정 권한 거부");
+		FTransform& RendererTransform = GetComponentTransformRef();
+
+		D3D11_MAPPED_SUBRESOURCE SubResourceData = {};
+
+		//렌더링 정지 후 상수 버퍼 수정
+		UEngineCore::Device.GetDeviceContext()->Map(ConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &SubResourceData);
+
+		if (nullptr == SubResourceData.pData)
+		{
+			MSGASSERT("그래픽 카드 수정 거부");
+		}
+
+		memcpy_s(SubResourceData.pData, sizeof(FTransform), &RendererTransform, sizeof(FTransform));
+		UEngineCore::Device.GetDeviceContext()->Unmap(ConstantBuffer.Get(), 0);
+
+		ID3D11Buffer* ArrPtr[16] = { ConstantBuffer.Get() };
+		UEngineCore::Device.GetDeviceContext()->VSSetConstantBuffers(0, 1, ArrPtr);
 	}
 
-	memcpy_s(MappedSubResource.pData, sizeof(FTransform), &RendererTransform, sizeof(FTransform));
+	{
+		D3D11_MAPPED_SUBRESOURCE SubResourceData = {};
 
-	UEngineCore::Device.GetDeviceContext()->Unmap(ConstantBuffer.Get(), 0);
+		//렌더링 정지 후 상수 버퍼 수정
+		UEngineCore::Device.GetDeviceContext()->Map(SpriteConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &SubResourceData);
 
-	ID3D11Buffer* ArrPtr[16] = { ConstantBuffer.Get() };
-	UEngineCore::Device.GetDeviceContext()->VSSetConstantBuffers(0, 1, ArrPtr);
+		if (nullptr == SubResourceData.pData)
+		{
+			MSGASSERT("그래픽 카드 수정 거부");
+		}
 
-	ID3D11ShaderResourceView* ArrSRV[16] = { ShaderResourceView.Get() };
+		memcpy_s(SubResourceData.pData, sizeof(FPaperSpriteData), &SpriteData, sizeof(FPaperSpriteData));
+		UEngineCore::Device.GetDeviceContext()->Unmap(SpriteConstantBuffer.Get(), 0);
+
+		ID3D11Buffer* ArrPtr[16] = { SpriteConstantBuffer.Get() };
+		UEngineCore::Device.GetDeviceContext()->VSSetConstantBuffers(0, 1, ArrPtr);
+	}
+
+	ID3D11ShaderResourceView* ArrSRV[16] = { Sprite->GetShaderResourceView() };
 	UEngineCore::Device.GetDeviceContext()->PSSetShaderResources(0, 1, ArrSRV);
 
 	ID3D11SamplerState* ArrSMP[16] = { SamplerState.Get() };
 	UEngineCore::Device.GetDeviceContext()->PSSetSamplers(0, 1, ArrSMP);
+}
+
+void URenderer::SetSpriteData(size_t Index)
+{
+	SpriteData = Sprite->GetSpriteData(Index);
+}
+
+void URenderer::SetTexture(std::string_view TextureName)
+{
+	std::string UpperSpriteName = UEngineString::ToUpper(TextureName);
+
+	Sprite = UPaperSprite::Find<UPaperSprite>(UpperSpriteName);
+
+	if (nullptr == Sprite)
+	{
+		MSGASSERT("스프라이트 로드 실패");
+	}
+
 }
 
 void URenderer::SetOrder(int NewOrder)

@@ -21,6 +21,9 @@ public:
 	ENGINE_API static std::string ToUpper(std::string_view);
 	/** 유니코드 변환 메소드 */
 	ENGINE_API static std::wstring AnsiToUnicode(std::string_view Name);
+	ENGINE_API static std::string InterString(const std::string& Str, std::string_view StartStr,
+											  std::string_view EndStr, size_t& Offset);
+
 protected:
 
 private:

@@ -9,6 +9,7 @@
 #include <Core/Misc/FileHelper.h>
 #include <Classes/Engine/Level.h>
 #include <Classes/Engine/Texture.h>
+#include <Classes/Engine/PaperSprite.h>
 #include <GameFramework/Actor.h>
 
 
@@ -35,6 +36,9 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 			MSGASSERT("리소스 폴더를 찾기에 실패했습니다");
 			return;
 		}
+
+		DirectoryHelper.Append("Images");
+
 		std::vector<FFileHelper> ImageFiles = DirectoryHelper.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
 
 		for (int i = 0; i < ImageFiles.size(); i++)
@@ -43,6 +47,8 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 			UTexture::Load(FilePath);
 		}
 	}
+
+	UPaperSprite::CreateSpriteToMeta("Player.png", ".sdata");
 
 	UEngineCore::CreateLevel<ATitleGameMode, AActor>("TitleLevel");
 	UEngineCore::OpenLevel("TitleLevel");

@@ -95,13 +95,13 @@ void FFileHelper::Read(void* Ptr, size_t Size)
 	fread(Ptr, Size, 1, File);
 }
 
-void FFileHelper::Read(FArchive& Ser)
+void FFileHelper::Read(FArchive& Archive)
 {
 	int FileSize = GetFileSize();
 
-	Ser.DataResize(FileSize);
+	Archive.DataResize(FileSize);
 
-	Read(Ser.GetDataPtr(), FileSize);
+	Read(Archive.GetDataPtr(), FileSize);
 }
 
 void FFileHelper::Close()
@@ -124,3 +124,10 @@ int FFileHelper::GetFileSize()
 	return static_cast<int>(std::filesystem::file_size(Path));
 }
 
+std::string FFileHelper::GetAllFileText()
+{
+	FArchive Archive;
+	Read(Archive);
+
+	return reinterpret_cast<const char*>(Archive.GetDataPtr());
+}

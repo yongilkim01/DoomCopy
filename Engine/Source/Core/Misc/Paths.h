@@ -1,6 +1,8 @@
 #pragma once
 #include <filesystem>
 
+#include "EngineDefine.h"
+
 /**
  * 파일 경로를 객체화한 클래스
  */

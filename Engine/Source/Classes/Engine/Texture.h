@@ -18,26 +18,35 @@ public:
 	UTexture& operator=(const UTexture& _Other) = delete;
 	UTexture& operator=(UTexture&& _Other) noexcept = delete;
 
-	static std::shared_ptr<UTexture> Load(std::string_view TextureFilePath)
+	static std::shared_ptr<UTexture> Load(std::string_view LoadTextureFilePath)
 	{
-		FPaths TexturePath = FPaths(TextureFilePath);
+		FPaths TextureFilePath = FPaths(LoadTextureFilePath);
 
-		std::string FileName = TexturePath.GetFileName();
+		std::string FileName = TextureFilePath.GetFileName();
 
-		return Load(FileName, TextureFilePath);
+		return Load(FileName, LoadTextureFilePath);
 	}
 
-	static std::shared_ptr<UTexture> Load(std::string_view TextureFileName, std::string_view TextureFilePath);
+	static std::shared_ptr<UTexture> Load(std::string_view TextureFileName, std::string_view LoadTextureFilePath);
 
 	ID3D11ShaderResourceView* GetShaderResourceView()
 	{
 		return ShaderResourceView.Get();
 	}
 
+	FVector GetTextureSize()
+	{
+		return TextureSize;
+	}
+
 protected:
 
 private:
 	ENGINE_API void AssetLoad();
+
+	FVector TextureSize;
+	DirectX::TexMetadata Metadata;
+	DirectX::ScratchImage ImageData;
 
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> Texture2D = nullptr; // 로드한 텍스처
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> ShaderResourceView = nullptr; // 텍스처를 쉐이더 세팅할수 있는권한

@@ -34,6 +34,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Source\Classes\Engine\PaperSprite.cpp" />
     <ClCompile Include="Source\Classes\Engine\PaperSpriteComponent.cpp">
       <SubType>
       </SubType>
@@ -90,6 +91,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Source\Classes\Engine\PaperSprite.h" />
     <ClInclude Include="Source\Classes\Engine\PaperSpriteComponent.h">
       <SubType>
       </SubType>

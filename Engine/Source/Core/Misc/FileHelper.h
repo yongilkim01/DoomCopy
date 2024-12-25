@@ -27,9 +27,11 @@ public:
 	void Read(FArchive& Ser);
 
 	/** 파일 열고 닫기 메소드 */
-	void FileOpen(const char* Mode);
+	ENGINE_API void FileOpen(const char* Mode);
 	void Close();
 	int GetFileSize();
+
+	std::string GetAllFileText();
 
 private:
 	FILE* File = nullptr;
