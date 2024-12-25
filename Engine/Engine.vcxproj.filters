@@ -165,9 +165,6 @@
     <ClCompile Include="Source\Core\Math\EngineMath.cpp">
       <Filter>Core\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Classes\Engine\PaperSpriteComponent.cpp">
-      <Filter>Classes\Engine</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Classes\Engine\AssetManager.cpp">
       <Filter>Classes\Engine</Filter>
     </ClCompile>
@@ -194,6 +191,9 @@
     </ClCompile>
     <ClCompile Include="Source\ThirdParty\imgui\imgui.cpp">
       <Filter>ThirdParty\imgui\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Classes\Components\PaperSpriteComponent.cpp">
+      <Filter>Classes\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -285,9 +285,6 @@
     <ClInclude Include="Source\Core\Math\EngineMath.h">
       <Filter>Core\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Classes\Engine\PaperSpriteComponent.h">
-      <Filter>Classes\Engine</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Classes\Engine\AssetManager.h">
       <Filter>Classes\Engine</Filter>
     </ClInclude>
@@ -320,6 +317,9 @@
     </ClInclude>
     <ClInclude Include="Source\ThirdParty\imgui\imconfig.h">
       <Filter>ThirdParty\imgui\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Components\PaperSpriteComponent.h">
+      <Filter>Classes\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

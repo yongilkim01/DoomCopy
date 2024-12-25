@@ -25,6 +25,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Source\Classes\Components\PaperSpriteComponent.cpp" />
     <ClCompile Include="Source\Classes\Components\SceneComponent.cpp">
       <SubType>
       </SubType>
@@ -35,10 +36,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Source\Classes\Engine\PaperSprite.cpp" />
-    <ClCompile Include="Source\Classes\Engine\PaperSpriteComponent.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="Source\Classes\Engine\SkeletalMesh.cpp" />
     <ClCompile Include="Source\Classes\Engine\StaticMesh.cpp" />
     <ClCompile Include="Source\Classes\Engine\Texture.cpp">
@@ -88,6 +85,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Source\Classes\Components\PaperSpriteComponent.h" />
     <ClInclude Include="Source\Classes\Components\SceneComponent.h">
       <SubType>
       </SubType>
@@ -98,10 +96,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Source\Classes\Engine\PaperSprite.h" />
-    <ClInclude Include="Source\Classes\Engine\PaperSpriteComponent.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Source\Classes\Engine\SkeletalMesh.h" />
     <ClInclude Include="Source\Classes\Engine\StaticMesh.h" />
     <ClInclude Include="Source\Classes\Engine\Texture.h">

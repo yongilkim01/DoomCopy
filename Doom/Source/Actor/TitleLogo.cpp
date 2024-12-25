@@ -2,7 +2,7 @@
 #include "TitleLogo.h"
 
 #include <Core/Math/EngineMath.h>
-#include <Classes/Engine/PaperSpriteComponent.h>
+#include <Classes/Components/PaperSpriteComponent.h>
 
 ATitleLogo::ATitleLogo()
 {

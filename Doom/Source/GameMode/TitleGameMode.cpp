@@ -3,7 +3,7 @@
 #include "Actor/TitleLogo.h"
 
 #include <Classes/Camera/CameraActor.h>
-#include <Classes/Engine/PaperSpriteComponent.h>
+#include <Classes/Components/PaperSpriteComponent.h>
 
 ATitleGameMode::ATitleGameMode()
 {
