@@ -3,7 +3,7 @@
 
 #include "Core/EngineCore.h"
 #include "Classes/Engine/Level.h"
-#include "Renderer/Renderer.h"
+#include "Classes/Components/PrimitiveComponent.h"
 
 UCameraComponent::UCameraComponent()
 {
@@ -27,10 +27,10 @@ void UCameraComponent::Tick(float DeltaTime)
 
 void UCameraComponent::Render(float DeltaTime)
 {
-	for (std::pair<const int, std::list<std::shared_ptr<URenderer>>>& RenderGroup : Rendereres)
+	for (std::pair<const int, std::list<std::shared_ptr<UPrimitiveComponent>>>& RenderGroup : Rendereres)
 	{
-		std::list<std::shared_ptr<URenderer>>& RendererList = RenderGroup.second;
-		for (std::shared_ptr<URenderer> Renderer : RendererList)
+		std::list<std::shared_ptr<UPrimitiveComponent>>& RendererList = RenderGroup.second;
+		for (std::shared_ptr<UPrimitiveComponent> Renderer : RendererList)
 		{
 			Renderer->Render(this, DeltaTime);
 		}
@@ -44,7 +44,7 @@ void UCameraComponent::CalculateViewAndProjection()
 	Transform.Projection.OrthographicLH(ProjectionScale.X, ProjectionScale.Y, Near, Far);
 }
 
-void UCameraComponent::ChangeRenderGroup(int PrevGroupOrder, std::shared_ptr<URenderer> Renderer)
+void UCameraComponent::ChangeRenderGroup(int PrevGroupOrder, std::shared_ptr<UPrimitiveComponent> Renderer)
 {
 	Rendereres[PrevGroupOrder].remove(Renderer);
 	Rendereres[Renderer->GetOrder()].push_back(Renderer);

@@ -4,7 +4,7 @@
 #include "WorldPartition/DebugHelpers.h"
 //#include "GameFramework/Actor.h"
 
-class URenderer;
+class UPrimitiveComponent;
 class AActor;
 class ACameraActor;
 
@@ -30,7 +30,7 @@ public:
 	void Tick(float DeltaTime);
 	void Render(float DeltaTime);
 
-	void ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_ptr<class URenderer> Renderer);
+	void ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_ptr<class UPrimitiveComponent> Renderer);
 	template<typename ActorType>
 	std::shared_ptr<ActorType> SpawnActor()
 	{
@@ -83,7 +83,7 @@ protected:
 private:
 	std::list<std::shared_ptr<AActor>> BeginPlayList;
 	std::list<std::shared_ptr<AActor>> AllActorList;
-	std::map<int, std::list<std::shared_ptr<URenderer>>> RendererMap;
+	std::map<int, std::list<std::shared_ptr<UPrimitiveComponent>>> RendererMap;
 	std::map<int, std::shared_ptr<ACameraActor>> Cameraes;
 
 };

@@ -26,11 +26,12 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Source\Classes\Components\PaperSpriteComponent.cpp" />
+    <ClCompile Include="Source\Classes\Components\PrimitiveComponent.cpp" />
     <ClCompile Include="Source\Classes\Components\SceneComponent.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Source\Classes\Engine\AssetManager.cpp" />
+    <ClCompile Include="Source\Classes\Engine\RenderAsset.cpp" />
     <ClCompile Include="Source\Classes\Engine\Level.cpp">
       <SubType>
       </SubType>
@@ -67,7 +68,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Source\Renderer\Renderer.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui_draw.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui_impl_dx11.cpp" />
@@ -86,11 +86,12 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Source\Classes\Components\PaperSpriteComponent.h" />
+    <ClInclude Include="Source\Classes\Components\PrimitiveComponent.h" />
     <ClInclude Include="Source\Classes\Components\SceneComponent.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Source\Classes\Engine\AssetManager.h" />
+    <ClInclude Include="Source\Classes\Engine\RenderAsset.h" />
     <ClInclude Include="Source\Classes\Engine\Level.h">
       <SubType>
       </SubType>
@@ -126,7 +127,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Source\Renderer\Renderer.h" />
     <ClInclude Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.h" />
     <ClInclude Include="Source\ThirdParty\imgui\imconfig.h" />
     <ClInclude Include="Source\ThirdParty\imgui\imgui.h" />

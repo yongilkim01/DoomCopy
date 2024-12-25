@@ -1,5 +1,5 @@
 #pragma once
-#include "Classes/Engine/AssetManager.h"
+#include "Classes/Engine/RenderAsset.h"
 #include "Core/Math/EngineMath.h"
 #include "EngineDefine.h"
 
@@ -14,7 +14,7 @@ struct FPaperSpriteData
 /**
  *	설명
  */
-class UPaperSprite : public UAssetManager
+class UPaperSprite : public URenderAsset
 {
 public:
 	/** 생성자, 소멸자 */

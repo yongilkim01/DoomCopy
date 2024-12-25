@@ -1,12 +1,12 @@
 #pragma once
-#include "Classes/Engine/AssetManager.h"
+#include "Classes/Engine/RenderAsset.h"
 #include "ThirdParty/DirectXTex/Include/DirectXTex.h"
 #include "Core/Misc/Paths.h"
 
 /**
  *	설명
  */
-class UTexture : public UAssetManager
+class UTexture : public URenderAsset
 {
 public:
 	/** 생성자, 소멸자 */

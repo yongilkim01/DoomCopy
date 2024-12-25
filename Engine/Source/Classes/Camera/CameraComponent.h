@@ -6,7 +6,7 @@
 #include "Classes/Components/SceneComponent.h"
 
 class ULevel;
-class URenderer;
+class UPrimitiveComponent;
 
 /**
  *	카메라 컴포넌트 클래스
@@ -44,9 +44,9 @@ public:
 protected:
 
 private:
-	void ChangeRenderGroup(int PrevGroupOrder, std::shared_ptr<URenderer> Renderer);
+	void ChangeRenderGroup(int PrevGroupOrder, std::shared_ptr<UPrimitiveComponent> Renderer);
 
-	std::map<int, std::list<std::shared_ptr<URenderer>>> Rendereres;
+	std::map<int, std::list<std::shared_ptr<UPrimitiveComponent>>> Rendereres;
 	FVector ProjectionScale = { 0.0f, 0.0f };
 
 	float Near = 1.0f;

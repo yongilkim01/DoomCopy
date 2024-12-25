@@ -6,18 +6,18 @@
 /**
  *  설명
  */
-class UAssetManager : public UObject
+class URenderAsset : public UObject
 {
 public:
     /** 생성자, 소멸자 */
-    UAssetManager() {}
-    ~UAssetManager() {}
+    URenderAsset() {}
+    ~URenderAsset() {}
 
     /** 객체 값 복사 방지 */
-    UAssetManager(const UAssetManager& Other) = delete;
-    UAssetManager(UAssetManager&& Other) noexcept = delete;
-    UAssetManager& operator=(const UAssetManager& Other) = delete;
-    UAssetManager& operator=(UAssetManager&& Other) noexcept = delete;
+    URenderAsset(const URenderAsset& Other) = delete;
+    URenderAsset(URenderAsset&& Other) noexcept = delete;
+    URenderAsset& operator=(const URenderAsset& Other) = delete;
+    URenderAsset& operator=(URenderAsset&& Other) noexcept = delete;
 
     /**
      * 특정 타입의 Asset을 찾는 메소드
@@ -38,7 +38,7 @@ public:
      * @param AssetName - Asset의 이름
      * @return 찾은 Asset의 공유 포인터
      */
-    static std::shared_ptr<UAssetManager> Find(std::string_view TypeName, std::string_view AssetName);
+    static std::shared_ptr<URenderAsset> Find(std::string_view TypeName, std::string_view AssetName);
     /**
      * Asset을 추가하는 메소드
      *
@@ -47,7 +47,7 @@ public:
      * @param AssetPath - Asset의 경로
      */
     template<typename AssetType>
-    ENGINE_API static void AddAsset(std::shared_ptr<UAssetManager> Asset, std::string_view AssetName,
+    ENGINE_API static void AddAsset(std::shared_ptr<URenderAsset> Asset, std::string_view AssetName,
         std::string_view AssetPath)
     {
         const type_info& Info = typeid(AssetType);
@@ -61,7 +61,7 @@ public:
      * @param AssetName - Asset의 이름
      * @param AssetPath - Asset의 경로
      */
-    ENGINE_API static void AddAsset(std::shared_ptr<UAssetManager> Asset, const std::string_view TypeName,
+    ENGINE_API static void AddAsset(std::shared_ptr<URenderAsset> Asset, const std::string_view TypeName,
         std::string_view AssetName, std::string_view AssetPath);
 
     /**
@@ -104,5 +104,5 @@ protected:
 
 private:
     /** Asset을 저장하는 맵 */
-    ENGINE_API static inline std::map<std::string, std::map<std::string, std::shared_ptr<UAssetManager>>> AssetMap;
+    ENGINE_API static inline std::map<std::string, std::map<std::string, std::shared_ptr<URenderAsset>>> AssetMap;
 };

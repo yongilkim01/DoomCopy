@@ -1,8 +1,8 @@
 #include "pch.h"
-#include "AssetManager.h"
+#include "RenderAsset.h"
 #include "Classes/Engine/Texture.h"
 
-std::shared_ptr<UAssetManager> UAssetManager::Find(std::string_view TypeName, std::string_view AssetName)
+std::shared_ptr<URenderAsset> URenderAsset::Find(std::string_view TypeName, std::string_view AssetName)
 {
     std::string UpperAssetName = UEngineString::ToUpper(AssetName);
 
@@ -15,7 +15,7 @@ std::shared_ptr<UAssetManager> UAssetManager::Find(std::string_view TypeName, st
 }
 
 
-ENGINE_API void UAssetManager::AddAsset(std::shared_ptr<UAssetManager> Asset,
+ENGINE_API void URenderAsset::AddAsset(std::shared_ptr<URenderAsset> Asset,
     const std::string_view TypeName, std::string_view AssetName, std::string_view AssetPath)
 {
     if (true == AssetMap[TypeName.data()].contains(AssetName.data()))

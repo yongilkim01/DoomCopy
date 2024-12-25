@@ -82,6 +82,9 @@
     <Filter Include="ThirdParty\imgui\Public">
       <UniqueIdentifier>{d793d633-7701-4ca0-a88f-4d5d1ba6cc23}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Windows">
+      <UniqueIdentifier>{57ca364f-6910-4b9d-b3fe-ffe2a5a55c40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp">
@@ -144,9 +147,6 @@
     <ClCompile Include="Source\Renderer\EngineGraphicDevice.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Renderer\Renderer.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Classes\Engine\Level.cpp">
       <Filter>Classes\Engine</Filter>
     </ClCompile>
@@ -165,7 +165,7 @@
     <ClCompile Include="Source\Core\Math\EngineMath.cpp">
       <Filter>Core\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Classes\Engine\AssetManager.cpp">
+    <ClCompile Include="Source\Classes\Engine\RenderAsset.cpp">
       <Filter>Classes\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Source\Classes\Engine\Texture.cpp">
@@ -193,6 +193,9 @@
       <Filter>ThirdParty\imgui\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Classes\Components\PaperSpriteComponent.cpp">
+      <Filter>Classes\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Classes\Components\PrimitiveComponent.cpp">
       <Filter>Classes\Components</Filter>
     </ClCompile>
   </ItemGroup>
@@ -258,9 +261,6 @@
     <ClInclude Include="Source\Renderer\EngineGraphicDevice.h">
       <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Renderer\Renderer.h">
-      <Filter>Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Classes\Engine\Level.h">
       <Filter>Classes\Engine</Filter>
     </ClInclude>
@@ -285,7 +285,7 @@
     <ClInclude Include="Source\Core\Math\EngineMath.h">
       <Filter>Core\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Classes\Engine\AssetManager.h">
+    <ClInclude Include="Source\Classes\Engine\RenderAsset.h">
       <Filter>Classes\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Engine\Texture.h">
@@ -319,6 +319,9 @@
       <Filter>ThirdParty\imgui\Public</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Components\PaperSpriteComponent.h">
+      <Filter>Classes\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Components\PrimitiveComponent.h">
       <Filter>Classes\Components</Filter>
     </ClInclude>
   </ItemGroup>

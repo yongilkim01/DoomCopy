@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Renderer.h"
+#include "PrimitiveComponent.h"
 
 #include "Classes/Engine/Level.h"
 #include "Classes/Engine/Texture.h"
@@ -11,18 +11,18 @@
 #include "Core/EngineCore.h"
 #include "Classes/Engine/PaperSprite.h"
 
-URenderer::URenderer()
+UPrimitiveComponent::UPrimitiveComponent()
 {
 }
 
-URenderer::~URenderer()
+UPrimitiveComponent::~UPrimitiveComponent()
 {
 	VertexBuffer = nullptr;
 	VSShaderCodeBlob = nullptr;
 	VSErrorCodeBlob = nullptr;
 }
 
-void URenderer::BeginPlay()
+void UPrimitiveComponent::BeginPlay()
 {
 	SetOrder(0);
 
@@ -34,7 +34,7 @@ void URenderer::BeginPlay()
 	InitShaderResourceView();
 }
 
-void URenderer::Render(UCameraComponent* CameraComponent, float DeltaTime)
+void UPrimitiveComponent::Render(UCameraComponent* CameraComponent, float DeltaTime)
 {
 	FTransform& CameraTransform = CameraComponent->GetComponentTransformRef();
 	FTransform& RendererTransform = GetComponentTransformRef();
@@ -57,7 +57,7 @@ void URenderer::Render(UCameraComponent* CameraComponent, float DeltaTime)
 
 }
 
-void URenderer::InitVertexBuffer()
+void UPrimitiveComponent::InitVertexBuffer()
 {
 	// Vertex 데이터를 저장할 벡터 생성 및 크기 조절
 	std::vector<EngineVertex> Vertexes;
@@ -91,7 +91,7 @@ void URenderer::InitVertexBuffer()
 
 }
 
-void URenderer::UpdateVertexBuffer()
+void UPrimitiveComponent::UpdateVertexBuffer()
 {
 	// 버텍스의 크기와 오프셋을 설정
 	UINT VertexSize = sizeof(EngineVertex); // 버텍스 하나의 크기를 설정
@@ -115,7 +115,7 @@ void URenderer::UpdateVertexBuffer()
 
 }
 
-void URenderer::InitVertexLayout()
+void UPrimitiveComponent::InitVertexLayout()
 {
 	// Vertex 입력 레이아웃을 저장할 벡터 생성
 	std::vector<D3D11_INPUT_ELEMENT_DESC> InputLayoutData;
@@ -177,7 +177,7 @@ void URenderer::InitVertexLayout()
 
 }
 
-void URenderer::InitVertexShader()
+void UPrimitiveComponent::InitVertexShader()
 {
 	// 현재 디렉토리 헬퍼 객체 생성
 	FDirectoryHelper CurDir;
@@ -243,12 +243,12 @@ void URenderer::InitVertexShader()
 
 }
 
-void URenderer::UpdateVertexShader()
+void UPrimitiveComponent::UpdateVertexShader()
 {
 	UEngineCore::Device.GetDeviceContext()->VSSetShader(VertexShader.Get(), nullptr, 0);
 }
 
-void URenderer::InitIndexBuffer()
+void UPrimitiveComponent::InitIndexBuffer()
 {
 	// 인덱스 데이터를 저장할 벡터 생성
 	std::vector<unsigned int> Indexes;
@@ -283,7 +283,7 @@ void URenderer::InitIndexBuffer()
 
 }
 
-void URenderer::UpdateIndexBuffer()
+void UPrimitiveComponent::UpdateIndexBuffer()
 {
 	int Offset = 0;
 
@@ -292,7 +292,7 @@ void URenderer::UpdateIndexBuffer()
 	UEngineCore::Device.GetDeviceContext()->IASetPrimitiveTopology(Topology);
 }
 
-void URenderer::InitRasterizer()
+void UPrimitiveComponent::InitRasterizer()
 {
 	// 래스터라이저 상태 설명 구조체 초기화
 	D3D11_RASTERIZER_DESC Desc = {};
@@ -321,13 +321,13 @@ void URenderer::InitRasterizer()
 
 }
 
-void URenderer::UpdateRasterizer()
+void UPrimitiveComponent::UpdateRasterizer()
 {
 	UEngineCore::Device.GetDeviceContext()->RSSetViewports(1, &ViewPortInfo);
 	UEngineCore::Device.GetDeviceContext()->RSSetState(RasterizerState.Get());
 }
 
-void URenderer::InitPixelShader()
+void UPrimitiveComponent::InitPixelShader()
 {
 	// 현재 디렉토리 헬퍼 객체 생성
 	FDirectoryHelper CurDir;
@@ -391,14 +391,14 @@ void URenderer::InitPixelShader()
 
 }
 
-void URenderer::UpdatePixelShader()
+void UPrimitiveComponent::UpdatePixelShader()
 {
 	UEngineCore::Device.GetDeviceContext()->PSSetShader(PixelShader.Get(), nullptr, 0);
 
 }
 
 // 그리기 위한 백지 준비 과정
-void URenderer::UpdateRenderTargetView()
+void UPrimitiveComponent::UpdateRenderTargetView()
 {
 	// 렌더 타겟 뷰 포인터를 가져옴
 	ID3D11RenderTargetView* RenderTargetView = UEngineCore::Device.GetRenderTargetView();
@@ -416,7 +416,7 @@ void URenderer::UpdateRenderTargetView()
 
 }
 
-void URenderer::InitShaderResourceView()
+void UPrimitiveComponent::InitShaderResourceView()
 {
 	// 상수 버퍼 생성
 	{
@@ -473,7 +473,7 @@ void URenderer::InitShaderResourceView()
 
 }
 
-void URenderer::UpdateShaderResourceView()
+void UPrimitiveComponent::UpdateShaderResourceView()
 {
 	{
 		FTransform& RendererTransform = GetComponentTransformRef();
@@ -520,12 +520,12 @@ void URenderer::UpdateShaderResourceView()
 	UEngineCore::Device.GetDeviceContext()->PSSetSamplers(0, 1, ArrSMP);
 }
 
-void URenderer::SetSpriteData(size_t Index)
+void UPrimitiveComponent::SetSpriteData(size_t Index)
 {
 	SpriteData = Sprite->GetSpriteData(Index);
 }
 
-void URenderer::SetTexture(std::string_view TextureName)
+void UPrimitiveComponent::SetTexture(std::string_view TextureName)
 {
 	std::string UpperSpriteName = UEngineString::ToUpper(TextureName);
 
@@ -538,12 +538,12 @@ void URenderer::SetTexture(std::string_view TextureName)
 
 }
 
-void URenderer::SetOrder(int NewOrder)
+void UPrimitiveComponent::SetOrder(int NewOrder)
 {
 	int PrevOrder = GetOrder();
 	UObject::SetOrder(NewOrder);
 	ULevel* Level = GetOwner()->GetWorld();
 
-	std::shared_ptr<URenderer> RendererPtr = GetThis<URenderer>();
+	std::shared_ptr<UPrimitiveComponent> RendererPtr = GetThis<UPrimitiveComponent>();
 	Level->ChangeRenderGroup(0, PrevOrder, RendererPtr);
 }

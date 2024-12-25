@@ -15,20 +15,20 @@ struct EngineVertex
 /**
  *	렌더러 클래스
  */
-class URenderer : public USceneComponent
+class UPrimitiveComponent : public USceneComponent
 {
 	friend UCameraComponent;
 
 public:
 	/** UObject 상속 메소드 */
-	ENGINE_API URenderer();
-	ENGINE_API ~URenderer();
+	ENGINE_API UPrimitiveComponent();
+	ENGINE_API ~UPrimitiveComponent();
 
 	/** 객체 값 복사 방지 */
-	URenderer(const URenderer& Other) = delete;
-	URenderer(URenderer&& Other) noexcept = delete;
-	URenderer& operator=(const URenderer& Other) = delete;
-	URenderer& operator=(URenderer&& Other) noexcept = delete;
+	UPrimitiveComponent(const UPrimitiveComponent& Other) = delete;
+	UPrimitiveComponent(UPrimitiveComponent&& Other) noexcept = delete;
+	UPrimitiveComponent& operator=(const UPrimitiveComponent& Other) = delete;
+	UPrimitiveComponent& operator=(UPrimitiveComponent&& Other) noexcept = delete;
 
 	/** 초기화 메소드 */
 	void InitVertexBuffer();
@@ -67,7 +67,7 @@ private:
 	/** URenderer 메소드 */
 	virtual void Render(UCameraComponent* CameraComponent, float DeltaTime);
 
-public:	
+public:
 	Microsoft::WRL::ComPtr<ID3D11Buffer> VertexBuffer = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> InputLayout = nullptr;
 
@@ -87,7 +87,7 @@ public:
 
 	Microsoft::WRL::ComPtr<ID3D11Buffer> ConstantBuffer = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> SamplerState = nullptr;
-		
+
 private:
 	FPaperSpriteData SpriteData;
 	std::shared_ptr<UPaperSprite> Sprite = nullptr;

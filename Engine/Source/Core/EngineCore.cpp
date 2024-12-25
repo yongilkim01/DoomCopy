@@ -5,7 +5,7 @@
 #include "Misc/DirectoryHelper.h"
 #include "Misc/FileHelper.h"
 #include "Classes/Engine/Level.h"
-#include "Classes/Engine/AssetManager.h"
+#include "Classes/Engine/RenderAsset.h"
 
 UEngineGraphicDevice UEngineCore::Device;
 UEngineWindow UEngineCore::MainWindow;
@@ -137,7 +137,7 @@ void UEngineCore::EngineEnd()
 {
 	Device.Release();
 
-	UAssetManager::Release();
+	URenderAsset::Release();
 
 	CurLevel = nullptr;
 	NextLevel = nullptr;

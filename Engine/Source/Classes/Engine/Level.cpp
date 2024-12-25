@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Level.h"
 #include "GameFramework/Actor.h"
-#include "Renderer/Renderer.h"
+#include "Classes/Components/PrimitiveComponent.h"
 #include "Renderer/EngineGraphicDevice.h"
 
 #include "Classes/Camera/CameraActor.h"
@@ -79,7 +79,7 @@ std::shared_ptr<ACameraActor> ULevel::SpawnCamera(int CameraOrder)
 	return Camera;
 }
 
-void ULevel::ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_ptr<URenderer> Renderer)
+void ULevel::ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_ptr<UPrimitiveComponent> Renderer)
 {
 	if (false == Cameraes.contains(CameraOrder))
 	{
