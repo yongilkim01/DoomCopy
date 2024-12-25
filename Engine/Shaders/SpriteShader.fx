@@ -28,12 +28,23 @@ cbuffer FTransform : register(b0)
     float4x4 WVP;
 };
 
+cbuffer FSpriteData : register(b1)
+{
+    float4 CuttingPos;
+    float4 CuttingSize;
+};
+
 VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
 {
     VertexShaderOutPut OutPut;
     
     OutPut.SVPOSITION = mul(_Vertex.POSITION, WVP);
-    OutPut.UV = _Vertex.UV;
+
+    OutPut.UV.x = (_Vertex.UV.x * CuttingSize.x) + CuttingPos.x;
+    OutPut.UV.y = (_Vertex.UV.y * CuttingSize.y) + CuttingPos.y;
+    OutPut.UV.z = 1.0f; // z 값을 초기화 
+    OutPut.UV.w = 1.0f; // w 값을 초기화
+    
     OutPut.COLOR = _Vertex.COLOR;
     
     return OutPut;

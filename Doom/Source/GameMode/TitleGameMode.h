@@ -1,6 +1,8 @@
 #pragma once
 #include "GameFramework/Actor.h"
 
+class ATitleLogo;
+
 /**
  *	타이틀 게임모드 클래스
  */
@@ -22,5 +24,6 @@ public:
 protected:
 
 private:
+	std::shared_ptr<ATitleLogo> TitleLogo;
 
 };

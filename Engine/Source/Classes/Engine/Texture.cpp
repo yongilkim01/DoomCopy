@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Texture.h"
 
+#include "Core/Misc/Paths.h"
 #include "Core/Misc/FileHelper.h"
 
 #ifdef _DEBUG

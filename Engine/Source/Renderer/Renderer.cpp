@@ -26,16 +26,9 @@ void URenderer::BeginPlay()
 {
 	SetOrder(0);
 
-	// 버텍스 버퍼 생성
 	InitVertexBuffer();
-
-	// 버텍스 셰이더 생성
 	InitVertexShader();
-
-	// 인덱스 셰이더 생성
 	InitIndexBuffer();
-
-
 	InitRasterizer();
 	InitPixelShader();
 	InitShaderResourceView();
@@ -77,8 +70,7 @@ void URenderer::InitVertexBuffer()
 	Vertexes[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {1.0f , 1.0f } , {1.0f, 1.0f, 1.0f, 1.0f} };
 
 	// 버텍스 버퍼 설명 구조체 초기화
-	D3D11_BUFFER_DESC Desc;
-	ZeroMemory(&Desc, sizeof(D3D11_BUFFER_DESC));
+	D3D11_BUFFER_DESC Desc = { 0 };
 
 	Desc.ByteWidth = sizeof(EngineVertex) * Vertexes.size(); // 버퍼의 크기를 설정
 	Desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;				 // 버퍼의 바인딩 플래그를 버텍스 버퍼로 설정
@@ -470,7 +462,7 @@ void URenderer::InitShaderResourceView()
 	SamplerDesc.BorderColor[2] = 0.0f;
 	SamplerDesc.BorderColor[3] = 0.0f;
 
-	SamplerDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+	//SamplerDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
 
 	//SamplerDesc.MaxLOD = 0.0f;
 	//SamplerDesc.MinLOD = 0.0f;
@@ -518,7 +510,7 @@ void URenderer::UpdateShaderResourceView()
 		UEngineCore::Device.GetDeviceContext()->Unmap(SpriteConstantBuffer.Get(), 0);
 
 		ID3D11Buffer* ArrPtr[16] = { SpriteConstantBuffer.Get() };
-		UEngineCore::Device.GetDeviceContext()->VSSetConstantBuffers(0, 1, ArrPtr);
+		UEngineCore::Device.GetDeviceContext()->VSSetConstantBuffers(1, 1, ArrPtr);
 	}
 
 	ID3D11ShaderResourceView* ArrSRV[16] = { Sprite->GetShaderResourceView() };

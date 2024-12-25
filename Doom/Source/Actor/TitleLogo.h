@@ -1,7 +1,7 @@
 #pragma once
 #include <GameFramework/Actor.h>
 
-class URenderer;
+class UPaperSpriteComponent;
 
 // Ό³Έν :
 class ATitleLogo : public AActor
@@ -17,11 +17,16 @@ public:
 	ATitleLogo& operator=(const ATitleLogo& Other) = delete;
 	ATitleLogo& operator=(ATitleLogo&& Other) noexcept = delete;
 
+	std::shared_ptr<UPaperSpriteComponent> GetRenderer()
+	{
+		return LogoRenderer;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float DeltaTime) override;
 
 private:
-	std::shared_ptr<URenderer> LogoRenderer;
+	std::shared_ptr<UPaperSpriteComponent> LogoRenderer;
 };
 

@@ -10,27 +10,27 @@ class FDirectoryHelper : public FPaths
 {
 public:
 	/** 생성자, 소멸자 */
-	FDirectoryHelper();
-	FDirectoryHelper(std::string_view InitPath);
-	FDirectoryHelper(std::filesystem::path InitPath);
-	~FDirectoryHelper();
+	ENGINE_API FDirectoryHelper();
+	ENGINE_API FDirectoryHelper(std::string_view InitPath);
+	ENGINE_API FDirectoryHelper(std::filesystem::path InitPath);
+	ENGINE_API ~FDirectoryHelper();
 
 	/**
 	 * 디렉토리 내 모든 파일들을 가져와서 FFileHelper 타입으로 값을 저장 후 반환하는 메소드
 
 	 * @param IsRecursive - 재귀를 통한 디렉토리 순회 여부
 	 */
-	std::vector<class FFileHelper> GetAllFile(bool IsRecursive = true);
+	ENGINE_API std::vector<class FFileHelper> GetAllFile(bool IsRecursive = true);
 	/**
 	 * 디렉토리 내 모든 파일들을 가져와서 FFileHelper 타입으로 값을 저장 후 반환하는 메소드
 
 	 * @param IsRecursive - 재귀를 통한 디렉토리 순회 여부
 	 * @param Exts - 재귀를 통한 디렉토리 순회 여부
 	 */
-	std::vector<class FFileHelper> GetAllFile(bool IsRecursive, std::vector<std::string> Exts);
+	ENGINE_API std::vector<class FFileHelper> GetAllFile(bool IsRecursive, std::vector<std::string> Exts);
 
 	/** 디렉토리 내 모든 디렉토리들을 가져와서 UEngineDirectory 타입으로 값을 저장 후 반환하는 메소드 */
-	std::vector<class FDirectoryHelper> GetAllDirectory();
+	ENGINE_API std::vector<class FDirectoryHelper> GetAllDirectory();
 
 	ENGINE_API FFileHelper GetFile(std::string_view FileName);
 

@@ -13,12 +13,12 @@ class FFileHelper : public FPaths
 {
 public:
 	/** 생성자, 소멸자 */
-	FFileHelper();
-	FFileHelper(const std::string& Path);
-	FFileHelper(std::string_view Path);
-	FFileHelper(std::filesystem::path Path);
-	FFileHelper(const FPaths& PathData);
-	~FFileHelper();
+	ENGINE_API FFileHelper();
+	ENGINE_API FFileHelper(const std::string& Path);
+	ENGINE_API FFileHelper(std::string_view Path);
+	ENGINE_API FFileHelper(std::filesystem::path Path);
+	ENGINE_API FFileHelper(const FPaths& PathData);
+	ENGINE_API ~FFileHelper();
 
 	/** 파일 쓰기 읽기 메소드 */
 	void Write(const void* Ptr, size_t Size);
@@ -31,7 +31,7 @@ public:
 	void Close();
 	int GetFileSize();
 
-	std::string GetAllFileText();
+	ENGINE_API std::string GetAllFileText();
 
 private:
 	FILE* File = nullptr;

@@ -1,6 +1,7 @@
 #pragma once
 #include "Classes/Engine/AssetManager.h"
 #include "ThirdParty/DirectXTex/Include/DirectXTex.h"
+#include "Core/Misc/Paths.h"
 
 /**
  *	Ό³Έν
@@ -27,7 +28,7 @@ public:
 		return Load(FileName, LoadTextureFilePath);
 	}
 
-	static std::shared_ptr<UTexture> Load(std::string_view TextureFileName, std::string_view LoadTextureFilePath);
+	ENGINE_API static std::shared_ptr<UTexture> Load(std::string_view TextureFileName, std::string_view LoadTextureFilePath);
 
 	ID3D11ShaderResourceView* GetShaderResourceView()
 	{

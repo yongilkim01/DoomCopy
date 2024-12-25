@@ -3,6 +3,8 @@
 #include "Core/Math/EngineMath.h"
 #include "EngineDefine.h"
 
+class UTexture;
+
 struct FPaperSpriteData
 {
 	float4 CuttingLocation = { 0.0f, 0.0f };

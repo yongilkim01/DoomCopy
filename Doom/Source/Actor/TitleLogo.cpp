@@ -1,16 +1,15 @@
 #include "pch.h"
 #include "TitleLogo.h"
 
-#include <Renderer/Renderer.h>
 #include <Core/Math/EngineMath.h>
-
+#include <Classes/Engine/PaperSpriteComponent.h>
 
 ATitleLogo::ATitleLogo()
 {
-	LogoRenderer = CreateDefaultSubObject<URenderer>();
+	LogoRenderer = CreateDefaultSubObject<UPaperSpriteComponent>();
+	LogoRenderer->SetSprite("Player.png", 0);
 
-	SetActorRelativeScale3D({ 200.0f, 100.0f, 1.0f });
-	SetActorLocation({ 200.0f, 100.0f, 1.0f });
+	SetActorRelativeScale3D({ 600.0f, 600.0f, 1.0f });
 }
 
 ATitleLogo::~ATitleLogo()
