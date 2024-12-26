@@ -51,16 +51,7 @@ public:
 		std::shared_ptr<ComponentType> NewComponent(new(ComponentMemory)ComponentType());
 
 		/** 컴포넌트가 SceneComponent일 경우 */
-		if (std::is_base_of_v<USceneComponent, ComponentType>)
-		{
-			if (nullptr != RootComponent)
-			{
-				MSGASSERT("Root component가 할당되지 않았습니다.");
-			}
-
-			RootComponent = NewComponent;
-		}
-		else if (std::is_base_of_v<UActorComponent, ComponentType>)
+		if (std::is_base_of_v<UActorComponent, ComponentType>)
 		{
 			ActorComponentList.push_back(NewComponent);
 		}
@@ -104,12 +95,22 @@ public:
 		return World;
 	}
 
+	std::shared_ptr<USceneComponent> GetRootComponent() const
+	{
+		return RootComponent;
+	}
+	void SetRootComponent(const std::shared_ptr<USceneComponent> NewRootComponent)
+	{
+		RootComponent = NewRootComponent;
+	}
+	
+
 protected:
+	std::shared_ptr<USceneComponent> RootComponent = nullptr;
 
 private:
 	ULevel* World;
 
-	std::shared_ptr<USceneComponent> RootComponent = nullptr;
 	std::list<std::shared_ptr<UActorComponent>> ActorComponentList;
 
 };

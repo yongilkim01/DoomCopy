@@ -6,6 +6,7 @@
 #include "Misc/FileHelper.h"
 #include "Classes/Engine/Level.h"
 #include "Classes/Engine/RenderAsset.h"
+#include "Input/EngineInput.h"
 
 UEngineGraphicDevice UEngineCore::Device;
 UEngineWindow UEngineCore::MainWindow;
@@ -128,6 +129,8 @@ void UEngineCore::EngineFrame()
 	Timer.TimeCheck();
 
 	float DeltaTime = Timer.GetDeltaTime();
+
+	UEngineInput::KeyCheck(DeltaTime);
 
 	CurLevel->Tick(DeltaTime);
 	CurLevel->Render(DeltaTime);

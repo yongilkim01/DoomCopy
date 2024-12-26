@@ -72,7 +72,7 @@ void UPrimitiveComponent::InitVertexBuffer()
 	// 버텍스 버퍼 설명 구조체 초기화
 	D3D11_BUFFER_DESC Desc = { 0 };
 
-	Desc.ByteWidth = sizeof(EngineVertex) * Vertexes.size(); // 버퍼의 크기를 설정
+	Desc.ByteWidth = static_cast < UINT>(sizeof(EngineVertex) * Vertexes.size()); // 버퍼의 크기를 설정
 	Desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;				 // 버퍼의 바인딩 플래그를 버텍스 버퍼로 설정
 	Desc.CPUAccessFlags = 0;								 // CPU 접근 플래그를 설정 (기본값)
 	Desc.Usage = D3D11_USAGE_DEFAULT;						 // 버퍼의 사용 방식을 설정
@@ -265,7 +265,7 @@ void UPrimitiveComponent::InitIndexBuffer()
 	// 인덱스 버퍼 설명 구조체 초기화
 	D3D11_BUFFER_DESC Desc = { 0 };
 
-	Desc.ByteWidth = sizeof(unsigned int) * static_cast<int>(Indexes.size()); // 버퍼의 크기를 설정
+	Desc.ByteWidth = static_cast < UINT>(sizeof(unsigned int) * static_cast<int>(Indexes.size())); // 버퍼의 크기를 설정
 	Desc.BindFlags = D3D11_BIND_INDEX_BUFFER; // 버퍼의 바인딩 플래그를 설정 (인덱스 버퍼로 사용)
 	Desc.CPUAccessFlags = 0; // CPU 접근 플래그를 설정 (기본값)
 	Desc.Usage = D3D11_USAGE_DEFAULT; // 버퍼의 사용 방식을 설정

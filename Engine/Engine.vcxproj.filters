@@ -85,6 +85,9 @@
     <Filter Include="Windows">
       <UniqueIdentifier>{57ca364f-6910-4b9d-b3fe-ffe2a5a55c40}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{f0e2fa6b-2c08-44c8-b97d-9f00460c5c17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp">
@@ -197,6 +200,9 @@
     </ClCompile>
     <ClCompile Include="Source\Classes\Components\PrimitiveComponent.cpp">
       <Filter>Classes\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Input\EngineInput.cpp">
+      <Filter>Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -323,6 +329,9 @@
     </ClInclude>
     <ClInclude Include="Source\Classes\Components\PrimitiveComponent.h">
       <Filter>Classes\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Input\EngineInput.h">
+      <Filter>Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
