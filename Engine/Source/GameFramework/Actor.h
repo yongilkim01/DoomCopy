@@ -77,7 +77,7 @@ public:
 		{
 			return;
 		}
-		RootComponent->AddWorldOffset(DeltaLocation);
+		RootComponent->AddWorldLocation(DeltaLocation);
 	}
 	void SetActorRotation(const FVector& NewRotation)
 	{
@@ -106,6 +106,14 @@ public:
 		}
 
 		RootComponent->SetRelativeScale3D(Scale);
+	}
+	void AddActorRelativeLocation(const FVector& DeltaLocation)
+	{
+		if (nullptr == RootComponent)
+		{
+			return;
+		}
+		RootComponent->AddRelativeLocation(DeltaLocation);
 	}
 
 	ULevel* GetWorld()

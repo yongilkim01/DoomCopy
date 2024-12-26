@@ -58,13 +58,31 @@ public:
 CollisionFunctionInit Inst = CollisionFunctionInit();
 
 
-void FTransform::TransformUpdate()
+void FTransform::TransformUpdate(bool bAbsolute /* = false*/)
 {
 	ScaleMat.Scale(Scale);
 	RotationMat.RotationDeg(Rotation);
 	LocationMat.Position(Location);
 
-	World = ScaleMat * RotationMat * LocationMat * RevolveMat * ParentMat;
+	FMatrix CheckWorld = ScaleMat * RotationMat * LocationMat;
+
+	if (true == bAbsolute)
+	{
+		World = CheckWorld;
+		LocalWorld = CheckWorld * ParentMat.InverseReturn();
+	}
+	else
+	{
+		LocalWorld = ScaleMat * RotationMat * LocationMat;
+		World = ScaleMat * RotationMat * LocationMat * RevolveMat * ParentMat;
+	}
+}
+
+void FTransform::Decompose()
+{
+	World.Decompose(WorldScale, WorldQuat, WorldLocation);
+
+	LocalWorld.Decompose(RelativeScale, RelativeQuat, RelativeLocation);
 }
 
 bool FTransform::Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right)
@@ -204,13 +222,7 @@ FVector FVector::operator*(const class FMatrix& InMatrixValue) const
 
 FVector& FVector::operator*=(const FMatrix& InMatrixValue)
 {
-	FVector Copy = *this;
-
-	this->X = Copy.X * InMatrixValue.Arr2D[0][0] + Copy.Y * InMatrixValue.Arr2D[1][0] + Copy.Z * InMatrixValue.Arr2D[2][0] + Copy.W * InMatrixValue.Arr2D[3][0];
-	this->Y = Copy.X * InMatrixValue.Arr2D[0][1] + Copy.Y * InMatrixValue.Arr2D[1][1] + Copy.Z * InMatrixValue.Arr2D[2][1] + Copy.W * InMatrixValue.Arr2D[3][1];
-	this->Z = Copy.X * InMatrixValue.Arr2D[0][2] + Copy.Y * InMatrixValue.Arr2D[1][2] + Copy.Z * InMatrixValue.Arr2D[2][2] + Copy.W * InMatrixValue.Arr2D[3][2];
-	this->W = Copy.X * InMatrixValue.Arr2D[0][3] + Copy.Y * InMatrixValue.Arr2D[1][3] + Copy.Z * InMatrixValue.Arr2D[2][3] + Copy.W * InMatrixValue.Arr2D[3][3];
-
+	DirectVector = DirectX::XMVector4Transform(DirectVector, InMatrixValue.DirectMatrix);
 
 	return *this;
 }
@@ -219,26 +231,49 @@ FMatrix FMatrix::operator*(const FMatrix& InMatrixValue)
 {
 	FMatrix Result;
 
-	Result.Arr2D[0][0] = Arr2D[0][0] * InMatrixValue.Arr2D[0][0] + Arr2D[0][1] * InMatrixValue.Arr2D[1][0] + Arr2D[0][2] * InMatrixValue.Arr2D[2][0] + Arr2D[0][3] * InMatrixValue.Arr2D[3][0];
-	Result.Arr2D[0][1] = Arr2D[0][0] * InMatrixValue.Arr2D[0][1] + Arr2D[0][1] * InMatrixValue.Arr2D[1][1] + Arr2D[0][2] * InMatrixValue.Arr2D[2][1] + Arr2D[0][3] * InMatrixValue.Arr2D[3][1];
-	Result.Arr2D[0][2] = Arr2D[0][0] * InMatrixValue.Arr2D[0][2] + Arr2D[0][1] * InMatrixValue.Arr2D[1][2] + Arr2D[0][2] * InMatrixValue.Arr2D[2][2] + Arr2D[0][3] * InMatrixValue.Arr2D[3][2];
-	Result.Arr2D[0][3] = Arr2D[0][0] * InMatrixValue.Arr2D[0][3] + Arr2D[0][1] * InMatrixValue.Arr2D[1][3] + Arr2D[0][2] * InMatrixValue.Arr2D[2][3] + Arr2D[0][3] * InMatrixValue.Arr2D[3][3];
-
-	Result.Arr2D[1][0] = Arr2D[1][0] * InMatrixValue.Arr2D[0][0] + Arr2D[1][1] * InMatrixValue.Arr2D[1][0] + Arr2D[1][2] * InMatrixValue.Arr2D[2][0] + Arr2D[1][3] * InMatrixValue.Arr2D[3][0];
-	Result.Arr2D[1][1] = Arr2D[1][0] * InMatrixValue.Arr2D[0][1] + Arr2D[1][1] * InMatrixValue.Arr2D[1][1] + Arr2D[1][2] * InMatrixValue.Arr2D[2][1] + Arr2D[1][3] * InMatrixValue.Arr2D[3][1];
-	Result.Arr2D[1][2] = Arr2D[1][0] * InMatrixValue.Arr2D[0][2] + Arr2D[1][1] * InMatrixValue.Arr2D[1][2] + Arr2D[1][2] * InMatrixValue.Arr2D[2][2] + Arr2D[1][3] * InMatrixValue.Arr2D[3][2];
-	Result.Arr2D[1][3] = Arr2D[1][0] * InMatrixValue.Arr2D[0][3] + Arr2D[1][1] * InMatrixValue.Arr2D[1][3] + Arr2D[1][2] * InMatrixValue.Arr2D[2][3] + Arr2D[1][3] * InMatrixValue.Arr2D[3][3];
-
-	Result.Arr2D[2][0] = Arr2D[2][0] * InMatrixValue.Arr2D[0][0] + Arr2D[2][1] * InMatrixValue.Arr2D[1][0] + Arr2D[2][2] * InMatrixValue.Arr2D[2][0] + Arr2D[2][3] * InMatrixValue.Arr2D[3][0];
-	Result.Arr2D[2][1] = Arr2D[2][0] * InMatrixValue.Arr2D[0][1] + Arr2D[2][1] * InMatrixValue.Arr2D[1][1] + Arr2D[2][2] * InMatrixValue.Arr2D[2][1] + Arr2D[2][3] * InMatrixValue.Arr2D[3][1];
-	Result.Arr2D[2][2] = Arr2D[2][0] * InMatrixValue.Arr2D[0][2] + Arr2D[2][1] * InMatrixValue.Arr2D[1][2] + Arr2D[2][2] * InMatrixValue.Arr2D[2][2] + Arr2D[2][3] * InMatrixValue.Arr2D[3][2];
-	Result.Arr2D[2][3] = Arr2D[2][0] * InMatrixValue.Arr2D[0][3] + Arr2D[2][1] * InMatrixValue.Arr2D[1][3] + Arr2D[2][2] * InMatrixValue.Arr2D[2][3] + Arr2D[2][3] * InMatrixValue.Arr2D[3][3];
-
-	Result.Arr2D[3][0] = Arr2D[3][0] * InMatrixValue.Arr2D[0][0] + Arr2D[3][1] * InMatrixValue.Arr2D[1][0] + Arr2D[3][2] * InMatrixValue.Arr2D[2][0] + Arr2D[3][3] * InMatrixValue.Arr2D[3][0];
-	Result.Arr2D[3][1] = Arr2D[3][0] * InMatrixValue.Arr2D[0][1] + Arr2D[3][1] * InMatrixValue.Arr2D[1][1] + Arr2D[3][2] * InMatrixValue.Arr2D[2][1] + Arr2D[3][3] * InMatrixValue.Arr2D[3][1];
-	Result.Arr2D[3][2] = Arr2D[3][0] * InMatrixValue.Arr2D[0][2] + Arr2D[3][1] * InMatrixValue.Arr2D[1][2] + Arr2D[3][2] * InMatrixValue.Arr2D[2][2] + Arr2D[3][3] * InMatrixValue.Arr2D[3][2];
-	Result.Arr2D[3][3] = Arr2D[3][0] * InMatrixValue.Arr2D[0][3] + Arr2D[3][1] * InMatrixValue.Arr2D[1][3] + Arr2D[3][2] * InMatrixValue.Arr2D[2][3] + Arr2D[3][3] * InMatrixValue.Arr2D[3][3];
+	Result.DirectMatrix = DirectX::XMMatrixMultiply(DirectMatrix, InMatrixValue.DirectMatrix);
 
 	return Result;
 
+}
+
+FVector FQuat::QuaternionToEulerDeg() const
+{
+	return QuaternionToEulerRad() * FMath::PI2;
+}
+
+FVector FQuat::QuaternionToEulerRad() const
+{
+	FVector Result;
+
+	float sinrCosp = 2.0f * (W * Z + X * Y);
+	float cosrCosp = 1.0f - 2.0f * (Z * Z + X * X);
+
+	Result.Z = atan2f(sinrCosp, cosrCosp);
+
+	float pitchTest = W * X - Y * Z;
+	float asinThreshold = 0.4999995f;
+	float sinp = 2.0f * pitchTest;
+
+	if (pitchTest < -asinThreshold)
+	{
+		Result.X = -(0.5f * FMath::PI);
+	}
+	else if (pitchTest > asinThreshold)
+	{
+		Result.X = (0.5f * FMath::PI);
+	}
+	else
+	{
+		Result.X = asinf(sinp);
+	}
+	// 이걸 사용했을대 
+	float sinyCosp = 2.0f * (W * Y + X * Z);
+	float cosyCosp = 1.0f - 2.0f * (X * X + Y * Y);
+	Result.Y = atan2f(sinyCosp, cosyCosp);
+	// 0, 45 0 => 쿼터니온으로 바꾼다.
+	// SetActorRoation(쿼터니온);
+	// FQuat GetActorRoation();
+	// FQuat => 각도 -180 , 275, - 180
+	return Result;
 }

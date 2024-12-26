@@ -28,5 +28,7 @@ protected:
 
 private:
 	std::shared_ptr<UPaperSpriteComponent> LogoRenderer;
+	std::shared_ptr<UPaperSpriteComponent> Child;
+
 };
 

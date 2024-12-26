@@ -70,6 +70,28 @@ public:
 	}
 };
 
+class FQuat
+{
+public:
+	union
+	{
+		struct
+		{
+			float X;
+			float Y;
+			float Z;
+			float W;
+		};
+		float Arr2D[1][4];
+		float Arr1D[4];
+		// 다이렉트 simd 연산 전용 벡터.
+		DirectX::XMVECTOR DirectVector;
+	};
+	class FVector QuaternionToEulerDeg() const;
+	class FVector QuaternionToEulerRad() const;
+};
+
+
 class FVector
 {
 public:
@@ -491,6 +513,23 @@ public:
 		Result.Y = (X * sinf(Angle)) + (Y * cosf(Angle));
 		return Result;
 	}
+	/**
+	 * 오일러 각도를 사용하여 쿼터니언을 생성하는 메소드
+	 *
+	 * @return 생성된 회전 쿼터니언
+	 */
+	FQuat DegAngleToQuaternion()
+	{
+		FQuat Result;
+		/**
+		 *	DirectX 함수 XMQuaternionRotationRollPitchYawFromVector를 사용하여
+		 *	Roll, Pitch, Yaw 오일러 각도 벡터로부터 회전 쿼터니언을 생성
+		 */
+		Result.DirectVector = DirectX::XMQuaternionRotationRollPitchYawFromVector(DirectVector);
+
+		return Result;
+	}
+
 
 	/** 오퍼레이션 */
 	ENGINE_API FVector operator*(const class FMatrix& InMatrix) const;
@@ -591,6 +630,7 @@ public:
 };
 
 using float4 = FVector;
+
 
 /**
  *	Matrix 클래스
@@ -750,6 +790,43 @@ public:
 	{
 		Identity();
 		DirectMatrix = DirectX::XMMatrixPerspectiveFovLH(FovAngle, Width / Height, Near, Far);
+	}
+	/**
+	 * FMatrix의 역행렬을 계산하여 반환하는 메소드
+	 *
+	 * @return 역행렬이 계산된 FMatrix 객체
+	 */
+	FMatrix InverseReturn()
+	{
+		FMatrix Result;
+
+		// DirectX 함수 XMMatrixInverse를 사용하여 역행렬을 계산
+		// 첫 번째 매개변수는 선택적 출력 매개변수로 nullptr을 전달
+		// 두 번째 매개변수는 원래의 DirectMatrix
+		Result.DirectMatrix = DirectX::XMMatrixInverse(nullptr, DirectMatrix);
+
+		return Result;
+	}
+	/**
+	 * 행렬을 분해하여 스케일 벡터, 회전 쿼터니언, 위치 벡터를 반환하는 메소드
+	 *
+	 * @param ScaleVector - 분해된 스케일 벡터를 저장할 변수
+	 * @param RotQuat - 분해된 회전 쿼터니언을 저장할 변수
+	 * @param Location - 분해된 위치 벡터를 저장할 변수
+	 */
+	void Decompose(FVector& ScaleVector, FQuat& RotQuat, FVector& Location)
+	{
+		/**
+		 *	DirectX의 XMMatrixDecompose 함수를 사용하여 행렬을 분해
+		 *	첫 번째 매개변수는 스케일 벡터를 저장할 주소
+		 *	두 번째 매개변수는 회전 쿼터니언을 저장할 주소
+		 *	세 번째 매개변수는 위치 벡터를 저장할 주소
+		 *	네 번째 매개변수는 분해할 행렬
+		 */
+		DirectX::XMMatrixDecompose(&ScaleVector.DirectVector,
+			&RotQuat.DirectVector,
+			&Location.DirectVector,
+			DirectMatrix);
 	}
 
 
@@ -971,11 +1048,24 @@ struct FTransform
 	float4 Rotation;
 	float4 Location;
 
+	// 릴리에티브 로컬
+	float4 RelativeScale;
+	float4 RelativeRotation;
+	FQuat RelativeQuat;
+	float4 RelativeLocation;
+
+	// 월드
+	float4 WorldScale;
+	float4 WorldRotation;
+	FQuat WorldQuat;
+	float4 WorldLocation;
+
 	float4x4 ScaleMat;
 	float4x4 RotationMat;
 	float4x4 LocationMat;
 	float4x4 RevolveMat;
 	float4x4 ParentMat;
+	float4x4 LocalWorld;
 	float4x4 World;
 	float4x4 View;
 	float4x4 Projection;
@@ -988,7 +1078,9 @@ struct FTransform
 	}
 
 public:
-	ENGINE_API void TransformUpdate();
+	ENGINE_API void TransformUpdate(bool bAbsolute = false);
+	ENGINE_API void Decompose();
+
 
 private:
 	friend class CollisionFunctionInit;

@@ -23,12 +23,14 @@ void USceneComponent::TransformUpdate()
 {
 	ParentMatrixCheck();
 
-	Transform.TransformUpdate();
+	Transform.TransformUpdate(bAbsolute);
 
 	for (std::shared_ptr<USceneComponent> ChildComponent : Childs)
 	{
 		ChildComponent->TransformUpdate();
 	}
+
+	bAbsolute = false;
 }
 
 void USceneComponent::SetupAttachment(std::shared_ptr<USceneComponent> ParentComponent)
