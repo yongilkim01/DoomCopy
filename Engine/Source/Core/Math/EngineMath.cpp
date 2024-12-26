@@ -64,7 +64,7 @@ void FTransform::TransformUpdate()
 	RotationMat.RotationDeg(Rotation);
 	LocationMat.Position(Location);
 
-	World = ScaleMat * RotationMat * LocationMat;
+	World = ScaleMat * RotationMat * LocationMat * RevolveMat * ParentMat;
 }
 
 bool FTransform::Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right)

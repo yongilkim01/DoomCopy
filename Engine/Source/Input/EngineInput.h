@@ -19,7 +19,7 @@ enum class KeyEvent
 class UEngineInput
 {
 public:
-	/** 생성자, 소멸자 */
+	/** 소멸자 */
 	~UEngineInput();
 
 	/** 객체 값 복사 방지 */
@@ -61,7 +61,7 @@ private:
 		void KeyCheck(float _DeltaTime);
 
 	};
-	ENGINE_API static UEngineInput& GetInst();
+	ENGINE_API static UEngineInput& GetInstance();
 	ENGINE_API static void EventCheck(float _DeltaTime);
 
 public:
@@ -78,7 +78,7 @@ public:
 	}
 	static bool IsDown(int _KeyIndex)
 	{
-		if (false == GetInst().Keys.contains(_KeyIndex))
+		if (false == GetInstance().Keys.contains(_KeyIndex))
 		{
 			MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
 			return false;
@@ -89,43 +89,43 @@ public:
 		// {
 		//     UEngineKey Value = UEngineKey();
 		// }
-		return GetInst().Keys[_KeyIndex].IsDown;
+		return GetInstance().Keys[_KeyIndex].IsDown;
 	}
 	bool IsUp(int _KeyIndex)
 	{
-		if (false == GetInst().Keys.contains(_KeyIndex))
+		if (false == GetInstance().Keys.contains(_KeyIndex))
 		{
 			MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
 			return false;
 		}
-		return GetInst().Keys[_KeyIndex].IsUp;
+		return GetInstance().Keys[_KeyIndex].IsUp;
 	}
 	static bool IsPress(int _KeyIndex)
 	{
-		if (false == GetInst().Keys.contains(_KeyIndex))
+		if (false == GetInstance().Keys.contains(_KeyIndex))
 		{
 			MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
 			return false;
 		}
-		return GetInst().Keys[_KeyIndex].IsPress;
+		return GetInstance().Keys[_KeyIndex].IsPress;
 	}
 	float IsPressTime(int _KeyIndex)
 	{
-		if (false == GetInst().Keys.contains(_KeyIndex))
+		if (false == GetInstance().Keys.contains(_KeyIndex))
 		{
 			MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
 			return false;
 		}
-		return GetInst().Keys[_KeyIndex].PressTime;
+		return GetInstance().Keys[_KeyIndex].PressTime;
 	}
 	bool IsFree(int _KeyIndex)
 	{
-		if (false == GetInst().Keys.contains(_KeyIndex))
+		if (false == GetInstance().Keys.contains(_KeyIndex))
 		{
 			MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
 			return false;
 		}
-		return GetInst().Keys[_KeyIndex].IsFree;
+		return GetInstance().Keys[_KeyIndex].IsFree;
 	}
 	void BindAction(int _KeyIndex, KeyEvent _EventType, std::function<void()> _Function);
 

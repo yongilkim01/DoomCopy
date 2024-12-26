@@ -24,6 +24,8 @@ UPrimitiveComponent::~UPrimitiveComponent()
 
 void UPrimitiveComponent::BeginPlay()
 {
+	USceneComponent::BeginPlay();
+
 	SetOrder(0);
 
 	InitVertexBuffer();

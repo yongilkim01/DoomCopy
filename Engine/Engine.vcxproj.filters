@@ -343,6 +343,7 @@
     <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl">
       <Filter>ThirdParty\DirectXTex\Include</Filter>
     </None>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Source\ThirdParty\DirectXTex\Debug\DirectXTex_Debug.lib">

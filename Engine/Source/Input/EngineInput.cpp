@@ -91,7 +91,7 @@ void UEngineInput::UEngineKey::EventCheck()
 		}
 	}
 }
-UEngineInput& UEngineInput::GetInst()
+UEngineInput& UEngineInput::GetInstance()
 {
 	// 플랫폼
 	static UEngineInput Inst = UEngineInput();
@@ -202,8 +202,8 @@ UEngineInput::UEngineInput()
 }
 void UEngineInput::EventCheck(float _DeltaTime)
 {
-	std::map<int, UEngineKey>::iterator StartIter = GetInst().Keys.begin();
-	std::map<int, UEngineKey>::iterator EndIter = GetInst().Keys.end();
+	std::map<int, UEngineKey>::iterator StartIter = GetInstance().Keys.begin();
+	std::map<int, UEngineKey>::iterator EndIter = GetInstance().Keys.end();
 	for (; StartIter != EndIter; ++StartIter)
 	{
 		// 명시적이기 잖고 디버깅이 힘들어서 별로 좋아하지 않게 되었다.
@@ -213,8 +213,8 @@ void UEngineInput::EventCheck(float _DeltaTime)
 }
 void UEngineInput::KeyCheck(float _DeltaTime)
 {
-	std::map<int, UEngineKey>::iterator StartIter = GetInst().Keys.begin();
-	std::map<int, UEngineKey>::iterator EndIter = GetInst().Keys.end();
+	std::map<int, UEngineKey>::iterator StartIter = GetInstance().Keys.begin();
+	std::map<int, UEngineKey>::iterator EndIter = GetInstance().Keys.end();
 	for (; StartIter != EndIter; ++StartIter)
 	{
 		// 명시적이기 잖고 디버깅이 힘들어서 별로 좋아하지 않게 되었다.

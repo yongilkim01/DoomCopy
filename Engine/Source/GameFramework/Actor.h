@@ -79,6 +79,24 @@ public:
 		}
 		RootComponent->AddWorldOffset(DeltaLocation);
 	}
+	void SetActorRotation(const FVector& NewRotation)
+	{
+		if (nullptr == RootComponent)
+		{
+			return;
+		}
+
+		RootComponent->SetWorldRotation(NewRotation);
+	}
+	void AddActorRotation(const FVector& DeltaRotation)
+	{
+		if (nullptr == RootComponent)
+		{
+			return;
+		}
+
+		RootComponent->AddWorldRotation(DeltaRotation);
+	}
 
 	void SetActorRelativeScale3D(const FVector& Scale)
 	{
@@ -87,7 +105,7 @@ public:
 			return;
 		}
 
-		RootComponent->SetRealativeScale3D(Scale);
+		RootComponent->SetRelativeScale3D(Scale);
 	}
 
 	ULevel* GetWorld()

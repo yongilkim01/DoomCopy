@@ -9,9 +9,14 @@ ATitleLogo::ATitleLogo()
 {
 	LogoRenderer = CreateDefaultSubObject<UPaperSpriteComponent>();
 	LogoRenderer->SetSprite("Player.png", 0);
+	LogoRenderer->SetRelativeScale3D({ 50, 50, 1.0f });
+
 	RootComponent = LogoRenderer;
 
-	SetActorRelativeScale3D({ 200.0f, 200.0f, 1.0f });
+	std::shared_ptr<UPaperSpriteComponent> Child = CreateDefaultSubObject<UPaperSpriteComponent>();
+	Child->SetSprite("Player.png", 2);
+	Child->SetWorldLocation({ 2.0f, 0.0f, 0.0f });
+	Child->SetupAttachment(RootComponent);
 }
 
 ATitleLogo::~ATitleLogo()
@@ -42,5 +47,9 @@ void ATitleLogo::Tick(float DeltaTime)
 	if (UEngineInput::IsPress('S'))
 	{
 		AddActorLocation(FVector{ 0.0f, -100.0f * DeltaTime, 0.0f });
+	}
+	if (UEngineInput::IsPress('Q'))
+	{
+		AddActorRotation(FVector{ 0.0f, 0.0f , 360.0f * DeltaTime });
 	}
 }

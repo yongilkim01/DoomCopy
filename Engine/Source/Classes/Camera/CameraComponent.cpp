@@ -11,6 +11,7 @@ UCameraComponent::UCameraComponent()
 
 UCameraComponent::~UCameraComponent()
 {
+	Rendereres.clear();
 }
 
 void UCameraComponent::BeginPlay()

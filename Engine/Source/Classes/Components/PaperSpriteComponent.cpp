@@ -20,3 +20,8 @@ void UPaperSpriteComponent::SetSprite(std::string_view SpriteName, size_t Index)
     SetSpriteData(Index);
 }
 
+void UPaperSpriteComponent::BeginPlay()
+{
+    UPrimitiveComponent::BeginPlay();
+}
+

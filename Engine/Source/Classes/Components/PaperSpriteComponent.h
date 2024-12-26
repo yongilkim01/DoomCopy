@@ -21,6 +21,8 @@ public:
 	ENGINE_API void SetSprite(std::string_view SpriteName, size_t Index);
 
 protected:
+	/** USceneComponent method */
+	void BeginPlay() override;
 
 private:
 
