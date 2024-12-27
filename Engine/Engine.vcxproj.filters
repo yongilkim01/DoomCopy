@@ -88,6 +88,9 @@
     <Filter Include="Input">
       <UniqueIdentifier>{f0e2fa6b-2c08-44c8-b97d-9f00460c5c17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{b94968ba-83d8-46ff-ae01-76e800b2b99d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp">
@@ -203,6 +206,9 @@
     </ClCompile>
     <ClCompile Include="Source\Input\EngineInput.cpp">
       <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\VertexBuffer.cpp">
+      <Filter>Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -332,6 +338,9 @@
     </ClInclude>
     <ClInclude Include="Source\Input\EngineInput.h">
       <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\VertexBuffer.h">
+      <Filter>Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
