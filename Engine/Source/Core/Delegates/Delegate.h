@@ -8,12 +8,12 @@ class UDelegate
 {
 public:
 	/** 持失切, 社瑚切 */
-	UDelegate();
-	UDelegate(std::function<void()> Function)
+	ENGINE_API UDelegate();
+	ENGINE_API UDelegate(std::function<void()> Function)
 	{
 		Functions.push_back(Function);
 	}
-	~UDelegate();
+	ENGINE_API ~UDelegate();
 
 	void operator+=(std::function<void()> Function)
 	{

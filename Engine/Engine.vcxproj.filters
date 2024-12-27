@@ -210,6 +210,9 @@
     <ClCompile Include="Source\Rendering\VertexBuffer.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Rendering\RenderUnit.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
@@ -340,6 +343,9 @@
       <Filter>Input</Filter>
     </ClInclude>
     <ClInclude Include="Source\Rendering\VertexBuffer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\RenderUnit.h">
       <Filter>Rendering</Filter>
     </ClInclude>
   </ItemGroup>

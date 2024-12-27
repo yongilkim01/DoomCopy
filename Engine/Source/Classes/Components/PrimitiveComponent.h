@@ -1,9 +1,11 @@
 #pragma once
 #include "Classes/Components/SceneComponent.h"
 #include "Classes/Engine/PaperSprite.h"
+#include "Rendering/RenderUnit.h"
 
 class ULevel;
 class UCameraComponent;
+class UPaperSprite;
 class UTexture;
 
 struct EngineVertex
@@ -52,9 +54,10 @@ public:
 
 	void UpdateRenderTargetView();
 
-	/** URenderer 메소드 */
+	/** UPrimitiveComponent 메소드 */
 	ENGINE_API void SetSpriteData(size_t Index);
-	void SetTexture(std::string_view TextureName);
+	ENGINE_API void SetSprite(std::string_view SpriteName);
+	ENGINE_API void SetSprite(UPaperSprite* PaperSprite);
 
 	/** UObject 상속 메소드 */
 	virtual void SetOrder(int NewOrder) override;
@@ -63,9 +66,10 @@ protected:
 	/** UObject 상속 메소드 */
 	ENGINE_API void BeginPlay() override;
 
-private:
 	/** URenderer 메소드 */
-	virtual void Render(UCameraComponent* CameraComponent, float DeltaTime);
+	ENGINE_API virtual void Render(UCameraComponent* CameraComponent, float DeltaTime);
+
+private:
 
 public:
 	Microsoft::WRL::ComPtr<ID3D11Buffer> VertexBuffer = nullptr;
@@ -88,9 +92,13 @@ public:
 	Microsoft::WRL::ComPtr<ID3D11Buffer> ConstantBuffer = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> SamplerState = nullptr;
 
+	std::vector<URenderUnit> Units;
+
+protected:
+	UPaperSprite* Sprite = nullptr;
+
 private:
 	FPaperSpriteData SpriteData;
-	std::shared_ptr<UPaperSprite> Sprite = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11Buffer> SpriteConstantBuffer = nullptr; // 스프라이트용 상수버퍼
 
 };

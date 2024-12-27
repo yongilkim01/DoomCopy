@@ -12,7 +12,9 @@ ATitleLogo::ATitleLogo()
 	RootComponent = Default;
 
 	LogoRenderer = CreateDefaultSubObject<UPaperSpriteComponent>();
-	LogoRenderer->SetSprite("Player.png", 0);
+	LogoRenderer->CreateAnimation("Idle", "Player.png", 0, 70, 0.1f);
+	LogoRenderer->ChangeAnimation("Idle");
+
 	LogoRenderer->SetRelativeScale3D({ 50, 50, 1.0f });
 	LogoRenderer->SetupAttachment(RootComponent);
 	//RootComponent = LogoRenderer;

@@ -23,6 +23,7 @@ public:
 
 	ENGINE_API virtual void InitializeComponent() {}
 	ENGINE_API virtual void BeginPlay() {}
+	ENGINE_API virtual void ComponentTick(float DeltaTime) {}
 
 	AActor* GetOwner()
 	{

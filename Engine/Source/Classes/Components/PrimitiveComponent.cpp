@@ -4,6 +4,7 @@
 #include "Classes/Engine/Level.h"
 #include "Classes/Engine/Texture.h"
 #include "Classes/Camera/CameraComponent.h"
+#include "Classes/Engine/PaperSprite.h"
 
 #include "Core/Misc/DirectoryHelper.h"
 #include "Core/Misc/FileHelper.h"
@@ -527,17 +528,27 @@ void UPrimitiveComponent::SetSpriteData(size_t Index)
 	SpriteData = Sprite->GetSpriteData(Index);
 }
 
-void UPrimitiveComponent::SetTexture(std::string_view TextureName)
+void UPrimitiveComponent::SetSprite(std::string_view SpriteName)
 {
-	std::string UpperSpriteName = UEngineString::ToUpper(TextureName);
+	std::string UpperSpriteName = UEngineString::ToUpper(SpriteName);
 
-	Sprite = UPaperSprite::Find<UPaperSprite>(UpperSpriteName);
+	Sprite = UPaperSprite::Find<UPaperSprite>(UpperSpriteName).get();
 
 	if (nullptr == Sprite)
 	{
 		MSGASSERT("스프라이트 로드 실패");
 	}
 
+}
+
+void UPrimitiveComponent::SetSprite(UPaperSprite* PaperSprite)
+{
+	Sprite = PaperSprite;
+
+	if (nullptr == Sprite)
+	{
+		MSGASSERT("스프라이트가 존재하지 않습니다.");
+	}
 }
 
 void UPrimitiveComponent::SetOrder(int NewOrder)

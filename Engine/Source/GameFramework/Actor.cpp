@@ -26,5 +26,13 @@ void AActor::BeginPlay()
 
 void AActor::Tick(float DeltaTime)
 {
+    if (nullptr != RootComponent)
+    {
+        RootComponent->ComponentTick(DeltaTime);
+    }
 
+    for (std::shared_ptr<class UActorComponent> ActorComponent : ActorComponentList)
+    {
+        ActorComponent->ComponentTick(DeltaTime);
+    }
 }
