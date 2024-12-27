@@ -17,6 +17,7 @@ cbuffer FTransform : register(b0)
 {
     float4 Scale;
     float4 Rotation;
+    float4 Qut;
     float4 Location;
 
 	// 릴리에티브 로컬

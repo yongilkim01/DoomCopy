@@ -76,6 +76,8 @@ void FTransform::TransformUpdate(bool bAbsolute /* = false*/)
 		LocalWorld = ScaleMat * RotationMat * LocationMat;
 		World = ScaleMat * RotationMat * LocationMat * RevolveMat * ParentMat;
 	}
+
+	Decompose();
 }
 
 void FTransform::Decompose()
@@ -83,6 +85,11 @@ void FTransform::Decompose()
 	World.Decompose(WorldScale, WorldQuat, WorldLocation);
 
 	LocalWorld.Decompose(RelativeScale, RelativeQuat, RelativeLocation);
+
+	Scale = RelativeScale;
+	Quat = RelativeQuat;
+	Rotation = RelativeQuat.QuaternionToEulerDeg();
+	Location = RelativeLocation;
 }
 
 bool FTransform::Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right)
@@ -239,7 +246,7 @@ FMatrix FMatrix::operator*(const FMatrix& InMatrixValue)
 
 FVector FQuat::QuaternionToEulerDeg() const
 {
-	return QuaternionToEulerRad() * FMath::PI2;
+	return QuaternionToEulerRad() * FMath::R2D;
 }
 
 FVector FQuat::QuaternionToEulerRad() const

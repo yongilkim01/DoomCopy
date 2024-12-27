@@ -1046,6 +1046,7 @@ struct FTransform
 {
 	float4 Scale;
 	float4 Rotation;
+	FQuat Quat;
 	float4 Location;
 
 	// 릴리에티브 로컬

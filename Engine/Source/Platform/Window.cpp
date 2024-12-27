@@ -96,6 +96,11 @@ ENGINE_API int UEngineWindow::WindowMessageLoop(std::function<void()> StartFunct
             DispatchMessage(&msg);
         }
 
+        if (false == LoopActive)
+        {
+            break;
+        }
+
         FrameFunction();
     }
 
