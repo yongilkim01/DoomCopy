@@ -124,3 +124,17 @@ FPaperSpriteData UPaperSprite::GetSpriteData(size_t Index)
 
 	return SpriteDataVector[Index];
 }
+
+FVector UPaperSprite::GetSpriteScaleToReal(size_t Index)
+{
+	if (SpriteDataVector.size() <= Index)
+	{
+		MSGASSERT("스프라이트의 인덱스를 초과하여 사용하려고 했습니다.");
+	}
+	FVector Result;
+	//                0~1사이의 비율이기 때문에
+	Result.X = SpriteDataVector[Index].CuttingSize.X * Texture->GetTextureSize().X;
+	Result.Y = SpriteDataVector[Index].CuttingSize.Y * Texture->GetTextureSize().Y;
+
+	return Result;
+}

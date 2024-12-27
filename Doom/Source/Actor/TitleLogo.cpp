@@ -15,16 +15,12 @@ ATitleLogo::ATitleLogo()
 	LogoRenderer->CreateAnimation("Idle", "Player.png", 0, 70, 0.1f);
 	LogoRenderer->ChangeAnimation("Idle");
 
+	UPaperSpriteComponent::FrameAnimation* Animation = LogoRenderer->FindAnimation("Idle");
+	Animation->IsAutoScale = true;
+	Animation->AutoScaleRatio = 4.0f;
+
 	LogoRenderer->SetRelativeScale3D({ 50, 50, 1.0f });
 	LogoRenderer->SetupAttachment(RootComponent);
-	//RootComponent = LogoRenderer;
-
-	Child = CreateDefaultSubObject<UPaperSpriteComponent>();
-	Child->SetSprite("Player.png", 2);
-	Child->SetRelativeLocation({ 100.0f, 0.0f, 0.0f });
-	Child->SetWorldScale3D({ 50.0f, 50.0f, 1.0f });
-	Child->SetupAttachment(RootComponent);
-
 }
 
 ATitleLogo::~ATitleLogo()

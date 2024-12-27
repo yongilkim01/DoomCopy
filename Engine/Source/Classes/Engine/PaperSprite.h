@@ -31,6 +31,8 @@ public:
 		std::string_view SpriteFileName, std::string_view SpriteFileExtension);
 	ENGINE_API ID3D11ShaderResourceView* GetShaderResourceView();
 	ENGINE_API FPaperSpriteData GetSpriteData(size_t Index);
+	ENGINE_API FVector GetSpriteScaleToReal(size_t Index);
+
 
 protected:
 

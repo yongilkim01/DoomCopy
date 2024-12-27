@@ -9,7 +9,7 @@ ATitleGameMode::ATitleGameMode()
 {
 	{
 		TitleLogo = GetWorld()->SpawnActor<ATitleLogo>();
-		TitleLogo->SetActorLocation({ 300.0f, 0.0f, 0.0f });
+		//TitleLogo->SetActorLocation({ 300.0f, 0.0f, 0.0f });
 		TitleLogo->GetRenderer()->SetSpriteData(4);
 	}
 

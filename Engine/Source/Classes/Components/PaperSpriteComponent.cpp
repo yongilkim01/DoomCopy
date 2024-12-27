@@ -63,7 +63,15 @@ void UPaperSpriteComponent::ComponentTick(float DeltaTime)
 				}
 			}
 		}
+
 		CurIndex = Indexs[CurAnimation->CurIndex];
+
+		if (true == CurAnimation->IsAutoScale)
+		{
+			FVector Scale = CurAnimation->Sprite->GetSpriteScaleToReal(CurIndex);
+			Scale.Z = 1.0f;
+			SetRelativeScale3D(Scale * CurAnimation->AutoScaleRatio);
+		}
 	}
 }
 
@@ -195,6 +203,16 @@ void UPaperSpriteComponent::SetAnimationEvent(std::string_view AnimationName,
 	ChangeAnimation->Events[Frame] += EventFunction;
 }
 
+UPaperSpriteComponent::FrameAnimation* UPaperSpriteComponent::FindAnimation(std::string_view AnimationName)
+{
+	std::string UpperString = UEngineString::ToUpper(AnimationName);
+	if (false == FrameAnimations.contains(UpperString))
+	{
+		return nullptr;
+	}
+	return &FrameAnimations[UpperString];
+}
+
 void UPaperSpriteComponent::SetSprite(std::string_view SpriteName)
 {
     //SetTexture(SpriteName);
@@ -204,14 +222,4 @@ void UPaperSpriteComponent::SetSprite(std::string_view SpriteName, size_t Index)
 {
     UPrimitiveComponent::SetSprite(SpriteName);
     SetSpriteData(Index);
-}
-
-FVector UPaperSpriteComponent::SetSpriteScale(float Ratio, int CurIndex)
-{
-	if (nullptr == Sprite)
-	{
-		MSGASSERT("스프라이트를 세팅하지 않고 스프라이트 크기로 랜더러 크기를 조정할수 없습니다.");
-		return float4(0.0f, 0.0f, 0.0f, 0.0f);
-	}
-	return { 0.0f, 0.0f, 0.0f };
 }

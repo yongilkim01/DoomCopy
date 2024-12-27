@@ -21,9 +21,13 @@ public:
 
 		int CurIndex = 0;
 		int ResultIndex = 0;
+
 		float CurTime = 0.0f;
+		float AutoScaleRatio = 1.0f;
+
 		bool Loop = true;
 		bool IsEnd = false;
+		bool IsAutoScale = true;
 
 		void Reset()
 		{
@@ -33,6 +37,7 @@ public:
 			IsEnd = false;
 		}
 	};
+
 public:
 	/** 积己磊, 家戈磊 */
 	ENGINE_API UPaperSpriteComponent();
@@ -56,10 +61,12 @@ public:
 	ENGINE_API void SetAnimationEvent(std::string_view AnimationName, int Frame,
 									  std::function<void()> EventFunction);
 
+	ENGINE_API FrameAnimation* FindAnimation(std::string_view AnimationName);
+
+
 	/** 百, 悸 皋家靛 */
 	ENGINE_API void SetSprite(std::string_view SpriteName);
 	ENGINE_API void SetSprite(std::string_view SpriteName, size_t Index);
-	ENGINE_API FVector SetSpriteScale(float Ratio = 1.0f, int CurIndex = 0);
 
 	ENGINE_API std::string GetCurSpriteName()
 	{
