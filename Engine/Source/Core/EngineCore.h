@@ -45,7 +45,7 @@ public:
 	}
 
 	/** °Ù, ¼Â ¸Þ¼Òµå */
-	ENGINE_API static UEngineGraphicDevice Device;
+	ENGINE_API static UEngineGraphicDevice& GetDevice();
 	ENGINE_API static FVector GetSceenScale();
 
 protected:
@@ -85,6 +85,8 @@ private:
 	static std::map<std::string, std::shared_ptr<ULevel>> LevelMap;
 	static std::shared_ptr<ULevel> CurLevel;
 	static std::shared_ptr<ULevel> NextLevel;
+
+	ENGINE_API static UEngineGraphicDevice Device;
 
 };
 

@@ -86,10 +86,10 @@ void FTransform::Decompose()
 
 	LocalWorld.Decompose(RelativeScale, RelativeQuat, RelativeLocation);
 
-	Scale = RelativeScale;
-	Quat = RelativeQuat;
-	Rotation = RelativeQuat.QuaternionToEulerDeg();
-	Location = RelativeLocation;
+	//Scale = RelativeScale;
+	//Quat = RelativeQuat;
+	//Rotation = RelativeQuat.QuaternionToEulerDeg();
+	//Location = RelativeLocation;
 }
 
 bool FTransform::Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right)

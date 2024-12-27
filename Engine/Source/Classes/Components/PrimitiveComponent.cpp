@@ -56,7 +56,7 @@ void UPrimitiveComponent::Render(UCameraComponent* CameraComponent, float DeltaT
 	UpdatePixelShader();
 	UpdateRenderTargetView();
 
-	UEngineCore::Device.GetDeviceContext()->DrawIndexed(6, 0, 0);
+	UEngineCore::GetDevice().GetDeviceContext()->DrawIndexed(6, 0, 0);
 
 }
 
@@ -85,7 +85,7 @@ void UPrimitiveComponent::InitVertexBuffer()
 	Data.pSysMem = &Vertexes[0];
 
 	// 디바이스를 사용하여 버텍스 버퍼를 생성
-	if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&Desc, &Data, VertexBuffer.GetAddressOf()))
+	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&Desc, &Data, VertexBuffer.GetAddressOf()))
 	{
 		MSGASSERT("버텍스 버퍼 생성 실패");
 		return;
@@ -105,7 +105,7 @@ void UPrimitiveComponent::UpdateVertexBuffer()
 	ArrayBuffer[0] = VertexBuffer.Get(); // 생성된 버텍스 버퍼를 배열에 저장
 
 	// 버텍스 버퍼를 입력 어셈블러(IA)에 설정
-	UEngineCore::Device.GetDeviceContext()->IASetVertexBuffers(
+	UEngineCore::GetDevice().GetDeviceContext()->IASetVertexBuffers(
 		0,            // 입력 슬롯의 시작 인덱스 (슬롯 0부터 시작)
 		1,            // 설정할 버퍼의 개수 (여기서는 1개)
 		ArrayBuffer,  // 버퍼 배열의 포인터
@@ -114,7 +114,7 @@ void UPrimitiveComponent::UpdateVertexBuffer()
 	);
 
 	// 입력 레이아웃을 입력 어셈블러(IA)에 설정
-	UEngineCore::Device.GetDeviceContext()->IASetInputLayout(InputLayout.Get());
+	UEngineCore::GetDevice().GetDeviceContext()->IASetInputLayout(InputLayout.Get());
 
 }
 
@@ -165,7 +165,7 @@ void UPrimitiveComponent::InitVertexLayout()
 	}
 
 	// 입력 레이아웃 생성
-	HRESULT Result = UEngineCore::Device.GetDevice()->CreateInputLayout(
+	HRESULT Result = UEngineCore::GetDevice().GetDevice()->CreateInputLayout(
 		&InputLayoutData[0],                        // 입력 레이아웃 데이터 포인터
 		static_cast<unsigned int>(InputLayoutData.size()), // 입력 레이아웃 요소 개수
 		VSShaderCodeBlob->GetBufferPointer(),       // 쉐이더 코드 포인터
@@ -228,7 +228,7 @@ void UPrimitiveComponent::InitVertexShader()
 	}
 
 	// 버텍스 쉐이더 생성
-	HRESULT Result = UEngineCore::Device.GetDevice()->CreateVertexShader(
+	HRESULT Result = UEngineCore::GetDevice().GetDevice()->CreateVertexShader(
 		VSShaderCodeBlob->GetBufferPointer(), // 쉐이더 코드 포인터
 		VSShaderCodeBlob->GetBufferSize(),    // 쉐이더 코드 크기
 		nullptr,                              // 클래스 링크 (없음)
@@ -248,7 +248,7 @@ void UPrimitiveComponent::InitVertexShader()
 
 void UPrimitiveComponent::UpdateVertexShader()
 {
-	UEngineCore::Device.GetDeviceContext()->VSSetShader(VertexShader.Get(), nullptr, 0);
+	UEngineCore::GetDevice().GetDeviceContext()->VSSetShader(VertexShader.Get(), nullptr, 0);
 }
 
 void UPrimitiveComponent::InitIndexBuffer()
@@ -278,7 +278,7 @@ void UPrimitiveComponent::InitIndexBuffer()
 	Data.pSysMem = &Indexes[0]; // 초기 데이터 설정
 
 	// 디바이스를 사용하여 인덱스 버퍼를 생성
-	if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&Desc, &Data, &IndexBuffer))
+	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&Desc, &Data, &IndexBuffer))
 	{
 		MSGASSERT("인덱스 버퍼 생성 실패");
 		return;
@@ -290,9 +290,9 @@ void UPrimitiveComponent::UpdateIndexBuffer()
 {
 	int Offset = 0;
 
-	UEngineCore::Device.GetDeviceContext()->IASetIndexBuffer(IndexBuffer.Get(), DXGI_FORMAT_R32_UINT, Offset);
+	UEngineCore::GetDevice().GetDeviceContext()->IASetIndexBuffer(IndexBuffer.Get(), DXGI_FORMAT_R32_UINT, Offset);
 
-	UEngineCore::Device.GetDeviceContext()->IASetPrimitiveTopology(Topology);
+	UEngineCore::GetDevice().GetDeviceContext()->IASetPrimitiveTopology(Topology);
 }
 
 void UPrimitiveComponent::InitRasterizer()
@@ -310,7 +310,7 @@ void UPrimitiveComponent::InitRasterizer()
 
 	// 디바이스를 사용하여 래스터라이저 상태를 생성
 	// GPU가 폴리곤을 렌더링하는 방식을 정의
-	UEngineCore::Device.GetDevice()->CreateRasterizerState(&Desc, RasterizerState.GetAddressOf());
+	UEngineCore::GetDevice().GetDevice()->CreateRasterizerState(&Desc, RasterizerState.GetAddressOf());
 
 	// 뷰포트 정보 설정
 	// 뷰포트는 렌더링된 이미지가 화면에 그려질 영역을 정의합니다.
@@ -326,8 +326,8 @@ void UPrimitiveComponent::InitRasterizer()
 
 void UPrimitiveComponent::UpdateRasterizer()
 {
-	UEngineCore::Device.GetDeviceContext()->RSSetViewports(1, &ViewPortInfo);
-	UEngineCore::Device.GetDeviceContext()->RSSetState(RasterizerState.Get());
+	UEngineCore::GetDevice().GetDeviceContext()->RSSetViewports(1, &ViewPortInfo);
+	UEngineCore::GetDevice().GetDeviceContext()->RSSetState(RasterizerState.Get());
 }
 
 void UPrimitiveComponent::InitPixelShader()
@@ -380,7 +380,7 @@ void UPrimitiveComponent::InitPixelShader()
 	}
 
 	// 픽셀 쉐이더 생성
-	HRESULT Result = UEngineCore::Device.GetDevice()->CreatePixelShader(
+	HRESULT Result = UEngineCore::GetDevice().GetDevice()->CreatePixelShader(
 		PSShaderCodeBlob->GetBufferPointer(), // 쉐이더 코드 포인터
 		PSShaderCodeBlob->GetBufferSize(),    // 쉐이더 코드 크기
 		nullptr,                              // 클래스 링크 (없음)
@@ -396,7 +396,7 @@ void UPrimitiveComponent::InitPixelShader()
 
 void UPrimitiveComponent::UpdatePixelShader()
 {
-	UEngineCore::Device.GetDeviceContext()->PSSetShader(PixelShader.Get(), nullptr, 0);
+	UEngineCore::GetDevice().GetDeviceContext()->PSSetShader(PixelShader.Get(), nullptr, 0);
 
 }
 
@@ -404,14 +404,14 @@ void UPrimitiveComponent::UpdatePixelShader()
 void UPrimitiveComponent::UpdateRenderTargetView()
 {
 	// 렌더 타겟 뷰 포인터를 가져옴
-	ID3D11RenderTargetView* RenderTargetView = UEngineCore::Device.GetRenderTargetView();
+	ID3D11RenderTargetView* RenderTargetView = UEngineCore::GetDevice().GetRenderTargetView();
 
 	// 렌더 타겟 뷰 포인터 배열을 초기화
 	ID3D11RenderTargetView* ArrRtv[16] = { 0 }; // 최대 16개의 렌더 타겟 뷰를 가질 수 있음
 	ArrRtv[0] = RenderTargetView; // 첫 번째 렌더 타겟 뷰를 설정 (여기서는 SV_Target0)
 
 	// 출력 머지(OM) 스테이지에서 렌더 타겟을 설정
-	UEngineCore::Device.GetDeviceContext()->OMSetRenderTargets(
+	UEngineCore::GetDevice().GetDeviceContext()->OMSetRenderTargets(
 		1,            // 렌더 타겟 뷰의 수 (여기서는 1개)
 		&ArrRtv[0],   // 렌더 타겟 뷰 배열의 포인터
 		nullptr       // 깊이-스텐실 뷰 (여기서는 사용 안 함)
@@ -431,7 +431,7 @@ void UPrimitiveComponent::InitShaderResourceView()
 		Desc.Usage = D3D11_USAGE_DYNAMIC; // 버퍼의 사용 방식을 동적으로 설정
 
 		// 디바이스를 사용하여 상수 버퍼 생성
-		if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&Desc, nullptr, ConstantBuffer.GetAddressOf()))
+		if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&Desc, nullptr, ConstantBuffer.GetAddressOf()))
 		{
 			MSGASSERT("상수 버퍼에 생성 실패");
 			return;
@@ -447,7 +447,7 @@ void UPrimitiveComponent::InitShaderResourceView()
 		Desc.Usage = D3D11_USAGE_DYNAMIC; // 버퍼의 사용 방식을 동적으로 설정
 
 		// 디바이스를 사용하여 상수 버퍼 생성
-		if (S_OK != UEngineCore::Device.GetDevice()->CreateBuffer(&Desc, nullptr, SpriteConstantBuffer.GetAddressOf()))
+		if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&Desc, nullptr, SpriteConstantBuffer.GetAddressOf()))
 		{
 			MSGASSERT("스프라이트용 상수 버퍼에 생성 실패");
 			return;
@@ -472,7 +472,7 @@ void UPrimitiveComponent::InitShaderResourceView()
 
 
 	// 디바이스를 사용하여 샘플러 상태 생성
-	UEngineCore::Device.GetDevice()->CreateSamplerState(&SamplerDesc, &SamplerState);
+	UEngineCore::GetDevice().GetDevice()->CreateSamplerState(&SamplerDesc, &SamplerState);
 
 }
 
@@ -484,7 +484,7 @@ void UPrimitiveComponent::UpdateShaderResourceView()
 		D3D11_MAPPED_SUBRESOURCE SubResourceData = {};
 
 		//렌더링 정지 후 상수 버퍼 수정
-		UEngineCore::Device.GetDeviceContext()->Map(ConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &SubResourceData);
+		UEngineCore::GetDevice().GetDeviceContext()->Map(ConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &SubResourceData);
 
 		if (nullptr == SubResourceData.pData)
 		{
@@ -492,17 +492,17 @@ void UPrimitiveComponent::UpdateShaderResourceView()
 		}
 
 		memcpy_s(SubResourceData.pData, sizeof(FTransform), &RendererTransform, sizeof(FTransform));
-		UEngineCore::Device.GetDeviceContext()->Unmap(ConstantBuffer.Get(), 0);
+		UEngineCore::GetDevice().GetDeviceContext()->Unmap(ConstantBuffer.Get(), 0);
 
 		ID3D11Buffer* ArrPtr[16] = { ConstantBuffer.Get() };
-		UEngineCore::Device.GetDeviceContext()->VSSetConstantBuffers(0, 1, ArrPtr);
+		UEngineCore::GetDevice().GetDeviceContext()->VSSetConstantBuffers(0, 1, ArrPtr);
 	}
 
 	{
 		D3D11_MAPPED_SUBRESOURCE SubResourceData = {};
 
 		//렌더링 정지 후 상수 버퍼 수정
-		UEngineCore::Device.GetDeviceContext()->Map(SpriteConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &SubResourceData);
+		UEngineCore::GetDevice().GetDeviceContext()->Map(SpriteConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &SubResourceData);
 
 		if (nullptr == SubResourceData.pData)
 		{
@@ -510,17 +510,17 @@ void UPrimitiveComponent::UpdateShaderResourceView()
 		}
 
 		memcpy_s(SubResourceData.pData, sizeof(FPaperSpriteData), &SpriteData, sizeof(FPaperSpriteData));
-		UEngineCore::Device.GetDeviceContext()->Unmap(SpriteConstantBuffer.Get(), 0);
+		UEngineCore::GetDevice().GetDeviceContext()->Unmap(SpriteConstantBuffer.Get(), 0);
 
 		ID3D11Buffer* ArrPtr[16] = { SpriteConstantBuffer.Get() };
-		UEngineCore::Device.GetDeviceContext()->VSSetConstantBuffers(1, 1, ArrPtr);
+		UEngineCore::GetDevice().GetDeviceContext()->VSSetConstantBuffers(1, 1, ArrPtr);
 	}
 
 	ID3D11ShaderResourceView* ArrSRV[16] = { Sprite->GetShaderResourceView() };
-	UEngineCore::Device.GetDeviceContext()->PSSetShaderResources(0, 1, ArrSRV);
+	UEngineCore::GetDevice().GetDeviceContext()->PSSetShaderResources(0, 1, ArrSRV);
 
 	ID3D11SamplerState* ArrSMP[16] = { SamplerState.Get() };
-	UEngineCore::Device.GetDeviceContext()->PSSetSamplers(0, 1, ArrSMP);
+	UEngineCore::GetDevice().GetDeviceContext()->PSSetSamplers(0, 1, ArrSMP);
 }
 
 void UPrimitiveComponent::SetSpriteData(size_t Index)

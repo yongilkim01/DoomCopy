@@ -48,6 +48,7 @@ cbuffer FSpriteData : register(b1)
 {
     float4 CuttingPos;
     float4 CuttingSize;
+    float4 Pivot;
 };
 
 VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)

@@ -12,12 +12,20 @@ ATitleLogo::ATitleLogo()
 	RootComponent = Default;
 
 	LogoRenderer = CreateDefaultSubObject<UPaperSpriteComponent>();
-	LogoRenderer->CreateAnimation("Idle", "Player.png", 0, 70, 0.1f);
-	LogoRenderer->ChangeAnimation("Idle");
 
-	UPaperSpriteComponent::FrameAnimation* Animation = LogoRenderer->FindAnimation("Idle");
-	Animation->IsAutoScale = true;
-	Animation->AutoScaleRatio = 4.0f;
+	LogoRenderer->CreateAnimation("Idle", "Player.png", 0, 0, 0.1f);
+	{
+		UPaperSpriteComponent::FrameAnimation* Animation = LogoRenderer->FindAnimation("Idle");
+		Animation->IsAutoScale = true;
+		Animation->AutoScaleRatio = 4.0f;
+	}
+	LogoRenderer->CreateAnimation("Move", "Player.png", 1, 4, 0.3f);
+	{
+		UPaperSpriteComponent::FrameAnimation* Animation = LogoRenderer->FindAnimation("Move");
+		Animation->IsAutoScale = true;
+		Animation->AutoScaleRatio = 4.0f;
+	}
+	LogoRenderer->ChangeAnimation("Idle");
 
 	LogoRenderer->SetRelativeScale3D({ 50, 50, 1.0f });
 	LogoRenderer->SetupAttachment(RootComponent);
@@ -58,6 +66,8 @@ void ATitleLogo::Tick(float DeltaTime)
 	}
 	if (UEngineInput::IsPress('E'))
 	{
-		Child->AddRelativeLocation(FVector{ 100.0f * DeltaTime, 0.0f , 0.0f });
+		LogoRenderer->ChangeAnimation("Move");
+
+		//Child->AddRelativeLocation(FVector{ 100.0f * DeltaTime, 0.0f , 0.0f });
 	}
 }

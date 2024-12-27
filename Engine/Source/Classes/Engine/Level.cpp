@@ -56,7 +56,7 @@ void ULevel::Tick(float DeltaTime)
 
 void ULevel::Render(float DeltaTime)
 {
-	UEngineCore::Device.RenderStart();
+	UEngineCore::GetDevice().RenderStart();
 
 	for (std::pair<const int, std::shared_ptr<ACameraActor>>& Camera : Cameraes)
 	{
@@ -64,7 +64,7 @@ void ULevel::Render(float DeltaTime)
 		Camera.second->GetCameraComponent()->Render(DeltaTime);
 	}
 
-	UEngineCore::Device.RenderEnd();
+	UEngineCore::GetDevice().RenderEnd();
 }
 
 std::shared_ptr<ACameraActor> ULevel::SpawnCamera(int CameraOrder)

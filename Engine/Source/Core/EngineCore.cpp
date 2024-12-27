@@ -20,6 +20,11 @@ std::shared_ptr<ULevel> UEngineCore::CurLevel = nullptr;
 
 std::map<std::string, std::shared_ptr<class ULevel>> UEngineCore::LevelMap;
 
+UEngineGraphicDevice& UEngineCore::GetDevice()
+{
+	return Device;
+}
+
 UEngineCore::UEngineCore()
 {
 }

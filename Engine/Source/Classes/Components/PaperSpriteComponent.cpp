@@ -65,6 +65,7 @@ void UPaperSpriteComponent::ComponentTick(float DeltaTime)
 		}
 
 		CurIndex = Indexs[CurAnimation->CurIndex];
+		CurData = CurAnimation->Sprite->GetSpriteData(CurIndex);
 
 		if (true == CurAnimation->IsAutoScale)
 		{
@@ -81,7 +82,7 @@ void UPaperSpriteComponent::Render(UCameraComponent* CameraComponent, float Delt
     if (nullptr != CurAnimation)
     {
         UPrimitiveComponent::SetSprite(CurAnimation->Sprite);
-        UPrimitiveComponent::SetSpriteData(CurAnimation->CurIndex);
+        UPrimitiveComponent::SetSpriteData(CurIndex);
     }
 
     UPrimitiveComponent::Render(CameraComponent, DeltaTime);

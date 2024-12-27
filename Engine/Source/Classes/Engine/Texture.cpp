@@ -80,7 +80,7 @@ void UTexture::AssetLoad()
 
 	// 쉐이더 리소스 뷰 생성
 	if (S_OK != DirectX::CreateShaderResourceView(
-		UEngineCore::Device.GetDevice(),	// 디바이스 객체
+		UEngineCore::GetDevice().GetDevice(),	// 디바이스 객체
 		ImageData.GetImages(),				// 이미지 데이터 배열
 		ImageData.GetImageCount(),			// 이미지 개수
 		ImageData.GetMetadata(),			// 이미지 메타데이터

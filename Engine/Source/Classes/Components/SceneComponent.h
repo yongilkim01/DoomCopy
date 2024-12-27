@@ -72,8 +72,8 @@ public:
 	 */
 	void SetRelativeScale3D(const FVector& NewScale)
 	{
-		bAbsolute = true;
 		Transform.Scale = NewScale;
+		Transform.Scale.W = 0.0f;
 		TransformUpdate();
 	}
 	/**

@@ -50,7 +50,7 @@ public:
 	 *	렌더러 과정 마지막에 넣는 메소드
 	 */
 	void RenderEnd();
-	void Release();
+	ENGINE_API void Release();
 
 
 	/** 겟, 셋 메소드 */
