@@ -37,6 +37,9 @@
     <Filter Include="2_Actor\1_Round1">
       <UniqueIdentifier>{2548844e-bdba-4fed-8131-a72c2db43c59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="4_Utils">
+      <UniqueIdentifier>{080d5ac3-8e3d-4fe7-a700-f17e76e1cc19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\DoomGuy\DoomGuy.cpp">
@@ -66,6 +69,9 @@
     <ClCompile Include="Source\Componennts\LineComponent.cpp">
       <Filter>3_Components</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Utils\Wad.cpp">
+      <Filter>4_Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DoomGuy\DoomGuy.h">
@@ -94,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="Source\Componennts\LineComponent.h">
       <Filter>3_Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\Wad.h">
+      <Filter>4_Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

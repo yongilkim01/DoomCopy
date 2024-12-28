@@ -1,6 +1,8 @@
 #pragma once
 #include "Interfaces/IContentsCore.h"
 
+class UWad;
+
 /**
  *	설명
  */
@@ -19,6 +21,7 @@ public:
 
 	/** 클래스 메소드 */
 	void InitWindowSize(UEngineInitData& Data);
+	int LoadWadFromFile(std::string_view FileName, UWad* Wad);
 
 	/** 겟, 셋 메소드 */
 

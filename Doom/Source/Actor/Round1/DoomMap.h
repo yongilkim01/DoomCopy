@@ -3,7 +3,7 @@
 
 class UDoomMapComponent;
 class ULineComponent;
-
+class UWad;
 // Ό³Έν :
 class ADoomMap : public AActor
 {

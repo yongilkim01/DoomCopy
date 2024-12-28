@@ -4,10 +4,12 @@
 #include <Core/Math/EngineMath.h>
 #include <Classes/Components/PaperSpriteComponent.h>
 #include <Classes/Components/SceneComponent.h>
+#include <Core/Misc/DirectoryHelper.h>
 #include <Input/EngineInput.h>
 
 #include "Componennts/DoomMapComponent.h"
 #include "Componennts/LineComponent.h"
+#include "Utils/Wad.h"
 
 ADoomMap::ADoomMap()
 {
@@ -17,7 +19,6 @@ ADoomMap::ADoomMap()
 	DoomMapComponent = CreateDefaultSubObject<UDoomMapComponent>();
 	DoomMapComponent->SetupAttachment(RootComponent);
 	DoomMapComponent->SetRelativeScale3D({ 50, 50, 1.0f });
-
 
 	LineComponent = CreateDefaultSubObject<ULineComponent>();
 	LineComponent->SetupAttachment(RootComponent);
@@ -57,5 +58,9 @@ void ADoomMap::Tick(float DeltaTime)
 	if (UEngineInput::IsPress('Q'))
 	{
 		AddActorRotation(FVector{ 0.0f, 0.0f , 360.0f * DeltaTime });
+	}
+	if (UEngineInput::IsPress('E'))
+	{
+		AddActorRotation(FVector{ 0.0f, 360.0f * DeltaTime , 0.0f });
 	}
 }
