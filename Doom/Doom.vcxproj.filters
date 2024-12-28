@@ -63,6 +63,9 @@
     <ClCompile Include="Source\Actor\Round1\DoomMap.cpp">
       <Filter>2_Actor\1_Round1</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Componennts\LineComponent.cpp">
+      <Filter>3_Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DoomGuy\DoomGuy.h">
@@ -88,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="Source\Actor\Round1\DoomMap.h">
       <Filter>2_Actor\1_Round1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Componennts\LineComponent.h">
+      <Filter>3_Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -2,6 +2,7 @@
 #include <GameFramework/Actor.h>
 
 class UDoomMapComponent;
+class ULineComponent;
 
 // Ό³Έν :
 class ADoomMap : public AActor
@@ -23,6 +24,7 @@ protected:
 
 private:
 	std::shared_ptr<UDoomMapComponent> DoomMapComponent;
+	std::shared_ptr<ULineComponent> LineComponent;
 
 };
 

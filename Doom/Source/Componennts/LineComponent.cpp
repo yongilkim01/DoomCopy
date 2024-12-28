@@ -1,22 +1,22 @@
 #include "pch.h"
-#include "DoomMapComponent.h"
+#include "LineComponent.h"
 
 #include <Classes/Camera/CameraComponent.h>
 #include <Core/Misc/DirectoryHelper.h>
 #include <Core/Misc/FileHelper.h>
 
-UDoomMapComponent::UDoomMapComponent()
+ULineComponent::ULineComponent()
 {
 }
 
-UDoomMapComponent::~UDoomMapComponent()
+ULineComponent::~ULineComponent()
 {
 	VertexBuffer = nullptr;
 	VSShaderCodeBlob = nullptr;
 	VSErrorCodeBlob = nullptr;
 }
 
-void UDoomMapComponent::BeginPlay()
+void ULineComponent::BeginPlay()
 {
 	USceneComponent::BeginPlay();
 
@@ -30,7 +30,7 @@ void UDoomMapComponent::BeginPlay()
 	InitShaderResourceView();
 }
 
-void UDoomMapComponent::Render(UCameraComponent* CameraComponent, float DeltaTime)
+void ULineComponent::Render(UCameraComponent* CameraComponent, float DeltaTime)
 {
 	FTransform& CameraTransform = CameraComponent->GetComponentTransformRef();
 	FTransform& RendererTransform = GetComponentTransformRef();
@@ -49,25 +49,23 @@ void UDoomMapComponent::Render(UCameraComponent* CameraComponent, float DeltaTim
 	UpdatePixelShader();
 	UpdateRenderTargetView();
 
-	UEngineCore::GetDevice().GetDeviceContext()->DrawIndexed(6, 0, 0);
+	UEngineCore::GetDevice().GetDeviceContext()->DrawIndexed(2, 0, 0);
 }
 
-void UDoomMapComponent::InitVertexBuffer()
+void ULineComponent::InitVertexBuffer()
 {
 	// Vertex 데이터를 저장할 벡터 생성 및 크기 조절
-	std::vector<DoomMapVertex> Vertexes;
+	std::vector<LineVertex> Vertexes;
 	Vertexes.resize(4);
 
 	// 각 Vertex의 위치, 텍스처 좌표 및 색상을 설정
-	Vertexes[0] = DoomMapVertex{ FVector(-0.5f, 0.5f, -0.0f), {1.0f, 0.0f, 0.0f, 1.0f} };
-	Vertexes[1] = DoomMapVertex{ FVector(0.5f, 0.5f, -0.0f), {0.0f, 1.0f, 0.0f, 1.0f} };
-	Vertexes[2] = DoomMapVertex{ FVector(-0.5f, -0.5f, -0.0f),{0.0f, 0.0f, 1.0f, 1.0f} };
-	Vertexes[3] = DoomMapVertex{ FVector(0.5f, -0.5f, -0.0f), {1.0f, 1.0f, 1.0f, 1.0f} };
+	Vertexes[0] = LineVertex{ FVector(-0.5f, 0.0f, -0.0f), {1.0f, 0.0f, 0.0f, 1.0f} };
+	Vertexes[1] = LineVertex{ FVector(0.5f, 0.0f, -0.0f), {0.0f, 1.0f, 0.0f, 1.0f} };
 
 	// 버텍스 버퍼 설명 구조체 초기화
 	D3D11_BUFFER_DESC Desc = { 0 };
 
-	Desc.ByteWidth = static_cast <UINT>(sizeof(DoomMapVertex) * Vertexes.size()); // 버퍼의 크기를 설정
+	Desc.ByteWidth = static_cast <UINT>(sizeof(LineVertex) * Vertexes.size()); // 버퍼의 크기를 설정
 	Desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;				 // 버퍼의 바인딩 플래그를 버텍스 버퍼로 설정
 	Desc.CPUAccessFlags = 0;								 // CPU 접근 플래그를 설정 (기본값)
 	Desc.Usage = D3D11_USAGE_DEFAULT;						 // 버퍼의 사용 방식을 설정
@@ -86,10 +84,10 @@ void UDoomMapComponent::InitVertexBuffer()
 
 }
 
-void UDoomMapComponent::UpdateVertexBuffer()
+void ULineComponent::UpdateVertexBuffer()
 {
 	// 버텍스의 크기와 오프셋을 설정
-	UINT VertexSize = sizeof(DoomMapVertex); // 버텍스 하나의 크기를 설정
+	UINT VertexSize = sizeof(LineVertex); // 버텍스 하나의 크기를 설정
 	UINT Offset = 0; // 버텍스 데이터의 시작 오프셋을 설정 (0으로 설정)
 
 	// 버텍스 버퍼 배열 생성
@@ -110,7 +108,7 @@ void UDoomMapComponent::UpdateVertexBuffer()
 
 }
 
-void UDoomMapComponent::InitVertexLayout()
+void ULineComponent::InitVertexLayout()
 {
 	// Vertex 입력 레이아웃을 저장할 벡터 생성
 	std::vector<D3D11_INPUT_ELEMENT_DESC> InputLayoutData;
@@ -157,7 +155,7 @@ void UDoomMapComponent::InitVertexLayout()
 
 }
 
-void UDoomMapComponent::InitVertexShader()
+void ULineComponent::InitVertexShader()
 {
 	// 현재 디렉토리 헬퍼 객체 생성
 	FDirectoryHelper CurDir;
@@ -223,12 +221,12 @@ void UDoomMapComponent::InitVertexShader()
 
 }
 
-void UDoomMapComponent::UpdateVertexShader()
+void ULineComponent::UpdateVertexShader()
 {
 	UEngineCore::GetDevice().GetDeviceContext()->VSSetShader(VertexShader.Get(), nullptr, 0);
 }
 
-void UDoomMapComponent::InitIndexBuffer()
+void ULineComponent::InitIndexBuffer()
 {
 	// 인덱스 데이터를 저장할 벡터 생성
 	std::vector<unsigned int> Indexes;
@@ -236,11 +234,6 @@ void UDoomMapComponent::InitIndexBuffer()
 	// 인덱스 데이터 추가
 	Indexes.push_back(0);
 	Indexes.push_back(1);
-	Indexes.push_back(2);
-
-	Indexes.push_back(1);
-	Indexes.push_back(3);
-	Indexes.push_back(2);
 
 	// 인덱스 버퍼 설명 구조체 초기화
 	D3D11_BUFFER_DESC Desc = { 0 };
@@ -263,7 +256,7 @@ void UDoomMapComponent::InitIndexBuffer()
 
 }
 
-void UDoomMapComponent::UpdateIndexBuffer()
+void ULineComponent::UpdateIndexBuffer()
 {
 	int Offset = 0;
 
@@ -272,7 +265,7 @@ void UDoomMapComponent::UpdateIndexBuffer()
 	UEngineCore::GetDevice().GetDeviceContext()->IASetPrimitiveTopology(Topology);
 }
 
-void UDoomMapComponent::InitRasterizer()
+void ULineComponent::InitRasterizer()
 {
 	// 래스터라이저 상태 설명 구조체 초기화
 	D3D11_RASTERIZER_DESC Desc = {};
@@ -301,13 +294,13 @@ void UDoomMapComponent::InitRasterizer()
 
 }
 
-void UDoomMapComponent::UpdateRasterizer()
+void ULineComponent::UpdateRasterizer()
 {
 	UEngineCore::GetDevice().GetDeviceContext()->RSSetViewports(1, &ViewPortInfo);
 	UEngineCore::GetDevice().GetDeviceContext()->RSSetState(RasterizerState.Get());
 }
 
-void UDoomMapComponent::InitPixelShader()
+void ULineComponent::InitPixelShader()
 {
 	// 현재 디렉토리 헬퍼 객체 생성
 	FDirectoryHelper CurDir;
@@ -371,14 +364,14 @@ void UDoomMapComponent::InitPixelShader()
 
 }
 
-void UDoomMapComponent::UpdatePixelShader()
+void ULineComponent::UpdatePixelShader()
 {
 	UEngineCore::GetDevice().GetDeviceContext()->PSSetShader(PixelShader.Get(), nullptr, 0);
 
 }
 
 // 그리기 위한 백지 준비 과정
-void UDoomMapComponent::UpdateRenderTargetView()
+void ULineComponent::UpdateRenderTargetView()
 {
 	// 렌더 타겟 뷰 포인터를 가져옴
 	ID3D11RenderTargetView* RenderTargetView = UEngineCore::GetDevice().GetRenderTargetView();
@@ -396,7 +389,7 @@ void UDoomMapComponent::UpdateRenderTargetView()
 
 }
 
-void UDoomMapComponent::InitShaderResourceView()
+void ULineComponent::InitShaderResourceView()
 {
 	D3D11_BUFFER_DESC BufferInfo = { 0 };
 	BufferInfo.ByteWidth = sizeof(FTransform);
@@ -411,7 +404,7 @@ void UDoomMapComponent::InitShaderResourceView()
 	}
 }
 
-void UDoomMapComponent::UpdateShaderResourceView()
+void ULineComponent::UpdateShaderResourceView()
 {
 	{
 		FTransform& RendererTransform = GetComponentTransformRef();
