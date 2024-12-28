@@ -4,33 +4,6 @@
     <Filter Include="pch">
       <UniqueIdentifier>{479f833a-7ec7-477e-bafc-db0db95811d8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Interfaces">
-      <UniqueIdentifier>{3c0269e8-4b02-4a43-bfec-5e81433fdaca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty">
-      <UniqueIdentifier>{e879a830-1b4f-444e-92af-3dd0388a12a8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty\DirectXTex">
-      <UniqueIdentifier>{3c0c1958-ab9f-4f73-b90c-b96f2208e4c0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty\DirectXTex\Debug">
-      <UniqueIdentifier>{3d4cf764-d09a-457c-9327-42a8f40aadfa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty\DirectXTex\Include">
-      <UniqueIdentifier>{36d68be9-c7bd-451c-8769-a2decb916be6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty\DirectXTex\Release">
-      <UniqueIdentifier>{0a64495f-5bc4-4494-9bfd-3f8a9d8c5d77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty\imgui">
-      <UniqueIdentifier>{0ff88ebd-e2fa-47a6-9e91-f5856f69051f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty\imgui\Private">
-      <UniqueIdentifier>{cd5c5011-9655-491c-812a-a7deb3be243b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ThirdParty\imgui\Public">
-      <UniqueIdentifier>{d793d633-7701-4ca0-a88f-4d5d1ba6cc23}</UniqueIdentifier>
-    </Filter>
     <Filter Include="0_Shaders">
       <UniqueIdentifier>{e171648f-698f-4f41-af7e-3f6044ef48f3}</UniqueIdentifier>
     </Filter>
@@ -84,6 +57,33 @@
     </Filter>
     <Filter Include="8_WorldPartition">
       <UniqueIdentifier>{286a5737-4a8f-49a1-a9a2-d4a6ddefe048}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9_Interfaces">
+      <UniqueIdentifier>{3c0269e8-4b02-4a43-bfec-5e81433fdaca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10_ThirdParty">
+      <UniqueIdentifier>{e879a830-1b4f-444e-92af-3dd0388a12a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10_ThirdParty\DirectXTex">
+      <UniqueIdentifier>{3c0c1958-ab9f-4f73-b90c-b96f2208e4c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10_ThirdParty\DirectXTex\Debug">
+      <UniqueIdentifier>{3d4cf764-d09a-457c-9327-42a8f40aadfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10_ThirdParty\DirectXTex\Include">
+      <UniqueIdentifier>{36d68be9-c7bd-451c-8769-a2decb916be6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10_ThirdParty\DirectXTex\Release">
+      <UniqueIdentifier>{0a64495f-5bc4-4494-9bfd-3f8a9d8c5d77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10_ThirdParty\imgui">
+      <UniqueIdentifier>{0ff88ebd-e2fa-47a6-9e91-f5856f69051f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10_ThirdParty\imgui\Private">
+      <UniqueIdentifier>{cd5c5011-9655-491c-812a-a7deb3be243b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10_ThirdParty\imgui\Public">
+      <UniqueIdentifier>{d793d633-7701-4ca0-a88f-4d5d1ba6cc23}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -172,22 +172,22 @@
       <Filter>2_Classes\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Source\ThirdParty\imgui\imgui_widgets.cpp">
-      <Filter>ThirdParty\imgui\Private</Filter>
+      <Filter>10_ThirdParty\imgui\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\ThirdParty\imgui\imgui_tables.cpp">
-      <Filter>ThirdParty\imgui\Private</Filter>
+      <Filter>10_ThirdParty\imgui\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\ThirdParty\imgui\imgui_impl_win32.cpp">
-      <Filter>ThirdParty\imgui\Private</Filter>
+      <Filter>10_ThirdParty\imgui\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\ThirdParty\imgui\imgui_impl_dx11.cpp">
-      <Filter>ThirdParty\imgui\Private</Filter>
+      <Filter>10_ThirdParty\imgui\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\ThirdParty\imgui\imgui_draw.cpp">
-      <Filter>ThirdParty\imgui\Private</Filter>
+      <Filter>10_ThirdParty\imgui\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\ThirdParty\imgui\imgui.cpp">
-      <Filter>ThirdParty\imgui\Private</Filter>
+      <Filter>10_ThirdParty\imgui\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Classes\Components\PaperSpriteComponent.cpp">
       <Filter>2_Classes\Components</Filter>
@@ -259,7 +259,7 @@
       <Filter>5_Platform</Filter>
     </ClInclude>
     <ClInclude Include="Source\Interfaces\IContentsCore.h">
-      <Filter>Interfaces</Filter>
+      <Filter>9_Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\Object\Object.h">
       <Filter>1_Core\Object</Filter>
@@ -283,7 +283,7 @@
       <Filter>2_Classes\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.h">
-      <Filter>ThirdParty\DirectXTex\Include</Filter>
+      <Filter>10_ThirdParty\DirectXTex\Include</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Engine\StaticMesh.h">
       <Filter>2_Classes\Engine</Filter>
@@ -304,28 +304,28 @@
       <Filter>2_Classes\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Source\ThirdParty\imgui\imstb_truetype.h">
-      <Filter>ThirdParty\imgui\Public</Filter>
+      <Filter>10_ThirdParty\imgui\Public</Filter>
     </ClInclude>
     <ClInclude Include="Source\ThirdParty\imgui\imstb_textedit.h">
-      <Filter>ThirdParty\imgui\Public</Filter>
+      <Filter>10_ThirdParty\imgui\Public</Filter>
     </ClInclude>
     <ClInclude Include="Source\ThirdParty\imgui\imstb_rectpack.h">
-      <Filter>ThirdParty\imgui\Public</Filter>
+      <Filter>10_ThirdParty\imgui\Public</Filter>
     </ClInclude>
     <ClInclude Include="Source\ThirdParty\imgui\imgui_internal.h">
-      <Filter>ThirdParty\imgui\Public</Filter>
+      <Filter>10_ThirdParty\imgui\Public</Filter>
     </ClInclude>
     <ClInclude Include="Source\ThirdParty\imgui\imgui_impl_win32.h">
-      <Filter>ThirdParty\imgui\Public</Filter>
+      <Filter>10_ThirdParty\imgui\Public</Filter>
     </ClInclude>
     <ClInclude Include="Source\ThirdParty\imgui\imgui_impl_dx11.h">
-      <Filter>ThirdParty\imgui\Public</Filter>
+      <Filter>10_ThirdParty\imgui\Public</Filter>
     </ClInclude>
     <ClInclude Include="Source\ThirdParty\imgui\imgui.h">
-      <Filter>ThirdParty\imgui\Public</Filter>
+      <Filter>10_ThirdParty\imgui\Public</Filter>
     </ClInclude>
     <ClInclude Include="Source\ThirdParty\imgui\imconfig.h">
-      <Filter>ThirdParty\imgui\Public</Filter>
+      <Filter>10_ThirdParty\imgui\Public</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Components\PaperSpriteComponent.h">
       <Filter>2_Classes\Components</Filter>
@@ -359,16 +359,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl">
-      <Filter>ThirdParty\DirectXTex\Include</Filter>
+      <Filter>10_ThirdParty\DirectXTex\Include</Filter>
     </None>
     <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Source\ThirdParty\DirectXTex\Debug\DirectXTex_Debug.lib">
-      <Filter>ThirdParty\DirectXTex\Debug</Filter>
+      <Filter>10_ThirdParty\DirectXTex\Debug</Filter>
     </Library>
     <Library Include="Source\ThirdParty\DirectXTex\Release\DirectXTex_Release.lib">
-      <Filter>ThirdParty\DirectXTex\Release</Filter>
+      <Filter>10_ThirdParty\DirectXTex\Release</Filter>
     </Library>
   </ItemGroup>
 </Project>

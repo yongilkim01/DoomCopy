@@ -58,7 +58,7 @@ public:
 
 protected:
 	/** UObject 상속 메소드 */
-	ENGINE_API void BeginPlay() override;
+	ENGINE_API virtual void BeginPlay() override;
 
 	/** URenderer 메소드 */
 	ENGINE_API virtual void Render(UCameraComponent* CameraComponent, float DeltaTime);

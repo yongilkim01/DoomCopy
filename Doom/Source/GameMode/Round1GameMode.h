@@ -1,6 +1,8 @@
 #pragma once
 #include "GameFramework/Actor.h"
 
+class ADoomMap;
+
 // Ό³Έν :
 class ARound1GameMode : public AActor
 {
@@ -20,6 +22,7 @@ public:
 protected:
 
 private:
+	std::shared_ptr<ADoomMap> DoomMap;
 
 };
 

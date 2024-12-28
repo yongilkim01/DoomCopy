@@ -31,6 +31,12 @@
     <Filter Include="1_GameMode\2_Round1Score">
       <UniqueIdentifier>{f668ac9e-e991-40a3-811a-56e37993a94b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{ce67c0e6-1e66-44cf-8dcb-4d6620729cd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Actor\1_Round1">
+      <UniqueIdentifier>{2548844e-bdba-4fed-8131-a72c2db43c59}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\DoomGuy\DoomGuy.cpp">
@@ -53,6 +59,9 @@
     </ClCompile>
     <ClCompile Include="Source\Componennts\DoomMapComponent.cpp">
       <Filter>3_Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Actor\Round1\DoomMap.cpp">
+      <Filter>2_Actor\1_Round1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,5 +86,13 @@
     <ClInclude Include="Source\Componennts\DoomMapComponent.h">
       <Filter>3_Components</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Actor\Round1\DoomMap.h">
+      <Filter>2_Actor\1_Round1</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shaders\DoomMapShader.fx">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

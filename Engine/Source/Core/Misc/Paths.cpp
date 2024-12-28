@@ -186,6 +186,72 @@ bool FPaths::MoveEngineDirectory()
 	return Result;
 }
 
+bool FPaths::MoveSelectDirectory(std::string_view DirectoryName)
+{
+	FPaths DummyPath = FPaths(Path);
+
+	if (false == DummyPath.IsDirectory())
+	{
+		MSGASSERT("디렉토리 경로가 이닙니다");
+		return false;
+	}
+
+	bool Result = false;
+
+	std::filesystem::path CurPath = DummyPath.Path;
+
+	std::filesystem::path Root = CurPath.root_path();
+
+	while (true)
+	{
+		CurPath = DummyPath.Path;
+
+		if (CurPath == Root)
+		{
+			break;
+		}
+
+		CurPath.append(DirectoryName);
+
+		if (true == std::filesystem::exists(CurPath))
+		{
+			Result = true;
+			Path = CurPath;
+			break;
+		}
+		DummyPath.MoveParent();
+	}
+
+	return Result;
+}
+
+bool FPaths::MoveSelectShaderDirectory(std::string_view DirectoryName)
+{
+	if (true == MoveSelectDirectory(DirectoryName))
+	{
+		FPaths DummyPath = FPaths(Path);
+
+		if (false == DummyPath.IsDirectory())
+		{
+			MSGASSERT("디렉토리 경로가 이닙니다");
+			return false;
+		}
+		std::filesystem::path CurPath = DummyPath.Path;
+
+		CurPath = DummyPath.Path;
+
+		CurPath.append("Shaders");
+
+		if (true == std::filesystem::exists(CurPath))
+		{
+			Path = CurPath;
+			return true;
+		}
+	}
+
+	return false;
+}
+
 bool FPaths::Move(std::string_view Path)
 {
 	Append(Path);
