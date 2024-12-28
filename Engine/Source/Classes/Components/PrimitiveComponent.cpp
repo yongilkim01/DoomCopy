@@ -11,6 +11,7 @@
 #include "Core/Containers/EngineString.h"
 #include "Core/EngineCore.h"
 #include "Classes/Engine/PaperSprite.h"
+#include "Rendering/EngineVertex.h"
 
 UPrimitiveComponent::UPrimitiveComponent()
 {

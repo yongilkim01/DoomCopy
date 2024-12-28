@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Actor\TitleLogo.cpp" />
+    <ClCompile Include="Source\Componennts\DoomMapComponent.cpp" />
     <ClCompile Include="Source\Core\DoomCore.cpp" />
     <ClCompile Include="Source\DoomGuy\DoomGuy.cpp" />
     <ClCompile Include="Source\GameMode\Round1GameMode.cpp" />
@@ -159,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Actor\TitleLogo.h" />
+    <ClInclude Include="Source\Componennts\DoomMapComponent.h" />
     <ClInclude Include="Source\Core\DoomCore.h" />
     <ClInclude Include="Source\DoomGuy\DoomGuy.h" />
     <ClInclude Include="Source\GameMode\Round1GameMode.h" />

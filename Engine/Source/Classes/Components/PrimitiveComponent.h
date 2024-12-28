@@ -8,12 +8,6 @@ class UCameraComponent;
 class UPaperSprite;
 class UTexture;
 
-struct EngineVertex
-{
-	float4 POSITION;
-	float4 TEXCOORD;
-	float4 COLOR;
-};
 /**
  *	렌더러 클래스
  */
@@ -60,7 +54,7 @@ public:
 	ENGINE_API void SetSprite(UPaperSprite* PaperSprite);
 
 	/** UObject 상속 메소드 */
-	virtual void SetOrder(int NewOrder) override;
+	ENGINE_API virtual void SetOrder(int NewOrder) override;
 
 protected:
 	/** UObject 상속 메소드 */

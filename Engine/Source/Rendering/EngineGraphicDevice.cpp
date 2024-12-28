@@ -23,7 +23,7 @@ void UEngineGraphicDevice::Release()
 void UEngineGraphicDevice::RenderStart()
 {
 	FVector ClearColor;
-	ClearColor = FVector(0.0f, 0.0f, 1.0f, 1.0f);
+	ClearColor = FVector(0.1f, 0.1f, 0.1f, 1.0f);
 	DeviceContext->ClearRenderTargetView(RenderTargetView.Get(), ClearColor.Arr1D);
 }
 
@@ -40,7 +40,7 @@ void UEngineGraphicDevice::RenderEnd()
 
 void UEngineGraphicDevice::CreateDeviceAndContext()
 {
-	MainAdapter =  GetHighPerformanceAdapter();
+	MainAdapter = GetHighPerformanceAdapter();
 
 	int IFlag = 0;
 
@@ -59,7 +59,7 @@ void UEngineGraphicDevice::CreateDeviceAndContext()
 		0,											// 지원하는 Feature Level 개수
 		D3D11_SDK_VERSION,
 		&Device,
-		&ResultLevl,  
+		&ResultLevl,
 		&DeviceContext);
 
 	if (nullptr == Device)

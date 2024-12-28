@@ -25,6 +25,12 @@
     <Filter Include="2_Actor\0_Title">
       <UniqueIdentifier>{d89f4c95-63c6-4f70-9b45-974948ef870e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3_Components">
+      <UniqueIdentifier>{58f93bdb-9a5f-4238-9fcb-1055cf9365d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_GameMode\2_Round1Score">
+      <UniqueIdentifier>{f668ac9e-e991-40a3-811a-56e37993a94b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\DoomGuy\DoomGuy.cpp">
@@ -45,6 +51,9 @@
     <ClCompile Include="Source\Actor\TitleLogo.cpp">
       <Filter>2_Actor\0_Title</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Componennts\DoomMapComponent.cpp">
+      <Filter>3_Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DoomGuy\DoomGuy.h">
@@ -64,6 +73,9 @@
     </ClInclude>
     <ClInclude Include="Source\Actor\TitleLogo.h">
       <Filter>2_Actor\0_Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Componennts\DoomMapComponent.h">
+      <Filter>3_Components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

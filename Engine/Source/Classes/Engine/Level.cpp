@@ -2,7 +2,7 @@
 #include "Level.h"
 #include "GameFramework/Actor.h"
 #include "Classes/Components/PrimitiveComponent.h"
-#include "Renderer/EngineGraphicDevice.h"
+#include "Rendering/EngineGraphicDevice.h"
 
 #include "Classes/Camera/CameraActor.h"
 #include "Classes/Camera/CameraComponent.h"

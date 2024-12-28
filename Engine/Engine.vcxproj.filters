@@ -7,9 +7,6 @@
     <Filter Include="Interfaces">
       <UniqueIdentifier>{3c0269e8-4b02-4a43-bfec-5e81433fdaca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Renderer">
-      <UniqueIdentifier>{bc7c05bb-979d-49e1-a451-e8f4863fb5d0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ThirdParty">
       <UniqueIdentifier>{e879a830-1b4f-444e-92af-3dd0388a12a8}</UniqueIdentifier>
     </Filter>
@@ -147,9 +144,6 @@
     <ClCompile Include="Source\GameFramework\GameMode.cpp">
       <Filter>3_GameFramework</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Renderer\EngineGraphicDevice.cpp">
-      <Filter>Renderer</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Classes\Engine\Level.cpp">
       <Filter>2_Classes\Engine</Filter>
     </ClCompile>
@@ -208,6 +202,12 @@
       <Filter>4_Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Source\Rendering\RenderUnit.cpp">
+      <Filter>4_Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\IndexBuffer.cpp">
+      <Filter>4_Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\EngineGraphicDevice.cpp">
       <Filter>4_Rendering</Filter>
     </ClCompile>
   </ItemGroup>
@@ -269,9 +269,6 @@
     </ClInclude>
     <ClInclude Include="Source\GameFramework\GameMode.h">
       <Filter>3_GameFramework</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Renderer\EngineGraphicDevice.h">
-      <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Engine\Level.h">
       <Filter>2_Classes\Engine</Filter>
@@ -343,6 +340,15 @@
       <Filter>4_Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Source\Rendering\RenderUnit.h">
+      <Filter>4_Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\EngineVertex.h">
+      <Filter>4_Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\IndexBuffer.h">
+      <Filter>4_Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\EngineGraphicDevice.h">
       <Filter>4_Rendering</Filter>
     </ClInclude>
   </ItemGroup>

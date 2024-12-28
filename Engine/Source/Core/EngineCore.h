@@ -1,7 +1,7 @@
 #pragma once
 #include "EngineDefine.h"
 #include "Platform/Window.h"
-#include "Renderer/EngineGraphicDevice.h"
+#include "Rendering/EngineGraphicDevice.h"
 #include "Interfaces/IContentsCore.h"
 #include "Classes/Engine/Level.h"
 #include "Time/Timer.h"
