@@ -48,12 +48,20 @@ cbuffer FSpriteData : register(b1)
 {
     float4 CuttingPos;
     float4 CuttingSize;
-    float4 Pivot;
+    float4 Pivot; // 0.5 0.0f
+};
+
+cbuffer MatColor : register(b1)
+{
+    float4 Albedo;
 };
 
 VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
 {
     VertexShaderOutPut OutPut;
+    
+    _Vertex.POSITION.x += (1.0f - Pivot.x) - 0.5f;
+    _Vertex.POSITION.y += (1.0f - Pivot.y) - 0.5f;
     
     OutPut.SVPOSITION = mul(_Vertex.POSITION, WVP);
 

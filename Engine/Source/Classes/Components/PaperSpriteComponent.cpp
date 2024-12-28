@@ -65,7 +65,6 @@ void UPaperSpriteComponent::ComponentTick(float DeltaTime)
 		}
 
 		CurIndex = Indexs[CurAnimation->CurIndex];
-		CurData = CurAnimation->Sprite->GetSpriteData(CurIndex);
 
 		if (true == CurAnimation->IsAutoScale)
 		{

@@ -91,11 +91,11 @@ std::shared_ptr<UPaperSprite> UPaperSprite::CreateSpriteToMeta(std::string_view 
 			SpriteData.CuttingSize.Y = static_cast<float>(atof(Number.c_str()));
 		}
 		{
-			std::string Number = UEngineString::InterString(Text, "x:", "\n", Start);
+			std::string Number = UEngineString::InterString(Text, "x:", ",", Start);
 			SpriteData.Pivot.X = static_cast<float>(atof(Number.c_str()));
 		}
 		{
-			std::string Number = UEngineString::InterString(Text, "y:", "\n", Start);
+			std::string Number = UEngineString::InterString(Text, "y:", "}", Start);
 			SpriteData.Pivot.Y = static_cast<float>(atof(Number.c_str()));
 		}
 

@@ -4,56 +4,11 @@
     <Filter Include="pch">
       <UniqueIdentifier>{479f833a-7ec7-477e-bafc-db0db95811d8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core">
-      <UniqueIdentifier>{57a416c6-81b6-47aa-beeb-11c6c9d9bbdc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Delegates">
-      <UniqueIdentifier>{ccb54f37-2626-4dcf-9e83-485f44a39467}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Misc">
-      <UniqueIdentifier>{b40d5a80-9a83-4dcd-8a7d-c30d5bed47a3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Serialization">
-      <UniqueIdentifier>{58b534a6-6bf7-4013-bac1-9b7a18357bf1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Time">
-      <UniqueIdentifier>{76af717d-9a6f-4da7-a951-c275249467b5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Containers">
-      <UniqueIdentifier>{10191daa-5a81-48c6-996c-3693cfd16c98}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameFramework">
-      <UniqueIdentifier>{245410b1-9ccf-4a68-b184-c19e54a6b315}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Platform">
-      <UniqueIdentifier>{69093daa-6f31-42e2-acaf-15f1ece144fa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="WorldPartition">
-      <UniqueIdentifier>{286a5737-4a8f-49a1-a9a2-d4a6ddefe048}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Interfaces">
       <UniqueIdentifier>{3c0269e8-4b02-4a43-bfec-5e81433fdaca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Object">
-      <UniqueIdentifier>{5e27c38f-bd23-4301-ab35-dff39009bb63}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes">
-      <UniqueIdentifier>{d58d6257-9006-4e6f-b4d6-ffc0ae6717da}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Components">
-      <UniqueIdentifier>{edf51e24-bbfc-4c3a-b002-830b501e89ca}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Renderer">
       <UniqueIdentifier>{bc7c05bb-979d-49e1-a451-e8f4863fb5d0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Engine">
-      <UniqueIdentifier>{71eb8a37-cc70-4570-96ed-167f0dd29e3c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shaders">
-      <UniqueIdentifier>{e171648f-698f-4f41-af7e-3f6044ef48f3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Camera">
-      <UniqueIdentifier>{bfb10207-285e-4df5-b15b-884b3bce7016}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty">
       <UniqueIdentifier>{e879a830-1b4f-444e-92af-3dd0388a12a8}</UniqueIdentifier>
@@ -70,9 +25,6 @@
     <Filter Include="ThirdParty\DirectXTex\Release">
       <UniqueIdentifier>{0a64495f-5bc4-4494-9bfd-3f8a9d8c5d77}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Math">
-      <UniqueIdentifier>{80529ff4-314e-4cdb-897e-da892e6fa0ed}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ThirdParty\imgui">
       <UniqueIdentifier>{0ff88ebd-e2fa-47a6-9e91-f5856f69051f}</UniqueIdentifier>
     </Filter>
@@ -82,14 +34,59 @@
     <Filter Include="ThirdParty\imgui\Public">
       <UniqueIdentifier>{d793d633-7701-4ca0-a88f-4d5d1ba6cc23}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Windows">
-      <UniqueIdentifier>{57ca364f-6910-4b9d-b3fe-ffe2a5a55c40}</UniqueIdentifier>
+    <Filter Include="0_Shaders">
+      <UniqueIdentifier>{e171648f-698f-4f41-af7e-3f6044ef48f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Input">
+    <Filter Include="1_Core">
+      <UniqueIdentifier>{57a416c6-81b6-47aa-beeb-11c6c9d9bbdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\Delegates">
+      <UniqueIdentifier>{ccb54f37-2626-4dcf-9e83-485f44a39467}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\Misc">
+      <UniqueIdentifier>{b40d5a80-9a83-4dcd-8a7d-c30d5bed47a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\Serialization">
+      <UniqueIdentifier>{58b534a6-6bf7-4013-bac1-9b7a18357bf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\Containers">
+      <UniqueIdentifier>{10191daa-5a81-48c6-996c-3693cfd16c98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\Object">
+      <UniqueIdentifier>{5e27c38f-bd23-4301-ab35-dff39009bb63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\Math">
+      <UniqueIdentifier>{80529ff4-314e-4cdb-897e-da892e6fa0ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Classes">
+      <UniqueIdentifier>{d58d6257-9006-4e6f-b4d6-ffc0ae6717da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Classes\Components">
+      <UniqueIdentifier>{edf51e24-bbfc-4c3a-b002-830b501e89ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Classes\Engine">
+      <UniqueIdentifier>{71eb8a37-cc70-4570-96ed-167f0dd29e3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Classes\Camera">
+      <UniqueIdentifier>{bfb10207-285e-4df5-b15b-884b3bce7016}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_GameFramework">
+      <UniqueIdentifier>{245410b1-9ccf-4a68-b184-c19e54a6b315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_Rendering">
+      <UniqueIdentifier>{b94968ba-83d8-46ff-ae01-76e800b2b99d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_Platform">
+      <UniqueIdentifier>{69093daa-6f31-42e2-acaf-15f1ece144fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6_Input">
       <UniqueIdentifier>{f0e2fa6b-2c08-44c8-b97d-9f00460c5c17}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Rendering">
-      <UniqueIdentifier>{b94968ba-83d8-46ff-ae01-76e800b2b99d}</UniqueIdentifier>
+    <Filter Include="7_Time">
+      <UniqueIdentifier>{76af717d-9a6f-4da7-a951-c275249467b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="8_WorldPartition">
+      <UniqueIdentifier>{286a5737-4a8f-49a1-a9a2-d4a6ddefe048}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -97,88 +94,88 @@
       <Filter>pch</Filter>
     </ClCompile>
     <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp">
-      <Filter>WorldPartition</Filter>
+      <Filter>8_WorldPartition</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\Delegates\Delegate.cpp">
-      <Filter>Core\Delegates</Filter>
+      <Filter>1_Core\Delegates</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\Misc\Paths.cpp">
-      <Filter>Core\Misc</Filter>
+      <Filter>1_Core\Misc</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\Misc\FileHelper.cpp">
-      <Filter>Core\Misc</Filter>
+      <Filter>1_Core\Misc</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\Serialization\Archive.cpp">
-      <Filter>Core\Serialization</Filter>
+      <Filter>1_Core\Serialization</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\Misc\DirectoryHelper.cpp">
-      <Filter>Core\Misc</Filter>
+      <Filter>1_Core\Misc</Filter>
     </ClCompile>
     <ClCompile Include="Source\Time\Timer.cpp">
-      <Filter>Time</Filter>
+      <Filter>7_Time</Filter>
     </ClCompile>
     <ClCompile Include="Source\Time\TimeEvent.cpp">
-      <Filter>Time</Filter>
+      <Filter>7_Time</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\Containers\EngineString.cpp">
-      <Filter>Core\Containers</Filter>
+      <Filter>1_Core\Containers</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\EngineCore.cpp">
-      <Filter>Core</Filter>
+      <Filter>1_Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Actor.cpp">
-      <Filter>GameFramework</Filter>
+      <Filter>3_GameFramework</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Character.cpp">
-      <Filter>GameFramework</Filter>
+      <Filter>3_GameFramework</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Pawn.cpp">
-      <Filter>GameFramework</Filter>
+      <Filter>3_GameFramework</Filter>
     </ClCompile>
     <ClCompile Include="Source\Platform\Window.cpp">
-      <Filter>Platform</Filter>
+      <Filter>5_Platform</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\Object\Object.cpp">
-      <Filter>Core\Object</Filter>
+      <Filter>1_Core\Object</Filter>
     </ClCompile>
     <ClCompile Include="Source\Classes\Components\ActorComponent.cpp">
-      <Filter>Classes\Components</Filter>
+      <Filter>2_Classes\Components</Filter>
     </ClCompile>
     <ClCompile Include="Source\Classes\Components\SceneComponent.cpp">
-      <Filter>Classes\Components</Filter>
+      <Filter>2_Classes\Components</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\GameMode.cpp">
-      <Filter>GameFramework</Filter>
+      <Filter>3_GameFramework</Filter>
     </ClCompile>
     <ClCompile Include="Source\Renderer\EngineGraphicDevice.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Source\Classes\Engine\Level.cpp">
-      <Filter>Classes\Engine</Filter>
+      <Filter>2_Classes\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Source\Classes\Camera\CameraActor.cpp">
-      <Filter>Classes\Camera</Filter>
+      <Filter>2_Classes\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Source\Classes\Camera\CameraComponent.cpp">
-      <Filter>Classes\Camera</Filter>
+      <Filter>2_Classes\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Source\Classes\Engine\StaticMesh.cpp">
-      <Filter>Classes\Engine</Filter>
+      <Filter>2_Classes\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Source\Classes\Engine\SkeletalMesh.cpp">
-      <Filter>Classes\Engine</Filter>
+      <Filter>2_Classes\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\Math\EngineMath.cpp">
-      <Filter>Core\Math</Filter>
+      <Filter>1_Core\Math</Filter>
     </ClCompile>
     <ClCompile Include="Source\Classes\Engine\RenderAsset.cpp">
-      <Filter>Classes\Engine</Filter>
+      <Filter>2_Classes\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Source\Classes\Engine\Texture.cpp">
-      <Filter>Classes\Engine</Filter>
+      <Filter>2_Classes\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Source\Classes\Engine\PaperSprite.cpp">
-      <Filter>Classes\Engine</Filter>
+      <Filter>2_Classes\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Source\ThirdParty\imgui\imgui_widgets.cpp">
       <Filter>ThirdParty\imgui\Private</Filter>
@@ -199,19 +196,19 @@
       <Filter>ThirdParty\imgui\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Classes\Components\PaperSpriteComponent.cpp">
-      <Filter>Classes\Components</Filter>
+      <Filter>2_Classes\Components</Filter>
     </ClCompile>
     <ClCompile Include="Source\Classes\Components\PrimitiveComponent.cpp">
-      <Filter>Classes\Components</Filter>
+      <Filter>2_Classes\Components</Filter>
     </ClCompile>
     <ClCompile Include="Source\Input\EngineInput.cpp">
-      <Filter>Input</Filter>
+      <Filter>6_Input</Filter>
     </ClCompile>
     <ClCompile Include="Source\Rendering\VertexBuffer.cpp">
-      <Filter>Rendering</Filter>
+      <Filter>4_Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Source\Rendering\RenderUnit.cpp">
-      <Filter>Rendering</Filter>
+      <Filter>4_Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -219,95 +216,95 @@
       <Filter>pch</Filter>
     </ClInclude>
     <ClInclude Include="Source\WorldPartition\DebugHelpers.h">
-      <Filter>WorldPartition</Filter>
+      <Filter>8_WorldPartition</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\Delegates\Delegate.h">
-      <Filter>Core\Delegates</Filter>
+      <Filter>1_Core\Delegates</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\Misc\Paths.h">
-      <Filter>Core\Misc</Filter>
+      <Filter>1_Core\Misc</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\Misc\FileHelper.h">
-      <Filter>Core\Misc</Filter>
+      <Filter>1_Core\Misc</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\Serialization\Archive.h">
-      <Filter>Core\Serialization</Filter>
+      <Filter>1_Core\Serialization</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\Misc\DirectoryHelper.h">
-      <Filter>Core\Misc</Filter>
+      <Filter>1_Core\Misc</Filter>
     </ClInclude>
     <ClInclude Include="Source\Time\Timer.h">
-      <Filter>Time</Filter>
+      <Filter>7_Time</Filter>
     </ClInclude>
     <ClInclude Include="Source\Time\TimeEvent.h">
-      <Filter>Time</Filter>
+      <Filter>7_Time</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\Containers\EngineString.h">
-      <Filter>Core\Containers</Filter>
+      <Filter>1_Core\Containers</Filter>
     </ClInclude>
     <ClInclude Include="Source\EngineDefine.h" />
     <ClInclude Include="Source\Core\EngineCore.h">
-      <Filter>Core</Filter>
+      <Filter>1_Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameFramework\Actor.h">
-      <Filter>GameFramework</Filter>
+      <Filter>3_GameFramework</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameFramework\Character.h">
-      <Filter>GameFramework</Filter>
+      <Filter>3_GameFramework</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameFramework\Pawn.h">
-      <Filter>GameFramework</Filter>
+      <Filter>3_GameFramework</Filter>
     </ClInclude>
     <ClInclude Include="Source\Platform\Window.h">
-      <Filter>Platform</Filter>
+      <Filter>5_Platform</Filter>
     </ClInclude>
     <ClInclude Include="Source\Interfaces\IContentsCore.h">
       <Filter>Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\Object\Object.h">
-      <Filter>Core\Object</Filter>
+      <Filter>1_Core\Object</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Components\ActorComponent.h">
-      <Filter>Classes\Components</Filter>
+      <Filter>2_Classes\Components</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameFramework\GameMode.h">
-      <Filter>GameFramework</Filter>
+      <Filter>3_GameFramework</Filter>
     </ClInclude>
     <ClInclude Include="Source\Renderer\EngineGraphicDevice.h">
       <Filter>Renderer</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Engine\Level.h">
-      <Filter>Classes\Engine</Filter>
+      <Filter>2_Classes\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Components\SceneComponent.h">
-      <Filter>Classes\Components</Filter>
+      <Filter>2_Classes\Components</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Camera\CameraActor.h">
-      <Filter>Classes\Camera</Filter>
+      <Filter>2_Classes\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Camera\CameraComponent.h">
-      <Filter>Classes\Camera</Filter>
+      <Filter>2_Classes\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.h">
       <Filter>ThirdParty\DirectXTex\Include</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Engine\StaticMesh.h">
-      <Filter>Classes\Engine</Filter>
+      <Filter>2_Classes\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Engine\SkeletalMesh.h">
-      <Filter>Classes\Engine</Filter>
+      <Filter>2_Classes\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\Math\EngineMath.h">
-      <Filter>Core\Math</Filter>
+      <Filter>1_Core\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Engine\RenderAsset.h">
-      <Filter>Classes\Engine</Filter>
+      <Filter>2_Classes\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Engine\Texture.h">
-      <Filter>Classes\Engine</Filter>
+      <Filter>2_Classes\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Engine\PaperSprite.h">
-      <Filter>Classes\Engine</Filter>
+      <Filter>2_Classes\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Source\ThirdParty\imgui\imstb_truetype.h">
       <Filter>ThirdParty\imgui\Public</Filter>
@@ -334,24 +331,24 @@
       <Filter>ThirdParty\imgui\Public</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Components\PaperSpriteComponent.h">
-      <Filter>Classes\Components</Filter>
+      <Filter>2_Classes\Components</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Components\PrimitiveComponent.h">
-      <Filter>Classes\Components</Filter>
+      <Filter>2_Classes\Components</Filter>
     </ClInclude>
     <ClInclude Include="Source\Input\EngineInput.h">
-      <Filter>Input</Filter>
+      <Filter>6_Input</Filter>
     </ClInclude>
     <ClInclude Include="Source\Rendering\VertexBuffer.h">
-      <Filter>Rendering</Filter>
+      <Filter>4_Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Source\Rendering\RenderUnit.h">
-      <Filter>Rendering</Filter>
+      <Filter>4_Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\SpriteShader.fx">
-      <Filter>Shaders</Filter>
+      <Filter>0_Shaders</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

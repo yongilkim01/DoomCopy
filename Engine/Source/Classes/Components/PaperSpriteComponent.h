@@ -106,7 +106,5 @@ private:
 
 	std::map<std::string, FrameAnimation> FrameAnimations;
 	FrameAnimation* CurAnimation = nullptr;
-
-	FPaperSpriteData CurData;
 };
 

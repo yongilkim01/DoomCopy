@@ -1,9 +1,10 @@
 #pragma once
+#include "Classes/Engine/RenderAsset.h"
 
 /**
  *	설명
  */
-class FVertexBuffer
+class FVertexBuffer : public URenderAsset
 {
 public:
 	/** 생성자, 소멸자 */
@@ -16,9 +17,22 @@ public:
 	FVertexBuffer& operator=(const FVertexBuffer& Other) = delete;
 	FVertexBuffer& operator=(FVertexBuffer&& Other) noexcept = delete;
 
+	template<typename VertexDataType>
+	static std::shared_ptr<FVertexBuffer> Create(std::string_view Name, 
+												 const std::vector<VertexDataType>& VertexData)
+	{
+		return Create(Name, reinterpret_cast<const void*>(&VertexData[0]), sizeof(VertexDataType), VertexData.size());
+	}
+	static std::shared_ptr<FVertexBuffer> Create(std::string_view Name, const void* InitData,
+												 size_t VertexSize, size_t VertexCount);
+
 protected:
+	void AssetCreate(const void* InitData, size_t VertexSize, size_t VertexCount);
 
 private:
-
+	Microsoft::WRL::ComPtr<ID3D11Buffer> VertexBuffer = nullptr;
+	D3D11_BUFFER_DESC VertexBufferDesc = { 0 };
+	int VertexSize = 0;
+	int VertexCount = 0;
 };
 
