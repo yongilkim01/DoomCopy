@@ -23,7 +23,9 @@ public:
 	int LoadWadFromFile(std::string_view FileName);
 	int FindLumpFromWad(std::string_view LumpName);
 	int ReadMapFromWad(std::string_view MapName, UWadMap* DoomMap);
+
 	void ReadVertices(UWadMap* DoomMap, ULump* Lump);
+	void ReadLines(UWadMap* DoomMap, ULump* Lump);
 
 	/** °Ù, ¼Â ¸Þ¼Òµå */
 	void SetWadID(std::string_view NewWadID)

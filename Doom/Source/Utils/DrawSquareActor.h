@@ -2,6 +2,7 @@
 #include <GameFramework/Actor.h>
 
 class UDoomMapComponent;
+class ULineComponent;
 class UWad;
 /**
  *	Ό³Έν 
@@ -26,6 +27,7 @@ protected:
 
 private:
 	std::vector<std::shared_ptr<UDoomMapComponent>> SquareComponentVector;
+	std::vector<std::shared_ptr<ULineComponent>> LineComponentVector;
 	UWad* Wad = nullptr;
 
 };

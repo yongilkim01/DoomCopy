@@ -26,7 +26,6 @@
 
 UWad::UWad()
 {
-
 	FDirectoryHelper DirectoryHelper;
 	if (false == DirectoryHelper.MoveParentToDirectory("Resources"))
 	{
@@ -43,23 +42,17 @@ UWad::UWad()
 	Map = new UWadMap();
 
 	ReadMapFromWad("E1M1", Map);
-
-	//for (int i = 0; i < Map->GetVertexCount(); i++)
-	//{
-	//	std::shared_ptr<ADrawSquareActor> DrawSquareActor = GetWorld()->SpawnActor<ADrawSquareActor>();
-	//	DrawSquareActor->SetActorLocation(Map->GetVertexByIndex(i));
-	//	DrawSquareActor->SetActorRelativeScale3D({ 10.0f, 10.0f });
-	//	DrawSquareActorVector.push_back(GetWorld()->SpawnActor<ADrawSquareActor>());
-	//}
 }
 
 UWad::~UWad()
 {
 	for (int i = 0; i < LumpVector.size(); i++)
 	{
-		delete[] LumpVector[i];
+		delete LumpVector[i];
 		LumpVector[i] = nullptr;
 	}
+
+	delete Map;
 }
 
 
@@ -160,6 +153,7 @@ int UWad::ReadMapFromWad(std::string_view MapName, UWadMap* Map)
 	}
 
 	ReadVertices(Map, GetLumpFromVector(MapIndex + VERTEXES_IDX));
+	ReadLines(Map, GetLumpFromVector(MapIndex + LINEDEFS_IDX));
 
 	return 0;
 }
@@ -211,4 +205,27 @@ void UWad::ReadVertices(UWadMap* DoomMap, ULump* Lump)
 	size_t VertexSize = DoomMap->GetVertexCount();
 	std::string MaxVectorStr = DoomMap->GetMaxVector().ToString();
 	std::string MinVectorStr = DoomMap->GetMinVector().ToString();
+}
+
+void UWad::ReadLines(UWadMap* DoomMap, ULump* Lump)
+{
+	int count = 0;
+
+	int Size = Lump->GetSize();
+
+	for (int i = 0; i < Lump->GetSize(); i += 14)
+	{
+		int16_t StartIndex = (int16_t)READ_I16(Lump->GetData(), i);
+		int16_t EndIndex = (int16_t)READ_I16(Lump->GetData(), i + 2);
+
+		UWadLine* WadLine = new UWadLine();
+
+		WadLine->SetStartIndex(static_cast<float>(StartIndex));
+		WadLine->SetEndIndex(static_cast<float>(EndIndex));
+
+		DoomMap->AddWadLine(WadLine);
+		count++;
+	}
+	int a = count;
+	DoomMap->GetWadLineByIndex(0);
 }

@@ -3,6 +3,48 @@
 /**
  *	WadMap File class
  */
+class UWadLine
+{
+public:
+	/** 생성자, 소멸자 */
+	UWadLine();
+	~UWadLine();
+
+	/** 객체 값 복사방지 */
+	UWadLine(const UWadLine& Other) = delete;
+	UWadLine(UWadLine&& Other) noexcept = delete;
+	UWadLine& operator=(const UWadLine& Other) = delete;
+	UWadLine& operator=(UWadLine&& Other) noexcept = delete;
+
+	float GetStartIndex()
+	{
+		return StartIndex;
+	}
+	void SetStartIndex(float Index)
+	{
+		StartIndex = Index;
+	}
+	float GetEndIndex()
+	{
+		return EndIndex;
+	}
+	void SetEndIndex(float Index)
+	{
+		EndIndex = Index;
+	}
+	
+
+protected:
+
+
+private:
+	float StartIndex = 0.0f;
+	float EndIndex = 0.0f;
+};
+
+/**
+ *	WadMap File class
+ */
 class UWadMap
 {
 public:
@@ -28,7 +70,18 @@ public:
 	{
 		return VertexVector[Index];
 	}
-
+	void AddWadLine(UWadLine* WadLine)
+	{
+		WadLineVector.push_back(WadLine);
+	}
+	size_t GetWadLineCount()
+	{
+		return WadLineVector.size();
+	}
+	UWadLine* GetWadLineByIndex(int Index)
+	{
+		return WadLineVector[Index];
+	}
 	FVector GetMinVector()
 	{
 		return Min;
@@ -59,6 +112,7 @@ protected:
 
 private:
 	std::vector<FVector> VertexVector;
+	std::vector<UWadLine*> WadLineVector;
 
 	FVector Min;
 	FVector Max;
