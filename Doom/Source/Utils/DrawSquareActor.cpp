@@ -27,22 +27,22 @@ ADrawSquareActor::ADrawSquareActor()
 	FVector OutMax = { 1280 - 20.0f, 720 - 20.0f };
 	std::vector<FVector> RemappedVertexVector;
 
-	//for (int i = 0; i < Wad->GetMap()->GetVertexCount(); i++)
-	//{
-	//	float RVMINX = min(Wad->GetMap()->GetVertexByIndex(i).X, Wad->GetMap()->GetMaxVector().X);
-	//	float RVMAXX = max(Wad->GetMap()->GetMinVector().X, RVMINX);
+	for (int i = 0; i < Wad->GetMap()->GetVertexCount(); i++)
+	{
+		float RVMINX = min(Wad->GetMap()->GetVertexByIndex(i).X, Wad->GetMap()->GetMaxVector().X);
+		float RVMAXX = max(Wad->GetMap()->GetMinVector().X, RVMINX);
 
-	//	float RVMINY = min(Wad->GetMap()->GetVertexByIndex(i).Y, Wad->GetMap()->GetMaxVector().Y);
-	//	float RVMAXY = max(Wad->GetMap()->GetMinVector().Y, RVMINY);
-	//	FVector RemappedVertex = {
-	//		-640.0f + (RVMAXX - Wad->GetMap()->GetMinVector().X) * (OutMax.X - OutMin.X) / (Wad->GetMap()->GetMaxVector().X - Wad->GetMap()->GetMinVector().X) + OutMin.X,
-	//		-360.0f + (RVMAXY - Wad->GetMap()->GetMinVector().Y) * (OutMax.Y - OutMin.Y) / (Wad->GetMap()->GetMaxVector().Y - Wad->GetMap()->GetMinVector().Y) - OutMin.Y,
-	//		1.0f,
-	//		1.0f
-	//	};
+		float RVMINY = min(Wad->GetMap()->GetVertexByIndex(i).Y, Wad->GetMap()->GetMaxVector().Y);
+		float RVMAXY = max(Wad->GetMap()->GetMinVector().Y, RVMINY);
+		FVector RemappedVertex = {
+			-640.0f + (RVMAXX - Wad->GetMap()->GetMinVector().X) * (OutMax.X - OutMin.X) / (Wad->GetMap()->GetMaxVector().X - Wad->GetMap()->GetMinVector().X) + OutMin.X,
+			-315.0f + (RVMAXY - Wad->GetMap()->GetMinVector().Y) * (OutMax.Y - OutMin.Y) / (Wad->GetMap()->GetMaxVector().Y - Wad->GetMap()->GetMinVector().Y) - OutMin.Y,
+			1.0f,
+			1.0f
+		};
 
-	//	RemappedVertexVector.push_back(RemappedVertex);
-	//}
+		RemappedVertexVector.push_back(RemappedVertex);
+	}
 
 	//for (int i = 0; i < Wad->GetMap()->GetWadLineCount(); i++)
 	//{
@@ -54,18 +54,20 @@ ADrawSquareActor::ADrawSquareActor()
 	//	//LineComponentVector.push_back(LineComponent);
 	//}
 
-	//for (int i = 0; i < RemappedVertexVector.size(); i++)
-	//{
-	//	std::shared_ptr<UDoomMapComponent> SquareComponent = CreateDefaultSubObject<UDoomMapComponent>();
-	//	SquareComponent->SetupAttachment(RootComponent);
-	//	//SquareComponent->SetWorldLocation({ 0, 0 });
-	//	SquareComponent->SetWorldLocation(RemappedVertexVector[i]);
-	//	SquareComponent->SetRelativeScale3D({ FVector{2.0f, 2.0f} });
-	//}
+	for (int i = 0; i < RemappedVertexVector.size(); i++)
+	{
+		std::shared_ptr<UDoomMapComponent> SquareComponent = CreateDefaultSubObject<UDoomMapComponent>();
+		SquareComponent->SetupAttachment(RootComponent);
+		//SquareComponent->SetWorldLocation({ 0, 0 });
+		SquareComponent->SetWorldLocation(RemappedVertexVector[i]);
+		SquareComponent->SetRelativeScale3D({ FVector{2.0f, 2.0f} });
+	}
 }
 
 ADrawSquareActor::~ADrawSquareActor()
 {
+	delete Wad;
+	Wad = nullptr;
 }
 
 void ADrawSquareActor::BeginPlay()
