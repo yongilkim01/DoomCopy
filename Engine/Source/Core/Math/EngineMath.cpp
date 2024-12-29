@@ -11,7 +11,7 @@ const float FMath::PI2 = PI * 2.0f;
 const float FMath::D2R = FMath::PI / 180.0f;
 const float FMath::R2D = 180.0f / FMath::PI;
 
-const FVector FVector::ZERO = { 0.0f, 0.0f };
+const FVector FVector::ZERO = { 0.0f, 0.0f, 0.0f, 0.0f};
 const FVector FVector::LEFT = { -1.0f, 0.0f };
 const FVector FVector::RIGHT = { 1.0f, 0.0f };
 const FVector FVector::UP = { 0.0f, 1.0f };

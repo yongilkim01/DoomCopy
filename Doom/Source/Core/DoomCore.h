@@ -1,9 +1,6 @@
 #pragma once
 #include "Interfaces/IContentsCore.h"
 
-class UWad;
-class UWadMap;
-class ULump;
 
 /**
  *	설명
@@ -23,10 +20,6 @@ public:
 
 	/** 클래스 메소드 */
 	void InitWindowSize(UEngineInitData& Data);
-	int LoadWadFromFile(std::string_view FileName, UWad* Wad);
-	int FindLumpFromWad(std::string_view LumpName, UWad* Wad);
-	int ReadMapFromWad(std::string_view MapName, UWadMap* DoomMap, UWad* Wad);
-	void ReadVertices(const UWadMap* DoomMap, ULump* Lump);
 
 	/** 겟, 셋 메소드 */
 

@@ -1,5 +1,6 @@
 #pragma once
 
+class UWadMap;
 class ULump;
 
 /**
@@ -17,6 +18,12 @@ public:
 	UWad(UWad&& Other) noexcept = delete;
 	UWad& operator=(const UWad& Other) = delete;
 	UWad& operator=(UWad&& Other) noexcept = delete;
+
+	/** Wad 클래스 메소드 */
+	int LoadWadFromFile(std::string_view FileName);
+	int FindLumpFromWad(std::string_view LumpName);
+	int ReadMapFromWad(std::string_view MapName, UWadMap* DoomMap);
+	void ReadVertices(UWadMap* DoomMap, ULump* Lump);
 
 	/** 겟, 셋 메소드 */
 	void SetWadID(std::string_view NewWadID)
@@ -47,6 +54,10 @@ public:
 	{
 		return LumpVector[Index];
 	}
+	UWadMap* GetMap()
+	{
+		return Map;
+	}
 protected:
 
 
@@ -55,5 +66,6 @@ private:
 	uint32_t nLumps = 0;
 
 	std::vector<ULump*> LumpVector;
+	UWadMap* Map;
 };
 

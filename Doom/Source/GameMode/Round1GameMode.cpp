@@ -2,6 +2,7 @@
 #include "Round1GameMode.h"
 
 #include "Actor/Round1/DoomMap.h"
+
 #include "Utils/DrawLineActor.h"
 #include "Utils/DrawSquareActor.h"
 
@@ -12,8 +13,10 @@ ARound1GameMode::ARound1GameMode()
 {
 	{
 		std::shared_ptr<ADrawSquareActor> DrawSquareActor = GetWorld()->SpawnActor<ADrawSquareActor>();
+		DrawSquareActor->SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
 		DrawSquareActorVector.push_back(DrawSquareActor);
-;	}
+	}
+
 	{
 		std::shared_ptr<ADrawLineActor> DrawLineActor = GetWorld()->SpawnActor<ADrawLineActor>();
 		DrawLineActor->SetActorRotation(FVector{ 0.0f, 0.0f, 30.0f });

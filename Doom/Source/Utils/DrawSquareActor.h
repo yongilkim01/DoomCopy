@@ -2,7 +2,7 @@
 #include <GameFramework/Actor.h>
 
 class UDoomMapComponent;
-
+class UWad;
 /**
  *	Ό³Έν 
  */
@@ -25,7 +25,8 @@ protected:
 	void Tick(float DeltaTime) override;
 
 private:
-	std::shared_ptr<UDoomMapComponent> SquareComponent;
+	std::vector<std::shared_ptr<UDoomMapComponent>> SquareComponentVector;
+	UWad* Wad = nullptr;
 
 };
 
