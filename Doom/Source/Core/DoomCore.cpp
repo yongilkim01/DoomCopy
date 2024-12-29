@@ -65,7 +65,6 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 		UWad* Wad = new UWad();
 
 		LoadWadFromFile(Doom1WadFile.GetPathToString(), Wad);
-
 	}
 
 	UPaperSprite::CreateSpriteToMeta("Player.png", ".sdata");

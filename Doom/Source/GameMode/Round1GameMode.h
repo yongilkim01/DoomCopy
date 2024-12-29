@@ -2,6 +2,8 @@
 #include "GameFramework/Actor.h"
 
 class ADoomMap;
+class ADrawSquareActor;
+class ADrawLineActor;
 
 // Ό³Έν :
 class ARound1GameMode : public AActor
@@ -23,6 +25,8 @@ protected:
 
 private:
 	std::shared_ptr<ADoomMap> DoomMap;
+	std::vector<std::shared_ptr<ADrawSquareActor>> DrawSquareActorVector;
+	std::vector<std::shared_ptr<ADrawLineActor>> DrawLineActorVector;
 
 };
 

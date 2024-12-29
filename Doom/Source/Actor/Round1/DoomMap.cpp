@@ -22,8 +22,8 @@ ADoomMap::ADoomMap()
 
 	LineComponent = CreateDefaultSubObject<ULineComponent>();
 	LineComponent->SetupAttachment(RootComponent);
-	LineComponent->SetRelativeScale3D({ 50, 50, 1.0f });
-	LineComponent->SetWorldLocation({ 100.0f, 100.0f, 0.0f});
+	LineComponent->SetRelativeScale3D({ 200, 1.0f, 1.0f });
+	LineComponent->SetWorldRotation({ 0.0f, 0.0f, 45.0f });
 }
 
 ADoomMap::~ADoomMap()

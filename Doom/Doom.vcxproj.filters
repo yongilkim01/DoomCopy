@@ -40,6 +40,9 @@
     <Filter Include="4_Utils">
       <UniqueIdentifier>{080d5ac3-8e3d-4fe7-a700-f17e76e1cc19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="4_Utils\DrawActor">
+      <UniqueIdentifier>{04c499f2-c3a0-4b72-a40e-97e0c496334b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\DoomGuy\DoomGuy.cpp">
@@ -72,6 +75,12 @@
     <ClCompile Include="Source\Utils\Wad.cpp">
       <Filter>4_Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Utils\DrawLineActor.cpp">
+      <Filter>4_Utils\DrawActor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\DrawSquareActor.cpp">
+      <Filter>4_Utils\DrawActor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DoomGuy\DoomGuy.h">
@@ -103,6 +112,12 @@
     </ClInclude>
     <ClInclude Include="Source\Utils\Wad.h">
       <Filter>4_Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\DrawSquareActor.h">
+      <Filter>4_Utils\DrawActor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\DrawLineActor.h">
+      <Filter>4_Utils\DrawActor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
