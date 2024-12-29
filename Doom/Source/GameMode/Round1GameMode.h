@@ -1,6 +1,7 @@
 #pragma once
 #include "GameFramework/Actor.h"
 
+class ACameraActor;
 class ADoomMap;
 class ADrawSquareActor;
 class ADrawLineActor;
@@ -24,6 +25,7 @@ public:
 protected:
 
 private:
+	std::shared_ptr<ACameraActor> Camera;
 	std::shared_ptr<ADoomMap> DoomMap;
 	std::vector<std::shared_ptr<ADrawSquareActor>> DrawSquareActorVector;
 	std::vector<std::shared_ptr<ADrawLineActor>> DrawLineActorVector;

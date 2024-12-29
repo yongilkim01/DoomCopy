@@ -87,6 +87,15 @@
     <ClCompile Include="Source\Utils\WadMap.cpp">
       <Filter>4_Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Utils\DoomMesh.cpp">
+      <Filter>4_Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\DoomVertexBuffer.cpp">
+      <Filter>4_Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\DoomIndexBuffer.cpp">
+      <Filter>4_Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DoomGuy\DoomGuy.h">
@@ -129,6 +138,15 @@
       <Filter>4_Utils</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utils\WadMap.h">
+      <Filter>4_Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\DoomMesh.h">
+      <Filter>4_Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\DoomVertexBuffer.h">
+      <Filter>4_Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\DoomIndexBuffer.h">
       <Filter>4_Utils</Filter>
     </ClInclude>
   </ItemGroup>

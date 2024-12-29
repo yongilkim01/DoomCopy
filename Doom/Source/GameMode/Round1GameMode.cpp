@@ -7,6 +7,7 @@
 #include "Utils/DrawSquareActor.h"
 
 #include <Classes/Camera/CameraActor.h>
+#include <Input/EngineInput.h>
 
 
 ARound1GameMode::ARound1GameMode()
@@ -24,7 +25,7 @@ ARound1GameMode::ARound1GameMode()
 		DrawLineActorVector.push_back(DrawLineActor);
 	}
 
-	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
+	Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
 }
 
@@ -36,5 +37,21 @@ void ARound1GameMode::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
 
+	if (UEngineInput::IsPress('A'))
+	{
+		Camera->AddActorLocation(FVector{ -100.0f * DeltaTime, 0.0f, 0.0f });
+	}
+	if (UEngineInput::IsPress('D'))
+	{
+		Camera->AddActorLocation(FVector{ 100.0f * DeltaTime, 0.0f, 0.0f });
+	}
+	if (UEngineInput::IsPress('W'))
+	{
+		Camera->AddActorLocation(FVector{ 0.0f, 100.0f * DeltaTime, 0.0f });
+	}
+	if (UEngineInput::IsPress('S'))
+	{
+		Camera->AddActorLocation(FVector{ 0.0f, -100.0f * DeltaTime, 0.0f });
+	}
 
 }

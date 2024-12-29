@@ -15,11 +15,14 @@ using namespace std;
 #include "Componennts/LineComponent.h"
 #include "Utils/Wad.h"
 #include "Utils/WadMap.h"
+#include "Utils/DoomMesh.h"
 
 ADrawSquareActor::ADrawSquareActor()
 {
 	std::shared_ptr<USceneComponent> Default = CreateDefaultSubObject<USceneComponent>();
 	RootComponent = Default;
+
+	std::shared_ptr<UDoomMesh> DoomMesh = std::make_shared<UDoomMesh>();
 
 	Wad = new UWad();
 
