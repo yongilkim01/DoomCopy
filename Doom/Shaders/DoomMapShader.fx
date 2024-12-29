@@ -46,7 +46,7 @@ VS_OUTPUT VS(VS_INPUT input)
     VS_INPUT output;
     
     output.POSITION = mul(input.POSITION, WVP);
-    output.COLOR = input.COLOR;
+    output.COLOR = float4(1.0f, 1.0f, 1.0f, 0.0f);
     
     return output;
 }

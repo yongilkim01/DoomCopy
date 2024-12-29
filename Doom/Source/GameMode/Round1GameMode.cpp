@@ -26,7 +26,7 @@ ARound1GameMode::ARound1GameMode()
 	}
 
 	Camera = GetWorld()->GetMainCamera();
-	Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
+	//Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
 }
 
 ARound1GameMode::~ARound1GameMode()
@@ -39,19 +39,18 @@ void ARound1GameMode::Tick(float DeltaTime)
 
 	if (UEngineInput::IsPress('A'))
 	{
-		Camera->AddActorLocation(FVector{ -100.0f * DeltaTime, 0.0f, 0.0f });
+		Camera->AddActorLocation(FVector{ -100.0f * DeltaTime, 0.0f, 1.0f });
 	}
 	if (UEngineInput::IsPress('D'))
 	{
-		Camera->AddActorLocation(FVector{ 100.0f * DeltaTime, 0.0f, 0.0f });
+		Camera->AddActorLocation(FVector{ 100.0f * DeltaTime, 0.0f, 1.0f });
 	}
 	if (UEngineInput::IsPress('W'))
 	{
-		Camera->AddActorLocation(FVector{ 0.0f, 100.0f * DeltaTime, 0.0f });
+		Camera->AddActorLocation(FVector{ 0.0f, 0.0f, 1000.0f * DeltaTime, 1.0f });
 	}
 	if (UEngineInput::IsPress('S'))
 	{
-		Camera->AddActorLocation(FVector{ 0.0f, -100.0f * DeltaTime, 0.0f });
+		Camera->AddActorLocation(FVector{ 0.0f, 0.0f, -1000.0f * DeltaTime, 1.0f });
 	}
-
 }
