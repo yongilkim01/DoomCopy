@@ -1,5 +1,7 @@
 #pragma once
 
+class ULump;
+
 /**
  *	Wad File class
  */
@@ -33,13 +35,17 @@ public:
 	{
 		return nLumps;
 	}
-	void SetOffset(uint32_t NewOffset)
+	void AddLump(ULump* Lump)
 	{
-		Offset = NewOffset;
+		LumpVector.push_back(Lump);
 	}
-	uint32_t GetOffset()
+	size_t GetLumpCount()
 	{
-		return Offset;
+		return LumpVector.size();
+	}
+	ULump* GetLumpFromVector(int Index)
+	{
+		return LumpVector[Index];
 	}
 protected:
 
@@ -47,7 +53,7 @@ protected:
 private:
 	std::string WadID;
 	uint32_t nLumps = 0;
-	uint32_t Offset = 0;
 
+	std::vector<ULump*> LumpVector;
 };
 
