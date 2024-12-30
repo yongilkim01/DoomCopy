@@ -26,13 +26,17 @@ public:
 	static std::shared_ptr<FIndexBuffer> Create(std::string_view Name, const void* InitData,
 												size_t IndexSize, size_t IndexCount);
 
+	ENGINE_API void Update();
+
+
 protected:
 	void AssetCreate(const void* InitData, size_t IndexSize, size_t IndexCount);
 
 private:
 	Microsoft::WRL::ComPtr<ID3D11Buffer> IndexBuffer = nullptr;
 	D3D11_BUFFER_DESC IndexBufferDesc = { 0 };
-	int IndexSize = 0;
-	int IndexCount = 0;
+	UINT IndexSize = 0;
+	UINT IndexCount = 0;
+	DXGI_FORMAT Format = DXGI_FORMAT::DXGI_FORMAT_R32_UINT;
 };
 

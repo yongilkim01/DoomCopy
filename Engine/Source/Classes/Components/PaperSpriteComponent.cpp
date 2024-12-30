@@ -3,6 +3,7 @@
 
 #include "Classes/Engine/PaperSprite.h"
 #include "Classes/Camera/CameraComponent.h"
+#include "Core/EngineCore.h"
 
 UPaperSpriteComponent::UPaperSpriteComponent()
 {
@@ -80,11 +81,83 @@ void UPaperSpriteComponent::Render(UCameraComponent* CameraComponent, float Delt
 {
     if (nullptr != CurAnimation)
     {
-        UPrimitiveComponent::SetSprite(CurAnimation->Sprite);
-        UPrimitiveComponent::SetSpriteData(CurIndex);
+        SetSprite(CurAnimation->Sprite);
+        SetSpriteData(CurIndex);
     }
 
     UPrimitiveComponent::Render(CameraComponent, DeltaTime);
+}
+
+void UPaperSpriteComponent::InitShaderResourceView()
+{
+	UPrimitiveComponent::InitShaderResourceView();
+
+	// 스프라이트용 상수 버퍼 생성
+	{
+		// 상수 버퍼 설명 구조체 초기화
+		D3D11_BUFFER_DESC Desc = { 0 };
+		Desc.ByteWidth = sizeof(FPaperSpriteData); // 버퍼의 크기를 FTransform 구조체 크기로 설정
+		Desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER; // 버퍼의 바인딩 플래그를 상수 버퍼로 설정
+		Desc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE; // CPU가 버퍼에 쓰기 접근 가능하도록 설정
+		Desc.Usage = D3D11_USAGE_DYNAMIC; // 버퍼의 사용 방식을 동적으로 설정
+
+		// 디바이스를 사용하여 상수 버퍼 생성
+		if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&Desc, nullptr, &SpriteConstantBuffer))
+		{
+			MSGASSERT("스프라이트용 상수 버퍼에 생성 실패");
+			return;
+		}
+	}
+
+	// 샘플러 상태 설명 구조체 초기화 및 설정
+	D3D11_SAMPLER_DESC SamplerDesc = { D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT };
+	SamplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_BORDER; // U 좌표 텍스처 래핑 모드 설정
+	SamplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_BORDER; // V 좌표 텍스처 래핑 모드 설정
+	SamplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_CLAMP; // W 좌표 텍스처 래핑 모드 설정
+
+	SamplerDesc.BorderColor[0] = 0.0f;
+	SamplerDesc.BorderColor[1] = 0.0f;
+	SamplerDesc.BorderColor[2] = 0.0f;
+	SamplerDesc.BorderColor[3] = 0.0f;
+
+	//SamplerDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+
+	//SamplerDesc.MaxLOD = 0.0f;
+	//SamplerDesc.MinLOD = 0.0f;
+
+
+	// 디바이스를 사용하여 샘플러 상태 생성
+	UEngineCore::GetDevice().GetDevice()->CreateSamplerState(&SamplerDesc, &SamplerState);
+}
+
+void UPaperSpriteComponent::UpdateShaderResourceView()
+{
+	UPrimitiveComponent::UpdateShaderResourceView();
+
+
+	FTransform& RendererTransform = GetComponentTransformRef();
+
+	D3D11_MAPPED_SUBRESOURCE SubResourceData = {};
+
+	//렌더링 정지 후 상수 버퍼 수정
+	UEngineCore::GetDevice().GetDeviceContext()->Map(SpriteConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &SubResourceData);
+
+	if (nullptr == SubResourceData.pData)
+	{
+		MSGASSERT("그래픽 카드 수정 거부");
+	}
+
+	memcpy_s(SubResourceData.pData, sizeof(FPaperSpriteData), &SpriteData, sizeof(FPaperSpriteData));
+	UEngineCore::GetDevice().GetDeviceContext()->Unmap(SpriteConstantBuffer.Get(), 0);
+
+	ID3D11Buffer* ArrPtr[16] = { SpriteConstantBuffer.Get() };
+	UEngineCore::GetDevice().GetDeviceContext()->VSSetConstantBuffers(1, 1, ArrPtr);
+
+	ID3D11ShaderResourceView* ArrSRV[16] = { Sprite->GetShaderResourceView() };
+	UEngineCore::GetDevice().GetDeviceContext()->PSSetShaderResources(0, 1, ArrSRV);
+
+	ID3D11SamplerState* ArrSMP[16] = { SamplerState.Get() };
+	UEngineCore::GetDevice().GetDeviceContext()->PSSetSamplers(0, 1, ArrSMP);
 }
 
 void UPaperSpriteComponent::CreateAnimation(std::string_view AnimationName, std::string_view SpriteName,
@@ -167,9 +240,11 @@ void UPaperSpriteComponent::ChangeAnimation(std::string_view AnimationName, bool
 	{
 		return;
 	}
+
 	CurAnimation = &FrameAnimations[UpperName];
 	CurAnimation->Reset();
 	CurIndex = CurAnimation->FrameIndex[CurAnimation->CurIndex];
+
 	if (CurAnimation->Events.contains(CurAnimation->CurIndex))
 	{
 		CurAnimation->Events[CurAnimation->CurIndex]();
@@ -215,11 +290,33 @@ UPaperSpriteComponent::FrameAnimation* UPaperSpriteComponent::FindAnimation(std:
 
 void UPaperSpriteComponent::SetSprite(std::string_view SpriteName)
 {
-    //SetTexture(SpriteName);
+	std::string UpperSpriteName = UEngineString::ToUpper(SpriteName);
+
+	Sprite = UPaperSprite::Find<UPaperSprite>(UpperSpriteName).get();
+
+	if (nullptr == Sprite)
+	{
+		MSGASSERT("스프라이트 로드 실패");
+	}
 }
 
 void UPaperSpriteComponent::SetSprite(std::string_view SpriteName, size_t Index)
 {
-    UPrimitiveComponent::SetSprite(SpriteName);
+    SetSprite(SpriteName);
     SetSpriteData(Index);
+}
+
+void UPaperSpriteComponent::SetSprite(UPaperSprite* PaperSprite)
+{
+	Sprite = PaperSprite;
+
+	if (nullptr == Sprite)
+	{
+		MSGASSERT("스프라이트가 존재하지 않습니다.");
+	}
+}
+
+void UPaperSpriteComponent::SetSpriteData(size_t Index)
+{
+	SpriteData = Sprite->GetSpriteData(Index);
 }

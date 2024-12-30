@@ -1,6 +1,12 @@
 #include "pch.h"
 #include "EngineGraphicDevice.h"
 
+#include "Rendering/EngineVertex.h"
+#include "Rendering/VertexBuffer.h"
+#include "Rendering/IndexBuffer.h"
+
+#include "Classes/Engine/StaticMesh.h"
+
 UEngineGraphicDevice::UEngineGraphicDevice()
 {
 }
@@ -18,6 +24,49 @@ void UEngineGraphicDevice::Release()
 	SwapChain = nullptr;
 	DeviceContext = nullptr;
 	Device = nullptr;
+}
+
+void UEngineGraphicDevice::InitDefaultResources()
+{
+	InitMesh();
+	InitBlend();
+}
+
+void UEngineGraphicDevice::InitMesh()
+{
+	{
+		std::vector<EngineVertex> Vertexs;
+
+		Vertexs.resize(4);
+		Vertexs[0] = EngineVertex{ FVector(-0.5f, 0.5f, 0.0f), {0.0f , 0.0f }, {1.0f, 0.0f, 0.0f, 1.0f} };
+		Vertexs[1] = EngineVertex{ FVector(0.5f, 0.5f, 0.0f), {1.0f , 0.0f } , {0.0f, 1.0f, 0.0f, 1.0f} };
+		Vertexs[2] = EngineVertex{ FVector(-0.5f, -0.5f, 0.0f), {0.0f , 1.0f } , {0.0f, 0.0f, 1.0f, 1.0f} };
+		Vertexs[3] = EngineVertex{ FVector(0.5f, -0.5f, 0.0f), {1.0f , 1.0f } , {1.0f, 1.0f, 1.0f, 1.0f} };
+
+		FVertexBuffer::Create("Rect", Vertexs);
+	}
+
+	{
+		std::vector<unsigned int> Indexs;
+
+		Indexs.push_back(0);
+		Indexs.push_back(1);
+		Indexs.push_back(2);
+
+		Indexs.push_back(1);
+		Indexs.push_back(3);
+		Indexs.push_back(2);
+
+		FIndexBuffer::Create("Rect", Indexs);
+	}
+
+	{
+		UStaticMesh::Create("Rect");
+	}
+}
+
+void UEngineGraphicDevice::InitBlend()
+{
 }
 
 void UEngineGraphicDevice::RenderStart()
@@ -82,6 +131,7 @@ void UEngineGraphicDevice::CreateDeviceAndContext()
 		return;
 	}
 
+	InitDefaultResources();
 }
 
 void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& EngineWindow)
@@ -120,7 +170,7 @@ void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& EngineWindow)
 		MSGASSERT("스왑체인 제작에 실패했습니다.");
 	}
 
-	if (S_OK != SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(DXBackBufferTexture.GetAddressOf())))
+	if (S_OK != SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), &DXBackBufferTexture))
 	{
 		MSGASSERT("백버퍼 텍스처 로드 실패");
 	}

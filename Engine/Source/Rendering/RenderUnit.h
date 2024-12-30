@@ -7,8 +7,8 @@ class URenderUnit
 {
 public:
 	/** 생성자, 소멸자 */
-	URenderUnit();
-	~URenderUnit();
+	ENGINE_API URenderUnit();
+	ENGINE_API ~URenderUnit();
 
 	/** 객체 값 복사 방지 */
 	URenderUnit(const URenderUnit& Other) = delete;

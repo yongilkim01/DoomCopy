@@ -12,6 +12,7 @@
 #include "Core/EngineCore.h"
 #include "Classes/Engine/PaperSprite.h"
 #include "Rendering/EngineVertex.h"
+#include "Classes/Engine/StaticMesh.h"
 
 UPrimitiveComponent::UPrimitiveComponent()
 {
@@ -19,9 +20,7 @@ UPrimitiveComponent::UPrimitiveComponent()
 
 UPrimitiveComponent::~UPrimitiveComponent()
 {
-	VertexBuffer = nullptr;
-	VSShaderCodeBlob = nullptr;
-	VSErrorCodeBlob = nullptr;
+
 }
 
 void UPrimitiveComponent::BeginPlay()
@@ -30,12 +29,12 @@ void UPrimitiveComponent::BeginPlay()
 
 	SetOrder(0);
 
-	InitVertexBuffer();
 	InitVertexShader();
-	InitIndexBuffer();
 	InitRasterizer();
 	InitPixelShader();
 	InitShaderResourceView();
+
+	SetMesh("Rect");
 }
 
 void UPrimitiveComponent::Render(UCameraComponent* CameraComponent, float DeltaTime)
@@ -47,6 +46,12 @@ void UPrimitiveComponent::Render(UCameraComponent* CameraComponent, float DeltaT
 	RendererTransform.Projection = CameraTransform.Projection;
 
 	RendererTransform.WVP = RendererTransform.World * RendererTransform.View * RendererTransform.Projection;
+
+	if (nullptr == Mesh)
+	{
+		MSGASSERT("메쉬가 세팅되지 않았습니다.");
+		return;
+	}
 
 	// Rendering pipeline
 	UpdateShaderResourceView();
@@ -61,62 +66,10 @@ void UPrimitiveComponent::Render(UCameraComponent* CameraComponent, float DeltaT
 
 }
 
-void UPrimitiveComponent::InitVertexBuffer()
-{
-	// Vertex 데이터를 저장할 벡터 생성 및 크기 조절
-	std::vector<EngineVertex> Vertexes;
-	Vertexes.resize(4);
-
-	// 각 Vertex의 위치, 텍스처 좌표 및 색상을 설정
-	Vertexes[0] = EngineVertex{ FVector(-0.5f, 0.5f, -0.0f), {0.0f , 0.0f }, {1.0f, 0.0f, 0.0f, 1.0f} };
-	Vertexes[1] = EngineVertex{ FVector(0.5f, 0.5f, -0.0f), {1.0f , 0.0f } , {0.0f, 1.0f, 0.0f, 1.0f} };
-	Vertexes[2] = EngineVertex{ FVector(-0.5f, -0.5f, -0.0f), {0.0f , 1.0f } , {0.0f, 0.0f, 1.0f, 1.0f} };
-	Vertexes[3] = EngineVertex{ FVector(0.5f, -0.5f, -0.0f), {1.0f , 1.0f } , {1.0f, 1.0f, 1.0f, 1.0f} };
-
-	// 버텍스 버퍼 설명 구조체 초기화
-	D3D11_BUFFER_DESC Desc = { 0 };
-
-	Desc.ByteWidth = static_cast < UINT>(sizeof(EngineVertex) * Vertexes.size()); // 버퍼의 크기를 설정
-	Desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;				 // 버퍼의 바인딩 플래그를 버텍스 버퍼로 설정
-	Desc.CPUAccessFlags = 0;								 // CPU 접근 플래그를 설정 (기본값)
-	Desc.Usage = D3D11_USAGE_DEFAULT;						 // 버퍼의 사용 방식을 설정
-
-	// 버퍼에 초기 데이터 설정
-	D3D11_SUBRESOURCE_DATA Data;
-	Data.pSysMem = &Vertexes[0];
-
-	// 디바이스를 사용하여 버텍스 버퍼를 생성
-	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&Desc, &Data, VertexBuffer.GetAddressOf()))
-	{
-		MSGASSERT("버텍스 버퍼 생성 실패");
-		return;
-	}
-
-
-}
-
 void UPrimitiveComponent::UpdateVertexBuffer()
 {
-	// 버텍스의 크기와 오프셋을 설정
-	UINT VertexSize = sizeof(EngineVertex); // 버텍스 하나의 크기를 설정
-	UINT Offset = 0; // 버텍스 데이터의 시작 오프셋을 설정 (0으로 설정)
-
-	// 버텍스 버퍼 배열 생성
-	ID3D11Buffer* ArrayBuffer[1];
-	ArrayBuffer[0] = VertexBuffer.Get(); // 생성된 버텍스 버퍼를 배열에 저장
-
-	// 버텍스 버퍼를 입력 어셈블러(IA)에 설정
-	UEngineCore::GetDevice().GetDeviceContext()->IASetVertexBuffers(
-		0,            // 입력 슬롯의 시작 인덱스 (슬롯 0부터 시작)
-		1,            // 설정할 버퍼의 개수 (여기서는 1개)
-		ArrayBuffer,  // 버퍼 배열의 포인터
-		&VertexSize,  // 각 버텍스의 크기를 설정
-		&Offset       // 버퍼 내의 데이터 시작 오프셋을 설정
-	);
-
-	// 입력 레이아웃을 입력 어셈블러(IA)에 설정
+	Mesh->GetVertexBuffer()->Update();
 	UEngineCore::GetDevice().GetDeviceContext()->IASetInputLayout(InputLayout.Get());
-
 }
 
 void UPrimitiveComponent::InitVertexLayout()
@@ -188,7 +141,7 @@ void UPrimitiveComponent::InitVertexShader()
 	// 엔진 쉐이더 디렉토리로 이동
 	CurDir.MoveEngineShaderDirectory();
 	// 쉐이더 파일을 가져옴
-	FFileHelper VSFile = CurDir.GetFile("SpriteShader.fx");
+	FFileHelper VSFile = CurDir.GetFile("DefaultShader.fx");
 	// 파일 경로를 문자열로 변환
 	std::string Path = VSFile.GetPathToString();
 	// 문자열 경로를 와이드 문자열로 변환
@@ -252,47 +205,11 @@ void UPrimitiveComponent::UpdateVertexShader()
 	UEngineCore::GetDevice().GetDeviceContext()->VSSetShader(VertexShader.Get(), nullptr, 0);
 }
 
-void UPrimitiveComponent::InitIndexBuffer()
-{
-	// 인덱스 데이터를 저장할 벡터 생성
-	std::vector<unsigned int> Indexes;
-
-	// 인덱스 데이터 추가
-	Indexes.push_back(0);
-	Indexes.push_back(1);
-	Indexes.push_back(2);
-
-	Indexes.push_back(1);
-	Indexes.push_back(3);
-	Indexes.push_back(2);
-
-	// 인덱스 버퍼 설명 구조체 초기화
-	D3D11_BUFFER_DESC Desc = { 0 };
-
-	Desc.ByteWidth = static_cast < UINT>(sizeof(unsigned int) * static_cast<int>(Indexes.size())); // 버퍼의 크기를 설정
-	Desc.BindFlags = D3D11_BIND_INDEX_BUFFER; // 버퍼의 바인딩 플래그를 설정 (인덱스 버퍼로 사용)
-	Desc.CPUAccessFlags = 0; // CPU 접근 플래그를 설정 (기본값)
-	Desc.Usage = D3D11_USAGE_DEFAULT; // 버퍼의 사용 방식을 설정
-
-	// 버퍼에 초기 데이터 설정
-	D3D11_SUBRESOURCE_DATA Data;
-	Data.pSysMem = &Indexes[0]; // 초기 데이터 설정
-
-	// 디바이스를 사용하여 인덱스 버퍼를 생성
-	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&Desc, &Data, &IndexBuffer))
-	{
-		MSGASSERT("인덱스 버퍼 생성 실패");
-		return;
-	}
-
-}
 
 void UPrimitiveComponent::UpdateIndexBuffer()
 {
 	int Offset = 0;
-
-	UEngineCore::GetDevice().GetDeviceContext()->IASetIndexBuffer(IndexBuffer.Get(), DXGI_FORMAT_R32_UINT, Offset);
-
+	Mesh->GetIndexBuffer()->Update();
 	UEngineCore::GetDevice().GetDeviceContext()->IASetPrimitiveTopology(Topology);
 }
 
@@ -311,7 +228,7 @@ void UPrimitiveComponent::InitRasterizer()
 
 	// 디바이스를 사용하여 래스터라이저 상태를 생성
 	// GPU가 폴리곤을 렌더링하는 방식을 정의
-	UEngineCore::GetDevice().GetDevice()->CreateRasterizerState(&Desc, RasterizerState.GetAddressOf());
+	UEngineCore::GetDevice().GetDevice()->CreateRasterizerState(&Desc, &RasterizerState);
 
 	// 뷰포트 정보 설정
 	// 뷰포트는 렌더링된 이미지가 화면에 그려질 영역을 정의합니다.
@@ -338,7 +255,7 @@ void UPrimitiveComponent::InitPixelShader()
 	// 엔진 쉐이더 디렉토리로 이동
 	CurDir.MoveEngineShaderDirectory();
 	// 쉐이더 파일을 가져옴
-	FFileHelper VSFile = CurDir.GetFile("SpriteShader.fx");
+	FFileHelper VSFile = CurDir.GetFile("DefaultShader.fx");
 	// 파일 경로를 문자열로 변환
 	std::string Path = VSFile.GetPathToString();
 
@@ -422,59 +339,20 @@ void UPrimitiveComponent::UpdateRenderTargetView()
 
 void UPrimitiveComponent::InitShaderResourceView()
 {
-	// 상수 버퍼 생성
+	// 상수 버퍼 설명 구조체 초기화
+	D3D11_BUFFER_DESC Desc = { 0 };
+	Desc.ByteWidth = sizeof(FTransform); // 버퍼의 크기를 FTransform 구조체 크기로 설정
+	Desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER; // 버퍼의 바인딩 플래그를 상수 버퍼로 설정
+	Desc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE; // CPU가 버퍼에 쓰기 접근 가능하도록 설정
+	Desc.Usage = D3D11_USAGE_DYNAMIC; // 버퍼의 사용 방식을 동적으로 설정
+
+	// 디바이스를 사용하여 상수 버퍼 생성
+	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&Desc, nullptr, &ConstantBuffer))
 	{
-		// 상수 버퍼 설명 구조체 초기화
-		D3D11_BUFFER_DESC Desc = { 0 };
-		Desc.ByteWidth = sizeof(FTransform); // 버퍼의 크기를 FTransform 구조체 크기로 설정
-		Desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER; // 버퍼의 바인딩 플래그를 상수 버퍼로 설정
-		Desc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE; // CPU가 버퍼에 쓰기 접근 가능하도록 설정
-		Desc.Usage = D3D11_USAGE_DYNAMIC; // 버퍼의 사용 방식을 동적으로 설정
-
-		// 디바이스를 사용하여 상수 버퍼 생성
-		if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&Desc, nullptr, ConstantBuffer.GetAddressOf()))
-		{
-			MSGASSERT("상수 버퍼에 생성 실패");
-			return;
-		}
+		MSGASSERT("상수 버퍼에 생성 실패");
+		return;
 	}
-	// 스프라이트용 상수 버퍼 생성
-	{
-		// 상수 버퍼 설명 구조체 초기화
-		D3D11_BUFFER_DESC Desc = { 0 };
-		Desc.ByteWidth = sizeof(FPaperSpriteData); // 버퍼의 크기를 FTransform 구조체 크기로 설정
-		Desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER; // 버퍼의 바인딩 플래그를 상수 버퍼로 설정
-		Desc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE; // CPU가 버퍼에 쓰기 접근 가능하도록 설정
-		Desc.Usage = D3D11_USAGE_DYNAMIC; // 버퍼의 사용 방식을 동적으로 설정
-
-		// 디바이스를 사용하여 상수 버퍼 생성
-		if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&Desc, nullptr, SpriteConstantBuffer.GetAddressOf()))
-		{
-			MSGASSERT("스프라이트용 상수 버퍼에 생성 실패");
-			return;
-		}
-	}
-
-	// 샘플러 상태 설명 구조체 초기화 및 설정
-	D3D11_SAMPLER_DESC SamplerDesc = { D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT };
-	SamplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_BORDER; // U 좌표 텍스처 래핑 모드 설정
-	SamplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_BORDER; // V 좌표 텍스처 래핑 모드 설정
-	SamplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_CLAMP; // W 좌표 텍스처 래핑 모드 설정
-
-	SamplerDesc.BorderColor[0] = 0.0f;
-	SamplerDesc.BorderColor[1] = 0.0f;
-	SamplerDesc.BorderColor[2] = 0.0f;
-	SamplerDesc.BorderColor[3] = 0.0f;
-
-	//SamplerDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
-
-	//SamplerDesc.MaxLOD = 0.0f;
-	//SamplerDesc.MinLOD = 0.0f;
-
-
-	// 디바이스를 사용하여 샘플러 상태 생성
-	UEngineCore::GetDevice().GetDevice()->CreateSamplerState(&SamplerDesc, &SamplerState);
-
+	
 }
 
 void UPrimitiveComponent::UpdateShaderResourceView()
@@ -498,57 +376,17 @@ void UPrimitiveComponent::UpdateShaderResourceView()
 		ID3D11Buffer* ArrPtr[16] = { ConstantBuffer.Get() };
 		UEngineCore::GetDevice().GetDeviceContext()->VSSetConstantBuffers(0, 1, ArrPtr);
 	}
-
-	{
-		D3D11_MAPPED_SUBRESOURCE SubResourceData = {};
-
-		//렌더링 정지 후 상수 버퍼 수정
-		UEngineCore::GetDevice().GetDeviceContext()->Map(SpriteConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &SubResourceData);
-
-		if (nullptr == SubResourceData.pData)
-		{
-			MSGASSERT("그래픽 카드 수정 거부");
-		}
-
-		memcpy_s(SubResourceData.pData, sizeof(FPaperSpriteData), &SpriteData, sizeof(FPaperSpriteData));
-		UEngineCore::GetDevice().GetDeviceContext()->Unmap(SpriteConstantBuffer.Get(), 0);
-
-		ID3D11Buffer* ArrPtr[16] = { SpriteConstantBuffer.Get() };
-		UEngineCore::GetDevice().GetDeviceContext()->VSSetConstantBuffers(1, 1, ArrPtr);
-	}
-
-	ID3D11ShaderResourceView* ArrSRV[16] = { Sprite->GetShaderResourceView() };
-	UEngineCore::GetDevice().GetDeviceContext()->PSSetShaderResources(0, 1, ArrSRV);
-
-	ID3D11SamplerState* ArrSMP[16] = { SamplerState.Get() };
-	UEngineCore::GetDevice().GetDeviceContext()->PSSetSamplers(0, 1, ArrSMP);
 }
 
-void UPrimitiveComponent::SetSpriteData(size_t Index)
+void UPrimitiveComponent::SetMesh(std::string_view MeshName)
 {
-	SpriteData = Sprite->GetSpriteData(Index);
-}
+	std::shared_ptr<UStaticMesh> FindMesh = UStaticMesh::Find<UStaticMesh>(MeshName);
 
-void UPrimitiveComponent::SetSprite(std::string_view SpriteName)
-{
-	std::string UpperSpriteName = UEngineString::ToUpper(SpriteName);
-
-	Sprite = UPaperSprite::Find<UPaperSprite>(UpperSpriteName).get();
-
-	if (nullptr == Sprite)
+	Mesh = FindMesh.get();
+	
+	if (nullptr == Mesh)
 	{
-		MSGASSERT("스프라이트 로드 실패");
-	}
-
-}
-
-void UPrimitiveComponent::SetSprite(UPaperSprite* PaperSprite)
-{
-	Sprite = PaperSprite;
-
-	if (nullptr == Sprite)
-	{
-		MSGASSERT("스프라이트가 존재하지 않습니다.");
+		MSGASSERT("존재하지 않는 매쉬입니다.");
 	}
 }
 

@@ -84,7 +84,7 @@ void UTexture::AssetLoad()
 		ImageData.GetImages(),				// 이미지 데이터 배열
 		ImageData.GetImageCount(),			// 이미지 개수
 		ImageData.GetMetadata(),			// 이미지 메타데이터
-		ShaderResourceView.GetAddressOf()   // 생성된 쉐이더 리소스 뷰
+		&ShaderResourceView   // 생성된 쉐이더 리소스 뷰
 	))
 	{
 		MSGASSERT(UpperExt + "쉐이더 리소스 뷰 생성에 실패");

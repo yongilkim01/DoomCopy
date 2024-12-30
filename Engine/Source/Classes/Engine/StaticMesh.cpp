@@ -18,6 +18,7 @@ std::shared_ptr<UStaticMesh> UStaticMesh::Create(std::string_view Name, std::str
 		MSGASSERT("이미 로드된 에셋입니다. " + UpperName);
 		return nullptr;
 	}
+
 	std::shared_ptr<UStaticMesh> NewAsset = std::make_shared<UStaticMesh>();
 	AddAsset<UStaticMesh>(NewAsset, Name, "");
 	NewAsset->VertexBuffer = FVertexBuffer::Find<FVertexBuffer>(VertexBuffer);

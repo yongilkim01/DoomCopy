@@ -8,9 +8,9 @@
 ATitleGameMode::ATitleGameMode()
 {
 	{
-		TitleLogo = GetWorld()->SpawnActor<ATitleLogo>();
+		//TitleLogo = GetWorld()->SpawnActor<ATitleLogo>();
 		//TitleLogo->SetActorLocation({ 300.0f, 0.0f, 0.0f });
-		TitleLogo->GetRenderer()->SetSpriteData(4);
+		//TitleLogo->GetRenderer()->SetSpriteData(4);
 	}
 
 	// 카메라를 일정거리 뒤로 가서 

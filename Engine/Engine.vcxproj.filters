@@ -356,6 +356,9 @@
     <FxCompile Include="Shaders\SpriteShader.fx">
       <Filter>0_Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="Shaders\DefaultShader.fx">
+      <Filter>0_Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl">

@@ -156,6 +156,10 @@
     <ClInclude Include="Source\WorldPartition\DebugHelpers.h" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="Shaders\DefaultShader.fx">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VertexToWorld</EntryPointName>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VertexToWorld</EntryPointName>
+    </FxCompile>
     <FxCompile Include="Shaders\SpriteShader.fx">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VertexToWorld</EntryPointName>
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VertexToWorld</EntryPointName>

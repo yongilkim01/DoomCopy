@@ -24,11 +24,35 @@ std::shared_ptr<FIndexBuffer> FIndexBuffer::Create(std::string_view Name, const 
 	AddAsset<FIndexBuffer>(NewRes, Name, "");
 
 	NewRes->AssetCreate(InitData, IndexSize, IndexCount);
+
+	return NewRes;
 }
 
-void FIndexBuffer::AssetCreate(const void* InitData, size_t IndexSize, size_t IndexCount)
+void FIndexBuffer::Update()
 {
-	IndexBufferDesc.ByteWidth = static_cast<UINT>(IndexSize * IndexCount);
+	int Offset = 0;
+	UEngineCore::GetDevice().GetDeviceContext()->IASetIndexBuffer(IndexBuffer.Get(), Format, Offset);
+}
+
+void FIndexBuffer::AssetCreate(const void* InitData, size_t InIndexSize, size_t InIndexCount)
+{
+	IndexSize = static_cast<UINT>(InIndexSize);
+	IndexCount = static_cast<UINT>(InIndexCount);
+
+	if (4 == IndexSize) // 42억
+	{
+		Format = DXGI_FORMAT::DXGI_FORMAT_R32_UINT;
+	}
+	else if (2 == IndexSize) // 65536
+	{
+		Format = DXGI_FORMAT::DXGI_FORMAT_R16_UINT;
+	}
+	else
+	{
+		MSGASSERT("지원하지 않는 인덱스 포맷입니다.");
+	}
+
+	IndexBufferDesc.ByteWidth = static_cast<UINT>(InIndexSize * InIndexCount);
 	IndexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 	IndexBufferDesc.CPUAccessFlags = 0;
 	IndexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
@@ -37,7 +61,7 @@ void FIndexBuffer::AssetCreate(const void* InitData, size_t IndexSize, size_t In
 
 	Data.pSysMem = InitData;
 
-	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&IndexBufferDesc, &Data, IndexBuffer.GetAddressOf()))
+	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&IndexBufferDesc, &Data, &IndexBuffer))
 	{
 		MSGASSERT("인덱스 버퍼 생성에 실패했습니다.");
 		return;

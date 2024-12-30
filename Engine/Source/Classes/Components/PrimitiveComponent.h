@@ -7,6 +7,7 @@ class ULevel;
 class UCameraComponent;
 class UPaperSprite;
 class UTexture;
+class UStaticMesh;
 
 /**
  *	렌더러 클래스
@@ -26,32 +27,31 @@ public:
 	UPrimitiveComponent& operator=(const UPrimitiveComponent& Other) = delete;
 	UPrimitiveComponent& operator=(UPrimitiveComponent&& Other) noexcept = delete;
 
-	/** 초기화 메소드 */
-	void InitVertexBuffer();
+	/** 렌더링 파이프라인 메소드 */
 	void InitVertexLayout();
-	void UpdateVertexBuffer();
-
-	void InitVertexShader();
-	void UpdateVertexShader();
-
-	void InitIndexBuffer();
-	void UpdateIndexBuffer();
-
 	void InitRasterizer();
+
+	void UpdateVertexBuffer();
+	void UpdateIndexBuffer();
 	void UpdateRasterizer();
-
-	void InitPixelShader();
-	void UpdatePixelShader();
-
-	void InitShaderResourceView();
-	void UpdateShaderResourceView();
-
 	void UpdateRenderTargetView();
 
+	/** 렌더링 파이프라인 상속 메소드 */
+	virtual void InitShaderResourceView();
+	virtual void UpdateShaderResourceView();
+
+	virtual void InitVertexShader();
+	virtual void UpdateVertexShader();
+
+	virtual void InitPixelShader();
+	virtual void UpdatePixelShader();
+
+
+
+
 	/** UPrimitiveComponent 메소드 */
-	ENGINE_API void SetSpriteData(size_t Index);
-	ENGINE_API void SetSprite(std::string_view SpriteName);
-	ENGINE_API void SetSprite(UPaperSprite* PaperSprite);
+	ENGINE_API void SetMesh(std::string_view MeshName);
+
 
 	/** UObject 상속 메소드 */
 	ENGINE_API virtual void SetOrder(int NewOrder) override;
@@ -66,7 +66,6 @@ protected:
 private:
 
 public:
-	Microsoft::WRL::ComPtr<ID3D11Buffer> VertexBuffer = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11InputLayout> InputLayout = nullptr;
 
 	Microsoft::WRL::ComPtr<ID3DBlob> VSShaderCodeBlob = nullptr;
@@ -74,7 +73,6 @@ public:
 	Microsoft::WRL::ComPtr<ID3D11VertexShader> VertexShader = nullptr;
 
 	D3D11_PRIMITIVE_TOPOLOGY Topology = D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
-	Microsoft::WRL::ComPtr<ID3D11Buffer> IndexBuffer = nullptr;
 
 	D3D11_VIEWPORT ViewPortInfo;
 	Microsoft::WRL::ComPtr<ID3D11RasterizerState> RasterizerState = nullptr;
@@ -89,10 +87,7 @@ public:
 	std::vector<URenderUnit> Units;
 
 protected:
-	UPaperSprite* Sprite = nullptr;
 
 private:
-	FPaperSpriteData SpriteData;
-	Microsoft::WRL::ComPtr<ID3D11Buffer> SpriteConstantBuffer = nullptr; // 스프라이트용 상수버퍼
-
+	UStaticMesh* Mesh = nullptr;
 };

@@ -10,6 +10,7 @@ using namespace std;
 #include <Classes/Components/SceneComponent.h>
 #include <Core/Misc/DirectoryHelper.h>
 #include <Input/EngineInput.h>
+#include <Classes/Components/PrimitiveComponent.h>
 
 #include "Componennts/DoomMapComponent.h"
 #include "Componennts/LineComponent.h"
@@ -59,11 +60,11 @@ ADrawSquareActor::ADrawSquareActor()
 
 	for (int i = 0; i < RemappedVertexVector.size(); i++)
 	{
-		std::shared_ptr<UDoomMapComponent> SquareComponent = CreateDefaultSubObject<UDoomMapComponent>();
+		std::shared_ptr<UPrimitiveComponent> SquareComponent = CreateDefaultSubObject<UPrimitiveComponent>();
 		SquareComponent->SetupAttachment(RootComponent);
 		//SquareComponent->SetWorldLocation({ 0, 0 });
 		SquareComponent->SetWorldLocation(RemappedVertexVector[i]);
-		SquareComponent->SetRelativeScale3D({ FVector{2.0f, 2.0f} });
+		SquareComponent->SetRelativeScale3D({ FVector{10.0f, 10.0f} });
 	}
 }
 

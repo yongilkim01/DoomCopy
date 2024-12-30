@@ -1,7 +1,7 @@
 #pragma once
 #include <GameFramework/Actor.h>
 
-class UDoomMapComponent;
+class UPrimitiveComponent;
 class ULineComponent;
 class UWad;
 /**
@@ -26,7 +26,7 @@ protected:
 	void Tick(float DeltaTime) override;
 
 private:
-	std::vector<std::shared_ptr<UDoomMapComponent>> SquareComponentVector;
+	std::vector<std::shared_ptr<UPrimitiveComponent>> SquareComponentVector;
 	std::vector<std::shared_ptr<ULineComponent>> LineComponentVector;
 	UWad* Wad = nullptr;
 

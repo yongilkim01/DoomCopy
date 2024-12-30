@@ -50,7 +50,11 @@ public:
 	 *	렌더러 과정 마지막에 넣는 메소드
 	 */
 	void RenderEnd();
+
 	ENGINE_API void Release();
+	ENGINE_API void InitDefaultResources();
+	ENGINE_API void InitMesh();
+	ENGINE_API void InitBlend();
 
 
 	/** 겟, 셋 메소드 */

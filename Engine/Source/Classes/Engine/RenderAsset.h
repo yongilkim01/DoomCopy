@@ -3,6 +3,15 @@
 #include "Core/Misc/Paths.h"
 #include "Core/Containers/EngineString.h"
 
+enum class ERenderAssetType
+{
+    None,
+    Texture,
+    StaticMesh,
+    SkeletalMesh,
+};
+
+
 /**
  *  설명
  */
@@ -26,7 +35,7 @@ public:
      * @return 찾은 Asset의 공유 포인터
      */
     template<typename AssetType>
-    static std::shared_ptr<AssetType> Find(std::string_view AssetName)
+    ENGINE_API static std::shared_ptr<AssetType> Find(std::string_view AssetName)
     {
         const type_info& Info = typeid(AssetType);
         return std::dynamic_pointer_cast<AssetType>(Find(Info.name(), AssetName.data()));
@@ -38,7 +47,7 @@ public:
      * @param AssetName - Asset의 이름
      * @return 찾은 Asset의 공유 포인터
      */
-    static std::shared_ptr<URenderAsset> Find(std::string_view TypeName, std::string_view AssetName);
+    ENGINE_API static std::shared_ptr<URenderAsset> Find(std::string_view TypeName, std::string_view AssetName);
     /**
      * Asset을 추가하는 메소드
      *
