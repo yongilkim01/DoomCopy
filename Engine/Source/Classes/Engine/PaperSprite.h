@@ -1,6 +1,7 @@
 #pragma once
 #include "Classes/Engine/RenderAsset.h"
 #include "Core/Math/EngineMath.h"
+#include "Core/Misc/DirectoryHelper.h"
 #include "EngineDefine.h"
 
 class UTexture;
@@ -28,16 +29,26 @@ public:
 	UPaperSprite& operator=(const UPaperSprite& Other) = delete;
 	UPaperSprite& operator=(UPaperSprite&& Other) noexcept = delete;
 
+	ENGINE_API static std::shared_ptr<UPaperSprite> CreateSpriteToFolder(std::string_view SpritePath)
+	{
+		FDirectoryHelper DirectoryHelper = SpritePath;
+
+		return CreateSpriteToFolder(DirectoryHelper.GetDirectoryName(), SpritePath);
+	}
+	ENGINE_API static std::shared_ptr<UPaperSprite> CreateSpriteToFolder(std::string_view DirectoryName, std::string_view SpritePath);
+
 	ENGINE_API static std::shared_ptr<UPaperSprite> CreateSpriteToMeta(
 		std::string_view SpriteFileName, std::string_view SpriteFileExtension);
-	ENGINE_API ID3D11ShaderResourceView* GetShaderResourceView();
+	ENGINE_API ID3D11ShaderResourceView* GetShaderResourceView(size_t Index = 0);
 	ENGINE_API FPaperSpriteData GetSpriteData(size_t Index);
 	ENGINE_API FVector GetSpriteScaleToReal(size_t Index);
+	ENGINE_API UTexture* GetTexture(size_t Index = 0);
+
 
 
 protected:
 
 private:
-	UTexture* Texture;
+	std::vector<UTexture*> TextureVector;
 	std::vector<FPaperSpriteData> SpriteDataVector;
 };

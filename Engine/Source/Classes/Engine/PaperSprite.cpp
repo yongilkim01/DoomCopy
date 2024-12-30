@@ -15,6 +15,47 @@ UPaperSprite::~UPaperSprite()
 {
 }
 
+std::shared_ptr<UPaperSprite> UPaperSprite::CreateSpriteToFolder(std::string_view DirectoryName, std::string_view TexturePath)
+{
+	FDirectoryHelper DirectoryHelper = TexturePath;
+
+	std::vector<FFileHelper> Files = DirectoryHelper.GetAllFile(false, { ".png" });
+
+	if (0 == Files.size())
+	{
+		MSGASSERT("파일이 존재하지 않는 폴더를 스프라이트로 만들수는 없습니다.");
+	}
+
+	std::shared_ptr<UPaperSprite> NewRes = std::make_shared<UPaperSprite>();
+	AddAsset<UPaperSprite>(NewRes, DirectoryName, "");
+
+	for (size_t i = 0; i < Files.size(); i++)
+	{
+		std::string UpperTextureName = UEngineString::ToUpper(Files[i].GetFileName());
+
+		std::shared_ptr<UTexture> Texture = UTexture::Find<UTexture>(UpperTextureName);
+
+		if (nullptr == Texture)
+		{
+			MSGASSERT("텍스처를 먼저 로드하고 폴더 스프라이트를 만들어 주세요." + UpperTextureName);
+			return nullptr;
+		}
+
+		NewRes->TextureVector.push_back(Texture.get());
+
+		FPaperSpriteData SpriteData;
+
+		SpriteData.CuttingLocation = { 0.0f, 0.0f };
+		SpriteData.CuttingSize = { 1.0f, 1.0f };
+		SpriteData.Pivot = { 0.5f, 0.0f };
+
+		NewRes->SpriteDataVector.push_back(SpriteData);
+	}
+
+	return NewRes;
+}
+
+
 std::shared_ptr<UPaperSprite> UPaperSprite::CreateSpriteToMeta(std::string_view _Name, std::string_view _DataFileExt)
 {
 	std::shared_ptr<UTexture> Tex = UTexture::Find<UTexture>(_Name);
@@ -27,7 +68,6 @@ std::shared_ptr<UPaperSprite> UPaperSprite::CreateSpriteToMeta(std::string_view 
 
 	std::shared_ptr<UPaperSprite> NewRes = std::make_shared<UPaperSprite>();
 	AddAsset<UPaperSprite>(NewRes, _Name, "");
-	NewRes->Texture = Tex.get();
 
 	FPaths Path = Tex->GetPath();
 	std::string FileName = Path.GetFileName();
@@ -54,6 +94,7 @@ std::shared_ptr<UPaperSprite> UPaperSprite::CreateSpriteToMeta(std::string_view 
 			break;
 		}
 
+		NewRes->TextureVector.push_back(Tex.get());
 		SpriteDataTexts.push_back(Text.substr(RectIndex, AligIndex - RectIndex));
 		StartPosition = AligIndex;
 	}
@@ -118,9 +159,9 @@ std::shared_ptr<UPaperSprite> UPaperSprite::CreateSpriteToMeta(std::string_view 
 
 }
 
-ID3D11ShaderResourceView* UPaperSprite::GetShaderResourceView()
+ID3D11ShaderResourceView* UPaperSprite::GetShaderResourceView(size_t Index /* = 0*/)
 {
-	return Texture->GetShaderResourceView();
+	return TextureVector[0]->GetShaderResourceView();
 }
 
 FPaperSpriteData UPaperSprite::GetSpriteData(size_t Index)
@@ -141,8 +182,13 @@ FVector UPaperSprite::GetSpriteScaleToReal(size_t Index)
 	}
 	FVector Result;
 	//                0~1사이의 비율이기 때문에
-	Result.X = SpriteDataVector[Index].CuttingSize.X * Texture->GetTextureSize().X;
-	Result.Y = SpriteDataVector[Index].CuttingSize.Y * Texture->GetTextureSize().Y;
+	Result.X = SpriteDataVector[Index].CuttingSize.X * TextureVector[Index]->GetTextureSize().X;
+	Result.Y = SpriteDataVector[Index].CuttingSize.Y * TextureVector[Index]->GetTextureSize().Y;
 
 	return Result;
+}
+
+UTexture* UPaperSprite::GetTexture(size_t Index)
+{
+	return TextureVector[Index];
 }

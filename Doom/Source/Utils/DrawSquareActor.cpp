@@ -60,7 +60,9 @@ ADrawSquareActor::ADrawSquareActor()
 
 	for (int i = 0; i < RemappedVertexVector.size(); i++)
 	{
-		std::shared_ptr<UPrimitiveComponent> SquareComponent = CreateDefaultSubObject<UPrimitiveComponent>();
+		std::shared_ptr<UPaperSpriteComponent> SquareComponent = CreateDefaultSubObject<UPaperSpriteComponent>();
+		SquareComponent->CreateAnimation("Idle", "Textures", 0, 0, 0.1f);
+		SquareComponent->SetSprite("Textures");
 		SquareComponent->SetupAttachment(RootComponent);
 		//SquareComponent->SetWorldLocation({ 0, 0 });
 		SquareComponent->SetWorldLocation(RemappedVertexVector[i]);

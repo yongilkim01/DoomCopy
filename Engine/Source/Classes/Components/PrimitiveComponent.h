@@ -32,8 +32,10 @@ public:
 	void InitRasterizer();
 
 	void UpdateVertexBuffer();
+	void UpdateVertexShader();
 	void UpdateIndexBuffer();
-	void UpdateRasterizer();
+	void UpdateRasterizer();	
+	void UpdatePixelShader();
 	void UpdateRenderTargetView();
 
 	/** 렌더링 파이프라인 상속 메소드 */
@@ -41,13 +43,7 @@ public:
 	virtual void UpdateShaderResourceView();
 
 	virtual void InitVertexShader();
-	virtual void UpdateVertexShader();
-
 	virtual void InitPixelShader();
-	virtual void UpdatePixelShader();
-
-
-
 
 	/** UPrimitiveComponent 메소드 */
 	ENGINE_API void SetMesh(std::string_view MeshName);
@@ -83,8 +79,6 @@ public:
 
 	Microsoft::WRL::ComPtr<ID3D11Buffer> ConstantBuffer = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> SamplerState = nullptr;
-
-	std::vector<URenderUnit> Units;
 
 protected:
 

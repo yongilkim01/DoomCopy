@@ -2,6 +2,7 @@
 #include <GameFramework/Actor.h>
 
 class UPrimitiveComponent;
+class UPaperSpriteComponent;
 class ULineComponent;
 class UWad;
 /**
@@ -26,7 +27,7 @@ protected:
 	void Tick(float DeltaTime) override;
 
 private:
-	std::vector<std::shared_ptr<UPrimitiveComponent>> SquareComponentVector;
+	std::vector<std::shared_ptr<UPaperSpriteComponent>> SquareComponentVector;
 	std::vector<std::shared_ptr<ULineComponent>> LineComponentVector;
 	UWad* Wad = nullptr;
 

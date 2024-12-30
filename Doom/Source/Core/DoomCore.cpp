@@ -50,6 +50,19 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 		}
 	}
 
+	{
+		FDirectoryHelper DirectoryHelper;
+		if (false == DirectoryHelper.MoveParentToDirectory("Resources"))
+		{
+			MSGASSERT("리소스 폴더를 찾기에 실패했습니다");
+			return;
+		}
+
+		DirectoryHelper.Append("Images/Textures");
+
+		UPaperSprite::CreateSpriteToFolder(DirectoryHelper.GetPathToString());
+	}
+
 	UPaperSprite::CreateSpriteToMeta("Player.png", ".sdata");
 
 	UEngineCore::CreateLevel<ATitleGameMode, AActor>("TitleLevel");
