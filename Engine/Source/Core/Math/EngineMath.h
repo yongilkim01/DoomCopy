@@ -752,6 +752,20 @@ public:
 		DirectMatrix = DirectX::XMMatrixLookToLH(Position.DirectVector, Direction.DirectVector, Up.DirectVector);
 	}
 	/**
+	 *   주어진 파라미터 값을 사용하여 원근 투영 행렬을 설정하는 함수
+	 *
+	 *   @param FieldOfView 수직 시야각 (라디안 단위)
+	 *   @param AspectRatio 종횡비 (너비 / 높이)
+	 *   @param Near 근평면 거리
+	 *   @param Far 원평면 거리
+	 */
+	void PerspectiveFovLH(float FieldOfView, float AspectRatio, float Near, float Far)
+	{
+		Identity();
+		DirectMatrix = DirectX::XMMatrixPerspectiveFovLH(FieldOfView, AspectRatio, Near, Far);
+	}
+
+	/**
 	 *   주어진 파라미터 값을 사용하여 직교 투영 행렬을 설정하는 함수
 	 *
 	 *   @param Width 투영 너비
