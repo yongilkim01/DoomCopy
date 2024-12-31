@@ -249,7 +249,14 @@ void UEngineGraphicDevice::InitMesh()
 {
 	{
 		FDirectoryHelper DirectoryHelper;
-		DirectoryHelper.MoveParentToDirectory("..\\Resources\\Models\\E1M1");
+		if (false == DirectoryHelper.MoveParentToDirectory("Resources"))
+		{
+			MSGASSERT("리소스 폴더를 찾기에 실패했습니다");
+			return;
+		}
+
+		DirectoryHelper.Append("Models\\E1M1");
+
 		std::string Path = DirectoryHelper.GetPathToString();
 
 		LoadModel(Path + "\\doom_E1M1.obj", Path + "\\doom_E1M1.mtl");
