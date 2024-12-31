@@ -26,7 +26,7 @@ ARound1GameMode::ARound1GameMode()
 	}
 
 	Camera = GetWorld()->GetMainCamera();
-	Camera->SetActorLocation({ -2000.0f, 0.0f, 2000.0f, 1.0f });
+	Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
 }
 
 ARound1GameMode::~ARound1GameMode()

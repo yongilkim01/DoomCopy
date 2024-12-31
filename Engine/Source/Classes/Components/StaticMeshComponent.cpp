@@ -15,7 +15,7 @@ UStaticMeshComponent::~UStaticMeshComponent()
 void UStaticMeshComponent::BeginPlay()
 {
 	UPrimitiveComponent::BeginPlay();
-	SetMesh("Map1");
+	SetMesh("Map5");
 }
 
 void UStaticMeshComponent::Render(UCameraComponent* CameraComponent, float DeltaTime)
