@@ -4,6 +4,7 @@
 #include <Core/Math/EngineMath.h>
 #include <Classes/Components/PaperSpriteComponent.h>
 #include <Classes/Components/SceneComponent.h>
+#include <Classes/Components/StaticMeshComponent.h>
 #include <Core/Misc/DirectoryHelper.h>
 #include <Input/EngineInput.h>
 
@@ -15,9 +16,9 @@ ADrawLineActor::ADrawLineActor()
 	std::shared_ptr<USceneComponent> Default = CreateDefaultSubObject<USceneComponent>();
 	RootComponent = Default;
 
-	LineComponent = CreateDefaultSubObject<ULineComponent>();
+	LineComponent = CreateDefaultSubObject<UStaticMeshComponent>();
 	LineComponent->SetupAttachment(RootComponent);
-	LineComponent->SetRelativeScale3D({ 50, 1.0f, 1.0f });
+	LineComponent->SetRelativeScale3D({ 100.0f, 100.0f, 100.0f });
 }
 
 ADrawLineActor::~ADrawLineActor()

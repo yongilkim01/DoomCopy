@@ -31,6 +31,7 @@ std::shared_ptr<UTexture> UTexture::Load(std::string_view TextureFileName, std::
 	std::shared_ptr<UTexture> NewTexture = std::make_shared<UTexture>();
 	AddAsset<UTexture>(NewTexture, TextureFileName, LoadTextureFilePath);
 	NewTexture->AssetLoad();
+	NewTexture->SetTxturePath(LoadTextureFilePath);
 
 	return NewTexture;
 }

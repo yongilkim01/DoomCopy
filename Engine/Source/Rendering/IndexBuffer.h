@@ -28,6 +28,11 @@ public:
 
 	ENGINE_API void Update();
 
+	UINT GetIndexBufferSize()
+	{
+		return IndexSize;
+	}
+
 
 protected:
 	void AssetCreate(const void* InitData, size_t IndexSize, size_t IndexCount);

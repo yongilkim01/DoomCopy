@@ -80,8 +80,10 @@ public:
 	Microsoft::WRL::ComPtr<ID3D11Buffer> ConstantBuffer = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> SamplerState = nullptr;
 
+	UStaticMesh* Mesh = nullptr;
+
 protected:
 
 private:
-	UStaticMesh* Mesh = nullptr;
+
 };

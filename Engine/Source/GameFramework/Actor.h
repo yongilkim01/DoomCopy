@@ -129,7 +129,10 @@ public:
 	{
 		RootComponent = NewRootComponent;
 	}
-	
+	FTransform GetActorLoaction()
+	{
+		return RootComponent->GetComponentTransform();
+	}
 
 protected:
 	std::shared_ptr<USceneComponent> RootComponent = nullptr;

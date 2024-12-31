@@ -12,21 +12,21 @@
 
 ARound1GameMode::ARound1GameMode()
 {
-	{
-		std::shared_ptr<ADrawSquareActor> DrawSquareActor = GetWorld()->SpawnActor<ADrawSquareActor>();
-		DrawSquareActor->SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
-		DrawSquareActorVector.push_back(DrawSquareActor);
-	}
-
 	//{
-	//	std::shared_ptr<ADrawLineActor> DrawLineActor = GetWorld()->SpawnActor<ADrawLineActor>();
-	//	DrawLineActor->SetActorRotation(FVector{ 0.0f, 0.0f, 30.0f });
-	//	DrawLineActor->SetActorRelativeScale3D(FVector{ 1000.0f, 1.0f, 1.0f });
-	//	DrawLineActorVector.push_back(DrawLineActor);
+	//	std::shared_ptr<ADrawSquareActor> DrawSquareActor = GetWorld()->SpawnActor<ADrawSquareActor>();
+	//	DrawSquareActor->SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
+	//	DrawSquareActorVector.push_back(DrawSquareActor);
 	//}
 
+	{
+		std::shared_ptr<ADrawLineActor> DrawLineActor = GetWorld()->SpawnActor<ADrawLineActor>();
+		//DrawLineActor->SetActorRotation(FVector{ 0.0f, 0.0f, 30.0f });
+		DrawLineActor->SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
+		DrawLineActorVector.push_back(DrawLineActor);
+	}
+
 	Camera = GetWorld()->GetMainCamera();
-	Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
+	Camera->SetActorLocation({ -2000.0f, 0.0f, 2000.0f, 1.0f });
 }
 
 ARound1GameMode::~ARound1GameMode()

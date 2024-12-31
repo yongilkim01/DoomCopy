@@ -40,6 +40,26 @@ public:
 		return TextureSize;
 	}
 
+	/** 겟, 셋 메소드 */
+	std::string GetTextureType()
+	{
+		return TextureType;
+	}
+	void SetTextureType(std::string_view NewType)
+	{
+		TextureType = NewType;
+	}
+	std::string GetTexturePath()
+	{
+		return TexturePath;
+	}
+	bool SetTxturePath(std::string_view NewPath)
+	{
+		TexturePath = NewPath;
+
+		return true;
+	}
+
 protected:
 
 private:
@@ -48,6 +68,9 @@ private:
 	FVector TextureSize;
 	DirectX::TexMetadata Metadata;
 	DirectX::ScratchImage ImageData;
+
+	std::string TextureType = "";
+	std::string TexturePath = "";
 
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> Texture2D = nullptr; // 로드한 텍스처
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> ShaderResourceView = nullptr; // 텍스처를 쉐이더 세팅할수 있는권한

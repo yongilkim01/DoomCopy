@@ -6,11 +6,21 @@
 #include <d3d11_4.h>
 #include <d3dcompiler.h>
 #include "Platform/Window.h"
+#include "AiMesh.h"
 
 #pragma comment(lib, "d3d11")
 #pragma comment(lib, "d3dcompiler") 
 #pragma comment(lib, "dxguid")
 #pragma comment(lib, "DXGI") 
+
+struct aiNode;
+struct aiScene;
+struct aiMesh;
+struct aiMaterial;
+struct aiTexture;
+
+enum aiTextureType;
+
 
 /**
  *	설명
@@ -27,6 +37,12 @@ public:
 	UEngineGraphicDevice(UEngineGraphicDevice&& Other) noexcept = delete;
 	UEngineGraphicDevice& operator=(const UEngineGraphicDevice& Other) = delete;
 	UEngineGraphicDevice& operator=(UEngineGraphicDevice&& Other) noexcept = delete;
+
+	bool LoadModel(std::string_view _objPath, std::string_view _mtlPath);
+	void ProcessNode(aiNode* node, const aiScene* scene);
+	AiMesh ProcessMesh(aiMesh* mesh, const aiScene* scene);
+	std::vector<TEXTURE> LoadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName, const aiScene* scene);
+	ID3D11ShaderResourceView* LoadEmbeddedTexture(const aiTexture* embeddedTexture);
 
 	/**
 	 *	Device, DeviceContext 초기화 메소드
@@ -81,4 +97,11 @@ private:
 	Microsoft::WRL::ComPtr<IDXGIAdapter> MainAdapter = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> DXBackBufferTexture = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> RenderTargetView = nullptr;
+
+	std::string ObjPath = "";
+	std::string MtlPath = "";
+
+	std::vector<AiMesh> Meshes;
+	std::vector<TEXTURE> Textures;
+	std::string Directory = "";
 };

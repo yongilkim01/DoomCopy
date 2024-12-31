@@ -1,7 +1,7 @@
 #pragma once
 #include <GameFramework/Actor.h>
 
-class ULineComponent;
+class UStaticMeshComponent;
 
 /**
  *	Ό³Έν
@@ -25,7 +25,7 @@ protected:
 	void Tick(float DeltaTime) override;
 
 private:
-	std::shared_ptr<ULineComponent> LineComponent;
+	std::shared_ptr<UStaticMeshComponent> LineComponent;
 
 };
 

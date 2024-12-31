@@ -62,7 +62,7 @@ void UPrimitiveComponent::Render(UCameraComponent* CameraComponent, float DeltaT
 	UpdatePixelShader();
 	UpdateRenderTargetView();
 
-	UEngineCore::GetDevice().GetDeviceContext()->DrawIndexed(6, 0, 0);
+	UEngineCore::GetDevice().GetDeviceContext()->DrawIndexed(Mesh->GetIndexBuffer()->GetIndexBufferSize(), 0, 0);
 
 }
 
