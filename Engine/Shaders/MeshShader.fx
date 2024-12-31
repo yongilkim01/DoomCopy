@@ -55,6 +55,6 @@ SamplerState ImageSampler : register(s0);
 
 float4 PS(VertexOutput InVertex) : SV_Target0
 {
-    float4 Color = ImageTexture.Sample(ImageSampler, InVertex.UV.xy);
+    float4 Color = float4(1.0f, 1.0f, 1.0f, 1.0f);
     return Color;
 }
