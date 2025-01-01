@@ -34,7 +34,7 @@ public:
 
 	/** 렌더링 파이프라인 메소드 */
 	void InitVertexLayout();
-	void InitRasterizer();
+	virtual void InitRasterizer();
 
 	void UpdateVertexBuffer();
 	void UpdateVertexShader();

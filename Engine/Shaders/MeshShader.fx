@@ -1,14 +1,13 @@
 struct EngineVertex
 {
     float4 POSITION : POSITION;
-    float4 UV : TEXCOORD;
-    float4 COLOR : COLOR;
+    float2 UV : TEXCOORD;
 };
 
 struct VertexOutput
 {
     float4 SVPOSITION : SV_POSITION;
-    float4 UV : TEXCOORD;
+    float2 UV : TEXCOORD;
 };
 
 cbuffer FTransform : register(b0)
@@ -47,6 +46,11 @@ VertexOutput VS(EngineVertex InVertex)
     OutPut.SVPOSITION = mul(InVertex.POSITION, WVP);
     OutPut.UV = InVertex.UV;
     
+    //output.pos = mul(pos, World);
+    //output.pos = mul(output.pos, View);
+    //output.pos = mul(output.pos, Projection);
+    //output.texcoord = texcoord;
+    
     return OutPut;
 }
 
@@ -55,6 +59,6 @@ SamplerState ImageSampler : register(s0);
 
 float4 PS(VertexOutput InVertex) : SV_Target0
 {
-    float4 Color = float4(1.0f, 1.0f, 1.0f, 1.0f);
+    float4 Color = ImageTexture.Sample(ImageSampler, InVertex.UV);
     return Color;
 }

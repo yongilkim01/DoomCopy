@@ -22,11 +22,13 @@ ARound1GameMode::ARound1GameMode()
 		std::shared_ptr<ADrawLineActor> DrawLineActor = GetWorld()->SpawnActor<ADrawLineActor>();
 		//DrawLineActor->SetActorRotation(FVector{ 0.0f, 0.0f, 30.0f });
 		DrawLineActor->SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
-		DrawLineActorVector.push_back(DrawLineActor);
+		DrawLineActor->SetActorRelativeScale3D({ 2.f, 2.f, 2.f });
+		DrawLineActor->SetActorLocation({ 60.0f, 0.f, 0.f });
 	}
 
 	Camera = GetWorld()->GetMainCamera();
-	Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
+	Camera->AddActorLocation({ 10.0f, 0.0f, 0.0f });
+	Camera->AddActorRelativeLocation({ 0.0f, 0.0f, -500.0f});
 }
 
 ARound1GameMode::~ARound1GameMode()
@@ -37,7 +39,7 @@ void ARound1GameMode::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
 
-	UEngineDebug::OutPutString(Camera->ScreenMouseLocationToWorldLocation().ToString());
+	//UEngineDebug::OutPutString(Camera->ScreenMouseLocationToWorldLocation().ToString());
 
 
 	if (UEngineInput::IsPress('A'))

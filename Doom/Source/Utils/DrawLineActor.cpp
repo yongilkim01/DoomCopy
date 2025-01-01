@@ -13,13 +13,23 @@
 
 ADrawLineActor::ADrawLineActor()
 {
-	/*std::shared_ptr<USceneComponent> Default = CreateDefaultSubObject<USceneComponent>();
-	RootComponent = Default;*/
+	std::shared_ptr<USceneComponent> Default = CreateDefaultSubObject<USceneComponent>();
+	RootComponent = Default;
+
+	FDirectoryHelper DirectoryHelper;
+	if (false == DirectoryHelper.MoveParentToDirectory("Resources"))
+	{
+		MSGASSERT("리소스 폴더를 찾기에 실패했습니다");
+		return;
+	}
+
+	DirectoryHelper.Append("Models\\E1M1");
+
+	std::string Path = DirectoryHelper.GetPathToString();
 
 	LineComponent = CreateDefaultSubObject<UStaticMeshComponent>();
-	RootComponent = LineComponent;
-
-	//LineComponent->SetupAttachment(RootComponent);
+	LineComponent->Init(Path + "\\doom_E1M1.obj", Path + "\\doom_E1M1.mtl");
+	LineComponent->SetupAttachment(RootComponent);
 	//
 	// LineComponent->SetRelativeScale3D({1.0f, 1.0f, 1.0f});
 }
