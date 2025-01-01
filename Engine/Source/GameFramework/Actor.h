@@ -29,6 +29,8 @@ public:
 	virtual void LevelChangeStart() {}
 	virtual void LevelChangeEnd() {}
 
+	void AttachToActor(AActor* Parent);
+
 	template<typename ComponentType>
 	inline std::shared_ptr<ComponentType> CreateDefaultSubObject()
 	{

@@ -161,7 +161,7 @@ std::shared_ptr<UPaperSprite> UPaperSprite::CreateSpriteToMeta(std::string_view 
 
 ID3D11ShaderResourceView* UPaperSprite::GetShaderResourceView(size_t Index /* = 0*/)
 {
-	return TextureVector[0]->GetShaderResourceView();
+	return TextureVector[Index]->GetShaderResourceView();
 }
 
 FPaperSpriteData UPaperSprite::GetSpriteData(size_t Index)

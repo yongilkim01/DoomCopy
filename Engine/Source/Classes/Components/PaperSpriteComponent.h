@@ -71,8 +71,8 @@ public:
 
 
 	/** °Ù, ¼Â ¸Þ¼Òµå */
-	ENGINE_API void SetSprite(std::string_view SpriteName);
-	ENGINE_API void SetSprite(std::string_view SpriteName, size_t Index);
+	//ENGINE_API void SetSprite(std::string_view SpriteName);
+	//ENGINE_API void SetSprite(std::string_view SpriteName, size_t Index);
 	ENGINE_API void SetSprite(UPaperSprite* PaperSprite);
 	ENGINE_API void SetSpriteData(UPaperSprite* PaperSprite, size_t Index);
 	ENGINE_API void SetTexture(UTexture* NewTexture);

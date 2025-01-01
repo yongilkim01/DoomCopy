@@ -228,7 +228,7 @@ void UPrimitiveComponent::InitRasterizer()
 
 	// 컬링 모드를 백 페이스(뒤쪽 면을 제거)로 설정
 	// 폴리곤의 뒷면을 렌더링하지 않도록 하여 성능을 향상
-	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_BACK;
+	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
 
 	// 폴리곤 채우기 모드를 솔리드로 설정
 	// 폴리곤의 내부를 채우는 기본 렌더링 모드
@@ -420,6 +420,16 @@ void UPrimitiveComponent::SetBlend(std::string_view BlendName)
 	{
 		MSGASSERT("존재하지 않는 블렌드 입니다 UPrimitiveComponent::SetBlend\n");
 	}
+}
+
+void UPrimitiveComponent::SetTexture(UTexture* NewTexture)
+{
+	Texture = NewTexture;
+}
+
+void UPrimitiveComponent::SetSpriteData(UPaperSprite* PaperSprite, size_t Index)
+{
+	SpriteData = PaperSprite->GetSpriteData(Index);
 }
 
 void UPrimitiveComponent::SetOrder(int NewOrder)

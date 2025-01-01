@@ -36,3 +36,18 @@ void AActor::Tick(float DeltaTime)
         ActorComponent->ComponentTick(DeltaTime);
     }
 }
+
+void AActor::AttachToActor(AActor* Parent)
+{
+    if (nullptr == RootComponent)
+    {
+        MSGASSERT("자식의 RootComponent가 nullptr입니다.");
+        return;
+    }
+    if (nullptr == Parent->RootComponent)
+    {
+        MSGASSERT("부모의 RootComponent가 nullptr입니다.");
+        return;
+    }
+    RootComponent->SetupAttachment(Parent->RootComponent);
+}

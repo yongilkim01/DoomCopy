@@ -37,8 +37,7 @@ public:
 	}
 	ENGINE_API static std::shared_ptr<UPaperSprite> CreateSpriteToFolder(std::string_view DirectoryName, std::string_view SpritePath);
 
-	ENGINE_API static std::shared_ptr<UPaperSprite> CreateSpriteToMeta(
-		std::string_view SpriteFileName, std::string_view SpriteFileExtension);
+	ENGINE_API static std::shared_ptr<UPaperSprite> CreateSpriteToMeta(std::string_view SpriteFileName, std::string_view SpriteFileExtension);
 	ENGINE_API ID3D11ShaderResourceView* GetShaderResourceView(size_t Index = 0);
 	ENGINE_API FPaperSpriteData GetSpriteData(size_t Index);
 	ENGINE_API FVector GetSpriteScaleToReal(size_t Index);

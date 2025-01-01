@@ -5,7 +5,6 @@
 
 class ULevel;
 class UCameraComponent;
-class UPaperSprite;
 class UTexture;
 class UStaticMesh;
 class UEngineBlend;
@@ -50,6 +49,9 @@ public:
 	ENGINE_API void SetMesh(std::string_view MeshName);
 	ENGINE_API void SetBlend(std::string_view BlendName);
 
+	ENGINE_API void SetTexture(UTexture* NewTexture);
+	ENGINE_API void SetSpriteData(UPaperSprite* PaperSprite, size_t Index);
+
 	/** UObject 상속 메소드 */
 	ENGINE_API virtual void SetOrder(int NewOrder) override;
 
@@ -83,6 +85,9 @@ public:
 
 	UStaticMesh* Mesh = nullptr;
 	UEngineBlend* Blend = nullptr;
+
+	UTexture* Texture = nullptr;
+	FPaperSpriteData SpriteData;
 
 protected:
 

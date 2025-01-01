@@ -91,7 +91,7 @@ void UPaperSpriteComponent::Render(UCameraComponent* CameraComponent, float Delt
 	if (nullptr != CurAnimation)
 	{
 		UPaperSprite* Sprite = CurAnimation->Sprite;
-		size_t CurIndex = CurAnimation->CurIndex;
+		//size_t CurIndex = CurAnimation->CurIndex;
 
 		SetTexture(Sprite->GetTexture(CurIndex));
 		SetSpriteData(Sprite, CurIndex);
@@ -391,7 +391,7 @@ void UPaperSpriteComponent::ChangeAnimation(std::string_view AnimationName, bool
 	{
 		CurAnimation->Events[CurAnimation->CurIndex]();
 	}
-	Sprite = CurAnimation->Sprite;
+	//Sprite = CurAnimation->Sprite;
 }
 void UPaperSpriteComponent::SetAnimationEvent(std::string_view AnimationName, 
 											  int Frame, std::function<void()> EventFunction)
@@ -430,25 +430,25 @@ UPaperSpriteComponent::FrameAnimation* UPaperSpriteComponent::FindAnimation(std:
 	return &FrameAnimations[UpperString];
 }
 
-void UPaperSpriteComponent::SetSprite(std::string_view SpriteName)
-{
-	std::string UpperSpriteName = UEngineString::ToUpper(SpriteName);
-
-	Sprite = UPaperSprite::Find<UPaperSprite>(UpperSpriteName).get();
-
-	if (nullptr == Sprite)
-	{
-		MSGASSERT("스프라이트 로드 실패");
-	}
-
-	CurTexture = Sprite->GetTexture(0);
-}
-
-void UPaperSpriteComponent::SetSprite(std::string_view SpriteName, size_t Index)
-{
-    SetSprite(SpriteName);
-    //SetSpriteData(Index);
-}
+//void UPaperSpriteComponent::SetSprite(std::string_view SpriteName)
+//{
+//	std::string UpperSpriteName = UEngineString::ToUpper(SpriteName);
+//
+//	Sprite = UPaperSprite::Find<UPaperSprite>(UpperSpriteName).get();
+//
+//	if (nullptr == Sprite)
+//	{
+//		MSGASSERT("스프라이트 로드 실패");
+//	}
+//
+//	//CurTexture = Sprite->GetTexture(0);
+//}
+//
+//void UPaperSpriteComponent::SetSprite(std::string_view SpriteName, size_t Index)
+//{
+//    SetSprite(SpriteName);
+//    //SetSpriteData(Index);
+//}
 
 void UPaperSpriteComponent::SetSprite(UPaperSprite* PaperSprite)
 {
