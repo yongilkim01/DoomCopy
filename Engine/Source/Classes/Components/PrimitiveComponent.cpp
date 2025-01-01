@@ -5,14 +5,15 @@
 #include "Classes/Engine/Texture.h"
 #include "Classes/Camera/CameraComponent.h"
 #include "Classes/Engine/PaperSprite.h"
+#include "Classes/Engine/StaticMesh.h"
+
+#include "Rendering/EngineVertex.h"
+#include "Rendering/EngineBlend.h"
 
 #include "Core/Misc/DirectoryHelper.h"
 #include "Core/Misc/FileHelper.h"
 #include "Core/Containers/EngineString.h"
 #include "Core/EngineCore.h"
-#include "Classes/Engine/PaperSprite.h"
-#include "Rendering/EngineVertex.h"
-#include "Classes/Engine/StaticMesh.h"
 
 UPrimitiveComponent::UPrimitiveComponent()
 {
@@ -34,7 +35,7 @@ void UPrimitiveComponent::BeginPlay()
 	InitPixelShader();
 	InitShaderResourceView();
 
-	SetMesh("Rect");
+	//SetMesh("Rect");
 }
 
 void UPrimitiveComponent::Render(UCameraComponent* CameraComponent, float DeltaTime)
@@ -53,6 +54,9 @@ void UPrimitiveComponent::Render(UCameraComponent* CameraComponent, float DeltaT
 		return;
 	}
 
+	UEngineCore::GetDevice().GetDeviceContext()->IASetPrimitiveTopology(Topology);
+
+
 	// Rendering pipeline
 	UpdateShaderResourceView();
 	UpdateVertexBuffer();
@@ -62,7 +66,11 @@ void UPrimitiveComponent::Render(UCameraComponent* CameraComponent, float DeltaT
 	UpdatePixelShader();
 	UpdateRenderTargetView();
 
-	UEngineCore::GetDevice().GetDeviceContext()->DrawIndexed(Mesh->GetIndexBuffer()->GetIndexBufferSize(), 0, 0);
+	//UEngineCore::GetDevice().GetDeviceContext()->DrawIndexed(Mesh->GetIndexBuffer()->GetIndexBufferSize(), 0, 0);
+
+	for (size_t i = 0; i < UEngineCore::GetDevice().Meshes.size(); ++i) {
+		UEngineCore::GetDevice().Meshes[i].Draw(UEngineCore::GetDevice().GetDeviceContext());
+	}
 
 }
 
@@ -220,7 +228,7 @@ void UPrimitiveComponent::InitRasterizer()
 
 	// 컬링 모드를 백 페이스(뒤쪽 면을 제거)로 설정
 	// 폴리곤의 뒷면을 렌더링하지 않도록 하여 성능을 향상
-	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
+	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_BACK;
 
 	// 폴리곤 채우기 모드를 솔리드로 설정
 	// 폴리곤의 내부를 채우는 기본 렌더링 모드
@@ -321,6 +329,11 @@ void UPrimitiveComponent::UpdatePixelShader()
 // 그리기 위한 백지 준비 과정
 void UPrimitiveComponent::UpdateRenderTargetView()
 {
+	if (nullptr != Blend)
+	{
+		Blend->Update();
+	}
+
 	// 렌더 타겟 뷰 포인터를 가져옴
 	ID3D11RenderTargetView* RenderTargetView = UEngineCore::GetDevice().GetRenderTargetView();
 
@@ -343,8 +356,8 @@ void UPrimitiveComponent::InitShaderResourceView()
 	D3D11_BUFFER_DESC Desc = { 0 };
 	Desc.ByteWidth = sizeof(FTransform); // 버퍼의 크기를 FTransform 구조체 크기로 설정
 	Desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER; // 버퍼의 바인딩 플래그를 상수 버퍼로 설정
-	Desc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE; // CPU가 버퍼에 쓰기 접근 가능하도록 설정
-	Desc.Usage = D3D11_USAGE_DYNAMIC; // 버퍼의 사용 방식을 동적으로 설정
+	Desc.CPUAccessFlags = 0; // CPU가 버퍼에 쓰기 접근 가능하도록 설정
+	Desc.Usage = D3D11_USAGE_DEFAULT; // 버퍼의 사용 방식을 동적으로 설정
 
 	// 디바이스를 사용하여 상수 버퍼 생성
 	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&Desc, nullptr, &ConstantBuffer))
@@ -362,19 +375,26 @@ void UPrimitiveComponent::UpdateShaderResourceView()
 
 		D3D11_MAPPED_SUBRESOURCE SubResourceData = {};
 
-		//렌더링 정지 후 상수 버퍼 수정
-		UEngineCore::GetDevice().GetDeviceContext()->Map(ConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &SubResourceData);
+		////렌더링 정지 후 상수 버퍼 수정
+		//UEngineCore::GetDevice().GetDeviceContext()->Map(ConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &SubResourceData);
 
-		if (nullptr == SubResourceData.pData)
-		{
-			MSGASSERT("그래픽 카드 수정 거부");
-		}
+		//if (nullptr == SubResourceData.pData)
+		//{
+		//	MSGASSERT("그래픽 카드 수정 거부");
+		//}
 
-		memcpy_s(SubResourceData.pData, sizeof(FTransform), &RendererTransform, sizeof(FTransform));
-		UEngineCore::GetDevice().GetDeviceContext()->Unmap(ConstantBuffer.Get(), 0);
+		//memcpy_s(SubResourceData.pData, sizeof(FTransform), &RendererTransform, sizeof(FTransform));
 
-		ID3D11Buffer* ArrPtr[16] = { ConstantBuffer.Get() };
-		UEngineCore::GetDevice().GetDeviceContext()->VSSetConstantBuffers(0, 1, ArrPtr);
+		//UEngineCore::GetDevice().GetDeviceContext()->Unmap(ConstantBuffer.Get(), 0);
+
+		//ID3D11Buffer* ArrPtr[16] = { ConstantBuffer.Get() };
+
+		//UEngineCore::GetDevice().GetDeviceContext()->VSSetConstantBuffers(0, 1, ArrPtr);
+
+		UEngineCore::GetDevice().GetDeviceContext()->UpdateSubresource(ConstantBuffer.Get(), 0, nullptr, &RendererTransform, 0, 0);
+
+		ID3D11Buffer* arrPtr[16] = { ConstantBuffer.Get() };
+		UEngineCore::GetDevice().GetDeviceContext()->VSSetConstantBuffers(0, 1, arrPtr);
 	}
 }
 
@@ -387,6 +407,18 @@ void UPrimitiveComponent::SetMesh(std::string_view MeshName)
 	if (nullptr == Mesh)
 	{
 		MSGASSERT("존재하지 않는 매쉬입니다.");
+	}
+}
+
+void UPrimitiveComponent::SetBlend(std::string_view BlendName)
+{
+	std::shared_ptr<UEngineBlend> FindBlend = UEngineBlend::Find<UEngineBlend>(BlendName);
+
+	Blend = FindBlend.get();
+
+	if (nullptr == Blend)
+	{
+		MSGASSERT("존재하지 않는 블렌드 입니다 UPrimitiveComponent::SetBlend\n");
 	}
 }
 

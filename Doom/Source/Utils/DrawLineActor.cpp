@@ -13,12 +13,15 @@
 
 ADrawLineActor::ADrawLineActor()
 {
-	std::shared_ptr<USceneComponent> Default = CreateDefaultSubObject<USceneComponent>();
-	RootComponent = Default;
+	/*std::shared_ptr<USceneComponent> Default = CreateDefaultSubObject<USceneComponent>();
+	RootComponent = Default;*/
 
 	LineComponent = CreateDefaultSubObject<UStaticMeshComponent>();
-	LineComponent->SetupAttachment(RootComponent);
-	LineComponent->SetRelativeScale3D({ 100.0f, 100.0f, 100.0f });
+	RootComponent = LineComponent;
+
+	//LineComponent->SetupAttachment(RootComponent);
+	//
+	// LineComponent->SetRelativeScale3D({1.0f, 1.0f, 1.0f});
 }
 
 ADrawLineActor::~ADrawLineActor()

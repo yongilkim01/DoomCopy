@@ -240,6 +240,9 @@
     <ClCompile Include="Source\Rendering\TextureLoader.cpp">
       <Filter>4_Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Rendering\EngineBlend.cpp">
+      <Filter>4_Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
@@ -625,6 +628,9 @@
       <Filter>4_Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Source\Rendering\TextureLoader.h">
+      <Filter>4_Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\EngineBlend.h">
       <Filter>4_Rendering</Filter>
     </ClInclude>
   </ItemGroup>

@@ -27,7 +27,7 @@ ATitleLogo::ATitleLogo()
 	}
 	LogoRenderer->ChangeAnimation("Idle");
 
-	LogoRenderer->SetRelativeScale3D({ 50, 50, 1.0f });
+	LogoRenderer->SetRelativeScale3D({ 1.0f, 1.0f, 1.0f });
 	LogoRenderer->SetupAttachment(RootComponent);
 }
 

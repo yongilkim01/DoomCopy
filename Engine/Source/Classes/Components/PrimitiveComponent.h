@@ -8,6 +8,7 @@ class UCameraComponent;
 class UPaperSprite;
 class UTexture;
 class UStaticMesh;
+class UEngineBlend;
 
 /**
  *	렌더러 클래스
@@ -47,7 +48,7 @@ public:
 
 	/** UPrimitiveComponent 메소드 */
 	ENGINE_API void SetMesh(std::string_view MeshName);
-
+	ENGINE_API void SetBlend(std::string_view BlendName);
 
 	/** UObject 상속 메소드 */
 	ENGINE_API virtual void SetOrder(int NewOrder) override;
@@ -81,6 +82,7 @@ public:
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> SamplerState = nullptr;
 
 	UStaticMesh* Mesh = nullptr;
+	UEngineBlend* Blend = nullptr;
 
 protected:
 

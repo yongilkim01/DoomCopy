@@ -72,6 +72,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source\Platform\Window.cpp" />
+    <ClCompile Include="Source\Rendering\EngineBlend.cpp" />
     <ClCompile Include="Source\Rendering\EngineGraphicDevice.cpp" />
     <ClCompile Include="Source\Rendering\IndexBuffer.cpp" />
     <ClCompile Include="Source\Rendering\RenderUnit.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="Source\pch.h" />
     <ClInclude Include="Source\Platform\Window.h" />
     <ClInclude Include="Source\Rendering\AiMesh.h" />
+    <ClInclude Include="Source\Rendering\EngineBlend.h" />
     <ClInclude Include="Source\Rendering\EngineGraphicDevice.h" />
     <ClInclude Include="Source\Rendering\EngineVertex.h" />
     <ClInclude Include="Source\Rendering\IndexBuffer.h" />

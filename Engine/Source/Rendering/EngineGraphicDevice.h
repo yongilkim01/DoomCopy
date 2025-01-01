@@ -87,6 +87,8 @@ public:
 		return RenderTargetView.Get();
 	}
 
+	std::vector<AiMesh> Meshes;
+	std::vector<TEXTURE> Textures;
 
 protected:
 
@@ -100,8 +102,5 @@ private:
 
 	std::string ObjPath = "";
 	std::string MtlPath = "";
-
-	std::vector<AiMesh> Meshes;
-	std::vector<TEXTURE> Textures;
 	std::string Directory = "";
 };

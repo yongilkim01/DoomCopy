@@ -15,7 +15,7 @@ UStaticMeshComponent::~UStaticMeshComponent()
 void UStaticMeshComponent::BeginPlay()
 {
 	UPrimitiveComponent::BeginPlay();
-	SetMesh("Map5");
+	SetMesh("Map1");
 }
 
 void UStaticMeshComponent::Render(UCameraComponent* CameraComponent, float DeltaTime)
@@ -54,12 +54,14 @@ void UStaticMeshComponent::InitShaderResourceView()
 
 void UStaticMeshComponent::UpdateShaderResourceView()
 {
+	UPrimitiveComponent::UpdateShaderResourceView();
+
 	FTransform& RendererTrans = GetComponentTransformRef();
 
-	UEngineCore::GetDevice().GetDeviceContext()->UpdateSubresource(ConstantBuffer.Get(), 0, nullptr, &RendererTrans, 0, 0);
+	//UEngineCore::GetDevice().GetDeviceContext()->UpdateSubresource(ConstantBuffer.Get(), 0, nullptr, &RendererTrans, 0, 0);
 
-	ID3D11Buffer* arrPtr[16] = { ConstantBuffer.Get() };
-	UEngineCore::GetDevice().GetDeviceContext()->VSSetConstantBuffers(0, 1, arrPtr);
+	//ID3D11Buffer* arrPtr[16] = { ConstantBuffer.Get() };
+	//UEngineCore::GetDevice().GetDeviceContext()->VSSetConstantBuffers(0, 1, arrPtr);
 
 	ID3D11SamplerState* ArrSMP[16] = { SamplerState.Get() };
 	UEngineCore::GetDevice().GetDeviceContext()->PSSetSamplers(0, 1, ArrSMP);

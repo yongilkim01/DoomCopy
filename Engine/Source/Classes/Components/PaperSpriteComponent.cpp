@@ -20,6 +20,9 @@ UPaperSpriteComponent::~UPaperSpriteComponent()
 void UPaperSpriteComponent::BeginPlay()
 {
     UPrimitiveComponent::BeginPlay();
+
+	SetMesh("Rect");
+	SetMesh("AlphaBlend");
 }
 
 void UPaperSpriteComponent::ComponentTick(float DeltaTime)
