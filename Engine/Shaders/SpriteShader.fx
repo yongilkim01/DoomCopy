@@ -56,6 +56,11 @@ cbuffer MatColor : register(b1)
     float4 Albedo;
 };
 
+cbuffer FUVValue : register(b2)
+{
+    float4 PlusUVValue;
+};
+
 VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
 {
     VertexShaderOutPut OutPut;
@@ -67,6 +72,10 @@ VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
 
     OutPut.UV.x = (_Vertex.UV.x * CuttingSize.x) + CuttingPos.x;
     OutPut.UV.y = (_Vertex.UV.y * CuttingSize.y) + CuttingPos.y;
+    
+    OutPut.UV.x += PlusUVValue.x;
+    OutPut.UV.y += PlusUVValue.y;
+    
     OutPut.UV.z = 1.0f; // z 값을 초기화 
     OutPut.UV.w = 1.0f; // w 값을 초기화
     

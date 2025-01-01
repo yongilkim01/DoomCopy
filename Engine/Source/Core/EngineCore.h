@@ -47,6 +47,7 @@ public:
 	/** °Ù, ¼Â ¸Þ¼Òµå */
 	ENGINE_API static UEngineGraphicDevice& GetDevice();
 	ENGINE_API static FVector GetSceenScale();
+	ENGINE_API static UEngineWindow& GetMainWindow();
 
 protected:
 

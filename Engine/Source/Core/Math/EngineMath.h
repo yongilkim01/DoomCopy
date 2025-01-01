@@ -842,7 +842,20 @@ public:
 			&Location.DirectVector,
 			DirectMatrix);
 	}
+	void ViewPort(float Width, float Height, float Left, float Top, float ZMin, float ZMax)
+	{
+		Identity();
+		Arr2D[0][0] = Width * 0.5f;
+		// Y축 반전
+		Arr2D[1][1] = -Height * 0.5f;
 
+		// 화면 2~3뿌릴건데 그중에서 누가 앞에오고 뒤에오고를 결정하려면 
+		Arr2D[2][2] = ZMax != 0.0f ? 1.0f : ZMin / ZMax;
+
+		Arr2D[3][0] = Arr2D[0][0] + Left;
+		Arr2D[3][1] = -Arr2D[1][1] + Top;
+		Arr2D[3][2] = ZMax != 0.0f ? 1.0f : ZMin / ZMax;
+	}
 
 
 

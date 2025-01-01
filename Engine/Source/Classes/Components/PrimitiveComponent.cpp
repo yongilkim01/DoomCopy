@@ -28,7 +28,7 @@ void UPrimitiveComponent::BeginPlay()
 {
 	USceneComponent::BeginPlay();
 
-	SetOrder(0);
+	SetOrder(GetOrder());
 
 	InitVertexShader();
 	InitRasterizer();
@@ -240,8 +240,8 @@ void UPrimitiveComponent::InitRasterizer()
 
 	// 뷰포트 정보 설정
 	// 뷰포트는 렌더링된 이미지가 화면에 그려질 영역을 정의합니다.
-	ViewPortInfo.Width = 1280.0f; // 뷰포트의 너비를 1280으로 설정
-	ViewPortInfo.Height = 720.0f; // 뷰포트의 높이를 720으로 설정
+	ViewPortInfo.Width = UEngineCore::GetSceenScale().X;
+	ViewPortInfo.Height = UEngineCore::GetSceenScale().Y;
 	ViewPortInfo.TopLeftX = 0.0f; // 뷰포트의 시작 X 좌표를 0으로 설정 (화면의 왼쪽 가장자리)
 	ViewPortInfo.TopLeftY = 0.0f; // 뷰포트의 시작 Y 좌표를 0으로 설정 (화면의 상단 가장자리)
 	ViewPortInfo.MinDepth = 0.0f; // 뷰포트의 최소 깊이를 0.0으로 설정 (가장 가까운 깊이)
@@ -365,6 +365,20 @@ void UPrimitiveComponent::InitShaderResourceView()
 		MSGASSERT("상수 버퍼에 생성 실패");
 		return;
 	}
+
+	{
+		D3D11_BUFFER_DESC Desc = { 0 };
+		Desc.ByteWidth = sizeof(FUVValue);
+		Desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+		Desc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
+		Desc.Usage = D3D11_USAGE_DYNAMIC;
+
+		if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&Desc, nullptr, &UVValue))
+		{
+			MSGASSERT("상수버퍼 생성에 실패했습니다..");
+			return;
+		}
+	}
 	
 }
 
@@ -396,6 +410,23 @@ void UPrimitiveComponent::UpdateShaderResourceView()
 		ID3D11Buffer* arrPtr[16] = { ConstantBuffer.Get() };
 		UEngineCore::GetDevice().GetDeviceContext()->VSSetConstantBuffers(0, 1, arrPtr);
 	}
+
+	{
+		D3D11_MAPPED_SUBRESOURCE Data = {};
+		// 이 데이터를 사용하는 랜더링 랜더링 잠깐 정지
+		// 잠깐 그래픽카드야 멈 그래픽카드에 있는 상수버퍼 수정해야 해.
+		UEngineCore::GetDevice().GetDeviceContext()->Map(UVValue.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &Data);
+		// Data.pData 그래픽카드와 연결된 주소값.
+		if (nullptr == Data.pData)
+		{
+			MSGASSERT("그래픽카드가 수정을 거부했습니다.");
+		}
+		memcpy_s(Data.pData, sizeof(FUVValue), &UVValueData, sizeof(FUVValue));
+		UEngineCore::GetDevice().GetDeviceContext()->Unmap(UVValue.Get(), 0);
+		// 같은 상수버퍼를 
+		ID3D11Buffer* ArrPtr[16] = { UVValue.Get() };
+		UEngineCore::GetDevice().GetDeviceContext()->VSSetConstantBuffers(2, 1, ArrPtr);
+	}
 }
 
 void UPrimitiveComponent::SetMesh(std::string_view MeshName)
@@ -422,9 +453,23 @@ void UPrimitiveComponent::SetBlend(std::string_view BlendName)
 	}
 }
 
+void UPrimitiveComponent::AddUVPlusValue(float4 Value)
+{
+}
+
 void UPrimitiveComponent::SetTexture(UTexture* NewTexture)
 {
 	Texture = NewTexture;
+}
+
+void UPrimitiveComponent::SetTexture(std::string_view TextureName)
+{
+	Texture = UTexture::Find<UTexture>(TextureName).get();
+
+	if (nullptr == Texture)
+	{
+		MSGASSERT("존재하지 않는 텍스처를 세팅하려고 했습니다");
+	}
 }
 
 void UPrimitiveComponent::SetSpriteData(UPaperSprite* PaperSprite, size_t Index)

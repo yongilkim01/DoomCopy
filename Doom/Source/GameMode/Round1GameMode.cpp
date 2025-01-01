@@ -37,6 +37,9 @@ void ARound1GameMode::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
 
+	UEngineDebug::OutPutString(Camera->ScreenMouseLocationToWorldLocation().ToString());
+
+
 	if (UEngineInput::IsPress('A'))
 	{
 		Camera->AddActorLocation(FVector{ -200.0f * DeltaTime, 0.0f, 0.0f });

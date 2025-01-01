@@ -9,6 +9,11 @@ class UTexture;
 class UStaticMesh;
 class UEngineBlend;
 
+struct FUVValue
+{
+	float4 PlusUVValue;
+};
+
 /**
  *	렌더러 클래스
  */
@@ -48,8 +53,11 @@ public:
 	/** UPrimitiveComponent 메소드 */
 	ENGINE_API void SetMesh(std::string_view MeshName);
 	ENGINE_API void SetBlend(std::string_view BlendName);
+	ENGINE_API void AddUVPlusValue(float4 Value);
+
 
 	ENGINE_API void SetTexture(UTexture* NewTexture);
+	ENGINE_API void SetTexture(std::string_view TextureName);
 	ENGINE_API void SetSpriteData(UPaperSprite* PaperSprite, size_t Index);
 
 	/** UObject 상속 메소드 */
@@ -88,6 +96,9 @@ public:
 
 	UTexture* Texture = nullptr;
 	FPaperSpriteData SpriteData;
+
+	FUVValue UVValueData;
+	Microsoft::WRL::ComPtr<ID3D11Buffer> UVValue = nullptr; // 상수버퍼
 
 protected:
 

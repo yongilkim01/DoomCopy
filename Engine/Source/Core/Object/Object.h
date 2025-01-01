@@ -105,6 +105,11 @@ public:
 	}
 	virtual void SetOrder(int NewOrder)
 	{
+		if (0 != GetOrder() && NewOrder == GetOrder())
+		{
+			return;
+		}
+
 		Order = NewOrder;
 	}
 

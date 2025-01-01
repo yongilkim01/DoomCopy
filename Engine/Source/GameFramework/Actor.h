@@ -65,6 +65,14 @@ public:
 		return NewComponent;
 	}
 
+
+
+
+
+	ENGINE_API FVector GetActorUpVector();
+	ENGINE_API FVector GetActorRightVector();
+	ENGINE_API FVector GetActorForwardVector();
+
 	void SetActorLocation(const FVector& NewLocation)
 	{
 		if (nullptr == RootComponent)
@@ -133,7 +141,11 @@ public:
 	}
 	FTransform GetActorLoaction()
 	{
-		return RootComponent->GetComponentTransform();
+		if (nullptr == RootComponent)
+		{
+			return FTransform();
+		}
+		return RootComponent->GetComponentTransformRef();
 	}
 
 protected:

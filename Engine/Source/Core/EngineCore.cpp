@@ -25,6 +25,11 @@ UEngineGraphicDevice& UEngineCore::GetDevice()
 	return Device;
 }
 
+UEngineWindow& UEngineCore::GetMainWindow()
+{
+	return MainWindow;
+}
+
 UEngineCore::UEngineCore()
 {
 }
@@ -158,6 +163,7 @@ FVector UEngineCore::GetSceenScale()
 {
 	return InitData.WindowSize;
 }
+
 
 // 새로운 레벨을 생성하는 메소드 구현부
 std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string_view Name)
