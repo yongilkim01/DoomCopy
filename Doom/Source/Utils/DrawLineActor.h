@@ -19,13 +19,15 @@ public:
 	ADrawLineActor& operator=(const ADrawLineActor& Other) = delete;
 	ADrawLineActor& operator=(ADrawLineActor&& Other) noexcept = delete;
 
+	std::shared_ptr<UStaticMeshComponent> LineComponent;
+
+
 protected:
 	/** 액터 상속 메소드 */
 	void BeginPlay() override;
 	void Tick(float DeltaTime) override;
 
 private:
-	std::shared_ptr<UStaticMeshComponent> LineComponent;
 
 };
 

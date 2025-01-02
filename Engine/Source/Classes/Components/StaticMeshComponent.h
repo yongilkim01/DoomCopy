@@ -42,6 +42,8 @@ public:
 	std::vector<AiMesh> Meshes;
 	std::vector<TEXTURE> Textures;
 
+	int CurMesh = -1;
+
 protected:
 	/** UObject 상속 메소드 */
 	ENGINE_API virtual void BeginPlay() override;

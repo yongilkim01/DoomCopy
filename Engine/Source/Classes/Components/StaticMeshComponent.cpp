@@ -109,8 +109,19 @@ void UStaticMeshComponent::Render(UCameraComponent* CameraComponent, float Delta
 	UpdateShaderResourceView();
 	UpdateRenderTargetView();
 
-	for (size_t i = 0; i < Meshes.size(); ++i) {
-		Meshes[i].Draw(UEngineCore::GetDevice().GetDeviceContext());
+	for (size_t i = 0; i < Meshes.size(); ++i)
+	{
+		if (CurMesh == -1)
+		{
+			Meshes[i].Draw(UEngineCore::GetDevice().GetDeviceContext());
+		}
+		else
+		{
+			if (i == CurMesh)
+			{
+				Meshes[i].Draw(UEngineCore::GetDevice().GetDeviceContext());
+			}
+		}
 	}
 }
 

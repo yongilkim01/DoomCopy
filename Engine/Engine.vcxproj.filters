@@ -246,6 +246,12 @@
     <ClCompile Include="Source\Rendering\EngineShader.cpp">
       <Filter>4_Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Rendering\EngineRasterizerState.cpp">
+      <Filter>4_Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\EngineShaderResource.cpp">
+      <Filter>4_Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
@@ -640,6 +646,12 @@
       <Filter>4_Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Source\EngineEnums.h" />
+    <ClInclude Include="Source\Rendering\EngineShaderResource.h">
+      <Filter>4_Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\EngineRasterizerState.h">
+      <Filter>4_Rendering</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shaders\SpriteShader.fx">

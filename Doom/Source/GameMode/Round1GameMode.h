@@ -29,6 +29,6 @@ private:
 	std::shared_ptr<ADoomMap> DoomMap;
 	std::vector<std::shared_ptr<ADrawSquareActor>> DrawSquareActorVector;
 	std::vector<std::shared_ptr<ADrawLineActor>> DrawLineActorVector;
-
+	std::shared_ptr<ADrawLineActor> DrawLineActor;
 };
 
