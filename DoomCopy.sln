@@ -11,16 +11,28 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "App", "App\App.vcxproj", "{
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine", "Engine\Engine.vcxproj", "{F7C7E682-1A2C-475D-8EAD-81137DF0570A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0_Engine", "0_Engine", "{E9317743-1B24-4E38-94C1-53C2841DD9F6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_Engine", "1_Engine", "{E9317743-1B24-4E38-94C1-53C2841DD9F6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2_App", "2_App", "{47B3D6A2-BA5E-4A6C-A724-9731EC659385}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_App", "3_App", "{47B3D6A2-BA5E-4A6C-A724-9731EC659385}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Doom", "Doom\Doom.vcxproj", "{160C1F49-DD73-43EC-813E-7BEB3C3F3895}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F7C7E682-1A2C-475D-8EAD-81137DF0570A} = {F7C7E682-1A2C-475D-8EAD-81137DF0570A}
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_Contents", "1_Contents", "{066B1EC7-3B76-46CD-A596-C21E09228F9B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2_Contents", "2_Contents", "{066B1EC7-3B76-46CD-A596-C21E09228F9B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0_Shader", "0_Shader", "{17FB4C6D-8829-4D35-832D-663B8C180202}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{802B0DE6-43DD-4367-9425-D1C196AEAEC8}"
+	ProjectSection(SolutionItems) = preProject
+		Engine\Shaders\DefaultShader.fx = Engine\Shaders\DefaultShader.fx
+		Engine\Shaders\MeshShader.fx = Engine\Shaders\MeshShader.fx
+		Engine\Shaders\SpriteShader.fx = Engine\Shaders\SpriteShader.fx
+		Engine\Shaders\TestEngineSpriteShader.fx = Engine\Shaders\TestEngineSpriteShader.fx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contents", "Contents", "{E46592D0-A07D-48E9-B472-8C8006C84C48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +74,8 @@ Global
 		{A2DAB1E1-D70E-4BCA-BB42-61204B51A904} = {47B3D6A2-BA5E-4A6C-A724-9731EC659385}
 		{F7C7E682-1A2C-475D-8EAD-81137DF0570A} = {E9317743-1B24-4E38-94C1-53C2841DD9F6}
 		{160C1F49-DD73-43EC-813E-7BEB3C3F3895} = {066B1EC7-3B76-46CD-A596-C21E09228F9B}
+		{802B0DE6-43DD-4367-9425-D1C196AEAEC8} = {17FB4C6D-8829-4D35-832D-663B8C180202}
+		{E46592D0-A07D-48E9-B472-8C8006C84C48} = {17FB4C6D-8829-4D35-832D-663B8C180202}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3FB968E-1AE5-4909-878D-250038306D68}

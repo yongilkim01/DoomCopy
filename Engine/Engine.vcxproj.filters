@@ -4,9 +4,6 @@
     <Filter Include="pch">
       <UniqueIdentifier>{479f833a-7ec7-477e-bafc-db0db95811d8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0_Shaders">
-      <UniqueIdentifier>{e171648f-698f-4f41-af7e-3f6044ef48f3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="1_Core">
       <UniqueIdentifier>{57a416c6-81b6-47aa-beeb-11c6c9d9bbdc}</UniqueIdentifier>
     </Filter>
@@ -652,17 +649,6 @@
     <ClInclude Include="Source\Rendering\EngineRasterizerState.h">
       <Filter>4_Rendering</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Shaders\SpriteShader.fx">
-      <Filter>0_Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="Shaders\DefaultShader.fx">
-      <Filter>0_Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="Shaders\MeshShader.fx">
-      <Filter>0_Shaders</Filter>
-    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl">

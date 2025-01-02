@@ -261,22 +261,6 @@
     <ClInclude Include="Source\WorldPartition\DebugHelpers.h" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Shaders\DefaultShader.fx">
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VertexToWorld</EntryPointName>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VertexToWorld</EntryPointName>
-    </FxCompile>
-    <FxCompile Include="Shaders\MeshShader.fx">
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VS</EntryPointName>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4.0_level_9_3</ShaderModel>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4.0_level_9_3</ShaderModel>
-    </FxCompile>
-    <FxCompile Include="Shaders\SpriteShader.fx">
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VertexToWorld</EntryPointName>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VertexToWorld</EntryPointName>
-    </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="cpp.hint" />
     <CopyFileToFolders Include="Source\ThirdParty\assimp\bin\Debug\assimp-vc143-mtd.dll">
       <FileType>Document</FileType>
