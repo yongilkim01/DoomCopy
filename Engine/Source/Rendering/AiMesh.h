@@ -12,7 +12,7 @@
 
 struct VERTEX
 {
-    FLOAT X, Y, Z;
+    FLOAT X, Y, Z, W;
     DirectX::XMFLOAT2 texcoord;
 };
 

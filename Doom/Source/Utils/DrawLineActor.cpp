@@ -17,6 +17,7 @@ ADrawLineActor::ADrawLineActor()
 	RootComponent = Default;
 
 	FDirectoryHelper DirectoryHelper;
+
 	if (false == DirectoryHelper.MoveParentToDirectory("Resources"))
 	{
 		MSGASSERT("리소스 폴더를 찾기에 실패했습니다");

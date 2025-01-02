@@ -74,6 +74,10 @@
     <ClCompile Include="Source\Platform\Window.cpp" />
     <ClCompile Include="Source\Rendering\EngineBlend.cpp" />
     <ClCompile Include="Source\Rendering\EngineGraphicDevice.cpp" />
+    <ClCompile Include="Source\Rendering\EngineShader.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Rendering\IndexBuffer.cpp" />
     <ClCompile Include="Source\Rendering\RenderUnit.cpp" />
     <ClCompile Include="Source\Rendering\TextureLoader.cpp" />
@@ -130,6 +134,7 @@
     <ClInclude Include="Source\Core\Object\Object.h" />
     <ClInclude Include="Source\Core\Serialization\Archive.h" />
     <ClInclude Include="Source\EngineDefine.h" />
+    <ClInclude Include="Source\EngineEnums.h" />
     <ClInclude Include="Source\GameFramework\Actor.h" />
     <ClInclude Include="Source\GameFramework\Character.h" />
     <ClInclude Include="Source\GameFramework\GameMode.h">
@@ -147,6 +152,10 @@
     <ClInclude Include="Source\Rendering\AiMesh.h" />
     <ClInclude Include="Source\Rendering\EngineBlend.h" />
     <ClInclude Include="Source\Rendering\EngineGraphicDevice.h" />
+    <ClInclude Include="Source\Rendering\EngineShader.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\Rendering\EngineVertex.h" />
     <ClInclude Include="Source\Rendering\IndexBuffer.h" />
     <ClInclude Include="Source\Rendering\RenderUnit.h" />

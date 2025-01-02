@@ -64,7 +64,20 @@ void UStaticMeshComponent::BeginPlay()
 	USceneComponent::BeginPlay();
 	SetOrder(0);
 
-	InitShader();
+	//InitShader();
+
+	InitVertexShader();
+
+		D3D11_INPUT_ELEMENT_DESC ied[] =
+	{
+		{ "POSITION", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+		{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+	};
+
+	UEngineCore::GetDevice().GetDevice()->CreateInputLayout(ied, 2, VSShaderCodeBlob->GetBufferPointer(), VSShaderCodeBlob->GetBufferSize(), &InputLayout);
+
+	InitPixelShader();
+
 	InitShaderResourceView();
 	InitRasterizer();
 
@@ -208,6 +221,7 @@ AiMesh UStaticMeshComponent::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 		vertex.X = mesh->mVertices[i].x;
 		vertex.Y = mesh->mVertices[i].y;
 		vertex.Z = mesh->mVertices[i].z;
+		vertex.W = 1.0f;
 
 		if (mesh->mTextureCoords[0]) {
 			vertex.texcoord.x = (float)mesh->mTextureCoords[0][i].x;
@@ -461,9 +475,6 @@ void UStaticMeshComponent::InitVertexShader()
 		MSGASSERT("버텍스 쉐이더 생성 실패");
 		return;
 	}
-
-	// 입력 어셈블러 레이아웃 설정
-	//InitVertexLayout();
 }
 
 void UStaticMeshComponent::InitPixelShader()

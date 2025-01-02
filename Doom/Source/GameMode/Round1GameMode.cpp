@@ -58,4 +58,8 @@ void ARound1GameMode::Tick(float DeltaTime)
 	{
 		Camera->AddActorLocation(FVector{ 0.0f, 0.0f, -2000.0f * DeltaTime, 0.0f });
 	}
+	if (UEngineInput::IsPress(VK_SPACE))
+	{
+		Camera->AddActorLocation(FVector{ 0.0f, 2000.0f * DeltaTime, 0.0f, 0.0f });
+	}
 }
