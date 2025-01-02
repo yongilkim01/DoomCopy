@@ -44,18 +44,18 @@ void ARound1GameMode::Tick(float DeltaTime)
 
 	if (UEngineInput::IsPress('A'))
 	{
-		Camera->AddActorLocation(FVector{ -200.0f * DeltaTime, 0.0f, 0.0f });
+		Camera->AddActorLocation(FVector{ -2000.0f * DeltaTime, 0.0f, 0.0f });
 	}
 	if (UEngineInput::IsPress('D'))
 	{
-		Camera->AddActorLocation(FVector{ 200.0f * DeltaTime, 0.0f, 0.0f });
+		Camera->AddActorLocation(FVector{ 2000.0f * DeltaTime, 0.0f, 0.0f });
 	}
 	if (UEngineInput::IsPress('W'))
 	{
-		Camera->AddActorLocation(FVector{ 0.0f, 0.0f, 200.0f * DeltaTime, 0.0f });
+		Camera->AddActorLocation(FVector{ 0.0f, 0.0f, 2000.0f * DeltaTime, 0.0f });
 	}
 	if (UEngineInput::IsPress('S'))
 	{
-		Camera->AddActorLocation(FVector{ 0.0f, 0.0f, -200.0f * DeltaTime, 0.0f });
+		Camera->AddActorLocation(FVector{ 0.0f, 0.0f, -2000.0f * DeltaTime, 0.0f });
 	}
 }
