@@ -1,4 +1,6 @@
 #pragma once
+#include "EngineEnums.h"
+#include "Core/Misc/FileHelper.h"
 
 /**
  *	Ό³Έν
@@ -15,6 +17,8 @@ public:
 	UEngineShader(UEngineShader&& Other) noexcept = delete;
 	UEngineShader& operator=(const UEngineShader& Other) = delete;
 	UEngineShader& operator=(UEngineShader&& Other) noexcept = delete;
+
+	static void ReflectionCompile(FFileHelper& FileHelper);
 
 protected:
 

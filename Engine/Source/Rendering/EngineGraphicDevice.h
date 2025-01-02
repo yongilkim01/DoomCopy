@@ -55,6 +55,8 @@ public:
 	ENGINE_API void InitDefaultResources();
 	ENGINE_API void InitMesh();
 	ENGINE_API void InitBlend();
+	ENGINE_API void	InitShader();
+
 
 
 	/** °Ù, ¼Â ¸Þ¼Òµå */

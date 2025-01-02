@@ -5,6 +5,7 @@
 #include "Rendering/VertexBuffer.h"
 #include "Rendering/IndexBuffer.h"
 #include "Rendering/EngineBlend.h"
+#include "Rendering/EngineShader.h"
 
 #include "Core/Misc/DirectoryHelper.h"
 #include "Core/Misc/FileHelper.h"
@@ -37,6 +38,7 @@ void UEngineGraphicDevice::InitDefaultResources()
 {
 	InitMesh();
 	InitBlend();
+	InitShader();
 }
 
 void UEngineGraphicDevice::InitMesh()
@@ -142,6 +144,21 @@ void UEngineGraphicDevice::InitBlend()
 	Desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
 
 	UEngineBlend::Create("AlphaBlend", Desc);
+}
+
+void UEngineGraphicDevice::InitShader()
+{
+	// 현재 디렉토리 헬퍼 객체 생성
+	FDirectoryHelper CurDir;
+	// 엔진 쉐이더 디렉토리로 이동
+	CurDir.MoveEngineShaderDirectory();
+	// 쉐이더 파일을 가져옴
+	std::vector<FFileHelper> ShaderFiles = CurDir.GetAllFile(true, { ".fx", ".hlsl" });
+
+	for (size_t i = 0; i < ShaderFiles.size(); i++)
+	{
+		UEngineShader::ReflectionCompile(ShaderFiles[i]);
+	}
 }
 
 void UEngineGraphicDevice::RenderStart()
