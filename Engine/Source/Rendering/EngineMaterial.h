@@ -1,9 +1,14 @@
 #pragma once
+#include "Classes/Engine/RenderAsset.h"
+#include "EngineVertexShader.h"
+#include "EnginePixelShader.h"
+#include "EngineRasterizerState.h"
+#include "EngineBlend.h"
 
 /**
  *	설명
  */
-class UEngineMaterial
+class UEngineMaterial : public URenderAsset
 {
 public:
 	/** 생성자, 소멸자 */
@@ -16,9 +21,34 @@ public:
 	UEngineMaterial& operator=(const UEngineMaterial& Other) = delete;
 	UEngineMaterial& operator=(UEngineMaterial&& Other) noexcept = delete;
 
+	static std::shared_ptr<UEngineMaterial> Create(std::string_view _Name);
+	ENGINE_API std::shared_ptr<UEngineVertexShader> GetVertexShader()
+	{
+		return VertexShader;
+	}
+	ENGINE_API void SetVertexShader(std::string_view _Name);
+	ENGINE_API std::shared_ptr<UEnginePixelShader> GetPixelShader()
+	{
+		return PixelShader;
+	}
+	ENGINE_API void SetPixelShader(std::string_view _Name);
+	ENGINE_API std::shared_ptr<UEngineRasterizerState> GetRasterizerState()
+	{
+		return RasterizerState;
+	}
+	ENGINE_API void SetRasterizerState(std::string_view _Name);
+	ENGINE_API std::shared_ptr<UEngineBlend> GetBlend()
+	{
+		return Blend;
+	}
+	ENGINE_API void SetBlend(std::string_view _Name);
+
 protected:
 
 private:
-
+	std::shared_ptr<UEngineVertexShader> VertexShader;
+	std::shared_ptr<UEnginePixelShader> PixelShader;
+	std::shared_ptr<UEngineRasterizerState> RasterizerState;
+	std::shared_ptr<UEngineBlend> Blend;
 };
 

@@ -6,6 +6,7 @@
 #include "Rendering/IndexBuffer.h"
 #include "Rendering/EngineBlend.h"
 #include "Rendering/EngineShader.h"
+#include "Rendering/EngineMaterial.h"
 
 #include "Core/Misc/DirectoryHelper.h"
 #include "Core/Misc/FileHelper.h"
@@ -39,6 +40,7 @@ void UEngineGraphicDevice::InitDefaultResources()
 	InitMesh();
 	InitBlend();
 	InitShader();
+	InitMaterial();
 }
 
 void UEngineGraphicDevice::InitMesh()
@@ -159,6 +161,13 @@ void UEngineGraphicDevice::InitShader()
 	{
 		UEngineShader::ReflectionCompile(ShaderFiles[i]);
 	}
+}
+
+void UEngineGraphicDevice::InitMaterial()
+{
+	std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("SpriteMaterial");
+	Mat->SetVertexShader("EngineSpriteShader.fx");
+	Mat->SetPixelShader("EngineSpriteShader.fx");
 }
 
 void UEngineGraphicDevice::RenderStart()
