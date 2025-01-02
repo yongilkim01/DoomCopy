@@ -76,6 +76,7 @@
     <ClCompile Include="Source\Rendering\EngineConstantBuffer.cpp" />
     <ClCompile Include="Source\Rendering\EngineDeviceBuffer.cpp" />
     <ClCompile Include="Source\Rendering\EngineGraphicDevice.cpp" />
+    <ClCompile Include="Source\Rendering\EngineMaterial.cpp" />
     <ClCompile Include="Source\Rendering\EnginePixelShader.cpp" />
     <ClCompile Include="Source\Rendering\EngineRasterizerState.cpp" />
     <ClCompile Include="Source\Rendering\EngineShader.cpp">
@@ -160,6 +161,7 @@
     <ClInclude Include="Source\Rendering\EngineConstantBuffer.h" />
     <ClInclude Include="Source\Rendering\EngineDeviceBuffer.h" />
     <ClInclude Include="Source\Rendering\EngineGraphicDevice.h" />
+    <ClInclude Include="Source\Rendering\EngineMaterial.h" />
     <ClInclude Include="Source\Rendering\EnginePixelShader.h" />
     <ClInclude Include="Source\Rendering\EngineRasterizerState.h" />
     <ClInclude Include="Source\Rendering\EngineShader.h">

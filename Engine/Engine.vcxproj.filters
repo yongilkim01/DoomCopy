@@ -243,9 +243,6 @@
     <ClCompile Include="Source\Rendering\EngineRasterizerState.cpp">
       <Filter>4_Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Rendering\EnginePixelShader.cpp">
-      <Filter>4_Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Rendering\EngineConstantBuffer.cpp">
       <Filter>4_Rendering\Buffer</Filter>
     </ClCompile>
@@ -265,6 +262,12 @@
       <Filter>4_Rendering\Shader</Filter>
     </ClCompile>
     <ClCompile Include="Source\Rendering\EngineVertexShader.cpp">
+      <Filter>4_Rendering\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\EngineMaterial.cpp">
+      <Filter>4_Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\EnginePixelShader.cpp">
       <Filter>4_Rendering\Shader</Filter>
     </ClCompile>
   </ItemGroup>
@@ -655,9 +658,6 @@
     <ClInclude Include="Source\Rendering\EngineRasterizerState.h">
       <Filter>4_Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Rendering\EnginePixelShader.h">
-      <Filter>4_Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Rendering\EngineConstantBuffer.h">
       <Filter>4_Rendering\Buffer</Filter>
     </ClInclude>
@@ -677,6 +677,12 @@
       <Filter>4_Rendering\Shader</Filter>
     </ClInclude>
     <ClInclude Include="Source\Rendering\EngineVertexShader.h">
+      <Filter>4_Rendering\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\EngineMaterial.h">
+      <Filter>4_Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\EnginePixelShader.h">
       <Filter>4_Rendering\Shader</Filter>
     </ClInclude>
   </ItemGroup>
