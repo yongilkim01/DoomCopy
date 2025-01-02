@@ -74,12 +74,14 @@
     <ClCompile Include="Source\Platform\Window.cpp" />
     <ClCompile Include="Source\Rendering\EngineBlend.cpp" />
     <ClCompile Include="Source\Rendering\EngineGraphicDevice.cpp" />
+    <ClCompile Include="Source\Rendering\EnginePixelShader.cpp" />
     <ClCompile Include="Source\Rendering\EngineRasterizerState.cpp" />
     <ClCompile Include="Source\Rendering\EngineShader.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="Source\Rendering\EngineShaderResource.cpp" />
+    <ClCompile Include="Source\Rendering\EngineVertexShader.cpp" />
     <ClCompile Include="Source\Rendering\IndexBuffer.cpp" />
     <ClCompile Include="Source\Rendering\RenderUnit.cpp" />
     <ClCompile Include="Source\Rendering\TextureLoader.cpp" />
@@ -154,6 +156,7 @@
     <ClInclude Include="Source\Rendering\AiMesh.h" />
     <ClInclude Include="Source\Rendering\EngineBlend.h" />
     <ClInclude Include="Source\Rendering\EngineGraphicDevice.h" />
+    <ClInclude Include="Source\Rendering\EnginePixelShader.h" />
     <ClInclude Include="Source\Rendering\EngineRasterizerState.h" />
     <ClInclude Include="Source\Rendering\EngineShader.h">
       <SubType>
@@ -161,6 +164,7 @@
     </ClInclude>
     <ClInclude Include="Source\Rendering\EngineShaderResource.h" />
     <ClInclude Include="Source\Rendering\EngineVertex.h" />
+    <ClInclude Include="Source\Rendering\EngineVertexShader.h" />
     <ClInclude Include="Source\Rendering\IndexBuffer.h" />
     <ClInclude Include="Source\Rendering\RenderUnit.h" />
     <ClInclude Include="Source\Rendering\TextureLoader.h" />

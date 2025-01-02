@@ -2,11 +2,14 @@
 #include "EngineEnums.h"
 #include "Core/Misc/FileHelper.h"
 
+class UEngineVertexShader;
+
 /**
  *	설명
  */
 class UEngineShader
 {
+	friend UEngineVertexShader;
 public:
 	/** 생성자, 소멸자 */
 	UEngineShader();
@@ -21,6 +24,13 @@ public:
 	static void ReflectionCompile(FFileHelper& FileHelper);
 
 protected:
+	void ShaderResCheck();
+
+	UINT VersionHigh = 5;
+	UINT VersionLow = 0;
+	Microsoft::WRL::ComPtr<ID3DBlob> ShaderCodeBlob = nullptr;
+	Microsoft::WRL::ComPtr<ID3DBlob> ErrorCodeBlob = nullptr; // 중간 컴파일 결과물
+	std::string EntryName;
 
 private:
 
