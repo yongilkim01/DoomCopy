@@ -1,4 +1,7 @@
 #pragma once
+#include "EngineShaderResource.h"
+#include "Classes/Engine/Mesh.h"
+#include "Rendering/EngineMaterial.h"
 
 /**
  *	설명
@@ -10,15 +13,21 @@ public:
 	ENGINE_API URenderUnit();
 	ENGINE_API ~URenderUnit();
 
-	/** 객체 값 복사 방지 */
-	URenderUnit(const URenderUnit& Other) = delete;
-	URenderUnit(URenderUnit&& Other) noexcept = delete;
-	URenderUnit& operator=(const URenderUnit& Other) = delete;
-	URenderUnit& operator=(URenderUnit&& Other) noexcept = delete;
+	// 메쉬(육체) 
+	std::shared_ptr<UMesh> Mesh;
+	// 머티리얼(피부)
+	std::shared_ptr<UEngineMaterial> Material;
+
+	void SetMesh(std::string_view _Name);
+
+	void SetMaterial(std::string_view _Name);
+
+	ENGINE_API virtual void Render(class UEngineCamera* _Camera, float _DeltaTime);
 
 protected:
 
 private:
+	UEngineConstantBufferRes Res;
 
 };
 

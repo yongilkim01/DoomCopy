@@ -1,9 +1,10 @@
 #pragma once
+#include "Classes/Engine/RenderAsset.h"
 
 /**
  *	설명
  */
-class UEngineRasterizerState
+class UEngineRasterizerState : public URenderAsset
 {
 public:
 	/** 생성자, 소멸자 */

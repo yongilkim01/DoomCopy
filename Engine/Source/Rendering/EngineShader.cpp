@@ -3,6 +3,7 @@
 
 #include "EngineVertexShader.h"
 #include "EngineConstantBuffer.h"
+#include "EnginePixelShader.h"
 
 UEngineShader::UEngineShader()
 {
@@ -41,7 +42,8 @@ void UEngineShader::ReflectionCompile(FFileHelper& FileHelper)
 				size_t FirstIndex = ShaderCode.find_last_of(" ", EntryIndex);
 				std::string EntryName = ShaderCode.substr(FirstIndex + 1, EntryIndex - FirstIndex - 1);
 				EntryName += "_PS";
-				int a = 0;
+
+				UEnginePixelShader::Load(FileHelper.GetPathToString(), EntryName);
 			}
 		}
 	}
@@ -100,7 +102,12 @@ void UEngineShader::ShaderResCheck()
 
 			std::shared_ptr<UEngineConstantBuffer> Buffer = UEngineConstantBuffer::CreateOrFind(BufferInfo.Size, UpperName);
 
-			int a = 0;
+			UEngineConstantBufferRes NewRes;
+			NewRes.Res = Buffer;
+			NewRes.BufferSize = BufferInfo.Size;
+
+			ShaderResource.CreateConstantBufferRes(UpperName, NewRes);
+
 			break;
 		}
 		case D3D_SIT_TEXTURE:
@@ -128,5 +135,7 @@ void UEngineShader::ShaderResCheck()
 		}
 		int a = 0;
 	}
+
+	EntryName;
 }
 

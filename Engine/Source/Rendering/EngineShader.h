@@ -2,6 +2,8 @@
 #include "EngineEnums.h"
 #include "Core/Misc/FileHelper.h"
 
+#include "EngineShaderResource.h"
+
 class UEngineVertexShader;
 
 /**
@@ -22,6 +24,8 @@ public:
 	UEngineShader& operator=(UEngineShader&& Other) noexcept = delete;
 
 	static void ReflectionCompile(FFileHelper& FileHelper);
+
+	UEngineShaderResource ShaderResource;
 
 protected:
 	void ShaderResCheck();

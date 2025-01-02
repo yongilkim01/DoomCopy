@@ -270,6 +270,9 @@
     <ClCompile Include="Source\Rendering\EnginePixelShader.cpp">
       <Filter>4_Rendering\Shader</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Classes\Engine\Mesh.cpp">
+      <Filter>2_Classes\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
@@ -684,6 +687,9 @@
     </ClInclude>
     <ClInclude Include="Source\Rendering\EnginePixelShader.h">
       <Filter>4_Rendering\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Engine\Mesh.h">
+      <Filter>2_Classes\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

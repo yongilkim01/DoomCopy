@@ -44,6 +44,11 @@ cbuffer FTransform : register(b0)
     float4x4 WVP;
 };
 
+cbuffer ResultColor : register(b0)
+{
+    float4 Albedo;
+};
+
 cbuffer FSpriteData : register(b1)
 {
     float4 CuttingPos;
@@ -51,17 +56,13 @@ cbuffer FSpriteData : register(b1)
     float4 Pivot; // 0.5 0.0f
 };
 
-cbuffer MatColor : register(b1)
-{
-    float4 Albedo;
-};
 
 cbuffer FUVValue : register(b2)
 {
     float4 PlusUVValue;
 };
 
-VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
+VertexShaderOutPut VertexToWorld_VS(EngineVertex _Vertex)
 {
     VertexShaderOutPut OutPut;
     
@@ -87,8 +88,7 @@ VertexShaderOutPut VertexToWorld(EngineVertex _Vertex)
 Texture2D ImageTexture : register(t0);
 SamplerState ImageSampler : register(s0);
 
-float4 PixelToWorld(VertexShaderOutPut _Vertex) : SV_Target0
+float4 PixelToWorld_PS(VertexShaderOutPut _Vertex) : SV_Target0
 {
-    float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
-    return Color;
+    return Albedo;
 }

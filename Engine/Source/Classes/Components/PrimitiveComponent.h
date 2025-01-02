@@ -50,18 +50,8 @@ public:
 	virtual void InitVertexShader();
 	virtual void InitPixelShader();
 
-	/** UPrimitiveComponent 메소드 */
-	ENGINE_API void SetMesh(std::string_view MeshName);
-	ENGINE_API void SetBlend(std::string_view BlendName);
-	ENGINE_API void AddUVPlusValue(float4 Value);
-
-
-	ENGINE_API void SetTexture(UTexture* NewTexture);
-	ENGINE_API void SetTexture(std::string_view TextureName);
-	ENGINE_API void SetSpriteData(UPaperSprite* PaperSprite, size_t Index);
-
 	/** UObject 상속 메소드 */
-	ENGINE_API virtual void SetOrder(int NewOrder) override;
+	ENGINE_API void SetOrder(int NewOrder);
 
 protected:
 	/** UObject 상속 메소드 */
@@ -70,35 +60,13 @@ protected:
 	/** URenderer 메소드 */
 	ENGINE_API virtual void Render(UCameraComponent* CameraComponent, float DeltaTime);
 
+	URenderUnit& CreateRenderUnit();
+
 private:
 
 public:
-	Microsoft::WRL::ComPtr<ID3D11InputLayout> InputLayout = nullptr;
 
-	Microsoft::WRL::ComPtr<ID3DBlob> VSShaderCodeBlob = nullptr;
-	Microsoft::WRL::ComPtr<ID3DBlob> VSErrorCodeBlob = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11VertexShader> VertexShader = nullptr;
-
-	D3D11_PRIMITIVE_TOPOLOGY Topology = D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
-
-	D3D11_VIEWPORT ViewPortInfo;
-	Microsoft::WRL::ComPtr<ID3D11RasterizerState> RasterizerState = nullptr;
-
-	Microsoft::WRL::ComPtr<ID3DBlob> PSShaderCodeBlob = nullptr;
-	Microsoft::WRL::ComPtr<ID3DBlob> PSErrorCodeBlob = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11PixelShader> PixelShader = nullptr;
-
-	Microsoft::WRL::ComPtr<ID3D11Buffer> ConstantBuffer = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11SamplerState> SamplerState = nullptr;
-
-	UStaticMesh* Mesh = nullptr;
-	UEngineBlend* Blend = nullptr;
-
-	UTexture* Texture = nullptr;
-	FPaperSpriteData SpriteData;
-
-	FUVValue UVValueData;
-	Microsoft::WRL::ComPtr<ID3D11Buffer> UVValue = nullptr; // 상수버퍼
+	std::vector<URenderUnit> Units;
 
 protected:
 

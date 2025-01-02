@@ -35,6 +35,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Source\Classes\Engine\Mesh.cpp" />
     <ClCompile Include="Source\Classes\Engine\RenderAsset.cpp" />
     <ClCompile Include="Source\Classes\Engine\Level.cpp">
       <SubType>
@@ -119,6 +120,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Source\Classes\Engine\Mesh.h" />
     <ClInclude Include="Source\Classes\Engine\RenderAsset.h" />
     <ClInclude Include="Source\Classes\Engine\Level.h">
       <SubType>

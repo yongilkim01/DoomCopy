@@ -4,6 +4,7 @@
 #include "Classes/Engine/PaperSprite.h"
 
 class UCameraComponent;
+class URenderUnit;
 
 /**
  *	Ό³Έν
@@ -110,6 +111,8 @@ protected:
 	ENGINE_API void Render(UCameraComponent* CameraComponent, float DeltaTime) override;
 
 private:
+	URenderUnit* MainUnit;
+
 	int CurIndex = 0;
 	float CurAnimationSpeed = 1.0f;
 
