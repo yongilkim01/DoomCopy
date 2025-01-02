@@ -106,6 +106,12 @@
     <Filter Include="10_ThirdParty\assimp\bin\Release">
       <UniqueIdentifier>{1576875f-54f0-40f3-ac45-1bcd6f2688f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="4_Rendering\Buffer">
+      <UniqueIdentifier>{3d30ed50-8749-446c-bea9-32e63337219b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_Rendering\Shader">
+      <UniqueIdentifier>{98cbc138-7ff3-4f8c-98a1-ec4082bd4099}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp">
@@ -219,13 +225,7 @@
     <ClCompile Include="Source\Input\EngineInput.cpp">
       <Filter>6_Input</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Rendering\VertexBuffer.cpp">
-      <Filter>4_Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Rendering\RenderUnit.cpp">
-      <Filter>4_Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\IndexBuffer.cpp">
       <Filter>4_Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Source\Rendering\EngineGraphicDevice.cpp">
@@ -240,20 +240,32 @@
     <ClCompile Include="Source\Rendering\EngineBlend.cpp">
       <Filter>4_Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Rendering\EngineShader.cpp">
-      <Filter>4_Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Rendering\EngineRasterizerState.cpp">
-      <Filter>4_Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\EngineShaderResource.cpp">
-      <Filter>4_Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\EngineVertexShader.cpp">
       <Filter>4_Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Source\Rendering\EnginePixelShader.cpp">
       <Filter>4_Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\EngineConstantBuffer.cpp">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\EngineDeviceBuffer.cpp">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\VertexBuffer.cpp">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\IndexBuffer.cpp">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\EngineShader.cpp">
+      <Filter>4_Rendering\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\EngineShaderResource.cpp">
+      <Filter>4_Rendering\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\EngineVertexShader.cpp">
+      <Filter>4_Rendering\Shader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -381,16 +393,10 @@
     <ClInclude Include="Source\Input\EngineInput.h">
       <Filter>6_Input</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Rendering\VertexBuffer.h">
-      <Filter>4_Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Rendering\RenderUnit.h">
       <Filter>4_Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Source\Rendering\EngineVertex.h">
-      <Filter>4_Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Rendering\IndexBuffer.h">
       <Filter>4_Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Source\Rendering\EngineGraphicDevice.h">
@@ -645,21 +651,33 @@
     <ClInclude Include="Source\Rendering\EngineBlend.h">
       <Filter>4_Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Rendering\EngineShader.h">
-      <Filter>4_Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Source\EngineEnums.h" />
-    <ClInclude Include="Source\Rendering\EngineShaderResource.h">
-      <Filter>4_Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Rendering\EngineRasterizerState.h">
-      <Filter>4_Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Rendering\EngineVertexShader.h">
       <Filter>4_Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Source\Rendering\EnginePixelShader.h">
       <Filter>4_Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\EngineConstantBuffer.h">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\EngineDeviceBuffer.h">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\VertexBuffer.h">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\IndexBuffer.h">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\EngineShader.h">
+      <Filter>4_Rendering\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\EngineShaderResource.h">
+      <Filter>4_Rendering\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\EngineVertexShader.h">
+      <Filter>4_Rendering\Shader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

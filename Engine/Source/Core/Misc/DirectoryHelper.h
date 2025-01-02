@@ -20,14 +20,14 @@ public:
 
 	 * @param IsRecursive - 재귀를 통한 디렉토리 순회 여부
 	 */
-	ENGINE_API std::vector<class FFileHelper> GetAllFile(bool IsRecursive = true);
+	//ENGINE_API std::vector<class FFileHelper> GetAllFile(bool IsRecursive = true);
 	/**
 	 * 디렉토리 내 모든 파일들을 가져와서 FFileHelper 타입으로 값을 저장 후 반환하는 메소드
 
 	 * @param IsRecursive - 재귀를 통한 디렉토리 순회 여부
 	 * @param Exts - 재귀를 통한 디렉토리 순회 여부
 	 */
-	ENGINE_API std::vector<class FFileHelper> GetAllFile(bool IsRecursive, std::vector<std::string> Exts);
+	ENGINE_API std::vector<class FFileHelper> GetAllFile(bool IsRecursive, const std::vector<std::string>& Exts);
 
 	/** 디렉토리 내 모든 디렉토리들을 가져와서 UEngineDirectory 타입으로 값을 저장 후 반환하는 메소드 */
 	ENGINE_API std::vector<class FDirectoryHelper> GetAllDirectory();
@@ -43,6 +43,6 @@ private:
 	 * @param Path - 디렉토리 경로
 	 * @param Result - 결과 값을 저장할 벡터의 참조 객체
 	 */
-	void GetAllFileRecursive(std::filesystem::path Path, std::vector<class FFileHelper>& Result);
+	void GetAllFileRecursive(std::filesystem::path Path, std::vector<class FFileHelper>& Result, const std::vector<std::string>& Exts);
 };
 

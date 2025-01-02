@@ -32,7 +32,7 @@ void FVertexBuffer::Update()
 {
 	UINT Offset = 0;
 	ID3D11Buffer* ArrBuffer[1];
-	ArrBuffer[0] = VertexBuffer.Get();
+	ArrBuffer[0] = Buffer.Get();
 	UEngineCore::GetDevice().GetDeviceContext()->IASetVertexBuffers(0, 1, ArrBuffer, &VertexSize, &Offset);
 }
 
@@ -41,16 +41,16 @@ void FVertexBuffer::AssetCreate(const void* InitData, size_t InVertexSize, size_
 	VertexCount = static_cast<UINT>(InVertexCount);
 	VertexSize = static_cast<UINT>(InVertexSize);
 
-	VertexBufferDesc.ByteWidth = static_cast<UINT>(InVertexSize * InVertexCount);
-	VertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	VertexBufferDesc.CPUAccessFlags = 0;
-	VertexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+	BufferInfo.ByteWidth = static_cast<UINT>(InVertexSize * InVertexCount);
+	BufferInfo.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	BufferInfo.CPUAccessFlags = 0;
+	BufferInfo.Usage = D3D11_USAGE_DEFAULT;
 
 	D3D11_SUBRESOURCE_DATA Data; // 초기값 넣어주는 용도의 구조체
 
 	Data.pSysMem = InitData;
 
-	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&VertexBufferDesc, &Data, &VertexBuffer))
+	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&BufferInfo, &Data, &Buffer))
 	{
 		MSGASSERT("버텍스 버퍼 생성에 실패했습니다.");
 		return;
