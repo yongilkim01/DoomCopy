@@ -21,6 +21,8 @@ public:
 	USceneComponent& operator=(const USceneComponent& _Other) = delete;
 	USceneComponent& operator=(USceneComponent&& _Other) noexcept = delete;
 
+	ENGINE_API virtual void ComponentTick(float DeltaTime) override;
+
 	ENGINE_API void TransformUpdate();
 	ENGINE_API void SetupAttachment(std::shared_ptr<USceneComponent> ParentComponent);
 	void SetupAttachment(USceneComponent* ParentComponent);

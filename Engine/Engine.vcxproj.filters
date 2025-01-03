@@ -279,6 +279,9 @@
     <ClCompile Include="Source\Rendering\EngineVertex.cpp">
       <Filter>4_Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Rendering\EngineSampler.cpp">
+      <Filter>4_Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
@@ -698,6 +701,9 @@
       <Filter>2_Classes\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Source\Rendering\EngineInputLayoutInfo.h">
+      <Filter>4_Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\EngineSampler.h">
       <Filter>4_Rendering</Filter>
     </ClInclude>
   </ItemGroup>

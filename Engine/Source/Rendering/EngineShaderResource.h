@@ -2,12 +2,14 @@
 #include "EngineConstantBuffer.h"
 #include "Core/Object/Object.h"
 #include "EngineEnums.h"
+#include "Classes/Engine/Texture.h"
+#include "EngineSampler.h"
 
 class UEngineShaderRes
 {
 public:
 	std::string Name;
-	EShaderType Type = EShaderType::MAX;
+	EShaderType ShaderType = EShaderType::MAX;
 	UINT BindIndex = 0;
 };
 
@@ -22,23 +24,33 @@ public:
 	{
 		if (nullptr != Data)
 		{
-			Res->ChangeData(Data, Res->GetBufferInfo().ByteWidth);
+			Res->ChangeData(Data, BufferSize);
 		}
-		Res->Update(Type, BindIndex);
+		Res->Update(ShaderType, BindIndex);
 	}
 };
 
-//class UEngineSamplerRes : public UEngineShaderRes
-//{
-//public:
-//	std::shared_ptr<UEngineSampler> Res;
-//
-//	void Setting()
-//	{
-//		Res->Setting(ShaderType, BindIndex);
-//	}
-//
-//};
+class UEngineTextureRes : public UEngineShaderRes
+{
+public:
+	std::shared_ptr<UTexture> Res;
+	void Update()
+	{
+		Res->Update(ShaderType, BindIndex);
+	}
+};
+
+class UEngineSamplerRes : public UEngineShaderRes
+{
+public:
+	std::shared_ptr<UEngineSampler> Res;
+
+	void Update()
+	{
+		Res->Update(ShaderType, BindIndex);
+	}
+
+};
 
 /**
  *	Ό³Έν
@@ -51,6 +63,22 @@ public:
 	~UEngineShaderResource();
 
 	void CreateConstantBufferRes(std::string_view Name, UEngineConstantBufferRes Res);
+	void CreateSamplerRes(std::string_view Name, UEngineSamplerRes SamplerResource);
+	void CreateTextureRes(std::string_view Name, UEngineTextureRes TextureResource);
+
+	template<typename DataType>
+	void ConstantBufferLinkData(std::string_view Name, DataType& Data)
+	{
+		ConstantBufferLinkData(Name, reinterpret_cast<void*>(&Data));
+	}
+	void ConstantBufferLinkData(std::string_view Name, void* Data);
+
+	void SamplerSetting(std::string_view Name, std::string_view ResourceName);
+	void TextureSetting(std::string_view Name, std::string_view ResourceName);
+
+	bool IsSampler(std::string_view Name);
+	bool IsTexture(std::string_view Name);
+	bool IsConstantBuffer(std::string_view Name);
 
 	void Update();
 
@@ -58,5 +86,7 @@ protected:
 
 private:
 	std::map<std::string, UEngineConstantBufferRes> ConstantBufferRes;
+	std::map<std::string, UEngineTextureRes> TextureRes;
+	std::map<std::string, UEngineSamplerRes> SamplerRes;
 };
 

@@ -12,6 +12,7 @@
 #include "Core/Misc/FileHelper.h"
 
 #include "Classes/Engine/StaticMesh.h"
+#include "Classes/Engine/Texture.h"
 
 
 
@@ -35,13 +36,55 @@ void UEngineGraphicDevice::Release()
 	Device = nullptr;
 }
 
+
 void UEngineGraphicDevice::InitDefaultResources()
 {
+	InitTexture();
 	InitMesh();
 	InitBlend();
+	InitRasterizerState();
 	InitShader();
 	InitMaterial();
-	InitRasterizerState();
+
+	{
+		FDirectoryHelper CurDir;
+		// 엔진 쉐이더 디렉토리로 이동
+		CurDir.MoveEngineShaderDirectory();
+
+		if (false == CurDir.MoveEngineShaderDirectory())
+		{
+			MSGASSERT("엔진 셰이더 폴더를 찾기에 실패했습니다");
+			return;
+		}
+
+		std::vector<FFileHelper> ImageFiles = CurDir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
+
+		for (int i = 0; i < ImageFiles.size(); i++)
+		{
+			std::string FilePath = ImageFiles[i].GetPathToString();
+			UTexture::Load(FilePath);
+		}
+	}
+}
+
+void UEngineGraphicDevice::InitTexture()
+{
+	D3D11_SAMPLER_DESC SampInfo = { D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT };
+
+	SampInfo.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // 0~1사이만 유효
+	SampInfo.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // y
+	SampInfo.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_CLAMP; // z // 3중 
+	SampInfo.BorderColor[0] = 0.0f;
+	SampInfo.BorderColor[1] = 0.0f;
+	SampInfo.BorderColor[2] = 0.0f;
+	SampInfo.BorderColor[3] = 0.0f;
+
+	// SampInfo.ComparisonFunc = D3D11_COMPARISON_NEVER;
+	// Lod라고 불리는 것은 z값이 얼마나 멀어지면 얼마나 대충 색깔 빼올거냐. 
+	// SampInfo.MaxLOD = 0.0f;
+	// SampInfo.MinLOD = 0.0f;
+
+	UEngineSampler::Create("WRAPSampler", SampInfo);
 }
 
 void UEngineGraphicDevice::InitMesh()
@@ -169,8 +212,6 @@ void UEngineGraphicDevice::InitMaterial()
 	std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("SpriteMaterial");
 	Mat->SetVertexShader("EngineSpriteShader.fx");
 	Mat->SetPixelShader("EngineSpriteShader.fx");
-	Mat->SetRasterizerState("EngineBase");
-	Mat->SetBlend("AlphaBlend");
 }
 
 void UEngineGraphicDevice::InitRasterizerState()

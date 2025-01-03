@@ -2,6 +2,7 @@
 #include "RenderUnit.h"
 
 #include "Classes/Camera/CameraComponent.h"
+#include "Classes/Components/PrimitiveComponent.h"
 
 #include "Classes/Engine/Mesh.h"
 #include "Rendering/EngineMaterial.h"
@@ -17,6 +18,11 @@ URenderUnit::~URenderUnit()
 
 void URenderUnit::Render(UCameraComponent* CameraComponent, float DetlaTime)
 {
+	for (std::pair<const EShaderType, UEngineShaderResource>& Pair : ShaderResourceMap)
+	{
+		Pair.second.Update();
+	}
+
 	Mesh->GetVertexBuffer()->Update();
 	Material->GetVertexShader()->Update();
 	Mesh->GetIndexBuffer()->Update();
@@ -70,6 +76,38 @@ void URenderUnit::SetMaterial(std::string_view _Name)
 	}
 }
 
+void URenderUnit::SetTexture(std::string_view Name, std::string_view AssetName)
+{
+	for (EShaderType i = EShaderType::VS; i < EShaderType::MAX; i = static_cast<EShaderType>(static_cast<int>(i) + 1))
+	{
+		if (false == ShaderResourceMap.contains(i))
+		{
+			continue;
+		}
+		if (false == ShaderResourceMap[i].IsTexture(Name))
+		{
+			continue;
+		}
+		ShaderResourceMap[i].TextureSetting(Name, AssetName);
+	}
+}
+
+void URenderUnit::SetSampler(std::string_view Name, std::string_view AssetName)
+{
+	for (EShaderType i = EShaderType::VS; i < EShaderType::MAX; i = static_cast<EShaderType>(static_cast<int>(i) + 1))
+	{
+		if (false == ShaderResourceMap.contains(i))
+		{
+			continue;
+		}
+		if (false == ShaderResourceMap[i].IsSampler(Name))
+		{
+			continue;
+		}
+		ShaderResourceMap[i].SamplerSetting(Name, AssetName);
+	}
+}
+
 void URenderUnit::MaterialResourceCheck()
 {
 	if (nullptr == Material)
@@ -84,6 +122,38 @@ void URenderUnit::MaterialResourceCheck()
 	UEngineShaderResource& PixelShader = Material->GetPixelShader()->ShaderResource;
 	ShaderResourceMap[EShaderType::PS] = Material->GetPixelShader()->ShaderResource;
 
+	if (nullptr != ParentPrimitiveComponent)
+	{
+		for (EShaderType i = EShaderType::VS; i < EShaderType::MAX; i = static_cast<EShaderType>(static_cast<int>(i) + 1))
+		{
+			if (false == ShaderResourceMap.contains(i))
+			{
+				continue;
+			}
+
+			FTransform& Ref = ParentPrimitiveComponent->GetComponentTransformRef();
+			ShaderResourceMap[i].ConstantBufferLinkData("FTransform", Ref);
+		}
+
+	}
+
+}
+
+void URenderUnit::ConstantBufferLinkData(std::string_view Name, void* _Data)
+{
+	for (EShaderType i = EShaderType::VS; i < EShaderType::MAX; i = static_cast<EShaderType>(static_cast<int>(i) + 1))
+	{
+		if (false == ShaderResourceMap.contains(i))
+		{
+			continue;
+		}
+		if (false == ShaderResourceMap[i].IsConstantBuffer(Name))
+		{
+			continue;
+		}
+
+		ShaderResourceMap[i].ConstantBufferLinkData(Name, _Data);
+	}
 }
 
 void URenderUnit::InputLayOutCreate()

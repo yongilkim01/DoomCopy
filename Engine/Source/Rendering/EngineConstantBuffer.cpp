@@ -14,6 +14,11 @@ UEngineConstantBuffer::~UEngineConstantBuffer()
 
 std::shared_ptr<UEngineConstantBuffer> UEngineConstantBuffer::CreateOrFind(UINT _Byte, const std::string_view& _Name)
 {
+	if (0 == _Byte)
+	{
+		MSGASSERT("0바이트 상수버퍼가 만들어지려고 했습니다.");
+	}
+
 	std::string UpperName = UEngineString::ToUpper(_Name);
 	if (true == BufferMap.contains(_Byte))
 	{

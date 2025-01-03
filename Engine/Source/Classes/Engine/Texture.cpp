@@ -18,6 +18,28 @@ UTexture::~UTexture()
 {
 }
 
+void UTexture::Update(EShaderType ShaderType, UINT BindIndex)
+{
+	ID3D11ShaderResourceView* ArrPtr[1] = { ShaderResourceView.Get() };
+
+	switch (ShaderType)
+	{
+	case EShaderType::VS:
+		UEngineCore::GetDevice().GetDeviceContext()->VSSetShaderResources(BindIndex, 1, ArrPtr);
+		break;
+	case EShaderType::PS:
+		UEngineCore::GetDevice().GetDeviceContext()->PSSetShaderResources(BindIndex, 1, ArrPtr);
+		break;
+	case EShaderType::HS:
+	case EShaderType::DS:
+	case EShaderType::GS:
+	case EShaderType::CS:
+	default:
+		MSGASSERT("엔진이 지원하지 않는 셰이더에 세팅하려고 했습니다.");
+		break;
+	}
+}
+
 std::shared_ptr<UTexture> UTexture::Load(std::string_view TextureFileName, std::string_view LoadTextureFilePath)
 {
 	std::string UpperName = ToUpperName(TextureFileName);

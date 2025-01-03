@@ -52,6 +52,7 @@ public:
 	void RenderEnd();
 
 	ENGINE_API void Release();
+	ENGINE_API void InitTexture();
 	ENGINE_API void InitDefaultResources();
 	ENGINE_API void InitMesh();
 	ENGINE_API void InitBlend();

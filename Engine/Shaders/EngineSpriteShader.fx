@@ -89,6 +89,7 @@ VertexShaderOutPut VertexToWorld_VS(EngineVertex _Vertex)
 	
     OutPut.SVPOSITION = mul(_Vertex.POSITION, WVP);
 	
+    OutPut.UV = _Vertex.UV;
     OutPut.UV.x = (_Vertex.UV.x * CuttingSize.x) + CuttingPos.x;
     OutPut.UV.y = (_Vertex.UV.y * CuttingSize.y) + CuttingPos.y;
     OutPut.UV.x += PlusUVValue.x;
@@ -123,7 +124,8 @@ SamplerState ImageSampler : register(s0);
 // ex) 픽셀쉐이더에서는 0번 을 쓸수 있다.
 cbuffer ResultColor : register(b0)
 {
-    float4 Albedo;
+    float4 PlusColor;
+    float4 MulColor;
 };
 
 

@@ -84,6 +84,7 @@
     <ClCompile Include="Source\Rendering\EngineMaterial.cpp" />
     <ClCompile Include="Source\Rendering\EnginePixelShader.cpp" />
     <ClCompile Include="Source\Rendering\EngineRasterizerState.cpp" />
+    <ClCompile Include="Source\Rendering\EngineSampler.cpp" />
     <ClCompile Include="Source\Rendering\EngineShader.cpp">
       <SubType>
       </SubType>
@@ -175,6 +176,7 @@
     <ClInclude Include="Source\Rendering\EngineMaterial.h" />
     <ClInclude Include="Source\Rendering\EnginePixelShader.h" />
     <ClInclude Include="Source\Rendering\EngineRasterizerState.h" />
+    <ClInclude Include="Source\Rendering\EngineSampler.h" />
     <ClInclude Include="Source\Rendering\EngineShader.h">
       <SubType>
       </SubType>

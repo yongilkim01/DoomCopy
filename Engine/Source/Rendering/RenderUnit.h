@@ -6,6 +6,7 @@
 #include "EngineShaderResource.h"
 
 class UCameraComponent;
+class UPrimitiveComponent;
 
 /**
  *	Ό³Έν
@@ -28,8 +29,21 @@ public:
 
 	ENGINE_API void SetMesh(std::string_view _Name);
 	ENGINE_API void SetMaterial(std::string_view _Name);
+	ENGINE_API void SetTexture(std::string_view Name, std::string_view AssetName);
+	ENGINE_API void SetSampler(std::string_view Name, std::string_view AssetName);
 
 	ENGINE_API void MaterialResourceCheck();
+
+	template<typename Data>
+	ENGINE_API void ConstantBufferLinkData(std::string_view _Name, Data& _Data)
+	{
+		ConstantBufferLinkData(_Name, reinterpret_cast<void*>(&_Data));
+	}
+
+	ENGINE_API void ConstantBufferLinkData(std::string_view Name, void* _Data);
+
+	UPrimitiveComponent* ParentPrimitiveComponent = nullptr;
+
 
 protected:
 

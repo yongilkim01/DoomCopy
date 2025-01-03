@@ -11,6 +11,21 @@
 
 UPaperSpriteComponent::UPaperSpriteComponent()
 {
+	CreateRenderUnit();
+	SetMesh("Rect");
+	SetMaterial("SpriteMaterial");
+	
+	GetRenderUnit().ConstantBufferLinkData("ResultColor", ColorData);
+	GetRenderUnit().ConstantBufferLinkData("FSpriteData", SpriteData);
+	GetRenderUnit().ConstantBufferLinkData("FUVValue", UVValue);
+
+	UVValue.PlusUVValue = { 0.0f, 0.0f, 0.0f, 0.0f };
+	SpriteData.CuttingLocation = { 0.0f, 0.0f };
+	SpriteData.CuttingSize = { 1.0f, 1.0f };
+	SpriteData.Pivot = { 0.5f, 0.5f };
+
+	ColorData.PlusColor = { 0.0f, 0.0f, 0.0f, 0.0f };
+	ColorData.MulColor = { 1.0f, 1.0f, 1.0f, 1.0f };
 }
 
 UPaperSpriteComponent::~UPaperSpriteComponent()
@@ -20,10 +35,6 @@ UPaperSpriteComponent::~UPaperSpriteComponent()
 void UPaperSpriteComponent::BeginPlay()
 {
     UPrimitiveComponent::BeginPlay();
-
-	CreateRenderUnit();
-	SetMesh("Rect");
-	SetMaterial("SpriteMaterial");
 }
 
 void UPaperSpriteComponent::ComponentTick(float DeltaTime)
@@ -74,13 +85,6 @@ void UPaperSpriteComponent::ComponentTick(float DeltaTime)
 		}
 
 		CurIndex = Indexs[CurAnimation->CurIndex];
-
-		if (true == CurAnimation->IsAutoScale)
-		{
-			FVector Scale = CurAnimation->Sprite->GetSpriteScaleToReal(CurIndex);
-			Scale.Z = 1.0f;
-			SetRelativeScale3D(Scale * CurAnimation->AutoScaleRatio);
-		}
 	}
 }
 
@@ -91,10 +95,17 @@ void UPaperSpriteComponent::Render(UCameraComponent* CameraComponent, float Delt
 
 	if (nullptr != CurAnimation)
 	{
-		UPaperSprite* Sprite = CurAnimation->Sprite;
+		Sprite = CurAnimation->Sprite;
 
-		//SetTexture(Sprite->GetTexture(CurIndex));
-		//SetSpriteData(Sprite, CurIndex);
+		GetRenderUnit().SetTexture("ImageTexture", Sprite->GetTexture(CurIndex)->GetName());
+		SpriteData = Sprite->GetSpriteData(CurIndex);
+	}
+
+	if (true == IsAutoScale)
+	{
+		FVector Scale = Sprite->GetSpriteScaleToReal(CurIndex);
+		Scale.Z = 1.0f;
+		SetRelativeScale3D(Scale * AutoScaleRatio);
 	}
 
 	UPrimitiveComponent::Render(CameraComponent, DeltaTime);
@@ -145,6 +156,7 @@ void UPaperSpriteComponent::CreateAnimation(std::string_view AnimationName, std:
 											std::vector<int> Indexes, std::vector<float> Frame, bool bLoop /*= true*/)
 {
 	std::string UpperName = UEngineString::ToUpper(AnimationName);
+
 	if (Frame.size() != Indexes.size())
 	{
 		MSGASSERT(UpperName + "을 만들다 에러가 났습니다 프레임과 타임의 카운트가 서로 다릅니다");
@@ -155,11 +167,13 @@ void UPaperSpriteComponent::CreateAnimation(std::string_view AnimationName, std:
 		return;
 	}
 	std::shared_ptr<UPaperSprite> FindSprite = UPaperSprite::Find<UPaperSprite>(SpriteName);
+
 	if (nullptr == FindSprite)
 	{
 		MSGASSERT("로드하지 않은 스프라이트를 애니메이션 생서에 사용하려고 했습니다" + std::string(UpperName));
 		return;
 	}
+
 	FrameAnimation NewAnimation;
 	NewAnimation.Sprite = FindSprite.get();
 	NewAnimation.FrameIndex = Indexes;
@@ -171,12 +185,15 @@ void UPaperSpriteComponent::CreateAnimation(std::string_view AnimationName, std:
 void UPaperSpriteComponent::ChangeAnimation(std::string_view AnimationName, bool bForce /*= false*/)
 {
 	std::string UpperName = UEngineString::ToUpper(AnimationName);
+
 	if (false == FrameAnimations.contains(UpperName))
 	{
 		MSGASSERT("존재하지 않은 애니메이션으로 변경하려고 했습니다. = " + UpperName);
 		return;
 	}
+
 	FrameAnimation* ChangeAnimation = &FrameAnimations[UpperName];
+
 	if (CurAnimation == ChangeAnimation && false == bForce)
 	{
 		return;
@@ -190,7 +207,13 @@ void UPaperSpriteComponent::ChangeAnimation(std::string_view AnimationName, bool
 	{
 		CurAnimation->Events[CurAnimation->CurIndex]();
 	}
-	//Sprite = CurAnimation->Sprite;
+
+	if (true == IsAutoScale)
+	{
+		FVector Scale = CurAnimation->Sprite->GetSpriteScaleToReal(CurIndex);
+		Scale.Z = 1.0f;
+		SetRelativeScale3D(Scale * AutoScaleRatio);
+	}
 }
 void UPaperSpriteComponent::SetAnimationEvent(std::string_view AnimationName, 
 											  int Frame, std::function<void()> EventFunction)
@@ -246,6 +269,9 @@ UPaperSpriteComponent::FrameAnimation* UPaperSpriteComponent::FindAnimation(std:
 void UPaperSpriteComponent::SetSprite(std::string_view SpriteName, size_t Index)
 {
 	Sprite = UPaperSprite::Find<UPaperSprite>(SpriteName).get();
+
+	GetRenderUnit().SetTexture("ImageTexture", Sprite->GetTexture(Index)->GetName());
+	SpriteData = Sprite->GetSpriteData(Index);
 
 }
 

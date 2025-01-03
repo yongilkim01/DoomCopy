@@ -21,7 +21,7 @@ public:
 	UEngineMaterial& operator=(const UEngineMaterial& Other) = delete;
 	UEngineMaterial& operator=(UEngineMaterial&& Other) noexcept = delete;
 
-	static std::shared_ptr<UEngineMaterial> Create(std::string_view _Name);
+	ENGINE_API static std::shared_ptr<UEngineMaterial> Create(std::string_view _Name);
 	ENGINE_API void UpdatePrimitiveTopology();
 
 	ENGINE_API std::shared_ptr<UEngineVertexShader> GetVertexShader()

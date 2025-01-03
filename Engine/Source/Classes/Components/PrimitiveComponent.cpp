@@ -50,8 +50,9 @@ void UPrimitiveComponent::Render(UCameraComponent* CameraComponent, float DeltaT
 
 URenderUnit& UPrimitiveComponent::CreateRenderUnit()
 {
-	// TODO: 여기에 return 문을 삽입합니다.
-	return Units.emplace_back();
+	URenderUnit& NewUnit = Units.emplace_back();
+	NewUnit.ParentPrimitiveComponent = this;
+	return NewUnit;
 }
 
 URenderUnit& UPrimitiveComponent::GetRenderUnit(UINT Index)

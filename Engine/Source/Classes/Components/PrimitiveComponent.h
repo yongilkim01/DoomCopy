@@ -9,10 +9,6 @@ class UTexture;
 class UStaticMesh;
 class UEngineBlend;
 
-struct FUVValue
-{
-	float4 PlusUVValue;
-};
 
 /**
  *	렌더러 클래스
@@ -42,10 +38,10 @@ protected:
 	/** URenderer 메소드 */
 	ENGINE_API virtual void Render(UCameraComponent* CameraComponent, float DeltaTime);
 
-	URenderUnit& CreateRenderUnit();
-	URenderUnit& GetRenderUnit(UINT Index);
-	void SetMesh(std::string_view Name, UINT Index = 0);
-	void SetMaterial(std::string_view Name, UINT Index = 0);
+	ENGINE_API URenderUnit& CreateRenderUnit();
+	ENGINE_API URenderUnit& GetRenderUnit(UINT Index = 0);
+	ENGINE_API void SetMesh(std::string_view Name, UINT Index = 0);
+	ENGINE_API void SetMaterial(std::string_view Name, UINT Index = 0);
 
 private:
 

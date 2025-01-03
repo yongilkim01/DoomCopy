@@ -6,6 +6,19 @@
 class UCameraComponent;
 class URenderUnit;
 
+struct FUVValue
+{
+public:
+	float4 PlusUVValue;
+};
+
+struct ResultColor
+{
+public:
+	float4 PlusColor;
+	float4 MulColor;
+};
+
 /**
  *	설명
  */
@@ -24,11 +37,9 @@ public:
 		int ResultIndex = 0;
 
 		float CurTime = 0.0f;
-		float AutoScaleRatio = 1.0f;
 
 		bool Loop = true;
 		bool IsEnd = false;
-		bool IsAutoScale = true;
 
 		void Reset()
 		{
@@ -97,7 +108,18 @@ public:
 	{
 		CurAnimationSpeed = 1.0f;
 	}
-	
+	void SetAutoScale(bool NewAutoScale)
+	{
+		IsAutoScale = NewAutoScale;
+	}
+	void SetAutoScaleRatio(float NewScaleRatio)
+	{
+		AutoScaleRatio = NewScaleRatio;
+	}
+
+	ResultColor ColorData;
+	FUVValue UVValue;
+	FPaperSpriteData SpriteData;
 
 protected:
 	/** USceneComponent method */
@@ -110,12 +132,13 @@ private:
 
 	int CurIndex = 0;
 	float CurAnimationSpeed = 1.0f;
+	bool IsAutoScale = true;
+	float AutoScaleRatio = 1.0f;
 
 	std::map<std::string, FrameAnimation> FrameAnimations;
 	FrameAnimation* CurAnimation = nullptr;
 	UPaperSprite* Sprite = nullptr;
 	UTexture* CurTexture = nullptr;
-	FPaperSpriteData SpriteData;
 	Microsoft::WRL::ComPtr<ID3D11Buffer> SpriteConstantBuffer = nullptr; // 스프라이트용 상수버퍼
 };
 

@@ -4,6 +4,7 @@
 #include "EngineShader.h"
 #include "Classes/Engine/RenderAsset.h"
 #include "Core/Misc/Paths.h"
+#include "EngineEnums.h"
 
 /**
  *	Ό³Έν

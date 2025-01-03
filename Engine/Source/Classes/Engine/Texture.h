@@ -2,6 +2,7 @@
 #include "Classes/Engine/RenderAsset.h"
 #include "ThirdParty/DirectXTex/Include/DirectXTex.h"
 #include "Core/Misc/Paths.h"
+#include "EngineEnums.h"
 
 /**
  *	Ό³Έν
@@ -18,6 +19,8 @@ public:
 	UTexture(UTexture&& _Other) noexcept = delete;
 	UTexture& operator=(const UTexture& _Other) = delete;
 	UTexture& operator=(UTexture&& _Other) noexcept = delete;
+
+	void Update(EShaderType ShaderType, UINT BindIndex);
 
 	static std::shared_ptr<UTexture> Load(std::string_view LoadTextureFilePath)
 	{

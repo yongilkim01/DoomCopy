@@ -19,6 +19,16 @@ void USceneComponent::BeginPlay()
 	}
 }
 
+void USceneComponent::ComponentTick(float DeltaTime)
+{
+	UActorComponent::ComponentTick(DeltaTime);
+
+	for (std::shared_ptr<USceneComponent> Child : Childs)
+	{
+		Child->ComponentTick(DeltaTime);
+	}
+}
+
 void USceneComponent::TransformUpdate()
 {
 	ParentMatrixCheck();
