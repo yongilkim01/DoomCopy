@@ -2,6 +2,8 @@
 #include "EngineShaderResource.h"
 #include "Classes/Engine/Mesh.h"
 #include "Rendering/EngineMaterial.h"
+#include "EngineEnums.h"
+#include "EngineShaderResource.h"
 
 class UCameraComponent;
 
@@ -27,13 +29,13 @@ public:
 	ENGINE_API void SetMesh(std::string_view _Name);
 	ENGINE_API void SetMaterial(std::string_view _Name);
 
+	ENGINE_API void MaterialResourceCheck();
+
 protected:
 
 private:
 	void InputLayOutCreate();
-
-
-	UEngineConstantBufferRes Res;
-
+	
+	std::map<EShaderType, UEngineShaderResource> ShaderResourceMap;
 };
 

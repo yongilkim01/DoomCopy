@@ -18,6 +18,13 @@ void UCameraComponent::BeginPlay()
 {
 	FVector ScreenScale = UEngineCore::GetSceenScale();
 	ProjectionScale = ScreenScale;
+
+	ViewPortInfo.Width = UEngineCore::GetSceenScale().X;
+	ViewPortInfo.Height = UEngineCore::GetSceenScale().Y;
+	ViewPortInfo.TopLeftX = 0.0f;
+	ViewPortInfo.TopLeftY = 0.0f;
+	ViewPortInfo.MinDepth = 0.0f;
+	ViewPortInfo.MaxDepth = 1.0f;
 }
 
 void UCameraComponent::Tick(float DeltaTime)
@@ -28,6 +35,9 @@ void UCameraComponent::Tick(float DeltaTime)
 
 void UCameraComponent::Render(float DeltaTime)
 {
+	UEngineCore::GetDevice().GetDeviceContext()->RSSetViewports(1, &ViewPortInfo);
+
+
 	for (std::pair<const int, std::list<std::shared_ptr<UPrimitiveComponent>>>& RenderGroup : Rendereres)
 	{
 		std::list<std::shared_ptr<UPrimitiveComponent>>& RendererList = RenderGroup.second;

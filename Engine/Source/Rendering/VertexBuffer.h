@@ -2,6 +2,8 @@
 #include "Rendering/EngineDeviceBuffer.h"
 #include "Classes/Engine/RenderAsset.h"
 
+class UEngineInputLayoutInfo;
+
 /**
  *	Ό³Έν
  */
@@ -37,11 +39,19 @@ public:
 
 	ENGINE_API void Update();
 
+	ENGINE_API UEngineInputLayoutInfo* GetInfoPtr()
+	{
+		return InfoPtr;
+	}
+
 protected:
 	void AssetCreate(const void* InitData, size_t VertexSize, size_t VertexCount);
 
 private:
 	UINT VertexSize = 0;
 	UINT VertexCount = 0;
+
+	UEngineInputLayoutInfo* InfoPtr;
+
 };
 

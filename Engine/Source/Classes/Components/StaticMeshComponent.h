@@ -53,16 +53,6 @@ protected:
 
 	void InitShader();
 
-	virtual void InitRasterizer() override;
-
-	virtual void InitShaderResourceView() override;
-	virtual void UpdateShaderResourceView() override;
-
-	virtual void InitVertexShader() override;
-	virtual void InitPixelShader() override;
-
-
-
 private:
 	std::string ObjPath = "";
 	std::string MtlPath = "";

@@ -3,12 +3,12 @@
 #include "Rendering/IndexBuffer.h"
 #include "Rendering/VertexBuffer.h"
 
-struct EVertexData
-{
-	float4 POSITION;
-	float4 TEXCOORD;
-	float4 COLOR;
-};
+//struct EVertexData
+//{
+//	float4 POSITION;
+//	float4 TEXCOORD;
+//	float4 COLOR;
+//};
 
 /**
  *	Ό³Έν

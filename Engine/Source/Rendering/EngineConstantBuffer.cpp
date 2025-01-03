@@ -51,11 +51,25 @@ void UEngineConstantBuffer::ChangeData(void* _Data, UINT _Size)
 	UEngineCore::GetDevice().GetDeviceContext()->Unmap(Buffer.Get(), 0);
 }
 
-void UEngineConstantBuffer::Setting()
+void UEngineConstantBuffer::Update(EShaderType Type, UINT BindIndex)
 {
-	// 같은 상수버퍼를 
-	ID3D11Buffer* ArrPtr[16] = { Buffer.Get() };
-	UEngineCore::GetDevice().GetDeviceContext()->VSSetConstantBuffers(0, 1, ArrPtr);
+	ID3D11Buffer* ArrPtr[1] = { Buffer.Get() };
+	switch (Type)
+	{
+	case EShaderType::VS:
+		UEngineCore::GetDevice().GetDeviceContext()->VSSetConstantBuffers(BindIndex, 1, ArrPtr);
+		break;
+	case EShaderType::PS:
+		UEngineCore::GetDevice().GetDeviceContext()->PSSetConstantBuffers(BindIndex, 1, ArrPtr);
+		break;
+	case EShaderType::HS:
+	case EShaderType::DS:
+	case EShaderType::GS:
+	case EShaderType::CS:
+	default:
+		MSGASSERT("아직 존재하지 않는 쉐이더에 세팅하려고 했습니다.");
+		break;
+	}
 }
 
 void UEngineConstantBuffer::AssetCreate(UINT Byte)

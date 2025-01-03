@@ -26,8 +26,8 @@ public:
 	static inline const float PI = 3.14159265358979323846264f;
 	static inline const float PI2 = PI * 2.0f;
 
-	static inline const float D2R = UEngineMath::PI / 180.0f;
-	static inline const float R2D = 180.0f / UEngineMath::PI;
+	static inline const float D2R = FMath::PI / 180.0f;
+	static inline const float R2D = 180.0f / FMath::PI;
 
 	static float Sqrt(float Value)
 	{

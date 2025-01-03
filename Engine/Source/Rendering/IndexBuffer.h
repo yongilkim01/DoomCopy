@@ -41,6 +41,10 @@ public:
 	{
 		return IndexSize;
 	}
+	ENGINE_API UINT GetIndexCount()
+	{
+		return IndexCount;
+	}
 
 
 protected:

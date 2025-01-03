@@ -1,13 +1,44 @@
 #pragma once
 #include "EngineConstantBuffer.h"
+#include "Core/Object/Object.h"
+#include "EngineEnums.h"
 
-class UEngineConstantBufferRes
+class UEngineShaderRes
 {
 public:
-	void* Data; // 자신에게 세팅될 데이터는 스스로 가지고 있을 것이다.
+	std::string Name;
+	EShaderType Type = EShaderType::MAX;
+	UINT BindIndex = 0;
+};
+
+class UEngineConstantBufferRes : public UEngineShaderRes
+{
+public:
+	void* Data = nullptr; // 자신에게 세팅될 데이터는 스스로 가지고 있을 것이다.
 	UINT BufferSize;
 	std::shared_ptr<UEngineConstantBuffer> Res;
+
+	void Update()
+	{
+		if (nullptr != Data)
+		{
+			Res->ChangeData(Data, Res->GetBufferInfo().ByteWidth);
+		}
+		Res->Update(Type, BindIndex);
+	}
 };
+
+//class UEngineSamplerRes : public UEngineShaderRes
+//{
+//public:
+//	std::shared_ptr<UEngineSampler> Res;
+//
+//	void Setting()
+//	{
+//		Res->Setting(ShaderType, BindIndex);
+//	}
+//
+//};
 
 /**
  *	설명
@@ -19,17 +50,13 @@ public:
 	UEngineShaderResource();
 	~UEngineShaderResource();
 
-	/** 객체 값 복사 방지 */
-	UEngineShaderResource(const UEngineShaderResource& Other) = delete;
-	UEngineShaderResource(UEngineShaderResource&& Other) noexcept = delete;
-	UEngineShaderResource& operator=(const UEngineShaderResource& Other) = delete;
-	UEngineShaderResource& operator=(UEngineShaderResource&& Other) noexcept = delete;
-
 	void CreateConstantBufferRes(std::string_view Name, UEngineConstantBufferRes Res);
+
+	void Update();
 
 protected:
 
 private:
-	std::map<std::string, UEngineConstantBufferRes> ConstantBufferRess;
+	std::map<std::string, UEngineConstantBufferRes> ConstantBufferRes;
 };
 

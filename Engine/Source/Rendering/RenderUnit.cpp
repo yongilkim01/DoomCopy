@@ -22,7 +22,7 @@ void URenderUnit::Render(UCameraComponent* CameraComponent, float DetlaTime)
 	Mesh->GetIndexBuffer()->Update();
 	Material->UpdatePrimitiveTopology();
 
-	UEngineCore::GetDevice().GetDeviceContext()->IASetInputLayout(InputLayOut.Get());
+	UEngineCore::GetDevice().GetDeviceContext()->IASetInputLayout(InputLayout.Get());
 
 	Material->GetRasterizerState()->Update();
 
@@ -35,6 +35,8 @@ void URenderUnit::Render(UCameraComponent* CameraComponent, float DetlaTime)
 	ArrRTV[0] = RTV;
 	
 	UEngineCore::GetDevice().GetDeviceContext()->OMSetRenderTargets(1, &ArrRTV[0], nullptr);
+
+	UEngineCore::GetDevice().GetDeviceContext()->DrawIndexed(Mesh->GetIndexBuffer()->GetIndexCount(), 0, 0);
 }
 
 void URenderUnit::SetMesh(std::string_view Name)
@@ -59,10 +61,29 @@ void URenderUnit::SetMaterial(std::string_view _Name)
 	{
 		MSGASSERT("마테리얼 데이터가 존재하지 않습니다");
 	}
+
+	MaterialResourceCheck();
+
 	if (nullptr != Mesh)
 	{
 		InputLayOutCreate();
 	}
+}
+
+void URenderUnit::MaterialResourceCheck()
+{
+	if (nullptr == Material)
+	{
+		MSGASSERT("존재하지 않는 마테리얼입니다.");
+		return;
+	}
+
+	UEngineShaderResource& VertexShader = Material->GetVertexShader()->ShaderResource;
+	ShaderResourceMap[EShaderType::VS] = Material->GetVertexShader()->ShaderResource;
+
+	UEngineShaderResource& PixelShader = Material->GetPixelShader()->ShaderResource;
+	ShaderResourceMap[EShaderType::PS] = Material->GetPixelShader()->ShaderResource;
+
 }
 
 void URenderUnit::InputLayOutCreate()

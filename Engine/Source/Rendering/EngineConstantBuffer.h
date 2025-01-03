@@ -1,6 +1,7 @@
 #pragma once
 #include "Classes/Engine/RenderAsset.h"
 #include "Rendering/EngineDeviceBuffer.h"
+#include "EngineEnums.h"
 
 /**
  *	Ό³Έν
@@ -21,7 +22,7 @@ public:
 	static std::shared_ptr<UEngineConstantBuffer> CreateOrFind(UINT _Byte, const std::string_view& _Name);
 
 	void ChangeData(void* _Data, UINT _Size);
-	void Setting();
+	void Update(EShaderType Type, UINT BindIndex);
 
 protected:
 
