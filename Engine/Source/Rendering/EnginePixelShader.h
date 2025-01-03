@@ -38,6 +38,8 @@ public:
 		UINT _VersionHigh = 5,
 		UINT _VersionLow = 0);
 
+	ENGINE_API void Update();
+
 protected:
 
 private:

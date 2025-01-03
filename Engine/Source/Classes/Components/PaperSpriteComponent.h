@@ -50,11 +50,6 @@ public:
 	UPaperSpriteComponent& operator=(const UPaperSpriteComponent& Other) = delete;
 	UPaperSpriteComponent& operator=(UPaperSpriteComponent&& Other) noexcept = delete;
 
-	virtual void InitShaderResourceView() override;
-	virtual void UpdateShaderResourceView() override;
-
-	virtual void InitVertexShader() override;
-	virtual void InitPixelShader() override;
 
 	/** Animation 메소드 */
 	ENGINE_API void CreateAnimation(std::string_view AnimationName, std::string_view SpriteName, 
@@ -73,7 +68,7 @@ public:
 
 	/** 겟, 셋 메소드 */
 	//ENGINE_API void SetSprite(std::string_view SpriteName);
-	//ENGINE_API void SetSprite(std::string_view SpriteName, size_t Index);
+	ENGINE_API void SetSprite(std::string_view SpriteName, size_t Index);
 	ENGINE_API void SetSprite(UPaperSprite* PaperSprite);
 	ENGINE_API void SetSpriteData(UPaperSprite* PaperSprite, size_t Index);
 	ENGINE_API void SetTexture(UTexture* NewTexture);

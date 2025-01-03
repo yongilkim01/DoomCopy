@@ -77,6 +77,10 @@
     <ClCompile Include="Source\Rendering\EngineConstantBuffer.cpp" />
     <ClCompile Include="Source\Rendering\EngineDeviceBuffer.cpp" />
     <ClCompile Include="Source\Rendering\EngineGraphicDevice.cpp" />
+    <ClCompile Include="Source\Rendering\EngineInputLayoutInfo.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Rendering\EngineMaterial.cpp" />
     <ClCompile Include="Source\Rendering\EnginePixelShader.cpp" />
     <ClCompile Include="Source\Rendering\EngineRasterizerState.cpp" />
@@ -85,6 +89,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Source\Rendering\EngineShaderResource.cpp" />
+    <ClCompile Include="Source\Rendering\EngineVertex.cpp" />
     <ClCompile Include="Source\Rendering\EngineVertexShader.cpp" />
     <ClCompile Include="Source\Rendering\IndexBuffer.cpp" />
     <ClCompile Include="Source\Rendering\RenderUnit.cpp" />
@@ -163,6 +168,10 @@
     <ClInclude Include="Source\Rendering\EngineConstantBuffer.h" />
     <ClInclude Include="Source\Rendering\EngineDeviceBuffer.h" />
     <ClInclude Include="Source\Rendering\EngineGraphicDevice.h" />
+    <ClInclude Include="Source\Rendering\EngineInputLayoutInfo.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\Rendering\EngineMaterial.h" />
     <ClInclude Include="Source\Rendering\EnginePixelShader.h" />
     <ClInclude Include="Source\Rendering\EngineRasterizerState.h" />

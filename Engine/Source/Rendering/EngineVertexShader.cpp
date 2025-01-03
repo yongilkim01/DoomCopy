@@ -26,6 +26,11 @@ std::shared_ptr<UEngineVertexShader> UEngineVertexShader::Load(std::string_view 
 	return NewRes;
 }
 
+void UEngineVertexShader::Update()
+{
+	UEngineCore::GetDevice().GetDeviceContext()->VSSetShader(ShaderRes.Get(), nullptr, 0);
+}
+
 void UEngineVertexShader::AssetLoad()
 {
 	std::wstring WPath = UEngineString::AnsiToUnicode(GetPath().GetPathToString());

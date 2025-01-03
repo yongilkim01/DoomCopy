@@ -32,24 +32,6 @@ public:
 	UPrimitiveComponent& operator=(const UPrimitiveComponent& Other) = delete;
 	UPrimitiveComponent& operator=(UPrimitiveComponent&& Other) noexcept = delete;
 
-	/** 렌더링 파이프라인 메소드 */
-	void InitVertexLayout();
-	virtual void InitRasterizer();
-
-	void UpdateVertexBuffer();
-	void UpdateVertexShader();
-	void UpdateIndexBuffer();
-	void UpdateRasterizer();	
-	void UpdatePixelShader();
-	void UpdateRenderTargetView();
-
-	/** 렌더링 파이프라인 상속 메소드 */
-	virtual void InitShaderResourceView();
-	virtual void UpdateShaderResourceView();
-
-	virtual void InitVertexShader();
-	virtual void InitPixelShader();
-
 	/** UObject 상속 메소드 */
 	ENGINE_API void SetOrder(int NewOrder);
 
@@ -61,6 +43,9 @@ protected:
 	ENGINE_API virtual void Render(UCameraComponent* CameraComponent, float DeltaTime);
 
 	URenderUnit& CreateRenderUnit();
+	URenderUnit& GetRenderUnit(UINT Index);
+	void SetMesh(std::string_view Name, UINT Index = 0);
+	void SetMaterial(std::string_view Name, UINT Index = 0);
 
 private:
 

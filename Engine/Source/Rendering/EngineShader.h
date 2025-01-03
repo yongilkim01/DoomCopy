@@ -27,6 +27,11 @@ public:
 
 	UEngineShaderResource ShaderResource;
 
+	Microsoft::WRL::ComPtr<ID3DBlob> GetShaderCodeBlob()
+	{
+		return ShaderCodeBlob;
+	}
+
 protected:
 	void ShaderResCheck();
 

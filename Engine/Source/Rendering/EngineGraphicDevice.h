@@ -57,6 +57,7 @@ public:
 	ENGINE_API void InitBlend();
 	ENGINE_API void	InitShader();
 	ENGINE_API void InitMaterial();
+	ENGINE_API void InitRasterizerState();
 
 
 

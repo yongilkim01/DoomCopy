@@ -273,6 +273,12 @@
     <ClCompile Include="Source\Classes\Engine\Mesh.cpp">
       <Filter>2_Classes\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Rendering\EngineInputLayoutInfo.cpp">
+      <Filter>4_Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\EngineVertex.cpp">
+      <Filter>4_Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
@@ -690,6 +696,9 @@
     </ClInclude>
     <ClInclude Include="Source\Classes\Engine\Mesh.h">
       <Filter>2_Classes\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\EngineInputLayoutInfo.h">
+      <Filter>4_Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

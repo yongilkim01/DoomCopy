@@ -4,6 +4,7 @@
 
 #include "Core/Math/EngineMath.h"
 #include "Classes/Components/SceneComponent.h"
+#include "EngineEnums.h"
 
 class ULevel;
 class UPrimitiveComponent;
@@ -37,9 +38,17 @@ public:
 
 	/** °Ù, ¼Â ¸Þ¼Òµå */
 	inline float GetFar() { return Far; }
-	inline void SetFar(float NewFar) { Far = NewFar; }
+	ENGINE_API inline void SetFar(float NewFar) { Far = NewFar; }
 	inline float GetNear() { return Near; }
-	inline void SetNear(float NewNear) { Near = NewNear; }
+	ENGINE_API inline void SetNear(float NewNear) { Near = NewNear; }
+	ENGINE_API inline void SetFOV(float NewFOV)
+	{
+		FOV = NewFOV;
+	}
+	ENGINE_API void SetProjectionType(EProjectionType NewProjectionType)
+	{
+		ProjectionType = NewProjectionType;
+	}
 
 protected:
 
@@ -51,5 +60,8 @@ private:
 
 	float Near = 1.0f;
 	float Far = 5000.0f;
+
+	float FOV = 60.0f;
+	EProjectionType ProjectionType = EProjectionType::Orthographic;
 
 };

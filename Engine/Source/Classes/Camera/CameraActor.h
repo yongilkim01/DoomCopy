@@ -28,7 +28,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	/** °Ù, ¼Â ¸Þ¼Òµå */
-	std::shared_ptr<UCameraComponent> GetCameraComponent()
+	ENGINE_API std::shared_ptr<UCameraComponent> GetCameraComponent()
 	{
 		return CameraComponent;
 	}

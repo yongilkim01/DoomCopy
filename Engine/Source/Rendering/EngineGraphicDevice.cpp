@@ -41,6 +41,7 @@ void UEngineGraphicDevice::InitDefaultResources()
 	InitBlend();
 	InitShader();
 	InitMaterial();
+	InitRasterizerState();
 }
 
 void UEngineGraphicDevice::InitMesh()
@@ -168,6 +169,17 @@ void UEngineGraphicDevice::InitMaterial()
 	std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("SpriteMaterial");
 	Mat->SetVertexShader("EngineSpriteShader.fx");
 	Mat->SetPixelShader("EngineSpriteShader.fx");
+	Mat->SetRasterizerState("EngineBase");
+	Mat->SetBlend("AlphaBlend");
+}
+
+void UEngineGraphicDevice::InitRasterizerState()
+{
+	D3D11_RASTERIZER_DESC Desc = {};
+	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
+	Desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
+
+	UEngineRasterizerState::Create("EngineBase", Desc);
 }
 
 void UEngineGraphicDevice::RenderStart()

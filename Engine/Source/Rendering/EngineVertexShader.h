@@ -2,6 +2,7 @@
 #include <Windows.h>
 
 #include "EngineShader.h"
+#include "EngineInputLayoutInfo.h"
 #include "Classes/Engine/RenderAsset.h"
 #include "Core/Misc/Paths.h"
 
@@ -37,6 +38,8 @@ public:
 		const std::string_view _EntryPoint, 
 		UINT _VersionHigh = 5, 
 		UINT _VersionLow = 0);
+
+	ENGINE_API void Update();
 
 protected:
 

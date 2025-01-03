@@ -53,11 +53,13 @@ public:
 		std::shared_ptr<ComponentType> NewComponent(new(ComponentMemory)ComponentType());
 
 		/** 컴포넌트가 SceneComponent일 경우 */
-		if (std::is_base_of_v<UActorComponent, ComponentType>)
+		if (std::is_base_of_v<UActorComponent, ComponentType>
+			&& !std::is_base_of_v<USceneComponent, ComponentType>)
 		{
 			ActorComponentList.push_back(NewComponent);
 		}
-		else
+		else if(!std::is_base_of_v<UActorComponent, ComponentType>
+				&& !std::is_base_of_v<USceneComponent, ComponentType>)
 		{
 			MSGASSERT("어떤 컴포넌트도 아닙니다.");
 		}

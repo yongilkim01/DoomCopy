@@ -1,6 +1,14 @@
 #pragma once
 
-enum class EShaderType : __int8
+typedef __int8 uint8;
+
+enum class EProjectionType : uint8
+{
+	Perspective,
+	Orthographic,
+};
+
+enum class EShaderType : uint8
 {
 	VS,
 	PS,

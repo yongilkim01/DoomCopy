@@ -42,8 +42,18 @@ void UCameraComponent::CalculateViewAndProjection()
 {
 	FTransform& Transform = GetComponentTransformRef();
 	Transform.View.View(Transform.World.ArrVector[3], Transform.World.GetFoward(), Transform.World.GetUp());
-	Transform.Projection.PerspectiveFovDeg(30.0f, ProjectionScale.X, ProjectionScale.Y, Near, Far);
-	//Transform.Projection.OrthographicLH(ProjectionScale.X, ProjectionScale.Y, Near, Far);
+
+	switch (ProjectionType)
+	{
+	case EProjectionType::Perspective:
+		Transform.Projection.PerspectiveFovDeg(FOV, ProjectionScale.X, ProjectionScale.Y, Near, Far);
+		break;
+	case EProjectionType::Orthographic:
+		Transform.Projection.OrthographicLH(ProjectionScale.X, ProjectionScale.Y, Near, Far);
+		break;
+	default:
+		break;
+	}
 }
 
 void UCameraComponent::ChangeRenderGroup(int PrevGroupOrder, std::shared_ptr<UPrimitiveComponent> Renderer)

@@ -22,6 +22,8 @@ public:
 	UEngineMaterial& operator=(UEngineMaterial&& Other) noexcept = delete;
 
 	static std::shared_ptr<UEngineMaterial> Create(std::string_view _Name);
+	ENGINE_API void UpdatePrimitiveTopology();
+
 	ENGINE_API std::shared_ptr<UEngineVertexShader> GetVertexShader()
 	{
 		return VertexShader;
@@ -50,5 +52,8 @@ private:
 	std::shared_ptr<UEnginePixelShader> PixelShader;
 	std::shared_ptr<UEngineRasterizerState> RasterizerState;
 	std::shared_ptr<UEngineBlend> Blend;
+
+	D3D11_PRIMITIVE_TOPOLOGY TOPOLOGY = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+
 };
 

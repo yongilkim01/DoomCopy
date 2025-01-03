@@ -26,6 +26,12 @@ std::shared_ptr<UEnginePixelShader> UEnginePixelShader::Load(std::string_view _N
 	return NewRes;
 }
 
+void UEnginePixelShader::Update()
+{
+	UEngineCore::GetDevice().GetDeviceContext()->PSSetShader(ShaderRes.Get(), nullptr, 0);
+
+}
+
 void UEnginePixelShader::AssetLoad()
 {
 	std::wstring WPath = UEngineString::AnsiToUnicode(GetPath().GetPathToString());

@@ -22,6 +22,11 @@ std::shared_ptr<UEngineMaterial> UEngineMaterial::Create(std::string_view _Name)
 	return NewRes;
 }
 
+void UEngineMaterial::UpdatePrimitiveTopology()
+{
+	UEngineCore::GetDevice().GetDeviceContext()->IASetPrimitiveTopology(TOPOLOGY);
+}
+
 void UEngineMaterial::SetVertexShader(std::string_view _Name)
 {
 	VertexShader = UEngineVertexShader::Find<UEngineVertexShader>(_Name);
@@ -32,10 +37,10 @@ void UEngineMaterial::SetVertexShader(std::string_view _Name)
 }
 void UEngineMaterial::SetPixelShader(std::string_view _Name)
 {
-	VertexShader = UEngineVertexShader::Find<UEngineVertexShader>(_Name);
-	if (nullptr == VertexShader)
+	PixelShader = UEnginePixelShader::Find<UEnginePixelShader>(_Name);
+	if (nullptr == PixelShader)
 	{
-		MSGASSERT("존재하지 않는 버텍스 쉐이더를 생성하려고 했습니다.");
+		MSGASSERT("존재하지 않는 픽셀 셰이더를 생성하려고 했습니다.");
 	}
 }
 void UEngineMaterial::SetRasterizerState(std::string_view _Name)

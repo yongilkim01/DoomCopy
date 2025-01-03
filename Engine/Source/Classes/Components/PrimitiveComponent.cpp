@@ -34,6 +34,13 @@ void UPrimitiveComponent::BeginPlay()
 
 void UPrimitiveComponent::Render(UCameraComponent* CameraComponent, float DeltaTime)
 {
+	FTransform& CameraTransform = CameraComponent->GetComponentTransformRef();
+	FTransform& ComponentTransform = GetComponentTransformRef();
+
+	ComponentTransform.View = CameraTransform.View;
+	ComponentTransform.Projection = CameraTransform.Projection;
+	ComponentTransform.WVP = ComponentTransform.World * ComponentTransform.View * ComponentTransform.Projection;
+
 	for (size_t i = 0; i < Units.size(); i++)
 	{
 		Units[i].Render(CameraComponent, DeltaTime);
@@ -45,6 +52,23 @@ URenderUnit& UPrimitiveComponent::CreateRenderUnit()
 {
 	// TODO: 여기에 return 문을 삽입합니다.
 	return Units.emplace_back();
+}
+
+URenderUnit& UPrimitiveComponent::GetRenderUnit(UINT Index)
+{
+	return Units[Index];
+}
+
+void UPrimitiveComponent::SetMesh(std::string_view Name, UINT Index)
+{
+	URenderUnit& RenderUnit = GetRenderUnit(Index);
+	RenderUnit.SetMesh(Name);
+}
+
+void UPrimitiveComponent::SetMaterial(std::string_view Name, UINT Index)
+{
+	URenderUnit& RenderUnit = GetRenderUnit(Index);
+	RenderUnit.SetMaterial(Name);
 }
 
 

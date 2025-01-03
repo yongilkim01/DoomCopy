@@ -3,6 +3,8 @@
 #include "Classes/Engine/Mesh.h"
 #include "Rendering/EngineMaterial.h"
 
+class UCameraComponent;
+
 /**
  *	설명
  */
@@ -13,20 +15,24 @@ public:
 	ENGINE_API URenderUnit();
 	ENGINE_API ~URenderUnit();
 
+	ENGINE_API virtual void Render(UCameraComponent* _Camera, float _DeltaTime);
+
+
 	// 메쉬(육체) 
 	std::shared_ptr<UMesh> Mesh;
 	// 머티리얼(피부)
 	std::shared_ptr<UEngineMaterial> Material;
+	Microsoft::WRL::ComPtr<ID3D11InputLayout> InputLayout;
 
-	void SetMesh(std::string_view _Name);
-
-	void SetMaterial(std::string_view _Name);
-
-	ENGINE_API virtual void Render(class UEngineCamera* _Camera, float _DeltaTime);
+	ENGINE_API void SetMesh(std::string_view _Name);
+	ENGINE_API void SetMaterial(std::string_view _Name);
 
 protected:
 
 private:
+	void InputLayOutCreate();
+
+
 	UEngineConstantBufferRes Res;
 
 };
