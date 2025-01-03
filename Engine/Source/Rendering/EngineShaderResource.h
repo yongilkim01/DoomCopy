@@ -82,6 +82,7 @@ public:
 
 	void Update();
 
+	int Index = 0;
 protected:
 
 private:

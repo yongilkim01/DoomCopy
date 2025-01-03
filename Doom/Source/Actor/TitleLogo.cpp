@@ -11,24 +11,14 @@ ATitleLogo::ATitleLogo()
 	std::shared_ptr<USceneComponent> Default = CreateDefaultSubObject<USceneComponent>();
 	RootComponent = Default;
 
+	// 랜더러를 만든다.
 	LogoRenderer = CreateDefaultSubObject<UPaperSpriteComponent>();
-
-	LogoRenderer->CreateAnimation("Idle", "Player.png", 0, 0, 0.1f);
-	{
-		UPaperSpriteComponent::FrameAnimation* Animation = LogoRenderer->FindAnimation("Idle");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 4.0f;
-	}
-	LogoRenderer->CreateAnimation("Move", "Player.png", 1, 4, 0.3f);
-	{
-		UPaperSpriteComponent::FrameAnimation* Animation = LogoRenderer->FindAnimation("Move");
-		Animation->IsAutoScale = true;
-		Animation->AutoScaleRatio = 4.0f;
-	}
-	LogoRenderer->ChangeAnimation("Idle");
-
-	LogoRenderer->SetRelativeScale3D({ 1.0f, 1.0f, 1.0f });
 	LogoRenderer->SetupAttachment(RootComponent);
+	LogoRenderer->SetAutoScaleRatio(5.0f);
+
+	LogoRenderer->CreateAnimation("Idle", "Tevi", 0, 3, 0.5f);
+	LogoRenderer->CreateAnimation("Move", "Tevi", 4, 16, 0.3f);
+	LogoRenderer->ChangeAnimation("Move");
 }
 
 ATitleLogo::~ATitleLogo()

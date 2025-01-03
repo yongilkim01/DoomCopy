@@ -29,13 +29,15 @@ public:
 			Name,
 			reinterpret_cast<const void*>(&VertexData[0]),
 			sizeof(VertexDataType), 
-			VertexData.size());
+			VertexData.size(),
+			&VertexDataType::Info);
 	}
 	static std::shared_ptr<FVertexBuffer> Create(
 		std::string_view Name, 
 		const void* InitData,
 		size_t VertexSize, 
-		size_t VertexCount);
+		size_t VertexCount,
+		UEngineInputLayoutInfo* _InfoPtr = nullptr);
 
 	ENGINE_API void Update();
 

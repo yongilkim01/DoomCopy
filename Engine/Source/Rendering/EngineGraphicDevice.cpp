@@ -12,6 +12,7 @@
 #include "Core/Misc/FileHelper.h"
 
 #include "Classes/Engine/StaticMesh.h"
+#include "Classes/Engine/Mesh.h"
 #include "Classes/Engine/Texture.h"
 
 
@@ -45,26 +46,6 @@ void UEngineGraphicDevice::InitDefaultResources()
 	InitRasterizerState();
 	InitShader();
 	InitMaterial();
-
-	{
-		FDirectoryHelper CurDir;
-		// 엔진 쉐이더 디렉토리로 이동
-		CurDir.MoveEngineShaderDirectory();
-
-		if (false == CurDir.MoveEngineShaderDirectory())
-		{
-			MSGASSERT("엔진 셰이더 폴더를 찾기에 실패했습니다");
-			return;
-		}
-
-		std::vector<FFileHelper> ImageFiles = CurDir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
-
-		for (int i = 0; i < ImageFiles.size(); i++)
-		{
-			std::string FilePath = ImageFiles[i].GetPathToString();
-			UTexture::Load(FilePath);
-		}
-	}
 }
 
 void UEngineGraphicDevice::InitTexture()
@@ -85,6 +66,26 @@ void UEngineGraphicDevice::InitTexture()
 	// SampInfo.MinLOD = 0.0f;
 
 	UEngineSampler::Create("WRAPSampler", SampInfo);
+
+	{
+		FDirectoryHelper CurDir;
+		// 엔진 쉐이더 디렉토리로 이동
+		CurDir.MoveEngineShaderDirectory();
+
+		if (false == CurDir.MoveEngineShaderDirectory())
+		{
+			MSGASSERT("엔진 셰이더 폴더를 찾기에 실패했습니다");
+			return;
+		}
+
+		std::vector<FFileHelper> ImageFiles = CurDir.GetAllFile(true, { ".PNG", ".BMP", ".JPG" });
+
+		for (int i = 0; i < ImageFiles.size(); i++)
+		{
+			std::string FilePath = ImageFiles[i].GetPathToString();
+			UTexture::Load(FilePath);
+		}
+	}
 }
 
 void UEngineGraphicDevice::InitMesh()
@@ -152,7 +153,7 @@ void UEngineGraphicDevice::InitMesh()
 		Vertexs[2] = EngineVertex{ FVector(-0.5f, -0.5f, 0.0f), {0.0f , 1.0f } , {0.0f, 0.0f, 1.0f, 1.0f} };
 		Vertexs[3] = EngineVertex{ FVector(0.5f, -0.5f, 0.0f), {1.0f , 1.0f } , {1.0f, 1.0f, 1.0f, 1.0f} };
 
-		FVertexBuffer::Create	("Rect", Vertexs);
+		FVertexBuffer::Create("Rect", Vertexs);
 	}
 
 	{
@@ -170,7 +171,7 @@ void UEngineGraphicDevice::InitMesh()
 	}
 
 	{
-		UStaticMesh::Create("Rect");
+		UMesh::Create("Rect");
 	}
 }
 

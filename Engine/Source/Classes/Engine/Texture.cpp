@@ -20,6 +20,7 @@ UTexture::~UTexture()
 
 void UTexture::Update(EShaderType ShaderType, UINT BindIndex)
 {
+	//std::string PathString = Path.GetPathToString();
 	ID3D11ShaderResourceView* ArrPtr[1] = { ShaderResourceView.Get() };
 
 	switch (ShaderType)

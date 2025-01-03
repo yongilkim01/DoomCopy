@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "VertexBuffer.h"
 
+#include "EngineInputLayoutInfo.h"
+
 FVertexBuffer::FVertexBuffer()
 {
 }
@@ -9,7 +11,7 @@ FVertexBuffer::~FVertexBuffer()
 {
 }
 
-std::shared_ptr<FVertexBuffer> FVertexBuffer::Create(std::string_view Name, const void* InitData, size_t VertexSize, size_t VertexCount)
+std::shared_ptr<FVertexBuffer> FVertexBuffer::Create(std::string_view Name, const void* InitData, size_t VertexSize, size_t VertexCount, UEngineInputLayoutInfo* InfoPtr)
 {
     std::string UpperName = ToUpperName(Name);
 
@@ -24,6 +26,7 @@ std::shared_ptr<FVertexBuffer> FVertexBuffer::Create(std::string_view Name, cons
     AddAsset<FVertexBuffer>(NewRes, Name, "");
 
     NewRes->AssetCreate(InitData, VertexSize, VertexCount);
+	NewRes->InfoPtr = InfoPtr;
 
 	return NewRes;
 }

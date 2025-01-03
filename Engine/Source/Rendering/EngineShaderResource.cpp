@@ -19,6 +19,7 @@ void UEngineShaderResource::Update()
 	}
 	for (std::pair<const std::string, UEngineTextureRes>& Res : TextureRes)
 	{
+		Index++;
 		Res.second.Update();
 	}
 	for (std::pair<const std::string, UEngineSamplerRes>& Res : SamplerRes)

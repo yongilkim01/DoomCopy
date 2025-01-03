@@ -50,6 +50,8 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 		}
 	}
 
+	UPaperSprite::CreateSpriteToMeta("Player.png", ".sdata");
+
 	{
 		FDirectoryHelper DirectoryHelper;
 		if (false == DirectoryHelper.MoveParentToDirectory("Resources"))
@@ -63,11 +65,21 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 		UPaperSprite::CreateSpriteToFolder(DirectoryHelper.GetPathToString());
 	}
 
-	UPaperSprite::CreateSpriteToMeta("Player.png", ".sdata");
+	{
+		FDirectoryHelper Dir;
+		if (false == Dir.MoveParentToDirectory("Resources"))
+		{
+			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+			return;
+		}
+		Dir.Append("Images/Tevi");
+
+		UPaperSprite::CreateSpriteToFolder(Dir.GetPathToString());
+	}
 
 	UEngineCore::CreateLevel<ATitleGameMode, AActor>("TitleLevel");
 	UEngineCore::CreateLevel<ARound1GameMode, AActor>("Round1");
-	UEngineCore::OpenLevel("Round1");
+	UEngineCore::OpenLevel("TitleLevel");
 }
 
 void UDoomCore::EngineTick(float DeltaTime)

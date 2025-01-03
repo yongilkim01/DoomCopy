@@ -63,7 +63,7 @@ void URenderUnit::SetMaterial(std::string_view _Name)
 {
 	Material = UEngineMaterial::Find<UEngineMaterial>(_Name);
 
-	if (nullptr != Material)
+	if (nullptr == Material)
 	{
 		MSGASSERT("마테리얼 데이터가 존재하지 않습니다");
 	}

@@ -9,6 +9,8 @@
 #include "Classes/Engine/Texture.h"
 #include "Core/Misc/FileHelper.h"
 
+#include "Rendering/EngineMaterial.h"
+
 UPaperSpriteComponent::UPaperSpriteComponent()
 {
 	CreateRenderUnit();
@@ -273,6 +275,7 @@ void UPaperSpriteComponent::SetSprite(std::string_view SpriteName, size_t Index)
 	GetRenderUnit().SetTexture("ImageTexture", Sprite->GetTexture(Index)->GetName());
 	SpriteData = Sprite->GetSpriteData(Index);
 
+	CurIndex = Index;
 }
 
 void UPaperSpriteComponent::SetSprite(UPaperSprite* PaperSprite)

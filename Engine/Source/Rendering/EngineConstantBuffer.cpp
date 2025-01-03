@@ -52,7 +52,7 @@ void UEngineConstantBuffer::ChangeData(void* _Data, UINT _Size)
 	{
 		MSGASSERT("그래픽카드가 수정을 거부했습니다.");
 	}
-	memcpy_s(Data.pData, sizeof(FTransform), _Data, sizeof(FTransform));
+	memcpy_s(Data.pData, BufferInfo.ByteWidth, _Data, BufferInfo.ByteWidth);
 	UEngineCore::GetDevice().GetDeviceContext()->Unmap(Buffer.Get(), 0);
 }
 
@@ -80,7 +80,6 @@ void UEngineConstantBuffer::Update(EShaderType Type, UINT BindIndex)
 void UEngineConstantBuffer::AssetCreate(UINT Byte)
 {
 	{
-		D3D11_BUFFER_DESC BufferInfo = { 0 };
 		BufferInfo.ByteWidth = Byte;
 		BufferInfo.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 		BufferInfo.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;

@@ -94,6 +94,7 @@ void UEngineShader::ShaderResCheck()
 		std::string Name = ResDesc.Name;
 		std::string UpperName = UEngineString::ToUpper(Name);
 		D3D_SHADER_INPUT_TYPE Type = ResDesc.Type;
+
 		switch (Type)
 		{
 		case D3D_SIT_CBUFFER:
@@ -119,6 +120,7 @@ void UEngineShader::ShaderResCheck()
 		case D3D_SIT_TEXTURE:
 		{
 			std::shared_ptr<UTexture> Res = UTexture::Find<UTexture>("NSBase.png");
+
 			UEngineTextureRes NewRes;
 			NewRes.ShaderType = ShaderType;
 			NewRes.Name = UpperName;
