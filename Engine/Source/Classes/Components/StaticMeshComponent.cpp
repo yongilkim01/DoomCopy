@@ -81,10 +81,9 @@ void UStaticMeshComponent::InitObjFile(std::string_view DirectoryPath, std::stri
 	{
 		CreateRenderUnit();
 		SetMesh("E1M1" + std::to_string(i), i);
-		SetMaterial("SpriteMaterial", i);
+		SetMaterial("E1M1" + std::to_string(i), i);
 
 		GetRenderUnit(i).SetTexture("ImageTexture", "NSBase.png");
-
 	}
 }
 
@@ -178,8 +177,8 @@ void UStaticMeshComponent::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 		}
 
 		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("E1M1" + std::to_string(MeshCount));
-		Mat->SetVertexShader("EngineSpriteShader.fx");
-		Mat->SetPixelShader("EngineSpriteShader.fx");
+		Mat->SetVertexShader("MeshShader.fx");
+		Mat->SetPixelShader("MeshShader.fx");
 	}
 
 	MeshCount++;

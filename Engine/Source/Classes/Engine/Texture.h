@@ -4,6 +4,7 @@
 #include "Core/Misc/Paths.h"
 #include "EngineEnums.h"
 
+
 /**
  *	Ό³Έν
  */
@@ -21,6 +22,8 @@ public:
 	UTexture& operator=(UTexture&& _Other) noexcept = delete;
 
 	void Update(EShaderType ShaderType, UINT BindIndex);
+
+	//static std::shared_ptr<UTexture> LoadToObjFile(aiMaterial* mat, aiTextureType type, std::string typeName, const aiScene* scene, std::string_view LoadTextureFilePath);
 
 	static std::shared_ptr<UTexture> Load(std::string_view LoadTextureFilePath)
 	{
