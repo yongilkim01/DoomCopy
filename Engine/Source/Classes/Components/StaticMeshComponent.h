@@ -32,7 +32,7 @@ public:
 	UStaticMeshComponent& operator=(UStaticMeshComponent&& Other) noexcept = delete;
 
 	/** obj 파일 로드 메소드 */
-	ENGINE_API void InitObjFile(std::string_view ObjName, std::string_view NewObjPath, std::string_view NewMtlPath);
+	ENGINE_API void InitObjFile(std::string_view DirectoryPath, std::string_view ObjName, std::string_view NewObjPath, std::string_view NewMtlPath);
 	bool LoadModel(std::string_view _objPath, std::string_view _mtlPath);
 	void ProcessNode(aiNode* node, const aiScene* scene);
 	void ProcessMesh(aiMesh* mesh, const aiScene* scene);

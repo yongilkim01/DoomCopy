@@ -2,6 +2,7 @@
 #include "StaticMeshComponent.h"
 
 #include "Classes/Camera/CameraComponent.h"
+#include "Classes/Engine/Texture.h"
 
 #include "Core/Misc/DirectoryHelper.h"
 #include "Core/Misc/FileHelper.h"
@@ -68,7 +69,7 @@ void UStaticMeshComponent::InitShader()
 
 }
 
-void UStaticMeshComponent::InitObjFile(std::string_view NewObjName, std::string_view NewObjPath, std::string_view NewMtlPath)
+void UStaticMeshComponent::InitObjFile(std::string_view DirectoryPath, std::string_view NewObjName, std::string_view NewObjPath, std::string_view NewMtlPath)
 {
 	ObjName = NewObjName;
 	ObjPath = NewObjPath;
@@ -81,6 +82,9 @@ void UStaticMeshComponent::InitObjFile(std::string_view NewObjName, std::string_
 		CreateRenderUnit();
 		SetMesh("E1M1" + std::to_string(i), i);
 		SetMaterial("SpriteMaterial", i);
+
+		GetRenderUnit(i).SetTexture("ImageTexture", "NSBase.png");
+
 	}
 }
 
@@ -157,15 +161,29 @@ void UStaticMeshComponent::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 	FIndexBuffer::Create("E1M1" + std::to_string(MeshCount), Indexs);
 	UMesh::Create("E1M1" + std::to_string(MeshCount));
 
-	MeshCount++;
-
 	if (mesh->mMaterialIndex >= 0)
 	{
 		aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 
 		std::vector<TEXTURE> diffuseMaps = LoadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse", scene);
 		textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
+
+		if (textures.size() > 0)
+		{
+			std::string TexturePath = Directory + "\\" + textures[0].path;
+
+			TextureVector.push_back(UTexture::Load(TexturePath));
+
+			std::string TextureType = textures[0].type;
+		}
+
+		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("E1M1" + std::to_string(MeshCount));
+		Mat->SetVertexShader("EngineSpriteShader.fx");
+		Mat->SetPixelShader("EngineSpriteShader.fx");
 	}
+
+	MeshCount++;
+
 }
 
 std::vector<TEXTURE> UStaticMeshComponent::LoadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName, const aiScene* scene)

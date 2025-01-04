@@ -30,7 +30,7 @@ ADrawLineActor::ADrawLineActor()
 
 	LineComponent = CreateDefaultSubObject<UStaticMeshComponent>();
 	LineComponent->SetupAttachment(RootComponent);
-	LineComponent->InitObjFile("E1M1", Path + "\\doom_E1M1.obj", Path + "\\doom_E1M1.mtl");
+	LineComponent->InitObjFile(Path ,"E1M1", Path + "\\doom_E1M1.obj", Path + "\\doom_E1M1.mtl");
 	//
 	// LineComponent->SetRelativeScale3D({1.0f, 1.0f, 1.0f});
 }

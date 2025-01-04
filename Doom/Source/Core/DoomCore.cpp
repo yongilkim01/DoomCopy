@@ -52,18 +52,18 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 
 	UPaperSprite::CreateSpriteToMeta("Player.png", ".sdata");
 
-	{
-		FDirectoryHelper DirectoryHelper;
-		if (false == DirectoryHelper.MoveParentToDirectory("Resources"))
-		{
-			MSGASSERT("리소스 폴더를 찾기에 실패했습니다");
-			return;
-		}
+	//{
+	//	FDirectoryHelper DirectoryHelper;
+	//	if (false == DirectoryHelper.MoveParentToDirectory("Resources"))
+	//	{
+	//		MSGASSERT("리소스 폴더를 찾기에 실패했습니다");
+	//		return;
+	//	}
 
-		DirectoryHelper.Append("Images/Textures");
+	//	DirectoryHelper.Append("Images/Textures");
 
-		UPaperSprite::CreateSpriteToFolder(DirectoryHelper.GetPathToString());
-	}
+	//	UPaperSprite::CreateSpriteToFolder(DirectoryHelper.GetPathToString());
+	//}
 
 	{
 		FDirectoryHelper Dir;
