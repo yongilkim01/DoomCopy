@@ -20,18 +20,6 @@ public:
 
 	ENGINE_API virtual void Render(UCameraComponent* _Camera, float _DeltaTime);
 
-
-	// 메쉬(육체) 
-	std::shared_ptr<UMesh> Mesh;
-	// 머티리얼(피부)
-	std::shared_ptr<UEngineMaterial> Material;
-	Microsoft::WRL::ComPtr<ID3D11InputLayout> InputLayout;
-
-	ENGINE_API void SetMesh(std::string_view _Name);
-	ENGINE_API void SetMaterial(std::string_view _Name);
-	ENGINE_API void SetTexture(std::string_view Name, std::string_view AssetName);
-	ENGINE_API void SetSampler(std::string_view Name, std::string_view AssetName);
-
 	ENGINE_API void MaterialResourceCheck();
 
 	template<typename Data>
@@ -42,7 +30,32 @@ public:
 
 	ENGINE_API void ConstantBufferLinkData(std::string_view Name, void* _Data);
 
-	UPrimitiveComponent* ParentPrimitiveComponent = nullptr;
+	/** 겟, 셋 메소드 */
+	ENGINE_API void SetMesh(std::string_view MeshName);
+	ENGINE_API void SetMaterial(std::string_view MaterialName);
+	ENGINE_API void SetTexture(std::string_view TextureName, std::string_view AssetName);
+	ENGINE_API void SetSampler(std::string_view SamplerName, std::string_view AssetName);
+
+	ENGINE_API void SetPrimitiveComponent(UPrimitiveComponent* PrimitiveComponent)
+	{
+		ParentPrimitiveComponent = PrimitiveComponent;
+	}
+	ENGINE_API std::shared_ptr<UMesh> GetMesh()
+	{
+		return Mesh;
+	}
+	ENGINE_API void SetMesh(std::shared_ptr<UMesh> NewMesh)
+	{
+		Mesh = NewMesh;
+	}
+	ENGINE_API std::shared_ptr<UEngineMaterial> GetMatrial()
+	{
+		return Material;
+	}
+	ENGINE_API void SetMaterial(std::shared_ptr<UEngineMaterial> NewMaterial)
+	{
+		Material = NewMaterial;
+	}
 
 
 protected:
@@ -51,5 +64,12 @@ private:
 	void InputLayOutCreate();
 	
 	std::map<EShaderType, UEngineShaderResource> ShaderResourceMap;
+	UPrimitiveComponent* ParentPrimitiveComponent = nullptr;
+
+	/** 렌더링 멤버 필드 */
+	std::shared_ptr<UMesh> Mesh;
+	std::shared_ptr<UEngineMaterial> Material;
+	Microsoft::WRL::ComPtr<ID3D11InputLayout> InputLayout;
+
 };
 

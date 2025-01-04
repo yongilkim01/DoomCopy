@@ -14,13 +14,16 @@ std::shared_ptr<UEngineRasterizerState> UEngineRasterizerState::Create(std::stri
 	std::string UpperName = ToUpperName(_Name);
 	if (true == Contains(UpperName))
 	{
-		MSGASSERT("이미 로드한 텍스처를 도 로드하려고 했습니다." + UpperName);
+		MSGASSERT("이미 로드한 레스터라이저스테이트를 로드하려고 시도했습니다 " + UpperName);
 		return nullptr;
 	}
-	std::shared_ptr<UEngineRasterizerState> NewRes = std::make_shared<UEngineRasterizerState>();
-	AddAsset<UEngineRasterizerState>(NewRes, _Name, "");
-	NewRes->AssetCreate(_Value);
-	return NewRes;
+	std::shared_ptr<UEngineRasterizerState> NewRasterizeStateAsset = std::make_shared<UEngineRasterizerState>();
+
+	AddAsset<UEngineRasterizerState>(NewRasterizeStateAsset, _Name, "");
+
+	NewRasterizeStateAsset->AssetCreate(_Value);
+
+	return NewRasterizeStateAsset;
 }
 
 void UEngineRasterizerState::Update()

@@ -79,7 +79,7 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 
 	UEngineCore::CreateLevel<ATitleGameMode, AActor>("TitleLevel");
 	UEngineCore::CreateLevel<ARound1GameMode, AActor>("Round1");
-	UEngineCore::OpenLevel("TitleLevel");
+	UEngineCore::OpenLevel("Round1");
 }
 
 void UDoomCore::EngineTick(float DeltaTime)

@@ -3,13 +3,6 @@
 #include "Classes/Engine/PaperSprite.h"
 #include "Rendering/RenderUnit.h"
 
-class ULevel;
-class UCameraComponent;
-class UTexture;
-class UStaticMesh;
-class UEngineBlend;
-
-
 /**
  *	렌더러 클래스
  */
@@ -28,29 +21,26 @@ public:
 	UPrimitiveComponent& operator=(const UPrimitiveComponent& Other) = delete;
 	UPrimitiveComponent& operator=(UPrimitiveComponent&& Other) noexcept = delete;
 
-	/** UObject 상속 메소드 */
-	ENGINE_API void SetOrder(int NewOrder);
-
-protected:
-	/** UObject 상속 메소드 */
+	/** 상속 메소드 */
 	ENGINE_API virtual void BeginPlay() override;
-
-	/** URenderer 메소드 */
 	ENGINE_API virtual void Render(UCameraComponent* CameraComponent, float DeltaTime);
+	ENGINE_API virtual void SetOrder(int NewOrder) override;
 
+	/** 렌더 유닛 관련 메소드 */
 	ENGINE_API URenderUnit& CreateRenderUnit();
 	ENGINE_API URenderUnit& GetRenderUnit(UINT Index = 0);
 	ENGINE_API void SetMesh(std::string_view Name, UINT Index = 0);
 	ENGINE_API void SetMaterial(std::string_view Name, UINT Index = 0);
 
-private:
-
-public:
-
-	std::vector<URenderUnit> Units;
+	/** 겟, 셋 메소드 */
+	ENGINE_API std::vector<URenderUnit>& GetRenderUnitVector()
+	{
+		return RenderUnitVector;
+	}
 
 protected:
 
 private:
+	std::vector<URenderUnit> RenderUnitVector;
 
 };

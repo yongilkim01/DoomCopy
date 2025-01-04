@@ -8,6 +8,9 @@
 
 #include "Rendering/TextureLoader.h"
 #include "Rendering/AiMesh.h"
+#include "Rendering/EngineVertex.h"
+#include "Rendering/VertexBuffer.h"
+#include "Rendering/IndexBuffer.h"
 
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h> 
@@ -48,83 +51,37 @@ UStaticMeshComponent::UStaticMeshComponent()
 
 UStaticMeshComponent::~UStaticMeshComponent()
 {
-	for (AiMesh& mesh : Meshes)
-	{
-		mesh.Close();
-	}
-
-	for (TEXTURE& tex : Textures)
-	{
-		tex.Release();
-	}
 }
 
 void UStaticMeshComponent::BeginPlay()
 {
-	USceneComponent::BeginPlay();
-	SetOrder(0);
-
-	LoadModel(ObjPath, MtlPath);
-
-	size_t MeshSize = Meshes.size();
-	size_t IndexSize = Textures.size();
+	UPrimitiveComponent::BeginPlay();
 }
 
 void UStaticMeshComponent::Render(UCameraComponent* CameraComponent, float DeltaTime)
 {
-	FTransform& CameraTransform = CameraComponent->GetComponentTransformRef();
-	FTransform& RendererTransform = GetComponentTransformRef();
-
-	RendererTransform.View = CameraTransform.View;
-	RendererTransform.Projection = CameraTransform.Projection;
-	RendererTransform.WVP = RendererTransform.World * CameraTransform.View * CameraTransform.Projection;
-
+	UPrimitiveComponent::Render(CameraComponent, DeltaTime);
 }
 
 void UStaticMeshComponent::InitShader()
 {
-	//// 현재 디렉토리 헬퍼 객체 생성
-	//FDirectoryHelper CurDir;
-	//// 엔진 쉐이더 디렉토리로 이동
-	//CurDir.MoveEngineShaderDirectory();
-	//// 쉐이더 파일을 가져옴
-	//FFileHelper VSFile = CurDir.GetFile("MeshShader.fx");
-	//FFileHelper PSFile = CurDir.GetFile("MeshShader.fx");
 
-	//std::wstring vsPath = UEngineString::AnsiToUnicode(VSFile.GetPathToString());
-	//std::wstring psPath = UEngineString::AnsiToUnicode(PSFile.GetPathToString());
-
-	//HRESULT Result = CompileShaderFromFile(vsPath.c_str(), 0, "VS", "vs_5_0", &VSShaderCodeBlob);
-
-	//if (S_OK != Result)
-	//{
-	//	MSGASSERT("Failed to compile vertex shader from file");
-	//}
-
-
-	//Result = CompileShaderFromFile(psPath.c_str(), 0, "PS", "ps_5_0", &PSShaderCodeBlob);
-	//
-	//if (S_OK != Result)
-	//{
-	//	MSGASSERT("Failed to compile pixel shader from file");
-	//}
-
-	//UEngineCore::GetDevice().GetDevice()->CreateVertexShader(VSShaderCodeBlob->GetBufferPointer(), VSShaderCodeBlob->GetBufferSize(), nullptr, &VertexShader);
-	//UEngineCore::GetDevice().GetDevice()->CreatePixelShader(PSShaderCodeBlob->GetBufferPointer(), PSShaderCodeBlob->GetBufferSize(), nullptr, &PixelShader);
-
-	//D3D11_INPUT_ELEMENT_DESC ied[] =
-	//{
-	//	{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-	//	{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 }
-	//};
-
-	//UEngineCore::GetDevice().GetDevice()->CreateInputLayout(ied, 2, VSShaderCodeBlob->GetBufferPointer(), VSShaderCodeBlob->GetBufferSize(), &InputLayout);
 }
 
-void UStaticMeshComponent::Init(std::string_view NewObjPath, std::string_view NewMtlPath)
+void UStaticMeshComponent::InitObjFile(std::string_view NewObjName, std::string_view NewObjPath, std::string_view NewMtlPath)
 {
+	ObjName = NewObjName;
 	ObjPath = NewObjPath;
 	MtlPath = NewMtlPath;
+
+	LoadModel(ObjPath, MtlPath);
+
+	for (int i = 0; i < MeshCount; i++)
+	{
+		CreateRenderUnit();
+		SetMesh("E1M1" + std::to_string(i), i);
+		SetMaterial("SpriteMaterial", i);
+	}
 }
 
 bool UStaticMeshComponent::LoadModel(std::string_view LoadObjPath, std::string_view LoadMtlPath)
@@ -142,6 +99,7 @@ bool UStaticMeshComponent::LoadModel(std::string_view LoadObjPath, std::string_v
 	Directory = fileName.substr(0, fileName.find_last_of("/\\"));
 
 	ProcessNode(pScene->mRootNode, pScene);
+
 	return true;
 }
 
@@ -150,7 +108,8 @@ void UStaticMeshComponent::ProcessNode(aiNode* node, const aiScene* scene)
 	for (UINT i = 0; i < node->mNumMeshes; i++)
 	{
 		aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-		Meshes.push_back(ProcessMesh(mesh, scene));
+		ProcessMesh(mesh, scene);
+		//Meshes.push_back(ProcessMesh(mesh, scene));
 	}
 
 	for (UINT i = 0; i < node->mNumChildren; i++)
@@ -159,27 +118,29 @@ void UStaticMeshComponent::ProcessNode(aiNode* node, const aiScene* scene)
 	}
 }
 
-AiMesh UStaticMeshComponent::ProcessMesh(aiMesh* mesh, const aiScene* scene)
+void UStaticMeshComponent::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 {
-	std::vector<VERTEX> vertices;
-	std::vector<UINT> indices;
+	std::vector<EngineVertex> Vertexs;
+	std::vector<unsigned int> Indexs;
 	std::vector<TEXTURE> textures;
+
 
 	for (UINT i = 0; i < mesh->mNumVertices; i++)
 	{
-		VERTEX vertex;
+		EngineVertex Vertex = EngineVertex{ FVector(-0.5f, 0.5f, 0.0f), {0.0f , 0.0f }, {1.0f, 1.0f, 1.0f, 1.0f} };
 
-		vertex.X = mesh->mVertices[i].x;
-		vertex.Y = mesh->mVertices[i].y;
-		vertex.Z = mesh->mVertices[i].z;
-		vertex.W = 1.0f;
+		Vertex.POSITION.X = mesh->mVertices[i].x;
+		Vertex.POSITION.Y = mesh->mVertices[i].y;
+		Vertex.POSITION.Z = mesh->mVertices[i].z;
+		Vertex.POSITION.W = 1.0f;
 
-		if (mesh->mTextureCoords[0]) {
-			vertex.texcoord.x = (float)mesh->mTextureCoords[0][i].x;
-			vertex.texcoord.y = (float)mesh->mTextureCoords[0][i].y;
+		if (mesh->mTextureCoords[0]) 
+{
+			Vertex.TEXCOORD.X = (float)mesh->mTextureCoords[0][i].x;
+			Vertex.TEXCOORD.Y = (float)mesh->mTextureCoords[0][i].y;
 		}
 
-		vertices.push_back(vertex);
+		Vertexs.push_back(Vertex);
 	}
 
 	for (UINT i = 0; i < mesh->mNumFaces; i++)
@@ -188,9 +149,15 @@ AiMesh UStaticMeshComponent::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 
 		for (UINT j = 0; j < face.mNumIndices; j++)
 		{
-			indices.push_back(face.mIndices[j]);
+			Indexs.push_back(face.mIndices[j]);
 		}
 	}
+
+	FVertexBuffer::Create("E1M1" + std::to_string(MeshCount), Vertexs);
+	FIndexBuffer::Create("E1M1" + std::to_string(MeshCount), Indexs);
+	UMesh::Create("E1M1" + std::to_string(MeshCount));
+
+	MeshCount++;
 
 	if (mesh->mMaterialIndex >= 0)
 	{
@@ -199,8 +166,6 @@ AiMesh UStaticMeshComponent::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 		std::vector<TEXTURE> diffuseMaps = LoadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse", scene);
 		textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
 	}
-
-	return AiMesh(UEngineCore::GetDevice().GetDevice(), vertices, indices, textures);
 }
 
 std::vector<TEXTURE> UStaticMeshComponent::LoadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName, const aiScene* scene)

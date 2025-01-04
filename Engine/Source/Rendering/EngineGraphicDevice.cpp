@@ -50,31 +50,33 @@ void UEngineGraphicDevice::InitDefaultResources()
 
 void UEngineGraphicDevice::InitTexture()
 {
-	D3D11_SAMPLER_DESC SampInfo = { D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT };
+	// Sampler 초기화 및 생성
+	{
+		D3D11_SAMPLER_DESC SampInfo = { D3D11_FILTER::D3D11_FILTER_MIN_MAG_MIP_POINT };
 
-	SampInfo.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // 0~1사이만 유효
-	SampInfo.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP; // y
-	SampInfo.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_CLAMP; // z // 3중 
-	SampInfo.BorderColor[0] = 0.0f;
-	SampInfo.BorderColor[1] = 0.0f;
-	SampInfo.BorderColor[2] = 0.0f;
-	SampInfo.BorderColor[3] = 0.0f;
+		SampInfo.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
+		SampInfo.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
+		SampInfo.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_CLAMP;
+		SampInfo.BorderColor[0] = 0.0f;
+		SampInfo.BorderColor[1] = 0.0f;
+		SampInfo.BorderColor[2] = 0.0f;
+		SampInfo.BorderColor[3] = 0.0f;
 
-	// SampInfo.ComparisonFunc = D3D11_COMPARISON_NEVER;
-	// Lod라고 불리는 것은 z값이 얼마나 멀어지면 얼마나 대충 색깔 빼올거냐. 
-	// SampInfo.MaxLOD = 0.0f;
-	// SampInfo.MinLOD = 0.0f;
+		// SampInfo.MaxLOD = 0.0f;
+		// SampInfo.MinLOD = 0.0f;
 
-	UEngineSampler::Create("WRAPSampler", SampInfo);
+		UEngineSampler::Create("WRAPSampler", SampInfo);
+	}
 
+	// 엔진 기본 텍스쳐 생성
 	{
 		FDirectoryHelper CurDir;
-		// 엔진 쉐이더 디렉토리로 이동
+
 		CurDir.MoveEngineShaderDirectory();
 
 		if (false == CurDir.MoveEngineShaderDirectory())
 		{
-			MSGASSERT("엔진 셰이더 폴더를 찾기에 실패했습니다");
+			MSGASSERT("엔진 셰이더 폴더 찾기에 실패했습니다");
 			return;
 		}
 
@@ -154,9 +156,7 @@ void UEngineGraphicDevice::InitMesh()
 		Vertexs[3] = EngineVertex{ FVector(0.5f, -0.5f, 0.0f), {1.0f , 1.0f } , {1.0f, 1.0f, 1.0f, 1.0f} };
 
 		FVertexBuffer::Create("Rect", Vertexs);
-	}
 
-	{
 		std::vector<unsigned int> Indexs;
 
 		Indexs.push_back(0);
@@ -168,38 +168,34 @@ void UEngineGraphicDevice::InitMesh()
 		Indexs.push_back(2);
 
 		FIndexBuffer::Create("Rect", Indexs);
-	}
 
-	{
 		UMesh::Create("Rect");
 	}
 }
 
 void UEngineGraphicDevice::InitBlend()
 {
-	D3D11_BLEND_DESC Desc = { 0 };
+	D3D11_BLEND_DESC BlendDesc = { 0 };
 
-	Desc.AlphaToCoverageEnable = false;
-	Desc.IndependentBlendEnable = true;
-	Desc.RenderTarget[0].BlendEnable = true;
-	Desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
-	Desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
-	Desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
-	Desc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
-	Desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
-	Desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
-	Desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
+	BlendDesc.AlphaToCoverageEnable = false;
+	BlendDesc.IndependentBlendEnable = true;
+	BlendDesc.RenderTarget[0].BlendEnable = true;
+	BlendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+	BlendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+	BlendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	BlendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+	BlendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	BlendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+	BlendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
 
-	UEngineBlend::Create("AlphaBlend", Desc);
+	UEngineBlend::Create("AlphaBlend", BlendDesc);
 }
 
 void UEngineGraphicDevice::InitShader()
 {
-	// 현재 디렉토리 헬퍼 객체 생성
 	FDirectoryHelper CurDir;
-	// 엔진 쉐이더 디렉토리로 이동
 	CurDir.MoveEngineShaderDirectory();
-	// 쉐이더 파일을 가져옴
+
 	std::vector<FFileHelper> ShaderFiles = CurDir.GetAllFile(true, { ".fx", ".hlsl" });
 
 	for (size_t i = 0; i < ShaderFiles.size(); i++)
@@ -211,6 +207,7 @@ void UEngineGraphicDevice::InitShader()
 void UEngineGraphicDevice::InitMaterial()
 {
 	std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("SpriteMaterial");
+
 	Mat->SetVertexShader("EngineSpriteShader.fx");
 	Mat->SetPixelShader("EngineSpriteShader.fx");
 }
@@ -218,6 +215,7 @@ void UEngineGraphicDevice::InitMaterial()
 void UEngineGraphicDevice::InitRasterizerState()
 {
 	D3D11_RASTERIZER_DESC Desc = {};
+
 	Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
 	Desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
 

@@ -60,16 +60,20 @@ void ARound1GameMode::Tick(float DeltaTime)
 	{
 		Camera->AddActorLocation(FVector{ 0.0f, 0.0f, -2000.0f * DeltaTime, 0.0f });
 	}
-	if (UEngineInput::IsPress(VK_SPACE))
+	if (UEngineInput::IsPress(VK_UP))
 	{
 		Camera->AddActorLocation(FVector{ 0.0f, 2000.0f * DeltaTime, 0.0f, 0.0f });
-	}
-	if (UEngineInput::IsDown(VK_UP))
+	}	
+	if (UEngineInput::IsPress(VK_DOWN))
 	{
-		DrawLineActor->LineComponent->CurMesh++;
+		Camera->AddActorLocation(FVector{ 0.0f, -2000.0f * DeltaTime, 0.0f, 0.0f });
 	}
-	if (UEngineInput::IsDown(VK_DOWN))
+	if (UEngineInput::IsPress(VK_LEFT))
 	{
-		DrawLineActor->LineComponent->CurMesh--;
+		Camera->AddActorRotation(FVector{ -20.0f * DeltaTime, 0.0f, 0.0f });
+	}
+	if (UEngineInput::IsPress(VK_RIGHT))
+	{
+		Camera->AddActorRotation(FVector{ 20.0f * DeltaTime, 0.0f, 0.0f });
 	}
 }

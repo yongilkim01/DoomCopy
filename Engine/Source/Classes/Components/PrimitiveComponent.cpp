@@ -41,23 +41,23 @@ void UPrimitiveComponent::Render(UCameraComponent* CameraComponent, float DeltaT
 	ComponentTransform.Projection = CameraTransform.Projection;
 	ComponentTransform.WVP = ComponentTransform.World * ComponentTransform.View * ComponentTransform.Projection;
 
-	for (size_t i = 0; i < Units.size(); i++)
+	for (size_t i = 0; i < RenderUnitVector.size(); i++)
 	{
-		Units[i].Render(CameraComponent, DeltaTime);
+		RenderUnitVector[i].Render(CameraComponent, DeltaTime);
 	}
 
 }
 
 URenderUnit& UPrimitiveComponent::CreateRenderUnit()
 {
-	URenderUnit& NewUnit = Units.emplace_back();
-	NewUnit.ParentPrimitiveComponent = this;
+	URenderUnit& NewUnit = RenderUnitVector.emplace_back();
+	NewUnit.SetPrimitiveComponent(this);
 	return NewUnit;
 }
 
 URenderUnit& UPrimitiveComponent::GetRenderUnit(UINT Index)
 {
-	return Units[Index];
+	return RenderUnitVector[Index];
 }
 
 void UPrimitiveComponent::SetMesh(std::string_view Name, UINT Index)

@@ -29,8 +29,8 @@ ADrawLineActor::ADrawLineActor()
 	std::string Path = DirectoryHelper.GetPathToString();
 
 	LineComponent = CreateDefaultSubObject<UStaticMeshComponent>();
-	LineComponent->Init(Path + "\\doom_E1M1.obj", Path + "\\doom_E1M1.mtl");
 	LineComponent->SetupAttachment(RootComponent);
+	LineComponent->InitObjFile("E1M1", Path + "\\doom_E1M1.obj", Path + "\\doom_E1M1.mtl");
 	//
 	// LineComponent->SetRelativeScale3D({1.0f, 1.0f, 1.0f});
 }

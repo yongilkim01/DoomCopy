@@ -77,8 +77,6 @@ VertexShaderOutPut VertexToWorld_VS(EngineVertex _Vertex)
     VertexShaderOutPut OutPut;
 	
 	
-    _Vertex.POSITION.x += (1.0f - Pivot.x) - 0.5f;
-    _Vertex.POSITION.y += (1.0f - Pivot.y) - 0.5f;
 	
     OutPut.SVPOSITION = mul(_Vertex.POSITION, WVP);
 	
@@ -127,5 +125,5 @@ float4 PixelToWorld_PS(VertexShaderOutPut _Vertex) : SV_Target0
     float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
     Color += PlusColor;
     Color *= MulColor;
-    return Color;
+    return float4(1.0f, 1.0f, 1.0f, 1.0f);
 };

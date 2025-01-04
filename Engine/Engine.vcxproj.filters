@@ -112,6 +112,15 @@
     <Filter Include="4_Rendering\Shader">
       <UniqueIdentifier>{98cbc138-7ff3-4f8c-98a1-ec4082bd4099}</UniqueIdentifier>
     </Filter>
+    <Filter Include="4_Rendering\Blend">
+      <UniqueIdentifier>{b175c330-daee-4b86-bd4b-ced59f0a56ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_Rendering\Sampler">
+      <UniqueIdentifier>{50ecdc08-b72c-4e8b-93af-b89465f778e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_Asset">
+      <UniqueIdentifier>{0e98940f-03c2-4d90-8203-8a4e6112bfab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp">
@@ -237,9 +246,6 @@
     <ClCompile Include="Source\Rendering\TextureLoader.cpp">
       <Filter>4_Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Rendering\EngineBlend.cpp">
-      <Filter>4_Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Rendering\EngineRasterizerState.cpp">
       <Filter>4_Rendering</Filter>
     </ClCompile>
@@ -279,8 +285,14 @@
     <ClCompile Include="Source\Rendering\EngineVertex.cpp">
       <Filter>4_Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Rendering\EngineBlend.cpp">
+      <Filter>4_Rendering\Blend</Filter>
+    </ClCompile>
     <ClCompile Include="Source\Rendering\EngineSampler.cpp">
-      <Filter>4_Rendering</Filter>
+      <Filter>4_Rendering\Sampler</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Asset\AssetLibrary.cpp">
+      <Filter>4_Asset</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -663,9 +675,6 @@
     <ClInclude Include="Source\Rendering\TextureLoader.h">
       <Filter>4_Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Rendering\EngineBlend.h">
-      <Filter>4_Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Source\EngineEnums.h" />
     <ClInclude Include="Source\Rendering\EngineRasterizerState.h">
       <Filter>4_Rendering</Filter>
@@ -703,8 +712,14 @@
     <ClInclude Include="Source\Rendering\EngineInputLayoutInfo.h">
       <Filter>4_Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Rendering\EngineBlend.h">
+      <Filter>4_Rendering\Blend</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Rendering\EngineSampler.h">
-      <Filter>4_Rendering</Filter>
+      <Filter>4_Rendering\Sampler</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Asset\AssetLibrary.h">
+      <Filter>4_Asset</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
