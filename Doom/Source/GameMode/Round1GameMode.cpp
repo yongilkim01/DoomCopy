@@ -11,8 +11,8 @@
 #include <Classes/Components/StaticMeshComponent.h>
 #include <Input/EngineInput.h>
 
-#include <Tools/Debug/EngineGUI.h>
-#include <Tools/Debug/EngineGUIWindow.h>
+#include <Tools/DebugGUI/EngineGUI.h>
+#include <Tools/DebugGUI/EngineGUIWindow.h>
 #include <ThirdParty/imgui/imgui.h>
 
 

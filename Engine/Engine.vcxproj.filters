@@ -124,7 +124,7 @@
     <Filter Include="11_Tools">
       <UniqueIdentifier>{bb9b1b8f-c1b0-4f27-93be-6e340e17888c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="11_Tools\Debug">
+    <Filter Include="11_Tools\DebugGUI">
       <UniqueIdentifier>{6c0051e6-2cb9-49d9-9ef7-98376feb6a7f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -285,12 +285,6 @@
     <ClCompile Include="Source\Asset\AssetLibrary.cpp">
       <Filter>4_Asset</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Tools\Debug\EngineGUI.cpp">
-      <Filter>11_Tools\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tools\Debug\EngineGUIWindow.cpp">
-      <Filter>11_Tools\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Rendering\Shader\EnginePixelShader.cpp">
       <Filter>4_Rendering\Shader</Filter>
     </ClCompile>
@@ -305,6 +299,12 @@
     </ClCompile>
     <ClCompile Include="Source\Rendering\Sampler\EngineSampler.cpp">
       <Filter>4_Rendering\Sampler</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Tools\DebugGUI\EngineGUI.cpp">
+      <Filter>11_Tools\DebugGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Tools\DebugGUI\EngineGUIWindow.cpp">
+      <Filter>11_Tools\DebugGUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -718,12 +718,6 @@
     <ClInclude Include="Source\Asset\AssetLibrary.h">
       <Filter>4_Asset</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Tools\Debug\EngineGUI.h">
-      <Filter>11_Tools\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Tools\Debug\EngineGUIWindow.h">
-      <Filter>11_Tools\Debug</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Rendering\Shader\EnginePixelShader.h">
       <Filter>4_Rendering\Shader</Filter>
     </ClInclude>
@@ -738,6 +732,12 @@
     </ClInclude>
     <ClInclude Include="Source\Rendering\Sampler\EngineSampler.h">
       <Filter>4_Rendering\Sampler</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tools\DebugGUI\EngineGUI.h">
+      <Filter>11_Tools\DebugGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tools\DebugGUI\EngineGUIWindow.h">
+      <Filter>11_Tools\DebugGUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

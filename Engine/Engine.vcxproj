@@ -105,8 +105,8 @@
     <ClCompile Include="Source\ThirdParty\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\Time\TimeEvent.cpp" />
     <ClCompile Include="Source\Time\Timer.cpp" />
-    <ClCompile Include="Source\Tools\Debug\EngineGUI.cpp" />
-    <ClCompile Include="Source\Tools\Debug\EngineGUIWindow.cpp" />
+    <ClCompile Include="Source\Tools\DebugGUI\EngineGUI.cpp" />
+    <ClCompile Include="Source\Tools\DebugGUI\EngineGUIWindow.cpp" />
     <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -279,8 +279,8 @@
     <ClInclude Include="Source\ThirdParty\imgui\imstb_truetype.h" />
     <ClInclude Include="Source\Time\TimeEvent.h" />
     <ClInclude Include="Source\Time\Timer.h" />
-    <ClInclude Include="Source\Tools\Debug\EngineGUI.h" />
-    <ClInclude Include="Source\Tools\Debug\EngineGUIWindow.h" />
+    <ClInclude Include="Source\Tools\DebugGUI\EngineGUI.h" />
+    <ClInclude Include="Source\Tools\DebugGUI\EngineGUIWindow.h" />
     <ClInclude Include="Source\WorldPartition\DebugHelpers.h" />
   </ItemGroup>
   <ItemGroup>

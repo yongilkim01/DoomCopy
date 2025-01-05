@@ -7,7 +7,7 @@
 #include "Classes/Engine/Level.h"
 #include "Classes/Engine/RenderAsset.h"
 #include "Input/EngineInput.h"
-#include "Tools/Debug/EngineGUI.h"
+#include "Tools/DebugGUI/EngineGUI.h"
 
 UEngineGraphicDevice UEngineCore::Device;
 UEngineWindow UEngineCore::MainWindow;

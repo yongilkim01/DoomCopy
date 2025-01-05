@@ -7,7 +7,7 @@
 #include "Classes/Camera/CameraActor.h"
 #include "Classes/Camera/CameraComponent.h"
 
-#include "Tools/Debug/EngineGUI.h"
+#include "Tools/DebugGUI/EngineGUI.h"
 
 ULevel::ULevel()
 {
