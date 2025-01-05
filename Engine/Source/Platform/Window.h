@@ -40,6 +40,10 @@ public:
 	ENGINE_API void Open(std::string_view TitleName = "Window");
 
 	/** °Ù, ¼Â ¸Þ¼Òµå */
+	ENGINE_API void SetWindowPosAndScale(FVector Position, FVector Scale);
+	ENGINE_API FVector GetMousePos();
+	ENGINE_API static void SetCustomProc(std::function<bool(HWND, UINT, WPARAM, LPARAM)> _CustomProc);
+
 	ENGINE_API inline FVector GetWindowSize() const
 	{
 		return WindowSize;
@@ -48,18 +52,23 @@ public:
 	{
 		SetWindowTextA(WindowHandle, Text.data());
 	}
-	void SetWindowPosAndScale(FVector Position, FVector Scale);
-	FVector GetMousePos();
 	HWND GetWindowHandle() const
 	{
 		return WindowHandle;
+	}
+	ENGINE_API static bool IsApplicationOn()
+	{
+		return LoopActive;
 	}
 
 protected:
 
 private:
+	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+
 	ENGINE_API static HINSTANCE hInstance;
 	ENGINE_API static std::map<std::string, WNDCLASSEXA> WindowClasses;
+	ENGINE_API static std::function<bool(HWND, UINT, WPARAM, LPARAM)> CustomProc;
 
 	inline static bool LoopActive = true;
 

@@ -7,6 +7,8 @@
 #include "Classes/Camera/CameraActor.h"
 #include "Classes/Camera/CameraComponent.h"
 
+#include "Tools/Debug/EngineGUI.h"
+
 ULevel::ULevel()
 {
 	SpawnCamera(0);
@@ -62,6 +64,11 @@ void ULevel::Render(float DeltaTime)
 	{
 		Camera.second->Tick(DeltaTime);
 		Camera.second->GetCameraComponent()->Render(DeltaTime);
+	}
+
+	if (true == UEngineWindow::IsApplicationOn())
+	{
+		UEngineGUI::GUIRender();
 	}
 
 	UEngineCore::GetDevice().RenderEnd();

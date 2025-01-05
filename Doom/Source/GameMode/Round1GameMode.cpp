@@ -11,6 +11,22 @@
 #include <Classes/Components/StaticMeshComponent.h>
 #include <Input/EngineInput.h>
 
+#include <Tools/Debug/EngineGUI.h>
+#include <Tools/Debug/EngineGUIWindow.h>
+#include <ThirdParty/imgui/imgui.h>
+
+
+class Round1Window : public UEngineGUIWindow
+{
+public:
+	void OnGUI() override
+	{
+		ImGui::Button("WindowButton");
+		ImGui::SameLine(); // ÇÑ°£ ¶ç±â
+		ImGui::Text("test");
+	}
+};
+
 
 ARound1GameMode::ARound1GameMode()
 {
@@ -31,6 +47,8 @@ ARound1GameMode::ARound1GameMode()
 	Camera = GetWorld()->GetMainCamera();
 	Camera->AddActorLocation({ 10.0f, 0.0f, 0.0f });
 	Camera->AddActorRelativeLocation({ 0.0f, 0.0f, -500.0f});
+
+	UEngineGUI::CreateGUIWindow<Round1Window>("Round1Window");
 }
 
 ARound1GameMode::~ARound1GameMode()

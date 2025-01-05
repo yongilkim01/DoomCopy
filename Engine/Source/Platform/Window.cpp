@@ -3,13 +3,22 @@
 
 #include "WorldPartition/DebugHelpers.h"
 
+std::function<bool(HWND, UINT, WPARAM, LPARAM)> UEngineWindow::CustomProc = nullptr;
 HINSTANCE UEngineWindow::hInstance = nullptr;
 std::map<std::string, WNDCLASSEX> UEngineWindow::WindowClasses;
 int WindowCount = 0;
 // bool UEngineWindow::LoopActive = true;
 
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK UEngineWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    if (nullptr != CustomProc)
+    {
+        if (true == CustomProc(hWnd, message, wParam, lParam))
+        {
+            //return true;
+        }
+    }
+
     switch (message)
     {
     case WM_CREATE:
@@ -26,6 +35,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     break;
     case WM_DESTROY:
         --WindowCount;
+        if (0 >= WindowCount)
+        {
+            UEngineWindow::LoopActive = false;
+        }
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
@@ -185,4 +198,9 @@ FVector UEngineWindow::GetMousePos()
     ScreenToClient(WindowHandle, &MousePoint);
 
     return FVector(MousePoint.x, MousePoint.y);
+}
+
+void UEngineWindow::SetCustomProc(std::function<bool(HWND, UINT, WPARAM, LPARAM)> NewCustomProc)
+{
+    CustomProc = NewCustomProc;
 }

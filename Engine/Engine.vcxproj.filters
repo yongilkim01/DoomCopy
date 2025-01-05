@@ -121,6 +121,12 @@
     <Filter Include="4_Asset">
       <UniqueIdentifier>{0e98940f-03c2-4d90-8203-8a4e6112bfab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="11_Tools">
+      <UniqueIdentifier>{bb9b1b8f-c1b0-4f27-93be-6e340e17888c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="11_Tools\Debug">
+      <UniqueIdentifier>{6c0051e6-2cb9-49d9-9ef7-98376feb6a7f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp">
@@ -293,6 +299,12 @@
     </ClCompile>
     <ClCompile Include="Source\Asset\AssetLibrary.cpp">
       <Filter>4_Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Tools\Debug\EngineGUI.cpp">
+      <Filter>11_Tools\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Tools\Debug\EngineGUIWindow.cpp">
+      <Filter>11_Tools\Debug</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -721,12 +733,17 @@
     <ClInclude Include="Source\Asset\AssetLibrary.h">
       <Filter>4_Asset</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Tools\Debug\EngineGUI.h">
+      <Filter>11_Tools\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Tools\Debug\EngineGUIWindow.h">
+      <Filter>11_Tools\Debug</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl">
       <Filter>10_ThirdParty\DirectXTex\Include</Filter>
     </None>
-    <None Include="cpp.hint" />
     <None Include="Source\ThirdParty\assimp\include\assimp\.editorconfig">
       <Filter>10_ThirdParty\assimp\include</Filter>
     </None>
