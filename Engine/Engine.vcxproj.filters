@@ -267,20 +267,8 @@
     <ClCompile Include="Source\Rendering\IndexBuffer.cpp">
       <Filter>4_Rendering\Buffer</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Rendering\EngineShader.cpp">
-      <Filter>4_Rendering\Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\EngineShaderResource.cpp">
-      <Filter>4_Rendering\Shader</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\EngineVertexShader.cpp">
-      <Filter>4_Rendering\Shader</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Rendering\EngineMaterial.cpp">
       <Filter>4_Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\EnginePixelShader.cpp">
-      <Filter>4_Rendering\Shader</Filter>
     </ClCompile>
     <ClCompile Include="Source\Classes\Engine\Mesh.cpp">
       <Filter>2_Classes\Engine</Filter>
@@ -294,9 +282,6 @@
     <ClCompile Include="Source\Rendering\EngineBlend.cpp">
       <Filter>4_Rendering\Blend</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Rendering\EngineSampler.cpp">
-      <Filter>4_Rendering\Sampler</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Asset\AssetLibrary.cpp">
       <Filter>4_Asset</Filter>
     </ClCompile>
@@ -305,6 +290,21 @@
     </ClCompile>
     <ClCompile Include="Source\Tools\Debug\EngineGUIWindow.cpp">
       <Filter>11_Tools\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Shader\EnginePixelShader.cpp">
+      <Filter>4_Rendering\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Shader\EngineShader.cpp">
+      <Filter>4_Rendering\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Shader\EngineVertexShader.cpp">
+      <Filter>4_Rendering\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Shader\EngineShaderResource.cpp">
+      <Filter>4_Rendering\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Sampler\EngineSampler.cpp">
+      <Filter>4_Rendering\Sampler</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -703,20 +703,8 @@
     <ClInclude Include="Source\Rendering\IndexBuffer.h">
       <Filter>4_Rendering\Buffer</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Rendering\EngineShader.h">
-      <Filter>4_Rendering\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Rendering\EngineShaderResource.h">
-      <Filter>4_Rendering\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Rendering\EngineVertexShader.h">
-      <Filter>4_Rendering\Shader</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Rendering\EngineMaterial.h">
       <Filter>4_Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Rendering\EnginePixelShader.h">
-      <Filter>4_Rendering\Shader</Filter>
     </ClInclude>
     <ClInclude Include="Source\Classes\Engine\Mesh.h">
       <Filter>2_Classes\Engine</Filter>
@@ -727,9 +715,6 @@
     <ClInclude Include="Source\Rendering\EngineBlend.h">
       <Filter>4_Rendering\Blend</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Rendering\EngineSampler.h">
-      <Filter>4_Rendering\Sampler</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Asset\AssetLibrary.h">
       <Filter>4_Asset</Filter>
     </ClInclude>
@@ -738,6 +723,21 @@
     </ClInclude>
     <ClInclude Include="Source\Tools\Debug\EngineGUIWindow.h">
       <Filter>11_Tools\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\Shader\EnginePixelShader.h">
+      <Filter>4_Rendering\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\Shader\EngineShader.h">
+      <Filter>4_Rendering\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\Shader\EngineVertexShader.h">
+      <Filter>4_Rendering\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\Shader\EngineShaderResource.h">
+      <Filter>4_Rendering\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\Sampler\EngineSampler.h">
+      <Filter>4_Rendering\Sampler</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

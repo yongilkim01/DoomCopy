@@ -2,7 +2,7 @@
 #include "EngineEnums.h"
 #include "Core/Misc/FileHelper.h"
 
-#include "EngineShaderResource.h"
+#include "Rendering/Shader/EngineShaderResource.h"
 
 class UEngineVertexShader;
 

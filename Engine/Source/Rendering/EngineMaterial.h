@@ -1,7 +1,7 @@
 #pragma once
 #include "Classes/Engine/RenderAsset.h"
-#include "EngineVertexShader.h"
-#include "EnginePixelShader.h"
+#include "Rendering/Shader/EngineVertexShader.h"
+#include "Rendering/Shader/EnginePixelShader.h"
 #include "EngineRasterizerState.h"
 #include "EngineBlend.h"
 

@@ -5,7 +5,7 @@
 #include "Rendering/VertexBuffer.h"
 #include "Rendering/IndexBuffer.h"
 #include "Rendering/EngineBlend.h"
-#include "Rendering/EngineShader.h"
+#include "Rendering/Shader/EngineShader.h"
 #include "Rendering/EngineMaterial.h"
 
 #include "Core/Misc/DirectoryHelper.h"

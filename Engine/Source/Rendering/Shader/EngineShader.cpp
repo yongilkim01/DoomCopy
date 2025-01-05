@@ -1,10 +1,10 @@
 #include "pch.h"
 #include "EngineShader.h"
 
-#include "EngineVertexShader.h"
-#include "EngineConstantBuffer.h"
-#include "EnginePixelShader.h"
-#include "EngineSampler.h"
+#include "Rendering/Shader/EngineVertexShader.h"
+#include "Rendering/EngineConstantBuffer.h"
+#include "Rendering/Shader/EnginePixelShader.h"
+#include "Rendering/Sampler/EngineSampler.h"
 
 #include "Classes/Engine/Texture.h"
 

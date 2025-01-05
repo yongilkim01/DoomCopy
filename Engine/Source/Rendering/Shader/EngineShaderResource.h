@@ -1,9 +1,9 @@
 #pragma once
-#include "EngineConstantBuffer.h"
+#include "Rendering/EngineConstantBuffer.h"
 #include "Core/Object/Object.h"
 #include "EngineEnums.h"
 #include "Classes/Engine/Texture.h"
-#include "EngineSampler.h"
+#include "Rendering/Sampler/EngineSampler.h"
 
 class UEngineShaderRes
 {
