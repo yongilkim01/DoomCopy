@@ -83,7 +83,10 @@ void UStaticMeshComponent::InitObjFile(std::string_view DirectoryPath, std::stri
 		SetMesh("E1M1" + std::to_string(i), i);
 		SetMaterial("E1M1" + std::to_string(i), i);
 
-		GetRenderUnit(i).SetTexture("ImageTexture", "NSBase.png");
+		if (nullptr != TextureMap[i])
+		{
+			GetRenderUnit(i).SetTexture("ImageTexture", TextureMap[i]->GetName());
+		}
 	}
 }
 
@@ -171,7 +174,8 @@ void UStaticMeshComponent::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 		{
 			std::string TexturePath = Directory + "\\" + textures[0].path;
 
-			TextureVector.push_back(UTexture::Load(TexturePath));
+			//TextureMap.push_back(UTexture::Load(TexturePath));
+			TextureMap.insert(std::make_pair(MeshCount, UTexture::Load(TexturePath)));
 
 			std::string TextureType = textures[0].type;
 		}

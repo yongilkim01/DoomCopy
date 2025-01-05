@@ -58,7 +58,7 @@ private:
 	std::string Directory = "";
 
 	std::vector<std::shared_ptr<UStaticMesh>> StaticMeshVector;
-	std::vector<std::shared_ptr<UTexture>> TextureVector;
+	std::map<int, std::shared_ptr<UTexture>> TextureMap;
 
 	int MeshCount = 0;
 };
