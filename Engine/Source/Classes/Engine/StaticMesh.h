@@ -3,21 +3,23 @@
 #include "Rendering/Buffer/IndexBuffer.h"
 #include "Rendering/Buffer/VertexBuffer.h"
 
-//struct EVertexData
-//{
-//	float4 POSITION;
-//	float4 TEXCOORD;
-//	float4 COLOR;
-//};
+class AiMesh;
+class UMesh;
 
-class StaticMeshData
+struct aiNode;
+struct aiScene;
+struct aiMesh;
+struct aiMaterial;
+struct aiTexture;
+struct VERTEX;
+struct TEXTURE;
+
+enum aiTextureType;
+
+struct FStaticMeshData
 {
-	//std::shared_ptr<FVertexBuffer> v;
-	//std::shared_ptr<FIndexBuffer> is;
-
-	//std::shared_ptr<UEngineMesh> Mesh;
-	//std::shared_ptr<UEngineTexture> Texture;
-	//std::shared_ptr<UMesh> Mesh;
+public:
+	std::shared_ptr<UMesh> Mesh;
 };
 
 /**
@@ -36,34 +38,23 @@ public:
 	UStaticMesh& operator=(const UStaticMesh& Other) = delete;
 	UStaticMesh& operator=(UStaticMesh&& Other) noexcept = delete;
 
-	//bool LoadModel(std::string_view _objPath, std::string_view _mtlPath);
-	//void ProcessNode(aiNode* node, const aiScene* scene);
-	//void ProcessMesh(aiMesh* mesh, const aiScene* scene);
-	//std::vector<TEXTURE> LoadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName, const aiScene* scene);
-	//ID3D11ShaderResourceView* LoadEmbeddedTexture(const aiTexture* embeddedTexture);
+	ENGINE_API static std::shared_ptr<UStaticMesh> Create(std::string_view FileName);
 
-	ENGINE_API static std::shared_ptr<UStaticMesh> Create(std::string_view Name)
-	{
-		return Create(Name, Name, Name);
-	}
-	ENGINE_API static std::shared_ptr<UStaticMesh> Create(std::string_view Name, std::string_view VertexBuffer, std::string_view IndexBuffer);
-
-	void CreateAsset();
+	bool LoadModel(std::string_view LoadObjPath);
+	void ProcessNode(aiNode* node, const aiScene* scene);
+	void ProcessMesh(aiMesh* mesh, const aiScene* scene);
+	std::vector<TEXTURE> LoadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName, const aiScene* scene);
+	ID3D11ShaderResourceView* LoadEmbeddedTexture(const aiTexture* embeddedTexture);
 
 	/** °Ù, ¼Â ¸Þ¼Òµå */
-	//std::shared_ptr<FVertexBuffer> GetVertexBuffer()
-	//{
-	//	return VertexBuffer;
-	//}
-	//std::shared_ptr<FIndexBuffer> GetIndexBuffer()
-	//{
-	//	return IndexBuffer;
-	//}
 
 protected:
+	void CreateAsset(std::string_view FileName);
 
 private:
-	std::vector<std::shared_ptr<FVertexBuffer>> VertexBuffer;
+	std::vector<FStaticMeshData> StaticMeshDataVector;
+	std::map<int, std::shared_ptr<UTexture>> TextureMap;
 
+	std::string DirectoryPath = "";
 };
 

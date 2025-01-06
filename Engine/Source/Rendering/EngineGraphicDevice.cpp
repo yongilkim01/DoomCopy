@@ -95,6 +95,9 @@ void UEngineGraphicDevice::InitTexture()
 void UEngineGraphicDevice::InitMesh()
 {
 	{
+		///UStaticMesh::Create("doom_E1M1");
+	}
+	{
 		std::vector<EngineVertex> Vertexs;
 
 		Vertexs.resize(4);

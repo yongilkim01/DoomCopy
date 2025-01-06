@@ -3,18 +3,6 @@
 #include "Classes/Engine/StaticMesh.h"
 #include "Classes/Engine/Texture.h"
 
-class AiMesh;
-
-struct aiNode;
-struct aiScene;
-struct aiMesh;
-struct aiMaterial;
-struct aiTexture;
-struct VERTEX;
-struct TEXTURE;
-
-enum aiTextureType;
-
 /**
  *	Ό³Έν
  */
