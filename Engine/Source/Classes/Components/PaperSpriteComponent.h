@@ -83,6 +83,7 @@ public:
 	ENGINE_API void SetSprite(UPaperSprite* PaperSprite);
 	ENGINE_API void SetSpriteData(UPaperSprite* PaperSprite, size_t Index);
 	ENGINE_API void SetTexture(UTexture* NewTexture);
+	ENGINE_API void SetTexture(std::string_view TextureName, bool bAutoScale = false, float Ratio = 1.0f);
 
 	ENGINE_API std::string GetCurSpriteName()
 	{

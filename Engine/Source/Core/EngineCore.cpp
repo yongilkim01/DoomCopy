@@ -8,7 +8,7 @@
 #include "Classes/Engine/RenderAsset.h"
 #include "Input/EngineInput.h"
 #include "Tools/DebugGUI/EngineGUI.h"
-#include "Rendering/EngineConstantBuffer.h"
+#include "Rendering/Buffer/EngineConstantBuffer.h"
 
 UEngineGraphicDevice UEngineCore::Device;
 UEngineWindow UEngineCore::MainWindow;

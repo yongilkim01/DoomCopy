@@ -11,7 +11,7 @@ UCameraComponent::UCameraComponent()
 
 UCameraComponent::~UCameraComponent()
 {
-	Rendereres.clear();
+	RenderComponentMap.clear();
 }
 
 void UCameraComponent::BeginPlay()
@@ -37,10 +37,18 @@ void UCameraComponent::Render(float DeltaTime)
 {
 	UEngineCore::GetDevice().GetDeviceContext()->RSSetViewports(1, &ViewPortInfo);
 
-
-	for (std::pair<const int, std::list<std::shared_ptr<UPrimitiveComponent>>>& RenderGroup : Rendereres)
+	for (std::pair<const int, std::list<std::shared_ptr<UPrimitiveComponent>>>& RenderGroup : RenderComponentMap)
 	{
 		std::list<std::shared_ptr<UPrimitiveComponent>>& RendererList = RenderGroup.second;
+
+		if (true == RenderComponentZSort[RenderGroup.first])
+		{
+			RendererList.sort([](std::shared_ptr<UPrimitiveComponent>& Left, std::shared_ptr<UPrimitiveComponent>& Right)
+				{
+					return Left->GetComponentTransformRef().WorldLocation.Z > Right->GetComponentTransformRef().WorldLocation.Z;
+				});
+		}
+
 		for (std::shared_ptr<UPrimitiveComponent> Renderer : RendererList)
 		{
 			Renderer->Render(this, DeltaTime);
@@ -66,8 +74,13 @@ void UCameraComponent::CalculateViewAndProjection()
 	}
 }
 
+void UCameraComponent::SetZSort(int NewOrder, bool bValue)
+{
+	RenderComponentZSort[NewOrder] = bValue;
+}
+
 void UCameraComponent::ChangeRenderGroup(int PrevGroupOrder, std::shared_ptr<UPrimitiveComponent> Renderer)
 {
-	Rendereres[PrevGroupOrder].remove(Renderer);
-	Rendereres[Renderer->GetOrder()].push_back(Renderer);
+	RenderComponentMap[PrevGroupOrder].remove(Renderer);
+	RenderComponentMap[Renderer->GetOrder()].push_back(Renderer);
 }

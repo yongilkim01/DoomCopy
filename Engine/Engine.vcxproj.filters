@@ -130,6 +130,9 @@
     <Filter Include="1_Core\Materials">
       <UniqueIdentifier>{a5b3b5a1-129a-4d1d-99b0-5579e281b5e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="1_Core\Time">
+      <UniqueIdentifier>{75073ebe-ffe9-4a22-ab53-ff6b199c29f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp">
@@ -311,6 +314,9 @@
     </ClCompile>
     <ClCompile Include="Source\Core\Materials\Material.cpp">
       <Filter>1_Core\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Time\TimerManager.cpp">
+      <Filter>1_Core\Time</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -747,6 +753,9 @@
     </ClInclude>
     <ClInclude Include="Source\Core\Materials\Material.h">
       <Filter>1_Core\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Time\TimerManager.h">
+      <Filter>1_Core\Time</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

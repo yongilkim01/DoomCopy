@@ -59,6 +59,7 @@
     <ClCompile Include="Source\Core\Misc\Paths.cpp" />
     <ClCompile Include="Source\Core\Object\Object.cpp" />
     <ClCompile Include="Source\Core\Serialization\Archive.cpp" />
+    <ClCompile Include="Source\Core\Time\TimerManager.cpp" />
     <ClCompile Include="Source\GameFramework\Actor.cpp" />
     <ClCompile Include="Source\GameFramework\Character.cpp" />
     <ClCompile Include="Source\GameFramework\GameMode.cpp">
@@ -148,6 +149,7 @@
     <ClInclude Include="Source\Core\Misc\Paths.h" />
     <ClInclude Include="Source\Core\Object\Object.h" />
     <ClInclude Include="Source\Core\Serialization\Archive.h" />
+    <ClInclude Include="Source\Core\Time\TimerManager.h" />
     <ClInclude Include="Source\EngineDefine.h" />
     <ClInclude Include="Source\EngineEnums.h" />
     <ClInclude Include="Source\GameFramework\Actor.h" />

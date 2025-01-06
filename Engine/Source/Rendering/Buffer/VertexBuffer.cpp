@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "VertexBuffer.h"
 
-#include "Rendering/EngineInputLayoutInfo.h"
+#include "Rendering/Buffer/EngineInputLayoutInfo.h"
 
 FVertexBuffer::FVertexBuffer()
 {

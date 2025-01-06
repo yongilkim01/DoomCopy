@@ -8,6 +8,7 @@
 #include "Componennts/LineComponent.h"
 
 #include <Classes/Camera/CameraActor.h>
+#include <Classes/Camera/CameraComponent.h>
 #include <Classes/Components/StaticMeshComponent.h>
 #include <Input/EngineInput.h>
 
@@ -48,6 +49,7 @@ ARound1GameMode::ARound1GameMode()
 	Camera = GetWorld()->GetMainCamera();
 	Camera->AddActorLocation({ 10.0f, 0.0f, 0.0f });
 	Camera->AddActorRelativeLocation({ 0.0f, 0.0f, -500.0f});
+	Camera->GetCameraComponent()->SetZSort(0, true);
 
 	UEngineGUI::CreateGUIWindow<Round1Window>("Round1Window");
 }

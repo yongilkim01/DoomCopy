@@ -1,9 +1,10 @@
 #include "pch.h"
 #include "PaperSpriteComponent.h"
 
-#include "Classes/Engine/PaperSprite.h"
-#include "Classes/Camera/CameraComponent.h"
 #include "Classes/Engine/Texture.h"
+#include "Classes/Engine/PaperSprite.h"
+
+#include "Classes/Camera/CameraComponent.h"
 
 #include "Core/EngineCore.h"
 #include "Core/Misc/DirectoryHelper.h"
@@ -102,7 +103,7 @@ void UPaperSpriteComponent::Render(UCameraComponent* CameraComponent, float Delt
 		SpriteData = Sprite->GetSpriteData(CurIndex);
 	}
 
-	if (true == IsAutoScale)
+	if (true == IsAutoScale && nullptr != Sprite)
 	{
 		FVector Scale = Sprite->GetSpriteScaleToReal(CurIndex);
 		Scale.Z = 1.0f;
@@ -295,4 +296,20 @@ void UPaperSpriteComponent::SetSpriteData(UPaperSprite* PaperSprite, size_t Inde
 void UPaperSpriteComponent::SetTexture(UTexture* NewTexture)
 {
 	CurTexture = NewTexture;
+}
+
+void UPaperSpriteComponent::SetTexture(std::string_view TextureName, bool bAutoScale, float Ratio)
+{
+	std::shared_ptr<UTexture> Texture = UTexture::Find<UTexture>(TextureName);
+	if (nullptr == Texture)
+	{
+		MSGASSERT("로드하지 않은 텍스처를 사용하려고 했습니다.");
+	}
+
+	GetRenderUnit().SetTexture("ImageTexture", TextureName);
+
+	if (true == bAutoScale)
+	{
+		SetRelativeScale3D(Texture->GetTextureSize() * Ratio);
+	}
 }
