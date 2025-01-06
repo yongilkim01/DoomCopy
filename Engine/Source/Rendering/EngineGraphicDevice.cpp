@@ -7,6 +7,7 @@
 #include "Rendering/EngineBlend.h"
 #include "Rendering/Shader/EngineShader.h"
 #include "Rendering/EngineMaterial.h"
+#include "Rendering/Buffer/DepthStencilState.h"
 
 #include "Core/Misc/DirectoryHelper.h"
 #include "Core/Misc/FileHelper.h"
@@ -40,6 +41,7 @@ void UEngineGraphicDevice::Release()
 
 void UEngineGraphicDevice::InitDefaultResources()
 {
+	InitDepthStencil();
 	InitTexture();
 	InitMesh();
 	InitBlend();
@@ -92,60 +94,6 @@ void UEngineGraphicDevice::InitTexture()
 
 void UEngineGraphicDevice::InitMesh()
 {
-	//{
-	//	FDirectoryHelper DirectoryHelper;
-	//	if (false == DirectoryHelper.MoveParentToDirectory("Resources"))
-	//	{
-	//		MSGASSERT("리소스 폴더를 찾기에 실패했습니다");
-	//		return;
-	//	}
-
-	//	DirectoryHelper.Append("Models\\E1M1");
-
-	//	std::string Path = DirectoryHelper.GetPathToString();
-
-	//	LoadModel(Path + "\\doom_E1M1.obj", Path + "\\doom_E1M1.mtl");
-
-	//	int MeshVectorSize = Meshes.size();
-
-	//	for (int i = 0; i < Meshes.size(); i++)
-	//	{
-	//		std::string MeshName = "Map" + std::to_string(i + 1);
-
-	//		std::vector<EngineVertex> Vertexs;
-
-	//		for (int j = 0; j < Meshes[i].vertices_.size(); j++)
-	//		{
-	//			EngineVertex Vertex = EngineVertex{ FVector(
-	//				Meshes[i].vertices_[j].X,
-	//				Meshes[i].vertices_[j].Y,
-	//				Meshes[i].vertices_[j].Z),
-	//				{0.0f , 0.0f},
-	//				{1.0f, 1.0f, 1.0f, 1.0f}};
-
-	//			Vertexs.push_back(Vertex);
-	//		}
-
-	//		FVertexBuffer::Create(MeshName, Vertexs);
-
-
-	//		std::vector<unsigned int> Indexs;
-
-	//		for (int j = 0; j < Meshes[i].indices_.size(); j++)
-	//		{
-	//			Indexs.push_back(Meshes[i].indices_[j]);
-	//		}
-
-	//		FIndexBuffer::Create(MeshName, Indexs);
-
-	//		UStaticMesh::Create(MeshName);
-
-	//	}
-
-	//	int TextureVectorSize = Textures.size();
-	//}
-
-
 	{
 		std::vector<EngineVertex> Vertexs;
 
@@ -222,11 +170,36 @@ void UEngineGraphicDevice::InitRasterizerState()
 	UEngineRasterizerState::Create("EngineBase", Desc);
 }
 
+void UEngineGraphicDevice::InitDepthStencil()
+{
+	D3D11_DEPTH_STENCIL_DESC Desc = { 0 };
+
+	Desc.DepthEnable = true;
+	Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+	Desc.DepthFunc = D3D11_COMPARISON_LESS;
+	Desc.StencilEnable = false;
+
+	UDepthStencilState::Create("DefaultDepthStencil", Desc);
+}
+
 void UEngineGraphicDevice::RenderStart()
 {
 	FVector ClearColor;
 	ClearColor = FVector(0.1f, 0.1f, 0.1f, 1.0f);
 	DeviceContext->ClearRenderTargetView(RenderTargetView.Get(), ClearColor.Arr1D);
+	DeviceContext->ClearDepthStencilView(DepthTexture->GetDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+	// 랜더타겟 랜더타겟 랜더타겟
+	// RTV와 DSV를 합친 개념을 랜더타겟이라고 부른다.
+	// 그걸 n장 사용하게 되면 멀티랜더타겟이라고 부른다.
+	// 여기에다가 다시 그려줘
+	ID3D11RenderTargetView* RTV = UEngineCore::GetDevice().GetRenderTargetView();
+	ID3D11RenderTargetView* ArrRtv[16] = { 0 };
+
+	ArrRtv[0] = RTV; // SV_Target0
+
+	DeviceContext->OMSetRenderTargets(1, &ArrRtv[0], DepthTexture->GetDepthStencilView());
+	std::shared_ptr<UDepthStencilState> DepthState = UDepthStencilState::Find<UDepthStencilState>("DefaultDepthStencil");
+	DepthState->Update();
 }
 
 void UEngineGraphicDevice::RenderEnd()
@@ -290,6 +263,26 @@ void UEngineGraphicDevice::CreateDeviceAndContext()
 void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& EngineWindow)
 {
 	FVector Size = EngineWindow.GetWindowSize();
+
+	{
+		D3D11_TEXTURE2D_DESC TextureDesc = { 0 };
+
+		TextureDesc.ArraySize = 1;
+		TextureDesc.Width = Size.iX();
+		TextureDesc.Height = Size.iY();
+		TextureDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+		TextureDesc.SampleDesc.Count = 1;
+		TextureDesc.SampleDesc.Quality = 0;
+		TextureDesc.MipLevels = 1;
+		TextureDesc.Usage = D3D11_USAGE_DEFAULT;
+		TextureDesc.CPUAccessFlags = 0;
+		TextureDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_DEPTH_STENCIL;
+
+		DepthTexture = std::make_shared<UTexture>();
+
+		DepthTexture->CreateAsset(TextureDesc);
+
+	}
 
 	DXGI_SWAP_CHAIN_DESC desc;
 	ZeroMemory(&desc, sizeof(DXGI_SWAP_CHAIN_DESC));

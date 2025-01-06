@@ -77,7 +77,7 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 		UPaperSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
 
-	UEngineCore::CreateLevel<ATitleGameMode, AActor>("TitleLevel");
+	//UEngineCore::CreateLevel<ATitleGameMode, AActor>("TitleLevel");
 	UEngineCore::CreateLevel<ARound1GameMode, AActor>("Round1");
 	UEngineCore::OpenLevel("Round1");
 }

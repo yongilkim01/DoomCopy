@@ -36,12 +36,6 @@ void URenderUnit::Render(UCameraComponent* CameraComponent, float DetlaTime)
 
 	Material->GetBlend()->Update();
 
-	ID3D11RenderTargetView* RTV = UEngineCore::GetDevice().GetRenderTargetView();
-	ID3D11RenderTargetView* ArrRTV[16] = { 0 };
-	ArrRTV[0] = RTV;
-	
-	UEngineCore::GetDevice().GetDeviceContext()->OMSetRenderTargets(1, &ArrRTV[0], nullptr);
-
 	UEngineCore::GetDevice().GetDeviceContext()->DrawIndexed(Mesh->GetIndexBuffer()->GetIndexCount(), 0, 0);
 }
 
@@ -127,6 +121,10 @@ void URenderUnit::MaterialResourceCheck()
 		for (EShaderType i = EShaderType::VS; i < EShaderType::MAX; i = static_cast<EShaderType>(static_cast<int>(i) + 1))
 		{
 			if (false == ShaderResourceMap.contains(i))
+			{
+				continue;
+			}
+			if (false == ShaderResourceMap[i].IsConstantBuffer("FTransform"))
 			{
 				continue;
 			}

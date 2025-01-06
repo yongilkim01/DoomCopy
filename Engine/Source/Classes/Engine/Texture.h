@@ -23,6 +23,8 @@ public:
 
 	void Update(EShaderType ShaderType, UINT BindIndex);
 
+	ENGINE_API void CreateAsset(const D3D11_TEXTURE2D_DESC& InitTextureDesc);
+
 	//static std::shared_ptr<UTexture> LoadToObjFile(aiMaterial* mat, aiTextureType type, std::string typeName, const aiScene* scene, std::string_view LoadTextureFilePath);
 
 	static std::shared_ptr<UTexture> Load(std::string_view LoadTextureFilePath)
@@ -65,6 +67,14 @@ public:
 
 		return true;
 	}
+	ID3D11RenderTargetView* GetRenderTargetView()
+	{
+		return RenderTargetView.Get();
+	}
+	ID3D11DepthStencilView* GetDepthStencilView()
+	{
+		return DepthStencilView.Get();
+	}
 
 protected:
 
@@ -80,5 +90,8 @@ private:
 
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> Texture2D = nullptr; // 로드한 텍스처
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> ShaderResourceView = nullptr; // 텍스처를 쉐이더 세팅할수 있는권한
+	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> RenderTargetView = nullptr; // 텍스처를 쉐이더 세팅할수 있는권한
+	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> DepthStencilView = nullptr; // 텍스처를 쉐이더 세팅할수 있는권한
+	D3D11_TEXTURE2D_DESC TextureDesc;
 };
 

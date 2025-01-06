@@ -2,6 +2,7 @@
 #include "EngineDefine.h"
 #include "Platform/Window.h"
 
+#include <memory>
 #include <wrl.h>
 #include <d3d11_4.h>
 #include <d3dcompiler.h>
@@ -11,6 +12,8 @@
 #pragma comment(lib, "d3dcompiler") 
 #pragma comment(lib, "dxguid")
 #pragma comment(lib, "DXGI") 
+
+class UTexture;
 
 /**
  *	설명
@@ -51,7 +54,6 @@ public:
 	 */
 	void RenderEnd();
 
-	ENGINE_API void Release();
 	ENGINE_API void InitTexture();
 	ENGINE_API void InitDefaultResources();
 	ENGINE_API void InitMesh();
@@ -59,8 +61,9 @@ public:
 	ENGINE_API void	InitShader();
 	ENGINE_API void InitMaterial();
 	ENGINE_API void InitRasterizerState();
+	ENGINE_API void InitDepthStencil();
 
-
+	ENGINE_API void Release();
 
 	/** 겟, 셋 메소드 */
 	ENGINE_API ID3D11Device* GetDevice()
@@ -85,4 +88,6 @@ private:
 	Microsoft::WRL::ComPtr<IDXGIAdapter> MainAdapter = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11Texture2D> DXBackBufferTexture = nullptr;
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> RenderTargetView = nullptr;
+
+	std::shared_ptr<UTexture> DepthTexture;
 };

@@ -77,6 +77,11 @@ void UEngineConstantBuffer::Update(EShaderType Type, UINT BindIndex)
 	}
 }
 
+void UEngineConstantBuffer::Release()
+{
+	BufferMap.clear();
+}
+
 void UEngineConstantBuffer::AssetCreate(UINT Byte)
 {
 	{

@@ -41,6 +41,28 @@ void UTexture::Update(EShaderType ShaderType, UINT BindIndex)
 	}
 }
 
+void UTexture::CreateAsset(const D3D11_TEXTURE2D_DESC& InitTextureDesc)
+{
+	TextureDesc = InitTextureDesc;
+
+	UEngineCore::GetDevice().GetDevice()->CreateTexture2D(&TextureDesc, nullptr, &Texture2D);
+
+	if (nullptr == Texture2D)
+	{
+		MSGASSERT("텍스처 생성에 실패했습니다");
+		return;
+	}
+
+	if (TextureDesc.BindFlags & D3D11_BIND_DEPTH_STENCIL)
+	{
+		if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateDepthStencilView(Texture2D.Get(), nullptr, &DepthStencilView))
+		{
+			MSGASSERT("깊이 버퍼 생성에 실패했습니다");
+			return;
+		}
+	}
+}
+
 std::shared_ptr<UTexture> UTexture::Load(std::string_view TextureFileName, std::string_view LoadTextureFilePath)
 {
 	std::string UpperName = ToUpperName(TextureFileName);

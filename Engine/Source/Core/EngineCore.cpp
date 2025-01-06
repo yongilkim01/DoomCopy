@@ -8,6 +8,7 @@
 #include "Classes/Engine/RenderAsset.h"
 #include "Input/EngineInput.h"
 #include "Tools/DebugGUI/EngineGUI.h"
+#include "Rendering/EngineConstantBuffer.h"
 
 UEngineGraphicDevice UEngineCore::Device;
 UEngineWindow UEngineCore::MainWindow;
@@ -157,6 +158,7 @@ void UEngineCore::EngineEnd()
 	Device.Release();
 
 	URenderAsset::Release();
+	UEngineConstantBuffer::Release();
 
 	CurLevel = nullptr;
 	NextLevel = nullptr;

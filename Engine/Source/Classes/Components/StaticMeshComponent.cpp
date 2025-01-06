@@ -17,34 +17,6 @@
 #include <assimp/postprocess.h> 
 #include <assimp/scene.h>
 
-HRESULT	CompileShaderFromFile(LPCWSTR pFileName, const D3D_SHADER_MACRO* pDefines, LPCSTR pEntryPoint, LPCSTR pShaderModel, ID3DBlob** ppBytecodeBlob)
-{
-	UINT compileFlags = D3DCOMPILE_ENABLE_STRICTNESS | D3DCOMPILE_PACK_MATRIX_ROW_MAJOR;
-	//UINT compileFlags = D3DCOMPILE_ENABLE_STRICTNESS | D3DCOMPILE_PACK_MATRIX_COLUMN_MAJOR;
-
-#ifdef _DEBUG
-	compileFlags |= D3DCOMPILE_DEBUG;
-#endif
-
-	ID3DBlob* pErrorBlob = nullptr;
-
-	HRESULT result = D3DCompileFromFile(pFileName, pDefines, D3D_COMPILE_STANDARD_FILE_INCLUDE, pEntryPoint, pShaderModel, compileFlags, 0, ppBytecodeBlob, &pErrorBlob);
-	if (FAILED(result))
-	{
-		if (pErrorBlob != nullptr)
-		{
-			OutputDebugStringA((LPCSTR)pErrorBlob->GetBufferPointer());
-		}
-	}
-
-	if (pErrorBlob != nullptr)
-	{
-		pErrorBlob->Release();
-	}
-
-	return result;
-}
-
 
 UStaticMeshComponent::UStaticMeshComponent()
 {

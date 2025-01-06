@@ -306,6 +306,9 @@
     <ClCompile Include="Source\Tools\DebugGUI\EngineGUIWindow.cpp">
       <Filter>11_Tools\DebugGUI</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Rendering\Buffer\DepthStencilState.cpp">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
@@ -738,6 +741,9 @@
     </ClInclude>
     <ClInclude Include="Source\Tools\DebugGUI\EngineGUIWindow.h">
       <Filter>11_Tools\DebugGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\Buffer\DepthStencilState.h">
+      <Filter>4_Rendering\Buffer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
