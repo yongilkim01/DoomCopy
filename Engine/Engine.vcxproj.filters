@@ -318,6 +318,9 @@
     <ClCompile Include="Source\Core\Time\TimerManager.cpp">
       <Filter>1_Core\Time</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Core\Math\EngineRandom.cpp">
+      <Filter>1_Core\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
@@ -756,6 +759,9 @@
     </ClInclude>
     <ClInclude Include="Source\Core\Time\TimerManager.h">
       <Filter>1_Core\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Math\EngineRandom.h">
+      <Filter>1_Core\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

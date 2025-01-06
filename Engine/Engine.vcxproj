@@ -54,6 +54,7 @@
     <ClCompile Include="Source\Core\EngineCore.cpp" />
     <ClCompile Include="Source\Core\Materials\Material.cpp" />
     <ClCompile Include="Source\Core\Math\EngineMath.cpp" />
+    <ClCompile Include="Source\Core\Math\EngineRandom.cpp" />
     <ClCompile Include="Source\Core\Misc\DirectoryHelper.cpp" />
     <ClCompile Include="Source\Core\Misc\FileHelper.cpp" />
     <ClCompile Include="Source\Core\Misc\Paths.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="Source\Core\EngineCore.h" />
     <ClInclude Include="Source\Core\Materials\Material.h" />
     <ClInclude Include="Source\Core\Math\EngineMath.h" />
+    <ClInclude Include="Source\Core\Math\EngineRandom.h" />
     <ClInclude Include="Source\Core\Misc\DirectoryHelper.h" />
     <ClInclude Include="Source\Core\Misc\FileHelper.h" />
     <ClInclude Include="Source\Core\Misc\Paths.h" />
