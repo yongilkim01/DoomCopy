@@ -3,13 +3,12 @@
 
 #include "Classes/Engine/PaperSprite.h"
 #include "Classes/Camera/CameraComponent.h"
-#include "Core/EngineCore.h"
-
-#include "Core/Misc/DirectoryHelper.h"
 #include "Classes/Engine/Texture.h"
-#include "Core/Misc/FileHelper.h"
 
-#include "Rendering/EngineMaterial.h"
+#include "Core/EngineCore.h"
+#include "Core/Misc/DirectoryHelper.h"
+#include "Core/Misc/FileHelper.h"
+#include "Core/Materials/Material.h"
 
 UPaperSpriteComponent::UPaperSpriteComponent()
 {

@@ -1,6 +1,6 @@
 #pragma once
 #include "Classes/Engine/RenderAsset.h"
-#include "Rendering/EngineDeviceBuffer.h"
+#include "Rendering/Buffer/EngineDeviceBuffer.h"
 #include "EngineEnums.h"
 
 /**

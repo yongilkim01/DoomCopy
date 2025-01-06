@@ -52,6 +52,7 @@
     <ClCompile Include="Source\Core\Containers\EngineString.cpp" />
     <ClCompile Include="Source\Core\Delegates\Delegate.cpp" />
     <ClCompile Include="Source\Core\EngineCore.cpp" />
+    <ClCompile Include="Source\Core\Materials\Material.cpp" />
     <ClCompile Include="Source\Core\Math\EngineMath.cpp" />
     <ClCompile Include="Source\Core\Misc\DirectoryHelper.cpp" />
     <ClCompile Include="Source\Core\Misc\FileHelper.cpp" />
@@ -78,18 +79,15 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Source\Rendering\Buffer\EngineConstantBuffer.cpp" />
+    <ClCompile Include="Source\Rendering\Buffer\EngineDeviceBuffer.cpp" />
+    <ClCompile Include="Source\Rendering\Buffer\EngineInputLayoutInfo.cpp" />
+    <ClCompile Include="Source\Rendering\Buffer\EngineVertex.cpp" />
+    <ClCompile Include="Source\Rendering\Buffer\IndexBuffer.cpp" />
+    <ClCompile Include="Source\Rendering\Buffer\VertexBuffer.cpp" />
     <ClCompile Include="Source\Rendering\EngineBlend.cpp" />
-    <ClCompile Include="Source\Rendering\EngineConstantBuffer.cpp" />
-    <ClCompile Include="Source\Rendering\EngineDeviceBuffer.cpp" />
     <ClCompile Include="Source\Rendering\EngineGraphicDevice.cpp" />
-    <ClCompile Include="Source\Rendering\EngineInputLayoutInfo.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\EngineMaterial.cpp" />
     <ClCompile Include="Source\Rendering\EngineRasterizerState.cpp" />
-    <ClCompile Include="Source\Rendering\EngineVertex.cpp" />
-    <ClCompile Include="Source\Rendering\IndexBuffer.cpp" />
     <ClCompile Include="Source\Rendering\RenderUnit.cpp" />
     <ClCompile Include="Source\Rendering\Sampler\EngineSampler.cpp" />
     <ClCompile Include="Source\Rendering\Shader\EnginePixelShader.cpp" />
@@ -97,10 +95,6 @@
     <ClCompile Include="Source\Rendering\Shader\EngineShaderResource.cpp" />
     <ClCompile Include="Source\Rendering\Shader\EngineVertexShader.cpp" />
     <ClCompile Include="Source\Rendering\TextureLoader.cpp" />
-    <ClCompile Include="Source\Rendering\VertexBuffer.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="Source\ThirdParty\imgui\imgui.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui_draw.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui_impl_dx11.cpp" />
@@ -147,6 +141,7 @@
     <ClInclude Include="Source\Core\Containers\EngineString.h" />
     <ClInclude Include="Source\Core\Delegates\Delegate.h" />
     <ClInclude Include="Source\Core\EngineCore.h" />
+    <ClInclude Include="Source\Core\Materials\Material.h" />
     <ClInclude Include="Source\Core\Math\EngineMath.h" />
     <ClInclude Include="Source\Core\Misc\DirectoryHelper.h" />
     <ClInclude Include="Source\Core\Misc\FileHelper.h" />
@@ -174,18 +169,15 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Source\Rendering\Buffer\EngineConstantBuffer.h" />
+    <ClInclude Include="Source\Rendering\Buffer\EngineDeviceBuffer.h" />
+    <ClInclude Include="Source\Rendering\Buffer\EngineInputLayoutInfo.h" />
+    <ClInclude Include="Source\Rendering\Buffer\EngineVertex.h" />
+    <ClInclude Include="Source\Rendering\Buffer\IndexBuffer.h" />
+    <ClInclude Include="Source\Rendering\Buffer\VertexBuffer.h" />
     <ClInclude Include="Source\Rendering\EngineBlend.h" />
-    <ClInclude Include="Source\Rendering\EngineConstantBuffer.h" />
-    <ClInclude Include="Source\Rendering\EngineDeviceBuffer.h" />
     <ClInclude Include="Source\Rendering\EngineGraphicDevice.h" />
-    <ClInclude Include="Source\Rendering\EngineInputLayoutInfo.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Rendering\EngineMaterial.h" />
     <ClInclude Include="Source\Rendering\EngineRasterizerState.h" />
-    <ClInclude Include="Source\Rendering\EngineVertex.h" />
-    <ClInclude Include="Source\Rendering\IndexBuffer.h" />
     <ClInclude Include="Source\Rendering\RenderUnit.h" />
     <ClInclude Include="Source\Rendering\Sampler\EngineSampler.h" />
     <ClInclude Include="Source\Rendering\Shader\EnginePixelShader.h" />
@@ -193,10 +185,6 @@
     <ClInclude Include="Source\Rendering\Shader\EngineShaderResource.h" />
     <ClInclude Include="Source\Rendering\Shader\EngineVertexShader.h" />
     <ClInclude Include="Source\Rendering\TextureLoader.h" />
-    <ClInclude Include="Source\Rendering\VertexBuffer.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Source\ThirdParty\assimp\include\assimp\aabb.h" />
     <ClInclude Include="Source\ThirdParty\assimp\include\assimp\ai_assert.h" />
     <ClInclude Include="Source\ThirdParty\assimp\include\assimp\anim.h" />

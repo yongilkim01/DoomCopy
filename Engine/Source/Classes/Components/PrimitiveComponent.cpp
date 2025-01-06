@@ -7,7 +7,7 @@
 #include "Classes/Engine/PaperSprite.h"
 #include "Classes/Engine/StaticMesh.h"
 
-#include "Rendering/EngineVertex.h"
+#include "Rendering/Buffer/EngineVertex.h"
 #include "Rendering/EngineBlend.h"
 
 #include "Core/Misc/DirectoryHelper.h"

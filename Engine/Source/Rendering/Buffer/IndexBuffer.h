@@ -1,5 +1,5 @@
 #pragma once
-#include "Rendering/EngineDeviceBuffer.h"
+#include "Rendering/Buffer/EngineDeviceBuffer.h"
 #include "Classes/Engine/RenderAsset.h"
 
 /**

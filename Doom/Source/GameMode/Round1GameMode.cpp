@@ -36,6 +36,7 @@ ARound1GameMode::ARound1GameMode()
 	//	DrawSquareActorVector.push_back(DrawSquareActor);
 	//}
 
+
 	{
 		DrawLineActor = GetWorld()->SpawnActor<ADrawLineActor>();
 		//DrawLineActor->SetActorRotation(FVector{ 0.0f, 0.0f, 30.0f });

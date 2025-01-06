@@ -9,9 +9,9 @@
 
 #include "Rendering/TextureLoader.h"
 #include "Rendering/AiMesh.h"
-#include "Rendering/EngineVertex.h"
-#include "Rendering/VertexBuffer.h"
-#include "Rendering/IndexBuffer.h"
+#include "Rendering/Buffer/EngineVertex.h"
+#include "Rendering/Buffer/VertexBuffer.h"
+#include "Rendering/Buffer/IndexBuffer.h"
 
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h> 
@@ -48,6 +48,8 @@ void UStaticMeshComponent::InitObjFile(std::string_view DirectoryPath, std::stri
 	MtlPath = NewMtlPath;
 
 	LoadModel(ObjPath, MtlPath);
+
+	int a = 0;
 
 	for (int i = 0; i < MeshCount; i++)
 	{

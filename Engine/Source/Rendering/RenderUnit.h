@@ -1,7 +1,7 @@
 #pragma once
 #include "Rendering/Shader/EngineShaderResource.h"
 #include "Classes/Engine/Mesh.h"
-#include "Rendering/EngineMaterial.h"
+#include "Core/Materials/Material.h"
 #include "EngineEnums.h"
 
 class UCameraComponent;

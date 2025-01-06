@@ -3,10 +3,11 @@
 
 #include "Classes/Camera/CameraComponent.h"
 #include "Classes/Components/PrimitiveComponent.h"
-
 #include "Classes/Engine/Mesh.h"
-#include "Rendering/EngineMaterial.h"
-#include "Rendering/EngineInputLayoutInfo.h"
+
+#include "Core/Materials/Material.h"
+
+#include "Rendering/Buffer/EngineInputLayoutInfo.h"
 
 URenderUnit::URenderUnit()
 {

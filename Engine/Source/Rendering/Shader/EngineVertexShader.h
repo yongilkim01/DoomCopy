@@ -2,7 +2,7 @@
 #include <Windows.h>
 
 #include "EngineShader.h"
-#include "Rendering/EngineInputLayoutInfo.h"
+#include "Rendering/Buffer/EngineInputLayoutInfo.h"
 #include "Classes/Engine/RenderAsset.h"
 #include "Core/Misc/Paths.h"
 

@@ -1,5 +1,5 @@
 #pragma once
-#include "Rendering/EngineConstantBuffer.h"
+#include "Rendering/Buffer/EngineConstantBuffer.h"
 #include "Core/Object/Object.h"
 #include "EngineEnums.h"
 #include "Classes/Engine/Texture.h"

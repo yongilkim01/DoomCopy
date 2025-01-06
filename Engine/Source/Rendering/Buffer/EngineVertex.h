@@ -1,6 +1,6 @@
 #pragma once
 #include "Core/Math/EngineMath.h"
-#include "Rendering/EngineInputLayoutInfo.h"
+#include "Rendering/Buffer/EngineInputLayoutInfo.h"
 
 class EngineVertexInit;
 

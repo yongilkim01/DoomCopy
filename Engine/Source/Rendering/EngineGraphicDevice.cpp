@@ -1,16 +1,16 @@
 #include "pch.h"
 #include "EngineGraphicDevice.h"
 
-#include "Rendering/EngineVertex.h"
-#include "Rendering/VertexBuffer.h"
-#include "Rendering/IndexBuffer.h"
+#include "Rendering/Buffer/EngineVertex.h"
+#include "Rendering/Buffer/VertexBuffer.h"
+#include "Rendering/Buffer/IndexBuffer.h"
 #include "Rendering/EngineBlend.h"
-#include "Rendering/Shader/EngineShader.h"
-#include "Rendering/EngineMaterial.h"
+#include "Rendering/Shader/EngineShader.h""
 #include "Rendering/Buffer/DepthStencilState.h"
 
 #include "Core/Misc/DirectoryHelper.h"
 #include "Core/Misc/FileHelper.h"
+#include "Core/Materials/Material.h"
 
 #include "Classes/Engine/StaticMesh.h"
 #include "Classes/Engine/Mesh.h"

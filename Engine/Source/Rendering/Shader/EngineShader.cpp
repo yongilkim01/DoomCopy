@@ -2,7 +2,7 @@
 #include "EngineShader.h"
 
 #include "Rendering/Shader/EngineVertexShader.h"
-#include "Rendering/EngineConstantBuffer.h"
+#include "Rendering/Buffer/EngineConstantBuffer.h"
 #include "Rendering/Shader/EnginePixelShader.h"
 #include "Rendering/Sampler/EngineSampler.h"
 

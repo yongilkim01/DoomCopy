@@ -127,6 +127,9 @@
     <Filter Include="11_Tools\DebugGUI">
       <UniqueIdentifier>{6c0051e6-2cb9-49d9-9ef7-98376feb6a7f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="1_Core\Materials">
+      <UniqueIdentifier>{a5b3b5a1-129a-4d1d-99b0-5579e281b5e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp">
@@ -255,29 +258,8 @@
     <ClCompile Include="Source\Rendering\EngineRasterizerState.cpp">
       <Filter>4_Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Rendering\EngineConstantBuffer.cpp">
-      <Filter>4_Rendering\Buffer</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\EngineDeviceBuffer.cpp">
-      <Filter>4_Rendering\Buffer</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\VertexBuffer.cpp">
-      <Filter>4_Rendering\Buffer</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\IndexBuffer.cpp">
-      <Filter>4_Rendering\Buffer</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\EngineMaterial.cpp">
-      <Filter>4_Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Classes\Engine\Mesh.cpp">
       <Filter>2_Classes\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\EngineInputLayoutInfo.cpp">
-      <Filter>4_Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\EngineVertex.cpp">
-      <Filter>4_Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Source\Rendering\EngineBlend.cpp">
       <Filter>4_Rendering\Blend</Filter>
@@ -308,6 +290,27 @@
     </ClCompile>
     <ClCompile Include="Source\Rendering\Buffer\DepthStencilState.cpp">
       <Filter>4_Rendering\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Buffer\EngineConstantBuffer.cpp">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Buffer\EngineDeviceBuffer.cpp">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Buffer\IndexBuffer.cpp">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Buffer\VertexBuffer.cpp">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Buffer\EngineInputLayoutInfo.cpp">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Buffer\EngineVertex.cpp">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Materials\Material.cpp">
+      <Filter>1_Core\Materials</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -436,9 +439,6 @@
       <Filter>6_Input</Filter>
     </ClInclude>
     <ClInclude Include="Source\Rendering\RenderUnit.h">
-      <Filter>4_Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Rendering\EngineVertex.h">
       <Filter>4_Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Source\Rendering\EngineGraphicDevice.h">
@@ -694,26 +694,8 @@
     <ClInclude Include="Source\Rendering\EngineRasterizerState.h">
       <Filter>4_Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Rendering\EngineConstantBuffer.h">
-      <Filter>4_Rendering\Buffer</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Rendering\EngineDeviceBuffer.h">
-      <Filter>4_Rendering\Buffer</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Rendering\VertexBuffer.h">
-      <Filter>4_Rendering\Buffer</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Rendering\IndexBuffer.h">
-      <Filter>4_Rendering\Buffer</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Rendering\EngineMaterial.h">
-      <Filter>4_Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Classes\Engine\Mesh.h">
       <Filter>2_Classes\Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Rendering\EngineInputLayoutInfo.h">
-      <Filter>4_Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Source\Rendering\EngineBlend.h">
       <Filter>4_Rendering\Blend</Filter>
@@ -744,6 +726,27 @@
     </ClInclude>
     <ClInclude Include="Source\Rendering\Buffer\DepthStencilState.h">
       <Filter>4_Rendering\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\Buffer\EngineConstantBuffer.h">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\Buffer\EngineDeviceBuffer.h">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\Buffer\IndexBuffer.h">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\Buffer\VertexBuffer.h">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\Buffer\EngineInputLayoutInfo.h">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\Buffer\EngineVertex.h">
+      <Filter>4_Rendering\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Materials\Material.h">
+      <Filter>1_Core\Materials</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
