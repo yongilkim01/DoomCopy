@@ -67,14 +67,14 @@ private:
 public:
 	ENGINE_API static void KeyCheck(float _DeltaTime);
 	// UEngineInput::GetInst().IsDown('A')
-	bool IsDoubleClick(int _KeyIndex, float _Time)
+	static bool IsDoubleClick(int _KeyIndex, float _Time)
 	{
-		if (false == Keys.contains(_KeyIndex))
+		if (false == GetInstance().Keys.contains(_KeyIndex))
 		{
 			MSGASSERT("아직도 등록되지 않은 키가 존재합니다.");
 			return false;
 		}
-		return Keys[_KeyIndex].IsDown && Keys[_KeyIndex].FreeTime < _Time;
+		return GetInstance().Keys[_KeyIndex].IsDown && GetInstance().Keys[_KeyIndex].FreeTime < _Time;
 	}
 	static bool IsDown(int _KeyIndex)
 	{
@@ -91,7 +91,7 @@ public:
 		// }
 		return GetInstance().Keys[_KeyIndex].IsDown;
 	}
-	bool IsUp(int _KeyIndex)
+	static bool IsUp(int _KeyIndex)
 	{
 		if (false == GetInstance().Keys.contains(_KeyIndex))
 		{
@@ -109,7 +109,7 @@ public:
 		}
 		return GetInstance().Keys[_KeyIndex].IsPress;
 	}
-	float IsPressTime(int _KeyIndex)
+	static float IsPressTime(int _KeyIndex)
 	{
 		if (false == GetInstance().Keys.contains(_KeyIndex))
 		{
@@ -118,7 +118,7 @@ public:
 		}
 		return GetInstance().Keys[_KeyIndex].PressTime;
 	}
-	bool IsFree(int _KeyIndex)
+	static bool IsFree(int _KeyIndex)
 	{
 		if (false == GetInstance().Keys.contains(_KeyIndex))
 		{

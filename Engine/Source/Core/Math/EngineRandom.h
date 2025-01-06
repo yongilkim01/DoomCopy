@@ -8,8 +8,8 @@ class UEngineRandom
 {
 public:
 	/** 생성자, 소멸자 */
-	UEngineRandom();
-	~UEngineRandom();
+	UEngineRandom() {}
+	~UEngineRandom() {}
 
 	/** 객체 값 복사 방지 */
 	UEngineRandom(const UEngineRandom& Other) = delete;
