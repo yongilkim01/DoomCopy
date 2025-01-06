@@ -1,14 +1,6 @@
 #include "pch.h"
 #include "EngineMath.h"
 
-const FVector FVector::ZERO = { 0.0f, 0.0f, 0.0f, 0.0f};
-const FVector FVector::LEFT = { -1.0f, 0.0f };
-const FVector FVector::RIGHT = { 1.0f, 0.0f };
-const FVector FVector::UP = { 0.0f, 1.0f };
-const FVector FVector::DOWN = { 0.0f, -1.0f };
-const FVector FVector::FORWARD = { 0.0f, 0.0f, 1.0f };
-const FVector FVector::BACK = { 0.0f, 0.0f , -1.0f };
-
 const FIntPoint FIntPoint::LEFT = { -1, 0 };
 const FIntPoint FIntPoint::RIGHT = { 1, 0 };
 const FIntPoint FIntPoint::UP = { 0, -1 };
@@ -205,6 +197,7 @@ FVector FVector::TransformVectorNormal(const FVector& InVector, const class FMat
 	return Copy * InMatrix;
 }
 
+template<>
 FVector FVector::operator*(const class FMatrix& InMatrixValue) const
 {
 	FVector Result;
@@ -233,6 +226,15 @@ FMatrix FMatrix::operator*(const FMatrix& InMatrixValue)
 	return Result;
 
 }
+
+template<>
+FQuat TVector<float>::DegAngleToQuaternion()
+{
+	FQuat Result;
+	Result.DirectVector = DirectX::XMQuaternionRotationRollPitchYawFromVector(DirectVector);
+	return Result;
+}
+
 
 FVector FQuat::QuaternionToEulerDeg() const
 {

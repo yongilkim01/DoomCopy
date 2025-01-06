@@ -70,83 +70,63 @@ public:
 	}
 };
 
-class FQuat
+template<typename ValueType>
+class TVector
 {
 public:
-	union
-	{
-		struct
-		{
-			float X;
-			float Y;
-			float Z;
-			float W;
-		};
-		float Arr2D[1][4];
-		float Arr1D[4];
-		// 다이렉트 simd 연산 전용 벡터.
-		DirectX::XMVECTOR DirectVector;
-	};
-	class FVector QuaternionToEulerDeg() const;
-	class FVector QuaternionToEulerRad() const;
-};
-
-
-class FVector
-{
-public:
-	static const FVector ZERO;
-	static const FVector LEFT;
-	static const FVector RIGHT;
-	static const FVector UP;
-	static const FVector DOWN;
-	static const FVector FORWARD;
-	static const FVector BACK;
+	static const TVector NONE;
+	static const TVector ZERO;
+	static const TVector LEFT;
+	static const TVector RIGHT;
+	static const TVector UP;
+	static const TVector DOWN;
+	static const TVector FORWARD;
+	static const TVector BACK;
 
 public:
 	union
 	{
 		struct
 		{
-			float X;
-			float Y;
-			float Z;
-			float W;
+			ValueType X;
+			ValueType Y;
+			ValueType Z;
+			ValueType W;
 		};
 
-		float Arr2D[1][4];
-		float Arr1D[4];
+		ValueType Arr2D[1][4];
+		ValueType Arr1D[4];
 
 		/** DirectX Simd 연산 전용 벡터 */
 		DirectX::XMVECTOR DirectVector;
 	};
 
-	ENGINE_API FVector()
+	ENGINE_API TVector()
 		: X(0.0f), Y(0.0f), Z(0.0f), W(1.0f)
 	{
 
 	}
-	ENGINE_API FVector(float InX, float InY)
+	ENGINE_API TVector(float InX, float InY)
 		: X(InX), Y(InY), Z(0.0f), W(1.0f)
 	{
 
 	}
-	ENGINE_API FVector(float InX, float InY, float InZ)
+	ENGINE_API TVector(float InX, float InY, float InZ)
 		: X(InX), Y(InY), Z(InZ), W(1.0f)
 	{
 
 	}
-	FVector(float InX, float InY, float InZ, float InW)
+	ENGINE_API TVector(float InX, float InY, float InZ, float InW)
 		: X(InX), Y(InY), Z(InZ), W(InW)
 	{
 
 	}
-	FVector(int InX, int InY)
+	TVector(int InX, int InY)
 		: X(static_cast<float>(InX)), Y(static_cast<float>(InY)), Z(0.0f), W(1.0f)
 	{
 
 	}
-	FVector(long InX, long InY)
+	TVector(long InX, long InY)
 		: X(static_cast<float>(InX)), Y(static_cast<float>(InY)), Z(0.0f), W(1.0f)
 	{
 
@@ -185,7 +165,7 @@ public:
 	 *
 	 *   @return 각 요소가 절반인 벡터
 	 */
-	FVector Half() const
+	TVector Half() const
 	{
 		return { X * 0.5f, Y * 0.5f };
 	}
@@ -228,13 +208,24 @@ public:
 		return;
 	}
 	/**
+	 *   벡터를 정규화하는 메소드
+	 *
+	 *   @param VectorValue 정규화할 벡터
+	 *   @return 정규화된 벡터
+	 */
+	static TVector Normalize(TVector VectorValue)
+	{
+		VectorValue.Normalize();
+		return VectorValue;
+	}
+	/**
 	 *   정규화된 벡터를 반환하는 함수
 	 *
 	 *   @return 정규화된 벡터
 	 */
-	FVector NormalizeReturn() const
+	TVector NormalizeReturn() const
 	{
-		FVector Result = *this;
+		TVector Result = *this;
 		Result.Normalize();
 		return Result;
 	}
@@ -246,7 +237,7 @@ public:
 	 *   @param RVector 오른쪽 벡터
 	 *   @return 두 벡터 사이의 각도 (도 단위)
 	 */
-	static float GetVectorAngleDeg(const FVector& LVector, const FVector& RVector)
+	static float GetVectorAngleDeg(const TVector& LVector, const TVector& RVector)
 	{
 		return GetVectorAngleRad(LVector, RVector) * FMath::R2D;
 	}
@@ -257,10 +248,10 @@ public:
 	 *   @param RVector 오른쪽 벡터
 	 *   @return 두 벡터 사이의 각도 (라디안 단위)
 	 */
-	static float GetVectorAngleRad(const FVector& LVector, const FVector& RVector)
+	static float GetVectorAngleRad(const TVector& LVector, const TVector& RVector)
 	{
-		FVector LCopy = LVector;
-		FVector RCopy = RVector;
+		TVector LCopy = LVector;
+		TVector RCopy = RVector;
 
 		LCopy.Normalize();
 		RCopy.Normalize();
@@ -276,9 +267,9 @@ public:
 	 *   @param RVector 오른쪽 벡터
 	 *   @return 두 벡터의 외적 결과
 	 */
-	static FVector Cross(const FVector& LVector, const FVector& RVector)
+	static TVector Cross(const TVector& LVector, const TVector& RVector)
 	{
-		FVector Result;
+		TVector Result;
 
 		Result.X = LVector.Y * RVector.Z - LVector.Z * RVector.Y;
 		Result.Y = LVector.Z * RVector.X - LVector.X * RVector.Z;
@@ -293,7 +284,7 @@ public:
 	 *   @param RVector 오른쪽 벡터
 	 *   @return 두 벡터의 내적 결과
 	 */
-	static float Dot(const FVector& LVector, const FVector& RVector)
+	static float Dot(const TVector& LVector, const TVector& RVector)
 	{
 		float LeftLen = LVector.Length();
 		float RightLen = RVector.Length();
@@ -306,20 +297,9 @@ public:
 	 *   @param other 다른 벡터
 	 *   @return 두 벡터의 내적 결과
 	 */
-	float Dot(const FVector& Other) const
+	float Dot(const TVector& Other) const
 	{
 		return X * Other.X + Y * Other.Y;
-	}
-	/**
-	 *   벡터를 정규화하는 메소드
-	 *
-	 *   @param VectorValue 정규화할 벡터
-	 *   @return 정규화된 벡터
-	 */
-	static FVector Normalize(FVector VectorValue)
-	{
-		VectorValue.Normalize();
-		return VectorValue;
 	}
 	/**
 	 *   주어진 각도를 이용해 단위 벡터를 계산하는 메소드
@@ -327,7 +307,7 @@ public:
 	 *   @param Angle 각도(도) 단위로 표현된 값
 	 *   @return 주어진 각도에 해당하는 단위 벡터
 	 */
-	static FVector AngleToVectorDeg(float Angle)
+	static TVector AngleToVectorDeg(float Angle)
 	{
 		return AngleToVectorRad(Angle * FMath::D2R);
 	}
@@ -337,7 +317,7 @@ public:
 	 *   @param Angle 각도(라디안) 단위로 표현된 값
 	 *   @return 주어진 각도에 해당하는 단위 벡터
 	 */
-	static FVector AngleToVectorRad(float Angle)
+	static TVector AngleToVectorRad(float Angle)
 	{
 		return { cosf(Angle), sinf(Angle) };
 	}
@@ -349,9 +329,9 @@ public:
 	 *   @param Alpha 보간 계수 (0.0f에서 1.0f 사이의 값)
 	 *   @return Alpha에 따라 선형 보간된 벡터
 	 */
-	static FVector Lerp(FVector LVector, FVector RVector, float Alpha)
+	static TVector Lerp(TVector LVector, TVector RVector, float Alpha)
 	{
-		FVector Result;
+		TVector Result;
 		Alpha = FMath::Clamp(Alpha, 0.0f, 1.0f);
 		Result.X = FMath::Lerp(LVector.X, RVector.X, Alpha);
 		Result.Y = FMath::Lerp(LVector.Y, RVector.Y, Alpha);
@@ -364,7 +344,7 @@ public:
 	 *   @param InMatrix 입력 행렬
 	 *   @return 트랜스폼된 벡터
 	 */
-	static FVector TransformVector(const FVector& InVector, const class FMatrix& InMatrix);
+	static TVector TransformVector(const TVector& InVector, const class FMatrix& InMatrix);
 	/**
 	 *   벡터에 이동 변환을 적용하여 트랜스폼을 수행하는 메소드
 	 *
@@ -372,7 +352,7 @@ public:
 	 *   @param InMatrix 입력 행렬
 	 *   @return 이동 변환이 적용된 트랜스폼된 벡터
 	 */
-	static FVector TransformVectorCoord(const FVector& InVector, const class FMatrix& InMatrix);
+	static TVector TransformVectorCoord(const TVector& InVector, const class FMatrix& InMatrix);
 	/**
 	 *   벡터에 이동 변환을 적용하지 않고 트랜스폼을 수행하는 메소드
 	 *
@@ -380,7 +360,7 @@ public:
 	 *   @param InMatrix 입력 행렬
 	 *   @return 이동 변환이 적용되지 않은 트랜스폼된 벡터
 	 */
-	static FVector TransformVectorNormal(const FVector& InVector, const class FMatrix& InMatrix);
+	static TVector TransformVectorNormal(const TVector& InVector, const class FMatrix& InMatrix);
 
 
 	/**
@@ -399,7 +379,7 @@ public:
 	 */
 	void RotationXRad(float Angle)
 	{
-		FVector Copy = *this;
+		TVector Copy = *this;
 		Z = (Copy.Z * cosf(Angle)) - (Copy.Y * sinf(Angle));
 		Y = (Copy.Z * sinf(Angle)) + (Copy.Y * cosf(Angle));
 	}
@@ -409,7 +389,7 @@ public:
 	 *   @param Angle 회전 각도 (도 단위)
 	 *   @return 회전된 벡터
 	 */
-	FVector RotationXDegReturn(float Angle)
+	TVector RotationXDegReturn(float Angle)
 	{
 		return RotationXRadReturn(Angle * FMath::D2R);
 	}
@@ -419,9 +399,9 @@ public:
 	 *   @param Angle 회전 각도 (라디안 단위)
 	 *   @return 회전된 벡터
 	 */
-	FVector RotationXRadReturn(float Angle)
+	TVector RotationXRadReturn(float Angle)
 	{
-		FVector Result = *this;
+		TVector Result = *this;
 		Result.Z = (Z * cosf(Angle)) - (Y * sinf(Angle));
 		Result.Y = (Z * sinf(Angle)) + (Y * cosf(Angle));
 		return Result;
@@ -442,7 +422,7 @@ public:
 	 */
 	void RotationYRad(float Angle)
 	{
-		FVector Copy = *this;
+		TVector Copy = *this;
 		X = (Copy.X * cosf(Angle)) - (Copy.Z * sinf(Angle));
 		Z = (Copy.X * sinf(Angle)) + (Copy.Z * cosf(Angle));
 	}
@@ -452,7 +432,7 @@ public:
 	 *   @param _Angle 회전 각도 (도 단위)
 	 *   @return 회전된 벡터
 	 */
-	FVector RotationYDegReturn(float Angle)
+	TVector RotationYDegReturn(float Angle)
 	{
 		return RotationYRadReturn(Angle * FMath::D2R);
 	}
@@ -462,9 +442,9 @@ public:
 	 *   @param _Angle 회전 각도 (라디안 단위)
 	 *   @return 회전된 벡터
 	 */
-	FVector RotationYRadReturn(float Angle)
+	TVector RotationYRadReturn(float Angle)
 	{
-		FVector Result = *this;
+		TVector Result = *this;
 		Result.X = (X * cosf(Angle)) - (Z * sinf(Angle));
 		Result.Z = (X * sinf(Angle)) + (Z * cosf(Angle));
 		return Result;
@@ -486,7 +466,7 @@ public:
 	 */
 	void RotationZRad(float Angle)
 	{
-		FVector Copy = *this;
+		TVector Copy = *this;
 		X = (Copy.X * cosf(Angle)) - (Copy.Y * sinf(Angle));
 		Y = (Copy.X * sinf(Angle)) + (Copy.Y * cosf(Angle));
 	}
@@ -496,7 +476,7 @@ public:
 	 *   @param _Angle 회전 각도 (도 단위)
 	 *   @return 회전된 벡터
 	 */
-	FVector RotationZDegReturn(float Angle)
+	TVector RotationZDegReturn(float Angle)
 	{
 		return RotationZRadReturn(Angle * FMath::D2R);
 	}
@@ -506,9 +486,9 @@ public:
 	 *   @param _Angle 회전 각도 (라디안 단위)
 	 *   @return 회전된 벡터
 	 */
-	FVector RotationZRadReturn(float Angle)
+	TVector RotationZRadReturn(float Angle)
 	{
-		FVector Result = *this;
+		TVector Result = *this;
 		Result.X = (X * cosf(Angle)) - (Y * sinf(Angle));
 		Result.Y = (X * sinf(Angle)) + (Y * cosf(Angle));
 		return Result;
@@ -518,95 +498,84 @@ public:
 	 *
 	 * @return 생성된 회전 쿼터니언
 	 */
-	FQuat DegAngleToQuaternion()
-	{
-		FQuat Result;
-		/**
-		 *	DirectX 함수 XMQuaternionRotationRollPitchYawFromVector를 사용하여
-		 *	Roll, Pitch, Yaw 오일러 각도 벡터로부터 회전 쿼터니언을 생성
-		 */
-		Result.DirectVector = DirectX::XMQuaternionRotationRollPitchYawFromVector(DirectVector);
-
-		return Result;
-	}
-
+	class FQuat DegAngleToQuaternion();
 
 	/** 오퍼레이션 */
-	ENGINE_API FVector operator*(const class FMatrix& InMatrix) const;
-	ENGINE_API FVector& operator*=(const class FMatrix& InMatrix);
-	FVector operator*(float FloatValue) const
+	ENGINE_API TVector operator*(const class FMatrix& InMatrix) const;
+	ENGINE_API TVector& operator*=(const class FMatrix& InMatrix);
+	TVector operator*(float FloatValue) const
 	{
-		FVector Result;
+		TVector Result;
 		Result.X = X * FloatValue;
 		Result.Y = Y * FloatValue;
 		Result.Z = Z * FloatValue;
 		return Result;
 	}
-	FVector& operator*=(const FVector& Other)
+	TVector& operator*=(const TVector& Other)
 	{
 		X *= Other.X;
 		Y *= Other.Y;
 		Z *= Other.Z;
 		return *this;
 	}
-	FVector& operator*=(float FloatValue)
+	TVector& operator*=(float FloatValue)
 	{
 		X *= FloatValue;
 		Y *= FloatValue;
 		Z *= FloatValue;
 		return *this;
 	}
-	FVector operator/(int IntValue) const
+	TVector operator/(int IntValue) const
 	{
-		FVector Result;
+		TVector Result;
 		Result.X = X / IntValue;
 		Result.Y = Y / IntValue;
 		return Result;
 	}
 
-	FVector operator/(const FVector& Other) const
+	TVector operator/(const TVector& Other) const
 	{
-		FVector Result;
+		TVector Result;
 		Result.X = X / Other.X;
 		Result.Y = Y / Other.Y;
 		return Result;
 	}
-	FVector operator+(const FVector& Other) const
+	TVector operator+(const TVector& Other) const
 	{
-		FVector Result;
+		TVector Result;
 		Result.X = X + Other.X;
 		Result.Y = Y + Other.Y;
 		return Result;
 	}
-	FVector& operator+=(const FVector& Other)
+	TVector& operator+=(const TVector& Other)
 	{
 		X += Other.X;
 		Y += Other.Y;
 		Z += Other.Z;
 		return *this;
 	}
-	FVector operator-(const FVector& Other) const
+	TVector operator-(const TVector& Other) const
 	{
-		FVector Result;
+		TVector Result;
 		Result.X = X - Other.X;
 		Result.Y = Y - Other.Y;
 		return Result;
 	}
-	FVector operator-() const
+	TVector operator-() const
 	{
-		FVector Result;
+		TVector Result;
 		Result.X = -X;
 		Result.Y = -Y;
 		Result.Z = -Z;
 		return Result;
 	}
-	FVector& operator-=(const FVector& Other)
+	TVector& operator-=(const TVector& Other)
 	{
 		X -= Other.X;
 		Y -= Other.Y;
 		return *this;
 	}
-	bool operator==(const FVector& Other) const
+	bool operator==(const TVector& Other) const
 	{
 		return X == Other.X && Y == Other.Y;
 	}
@@ -629,8 +598,46 @@ public:
 	}
 };
 
-using float4 = FVector;
+template<>
+const TVector<float> TVector<float>::NONE = TVector<float>(0.0f, 0.0f, 0.0f, 1.0f);
+template<>
+const TVector<float> TVector<float>::ZERO = TVector<float>(0.0f, 0.0f, 0.0f, 0.0f);
+template<>
+const TVector<float> TVector<float>::LEFT = TVector<float>(-1.0f, 0.0f, 0.0f, 0.0f);;
+template<>
+const TVector<float> TVector<float>::RIGHT = TVector<float>(1.0f, 0.0f, 0.0f, 0.0f);;
+template<>
+const TVector<float> TVector<float>::UP = TVector<float>(0.0f, 1.0f, 0.0f, 0.0f);;
+template<>
+const TVector<float> TVector<float>::DOWN = TVector<float>(0.0f, -1.0f, 0.0f, 0.0f);;
+template<>
+const TVector<float> TVector<float>::FORWARD = TVector<float>(0.0f, 0.0f, 1.0f, 0.0f);;
+template<>
+const TVector<float> TVector<float>::BACK = TVector<float>(0.0f, 0.0f, -1.0f, 0.0f);;
 
+class FQuat
+{
+public:
+	union
+	{
+		struct
+		{
+			float X;
+			float Y;
+			float Z;
+			float W;
+		};
+		float Arr2D[1][4];
+		float Arr1D[4];
+		// 다이렉트 simd 연산 전용 벡터.
+		DirectX::XMVECTOR DirectVector;
+	};
+	TVector<float> QuaternionToEulerDeg() const;
+	TVector<float> QuaternionToEulerRad() const;
+};
+
+using FVector = TVector<float>;
+using float4 = TVector<float>;
 
 /**
  *	Matrix 클래스
