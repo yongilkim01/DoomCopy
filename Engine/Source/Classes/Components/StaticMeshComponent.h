@@ -22,17 +22,7 @@ public:
 	UStaticMeshComponent& operator=(UStaticMeshComponent&& Other) noexcept = delete;
 
 	ENGINE_API void SetModel(std::string_view ModelName);
-
-	/** obj 파일 로드 메소드 */
-	ENGINE_API void InitObjFile(std::string_view DirectoryPath, std::string_view ObjName, std::string_view NewObjPath, std::string_view NewMtlPath);
-	bool LoadModel(std::string_view _objPath, std::string_view _mtlPath);
-	void ProcessNode(aiNode* node, const aiScene* scene);
-	void ProcessMesh(aiMesh* mesh, const aiScene* scene);
-	std::vector<TEXTURE> LoadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName, const aiScene* scene);
-	ID3D11ShaderResourceView* LoadEmbeddedTexture(const aiTexture* embeddedTexture);
-
-	std::vector<AiMesh> Meshes;
-	std::vector<TEXTURE> Textures;
+	//ENGINE_API void SetModelExceptIndex(std::string_view ModelName, std::vector)
 
 protected:
 	/** UObject 상속 메소드 */
@@ -41,16 +31,7 @@ protected:
 	/** UPrimitiveComponent 상속 메소드 */
 	ENGINE_API virtual void Render(UCameraComponent* CameraComponent, float DeltaTime) override;
 
-	void InitShader();
-
 private:
-	std::string ObjName = "";
-	std::string ObjPath = "";
-	std::string MtlPath = "";
-	std::string Directory = "";
-
-	std::vector<std::shared_ptr<UStaticMesh>> StaticMeshVector;
-	std::map<int, std::shared_ptr<UTexture>> TextureMap;
 	std::shared_ptr<UStaticMesh> StaticMesh = nullptr;
 
 	int MeshCount = 0;
