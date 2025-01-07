@@ -167,6 +167,10 @@ public:
 	{
 		return bAbsolute;
 	}
+	FVector GetWorldScale3D()
+	{
+		return Transform.WorldScale;
+	}
 
 protected:
 	ENGINE_API void BeginPlay() override;

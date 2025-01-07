@@ -19,10 +19,15 @@ public:
 
 	ENGINE_API virtual void BeginPlay() override;
 
+	ENGINE_API bool CollisionCheck(std::string_view _OtherName, std::vector<UShapeComponent*>& ShapeVector);
+
 	/** °Ù, ¼Â ¸Þ¼Òµå */
 	ENGINE_API std::string GetCollisionProfileName() { return ProfileName; }
 	ENGINE_API void SetCollisionProfileName(std::string_view NewProfileName);
-
+	void SetCollisionType(ECollisionType NewCollisionType)
+	{
+		CollisionType = NewCollisionType;
+	}
 protected:
 
 private:

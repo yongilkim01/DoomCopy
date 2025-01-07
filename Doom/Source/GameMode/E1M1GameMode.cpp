@@ -46,7 +46,7 @@ AE1M1GameMode::AE1M1GameMode()
 		//Camera->AddActorLocation({ 10.0f, 0.0f, 0.0f });
 		//Camera->AddActorRelativeLocation({ 0.0f, 0.0f, -500.0f });
 		Camera->GetCameraComponent()->SetZSort(0, true);
-		Camera->AttachToActor(DoomGuy.get());
+		//Camera->AttachToActor(DoomGuy.get());
 	}
 
 	UEngineGUI::CreateGUIWindow<E1M1DebugWindow>("E1M1DebugWindow");
@@ -61,4 +61,37 @@ void AE1M1GameMode::Tick(float DeltaTime)
 	AActor::Tick(DeltaTime);
 
 	//UEngineDebug::OutPutString(Camera->ScreenMouseLocationToWorldLocation().ToString());
+
+	if (UEngineInput::IsPress('A'))
+	{
+		Camera->AddActorLocation(FVector{ -2000.0f * DeltaTime, 0.0f, 0.0f });
+	}
+	if (UEngineInput::IsPress('D'))
+	{
+		Camera->AddActorLocation(FVector{ 2000.0f * DeltaTime, 0.0f, 0.0f });
+	}
+	if (UEngineInput::IsPress('W'))
+	{
+		Camera->AddActorLocation(FVector{ 0.0f, 0.0f, 2000.0f * DeltaTime, 0.0f });
+	}
+	if (UEngineInput::IsPress('S'))
+	{
+		Camera->AddActorLocation(FVector{ 0.0f, 0.0f, -2000.0f * DeltaTime, 0.0f });
+	}
+	if (UEngineInput::IsPress(VK_UP))
+	{
+		Camera->AddActorLocation(FVector{ 0.0f, 2000.0f * DeltaTime, 0.0f, 0.0f });
+	}
+	if (UEngineInput::IsPress(VK_DOWN))
+	{
+		Camera->AddActorLocation(FVector{ 0.0f, -2000.0f * DeltaTime, 0.0f, 0.0f });
+	}
+	if (UEngineInput::IsPress(VK_LEFT))
+	{
+		Camera->AddActorRotation(FVector{ -20.0f * DeltaTime, 0.0f, 0.0f });
+	}
+	if (UEngineInput::IsPress(VK_RIGHT))
+	{
+		Camera->AddActorRotation(FVector{ 20.0f * DeltaTime, 0.0f, 0.0f });
+	}
 }

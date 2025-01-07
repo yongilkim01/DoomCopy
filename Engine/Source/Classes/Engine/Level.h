@@ -14,6 +14,8 @@ class ACameraActor;
  */
 class ULevel : public UObject
 {
+	friend UShapeComponent;
+
 public:
 	/** 持失切, 社瑚切 */
 	ENGINE_API ULevel();

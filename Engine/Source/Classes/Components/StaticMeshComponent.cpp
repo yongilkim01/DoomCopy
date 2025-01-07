@@ -29,6 +29,20 @@ void UStaticMeshComponent::SetModel(std::string_view ModelName)
 
 	for (int i = 0; i < StaticMesh->GetStaticMeshCount(); i++)
 	{
+		if (i == 12 ||
+			i == 16 ||
+			i == 20 ||
+			i == 23 ||
+			i == 35 ||
+			i == 37 ||
+			i == 38 ||
+			i == 39 ||
+			i == 42 ||
+			i == 46 ||
+			i == 45 ||
+			i == 52 ||
+			i == 53)
+		{
 			CreateRenderUnit();
 			SetMesh(StaticMesh->GetMeshNameByIndex(i), MeshCount);
 			SetMaterial(StaticMesh->GetMeshNameByIndex(i), MeshCount);
@@ -38,5 +52,6 @@ void UStaticMeshComponent::SetModel(std::string_view ModelName)
 				GetRenderUnit(MeshCount).SetTexture("ImageTexture", StaticMesh->GetTextureNameByIndex(i));
 			}
 			MeshCount++;
+		}
 	}
 }
