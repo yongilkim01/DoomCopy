@@ -29,7 +29,7 @@ public:
 	virtual void LevelChangeStart() {}
 	virtual void LevelChangeEnd() {}
 
-	void AttachToActor(AActor* Parent);
+	ENGINE_API void AttachToActor(AActor* Parent);
 
 	template<typename ComponentType>
 	inline std::shared_ptr<ComponentType> CreateDefaultSubObject()
@@ -75,7 +75,7 @@ public:
 	ENGINE_API FVector GetActorRightVector();
 	ENGINE_API FVector GetActorForwardVector();
 
-	void SetActorLocation(const FVector& NewLocation)
+	ENGINE_API void SetActorLocation(const FVector& NewLocation)
 	{
 		if (nullptr == RootComponent)
 		{
@@ -83,7 +83,7 @@ public:
 		}
 		RootComponent->SetWorldLocation(NewLocation);
 	}
-	void AddActorLocation(const FVector& DeltaLocation)
+	ENGINE_API void AddActorLocation(const FVector& DeltaLocation)
 	{
 		if (nullptr == RootComponent)
 		{
@@ -91,7 +91,7 @@ public:
 		}
 		RootComponent->AddWorldLocation(DeltaLocation);
 	}
-	void SetActorRotation(const FVector& NewRotation)
+	ENGINE_API void SetActorRotation(const FVector& NewRotation)
 	{
 		if (nullptr == RootComponent)
 		{
@@ -100,7 +100,7 @@ public:
 
 		RootComponent->SetWorldRotation(NewRotation);
 	}
-	void AddActorRotation(const FVector& DeltaRotation)
+	ENGINE_API void AddActorRotation(const FVector& DeltaRotation)
 	{
 		if (nullptr == RootComponent)
 		{
@@ -110,16 +110,16 @@ public:
 		RootComponent->AddWorldRotation(DeltaRotation);
 	}
 
-	void SetActorRelativeScale3D(const FVector& Scale)
+	ENGINE_API void SetActorRelativeScale3D(const FVector& Scale)
 	{
 		if (nullptr == RootComponent)
 		{
 			return;
 		}
 
-		RootComponent->SetRelativeScale3D(Scale);
+		RootComponent->SetRelativeScale3D(Scale); 
 	}
-	void AddActorRelativeLocation(const FVector& DeltaLocation)
+	ENGINE_API void AddActorRelativeLocation(const FVector& DeltaLocation)
 	{
 		if (nullptr == RootComponent)
 		{
@@ -128,29 +128,29 @@ public:
 		RootComponent->AddRelativeLocation(DeltaLocation);
 	}
 
-	ULevel* GetWorld()
+	ENGINE_API ULevel* GetWorld()
 	{
 		return World;
 	}
 
-	std::shared_ptr<USceneComponent> GetRootComponent() const
+	ENGINE_API std::shared_ptr<USceneComponent> GetRootComponent() const
 	{
 		return RootComponent;
 	}
-	void SetRootComponent(const std::shared_ptr<USceneComponent> NewRootComponent)
+	ENGINE_API void SetRootComponent(const std::shared_ptr<USceneComponent> NewRootComponent)
 	{
 		RootComponent = NewRootComponent;
 	}
-	FTransform GetActorTransform()
+	ENGINE_API FTransform GetActorTransform()
 	{
 		if (nullptr == RootComponent)
 		{
 			return FTransform();
 		}
-		return RootComponent->GetComponentTransformRef();
+		return RootComponent->GetComponentTransform();
 	}
 	
-	FVector GetActorLocation()
+	ENGINE_API FVector GetActorLocation()
 	{
 		if (nullptr == RootComponent)
 		{

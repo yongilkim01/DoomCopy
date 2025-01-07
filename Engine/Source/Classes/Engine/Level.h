@@ -4,6 +4,7 @@
 #include "WorldPartition/DebugHelpers.h"
 //#include "GameFramework/Actor.h"
 
+class UShapeComponent;
 class UPrimitiveComponent;
 class AActor;
 class ACameraActor;
@@ -30,7 +31,11 @@ public:
 	void Tick(float DeltaTime);
 	void Render(float DeltaTime);
 
-	void ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_ptr<class UPrimitiveComponent> Renderer);
+	ENGINE_API void ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_ptr<class UPrimitiveComponent> Renderer);
+
+	ENGINE_API void CreateCollisionProfileName(std::string_view ProfileName);
+	ENGINE_API void ChangeCollisionProfileName(std::string_view ProfileName, std::string_view PrevProfileName, std::shared_ptr<UShapeComponent> ShapeComponent);
+	
 	template<typename ActorType>
 	std::shared_ptr<ActorType> SpawnActor()
 	{
@@ -85,6 +90,6 @@ private:
 	std::list<std::shared_ptr<AActor>> AllActorList;
 	std::map<int, std::list<std::shared_ptr<UPrimitiveComponent>>> RendererMap;
 	std::map<int, std::shared_ptr<ACameraActor>> Cameraes;
-	//std::map<std::string_view, std::list<std::shared_ptr<
+	std::map<std::string_view, std::list<std::shared_ptr<UShapeComponent>>> ShapeCompMap;
 
 };

@@ -1,6 +1,7 @@
 #pragma once
 #include <GameFramework/Actor.h>
 
+class ACameraActor;
 class UStaticMeshComponent;
 class UShapeComponent;
 
@@ -26,7 +27,11 @@ protected:
 	void Tick(float DeltaTime) override;
 
 private:
+	std::shared_ptr<ACameraActor> Camera = nullptr;
+
 	std::shared_ptr<UStaticMeshComponent> MeshComponent = nullptr;
 	std::shared_ptr<UShapeComponent> ShapeComponent = nullptr;
+	
+	FVector PrevMouseLocation = FVector::ZERO;
 };
 

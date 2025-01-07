@@ -39,6 +39,15 @@ FVector ACameraActor::ScreenMouseLocationToWorldLocationWithOutLocation()
 	return FVector();
 }
 
+FVector ACameraActor::GetMouseLocation()
+{
+	FTransform RendererTransform = GetActorTransform();
+
+	RendererTransform.WVP = RendererTransform.World * RendererTransform.View * RendererTransform.Projection;
+
+	return RendererTransform.WorldLocation;
+}
+
 void ACameraActor::BeginPlay()
 {
 	AActor::BeginPlay();

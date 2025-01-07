@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "E1M1GameMode.h"
 
+#include "DoomGuy/DoomGuy.h"
 #include "Actor/Round1/E1M1Map.h"
 
 #include <Classes/Camera/CameraActor.h>
@@ -25,14 +26,16 @@ public:
 		std::shared_ptr<ACameraActor> Camera = _Level->GetMainCamera();
 
 		;
-		ImGui::Text("Pos : %s", Camera->GetActorLocation().ToString().c_str());
+		ImGui::Text("Pos : %s", Camera->GetMouseLocation().ToString().c_str());
 	}
 };
 
-
 AE1M1GameMode::AE1M1GameMode()
 {
-
+	{
+		DoomGuy = GetWorld()->SpawnActor<ADoomGuy>();
+		DoomGuy->SetActorLocation(FVector{ -1042.0f, 14.0f, 3548.0f });
+	}
 	{
 		E1M1Map = GetWorld()->SpawnActor<AE1M1Map>();
 		E1M1Map->SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
@@ -40,9 +43,10 @@ AE1M1GameMode::AE1M1GameMode()
 	}
 	{
 		Camera = GetWorld()->GetMainCamera();
-		Camera->AddActorLocation({ 10.0f, 0.0f, 0.0f });
-		Camera->AddActorRelativeLocation({ 0.0f, 0.0f, -500.0f });
+		//Camera->AddActorLocation({ 10.0f, 0.0f, 0.0f });
+		//Camera->AddActorRelativeLocation({ 0.0f, 0.0f, -500.0f });
 		Camera->GetCameraComponent()->SetZSort(0, true);
+		Camera->AttachToActor(DoomGuy.get());
 	}
 
 	UEngineGUI::CreateGUIWindow<E1M1DebugWindow>("E1M1DebugWindow");
@@ -57,38 +61,4 @@ void AE1M1GameMode::Tick(float DeltaTime)
 	AActor::Tick(DeltaTime);
 
 	//UEngineDebug::OutPutString(Camera->ScreenMouseLocationToWorldLocation().ToString());
-
-
-	if (UEngineInput::IsPress('A'))
-	{
-		Camera->AddActorLocation(FVector{ -2000.0f * DeltaTime, 0.0f, 0.0f });
-	}
-	if (UEngineInput::IsPress('D'))
-	{
-		Camera->AddActorLocation(FVector{ 2000.0f * DeltaTime, 0.0f, 0.0f });
-	}
-	if (UEngineInput::IsPress('W'))
-	{
-		Camera->AddActorLocation(FVector{ 0.0f, 0.0f, 2000.0f * DeltaTime, 0.0f });
-	}
-	if (UEngineInput::IsPress('S'))
-	{
-		Camera->AddActorLocation(FVector{ 0.0f, 0.0f, -2000.0f * DeltaTime, 0.0f });
-	}
-	if (UEngineInput::IsPress(VK_UP))
-	{
-		Camera->AddActorLocation(FVector{ 0.0f, 2000.0f * DeltaTime, 0.0f, 0.0f });
-	}	
-	if (UEngineInput::IsPress(VK_DOWN))
-	{
-		Camera->AddActorLocation(FVector{ 0.0f, -2000.0f * DeltaTime, 0.0f, 0.0f });
-	}
-	if (UEngineInput::IsPress(VK_LEFT))
-	{
-		Camera->AddActorRotation(FVector{ -20.0f * DeltaTime, 0.0f, 0.0f });
-	}
-	if (UEngineInput::IsPress(VK_RIGHT))
-	{
-		Camera->AddActorRotation(FVector{ 20.0f * DeltaTime, 0.0f, 0.0f });
-	}
 }

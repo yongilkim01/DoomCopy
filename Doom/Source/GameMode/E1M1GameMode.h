@@ -1,6 +1,7 @@
 #pragma once
 #include "GameFramework/Actor.h"
 
+class ADoomGuy;
 class ACameraActor;
 class AE1M1Map;
 
@@ -23,7 +24,8 @@ public:
 protected:
 
 private:
-	std::shared_ptr<ACameraActor> Camera;
-	std::shared_ptr<AE1M1Map> E1M1Map;
+	std::shared_ptr<ADoomGuy> DoomGuy = nullptr;
+	std::shared_ptr<ACameraActor> Camera = nullptr;
+	std::shared_ptr<AE1M1Map> E1M1Map = nullptr;
 };
 

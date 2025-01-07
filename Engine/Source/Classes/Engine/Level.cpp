@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "Level.h"
 #include "GameFramework/Actor.h"
+#include "Classes/Components/ShapeComponent.h"
 #include "Classes/Components/PrimitiveComponent.h"
 #include "Rendering/EngineGraphicDevice.h"
 
@@ -93,8 +94,32 @@ void ULevel::ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_
 	if (false == Cameraes.contains(CameraOrder))
 	{
 		MSGASSERT("존재하지 않는 카메라에 랜더러를 집어넣으려고 했습니다.");
+		return;
 	}
 	std::shared_ptr<ACameraActor> Camera = Cameraes[CameraOrder];
 	Camera->GetCameraComponent()->ChangeRenderGroup(PrevGroupOrder, Renderer);
 
+}
+
+void ULevel::CreateCollisionProfileName(std::string_view ProfileName)
+{
+	ShapeCompMap[ProfileName];
+}
+
+void ULevel::ChangeCollisionProfileName(std::string_view ProfileName, std::string_view PrevProfileName, std::shared_ptr<UShapeComponent> ShapeComponent)
+{
+	if (false == ShapeCompMap.contains(ProfileName))
+	{
+		MSGASSERT("존재하지 않는 콜리전 그룹입니다");
+		return;
+	}
+
+	if (PrevProfileName != "")
+	{
+		std::list<std::shared_ptr<UShapeComponent>>& PrevShapeCompList = ShapeCompMap[PrevProfileName];
+		PrevShapeCompList.remove(ShapeComponent);
+	}
+
+	std::list<std::shared_ptr<UShapeComponent>>& ShapeCompList = ShapeCompMap[ProfileName];
+	ShapeCompList.push_back(ShapeComponent);
 }
