@@ -68,7 +68,7 @@ void ULevel::Render(float DeltaTime)
 
 	if (true == UEngineWindow::IsApplicationOn())
 	{
-		UEngineGUI::GUIRender();
+		UEngineGUI::GUIRender(this);
 	}
 
 	UEngineCore::GetDevice().RenderEnd();

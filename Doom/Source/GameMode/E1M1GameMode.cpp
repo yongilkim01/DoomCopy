@@ -16,11 +16,16 @@
 class E1M1DebugWindow : public UEngineGUIWindow
 {
 public:
-	void OnGUI() override
+	void OnGUI(ULevel* _Level) override
 	{
 		ImGui::Button("WindowButton");
 		ImGui::SameLine(); // ÇÑ°£ ¶ç±â
 		ImGui::Text("test");
+
+		std::shared_ptr<ACameraActor> Camera = _Level->GetMainCamera();
+
+		;
+		ImGui::Text("Pos : %s", Camera->GetActorLocation().ToString().c_str());
 	}
 };
 

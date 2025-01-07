@@ -18,7 +18,7 @@ public:
 	UEngineGUIWindow& operator=(UEngineGUIWindow&& Other) noexcept = delete;
 
 	virtual void BeginPlay() {}
-	virtual void OnGUI() = 0;
+	virtual void OnGUI(ULevel* _Level) = 0;
 
 protected:
 

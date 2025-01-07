@@ -141,13 +141,22 @@ public:
 	{
 		RootComponent = NewRootComponent;
 	}
-	FTransform GetActorLoaction()
+	FTransform GetActorTransform()
 	{
 		if (nullptr == RootComponent)
 		{
 			return FTransform();
 		}
 		return RootComponent->GetComponentTransformRef();
+	}
+	
+	FVector GetActorLocation()
+	{
+		if (nullptr == RootComponent)
+		{
+			return FVector();
+		}
+		return RootComponent->Transform.WorldLocation;
 	}
 
 protected:

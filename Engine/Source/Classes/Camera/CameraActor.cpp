@@ -25,7 +25,7 @@ FVector ACameraActor::ScreenMouseLocationToWorldLocation()
 
 	Mat.ViewPort(Size.X, Size.Y, 0.0f, 0.0f, 0.0f, 1.0f);
 
-	FTransform CameraTransform = GetActorLoaction();
+	FTransform CameraTransform = GetActorTransform();
 
 	MousePos = MousePos * Mat.InverseReturn();
 	MousePos = MousePos * CameraTransform.Projection.InverseReturn();
