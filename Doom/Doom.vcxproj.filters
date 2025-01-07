@@ -16,9 +16,6 @@
     <Filter Include="1_GameMode\0_Title">
       <UniqueIdentifier>{2068ac7d-2712-4ada-877f-9e1c362b356e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="1_GameMode\1_Round1">
-      <UniqueIdentifier>{4c6df9d0-05e7-4298-b333-2bb9e2e1a9a9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="2_Actor">
       <UniqueIdentifier>{a9e83b51-d9fd-4b93-93e5-40a2acbaa453}</UniqueIdentifier>
     </Filter>
@@ -31,17 +28,14 @@
     <Filter Include="1_GameMode\2_Round1Score">
       <UniqueIdentifier>{f668ac9e-e991-40a3-811a-56e37993a94b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shaders">
-      <UniqueIdentifier>{ce67c0e6-1e66-44cf-8dcb-4d6620729cd0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="2_Actor\1_Round1">
-      <UniqueIdentifier>{2548844e-bdba-4fed-8131-a72c2db43c59}</UniqueIdentifier>
-    </Filter>
     <Filter Include="4_Utils">
       <UniqueIdentifier>{080d5ac3-8e3d-4fe7-a700-f17e76e1cc19}</UniqueIdentifier>
     </Filter>
-    <Filter Include="4_Utils\DrawActor">
-      <UniqueIdentifier>{04c499f2-c3a0-4b72-a40e-97e0c496334b}</UniqueIdentifier>
+    <Filter Include="1_GameMode\1_E1M1">
+      <UniqueIdentifier>{4c6df9d0-05e7-4298-b333-2bb9e2e1a9a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Actor\1_E1M1">
+      <UniqueIdentifier>{2548844e-bdba-4fed-8131-a72c2db43c59}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -54,8 +48,8 @@
     <ClCompile Include="Source\Core\DoomCore.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameMode\Round1GameMode.cpp">
-      <Filter>1_GameMode\1_Round1</Filter>
+    <ClCompile Include="Source\GameMode\E1M1GameMode.cpp">
+      <Filter>1_GameMode\1_E1M1</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameMode\TitleGameMode.cpp">
       <Filter>1_GameMode\0_Title</Filter>
@@ -66,8 +60,8 @@
     <ClCompile Include="Source\Componennts\DoomMapComponent.cpp">
       <Filter>3_Components</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Actor\Round1\DoomMap.cpp">
-      <Filter>2_Actor\1_Round1</Filter>
+    <ClCompile Include="Source\Actor\Round1\E1M1Map.cpp">
+      <Filter>2_Actor\1_E1M1</Filter>
     </ClCompile>
     <ClCompile Include="Source\Componennts\LineComponent.cpp">
       <Filter>3_Components</Filter>
@@ -75,25 +69,10 @@
     <ClCompile Include="Source\Utils\Wad.cpp">
       <Filter>4_Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utils\DrawLineActor.cpp">
-      <Filter>4_Utils\DrawActor</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\DrawSquareActor.cpp">
-      <Filter>4_Utils\DrawActor</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Utils\Lump.cpp">
       <Filter>4_Utils</Filter>
     </ClCompile>
     <ClCompile Include="Source\Utils\WadMap.cpp">
-      <Filter>4_Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\DoomMesh.cpp">
-      <Filter>4_Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\DoomVertexBuffer.cpp">
-      <Filter>4_Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\DoomIndexBuffer.cpp">
       <Filter>4_Utils</Filter>
     </ClCompile>
   </ItemGroup>
@@ -107,8 +86,8 @@
     <ClInclude Include="Source\Core\DoomCore.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameMode\Round1GameMode.h">
-      <Filter>1_GameMode\1_Round1</Filter>
+    <ClInclude Include="Source\GameMode\E1M1GameMode.h">
+      <Filter>1_GameMode\1_E1M1</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameMode\TitleGameMode.h">
       <Filter>1_GameMode\0_Title</Filter>
@@ -119,8 +98,8 @@
     <ClInclude Include="Source\Componennts\DoomMapComponent.h">
       <Filter>3_Components</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Actor\Round1\DoomMap.h">
-      <Filter>2_Actor\1_Round1</Filter>
+    <ClInclude Include="Source\Actor\Round1\E1M1Map.h">
+      <Filter>2_Actor\1_E1M1</Filter>
     </ClInclude>
     <ClInclude Include="Source\Componennts\LineComponent.h">
       <Filter>3_Components</Filter>
@@ -128,31 +107,11 @@
     <ClInclude Include="Source\Utils\Wad.h">
       <Filter>4_Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Utils\DrawSquareActor.h">
-      <Filter>4_Utils\DrawActor</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Utils\DrawLineActor.h">
-      <Filter>4_Utils\DrawActor</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Utils\Lump.h">
       <Filter>4_Utils</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utils\WadMap.h">
       <Filter>4_Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Utils\DoomMesh.h">
-      <Filter>4_Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Utils\DoomVertexBuffer.h">
-      <Filter>4_Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Utils\DoomIndexBuffer.h">
-      <Filter>4_Utils</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Shaders\DoomMapShader.fx">
-      <Filter>Shaders</Filter>
-    </FxCompile>
   </ItemGroup>
 </Project>

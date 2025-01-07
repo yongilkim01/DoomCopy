@@ -85,5 +85,6 @@ private:
 	std::list<std::shared_ptr<AActor>> AllActorList;
 	std::map<int, std::list<std::shared_ptr<UPrimitiveComponent>>> RendererMap;
 	std::map<int, std::shared_ptr<ACameraActor>> Cameraes;
+	//std::map<std::string_view, std::list<std::shared_ptr<
 
 };

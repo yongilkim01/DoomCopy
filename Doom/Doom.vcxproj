@@ -149,55 +149,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Actor\Round1\DoomMap.cpp" />
+    <ClCompile Include="Source\Actor\Round1\E1M1Map.cpp" />
     <ClCompile Include="Source\Actor\TitleLogo.cpp" />
     <ClCompile Include="Source\Componennts\DoomMapComponent.cpp" />
     <ClCompile Include="Source\Componennts\LineComponent.cpp" />
     <ClCompile Include="Source\Core\DoomCore.cpp" />
     <ClCompile Include="Source\DoomGuy\DoomGuy.cpp" />
-    <ClCompile Include="Source\GameMode\Round1GameMode.cpp" />
+    <ClCompile Include="Source\GameMode\E1M1GameMode.cpp" />
     <ClCompile Include="Source\GameMode\TitleGameMode.cpp" />
     <ClCompile Include="Source\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Source\Utils\DoomIndexBuffer.cpp" />
-    <ClCompile Include="Source\Utils\DoomMesh.cpp" />
-    <ClCompile Include="Source\Utils\DoomVertexBuffer.cpp" />
     <ClCompile Include="Source\Utils\WadMap.cpp" />
-    <ClCompile Include="Source\Utils\DrawLineActor.cpp" />
-    <ClCompile Include="Source\Utils\DrawSquareActor.cpp" />
     <ClCompile Include="Source\Utils\Lump.cpp" />
     <ClCompile Include="Source\Utils\Wad.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Actor\Round1\DoomMap.h" />
+    <ClInclude Include="Source\Actor\Round1\E1M1Map.h" />
     <ClInclude Include="Source\Actor\TitleLogo.h" />
     <ClInclude Include="Source\Componennts\DoomMapComponent.h" />
     <ClInclude Include="Source\Componennts\LineComponent.h" />
     <ClInclude Include="Source\Core\DoomCore.h" />
     <ClInclude Include="Source\DoomGuy\DoomGuy.h" />
-    <ClInclude Include="Source\GameMode\Round1GameMode.h" />
+    <ClInclude Include="Source\GameMode\E1M1GameMode.h" />
     <ClInclude Include="Source\GameMode\TitleGameMode.h" />
     <ClInclude Include="Source\pch.h" />
-    <ClInclude Include="Source\Utils\DoomIndexBuffer.h" />
-    <ClInclude Include="Source\Utils\DoomMesh.h" />
-    <ClInclude Include="Source\Utils\DoomVertexBuffer.h" />
     <ClInclude Include="Source\Utils\WadMap.h" />
-    <ClInclude Include="Source\Utils\DrawLineActor.h" />
-    <ClInclude Include="Source\Utils\DrawSquareActor.h" />
     <ClInclude Include="Source\Utils\Lump.h" />
     <ClInclude Include="Source\Utils\Wad.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Shaders\DoomMapShader.fx">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
-      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VS</EntryPointName>
-    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

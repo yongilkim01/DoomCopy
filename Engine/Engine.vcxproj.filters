@@ -321,6 +321,9 @@
     <ClCompile Include="Source\Core\Math\EngineRandom.cpp">
       <Filter>1_Core\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Classes\Components\ShapeComponent.cpp">
+      <Filter>2_Classes\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
@@ -762,6 +765,9 @@
     </ClInclude>
     <ClInclude Include="Source\Core\Math\EngineRandom.h">
       <Filter>1_Core\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Components\ShapeComponent.h">
+      <Filter>2_Classes\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -7,18 +7,18 @@ class UShapeComponent;
 /**
  *	설명
  */
-class ADoomGuy : public AActor
+class AE1M1Map : public AActor
 {
 public:
 	/** 생성자, 소멸자 */
-	ADoomGuy();
-	~ADoomGuy();
+	AE1M1Map();
+	~AE1M1Map();
 
 	/** 객체 값 복사 방지 */
-	ADoomGuy(const ADoomGuy& Other) = delete;
-	ADoomGuy(ADoomGuy&& Other) noexcept = delete;
-	ADoomGuy& operator=(const ADoomGuy& Other) = delete;
-	ADoomGuy& operator=(ADoomGuy&& Other) noexcept = delete;
+	AE1M1Map(const AE1M1Map& Other) = delete;
+	AE1M1Map(AE1M1Map&& Other) noexcept = delete;
+	AE1M1Map& operator=(const AE1M1Map& Other) = delete;
+	AE1M1Map& operator=(AE1M1Map&& Other) noexcept = delete;
 
 protected:
 	/** 액터 상속 메소드 */

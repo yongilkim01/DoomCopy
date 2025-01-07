@@ -1,15 +1,11 @@
 #include "pch.h"
-#include "DoomGuy.h"
+#include "E1M1Map.h"
 
-#include <Classes/Components/PaperSpriteComponent.h>
 #include <Classes/Components/StaticMeshComponent.h>
 #include <Classes/Components/ShapeComponent.h>
-
 #include <Core/Misc/DirectoryHelper.h>
 
-#include <Input/EngineInput.h>
-
-ADoomGuy::ADoomGuy()
+AE1M1Map::AE1M1Map()
 {
 	std::shared_ptr<USceneComponent> Default = CreateDefaultSubObject<USceneComponent>();
 	RootComponent = Default;
@@ -31,16 +27,16 @@ ADoomGuy::ADoomGuy()
 	MeshComponent->SetModel("doom_E1M1");
 }
 
-ADoomGuy::~ADoomGuy()
+AE1M1Map::~AE1M1Map()
 {
 }
 
-void ADoomGuy::BeginPlay()
+void AE1M1Map::BeginPlay()
 {
 	AActor::BeginPlay();
 }
 
-void ADoomGuy::Tick(float DeltaTime)
+void AE1M1Map::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
 }

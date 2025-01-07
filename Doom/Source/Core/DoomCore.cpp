@@ -2,7 +2,7 @@
 #include "DoomCore.h"
 
 #include "GameMode/TitleGameMode.h"
-#include "GameMode/Round1GameMode.h"
+#include "GameMode/E1M1GameMode.h"
 
 #include <Core/Math/EngineMath.h>
 #include <Core/EngineCore.h>
@@ -78,8 +78,8 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 	}
 
 	//UEngineCore::CreateLevel<ATitleGameMode, AActor>("TitleLevel");
-	UEngineCore::CreateLevel<ARound1GameMode, AActor>("Round1");
-	UEngineCore::OpenLevel("Round1");
+	UEngineCore::CreateLevel<AE1M1GameMode, AActor>("E1M1Level");
+	UEngineCore::OpenLevel("E1M1Level");
 }
 
 void UDoomCore::EngineTick(float DeltaTime)

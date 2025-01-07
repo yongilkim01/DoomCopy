@@ -32,6 +32,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Source\Classes\Components\ShapeComponent.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Source\Classes\Components\StaticMeshComponent.cpp">
       <SubType>
       </SubType>
@@ -120,6 +124,10 @@
     <ClInclude Include="Source\Classes\Components\PaperSpriteComponent.h" />
     <ClInclude Include="Source\Classes\Components\PrimitiveComponent.h" />
     <ClInclude Include="Source\Classes\Components\SceneComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Classes\Components\ShapeComponent.h">
       <SubType>
       </SubType>
     </ClInclude>

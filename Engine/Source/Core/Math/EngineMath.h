@@ -13,6 +13,10 @@ enum class ECollisionType
 	Point,
 	Rect,
 	CirCle,
+	OBB2D,
+	Sphere,
+	AABB,
+	OBB,
 	Max
 };
 
