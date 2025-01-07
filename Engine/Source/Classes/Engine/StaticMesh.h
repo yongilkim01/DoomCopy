@@ -40,7 +40,7 @@ public:
 	UStaticMesh& operator=(const UStaticMesh& Other) = delete;
 	UStaticMesh& operator=(UStaticMesh&& Other) noexcept = delete;
 
-	ENGINE_API static std::shared_ptr<UStaticMesh> Create(std::string_view FileName);
+	ENGINE_API static std::shared_ptr<UStaticMesh> Create(std::string_view DirectoryName, std::string_view FileName);
 
 	bool LoadModel(std::string_view LoadObjPath);
 	void ProcessNode(aiNode* node, const aiScene* scene);
@@ -59,7 +59,7 @@ public:
 	std::shared_ptr<UMesh> GetMeshByIndex(int Index);
 
 protected:
-	void CreateAsset(std::string_view FileName);
+	void CreateAsset(std::string_view DirectoryName, std::string_view FileName);
 
 private:
 	std::vector<FStaticMeshData> StaticMeshDataVector;

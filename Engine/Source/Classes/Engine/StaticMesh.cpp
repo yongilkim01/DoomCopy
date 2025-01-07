@@ -25,7 +25,7 @@ UStaticMesh::~UStaticMesh()
 {
 }
 
-std::shared_ptr<UStaticMesh> UStaticMesh::Create(std::string_view FileName)
+std::shared_ptr<UStaticMesh> UStaticMesh::Create(std::string_view DirectoryName, std::string_view FileName)
 {
 	std::string UpperName = ToUpperName(FileName);
 
@@ -37,7 +37,7 @@ std::shared_ptr<UStaticMesh> UStaticMesh::Create(std::string_view FileName)
 
 	std::shared_ptr<UStaticMesh> NewAsset = std::make_shared<UStaticMesh>();
 	AddAsset<UStaticMesh>(NewAsset, FileName, "");
-	NewAsset->CreateAsset(FileName);
+	NewAsset->CreateAsset(DirectoryName, FileName);
 
 	return NewAsset;
 }
@@ -63,7 +63,7 @@ std::shared_ptr<UMesh> UStaticMesh::GetMeshByIndex(int Index)
 	return StaticMeshDataVector[Index].Mesh;
 }
 
-void UStaticMesh::CreateAsset(std::string_view FileName)
+void UStaticMesh::CreateAsset(std::string_view DirectoryName, std::string_view FileName)
 {
 	FDirectoryHelper DirectoryHelper;
 
@@ -73,7 +73,8 @@ void UStaticMesh::CreateAsset(std::string_view FileName)
 		return;
 	}
 
-	DirectoryHelper.Append("Models\\E1M1");
+	DirectoryHelper.Append("Models\\");
+	DirectoryHelper.Append(DirectoryName);
 
 	std::string Path = DirectoryHelper.GetPathToString();
 	std::string ObjPath = Path + "\\" + FileName.data() + +".obj";
@@ -82,18 +83,6 @@ void UStaticMesh::CreateAsset(std::string_view FileName)
 	MeshName = FileName;
 
 	LoadModel(ObjPath);
-
-	//for (int i = 0; i < MeshCount; i++)
-	//{
-	//	CreateRenderUnit();
-	//	SetMesh("E1M1" + std::to_string(i), i);
-	//	SetMaterial("E1M1" + std::to_string(i), i);
-
-	//	if (nullptr != TextureMap[i])
-	//	{
-	//		GetRenderUnit(i).SetTexture("ImageTexture", TextureMap[i]->GetName());
-	//	}
-	//}
 }
 
 

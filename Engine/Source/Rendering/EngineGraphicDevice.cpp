@@ -49,7 +49,7 @@ void UEngineGraphicDevice::InitDefaultResources()
 	InitShader();
 	InitMaterial();
 	{
-		UStaticMesh::Create("doom_E1M1");
+		UStaticMesh::Create("E1M1", "doom_E1M1");
 	}
 }
 

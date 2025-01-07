@@ -31,8 +31,7 @@ AE1M1GameMode::AE1M1GameMode()
 	{
 		E1M1Map = GetWorld()->SpawnActor<AE1M1Map>();
 		E1M1Map->SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
-		E1M1Map->SetActorRelativeScale3D({ 2.f, 2.f, 2.f });
-		E1M1Map->SetActorLocation({ 60.0f, 0.f, 0.f });
+		E1M1Map->SetActorLocation({ 0.0f, 0.0f, 0.0f });
 	}
 	{
 		Camera = GetWorld()->GetMainCamera();
