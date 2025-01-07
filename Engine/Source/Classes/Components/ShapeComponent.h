@@ -19,9 +19,10 @@ public:
 
 	ENGINE_API virtual void BeginPlay() override;
 
-	ENGINE_API bool CollisionCheck(std::string_view _OtherName, std::vector<UShapeComponent*>& ShapeVector);
+	ENGINE_API bool CollisionCheck(std::string_view OtherName, std::vector<UShapeComponent*>& ShapeVector);
 
 	/** °Ù, ¼Â ¸Þ¼Òµå */
+	ENGINE_API void SetRadius(float Radius);
 	ENGINE_API std::string GetCollisionProfileName() { return ProfileName; }
 	ENGINE_API void SetCollisionProfileName(std::string_view NewProfileName);
 	void SetCollisionType(ECollisionType NewCollisionType)
@@ -33,7 +34,7 @@ protected:
 private:
 	std::string ProfileName = "";
 
-	ECollisionType CollisionType = ECollisionType::AABB;
+	ECollisionType CollisionType = ECollisionType::OBB2D;
 
 };
 

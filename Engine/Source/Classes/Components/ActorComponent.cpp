@@ -9,3 +9,8 @@ UActorComponent::UActorComponent()
 UActorComponent::~UActorComponent()
 {
 }
+
+ULevel* UActorComponent::GetWorld()
+{
+    return GetOwner()->GetWorld();
+}

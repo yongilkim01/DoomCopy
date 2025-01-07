@@ -16,21 +16,6 @@ ADoomGuy::ADoomGuy()
 	std::shared_ptr<USceneComponent> Default = CreateDefaultSubObject<USceneComponent>();
 	RootComponent = Default;
 
-	FDirectoryHelper DirectoryHelper;
-
-	if (false == DirectoryHelper.MoveParentToDirectory("Resources"))
-	{
-		MSGASSERT("리소스 폴더를 찾기에 실패했습니다");
-		return;
-	}
-
-	DirectoryHelper.Append("Models\\E1M1");
-
-	std::string Path = DirectoryHelper.GetPathToString();
-
-	MeshComponent = CreateDefaultSubObject<UStaticMeshComponent>();
-	MeshComponent->SetupAttachment(RootComponent);
-	MeshComponent->SetModel("doom_E1M1");
 }
 
 ADoomGuy::~ADoomGuy()

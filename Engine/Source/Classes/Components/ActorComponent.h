@@ -2,6 +2,7 @@
 #include "Core/Object/Object.h"
 
 class AActor;
+class ULevel;
 
 /**
  *	Ό³Έν
@@ -25,6 +26,7 @@ public:
 	ENGINE_API virtual void BeginPlay() {}
 	ENGINE_API virtual void ComponentTick(float DeltaTime) {}
 
+	ULevel* GetWorld();
 	AActor* GetOwner()
 	{
 		return Owner;

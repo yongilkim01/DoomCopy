@@ -100,6 +100,8 @@ public:
 
 		ValueType Arr2D[1][4];
 		ValueType Arr1D[4];
+		DirectX::XMFLOAT3 DirectFloat3;
+		DirectX::XMFLOAT4 DirectFloat4;
 
 		/** DirectX Simd 연산 전용 벡터 */
 		DirectX::XMVECTOR DirectVector;
@@ -634,6 +636,7 @@ public:
 		float Arr2D[1][4];
 		float Arr1D[4];
 		// 다이렉트 simd 연산 전용 벡터.
+		DirectX::XMFLOAT4 DirectFloat4;
 		DirectX::XMVECTOR DirectVector;
 	};
 	TVector<float> QuaternionToEulerDeg() const;
@@ -1080,6 +1083,21 @@ public:
 
 using float4x4 = FMatrix;
 
+struct FCollisionData
+{
+	union
+	{
+		// 정방원
+		DirectX::BoundingSphere Sphere;
+		DirectX::BoundingBox AABB;
+		DirectX::BoundingOrientedBox OBB;
+	};
+
+	FCollisionData()
+	{
+	}
+};
+
 struct FTransform
 {
 	float4 Scale;
@@ -1127,7 +1145,7 @@ private:
 	static std::function<bool(const FTransform&, const FTransform&)> AllCollisionFunction[static_cast<int>(ECollisionType::Max)][static_cast<int>(ECollisionType::Max)];
 
 public:
-	static bool Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right);
+	ENGINE_API static bool Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right);
 
 	// 완전히 같은 형의 함수죠?
 	static bool PointToCirCle(const FTransform& _Left, const FTransform& _Right);
@@ -1138,6 +1156,22 @@ public:
 
 	static bool CirCleToCirCle(const FTransform& _Left, const FTransform& _Right);
 	static bool CirCleToRect(const FTransform& _Left, const FTransform& _Right);
+
+	static bool OBB2DToOBB2D(const FTransform& _Left, const FTransform& _Right);
+	static bool OBB2DToRect(const FTransform& _Left, const FTransform& _Right);
+	static bool OBB2DToSphere(const FTransform& _Left, const FTransform& _Right);
+	static bool OBB2DToPoint(const FTransform& _Left, const FTransform& _Right);
+
+	FCollisionData GetCollisionData() const
+	{
+		FCollisionData Result;
+		// OBB를 세팅해준거 같지만 모든 애들을 다 세팅해준 것입니다.
+		// Sphere와 AABB전체를 다 세팅해준겁니다.
+		Result.OBB.Center = WorldLocation.DirectFloat3;
+		Result.OBB.Extents = (WorldLocation * 0.5f).DirectFloat3;
+		Result.OBB.Orientation = WorldQuat.DirectFloat4;
+		return Result;
+	}
 
 	FVector ZAxisCenterLeftTop() const
 	{
