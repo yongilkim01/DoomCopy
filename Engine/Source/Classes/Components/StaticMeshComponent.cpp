@@ -3,6 +3,7 @@
 
 #include "Classes/Camera/CameraComponent.h"
 #include "Classes/Engine/Texture.h"
+#include "Classes/Engine/StaticMesh.h"
 
 #include "Core/Misc/DirectoryHelper.h"
 #include "Core/Misc/FileHelper.h"
@@ -41,6 +42,23 @@ void UStaticMeshComponent::InitShader()
 
 }
 
+void UStaticMeshComponent::SetModel(std::string_view ModelName)
+{
+	StaticMesh = UStaticMesh::Find<UStaticMesh>(ModelName);
+
+	for (int i = 0; i < StaticMesh->GetStaticMeshCount(); i++)
+	{
+		CreateRenderUnit();
+		SetMesh(StaticMesh->GetMeshNameByIndex(i), i);
+		SetMaterial(StaticMesh->GetMeshNameByIndex(i), i);
+
+		if (nullptr != StaticMesh->GetTextureByIndex(i))
+		{
+			GetRenderUnit(i).SetTexture("ImageTexture", StaticMesh->GetTextureNameByIndex(i));
+		}
+	}
+}
+
 void UStaticMeshComponent::InitObjFile(std::string_view DirectoryPath, std::string_view NewObjName, std::string_view NewObjPath, std::string_view NewMtlPath)
 {
 	ObjName = NewObjName;
@@ -54,8 +72,8 @@ void UStaticMeshComponent::InitObjFile(std::string_view DirectoryPath, std::stri
 	for (int i = 0; i < MeshCount; i++)
 	{
 		CreateRenderUnit();
-		SetMesh("E1M1" + std::to_string(i), i);
-		SetMaterial("E1M1" + std::to_string(i), i);
+		SetMesh("doom_E1M1" + std::to_string(i), i);
+		SetMaterial("doom_E1M1" + std::to_string(i), i);
 
 		if (nullptr != TextureMap[i])
 		{

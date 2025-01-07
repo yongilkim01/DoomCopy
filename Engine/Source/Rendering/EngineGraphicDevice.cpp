@@ -48,6 +48,9 @@ void UEngineGraphicDevice::InitDefaultResources()
 	InitRasterizerState();
 	InitShader();
 	InitMaterial();
+	{
+		UStaticMesh::Create("doom_E1M1");
+	}
 }
 
 void UEngineGraphicDevice::InitTexture()
@@ -94,9 +97,6 @@ void UEngineGraphicDevice::InitTexture()
 
 void UEngineGraphicDevice::InitMesh()
 {
-	{
-		///UStaticMesh::Create("doom_E1M1");
-	}
 	{
 		std::vector<EngineVertex> Vertexs;
 

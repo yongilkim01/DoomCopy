@@ -5,6 +5,7 @@
 
 class AiMesh;
 class UMesh;
+class UTexture;
 
 struct aiNode;
 struct aiScene;
@@ -19,7 +20,8 @@ enum aiTextureType;
 struct FStaticMeshData
 {
 public:
-	std::shared_ptr<UMesh> Mesh;
+	std::shared_ptr<UMesh> Mesh = nullptr;
+	std::shared_ptr<UTexture> Texture = nullptr;
 };
 
 /**
@@ -47,6 +49,14 @@ public:
 	ID3D11ShaderResourceView* LoadEmbeddedTexture(const aiTexture* embeddedTexture);
 
 	/** °Ù, ¼Â ¸Þ¼Òµå */
+	size_t GetStaticMeshCount()
+	{
+		return StaticMeshDataVector.size();
+	}
+	std::string GetMeshNameByIndex(int Index);
+	std::string GetTextureNameByIndex(int Index);
+	std::shared_ptr<UTexture> GetTextureByIndex(int Index);
+	std::shared_ptr<UMesh> GetMeshByIndex(int Index);
 
 protected:
 	void CreateAsset(std::string_view FileName);
@@ -54,7 +64,8 @@ protected:
 private:
 	std::vector<FStaticMeshData> StaticMeshDataVector;
 	std::map<int, std::shared_ptr<UTexture>> TextureMap;
-
+	std::vector<TEXTURE> Textures;
+	std::string MeshName = "";
 	std::string DirectoryPath = "";
 };
 

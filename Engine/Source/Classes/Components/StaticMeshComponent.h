@@ -3,6 +3,8 @@
 #include "Classes/Engine/StaticMesh.h"
 #include "Classes/Engine/Texture.h"
 
+class UStaticMesh;
+
 /**
  *	설명
  */
@@ -18,6 +20,8 @@ public:
 	UStaticMeshComponent(UStaticMeshComponent&& Other) noexcept = delete;
 	UStaticMeshComponent& operator=(const UStaticMeshComponent& Other) = delete;
 	UStaticMeshComponent& operator=(UStaticMeshComponent&& Other) noexcept = delete;
+
+	ENGINE_API void SetModel(std::string_view ModelName);
 
 	/** obj 파일 로드 메소드 */
 	ENGINE_API void InitObjFile(std::string_view DirectoryPath, std::string_view ObjName, std::string_view NewObjPath, std::string_view NewMtlPath);
@@ -47,6 +51,7 @@ private:
 
 	std::vector<std::shared_ptr<UStaticMesh>> StaticMeshVector;
 	std::map<int, std::shared_ptr<UTexture>> TextureMap;
+	std::shared_ptr<UStaticMesh> StaticMesh = nullptr;
 
 	int MeshCount = 0;
 };
