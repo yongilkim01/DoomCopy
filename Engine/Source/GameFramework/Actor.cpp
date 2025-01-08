@@ -26,9 +26,19 @@ void AActor::BeginPlay()
 
 void AActor::Tick(float DeltaTime)
 {
-    if (nullptr != RootComponent)
+    for (std::shared_ptr<AActor>& Actor : ChildList)
     {
         RootComponent->ComponentTick(DeltaTime);
+
+        Actor->Tick(DeltaTime);
+    }
+
+    if (nullptr == Parent)
+    {
+        if (nullptr != RootComponent)
+        {
+            RootComponent->ComponentTick(DeltaTime);
+        }
     }
 
     for (std::shared_ptr<class UActorComponent> ActorComponent : ActorComponentList)
@@ -42,19 +52,24 @@ void AActor::Tick(float DeltaTime)
     }
 }
 
-void AActor::AttachToActor(AActor* Parent)
+void AActor::AttachToActor(AActor* NewParent)
 {
     if (nullptr == RootComponent)
     {
         MSGASSERT("자식의 RootComponent가 nullptr입니다.");
         return;
     }
-    if (nullptr == Parent->RootComponent)
+    if (nullptr == NewParent->RootComponent)
     {
         MSGASSERT("부모의 RootComponent가 nullptr입니다.");
         return;
     }
-    RootComponent->SetupAttachment(Parent->RootComponent);
+
+    Parent = NewParent;
+
+    NewParent->ChildList.push_back(GetThis<AActor>());
+
+    RootComponent->SetupAttachment(NewParent->RootComponent);
 }
 
 FVector AActor::GetActorUpVector()

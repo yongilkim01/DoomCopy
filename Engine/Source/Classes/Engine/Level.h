@@ -8,6 +8,9 @@ class UShapeComponent;
 class UPrimitiveComponent;
 class AActor;
 class ACameraActor;
+class UEngineCore;
+class AGameMode;
+class APawn;
 
 /**
  *	엔진 레벨 클래스
@@ -15,6 +18,7 @@ class ACameraActor;
 class ULevel : public UObject
 {
 	friend UShapeComponent;
+	friend UEngineCore;
 
 public:
 	/** 생성자, 소멸자 */
@@ -92,6 +96,8 @@ public:
 protected:
 
 private:
+	ENGINE_API void InitLevel(AGameMode* InitGameMode, APawn* InitPawn);
+
 	std::list<std::shared_ptr<AActor>> BeginPlayList;
 	std::list<std::shared_ptr<AActor>> AllActorList;
 	std::map<int, std::list<std::shared_ptr<UPrimitiveComponent>>> RendererMap;
@@ -99,5 +105,8 @@ private:
 	std::map<std::string, std::list<std::shared_ptr<UShapeComponent>>> ShapeCompMap;
 	std::map<std::string, std::list<std::shared_ptr<UShapeComponent>>> CheckShapeCompMap;
 	std::map<std::string, std::list<std::string>> CollisionLinkMap;
+
+	AGameMode* GameMode = nullptr;
+	APawn* MainPawn = nullptr;
 
 };

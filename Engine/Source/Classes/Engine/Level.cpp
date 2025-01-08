@@ -53,6 +53,12 @@ void ULevel::Tick(float DeltaTime)
 		StartIter = BeginPlayList.erase(StartIter);
 
 		CurActor->BeginPlay();
+
+		if (nullptr != CurActor->Parent)
+		{
+			continue;
+		}
+
 		AllActorList.push_back(CurActor);
 	}
 
@@ -161,6 +167,14 @@ void ULevel::Release(float DeltaTime)
 
 		for (; StartIter != EndIter; )
 		{
+			if (nullptr != (*StartIter)->Parent)
+			{
+				// 부모가 있는 애는 어차피 부모가 다 tick
+				// 레벨이 돌려줄필요가 없어졌다.
+				StartIter = List.erase(StartIter);
+				continue;
+			}
+
 			if (false == (*StartIter)->IsDestroy())
 			{
 				++StartIter;
@@ -184,6 +198,12 @@ std::shared_ptr<ACameraActor> ULevel::SpawnCamera(int CameraOrder)
 
 	Cameraes.insert({ CameraOrder , Camera });
 	return Camera;
+}
+
+void ULevel::InitLevel(AGameMode* InitGameMode, APawn* InitPawn)
+{
+	GameMode = InitGameMode;
+	MainPawn = InitPawn;
 }
 
 void ULevel::ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_ptr<UPrimitiveComponent> Renderer)

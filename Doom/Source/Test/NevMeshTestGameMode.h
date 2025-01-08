@@ -1,5 +1,5 @@
 #pragma once
-#include "GameFramework/Actor.h"
+#include "GameFramework/GameMode.h"
 
 class ACameraActor;
 class ATestMap;
@@ -8,7 +8,7 @@ class ATestPlayer;
 /**
  *	설명
  */
-class ANevMeshTestGameMode : public AActor
+class ANevMeshTestGameMode : public AGameMode
 {
 public:
 	/** 생성자, 소멸자 */

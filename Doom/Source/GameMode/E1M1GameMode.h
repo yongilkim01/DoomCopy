@@ -1,12 +1,12 @@
 #pragma once
-#include "GameFramework/Actor.h"
+#include "GameFramework/GameMode.h"
 
 class ADoomGuy;
 class ACameraActor;
 class AE1M1Map;
 
 // Ό³Έν :
-class AE1M1GameMode : public AActor
+class AE1M1GameMode : public AGameMode
 {
 public:
 	// constrcuter destructer

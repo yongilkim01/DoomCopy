@@ -8,8 +8,8 @@ class AGameMode : public AActor
 {
 public:
 	/** 생성자, 소멸자 */
-	AGameMode();
-	~AGameMode();
+	ENGINE_API AGameMode();
+	ENGINE_API ~AGameMode();
 
 	/** 객체 값 복사 방지 */
 	AGameMode(const AGameMode& Other) = delete;

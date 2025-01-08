@@ -80,8 +80,8 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 	}
 
 	//UEngineCore::CreateLevel<ATitleGameMode, AActor>("TitleLevel");
-	UEngineCore::CreateLevel<AE1M1GameMode, AActor>("E1M1Level");
-	UEngineCore::CreateLevel<ANevMeshTestGameMode, AActor>("Test");
+	UEngineCore::CreateLevel<AE1M1GameMode, APawn>("E1M1Level");
+	UEngineCore::CreateLevel<ANevMeshTestGameMode, APawn>("Test");
 	UEngineCore::OpenLevel("E1M1Level");
 }
 

@@ -68,9 +68,6 @@ public:
 	}
 
 
-
-
-
 	ENGINE_API FVector GetActorUpVector();
 	ENGINE_API FVector GetActorRightVector();
 	ENGINE_API FVector GetActorForwardVector();
@@ -175,7 +172,9 @@ protected:
 
 private:
 	ULevel* World;
-
 	std::list<std::shared_ptr<UActorComponent>> ActorComponentList;
+
+	AActor* Parent = nullptr;
+	std::list<std::shared_ptr<AActor>> ChildList;
 
 };

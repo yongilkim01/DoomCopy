@@ -1,12 +1,12 @@
 #pragma once
-#include "GameFramework/Actor.h"
+#include "GameFramework/GameMode.h"
 
 class ATitleLogo;
 
 /**
  *	타이틀 게임모드 클래스
  */
-class ATitleGameMode : public AActor
+class ATitleGameMode : public AGameMode
 {
 public:
 	/** 생성자, 소멸자 */
