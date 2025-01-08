@@ -106,6 +106,7 @@ public:
 	 */
 	void AddWorldLocation(FVector DeltaLocation)
 	{
+		bAbsolute = true;
 		Transform.Location += DeltaLocation;
 		TransformUpdate();
 	}

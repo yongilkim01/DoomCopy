@@ -37,7 +37,7 @@ public:
 
 	ENGINE_API void ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_ptr<UPrimitiveComponent> Renderer);
 
-	ENGINE_API void CreateCollisionProfileName(std::string_view ProfileName);
+	ENGINE_API void CreateCollisionProfile(std::string_view ProfileName);
 	ENGINE_API void PushCollisionProfileName(std::shared_ptr<UPrimitiveComponent> PrComp);
 	ENGINE_API void LinkCollisionProfile(std::string_view LeftProfileName, std::string_view RightProfileName);
 	ENGINE_API void ChangeCollisionProfileName(std::string_view ProfileName, std::string_view PrevProfileName, std::shared_ptr<UShapeComponent> ShapeComponent);

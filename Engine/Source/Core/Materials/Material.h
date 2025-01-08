@@ -4,6 +4,7 @@
 #include "Rendering/Shader/EnginePixelShader.h"
 #include "Rendering/EngineRasterizerState.h"
 #include "Rendering/EngineBlend.h"
+#include "Rendering/Buffer/DepthStencilState.h"
 
 /**
  *	Ό³Έν
@@ -44,6 +45,11 @@ public:
 		return Blend;
 	}
 	ENGINE_API void SetBlend(std::string_view _Name);
+	ENGINE_API std::shared_ptr<UDepthStencilState> GetDepthStencilState()
+	{
+		return DepthState;
+	}
+	ENGINE_API void SetDepthStencilState(std::string_view NewDepthName);
 
 protected:
 
@@ -52,6 +58,7 @@ private:
 	std::shared_ptr<UEnginePixelShader> PixelShader;
 	std::shared_ptr<UEngineRasterizerState> RasterizerState;
 	std::shared_ptr<UEngineBlend> Blend;
+	std::shared_ptr<UDepthStencilState> DepthState;
 
 	D3D11_PRIMITIVE_TOPOLOGY TOPOLOGY = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 

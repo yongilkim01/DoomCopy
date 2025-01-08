@@ -35,5 +35,7 @@ private:
 	std::shared_ptr<UShapeComponent> ShapeComponent = nullptr;
 	
 	FVector PrevMouseLocation = FVector::ZERO;
+
+	float Speed = 100.0f;
 };
 

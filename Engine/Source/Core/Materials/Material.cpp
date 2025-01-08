@@ -5,6 +5,8 @@ UEngineMaterial::UEngineMaterial()
 {
 	SetRasterizerState("EngineBase");
 	SetBlend("AlphaBlend");
+	SetDepthStencilState("BaseDepth");
+
 }
 
 UEngineMaterial::~UEngineMaterial()
@@ -59,5 +61,15 @@ void UEngineMaterial::SetBlend(std::string_view _Name)
 	if (nullptr == Blend)
 	{
 		MSGASSERT("존재하지 않는 버텍스 쉐이더를 생성하려고 했습니다.");
+	}
+}
+
+void UEngineMaterial::SetDepthStencilState(std::string_view NewDepthName)
+{
+	DepthState = UDepthStencilState::Find<UDepthStencilState>(NewDepthName);
+
+	if (nullptr == DepthState)
+	{
+		MSGASSERT("존재하지 않는 깊이버퍼를 생성하려고 했습니다");
 	}
 }

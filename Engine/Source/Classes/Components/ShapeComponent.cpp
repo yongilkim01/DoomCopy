@@ -3,6 +3,7 @@
 
 #include "Core/Containers/EngineString.h"
 #include "Classes/Camera/CameraComponent.h"
+#include "Rendering/RenderUnit.h"
 
 UShapeComponent::UShapeComponent()
 {
@@ -19,6 +20,58 @@ UShapeComponent::~UShapeComponent()
 void UShapeComponent::BeginPlay()
 {
 	USceneComponent::BeginPlay();
+}
+
+void UShapeComponent::DebugRender(UCameraComponent* CameraComponent, float DeltaTime)
+{
+	URenderUnit RenderUnit;
+
+	FTransform& CameraTransform = CameraComponent->GetComponentTransformRef();
+	FTransform& ComponentTransform = GetComponentTransformRef();
+
+	ComponentTransform.View = CameraTransform.View;
+	ComponentTransform.Projection = CameraTransform.Projection;
+	ComponentTransform.WVP = ComponentTransform.World * ComponentTransform.View * ComponentTransform.Projection;
+
+	RenderUnit.SetMesh("Rect");
+	RenderUnit.SetMaterial("CollisionDebugMaterial");
+
+	RenderUnit.ConstantBufferLinkData("FTransform", GetComponentTransformRef());
+	FVector Color = { 0.0f, 1.0f, 0.0f };
+	RenderUnit.ConstantBufferLinkData("OutColor", Color);
+
+	RenderUnit.Render(CameraComponent, DeltaTime);
+}
+
+bool UShapeComponent::CollisionCheck(std::string_view OtherName, FVector NextLocation, std::vector<UShapeComponent*>& _Vector)
+{
+	std::string UpperName = UEngineString::ToUpper(OtherName);
+	std::map<std::string, std::list<std::shared_ptr<UShapeComponent>>>& Collision = GetWorld()->ShapeCompMap;
+
+	if (false == Collision.contains(UpperName))
+	{
+		MSGASSERT("존재하지 않는 그룹과 충돌할수 없습니다 " + std::string(UpperName));
+		return false;
+	}
+
+	FTransform NextTransform = Transform;
+	NextTransform.Location += NextLocation;
+	NextTransform.TransformUpdate();
+	std::list<std::shared_ptr<UShapeComponent>>& Group = Collision[UpperName];
+
+	for (std::shared_ptr<UShapeComponent>& OtherCol : Group)
+	{
+		if (false == OtherCol->IsActive())
+		{
+			continue;
+		}
+		if (true == FTransform::Collision(CollisionType, NextTransform, OtherCol->CollisionType, OtherCol->Transform))
+		{
+			_Vector.push_back(OtherCol.get());
+		}
+	}
+
+	return 0 != _Vector.size();
 }
 
 

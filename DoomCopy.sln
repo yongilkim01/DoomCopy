@@ -26,6 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0_Shader", "0_Shader", "{17
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{802B0DE6-43DD-4367-9425-D1C196AEAEC8}"
 	ProjectSection(SolutionItems) = preProject
+		Engine\Shaders\CollisionDebugShader.fx = Engine\Shaders\CollisionDebugShader.fx
 		Engine\Shaders\DefaultShader.fx = Engine\Shaders\DefaultShader.fx
 		Engine\Shaders\EngineSpriteShader.fx = Engine\Shaders\EngineSpriteShader.fx
 		Engine\Shaders\MeshShader.fx = Engine\Shaders\MeshShader.fx

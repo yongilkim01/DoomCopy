@@ -72,6 +72,24 @@ void ULevel::Render(float DeltaTime)
 		Camera.second->GetCameraComponent()->Render(DeltaTime);
 	}
 
+	{
+		std::shared_ptr<ACameraActor> Camera = GetMainCamera();
+		// 충돌체 릴리즈
+		for (std::pair<const std::string, std::list<std::shared_ptr<UShapeComponent>>>& Group : ShapeCompMap)
+		{
+			std::list<std::shared_ptr<UShapeComponent>>& List = Group.second;
+			for (std::shared_ptr<UShapeComponent>& _Collision : List)
+			{
+				if (false == _Collision->IsActive())
+				{
+					continue;
+				}
+				_Collision->DebugRender(Camera->GetCameraComponent().get(), DeltaTime);
+			}
+		}
+	}
+
+
 	if (true == UEngineWindow::IsApplicationOn())
 	{
 		UEngineGUI::GUIRender(this);
@@ -175,12 +193,12 @@ void ULevel::ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_
 
 }
 
-void ULevel::CreateCollisionProfileName(std::string_view ProfileName)
-{
-	std::string UpperName = UEngineString::ToUpper(ProfileName);
-
-	ShapeCompMap[UpperName];
-}
+//void ULevel::CreateCollisionProfileName(std::string_view ProfileName)
+//{
+//	std::string UpperName = UEngineString::ToUpper(ProfileName);
+//
+//	ShapeCompMap[UpperName];
+//}
 
 void ULevel::PushCollisionProfileName(std::shared_ptr<UPrimitiveComponent> PrComp)
 {
@@ -215,4 +233,11 @@ void ULevel::ChangeCollisionProfileName(std::string_view ProfileName, std::strin
 	std::list<std::shared_ptr<UShapeComponent>>& ShapeCompList = ShapeCompMap[UpperName];
 
 	ShapeCompList.push_back(ShapeComponent);
+}
+
+void ULevel::CreateCollisionProfile(std::string_view ProfileName)
+{
+	std::string UpperName = UEngineString::ToUpper(ProfileName);
+
+	ShapeCompMap[UpperName];
 }

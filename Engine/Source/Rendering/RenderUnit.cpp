@@ -37,6 +37,8 @@ void URenderUnit::Render(UCameraComponent* CameraComponent, float DetlaTime)
 
 	Material->GetBlend()->Update();
 
+	Material->GetDepthStencilState()->Update();
+
 	UEngineCore::GetDevice().GetDeviceContext()->DrawIndexed(Mesh->GetIndexBuffer()->GetIndexCount(), 0, 0);
 }
 
