@@ -35,24 +35,24 @@ void ADoomGuy::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
 
-	//FVector CurMouseLocation = Camera->ScreenMouseLocationToWorldLocation();
+	FVector CurMouseLocation = Camera->ScreenMouseLocationToWorldLocation();
 
-	//UEngineDebug::OutPutString(Camera->GetMouseLocation().ToString());
+	UEngineDebug::OutPutString(Camera->GetMouseLocation().ToString());
 
-	//if (UEngineInput::IsPress('A'))
-	//{
-	//	AddActorLocation(FVector{ -200.0f * DeltaTime, 0.0f, 0.0f });
-	//}
-	//if (UEngineInput::IsPress('D'))
-	//{
-	//	AddActorLocation(FVector{ 200.0f * DeltaTime, 0.0f, 0.0f });
-	//}
-	//if (UEngineInput::IsPress('W'))
-	//{
-	//	AddActorLocation(FVector{ 0.0f, 0.0f, 200.0f * DeltaTime, 0.0f });
-	//}
-	//if (UEngineInput::IsPress('S'))
-	//{
-	//	AddActorLocation(FVector{ 0.0f, 0.0f, -200.0f * DeltaTime, 0.0f });
-	//}
+	if (UEngineInput::IsPress('A'))
+	{
+		AddActorLocation(FVector{ -200.0f * DeltaTime, 0.0f, 0.0f });
+	}
+	if (UEngineInput::IsPress('D'))
+	{
+		AddActorLocation(FVector{ 200.0f * DeltaTime, 0.0f, 0.0f });
+	}
+	if (UEngineInput::IsPress('W'))
+	{
+		AddActorLocation(FVector{ 0.0f, 0.0f, 200.0f * DeltaTime, 0.0f });
+	}
+	if (UEngineInput::IsPress('S'))
+	{
+		AddActorLocation(FVector{ 0.0f, 0.0f, -200.0f * DeltaTime, 0.0f });
+	}
 }

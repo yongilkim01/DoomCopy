@@ -33,6 +33,8 @@ public:
 	void Tick(float DeltaTime);
 	void Render(float DeltaTime);
 
+	void Release(float DeltaTime);
+
 	ENGINE_API void ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_ptr<class UPrimitiveComponent> Renderer);
 
 	ENGINE_API void CreateCollisionProfileName(std::string_view ProfileName);

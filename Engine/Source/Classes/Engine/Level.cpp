@@ -53,6 +53,11 @@ void ULevel::Tick(float DeltaTime)
 
 	for (std::shared_ptr<AActor> CurActor : AllActorList)
 	{
+		if (false == CurActor->IsActive())
+		{
+			continue;
+		}
+
 		CurActor->Tick(DeltaTime);
 	}
 }
@@ -73,6 +78,52 @@ void ULevel::Render(float DeltaTime)
 	}
 
 	UEngineCore::GetDevice().RenderEnd();
+}
+
+void ULevel::Release(float DeltaTime)
+{
+	for (std::pair<const int, std::shared_ptr<ACameraActor>>& Camera : Cameraes)
+	{
+		Camera.second->GetCameraComponent()->Release(DeltaTime);
+	}
+
+	{
+		for (std::pair<const std::string_view, std::list<std::shared_ptr<UShapeComponent>>>& Group : ShapeCompMap)
+		{
+			std::list<std::shared_ptr<UShapeComponent>>& List = Group.second;
+
+			std::list<std::shared_ptr<UShapeComponent>>::iterator StartIter = List.begin();
+			std::list<std::shared_ptr<UShapeComponent>>::iterator EndIter = List.end();
+
+			for (; StartIter != EndIter; )
+			{
+				if (false == (*StartIter)->IsDestroy())
+				{
+					++StartIter;
+					continue;
+				}
+
+				StartIter = List.erase(StartIter);
+			}
+		}
+	}
+
+	{
+		std::list<std::shared_ptr<AActor>>& List = AllActorList;
+		std::list<std::shared_ptr<AActor>>::iterator StartIter = List.begin();
+		std::list<std::shared_ptr<AActor>>::iterator EndIter = List.end();
+
+		for (; StartIter != EndIter; )
+		{
+			if (false == (*StartIter)->IsDestroy())
+			{
+				++StartIter;
+				continue;
+			}
+
+			StartIter = List.erase(StartIter);
+		}
+	}
 }
 
 std::shared_ptr<ACameraActor> ULevel::SpawnCamera(int CameraOrder)

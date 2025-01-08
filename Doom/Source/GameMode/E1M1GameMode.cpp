@@ -46,7 +46,7 @@ AE1M1GameMode::AE1M1GameMode()
 		//Camera->AddActorLocation({ 10.0f, 0.0f, 0.0f });
 		//Camera->AddActorRelativeLocation({ 0.0f, 0.0f, -500.0f });
 		Camera->GetCameraComponent()->SetZSort(0, true);
-		//Camera->AttachToActor(DoomGuy.get());
+		Camera->AttachToActor(DoomGuy.get());
 	}
 
 	UEngineGUI::CreateGUIWindow<E1M1DebugWindow>("E1M1DebugWindow");

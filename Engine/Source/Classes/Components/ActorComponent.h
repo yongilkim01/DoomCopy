@@ -26,15 +26,11 @@ public:
 	ENGINE_API virtual void BeginPlay() {}
 	ENGINE_API virtual void ComponentTick(float DeltaTime) {}
 
-	ULevel* GetWorld();
-	AActor* GetOwner()
-	{
-		return Owner;
-	}
-	void SetOwner(AActor* NewOwner)
-	{
-		Owner = NewOwner;
-	}
+	ENGINE_API ULevel* GetWorld();
+	ENGINE_API AActor* GetOwner() { return Owner; }
+	ENGINE_API void SetOwner(AActor* NewOwner) { Owner = NewOwner; }
+	ENGINE_API virtual bool IsActive() override;
+	ENGINE_API virtual bool IsDestroy() override;
 
 protected:
 

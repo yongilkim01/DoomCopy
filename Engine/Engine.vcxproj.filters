@@ -810,6 +810,7 @@
     <None Include="Source\ThirdParty\assimp\include\assimp\vector3.inl">
       <Filter>10_ThirdParty\assimp\include</Filter>
     </None>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Source\ThirdParty\DirectXTex\Debug\DirectXTex_Debug.lib">

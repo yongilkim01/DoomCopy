@@ -27,6 +27,7 @@ AE1M1Map::AE1M1Map()
 		GroundMeshComponent->SetupAttachment(RootComponent);
 
 		std::vector<int> GroundModelNumber;
+		GroundModelNumber.reserve(20);
 
 		GroundModelNumber.push_back(1);
 		GroundModelNumber.push_back(5);
@@ -51,6 +52,7 @@ AE1M1Map::AE1M1Map()
 		DoorMeshComponent->SetupAttachment(RootComponent);
 
 		std::vector<int> DoorModelNumber;
+		DoorModelNumber.reserve(5);
 
 		DoorModelNumber.push_back(15);
 		DoorModelNumber.push_back(32);
@@ -63,6 +65,7 @@ AE1M1Map::AE1M1Map()
 		WallMeshComponent->SetupAttachment(RootComponent);
 
 		std::vector<int> WallModelNumber;
+		WallModelNumber.reserve(40);
 
 		WallModelNumber.push_back(2);
 		WallModelNumber.push_back(3);

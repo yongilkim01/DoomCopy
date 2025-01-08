@@ -112,6 +112,9 @@ public:
 	{
 
 	}
+	ENGINE_API TVector(DirectX::XMVECTOR InDirectVector) : DirectVector(InDirectVector)
+	{
+	}
 	ENGINE_API TVector(float InX, float InY)
 		: X(InX), Y(InY), Z(0.0f), W(1.0f)
 	{
@@ -499,12 +502,17 @@ public:
 		Result.Y = (X * sinf(Angle)) + (Y * cosf(Angle));
 		return Result;
 	}
+	TVector ABSVectorReturn()
+	{
+		return DirectX::XMVectorAbs(DirectVector);
+	}
 	/**
 	 * 오일러 각도를 사용하여 쿼터니언을 생성하는 메소드
 	 *
 	 * @return 생성된 회전 쿼터니언
 	 */
 	class FQuat DegAngleToQuaternion();
+
 
 	/** 오퍼레이션 */
 	ENGINE_API TVector operator*(const class FMatrix& InMatrix) const;
@@ -1129,7 +1137,7 @@ struct FTransform
 	float4x4 WVP;
 
 	FTransform()
-		: Scale({ 1.0f, 1.0f, 1.0f, 1.0f })
+		: Scale(FVector{ 1.0f, 1.0f, 1.0f, 1.0f })
 	{
 
 	}
@@ -1168,7 +1176,7 @@ public:
 		// OBB를 세팅해준거 같지만 모든 애들을 다 세팅해준 것입니다.
 		// Sphere와 AABB전체를 다 세팅해준겁니다.
 		Result.OBB.Center = WorldLocation.DirectFloat3;
-		Result.OBB.Extents = (WorldLocation * 0.5f).DirectFloat3;
+		Result.OBB.Extents = (WorldScale * 0.5f).ABSVectorReturn().DirectFloat3;
 		Result.OBB.Orientation = WorldQuat.DirectFloat4;
 		return Result;
 	}

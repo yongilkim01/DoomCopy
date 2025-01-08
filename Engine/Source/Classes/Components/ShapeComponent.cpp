@@ -31,13 +31,18 @@ bool UShapeComponent::CollisionCheck(std::string_view OtherName, std::vector<USh
 
 	for (std::shared_ptr<UShapeComponent>& OtherCol : Group)
 	{
+		if (false == OtherCol->IsActive())
+		{
+			continue;
+		}
+
 		if (true == FTransform::Collision(CollisionType, Transform, OtherCol->CollisionType, OtherCol->Transform))
 		{
-			int a = 0;
+			ShapeVector.push_back(OtherCol.get());
 		}
 	}
 
-	return true;
+	return 0 != ShapeVector.size();
 }
 
 void UShapeComponent::SetRadius(float Radius)

@@ -32,6 +32,7 @@ public:
 	/** 카메라 플로우 메소드 */
 	void Tick(float DeltaTime);
 	void Render(float DeltaTime);
+	ENGINE_API void Release(float DeltaTime);
 
 	/** 카메라 컴포넌트 메소드 */
 	void CalculateViewAndProjection();

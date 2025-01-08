@@ -51,7 +51,33 @@ void UCameraComponent::Render(float DeltaTime)
 
 		for (std::shared_ptr<UPrimitiveComponent> Renderer : RendererList)
 		{
+			if (false == Renderer->IsActive())
+			{
+				continue;
+			}
+
 			Renderer->Render(this, DeltaTime);
+		}
+	}
+}
+
+void UCameraComponent::Release(float DeltaTime)
+{
+	for (std::pair<const int, std::list<std::shared_ptr<UPrimitiveComponent>>>& RenderGroup : RenderComponentMap)
+	{
+		std::list<std::shared_ptr<UPrimitiveComponent>>& RenderList = RenderGroup.second;
+		std::list<std::shared_ptr<UPrimitiveComponent>>::iterator StartIter = RenderList.begin();
+		std::list<std::shared_ptr<UPrimitiveComponent>>::iterator EndIter = RenderList.end();
+
+		for (; StartIter != EndIter; )
+		{
+			if (false == (*StartIter)->IsDestroy())
+			{
+				++StartIter;
+				continue;
+			}
+
+			StartIter = RenderList.erase(StartIter);
 		}
 	}
 }
