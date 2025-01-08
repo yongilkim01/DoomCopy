@@ -56,17 +56,28 @@ void UStaticMeshComponent::SetModel(std::string_view ModelName)
 			MeshCount++;
 		}
 	}
+}
 
-	//for (int i = 0; i < StaticMesh->GetStaticMeshCount(); i++)
-	//{
-	//		CreateRenderUnit();
-	//		SetMesh(StaticMesh->GetMeshNameByIndex(i), MeshCount);
-	//		SetMaterial(StaticMesh->GetMeshNameByIndex(i), MeshCount);
+void UStaticMeshComponent::SetModel(std::string_view ModelName, std::vector<int>& ModelNumber)
+{
+	StaticMesh = UStaticMesh::Find<UStaticMesh>(ModelName);
 
-	//		if (nullptr != StaticMesh->GetTextureByIndex(i))
-	//		{
-	//			GetRenderUnit(MeshCount).SetTexture("ImageTexture", StaticMesh->GetTextureNameByIndex(i));
-	//		}
-	//		MeshCount++;
-	//}
+	for (int i = 0; i < StaticMesh->GetStaticMeshCount(); i++)
+	{
+		for (int j = 0; j < ModelNumber.size(); j++)
+		{
+			if (i == ModelNumber[j])
+			{
+				CreateRenderUnit();
+				SetMesh(StaticMesh->GetMeshNameByIndex(i), MeshCount);
+				SetMaterial(StaticMesh->GetMeshNameByIndex(i), MeshCount);
+
+				if (nullptr != StaticMesh->GetTextureByIndex(i))
+				{
+					GetRenderUnit(MeshCount).SetTexture("ImageTexture", StaticMesh->GetTextureNameByIndex(i));
+				}
+				MeshCount++;
+			}
+		}
+	}
 }

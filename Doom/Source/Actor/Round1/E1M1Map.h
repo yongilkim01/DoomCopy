@@ -26,7 +26,9 @@ protected:
 	void Tick(float DeltaTime) override;
 
 private:
-	std::shared_ptr<UStaticMeshComponent> MeshComponent = nullptr;
+	std::shared_ptr<UStaticMeshComponent> GroundMeshComponent = nullptr;
+	std::shared_ptr<UStaticMeshComponent> WallMeshComponent = nullptr;
+	std::shared_ptr<UStaticMeshComponent> DoorMeshComponent = nullptr;
 	std::shared_ptr<UShapeComponent> ShapeComponent = nullptr;
 };
 
