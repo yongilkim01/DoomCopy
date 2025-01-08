@@ -1146,6 +1146,30 @@ public:
 	ENGINE_API void TransformUpdate(bool bAbsolute = false);
 	ENGINE_API void Decompose();
 
+	FVector GetWorldFoward()
+	{
+		return World.GetFoward();;
+	}
+	FVector GetWorldRight()
+	{
+		return World.GetRight();
+	}
+	FVector GetWorldUp()
+	{
+		return World.GetUp();
+	}
+	FVector GetLocalFoward()
+	{
+		return LocalWorld.GetFoward();;
+	}
+	FVector GetLocalRight()
+	{
+		return LocalWorld.GetRight();
+	}
+	FVector GetLocalUp()
+	{
+		return LocalWorld.GetUp();
+	}
 
 private:
 	friend class CollisionFunctionInit;

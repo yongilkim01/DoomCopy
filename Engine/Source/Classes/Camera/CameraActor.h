@@ -1,5 +1,6 @@
 #pragma once
 #include "GameFramework/Actor.h"
+#include "EngineEnums.h"
 
 class UCameraComponent;
 
@@ -23,6 +24,10 @@ public:
 	// 항상 중심을 0,0 으로 보는 마우스 포스 얻는법
 	ENGINE_API FVector ScreenMouseLocationToWorldLocationWithOutLocation();
 	ENGINE_API FVector GetMouseLocation();
+	
+	ENGINE_API void OnFreeCamera();
+	ENGINE_API void OffFreeCamera();
+	ENGINE_API void SwitchFreeCamera();
 
 	/** 액터 상속 메소드 */
 	virtual void BeginPlay() override;
@@ -33,9 +38,31 @@ public:
 	{
 		return CameraComponent;
 	}
+	ENGINE_API inline bool IsFreeCamera()
+	{
+		return bFreeCameraValue;
+	}
+	// #ifdef _DEBUG
+	ENGINE_API void SetFreeCameraSpeed(float NewSpeed)
+	{
+		FreeSpeed = NewSpeed;
+	}
+	// #endif
 
 protected:
 
 private:
+	ENGINE_API void FreeCameraCheck();
+
 	std::shared_ptr<UCameraComponent> CameraComponent = nullptr;
+
+	EProjectionType PrevProjectionType = EProjectionType::Orthographic;
+
+	FTransform PrevTrans;
+	FVector ScreenPos;
+	FVector PrevScreenPos;
+
+	float FreeSpeed = 500.0f;
+	float RotSpeed = 720.0f;
+	bool bFreeCameraValue = false;
 };

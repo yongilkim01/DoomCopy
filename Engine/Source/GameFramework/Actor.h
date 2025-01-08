@@ -149,7 +149,18 @@ public:
 		}
 		return RootComponent->GetComponentTransform();
 	}
-	
+	ENGINE_API void SetActorTransform(const FTransform& NewTransform)
+	{
+		if (nullptr == RootComponent)
+		{
+			return;
+		}
+
+		RootComponent->Transform = NewTransform;
+
+		return;
+	}
+
 	ENGINE_API FVector GetActorLocation()
 	{
 		if (nullptr == RootComponent)

@@ -7,6 +7,7 @@
 #include "EngineEnums.h"
 
 class ULevel;
+class ACameraActor;
 class UPrimitiveComponent;
 
 /**
@@ -15,6 +16,7 @@ class UPrimitiveComponent;
 class UCameraComponent : public USceneComponent
 {
 	friend ULevel;
+	friend ACameraActor;
 public:
 	/** 持失切, 社瑚切 */
 	UCameraComponent();

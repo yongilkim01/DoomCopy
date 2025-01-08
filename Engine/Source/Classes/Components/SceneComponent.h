@@ -127,6 +127,7 @@ public:
 	 */
 	void AddWorldRotation(const FVector& DeltaRotation)
 	{
+		bAbsolute = true;
 		Transform.Rotation += DeltaRotation;
 		TransformUpdate();
 	}

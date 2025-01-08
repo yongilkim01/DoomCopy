@@ -27,7 +27,11 @@ public:
 
 		std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
 
-		;
+		if (true == ImGui::Button("FreeCameraOn"))
+		{
+			GetWorld()->GetMainCamera()->SwitchFreeCamera();
+		}
+
 		ImGui::Text("Pos : %s", DoomGuy->GetActorLocation().ToString().c_str());
 	}
 };
@@ -41,7 +45,6 @@ AE1M1GameMode::AE1M1GameMode()
 	{
 		DoomGuy = GetWorld()->SpawnActor<ADoomGuy>();
 		DoomGuy->SetActorLocation(FVector{ -1042.0f, 14.0f, 3548.0f });
-		// DoomGuy->SetActorLocation(FVector{ -1042.0f, 14.0f, 3548.0f });
 	}
 	{
 		E1M1Map = GetWorld()->SpawnActor<AE1M1Map>();

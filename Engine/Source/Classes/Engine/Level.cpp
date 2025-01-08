@@ -32,6 +32,11 @@ void ULevel::LevelChangeEnd()
 
 void ULevel::Tick(float DeltaTime)
 {
+	if (GetMainCamera()->IsFreeCamera())
+	{
+		return;
+	}
+
 	std::list<std::shared_ptr<AActor>>::iterator StartIter = BeginPlayList.begin();
 	std::list<std::shared_ptr<AActor>>::iterator EndIter = BeginPlayList.end();
 

@@ -63,8 +63,8 @@ void FTransform::TransformUpdate(bool bAbsolute /* = false*/)
 	}
 	else
 	{
-		LocalWorld = ScaleMat * RotationMat * LocationMat;
-		World = ScaleMat * RotationMat * LocationMat * RevolveMat * ParentMat;
+		LocalWorld = CheckWorld;
+		World = CheckWorld * RevolveMat * ParentMat;
 	}
 
 	Decompose();

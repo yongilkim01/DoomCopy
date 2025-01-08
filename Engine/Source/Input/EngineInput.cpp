@@ -137,6 +137,7 @@ UEngineInput::UEngineInput()
 	Keys.insert({ '8', UEngineKey('8') });
 	Keys.insert({ '9', UEngineKey('9') });
 	Keys.insert({ '0', UEngineKey('0') });
+	Keys.insert({ VK_LSHIFT , UEngineKey(VK_LSHIFT) });
 	Keys.insert({ VK_LBUTTON , UEngineKey(VK_LBUTTON) });
 	Keys.insert({ VK_RBUTTON , UEngineKey(VK_RBUTTON) });
 	Keys.insert({ VK_LEFT , UEngineKey(VK_LEFT) });
