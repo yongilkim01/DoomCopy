@@ -80,6 +80,29 @@ void ULevel::Render(float DeltaTime)
 	UEngineCore::GetDevice().RenderEnd();
 }
 
+void ULevel::Collision(float DeltaTime)
+{
+	for (std::pair<const std::string, std::list<std::string>>& Links : CollisionLinkMap)
+	{
+		const std::string& LeftProfile = Links.first;
+		std::list<std::string>& LinkSecond = Links.second;
+
+		for (std::string& RightProfile : LinkSecond)
+		{
+			std::list<std::shared_ptr<UShapeComponent>>& LeftList = CheckShapeCompMap[LeftProfile];
+			std::list<std::shared_ptr<UShapeComponent>>& RightList = CheckShapeCompMap[RightProfile];
+
+			for (std::shared_ptr<UShapeComponent>& LeftCollision : LeftList)
+			{
+				for (std::shared_ptr<UShapeComponent>& RightCollision : RightList)
+				{
+					LeftCollision->CollisionEventCheck(RightCollision);
+				}
+			}
+		}
+	}
+}
+
 void ULevel::Release(float DeltaTime)
 {
 	for (std::pair<const int, std::shared_ptr<ACameraActor>>& Camera : Cameraes)
@@ -88,7 +111,7 @@ void ULevel::Release(float DeltaTime)
 	}
 
 	{
-		for (std::pair<const std::string_view, std::list<std::shared_ptr<UShapeComponent>>>& Group : ShapeCompMap)
+		for (std::pair<const std::string, std::list<std::shared_ptr<UShapeComponent>>>& Group : ShapeCompMap)
 		{
 			std::list<std::shared_ptr<UShapeComponent>>& List = Group.second;
 
@@ -154,23 +177,42 @@ void ULevel::ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_
 
 void ULevel::CreateCollisionProfileName(std::string_view ProfileName)
 {
-	ShapeCompMap[ProfileName];
+	std::string UpperName = UEngineString::ToUpper(ProfileName);
+
+	ShapeCompMap[UpperName];
+}
+
+void ULevel::PushCollisionProfileName(std::shared_ptr<UPrimitiveComponent> PrComp)
+{
+}
+
+void ULevel::LinkCollisionProfile(std::string_view LeftProfileName, std::string_view RightProfileName)
+{
+	std::string LeftUpperName = UEngineString::ToUpper(LeftProfileName);
+	std::string RightUpperName = UEngineString::ToUpper(RightProfileName);
+
+	CollisionLinkMap[LeftUpperName].push_back(RightUpperName);
 }
 
 void ULevel::ChangeCollisionProfileName(std::string_view ProfileName, std::string_view PrevProfileName, std::shared_ptr<UShapeComponent> ShapeComponent)
 {
-	if (false == ShapeCompMap.contains(ProfileName))
+	if (false == ShapeCompMap.contains(ProfileName.data()))
 	{
 		MSGASSERT("존재하지 않는 콜리전 그룹입니다");
 		return;
 	}
 
+	std::string PrevUpperName = UEngineString::ToUpper(ProfileName);
+
+
 	if (PrevProfileName != "")
 	{
-		std::list<std::shared_ptr<UShapeComponent>>& PrevShapeCompList = ShapeCompMap[PrevProfileName];
+		std::list<std::shared_ptr<UShapeComponent>>& PrevShapeCompList = ShapeCompMap[PrevUpperName];
 		PrevShapeCompList.remove(ShapeComponent);
 	}
 
-	std::list<std::shared_ptr<UShapeComponent>>& ShapeCompList = ShapeCompMap[ProfileName];
+	std::string UpperName = UEngineString::ToUpper(ProfileName);
+	std::list<std::shared_ptr<UShapeComponent>>& ShapeCompList = ShapeCompMap[UpperName];
+
 	ShapeCompList.push_back(ShapeComponent);
 }

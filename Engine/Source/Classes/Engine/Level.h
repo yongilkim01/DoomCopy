@@ -32,12 +32,14 @@ public:
 
 	void Tick(float DeltaTime);
 	void Render(float DeltaTime);
-
+	void Collision(float DeltaTime);
 	void Release(float DeltaTime);
 
-	ENGINE_API void ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_ptr<class UPrimitiveComponent> Renderer);
+	ENGINE_API void ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_ptr<UPrimitiveComponent> Renderer);
 
 	ENGINE_API void CreateCollisionProfileName(std::string_view ProfileName);
+	ENGINE_API void PushCollisionProfileName(std::shared_ptr<UPrimitiveComponent> PrComp);
+	ENGINE_API void LinkCollisionProfile(std::string_view LeftProfileName, std::string_view RightProfileName);
 	ENGINE_API void ChangeCollisionProfileName(std::string_view ProfileName, std::string_view PrevProfileName, std::shared_ptr<UShapeComponent> ShapeComponent);
 	
 	template<typename ActorType>
@@ -94,6 +96,8 @@ private:
 	std::list<std::shared_ptr<AActor>> AllActorList;
 	std::map<int, std::list<std::shared_ptr<UPrimitiveComponent>>> RendererMap;
 	std::map<int, std::shared_ptr<ACameraActor>> Cameraes;
-	std::map<std::string_view, std::list<std::shared_ptr<UShapeComponent>>> ShapeCompMap;
+	std::map<std::string, std::list<std::shared_ptr<UShapeComponent>>> ShapeCompMap;
+	std::map<std::string, std::list<std::shared_ptr<UShapeComponent>>> CheckShapeCompMap;
+	std::map<std::string, std::list<std::string>> CollisionLinkMap;
 
 };

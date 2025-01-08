@@ -149,6 +149,7 @@ void UEngineCore::EngineFrame()
 
 	CurLevel->Tick(DeltaTime);
 	CurLevel->Render(DeltaTime);
+	CurLevel->Collision(DeltaTime);
 	CurLevel->Release(DeltaTime);
 }
 
