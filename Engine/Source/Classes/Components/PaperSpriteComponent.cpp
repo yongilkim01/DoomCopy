@@ -10,6 +10,7 @@
 #include "Core/Misc/DirectoryHelper.h"
 #include "Core/Misc/FileHelper.h"
 #include "Core/Materials/Material.h"
+#include "Classes/Camera/CameraComponent.h"
 
 UPaperSpriteComponent::UPaperSpriteComponent()
 {
@@ -108,8 +109,6 @@ void UPaperSpriteComponent::ComponentTick(float DeltaTime)
 
 void UPaperSpriteComponent::Render(UCameraComponent* CameraComponent, float DeltaTime)
 {
-    UPrimitiveComponent::Render(CameraComponent, DeltaTime);
-
 	if (nullptr != CurAnimation)
 	{
 		Sprite = CurAnimation->Sprite;
@@ -127,6 +126,31 @@ void UPaperSpriteComponent::Render(UCameraComponent* CameraComponent, float Delt
 
 	UPrimitiveComponent::Render(CameraComponent, DeltaTime);
 
+	if (true == bBillboard)
+	{
+		Transform.WVP;
+	}
+
+}
+
+void UPaperSpriteComponent::RenderTransformUpdate(UCameraComponent* CameraComponent)
+{
+	FTransform& CameraTransform = CameraComponent->GetComponentTransformRef();
+	FTransform& ComponentTransform = GetComponentTransformRef();
+	//	// 랜더러는 월드 뷰 프로젝트를 다 세팅받았고
+	// RendererTrans.View = CameraTrans.View;
+	ComponentTransform.View = CameraTransform.View;
+	FMatrix CurWorld = ComponentTransform.World;
+
+	if (true == bBillboard)
+	{
+		ComponentTransform.View.ArrVector[0] = { 1.0f, 0.0f, 0.0f, 0.0f };
+		ComponentTransform.View.ArrVector[1] = { 0.0f, 1.0f, 0.0f, 0.0f };
+		ComponentTransform.View.ArrVector[2] = { 0.0f, 0.0f, 1.0f, 0.0f };
+	}
+
+	ComponentTransform.Projection = CameraTransform.Projection;
+	ComponentTransform.WVP = CurWorld * ComponentTransform.View * ComponentTransform.Projection;
 }
 
 void UPaperSpriteComponent::CreateAnimation(std::string_view AnimationName, std::string_view SpriteName,

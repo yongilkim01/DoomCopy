@@ -24,6 +24,7 @@ ADoomGuy::ADoomGuy()
 	// Renderer->SetAutoScaleRatio(5.0f);
 	SpriteComponent->SetWorldScale3D({ 30.0f, 30.0f });
 	SpriteComponent->AddWorldLocation({ 0.0f, 5.0f, 0.0f });
+	SpriteComponent->OnBillboard();
 
 	ShapeComponent = CreateDefaultSubObject<UShapeComponent>();
 	ShapeComponent->SetupAttachment(RootComponent);

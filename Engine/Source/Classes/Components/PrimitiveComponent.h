@@ -3,6 +3,8 @@
 #include "Classes/Engine/PaperSprite.h"
 #include "Rendering/RenderUnit.h"
 
+class UCameraComponent;
+
 /**
  *	렌더러 클래스
  */
@@ -20,6 +22,8 @@ public:
 	UPrimitiveComponent(UPrimitiveComponent&& Other) noexcept = delete;
 	UPrimitiveComponent& operator=(const UPrimitiveComponent& Other) = delete;
 	UPrimitiveComponent& operator=(UPrimitiveComponent&& Other) noexcept = delete;
+
+	ENGINE_API virtual void RenderTransformUpdate(UCameraComponent* CameraComponent);
 
 	/** 상속 메소드 */
 	ENGINE_API virtual void BeginPlay() override;

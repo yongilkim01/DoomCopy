@@ -61,6 +61,9 @@ public:
 	UPaperSpriteComponent& operator=(const UPaperSpriteComponent& Other) = delete;
 	UPaperSpriteComponent& operator=(UPaperSpriteComponent&& Other) noexcept = delete;
 
+	/** 빌보드 메소드 */
+	void OnBillboard() { bBillboard = true; }
+	void OffBillboard() {bBillboard = false; }
 
 	/** Animation 메소드 */
 	ENGINE_API void CreateAnimation(std::string_view AnimationName, std::string_view SpriteName, 
@@ -124,9 +127,10 @@ public:
 
 protected:
 	/** USceneComponent method */
-	void BeginPlay() override;
+	virtual void BeginPlay() override;
 	virtual void ComponentTick(float DeltaTime) override;
-	ENGINE_API void Render(UCameraComponent* CameraComponent, float DeltaTime) override;
+	ENGINE_API virtual void Render(UCameraComponent* CameraComponent, float DeltaTime) override;
+	ENGINE_API virtual void RenderTransformUpdate(UCameraComponent* CameraComponent) override;
 
 private:
 	URenderUnit* MainUnit;
@@ -135,6 +139,7 @@ private:
 	float CurAnimationSpeed = 1.0f;
 	bool IsAutoScale = true;
 	float AutoScaleRatio = 1.0f;
+	bool bBillboard = false;
 
 	std::map<std::string, FrameAnimation> FrameAnimations;
 	FrameAnimation* CurAnimation = nullptr;
