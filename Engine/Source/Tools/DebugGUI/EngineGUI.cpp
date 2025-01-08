@@ -112,7 +112,8 @@ void UEngineGUI::GUIRender(ULevel* _Level)
     for (std::pair<const std::string, std::shared_ptr<class UEngineGUIWindow>>& GUIWindow : GUIWindows)
     {
         ImGui::Begin(GUIWindow.first.c_str());
-        GUIWindow.second->OnGUI(_Level);
+        GUIWindow.second->World = _Level;
+        GUIWindow.second->OnGUI();
         ImGui::End();
     }
 

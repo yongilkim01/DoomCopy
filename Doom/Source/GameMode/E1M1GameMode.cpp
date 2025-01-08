@@ -19,13 +19,13 @@ class E1M1DebugWindow : public UEngineGUIWindow
 public:
 	std::shared_ptr<ADoomGuy> DoomGuy;
 
-	void OnGUI(ULevel* _Level) override
+	void OnGUI() override
 	{
 		ImGui::Button("WindowButton");
 		ImGui::SameLine(); // ÇÑ°£ ¶ç±â
 		ImGui::Text("test");
 
-		std::shared_ptr<ACameraActor> Camera = _Level->GetMainCamera();
+		std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
 
 		;
 		ImGui::Text("Pos : %s", DoomGuy->GetActorLocation().ToString().c_str());
