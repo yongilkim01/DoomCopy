@@ -37,6 +37,9 @@
     <Filter Include="2_Actor\1_E1M1">
       <UniqueIdentifier>{2548844e-bdba-4fed-8131-a72c2db43c59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{15ceb813-e2c4-498c-bb7e-2685c92101d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\DoomGuy\DoomGuy.cpp">
@@ -75,6 +78,18 @@
     <ClCompile Include="Source\Utils\WadMap.cpp">
       <Filter>4_Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Test\NevMeshTestGameMode.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Test\TestPlayer.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Test\TestMap.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Test\TestComponent.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DoomGuy\DoomGuy.h">
@@ -112,6 +127,18 @@
     </ClInclude>
     <ClInclude Include="Source\Utils\WadMap.h">
       <Filter>4_Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Test\NevMeshTestGameMode.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Test\TestPlayer.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Test\TestMap.h">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Test\TestComponent.h">
+      <Filter>Test</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

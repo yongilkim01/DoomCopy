@@ -45,6 +45,9 @@ void UPaperSpriteComponent::ComponentTick(float DeltaTime)
 
     if (nullptr != CurAnimation)
     {
+		FrameAnimation* EventAnimation = nullptr;
+		int EventFrame = -1;
+
 		CurAnimation->IsEnd = false;
 		std::vector<int>& Indexs = CurAnimation->FrameIndex;
 		std::vector<float>& Times = CurAnimation->FrameTime;
@@ -58,7 +61,8 @@ void UPaperSpriteComponent::ComponentTick(float DeltaTime)
 			++CurAnimation->CurIndex;
 			if (CurAnimation->Events.contains(CurIndex))
 			{
-				CurAnimation->Events[CurIndex]();
+				EventAnimation = CurAnimation;
+				EventFrame = CurIndex;
 			}
 			// 애니메이션 앤드
 			if (CurAnimation->CurIndex >= Indexs.size())
@@ -75,7 +79,9 @@ void UPaperSpriteComponent::ComponentTick(float DeltaTime)
 					CurAnimation->CurIndex = 0;
 					if (CurAnimation->Events.contains(CurIndex))
 					{
-						CurAnimation->Events[CurIndex]();
+						EventAnimation = CurAnimation;
+						EventFrame = CurIndex;
+						//CurAnimation->Events[CurIndex]();
 					}
 				}
 				else
@@ -87,6 +93,15 @@ void UPaperSpriteComponent::ComponentTick(float DeltaTime)
 		}
 
 		CurIndex = Indexs[CurAnimation->CurIndex];
+
+		if (nullptr != EventAnimation)
+		{
+			if (EventAnimation->Events.contains(CurIndex))
+			{
+				EventAnimation->Events[CurIndex]();
+			}
+		}
+
 	}
 }
 

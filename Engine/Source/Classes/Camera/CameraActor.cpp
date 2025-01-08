@@ -122,7 +122,7 @@ FVector ACameraActor::GetMouseLocation()
 void ACameraActor::OnFreeCamera()
 {
 	bFreeCameraValue = true;
-	FreeCameraCheck();
+	CheckCameraCheck();
 }
 
 void ACameraActor::OffFreeCamera()
@@ -133,10 +133,10 @@ void ACameraActor::OffFreeCamera()
 void ACameraActor::SwitchFreeCamera()
 {
 	bFreeCameraValue = !bFreeCameraValue;
-	FreeCameraCheck();
+	CheckCameraCheck();
 }
 
-void ACameraActor::FreeCameraCheck()
+void ACameraActor::CheckCameraCheck()
 {
 	if (true == bFreeCameraValue)
 	{

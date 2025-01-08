@@ -52,7 +52,7 @@ public:
 protected:
 
 private:
-	ENGINE_API void FreeCameraCheck();
+	ENGINE_API void CheckCameraCheck();
 
 	std::shared_ptr<UCameraComponent> CameraComponent = nullptr;
 

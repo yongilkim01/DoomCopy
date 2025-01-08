@@ -122,6 +122,29 @@ void UEngineGraphicDevice::InitMesh()
 
 		UMesh::Create("Rect");
 	}
+
+	{
+		std::vector<EngineVertex> Vertexs;
+
+		Vertexs.resize(3);
+
+		Vertexs[0] = EngineVertex{ FVector(-0.5f, 0.5f, 0.0f), {0.0f , 0.0f }, {1.0f, 0.0f, 0.0f, 1.0f} };
+		Vertexs[1] = EngineVertex{ FVector(0.5f, 0.5f, 0.0f), {1.0f , 0.0f } , {0.0f, 1.0f, 0.0f, 1.0f} };
+		Vertexs[2] = EngineVertex{ FVector(0.0f, -0.5f, 0.0f), {0.0f , 1.0f } , {0.0f, 0.0f, 1.0f, 1.0f} };
+
+
+		FVertexBuffer::Create("Triangle", Vertexs);
+
+		std::vector<unsigned int> Indexs;
+
+		Indexs.push_back(0);
+		Indexs.push_back(1);
+		Indexs.push_back(2);
+
+		FIndexBuffer::Create("Triangle", Indexs);
+
+		UMesh::Create("Triangle");
+	}
 }
 
 void UEngineGraphicDevice::InitBlend()

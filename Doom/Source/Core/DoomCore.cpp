@@ -4,6 +4,8 @@
 #include "GameMode/TitleGameMode.h"
 #include "GameMode/E1M1GameMode.h"
 
+#include "Test/NevMeshTestGameMode.h"
+
 #include <Core/Math/EngineMath.h>
 #include <Core/EngineCore.h>
 #include <Core/Misc/DirectoryHelper.h>
@@ -79,6 +81,7 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 
 	//UEngineCore::CreateLevel<ATitleGameMode, AActor>("TitleLevel");
 	UEngineCore::CreateLevel<AE1M1GameMode, AActor>("E1M1Level");
+	UEngineCore::CreateLevel<ANevMeshTestGameMode, AActor>("Test");
 	UEngineCore::OpenLevel("E1M1Level");
 }
 
