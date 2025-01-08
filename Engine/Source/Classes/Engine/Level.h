@@ -91,7 +91,14 @@ public:
 		}
 		return Cameraes[CameraOrder];
 	}
-
+	AGameMode* GetGameMode()
+	{
+		return GameMode;
+	}
+	APawn* GetMainPawn()
+	{
+		return MainPawn;
+	}
 
 protected:
 
