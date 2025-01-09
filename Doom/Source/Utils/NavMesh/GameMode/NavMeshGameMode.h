@@ -4,6 +4,7 @@
 class ACameraActor;
 class ANavMeshMap;
 class ANavMeshCharacter;
+class UNaviMeshManager;
 
 /**
  *	Ό³Έν
@@ -30,6 +31,8 @@ private:
 	std::shared_ptr<ACameraActor> Camera = nullptr;
 	std::shared_ptr<ANavMeshCharacter> PlayerCharacter = nullptr;
 	std::shared_ptr<ANavMeshMap> TestMap = nullptr;
+
+	UNaviMeshManager* NaviDataManager = nullptr;
 
 	float DistanceToPlayer = 0.0f;
 };

@@ -15,6 +15,7 @@
 #include "Utils/NavMesh/Actor/NavMeshMap.h"
 #include "Utils/GUI/GUIEditor.h"
 #include "Utils/NavMesh/Component/NavMeshComponent.h"
+#include "Utils/NavMesh/Actor/NaviMeshManager.h"
 
 class UNavMeshDebugWindow : public UEngineGUIWindow
 {
@@ -61,6 +62,9 @@ ANavMeshGameMode::ANavMeshGameMode()
 
 	std::shared_ptr<UNavMeshDebugWindow> Window = UEngineGUI::CreateGUIWindow<UNavMeshDebugWindow>("NavMeshDebugWindow");
 	Window->TestPlayer = PlayerCharacter;
+
+	NaviDataManager = new UNaviMeshManager();
+	NaviDataManager->LoadModel("");
 
 }
 
