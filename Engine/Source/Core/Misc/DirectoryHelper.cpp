@@ -172,10 +172,10 @@ ENGINE_API FFileHelper FDirectoryHelper::GetFile(std::string_view FileName)
 	FPaths FilePath = Path;
 	FilePath.Append(FileName);
 
-	if (false == FilePath.IsExists())
-	{
-		MSGASSERT("존재하지 않는 파일을 객체화하려고 했습니다.");
-	}
+	//if (false == FilePath.IsExists())
+	//{
+	//	MSGASSERT("존재하지 않는 파일을 객체화하려고 했습니다.");
+	//}
 
 	return FFileHelper(FilePath);
 }

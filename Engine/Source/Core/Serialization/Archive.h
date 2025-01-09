@@ -4,6 +4,8 @@
 
 #include "Core/Math/EngineMath.h"
 
+class IArchiveObject;
+
 /**
  *	파일 직렬화 저장 클래스
  */
@@ -11,8 +13,8 @@ class FArchive
 {
 public:
 	/** 생성자, 소멸자 */
-	FArchive();
-	~FArchive();
+	ENGINE_API FArchive();
+	ENGINE_API ~FArchive();
 
 	/** 객체 복사 방지 */
 	FArchive(const FArchive& _Other) = delete;
@@ -21,11 +23,11 @@ public:
 	FArchive& operator=(FArchive&& _Other) noexcept = delete;
 
 	/** 직렬화 메소드 */
-	void Write(void* WriteData, unsigned int Size);
-	void Read(void* ReadData, unsigned int Size);
+	ENGINE_API void Write(const void* WriteData, unsigned int Size);
+	ENGINE_API void Read(void* ReadData, unsigned int Size);
 
 	/** 연산자 */
-	void operator<<(std::string& WriteData)
+	void operator<<(const std::string& WriteData)
 	{
 		int Size = static_cast<int>(WriteData.size());
 		operator<<(Size);
@@ -63,21 +65,21 @@ public:
 			operator>>(ReadVector[i]);
 		}
 	}
-	void operator<<(class ISerializObject& Ser);
-	void operator>>(class ISerializObject& Ser);
-	void operator<<(int& WriteData)
+	void operator<<(IArchiveObject& Ser);
+	void operator>>(IArchiveObject& Ser);
+	void operator<<(const int& WriteData)
 	{
 		Write(&WriteData, sizeof(int));
 	}
-	void operator<<(bool& WriteData)
+	void operator<<(const bool& WriteData)
 	{
 		Write(&WriteData, sizeof(bool));
 	}
-	void operator<<(FVector& WriteData)
+	void operator<<(const FVector& WriteData)
 	{
 		Write(&WriteData, sizeof(FVector));
 	}
-	void operator<<(FIntPoint& WriteData)
+	void operator<<(const FIntPoint& WriteData)
 	{
 		Write(&WriteData, sizeof(FIntPoint));
 	}
@@ -122,9 +124,15 @@ private:
 	std::vector<char> Data;
 };
 
-class ISerializObject
+class IArchiveObject
 {
 public:
-	virtual void Serialize(FArchive& Ser) = 0;
-	virtual void DeSerialize(FArchive& Ser) = 0;
+	ENGINE_API virtual ~IArchiveObject() = 0
+	{
+
+	}
+
+public:
+	ENGINE_API virtual void Serialize(FArchive& Ser) = 0;
+	ENGINE_API virtual void DeSerialize(FArchive& Ser) = 0;
 };

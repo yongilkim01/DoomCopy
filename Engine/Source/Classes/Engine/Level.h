@@ -47,7 +47,7 @@ public:
 	ENGINE_API void ChangeCollisionProfileName(std::string_view ProfileName, std::string_view PrevProfileName, std::shared_ptr<UShapeComponent> ShapeComponent);
 	
 	template<typename ActorType>
-	std::shared_ptr<ActorType> SpawnActor()
+	std::shared_ptr<ActorType> SpawnActor(std::string_view ActorName = "")
 	{
 		static_assert(std::is_base_of_v<AActor, ActorType>, "액터를 상속받지 않은 클래스");
 
@@ -65,6 +65,8 @@ public:
 		ActorType* NewPtr = reinterpret_cast<ActorType*>(ActorMemory);
 		std::shared_ptr<ActorType> NewActor(NewPtr = new(ActorMemory) ActorType());
 
+		PtrActor->SetName(ActorName);
+
 		BeginPlayList.push_back(NewActor);
 
 		return NewActor;
@@ -76,6 +78,22 @@ public:
 		return SpawnCamera(static_cast<int>(Order));
 	}
 	std::shared_ptr<class ACameraActor> SpawnCamera(int Order);
+
+	template<typename ConvertType>
+	ENGINE_API std::list<std::shared_ptr<ConvertType>> GetAllActorListByClass()
+	{
+		std::list<std::shared_ptr<ConvertType>> List;
+		for (std::shared_ptr<class AActor> Actor : AllActorList)
+		{
+			std::shared_ptr<ConvertType> Convert = std::dynamic_pointer_cast<ConvertType>(Actor);
+			if (nullptr == Convert)
+			{
+				continue;
+			}
+			List.push_back(Convert);
+		}
+		return List;
+	}
 
 	/** 겟, 셋 메소드 */
 	std::shared_ptr<ACameraActor> GetMainCamera()

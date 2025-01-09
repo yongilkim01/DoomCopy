@@ -1,6 +1,16 @@
 #include "pch.h"
 #include "Archive.h"
 
+void IArchiveObject::Serialize(FArchive& Ser)
+{
+
+}
+
+void IArchiveObject::DeSerialize(FArchive& Ser)
+{
+
+}
+
 FArchive::FArchive()
 {
 }
@@ -9,7 +19,7 @@ FArchive::~FArchive()
 {
 }
 
-void FArchive::Write(void* WriteData, unsigned int Size)
+void FArchive::Write(const void* WriteData, unsigned int Size)
 {
 	if (WriteOffset + Size >= Data.size())
 	{
@@ -20,7 +30,7 @@ void FArchive::Write(void* WriteData, unsigned int Size)
 	WriteOffset += Size;
 }
 
-void FArchive::operator<<(ISerializObject& Ser)
+void FArchive::operator<<(IArchiveObject& Ser)
 {
 	Ser.Serialize(*this);
 }
@@ -31,7 +41,7 @@ void FArchive::Read(void* ReadData, unsigned int Size)
 	ReadOffset += Size;
 }
 
-void FArchive::operator>>(ISerializObject& Ser)
+void FArchive::operator>>(IArchiveObject& Ser)
 {
 	Ser.DeSerialize(*this);
 }
