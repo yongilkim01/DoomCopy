@@ -60,6 +60,7 @@ void UEngineInput::UEngineKey::KeyCheck(float _DeltaTime)
 		}
 	}
 }
+
 void UEngineInput::UEngineKey::EventCheck()
 {
 	if (true == IsDown)
@@ -224,6 +225,19 @@ void UEngineInput::KeyCheck(float _DeltaTime)
 	}
 	EventCheck(_DeltaTime);
 }
+
+void UEngineInput::KeyReset()
+{
+	std::map<int, UEngineKey>::iterator StartIter = GetInstance().Keys.begin();
+	std::map<int, UEngineKey>::iterator EndIter = GetInstance().Keys.end();
+
+	for (; StartIter != EndIter; ++StartIter)
+	{
+		UEngineKey& CurKey = StartIter->second;
+		CurKey.Reset();
+	}
+}
+
 UEngineInput::~UEngineInput()
 {
 }

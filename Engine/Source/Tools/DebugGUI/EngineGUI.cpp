@@ -69,7 +69,7 @@ void UEngineGUI::Init()
             {
                 return true;
             }
-            return true;
+            return false;
         }
     );
 }
@@ -130,7 +130,7 @@ void UEngineGUI::GUIRender(ULevel* _Level)
         }
         bool* ActivePtr = &GUIWindow.second->IsActiveRef();
 
-        ImGui::Begin(GUIWindow.first.c_str(), ActivePtr);
+        bool bResult = ImGui::Begin(GUIWindow.first.c_str(), ActivePtr);
 
         GUIWindow.second->World = _Level;
         GUIWindow.second->OnGUI();

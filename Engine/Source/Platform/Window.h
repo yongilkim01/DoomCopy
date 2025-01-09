@@ -60,6 +60,10 @@ public:
 	{
 		return LoopActive;
 	}
+	ENGINE_API bool IsFocus()
+	{
+		return bFocus;
+	}
 
 protected:
 
@@ -69,11 +73,13 @@ private:
 	ENGINE_API static HINSTANCE hInstance;
 	ENGINE_API static std::map<std::string, WNDCLASSEXA> WindowClasses;
 	ENGINE_API static std::function<bool(HWND, UINT, WPARAM, LPARAM)> CustomProc;
+	ENGINE_API static std::map<HWND, UEngineWindow*> AllWindowMap;
 
 	inline static bool LoopActive = true;
 
 	FVector WindowSize;
 	HWND WindowHandle = nullptr;
+	bool bFocus = false;
 };
 
 

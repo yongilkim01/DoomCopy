@@ -1,9 +1,6 @@
 #include "pch.h"
 #include "E1M1GameMode.h"
 
-#include "DoomGuy/DoomGuy.h"
-#include "Actor/Round1/E1M1Map.h"
-
 #include <Classes/Camera/CameraActor.h>
 #include <Classes/Camera/CameraComponent.h>
 #include <Classes/Components/StaticMeshComponent.h>
@@ -12,6 +9,11 @@
 #include <Tools/DebugGUI/EngineGUI.h>
 #include <Tools/DebugGUI/EngineGUIWindow.h>
 #include <ThirdParty/imgui/imgui.h>
+
+#include "DoomGuy/DoomGuy.h"
+#include "Actor/Round1/E1M1Map.h"
+#include "Utils/GUI/GUIEditor.h"
+
 
 
 class E1M1DebugWindow : public UEngineGUIWindow
@@ -105,4 +107,31 @@ void AE1M1GameMode::Tick(float DeltaTime)
 	//{
 	//	Camera->AddActorRotation(FVector{ 20.0f * DeltaTime, 0.0f, 0.0f });
 	//}
+}
+
+void AE1M1GameMode::LevelChangeStart()
+{
+	UEngineGUI::OffAllWindow();
+
+	{
+		std::shared_ptr<UGUIEditor> GUIWindow = UEngineGUI::FindGUIWindow<UGUIEditor>("GUIEditor");
+
+		if (nullptr == GUIWindow)
+		{
+			GUIWindow = UEngineGUI::CreateGUIWindow<UGUIEditor>("GUIEditor");
+		}
+
+		GUIWindow->SetActive(true);
+	}
+
+	{
+		std::shared_ptr<E1M1DebugWindow> Window = UEngineGUI::FindGUIWindow<E1M1DebugWindow>("E1M1DebugWindow");
+
+		if (nullptr == Window)
+		{
+			Window = UEngineGUI::CreateGUIWindow<E1M1DebugWindow>("E1M1DebugWindow");
+		}
+
+		Window->SetActive(true);
+	}
 }

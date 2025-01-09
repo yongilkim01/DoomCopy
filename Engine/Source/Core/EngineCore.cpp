@@ -145,7 +145,13 @@ void UEngineCore::EngineFrame()
 
 	float DeltaTime = Timer.GetDeltaTime();
 
-	UEngineInput::KeyCheck(DeltaTime);
+	if (true == MainWindow.IsFocus())
+	{
+		UEngineInput::KeyCheck(DeltaTime);
+	}
+	else {
+		UEngineInput::KeyReset();
+	}
 
 	CurLevel->Tick(DeltaTime);
 	CurLevel->Render(DeltaTime);

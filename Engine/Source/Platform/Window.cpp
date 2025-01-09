@@ -6,6 +6,7 @@
 std::function<bool(HWND, UINT, WPARAM, LPARAM)> UEngineWindow::CustomProc = nullptr;
 HINSTANCE UEngineWindow::hInstance = nullptr;
 std::map<std::string, WNDCLASSEX> UEngineWindow::WindowClasses;
+std::map<HWND, UEngineWindow*> UEngineWindow::AllWindowMap;
 int WindowCount = 0;
 // bool UEngineWindow::LoopActive = true;
 
@@ -15,7 +16,7 @@ LRESULT CALLBACK UEngineWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
     {
         if (true == CustomProc(hWnd, message, wParam, lParam))
         {
-            //return true;
+            return true;
         }
     }
 
@@ -33,13 +34,37 @@ LRESULT CALLBACK UEngineWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, 
         EndPaint(hWnd, &ps);
     }
     break;
+    case WM_SETFOCUS:
+    {
+        if (true == AllWindowMap.contains(hWnd))
+        {
+            // MSGASSERT("존재하지 않는 윈도우가 메세지가 들어왔습니다.");
+            AllWindowMap[hWnd]->bFocus = true;
+        }
+        UEngineDebug::OutPutString("F");
+        // AllWindows[]
+        //Window.IsFocus = true;
+    }
+    break;
+    case WM_KILLFOCUS:
+    {
+        if (true == AllWindowMap.contains(hWnd))
+        {
+            // MSGASSERT("존재하지 않는 윈도우가 메세지가 들어왔습니다.");
+            AllWindowMap[hWnd]->bFocus = false;
+        }
+        UEngineDebug::OutPutString("K");
+    }
+    break;
     case WM_DESTROY:
+    {
         --WindowCount;
         if (0 >= WindowCount)
         {
             UEngineWindow::LoopActive = false;
         }
-        break;
+    }
+    break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
@@ -161,6 +186,8 @@ ENGINE_API void UEngineWindow::Create(std::string_view TitleName, std::string_vi
     }
 
     HDC WindowMainDC = GetDC(WindowHandle);
+
+    AllWindowMap.insert({ WindowHandle, this });
 }
 
 ENGINE_API void UEngineWindow::Open(std::string_view TitleName)

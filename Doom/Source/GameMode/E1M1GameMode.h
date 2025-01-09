@@ -22,6 +22,7 @@ public:
 	void Tick(float DeltaTime);
 
 protected:
+	virtual void LevelChangeStart() override;
 
 private:
 	std::shared_ptr<ADoomGuy> DoomGuy = nullptr;

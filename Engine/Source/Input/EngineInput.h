@@ -47,6 +47,17 @@ private:
 		std::vector<std::function<void()>> DownEvents;
 		std::vector<std::function<void()>> UpEvents;
 		std::vector<std::function<void()>> FreeEvents;
+
+		void Reset()
+		{
+			IsDown = false;
+			IsPress = false;
+			IsUp = false;
+			IsFree = true;
+			PressTime = 0.0f;
+			FreeTime = 0.0f;
+		}
+
 		// 벡터나 리스트를 사용하면 에러가 난다.
 		// 학생들이 대처를 못하는데
 		// 결국 맨위로 올라가면 됩니다.
@@ -66,6 +77,8 @@ private:
 
 public:
 	ENGINE_API static void KeyCheck(float _DeltaTime);
+	ENGINE_API static void KeyReset();
+
 	// UEngineInput::GetInst().IsDown('A')
 	static bool IsDoubleClick(int _KeyIndex, float _Time)
 	{
