@@ -35,6 +35,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{802B0D
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contents", "Contents", "{E46592D0-A07D-48E9-B472-8C8006C84C48}"
+	ProjectSection(SolutionItems) = preProject
+		Doom\Shaders\NavMeshTestShader.fx = Doom\Shaders\NavMeshTestShader.fx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

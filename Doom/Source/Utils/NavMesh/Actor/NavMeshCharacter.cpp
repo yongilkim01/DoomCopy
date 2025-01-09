@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "TestPlayer.h"
+#include "NavMeshCharacter.h"
 
 #include <Classes/Components/PaperSpriteComponent.h>
 #include <Classes/Components/StaticMeshComponent.h>
@@ -11,7 +11,7 @@
 
 #include <Input/EngineInput.h>
 
-ATestPlayer::ATestPlayer()
+ANavMeshCharacter::ANavMeshCharacter()
 {
 	std::shared_ptr<USceneComponent> Default = CreateDefaultSubObject<USceneComponent>();
 	RootComponent = Default;
@@ -30,20 +30,20 @@ ATestPlayer::ATestPlayer()
 	ShapeComponent->SetWorldScale3D({ 20.0f, 20.0f });
 }
 
-ATestPlayer::~ATestPlayer()
+ANavMeshCharacter::~ANavMeshCharacter()
 {
 }
 
-void ATestPlayer::BeginPlay()
+void ANavMeshCharacter::BeginPlay()
 {
 	AActor::BeginPlay();
 }
 
-void ATestPlayer::Tick(float DeltaTime)
+void ANavMeshCharacter::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
 
-	
+
 	DirectX::XMVECTOR OriginVector = DirectX::XMVectorSet(GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z, 1.0f);
 
 	DirectX::XMVECTOR Direction = DirectX::XMVectorSet(0.0f, -1.0f, 0.0f, 0.0f);

@@ -8,18 +8,18 @@ class UShapeComponent;
 /**
  *	설명
  */
-class ATestPlayer : public AActor
+class ANavMeshCharacter : public AActor
 {
 public:
 	/** 생성자, 소멸자 */
-	ATestPlayer();
-	~ATestPlayer();
+	ANavMeshCharacter();
+	~ANavMeshCharacter();
 
 	/** 객체 값 복사 방지 */
-	ATestPlayer(const ATestPlayer& Other) = delete;
-	ATestPlayer(ATestPlayer&& Other) noexcept = delete;
-	ATestPlayer& operator=(const ATestPlayer& Other) = delete;
-	ATestPlayer& operator=(ATestPlayer&& Other) noexcept = delete;
+	ANavMeshCharacter(const ANavMeshCharacter& Other) = delete;
+	ANavMeshCharacter(ANavMeshCharacter&& Other) noexcept = delete;
+	ANavMeshCharacter& operator=(const ANavMeshCharacter& Other) = delete;
+	ANavMeshCharacter& operator=(ANavMeshCharacter&& Other) noexcept = delete;
 
 	float GetResult()
 	{

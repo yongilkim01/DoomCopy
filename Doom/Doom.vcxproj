@@ -161,23 +161,23 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Source\Test\NevMeshTestGameMode.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\Test\TestComponent.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\Test\TestMap.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\Test\TestPlayer.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="Source\Utils\GUI\GUIEditor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\NavMesh\Actor\NavMeshCharacter.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\NavMesh\Actor\NavMeshMap.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\NavMesh\Component\NavMeshComponent.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\NavMesh\GameMode\NavMeshGameMode.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -195,23 +195,23 @@
     <ClInclude Include="Source\GameMode\E1M1GameMode.h" />
     <ClInclude Include="Source\GameMode\TitleGameMode.h" />
     <ClInclude Include="Source\pch.h" />
-    <ClInclude Include="Source\Test\NevMeshTestGameMode.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Test\TestComponent.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Test\TestMap.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Test\TestPlayer.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Source\Utils\GUI\GUIEditor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\NavMesh\Actor\NavMeshCharacter.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\NavMesh\Actor\NavMeshMap.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\NavMesh\Component\NavMeshComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\NavMesh\GameMode\NavMeshGameMode.h">
       <SubType>
       </SubType>
     </ClInclude>

@@ -29,6 +29,8 @@ protected:
 	void EngineTick(float DeltaTime);
 	void EngineEnd();
 
+	void InitContentsRenderingResource();
+
 private:
 	const float WindowWidth = 1280;
 	const float WindowHeight = 720;

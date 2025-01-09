@@ -4,7 +4,7 @@
 #include "GameMode/TitleGameMode.h"
 #include "GameMode/E1M1GameMode.h"
 
-#include "Test/NevMeshTestGameMode.h"
+#include "Utils/NavMesh/GameMode/NavMeshGameMode.h"
 
 #include "Utils/GUI/GUIEditor.h"
 
@@ -18,6 +18,8 @@
 #include <GameFramework/Actor.h>
 #include <Tools/DebugGUI/EngineGUI.h>
 #include <Tools/DebugGUI/EngineGUIWindow.h>
+#include <Rendering/Shader/EngineShader.h>
+#include <Core/Materials/Material.h>
 
 #include <stdio.h>
 
@@ -56,6 +58,8 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 		}
 	}
 
+	InitContentsRenderingResource();
+
 	UPaperSprite::CreateSpriteToMeta("Player.png", ".sdata");
 
 	//{
@@ -85,8 +89,8 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 
 	//UEngineCore::CreateLevel<ATitleGameMode, AActor>("TitleLevel");
 	UEngineCore::CreateLevel<AE1M1GameMode, APawn>("E1M1Level");
-	UEngineCore::CreateLevel<ANevMeshTestGameMode, APawn>("Test");
-	UEngineCore::OpenLevel("E1M1Level");
+	UEngineCore::CreateLevel<ANavMeshGameMode, APawn>("NavMeshLevel");
+	UEngineCore::OpenLevel("NavMeshLevel");
 
 	UEngineGUI::OffAllWindow();
 
@@ -101,6 +105,36 @@ void UDoomCore::EngineTick(float DeltaTime)
 
 void UDoomCore::EngineEnd()
 {
+}
+
+void UDoomCore::InitContentsRenderingResource()
+{
+	{
+		FDirectoryHelper CurDir;
+		CurDir.MoveSelectShaderDirectory("Doom");
+
+		std::vector<FFileHelper> ShaderFiles = CurDir.GetAllFile(true, { ".fx", ".hlsl" });
+
+		for (size_t i = 0; i < ShaderFiles.size(); i++)
+		{
+			UEngineShader::ReflectionCompile(ShaderFiles[i]);
+		}
+	}
+
+	{
+		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("NavMeshTestMaterial");
+		Mat->SetVertexShader("NavMeshTestShader.fx");
+		Mat->SetPixelShader("NavMeshTestShader.fx");
+	}
+
+	//{
+	//	std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("MyCollisionDebugMaterial");
+	//	Mat->SetVertexShader("EngineDebugCollisionShader.fx");
+	//	Mat->SetPixelShader("EngineDebugCollisionShader.fx");
+	//	// 언제나 화면에 나오는 누구도 이녀석의 앞을 가릴수 없어.
+	//	Mat->SetDepthStencilState("CollisionDebugDepth");
+	//	Mat->SetRasterizerState("CollisionDebugRas");
+	//}
 }
 
 void UDoomCore::InitWindowSize(UEngineInitData& Data)

@@ -37,11 +37,23 @@
     <Filter Include="2_Actor\1_E1M1">
       <UniqueIdentifier>{2548844e-bdba-4fed-8131-a72c2db43c59}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Test">
-      <UniqueIdentifier>{15ceb813-e2c4-498c-bb7e-2685c92101d5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="4_Utils\GUI">
       <UniqueIdentifier>{00cdd054-4c62-4e93-b544-f3d22db0f7d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_Utils\WAD">
+      <UniqueIdentifier>{47c6402a-ca2e-4a13-a838-94fc1b5eefca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_Utils\NavMesh">
+      <UniqueIdentifier>{66c6bc54-24d9-4a0c-8384-02d5a5afd208}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_Utils\NavMesh\GameMode">
+      <UniqueIdentifier>{c1bbd952-a0e1-4513-9bc0-534cae8fadbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_Utils\NavMesh\Actor">
+      <UniqueIdentifier>{ec74d8fc-5c8f-4587-b70c-268101b7fbcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_Utils\NavMesh\Component">
+      <UniqueIdentifier>{c8d69810-5aee-4987-8278-98d8eb86e7af}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -72,29 +84,29 @@
     <ClCompile Include="Source\Componennts\LineComponent.cpp">
       <Filter>3_Components</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utils\Wad.cpp">
-      <Filter>4_Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\Lump.cpp">
-      <Filter>4_Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\WadMap.cpp">
-      <Filter>4_Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Test\NevMeshTestGameMode.cpp">
-      <Filter>Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Test\TestPlayer.cpp">
-      <Filter>Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Test\TestMap.cpp">
-      <Filter>Test</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Test\TestComponent.cpp">
-      <Filter>Test</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Utils\GUI\GUIEditor.cpp">
       <Filter>4_Utils\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\Lump.cpp">
+      <Filter>4_Utils\WAD</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\Wad.cpp">
+      <Filter>4_Utils\WAD</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\WadMap.cpp">
+      <Filter>4_Utils\WAD</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\NavMesh\GameMode\NavMeshGameMode.cpp">
+      <Filter>4_Utils\NavMesh\GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\NavMesh\Actor\NavMeshMap.cpp">
+      <Filter>4_Utils\NavMesh\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\NavMesh\Component\NavMeshComponent.cpp">
+      <Filter>4_Utils\NavMesh\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\NavMesh\Actor\NavMeshCharacter.cpp">
+      <Filter>4_Utils\NavMesh\Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -125,29 +137,29 @@
     <ClInclude Include="Source\Componennts\LineComponent.h">
       <Filter>3_Components</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Utils\Wad.h">
-      <Filter>4_Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Utils\Lump.h">
-      <Filter>4_Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Utils\WadMap.h">
-      <Filter>4_Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Test\NevMeshTestGameMode.h">
-      <Filter>Test</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Test\TestPlayer.h">
-      <Filter>Test</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Test\TestMap.h">
-      <Filter>Test</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Test\TestComponent.h">
-      <Filter>Test</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Utils\GUI\GUIEditor.h">
       <Filter>4_Utils\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\Lump.h">
+      <Filter>4_Utils\WAD</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\Wad.h">
+      <Filter>4_Utils\WAD</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\WadMap.h">
+      <Filter>4_Utils\WAD</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\NavMesh\GameMode\NavMeshGameMode.h">
+      <Filter>4_Utils\NavMesh\GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\NavMesh\Actor\NavMeshMap.h">
+      <Filter>4_Utils\NavMesh\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\NavMesh\Component\NavMeshComponent.h">
+      <Filter>4_Utils\NavMesh\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\NavMesh\Actor\NavMeshCharacter.h">
+      <Filter>4_Utils\NavMesh\Actor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

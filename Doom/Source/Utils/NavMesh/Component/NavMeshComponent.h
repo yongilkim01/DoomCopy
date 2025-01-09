@@ -8,18 +8,18 @@ class UStaticMesh;
 /**
  *	설명
  */
-class UTestComponent : public UPrimitiveComponent
+class UNavMeshComponent : public UPrimitiveComponent
 {
 public:
 	/** 생성자, 소멸자 */
-	ENGINE_API UTestComponent();
-	ENGINE_API ~UTestComponent();
+	ENGINE_API UNavMeshComponent();
+	ENGINE_API ~UNavMeshComponent();
 
 	/** 객체 값 복사 방지 */
-	UTestComponent(const UTestComponent& Other) = delete;
-	UTestComponent(UTestComponent&& Other) noexcept = delete;
-	UTestComponent& operator=(const UTestComponent& Other) = delete;
-	UTestComponent& operator=(UTestComponent&& Other) noexcept = delete;
+	UNavMeshComponent(const UNavMeshComponent& Other) = delete;
+	UNavMeshComponent(UNavMeshComponent&& Other) noexcept = delete;
+	UNavMeshComponent& operator=(const UNavMeshComponent& Other) = delete;
+	UNavMeshComponent& operator=(UNavMeshComponent&& Other) noexcept = delete;
 
 protected:
 	/** UObject 상속 메소드 */
