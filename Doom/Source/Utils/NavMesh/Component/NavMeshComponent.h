@@ -3,7 +3,7 @@
 #include "Classes/Engine/StaticMesh.h"
 #include "Classes/Engine/Texture.h"
 
-class UStaticMesh;
+class UNavMeshResource;
 
 /**
  *	Ό³Έν
@@ -29,5 +29,5 @@ protected:
 	ENGINE_API virtual void Render(UCameraComponent* CameraComponent, float DeltaTime) override;
 
 private:
-
+	std::shared_ptr<UNavMeshResource> NavMesh = nullptr;
 };

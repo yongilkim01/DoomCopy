@@ -19,7 +19,7 @@ public:
 	FIndexBuffer& operator=(FIndexBuffer&& Other) noexcept = delete;
 
 	template<typename IndexDataType>
-	static std::shared_ptr<FIndexBuffer> Create(
+	ENGINE_API static std::shared_ptr<FIndexBuffer> Create(
 		std::string_view Name,
 		const std::vector<IndexDataType>& IndexData)
 	{
@@ -29,7 +29,7 @@ public:
 			sizeof(IndexDataType), 
 			IndexData.size());
 	}
-	static std::shared_ptr<FIndexBuffer> Create(
+	ENGINE_API static std::shared_ptr<FIndexBuffer> Create(
 		std::string_view Name, 
 		const void* InitData,
 		size_t IndexSize, 

@@ -108,6 +108,9 @@
     <ClCompile Include="Source\Utils\NavMesh\Actor\NavMeshCharacter.cpp">
       <Filter>4_Utils\NavMesh\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Utils\NavMesh\Actor\NavMeshResource.cpp">
+      <Filter>4_Utils\NavMesh\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DoomGuy\DoomGuy.h">
@@ -159,6 +162,9 @@
       <Filter>4_Utils\NavMesh\Component</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utils\NavMesh\Actor\NavMeshCharacter.h">
+      <Filter>4_Utils\NavMesh\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\NavMesh\Actor\NavMeshResource.h">
       <Filter>4_Utils\NavMesh\Actor</Filter>
     </ClInclude>
   </ItemGroup>

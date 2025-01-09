@@ -15,3 +15,8 @@ public:
 };
 
 EngineVertexInit InitObject;
+
+UEngineInputLayoutInfo& EngineVertex::GetInfo()
+{
+	return Info;
+}

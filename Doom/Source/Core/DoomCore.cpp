@@ -5,8 +5,8 @@
 #include "GameMode/E1M1GameMode.h"
 
 #include "Utils/NavMesh/GameMode/NavMeshGameMode.h"
-
 #include "Utils/GUI/GUIEditor.h"
+#include "Utils/NavMesh/Actor/NavMeshResource.h"
 
 #include <Core/Math/EngineMath.h>
 #include <Core/EngineCore.h>
@@ -125,6 +125,9 @@ void UDoomCore::InitContentsRenderingResource()
 		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("NavMeshTestMaterial");
 		Mat->SetVertexShader("NavMeshTestShader.fx");
 		Mat->SetPixelShader("NavMeshTestShader.fx");
+	}
+	{
+		UNavMeshResource::Create("NavMapResource");
 	}
 
 	//{

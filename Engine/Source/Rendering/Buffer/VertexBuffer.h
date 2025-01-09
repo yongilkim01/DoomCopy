@@ -21,7 +21,7 @@ public:
 	FVertexBuffer& operator=(FVertexBuffer&& Other) noexcept = delete;
 
 	template<typename VertexDataType>
-	static std::shared_ptr<FVertexBuffer> Create(
+	ENGINE_API static std::shared_ptr<FVertexBuffer> Create(
 		std::string_view Name, 
 		const std::vector<VertexDataType>& VertexData)
 	{
@@ -30,9 +30,9 @@ public:
 			reinterpret_cast<const void*>(&VertexData[0]),
 			sizeof(VertexDataType), 
 			VertexData.size(),
-			&VertexDataType::Info);
+			&VertexDataType::GetInfo());
 	}
-	static std::shared_ptr<FVertexBuffer> Create(
+	ENGINE_API static std::shared_ptr<FVertexBuffer> Create(
 		std::string_view Name, 
 		const void* InitData,
 		size_t VertexSize, 

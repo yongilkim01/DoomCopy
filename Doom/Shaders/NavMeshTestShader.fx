@@ -66,5 +66,5 @@ VertexShaderOutPut VertexToWorld_VS(EngineVertex _Vertex)
 // 이미지를 샘플링해서 이미지를 보이게 만들고
 float4 PixelToWorld_PS(VertexShaderOutPut _Vertex) : SV_Target0
 {
-    return float4(1.0f, 1.0f, 1.0f, 1.0f);
+    return _Vertex.COLOR;
 };

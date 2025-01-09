@@ -8,7 +8,9 @@ struct EngineVertex
 {
 	friend EngineVertexInit;
 
-	static UEngineInputLayoutInfo Info;
+	ENGINE_API static UEngineInputLayoutInfo Info;
+
+	ENGINE_API static UEngineInputLayoutInfo& GetInfo();
 
 	float4 POSITION;
 	float4 TEXCOORD; // UV값이라고 불리는 존재로 텍스처가 매핑되는 비율을 지정해줍니다.

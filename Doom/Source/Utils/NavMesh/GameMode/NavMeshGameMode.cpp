@@ -49,18 +49,12 @@ ANavMeshGameMode::ANavMeshGameMode()
 	}
 	{
 		TestMap = GetWorld()->SpawnActor<ANavMeshMap>();
-		TestMap->SetActorRelativeScale3D(FVector{ 300.0f, 300.0f, 300.0f });
-		TestMap->SetActorLocation({ 0.0f, 0.0f, 0.0f });
-		TestMap->AddActorRotation({ 90.0f, 0.0f, 0.0f });
-		//TestMap->AddActorRotation({ 0.0f, 0.0f, 20.0f });
 	}
 	{
 		Camera = GetWorld()->GetMainCamera();
-		//Camera->AddActorLocation({ 10.0f, 0.0f, 0.0f });
 		Camera->AddActorRelativeLocation({ 0.0f, 80.0f, -500.0f });
 		Camera->AddActorRotation({ 10.0f, 0.0f, 0.0f });
 		Camera->GetCameraComponent()->SetZSort(0, true);
-		//Camera->AttachToActor(PlayerCharacter.get());
 	}
 
 	std::shared_ptr<UNavMeshDebugWindow> Window = UEngineGUI::CreateGUIWindow<UNavMeshDebugWindow>("NavMeshDebugWindow");

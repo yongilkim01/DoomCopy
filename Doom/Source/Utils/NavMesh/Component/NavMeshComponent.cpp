@@ -5,11 +5,18 @@
 #include "Classes/Engine/Texture.h"
 #include "Classes/Engine/StaticMesh.h"
 
+#include "Utils/NavMesh/Actor/NavMeshResource.h"
+
 UNavMeshComponent::UNavMeshComponent()
 {
-	CreateRenderUnit();
-	SetMesh("Triangle");
-	SetMaterial("NavMeshTestMaterial");
+	NavMesh = UStaticMesh::Find<UNavMeshResource>("NavMapResource");
+
+	for (int i = 0; i < NavMesh->GetNavMeshResourceCount(); i++)
+	{
+		CreateRenderUnit();
+		SetMesh("NavMapResource" + std::to_string(i));
+		SetMaterial("NavMeshTestMaterial");
+	}
 
 	//MyColor.Albedo = float4(1.0f, 1.0f, 1.0f, 1.0f);
 
