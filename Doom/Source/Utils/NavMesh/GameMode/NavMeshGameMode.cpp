@@ -79,14 +79,15 @@ void ANavMeshGameMode::Tick(float DeltaTime)
 	std::vector<EngineVertex> VertexDataVector = TestMap->GetNavMapComponent()->GetVertexVector();
 	std::vector<unsigned int> IndexDataVector = TestMap->GetNavMapComponent()->GetIndexVector();
 
-	for (int i = 0; i < IndexDataVector.size() / 3; i++)
-	{
+	FTransform TestMapTransform = TestMap->GetActorTransform();
 
-	}
+	DirectX::XMVECTOR Vector1 = (VertexDataVector[0].POSITION * TestMapTransform.ScaleMat * TestMapTransform.RotationMat * TestMapTransform.LocationMat).DirectVector;
+	DirectX::XMVECTOR Vector2 = (VertexDataVector[1].POSITION * TestMapTransform.ScaleMat * TestMapTransform.RotationMat * TestMapTransform.LocationMat).DirectVector;
+	DirectX::XMVECTOR Vector3 = (VertexDataVector[2].POSITION * TestMapTransform.ScaleMat * TestMapTransform.RotationMat * TestMapTransform.LocationMat).DirectVector;
 
-	DirectX::XMVECTOR Vector1 = DirectX::XMVectorSet(-150.0f, 0.0f, 150.0f, 1.0f);
-	DirectX::XMVECTOR Vector2 = DirectX::XMVectorSet(150.0f, 0.0f, 150.0f, 1.0f);
-	DirectX::XMVECTOR Vector3 = DirectX::XMVectorSet(0.0f, 0.0f, -150.0f, 1.0f);
+	//DirectX::XMVECTOR Vector1 = DirectX::XMVectorSet(-150.0f, 0.0f, 150.0f, 1.0f);
+	//DirectX::XMVECTOR Vector2 = DirectX::XMVectorSet(150.0f, 0.0f, 150.0f, 1.0f);
+	//DirectX::XMVECTOR Vector3 = DirectX::XMVectorSet(0.0f, 0.0f, -150.0f, 1.0f);
 
 	DirectX::TriangleTests::Intersects(OriginVector, Direction, Vector1, Vector2, Vector3, DistanceToPlayer);
 
