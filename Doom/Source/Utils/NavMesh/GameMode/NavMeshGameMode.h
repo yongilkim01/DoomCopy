@@ -30,5 +30,7 @@ private:
 	std::shared_ptr<ACameraActor> Camera = nullptr;
 	std::shared_ptr<ANavMeshCharacter> PlayerCharacter = nullptr;
 	std::shared_ptr<ANavMeshMap> TestMap = nullptr;
+
+	float DistanceToPlayer = 0.0f;
 };
 

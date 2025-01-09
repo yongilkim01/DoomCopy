@@ -2,6 +2,7 @@
 #include <Classes/Engine/RenderAsset.h>
 #include <Rendering/Buffer/IndexBuffer.h>
 #include <Rendering/Buffer/VertexBuffer.h>
+#include <Rendering/Buffer/EngineVertex.h>
 
 class UMesh;
 class UTexture;
@@ -42,6 +43,8 @@ public:
 	std::string GetTextureNameByIndex(int Index);
 	std::shared_ptr<UTexture> GetTextureByIndex(int Index);
 	std::shared_ptr<UMesh> GetMeshByIndex(int Index);
+	std::vector<EngineVertex>& GetVertexVector() { return Vertexs; }
+	std::vector<unsigned int>& GetIndexVector() { return Indexs; }
 
 protected:
 	void CreateAsset(std::string_view ModelName);
@@ -50,5 +53,8 @@ private:
 	std::vector<FNavMeshResourceData> NavMeshResourceDataVector;
 	std::string MeshName = "";
 	std::string DirectoryPath = "";
+
+	std::vector<EngineVertex> Vertexs;
+	std::vector<unsigned int> Indexs;
 };
 

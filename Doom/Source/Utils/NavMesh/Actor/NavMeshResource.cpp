@@ -67,10 +67,6 @@ void UNavMeshResource::CreateAsset(std::string_view ModelName)
 
 bool UNavMeshResource::LoadModel(std::string_view ModelName)
 {
-	std::vector<EngineVertex> Vertexs;
-	std::vector<unsigned int> Indexs;
-	std::vector<TEXTURE> textures;
-
 	EngineVertex Vertex1 = EngineVertex{ FVector(-100.0f, 0.0f, 100.0f), {0.0f , 0.0f }, {1.0f, 0.0f, 0.0f, 1.0f} };
 	EngineVertex Vertex2 = EngineVertex{ FVector(100.0f, 0.0f, 100.0f), {0.0f , 0.0f }, {0.0f, 1.0f, 0.0f, 1.0f} };
 	EngineVertex Vertex3 = EngineVertex{ FVector(-100.0f, 0.0f, -100.0f), {0.0f , 0.0f }, {0.0f, 0.0f, 1.0f, 1.0f} };

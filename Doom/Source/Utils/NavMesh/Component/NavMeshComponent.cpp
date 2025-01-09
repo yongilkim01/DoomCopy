@@ -27,6 +27,16 @@ UNavMeshComponent::~UNavMeshComponent()
 {
 }
 
+std::vector<EngineVertex>& UNavMeshComponent::GetVertexVector()
+{
+	return NavMesh->GetVertexVector();
+}
+
+std::vector<unsigned int>& UNavMeshComponent::GetIndexVector()
+{
+	return NavMesh->GetIndexVector();
+}
+
 void UNavMeshComponent::BeginPlay()
 {
 	UPrimitiveComponent::BeginPlay();

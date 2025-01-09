@@ -2,6 +2,7 @@
 #include "Classes/Components/PrimitiveComponent.h"
 #include "Classes/Engine/StaticMesh.h"
 #include "Classes/Engine/Texture.h"
+#include <Rendering/Buffer/EngineVertex.h>
 
 class UNavMeshResource;
 
@@ -20,6 +21,9 @@ public:
 	UNavMeshComponent(UNavMeshComponent&& Other) noexcept = delete;
 	UNavMeshComponent& operator=(const UNavMeshComponent& Other) = delete;
 	UNavMeshComponent& operator=(UNavMeshComponent&& Other) noexcept = delete;
+
+	std::vector<EngineVertex>& GetVertexVector();
+	std::vector<unsigned int>& GetIndexVector();
 
 protected:
 	/** UObject 상속 메소드 */

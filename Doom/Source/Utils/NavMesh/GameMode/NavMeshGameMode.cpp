@@ -5,6 +5,7 @@
 #include <Classes/Camera/CameraComponent.h>
 #include <Classes/Components/StaticMeshComponent.h>
 #include <Input/EngineInput.h>
+#include <Rendering/Buffer/EngineVertex.h>
 
 #include <Tools/DebugGUI/EngineGUI.h>
 #include <Tools/DebugGUI/EngineGUIWindow.h>
@@ -13,6 +14,7 @@
 #include "Utils/NavMesh/Actor/NavMeshCharacter.h"
 #include "Utils/NavMesh/Actor/NavMeshMap.h"
 #include "Utils/GUI/GUIEditor.h"
+#include "Utils/NavMesh/Component/NavMeshComponent.h"
 
 class UNavMeshDebugWindow : public UEngineGUIWindow
 {
@@ -69,6 +71,33 @@ ANavMeshGameMode::~ANavMeshGameMode()
 void ANavMeshGameMode::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
+
+	DirectX::XMVECTOR OriginVector = DirectX::XMVectorSet(PlayerCharacter->GetActorLocation().X, PlayerCharacter->GetActorLocation().Y, PlayerCharacter->GetActorLocation().Z, 1.0f);
+
+	DirectX::XMVECTOR Direction = DirectX::XMVectorSet(0.0f, -1.0f, 0.0f, 0.0f);
+
+	std::vector<EngineVertex> VertexDataVector = TestMap->GetNavMapComponent()->GetVertexVector();
+	std::vector<unsigned int> IndexDataVector = TestMap->GetNavMapComponent()->GetIndexVector();
+
+	for (int i = 0; i < IndexDataVector.size() / 3; i++)
+	{
+
+	}
+
+	DirectX::XMVECTOR Vector1 = DirectX::XMVectorSet(-150.0f, 0.0f, 150.0f, 1.0f);
+	DirectX::XMVECTOR Vector2 = DirectX::XMVectorSet(150.0f, 0.0f, 150.0f, 1.0f);
+	DirectX::XMVECTOR Vector3 = DirectX::XMVectorSet(0.0f, 0.0f, -150.0f, 1.0f);
+
+	DirectX::TriangleTests::Intersects(OriginVector, Direction, Vector1, Vector2, Vector3, DistanceToPlayer);
+
+	if (9.0f < DistanceToPlayer && DistanceToPlayer < 11.0f)
+	{
+		//SetActorLocation({ 0.0f, 10.0f, 0.0f });
+	}
+	else
+	{
+		PlayerCharacter->AddActorLocation({ 0.0f, -0.5f, 0.0f });
+	}
 
 }
 

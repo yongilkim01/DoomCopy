@@ -21,6 +21,11 @@ public:
 	ANavMeshMap& operator=(const ANavMeshMap& Other) = delete;
 	ANavMeshMap& operator=(ANavMeshMap&& Other) noexcept = delete;
 
+	std::shared_ptr<UNavMeshComponent> GetNavMapComponent()
+	{
+		return SpriteComponent;
+	}
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
