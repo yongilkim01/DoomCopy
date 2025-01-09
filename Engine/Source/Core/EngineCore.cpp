@@ -178,6 +178,12 @@ FVector UEngineCore::GetSceenScale()
 // 새로운 레벨을 생성하는 메소드 구현부
 std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string_view Name)
 {
+	if (true == LevelMap.contains(Name.data()))
+	{
+		MSGASSERT("동일한 이름의 레벨이 존재합니다 " + std::string(Name.data()));
+		return nullptr;
+	}
+
 	std::shared_ptr<ULevel> Ptr = std::make_shared<ULevel>();
 	Ptr->SetName(Name);
 
@@ -190,11 +196,18 @@ std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string_view Name)
 
 void UEngineCore::OpenLevel(std::string_view LevelName)
 {
-	if (false == LevelMap.contains(LevelName.data()))
+	std::string UpperLevelName = UEngineString::ToUpper(LevelName);
+
+	if (false == LevelMap.contains(UpperLevelName))
 	{
 		MSGASSERT("존재하지 않는 레벨입니다. " + std::string(LevelName));
 		return;
 	}
 
-	NextLevel = LevelMap[LevelName.data()];
+	NextLevel = LevelMap[UpperLevelName];
+}
+
+std::map<std::string, std::shared_ptr<ULevel>> UEngineCore::GetAllLevelMap()
+{
+	return LevelMap;
 }

@@ -112,6 +112,10 @@ public:
 
 		Order = NewOrder;
 	}
+	bool& IsActiveRef()
+	{
+		return IsActiveValue;
+	}
 
 protected:
 

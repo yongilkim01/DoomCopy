@@ -40,6 +40,9 @@
     <Filter Include="Test">
       <UniqueIdentifier>{15ceb813-e2c4-498c-bb7e-2685c92101d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="4_Utils\GUI">
+      <UniqueIdentifier>{00cdd054-4c62-4e93-b544-f3d22db0f7d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\DoomGuy\DoomGuy.cpp">
@@ -90,6 +93,9 @@
     <ClCompile Include="Source\Test\TestComponent.cpp">
       <Filter>Test</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Utils\GUI\GUIEditor.cpp">
+      <Filter>4_Utils\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DoomGuy\DoomGuy.h">
@@ -139,6 +145,9 @@
     </ClInclude>
     <ClInclude Include="Source\Test\TestComponent.h">
       <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\GUI\GUIEditor.h">
+      <Filter>4_Utils\GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,6 +6,8 @@
 
 #include "Test/NevMeshTestGameMode.h"
 
+#include "Utils/GUI/GUIEditor.h"
+
 #include <Core/Math/EngineMath.h>
 #include <Core/EngineCore.h>
 #include <Core/Misc/DirectoryHelper.h>
@@ -14,6 +16,8 @@
 #include <Classes/Engine/Texture.h>
 #include <Classes/Engine/PaperSprite.h>
 #include <GameFramework/Actor.h>
+#include <Tools/DebugGUI/EngineGUI.h>
+#include <Tools/DebugGUI/EngineGUIWindow.h>
 
 #include <stdio.h>
 
@@ -83,6 +87,12 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 	UEngineCore::CreateLevel<AE1M1GameMode, APawn>("E1M1Level");
 	UEngineCore::CreateLevel<ANevMeshTestGameMode, APawn>("Test");
 	UEngineCore::OpenLevel("E1M1Level");
+
+	UEngineGUI::OffAllWindow();
+
+	UEngineGUI::CreateGUIWindow<UGUIEditor>("GUIEditor");
+	std::shared_ptr<UGUIEditor> Window = UEngineGUI::FindGUIWindow<UGUIEditor>("GUIEditor");
+	Window->SetActive(true);
 }
 
 void UDoomCore::EngineTick(float DeltaTime)

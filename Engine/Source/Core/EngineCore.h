@@ -37,7 +37,9 @@ public:
 	template<typename GameModeType, typename MainPawnType>
 	static class std::shared_ptr<ULevel> CreateLevel(std::string_view Name)
 	{
-		std::shared_ptr<ULevel> NewLevel = NewLevelCreate(Name);
+		std::string UpperLevelName = UEngineString::ToUpper(Name);
+
+		std::shared_ptr<ULevel> NewLevel = NewLevelCreate(UpperLevelName);
 
 		std::shared_ptr<GameModeType> InitGameMode = NewLevel->SpawnActor<GameModeType>();
 		std::shared_ptr<MainPawnType> InitPawn = NewLevel->SpawnActor<MainPawnType>();
@@ -51,6 +53,7 @@ public:
 	ENGINE_API static UEngineGraphicDevice& GetDevice();
 	ENGINE_API static FVector GetSceenScale();
 	ENGINE_API static UEngineWindow& GetMainWindow();
+	ENGINE_API static std::map<std::string, std::shared_ptr<ULevel>> GetAllLevelMap();
 
 protected:
 

@@ -105,17 +105,53 @@ void UEngineGUI::PushGUIWindow(std::shared_ptr<UEngineGUIWindow> GUIWindow)
     GUIWindows.insert({ GUIWindow->GetName(), GUIWindow });
 }
 
+std::shared_ptr<UEngineGUIWindow> UEngineGUI::FindGUIWindow(std::string_view GUIWindowName)
+{
+    std::string UpperGUIWindowName = UEngineString::ToUpper(GUIWindowName);
+    
+    if (false == GUIWindows.contains(UpperGUIWindowName))
+    {
+        return nullptr;
+    }
+
+    return GUIWindows[UpperGUIWindowName];
+}
+
+
 void UEngineGUI::GUIRender(ULevel* _Level)
 {
     UEngineGUI::StartGUIRender();
 
     for (std::pair<const std::string, std::shared_ptr<class UEngineGUIWindow>>& GUIWindow : GUIWindows)
     {
-        ImGui::Begin(GUIWindow.first.c_str());
+        if (false == GUIWindow.second->IsActive())
+        {
+            continue;
+        }
+        bool* ActivePtr = &GUIWindow.second->IsActiveRef();
+
+        ImGui::Begin(GUIWindow.first.c_str(), ActivePtr);
+
         GUIWindow.second->World = _Level;
         GUIWindow.second->OnGUI();
         ImGui::End();
     }
 
     UEngineGUI::EndGUIRender();
+}
+
+void UEngineGUI::OnAllWindow()
+{
+    for (std::pair<const std::string, std::shared_ptr<UEngineGUIWindow>>& GUIWindow : GUIWindows)
+    {
+        GUIWindow.second->SetActive(true);
+    }
+}
+
+void UEngineGUI::OffAllWindow()
+{
+    for (std::pair<const std::string, std::shared_ptr<UEngineGUIWindow>>& GUIWindow : GUIWindows)
+    {
+        GUIWindow.second->SetActive(false);
+    }
 }
