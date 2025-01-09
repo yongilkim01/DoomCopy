@@ -878,19 +878,6 @@ public:
 		Arr2D[3][1] = -Arr2D[1][1] + Top;
 		Arr2D[3][2] = ZMax != 0.0f ? 1.0f : ZMin / ZMax;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-	/*
 	void Transpose()
 	{
 		for (size_t y = 0; y < 4; y++)
@@ -902,9 +889,9 @@ public:
 				Arr2D[x][y] = Swap;
 			}
 		}
-
 	}
 
+	/*
 	// View행렬의 인자입니다.
 	void MyView(const FVector& _Pos, const FVector& _Dir, const FVector& _Up)
 	{

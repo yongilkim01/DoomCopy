@@ -5,6 +5,7 @@
 #include "Interfaces/IContentsCore.h"
 #include "Classes/Engine/Level.h"
 #include "Time/Timer.h"
+#include "Core/Containers/EngineString.h"
 
 #include <memory>
 

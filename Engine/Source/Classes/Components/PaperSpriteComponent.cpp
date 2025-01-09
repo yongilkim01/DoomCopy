@@ -144,9 +144,13 @@ void UPaperSpriteComponent::RenderTransformUpdate(UCameraComponent* CameraCompon
 
 	if (true == bBillboard)
 	{
-		ComponentTransform.View.ArrVector[0] = { 1.0f, 0.0f, 0.0f, 0.0f };
-		ComponentTransform.View.ArrVector[1] = { 0.0f, 1.0f, 0.0f, 0.0f };
-		ComponentTransform.View.ArrVector[2] = { 0.0f, 0.0f, 1.0f, 0.0f };
+		FMatrix Bill = CameraTransform.View;
+		// 뷰행렬의 이동부분을 초기화
+		Bill.ArrVector[3] = FVector(0.0f, 0.0f, 0.0f, 1.0f);
+		// 역행렬로 구해도 구해지지만 애는 회전속성의 역행렬은 전치행렬이기 때문에 이렇게 처리해주면 된다.
+		Bill.Transpose();
+		// 기존의 행렬을 트랜스폼에 다 몰아 놓은 이유가 여기
+		CurWorld = ComponentTransform.ScaleMat * Bill * ComponentTransform.LocationMat * ComponentTransform.RevolveMat * ComponentTransform.ParentMat;
 	}
 
 	ComponentTransform.Projection = CameraTransform.Projection;
