@@ -63,8 +63,7 @@ ANavMeshGameMode::ANavMeshGameMode()
 	std::shared_ptr<UNavMeshDebugWindow> Window = UEngineGUI::CreateGUIWindow<UNavMeshDebugWindow>("NavMeshDebugWindow");
 	Window->TestPlayer = PlayerCharacter;
 
-	NaviDataManager = new UNaviMeshManager();
-	NaviDataManager->LoadModel("");
+	UNaviMeshManager::GetInstance().LoadModel("");
 
 }
 
@@ -76,26 +75,9 @@ void ANavMeshGameMode::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
 
-	DirectX::XMVECTOR OriginVector = DirectX::XMVectorSet(PlayerCharacter->GetActorLocation().X, PlayerCharacter->GetActorLocation().Y, PlayerCharacter->GetActorLocation().Z, 1.0f);
+	bool Result = UNaviMeshManager::GetInstance().GetNaviDataVector()[0].Intersect(PlayerCharacter.get(), TestMap.get());
 
-	DirectX::XMVECTOR Direction = DirectX::XMVectorSet(0.0f, -1.0f, 0.0f, 0.0f);
-
-	std::vector<EngineVertex> VertexDataVector = TestMap->GetNavMapComponent()->GetVertexVector();
-	std::vector<unsigned int> IndexDataVector = TestMap->GetNavMapComponent()->GetIndexVector();
-
-	FTransform TestMapTransform = TestMap->GetActorTransform();
-
-	DirectX::XMVECTOR Vector1 = (VertexDataVector[0].POSITION * TestMapTransform.ScaleMat * TestMapTransform.RotationMat * TestMapTransform.LocationMat).DirectVector;
-	DirectX::XMVECTOR Vector2 = (VertexDataVector[1].POSITION * TestMapTransform.ScaleMat * TestMapTransform.RotationMat * TestMapTransform.LocationMat).DirectVector;
-	DirectX::XMVECTOR Vector3 = (VertexDataVector[2].POSITION * TestMapTransform.ScaleMat * TestMapTransform.RotationMat * TestMapTransform.LocationMat).DirectVector;
-
-	//DirectX::XMVECTOR Vector1 = DirectX::XMVectorSet(-150.0f, 0.0f, 150.0f, 1.0f);
-	//DirectX::XMVECTOR Vector2 = DirectX::XMVectorSet(150.0f, 0.0f, 150.0f, 1.0f);
-	//DirectX::XMVECTOR Vector3 = DirectX::XMVectorSet(0.0f, 0.0f, -150.0f, 1.0f);
-
-	DirectX::TriangleTests::Intersects(OriginVector, Direction, Vector1, Vector2, Vector3, DistanceToPlayer);
-
-	if (9.0f < DistanceToPlayer && DistanceToPlayer < 11.0f)
+	if (true == Result)
 	{
 		//SetActorLocation({ 0.0f, 10.0f, 0.0f });
 	}

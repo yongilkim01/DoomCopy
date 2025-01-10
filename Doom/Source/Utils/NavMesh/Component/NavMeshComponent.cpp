@@ -15,7 +15,7 @@ UNavMeshComponent::UNavMeshComponent()
 	{
 		CreateRenderUnit();
 		SetMesh("NavMapResource" + std::to_string(i));
-		SetMaterial("NavMeshTestMaterial");
+		SetMaterial("CollisionDebugMaterial");
 	}
 
 	//MyColor.Albedo = float4(1.0f, 1.0f, 1.0f, 1.0f);

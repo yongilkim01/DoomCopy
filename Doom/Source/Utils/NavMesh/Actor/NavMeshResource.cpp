@@ -78,25 +78,25 @@ bool UNavMeshResource::LoadModel(std::string_view ModelName)
 	Vertexs.push_back(Vertex1);
 	Vertexs.push_back(Vertex2);
 	Vertexs.push_back(Vertex3);
-	//Vertexs.push_back(Vertex4);
-	//Vertexs.push_back(Vertex5);
-	//Vertexs.push_back(Vertex6);
+	Vertexs.push_back(Vertex4);
+	Vertexs.push_back(Vertex5);
+	Vertexs.push_back(Vertex6);
 
 	Indexs.push_back(0);
 	Indexs.push_back(1);
 	Indexs.push_back(2);
 
-	//Indexs.push_back(1);
-	//Indexs.push_back(3);
-	//Indexs.push_back(2);
+	Indexs.push_back(1);
+	Indexs.push_back(3);
+	Indexs.push_back(2);
 
-	//Indexs.push_back(0);
-	//Indexs.push_back(2);
-	//Indexs.push_back(4);
+	Indexs.push_back(0);
+	Indexs.push_back(2);
+	Indexs.push_back(4);
 
-	//Indexs.push_back(5);
-	//Indexs.push_back(0);
-	//Indexs.push_back(4);
+	Indexs.push_back(5);
+	Indexs.push_back(0);
+	Indexs.push_back(4);
 
 	FVertexBuffer::Create(ModelName.data() + std::to_string(NavMeshResourceDataVector.size()), Vertexs);
 	FIndexBuffer::Create(ModelName.data() + std::to_string(NavMeshResourceDataVector.size()), Indexs);
