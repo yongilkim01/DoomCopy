@@ -7,9 +7,6 @@ const FIntPoint FIntPoint::UP = { 0, -1 };
 const FIntPoint FIntPoint::DOWN = { 0, 1 };
 
 
-const UColor UColor::WHITE = { 255, 255, 255, 0 };
-const UColor UColor::BLACK = { 0, 0, 0, 0 };
-
 FIntPoint FVector::ConvertToPoint() const
 {
 	return { iX(), iY() };
@@ -26,20 +23,23 @@ public:
 		// 데이터 영역이 초기화 될때 초기화하는 일을 자동으로 수행할수 있다.
 		// 데이터 영역이 만들어질때 이 작업은 자동으로 실행된다.
 		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::Rect)][static_cast<int>(ECollisionType::Rect)] = FTransform::RectToRect;
-
 		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::CirCle)][static_cast<int>(ECollisionType::CirCle)] = FTransform::CirCleToCirCle;
-
 		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::Rect)][static_cast<int>(ECollisionType::CirCle)] = FTransform::RectToCirCle;
-
 		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::CirCle)][static_cast<int>(ECollisionType::Rect)] = FTransform::CirCleToRect;
-
 		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::OBB2D)][static_cast<int>(ECollisionType::OBB2D)] = FTransform::OBB2DToOBB2D;
-
 		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::OBB2D)][static_cast<int>(ECollisionType::Rect)] = FTransform::OBB2DToRect;
-
-		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::OBB2D)][static_cast<int>(ECollisionType::CirCle)] = FTransform::OBB2DToSphere;
-
+		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::OBB2D)][static_cast<int>(ECollisionType::CirCle)] = FTransform::OBB2DToCircle;
 		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::OBB2D)][static_cast<int>(ECollisionType::Point)] = FTransform::OBB2DToPoint;
+
+		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::OBB)][static_cast<int>(ECollisionType::Sphere)] = FTransform::OBBToSphere;
+		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::OBB)][static_cast<int>(ECollisionType::AABB)] = FTransform::OBBToAABB;
+		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::OBB)][static_cast<int>(ECollisionType::OBB)] = FTransform::OBBToOBB;
+		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::Sphere)][static_cast<int>(ECollisionType::Sphere)] = FTransform::SphereToSphere;
+		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::Sphere)][static_cast<int>(ECollisionType::AABB)] = FTransform::SphereToAABB;
+		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::Sphere)][static_cast<int>(ECollisionType::OBB)] = FTransform::SphereToOBB;
+		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::AABB)][static_cast<int>(ECollisionType::Sphere)] = FTransform::AABBToSphere;
+		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::AABB)][static_cast<int>(ECollisionType::AABB)] = FTransform::AABBToAABB;
+		FTransform::AllCollisionFunction[static_cast<int>(ECollisionType::AABB)][static_cast<int>(ECollisionType::OBB)] = FTransform::AABBToOBB;
 
 	}
 };
@@ -170,7 +170,7 @@ bool FTransform::OBB2DToRect(const FTransform& _Left, const FTransform& _Right)
 	return LeftCol.OBB.Intersects(RightCol.AABB);
 }
 
-bool FTransform::OBB2DToSphere(const FTransform& _Left, const FTransform& _Right)
+bool FTransform::OBB2DToCircle(const FTransform& _Left, const FTransform& _Right)
 {
 	FCollisionData LeftCol = _Left.GetCollisionData();
 	FCollisionData RightCol = _Right.GetCollisionData();
@@ -179,6 +179,70 @@ bool FTransform::OBB2DToSphere(const FTransform& _Left, const FTransform& _Right
 	RightCol.OBB.Center.z = 0.0f;
 
 	return LeftCol.OBB.Intersects(RightCol.Sphere);
+}
+
+bool FTransform::OBBToSphere(const FTransform& Left, const FTransform& Right)
+{
+	FCollisionData LeftCol = Left.GetCollisionData();
+	FCollisionData RightCol = Right.GetCollisionData();
+
+	return LeftCol.OBB.Intersects(RightCol.Sphere);
+}
+
+bool FTransform::OBBToOBB(const FTransform& Left, const FTransform& Right)
+{
+	FCollisionData LeftCol = Left.GetCollisionData();
+	FCollisionData RightCol = Right.GetCollisionData();
+	return LeftCol.OBB.Intersects(RightCol.OBB);
+}
+
+bool FTransform::OBBToAABB(const FTransform& Left, const FTransform& Right)
+{
+	FCollisionData LeftCol = Left.GetCollisionData();
+	FCollisionData RightCol = Right.GetCollisionData();
+	return LeftCol.OBB.Intersects(RightCol.AABB);
+}
+
+bool FTransform::SphereToSphere(const FTransform& Left, const FTransform& Right)
+{
+	FCollisionData LeftCol = Left.GetCollisionData();
+	FCollisionData RightCol = Right.GetCollisionData();
+	return LeftCol.Sphere.Intersects(RightCol.Sphere);
+}
+
+bool FTransform::SphereToOBB(const FTransform& Left, const FTransform& Right)
+{
+	FCollisionData LeftCol = Left.GetCollisionData();
+	FCollisionData RightCol = Right.GetCollisionData();
+	return LeftCol.Sphere.Intersects(RightCol.OBB);
+}
+
+bool FTransform::SphereToAABB(const FTransform& Left, const FTransform& Right)
+{
+	FCollisionData LeftCol = Left.GetCollisionData();
+	FCollisionData RightCol = Right.GetCollisionData();
+	return LeftCol.Sphere.Intersects(RightCol.AABB);
+}
+
+bool FTransform::AABBToSphere(const FTransform& Left, const FTransform& Right)
+{
+	FCollisionData LeftCol = Left.GetCollisionData();
+	FCollisionData RightCol = Right.GetCollisionData();
+	return LeftCol.AABB.Intersects(RightCol.Sphere);
+}
+
+bool FTransform::AABBToOBB(const FTransform& Left, const FTransform& Right)
+{
+	FCollisionData LeftCol = Left.GetCollisionData();
+	FCollisionData RightCol = Right.GetCollisionData();
+	return LeftCol.AABB.Intersects(RightCol.OBB);
+}
+
+bool FTransform::AABBToAABB(const FTransform& Left, const FTransform& Right)
+{
+	FCollisionData LeftCol = Left.GetCollisionData();
+	FCollisionData RightCol = Right.GetCollisionData();
+	return LeftCol.AABB.Intersects(RightCol.AABB);
 }
 
 bool FTransform::OBB2DToPoint(const FTransform& _Left, const FTransform& _Right)
@@ -191,24 +255,6 @@ bool FTransform::OBB2DToPoint(const FTransform& _Left, const FTransform& _Right)
 	RightCol.OBB.Extents = { 0.0f, 0.0f, 0.0f };
 
 	return LeftCol.OBB.Intersects(RightCol.AABB);
-}
-
-FVector FVector::TransformVector(const FVector& InVector, const class FMatrix& InMatrix)
-{
-	return InVector * InMatrix;
-}
-
-FVector FVector::TransformVectorCoord(const FVector& InVector, const class FMatrix& InMatrix)
-{
-	FVector Copy = InVector;
-	Copy.W = 1.0f;
-	return Copy * InMatrix;
-}
-FVector FVector::TransformVectorNormal(const FVector& InVector, const class FMatrix& InMatrix)
-{
-	FVector Copy = InVector;
-	Copy.W = 0.0f;
-	return Copy * InMatrix;
 }
 
 template<>
@@ -224,13 +270,6 @@ FVector FVector::operator*(const class FMatrix& InMatrixValue) const
 	return Result;
 }
 
-FVector& FVector::operator*=(const FMatrix& InMatrixValue)
-{
-	DirectVector = DirectX::XMVector4Transform(DirectVector, InMatrixValue.DirectMatrix);
-
-	return *this;
-}
-
 FMatrix FMatrix::operator*(const FMatrix& InMatrixValue)
 {
 	FMatrix Result;
@@ -241,6 +280,27 @@ FMatrix FMatrix::operator*(const FMatrix& InMatrixValue)
 
 }
 
+FVector FVector::TransformVector(const FVector& InVector, const FMatrix& InMatrix)
+{
+	return InVector * InMatrix;
+}
+
+FVector FVector::TransformVectorCoord(const TVector& InVector, const FMatrix& InMatrix)
+{
+	FVector CopyVector = InVector;
+	CopyVector.W = 1.0f;
+
+	return CopyVector * InMatrix;
+}
+
+FVector FVector::TransformVectorNormal(const TVector& InVector, const FMatrix& InMatrix)
+{
+	FVector CopyVector = InVector;
+	CopyVector.W = 0.0f;
+
+	return CopyVector * InMatrix;
+}
+
 template<>
 FQuat TVector<float>::DegAngleToQuaternion()
 {
@@ -249,6 +309,13 @@ FQuat TVector<float>::DegAngleToQuaternion()
 	return Result;
 }
 
+template<>
+FVector& FVector::operator*=(const FMatrix& InMatrix)
+{
+	DirectVector = DirectX::XMVector4Transform(DirectVector, InMatrix.DirectMatrix);
+
+	return *this;
+}
 
 FVector FQuat::QuaternionToEulerDeg() const
 {

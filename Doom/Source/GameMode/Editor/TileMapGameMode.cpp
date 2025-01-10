@@ -11,7 +11,7 @@
 #include <Tools/DebugGUI/EngineGUIWindow.h>
 #include <ThirdParty/imgui/imgui.h>
 
-class TileMapWindow : public UEngineGUIWindow
+class UTileMapWindow : public UEngineGUIWindow
 {
 public:
 	void OnGUI() override
@@ -32,7 +32,7 @@ ATileMapGameMode::ATileMapGameMode()
 	std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation({ 0.0f, 0.0f, -1000.0f, 1.0f });
 	Camera->GetCameraComponent()->SetZSort(0, true);
-	//UEngineGUI::CreateGUIWindow<TileMapWindow>("TestWindow");
+	UEngineGUI::CreateGUIWindow<UTileMapWindow>("TileMapWindow");
 }
 
 ATileMapGameMode::~ATileMapGameMode()
