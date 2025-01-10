@@ -11,7 +11,7 @@ struct FNaviData
 	int IndexArray[3] = { -1, -1, -1 };
 	std::vector<int> LinkNaviDataIndex;
 	std::vector<EngineVertex> VertexDataVector;
-	bool Intersect(AActor* PlayerCharacter, AActor* MapActor);
+	float Intersect(AActor* PlayerCharacter, AActor* MapActor);
 };
 
 /**
@@ -34,12 +34,32 @@ public:
 	UNaviMeshManager& operator=(const UNaviMeshManager& Other) = delete;
 	UNaviMeshManager& operator=(UNaviMeshManager&& Other) noexcept = delete;
 
+	void Init(AActor* InPlayerActor, AActor* InMapActor, std::string_view Modelpath);
 	void LoadModel(std::string_view ModelPath);
 	void LinkNaviData();
+	void CheckPlayerNaviData();
+
+	/** 겟, 셋 메소드 */
 	std::vector<FNaviData>& GetNaviDataVector()
 	{
 		return NaviDataVector;
 	}
+	FNaviData& GetNaviDataByIndex(int Index)
+	{
+		return NaviDataVector[Index];
+	}
+	FNaviData& GetPlayerNaviData()
+	{
+		if (-1 == CurrentPlayerNaviDataIndex)
+		{
+			MSGASSERT("현재 플레이어의 네비 데이터가 존재하지 않습니다");
+		}
+		
+		return NaviDataVector[CurrentPlayerNaviDataIndex];
+	}
+	FVector GetLocationPlayerNaviData(int Index);
+
+	float Distance = 0.0f;
 
 protected:
 
@@ -49,5 +69,9 @@ private:
 
 	std::vector<FNaviData> NaviDataVector;
 
+	int CurrentPlayerNaviDataIndex = -1;
+
+	AActor* PlayerActor = nullptr;
+	AActor* MapActor = nullptr;
 };
 

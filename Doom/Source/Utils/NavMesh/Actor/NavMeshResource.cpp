@@ -73,6 +73,8 @@ bool UNavMeshResource::LoadModel(std::string_view ModelName)
 	EngineVertex Vertex4 = EngineVertex{ FVector(100.0f, 0.0f, -100.0f), {0.0f , 0.0f }, {1.0f, 1.0f, 1.0f, 1.0f} };
 	EngineVertex Vertex5 = EngineVertex{ FVector(-170.0f, 0.0f, -100.0f), {0.0f , 0.0f }, {0.0f, 0.0f, 1.0f, 1.0f} };
 	EngineVertex Vertex6 = EngineVertex{ FVector(-170.0f, 0.0f, 100.0f), {0.0f , 0.0f }, {0.0f, 0.0f, 1.0f, 1.0f} };
+	EngineVertex Vertex7 = EngineVertex{ FVector(-240.0f, 0.0f, 100.0f), {0.0f , 0.0f }, {0.0f, 0.0f, 1.0f, 1.0f} };
+	EngineVertex Vertex8 = EngineVertex{ FVector(-240.0f, 0.0f, -100.0f), {0.0f , 0.0f }, {0.0f, 0.0f, 1.0f, 1.0f} };
 
 
 	Vertexs.push_back(Vertex1);
@@ -81,6 +83,8 @@ bool UNavMeshResource::LoadModel(std::string_view ModelName)
 	Vertexs.push_back(Vertex4);
 	Vertexs.push_back(Vertex5);
 	Vertexs.push_back(Vertex6);
+	Vertexs.push_back(Vertex7);
+	Vertexs.push_back(Vertex8);
 
 	Indexs.push_back(0);
 	Indexs.push_back(1);
@@ -97,6 +101,14 @@ bool UNavMeshResource::LoadModel(std::string_view ModelName)
 	Indexs.push_back(5);
 	Indexs.push_back(0);
 	Indexs.push_back(4);
+	
+	Indexs.push_back(6);
+	Indexs.push_back(5);
+	Indexs.push_back(4);
+
+	Indexs.push_back(6);
+	Indexs.push_back(4);
+	Indexs.push_back(7);
 
 	FVertexBuffer::Create(ModelName.data() + std::to_string(NavMeshResourceDataVector.size()), Vertexs);
 	FIndexBuffer::Create(ModelName.data() + std::to_string(NavMeshResourceDataVector.size()), Indexs);

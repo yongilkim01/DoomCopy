@@ -28,8 +28,11 @@ public:
 		ImGui::SameLine(); // ÇÑ°£ ¶ç±â
 		ImGui::Text("test");
 
-		ImGui::Text(TestPlayer->GetActorLocation().ToString().c_str());
-		ImGui::Text(std::to_string(TestPlayer->GetResult()).c_str());
+		for (int i = 0; i < UNaviMeshManager::GetInstance().GetPlayerNaviData().VertexDataVector.size(); i++)
+		{
+			ImGui::Text(UNaviMeshManager::GetInstance().GetLocationPlayerNaviData(i).ToString().c_str());
+		}
+		ImGui::Text(std::to_string(UNaviMeshManager::GetInstance().Distance).c_str());
 
 		std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
 
@@ -48,22 +51,24 @@ ANavMeshGameMode::ANavMeshGameMode()
 	}
 	{
 		PlayerCharacter = GetWorld()->SpawnActor<ANavMeshCharacter>();
-		PlayerCharacter->SetActorLocation(FVector{ 0.0f, 150.0f, 0.0f });
+		PlayerCharacter->SetActorLocation(FVector{ -150.0f, 1.0f, 50.0f });
 	}
 	{
 		TestMap = GetWorld()->SpawnActor<ANavMeshMap>();
 	}
 	{
 		Camera = GetWorld()->GetMainCamera();
-		Camera->AddActorRelativeLocation({ 0.0f, 80.0f, -500.0f });
-		Camera->AddActorRotation({ 10.0f, 0.0f, 0.0f });
+		//Camera->AddActorRelativeLocation({ 0.0f, 80.0f, -500.0f });
+		//Camera->AddActorRotation({ 10.0f, 0.0f, 0.0f });
+		Camera->AddActorRelativeLocation({ 0.0f, 300.0f, 0.0f });
+		Camera->AddActorRotation({ 90.0f, 0.0f, 0.0f });
 		Camera->GetCameraComponent()->SetZSort(0, true);
 	}
 
 	std::shared_ptr<UNavMeshDebugWindow> Window = UEngineGUI::CreateGUIWindow<UNavMeshDebugWindow>("NavMeshDebugWindow");
 	Window->TestPlayer = PlayerCharacter;
 
-	UNaviMeshManager::GetInstance().LoadModel("");
+	UNaviMeshManager::GetInstance().Init(PlayerCharacter.get(), TestMap.get(), "");
 
 }
 
@@ -75,16 +80,17 @@ void ANavMeshGameMode::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
 
-	bool Result = UNaviMeshManager::GetInstance().GetNaviDataVector()[0].Intersect(PlayerCharacter.get(), TestMap.get());
+	float Result = UNaviMeshManager::GetInstance().GetPlayerNaviData().Intersect(PlayerCharacter.get(), TestMap.get());
 
-	if (true == Result)
+	if(0.1f < Result && 1.0f > Result)
 	{
-		//SetActorLocation({ 0.0f, 10.0f, 0.0f });
+		//PlayerCharacter->AddActorLocation({ 0.0f, -0.5f, 0.0f });
 	}
 	else
 	{
-		PlayerCharacter->AddActorLocation({ 0.0f, -0.5f, 0.0f });
+		//PlayerCharacter->AddActorLocation({ 0.0f, -0.5f, 0.0f });
 	}
+
 
 }
 

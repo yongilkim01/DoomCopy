@@ -59,5 +59,15 @@ void ANavMeshCharacter::Tick(float DeltaTime)
 	{
 		AddActorRelativeLocation(FVector{ 0.0f, 0.0f, -Speed * DeltaTime, 0.0f });
 	}
+	if (UEngineInput::IsPress(VK_UP))
+	{
+		AddActorRelativeLocation(FVector{ 0.0f, Speed * DeltaTime, 0.0f, 0.0f });
+
+	}
+	if (UEngineInput::IsPress(VK_DOWN))
+	{
+		AddActorRelativeLocation(FVector{ 0.0f, -Speed * DeltaTime, 0.0f, 0.0f });
+
+	}
 }
 
