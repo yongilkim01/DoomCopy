@@ -589,6 +589,13 @@ public:
 		Y -= Other.Y;
 		return *this;
 	}
+	TVector& operator/=(const TVector& Other)
+	{
+		X /= Other.X;
+		Y /= Other.Y;
+		Z /= Other.Z;
+		return *this;
+	}
 	bool operator==(const TVector& Other) const
 	{
 		return X == Other.X && Y == Other.Y;

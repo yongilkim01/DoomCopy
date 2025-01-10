@@ -43,6 +43,10 @@ public:
 	ENGINE_API FVector GetSpriteScaleToReal(size_t Index);
 	ENGINE_API UTexture* GetTexture(size_t Index = 0);
 
+	ENGINE_API size_t GetSpriteCount()
+	{
+		return TextureVector.size();
+	}
 
 
 protected:

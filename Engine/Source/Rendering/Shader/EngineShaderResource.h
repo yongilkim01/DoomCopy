@@ -33,7 +33,7 @@ public:
 class UEngineTextureRes : public UEngineShaderRes
 {
 public:
-	std::shared_ptr<UTexture> Res;
+	UTexture* Res;
 	void Update()
 	{
 		Res->Update(ShaderType, BindIndex);
@@ -75,6 +75,7 @@ public:
 
 	void SamplerSetting(std::string_view Name, std::string_view ResourceName);
 	void TextureSetting(std::string_view Name, std::string_view ResourceName);
+	void TextureSetting(std::string_view Name, UTexture* Texture);
 
 	bool IsSampler(std::string_view Name);
 	bool IsTexture(std::string_view Name);

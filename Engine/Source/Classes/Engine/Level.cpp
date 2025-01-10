@@ -143,6 +143,11 @@ void ULevel::Collision(float DeltaTime)
 			{
 				for (std::shared_ptr<UShapeComponent>& RightCollision : RightList)
 				{
+					if (false == LeftCollision->IsActive())
+					{
+						continue;
+					}
+
 					LeftCollision->CollisionEventCheck(RightCollision);
 				}
 			}

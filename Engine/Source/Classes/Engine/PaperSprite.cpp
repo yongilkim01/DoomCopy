@@ -47,7 +47,7 @@ std::shared_ptr<UPaperSprite> UPaperSprite::CreateSpriteToFolder(std::string_vie
 
 		SpriteData.CuttingLocation = { 0.0f, 0.0f };
 		SpriteData.CuttingSize = { 1.0f, 1.0f };
-		SpriteData.Pivot = { 0.5f, 0.0f };
+		SpriteData.Pivot = { 0.5f, 0.5f };
 
 		NewRes->SpriteDataVector.push_back(SpriteData);
 	}

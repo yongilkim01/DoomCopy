@@ -6,6 +6,7 @@
 
 class UCameraComponent;
 class UPrimitiveComponent;
+class UTexture;
 
 /**
  *	Ό³Έν
@@ -33,6 +34,7 @@ public:
 	ENGINE_API void SetMesh(std::string_view MeshName);
 	ENGINE_API void SetMaterial(std::string_view MaterialName);
 	ENGINE_API void SetTexture(std::string_view TextureName, std::string_view AssetName);
+	ENGINE_API void SetTexture(std::string_view TextureName, UTexture* Texture);
 	ENGINE_API void SetSampler(std::string_view SamplerName, std::string_view AssetName);
 
 	ENGINE_API void SetPrimitiveComponent(UPrimitiveComponent* PrimitiveComponent)

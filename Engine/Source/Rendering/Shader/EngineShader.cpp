@@ -126,7 +126,7 @@ void UEngineShader::ShaderResCheck()
 			NewRes.ShaderType = ShaderType;
 			NewRes.Name = UpperName;
 			NewRes.BindIndex = ResDesc.BindPoint;
-			NewRes.Res = Res;
+			NewRes.Res = Res.get();
 
 			ShaderResource.CreateTextureRes(UpperName, NewRes);
 

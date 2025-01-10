@@ -127,6 +127,11 @@ bool UShapeComponent::CollisionCheck(std::string_view OtherName, std::vector<USh
 
 void UShapeComponent::CollisionEventCheck(std::shared_ptr<UShapeComponent> OtherComp)
 {
+	if (false == OtherComp->IsActive())
+	{
+		return;
+	}
+
 	if (true == FTransform::Collision(CollisionType, Transform, OtherComp->CollisionType, OtherComp->Transform))
 	{
 		if (false == CollisionCheckSet.contains(OtherComp.get()))

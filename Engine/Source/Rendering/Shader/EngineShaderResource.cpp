@@ -97,7 +97,21 @@ void UEngineShaderResource::TextureSetting(std::string_view Name, std::string_vi
 		UEngineDebug::OutPutString("ConstantBufferRes.contains " + UpperName);
 		return;
 	}
-	TextureRes[UpperName].Res = UTexture::Find<UTexture>(ResourceName);
+	TextureRes[UpperName].Res = UTexture::Find<UTexture>(ResourceName).get();
+
+}
+
+void UEngineShaderResource::TextureSetting(std::string_view Name, UTexture* Texture)
+{
+	std::string UpperName = UEngineString::ToUpper(Name);
+
+	if (false == TextureRes.contains(UpperName))
+	{
+		UEngineDebug::OutPutString("ConstantBufferRes.contains " + UpperName);
+		return;
+	}
+
+	TextureRes[UpperName].Res = Texture;
 }
 
 bool UEngineShaderResource::IsSampler(std::string_view Name)
