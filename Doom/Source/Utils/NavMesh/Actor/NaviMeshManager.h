@@ -37,9 +37,15 @@ public:
 	void Init(AActor* InPlayerActor, AActor* InMapActor, std::string_view Modelpath);
 	void LoadModel(std::string_view ModelPath);
 	void LinkNaviData();
-	void CheckPlayerNaviData();
+	void CheckPlayerNaviDataInit();
+	void CheckPlayerNaviDataTick();
+	void Tick(float DeltaTime);
 
 	/** °Ù, ¼Â ¸Þ¼Òµå */
+	int GetCurNaviDataIndex()
+	{
+		return CurrentPlayerNaviDataIndex;
+	}
 	std::vector<FNaviData>& GetNaviDataVector()
 	{
 		return NaviDataVector;

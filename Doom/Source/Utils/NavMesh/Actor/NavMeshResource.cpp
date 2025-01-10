@@ -67,14 +67,14 @@ void UNavMeshResource::CreateAsset(std::string_view ModelName)
 
 bool UNavMeshResource::LoadModel(std::string_view ModelName)
 {
-	EngineVertex Vertex1 = EngineVertex{ FVector(-100.0f, 0.0f, 100.0f), {0.0f , 0.0f }, {1.0f, 0.0f, 0.0f, 1.0f} };
+	EngineVertex Vertex1 = EngineVertex{ FVector(-100.0f, 50.0f, 100.0f), {0.0f , 0.0f }, {1.0f, 0.0f, 0.0f, 1.0f} };
 	EngineVertex Vertex2 = EngineVertex{ FVector(100.0f, 0.0f, 100.0f), {0.0f , 0.0f }, {0.0f, 1.0f, 0.0f, 1.0f} };
 	EngineVertex Vertex3 = EngineVertex{ FVector(-100.0f, 0.0f, -100.0f), {0.0f , 0.0f }, {0.0f, 0.0f, 1.0f, 1.0f} };
 	EngineVertex Vertex4 = EngineVertex{ FVector(100.0f, 0.0f, -100.0f), {0.0f , 0.0f }, {1.0f, 1.0f, 1.0f, 1.0f} };
 	EngineVertex Vertex5 = EngineVertex{ FVector(-170.0f, 0.0f, -100.0f), {0.0f , 0.0f }, {0.0f, 0.0f, 1.0f, 1.0f} };
-	EngineVertex Vertex6 = EngineVertex{ FVector(-170.0f, 0.0f, 100.0f), {0.0f , 0.0f }, {0.0f, 0.0f, 1.0f, 1.0f} };
+	EngineVertex Vertex6 = EngineVertex{ FVector(-170.0f, 60.0f, 100.0f), {0.0f , 0.0f }, {0.0f, 0.0f, 1.0f, 1.0f} };
 	EngineVertex Vertex7 = EngineVertex{ FVector(-240.0f, 0.0f, 100.0f), {0.0f , 0.0f }, {0.0f, 0.0f, 1.0f, 1.0f} };
-	EngineVertex Vertex8 = EngineVertex{ FVector(-240.0f, 0.0f, -100.0f), {0.0f , 0.0f }, {0.0f, 0.0f, 1.0f, 1.0f} };
+	EngineVertex Vertex8 = EngineVertex{ FVector(-240.0f, 50.0f, -100.0f), {0.0f , 0.0f }, {0.0f, 0.0f, 1.0f, 1.0f} };
 
 
 	Vertexs.push_back(Vertex1);

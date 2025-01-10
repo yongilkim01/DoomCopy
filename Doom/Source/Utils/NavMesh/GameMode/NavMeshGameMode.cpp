@@ -24,15 +24,25 @@ public:
 
 	void OnGUI() override
 	{
-		ImGui::Button("WindowButton");
-		ImGui::SameLine(); // ÇÑ°£ ¶ç±â
-		ImGui::Text("test");
 
-		for (int i = 0; i < UNaviMeshManager::GetInstance().GetPlayerNaviData().VertexDataVector.size(); i++)
+		ImGui::Text(std::to_string(UNaviMeshManager::GetInstance().GetCurNaviDataIndex()).c_str());
+		ImGui::Text("Linked Navi Data");
+		ImGui::Text(("Distance : " + std::to_string(UNaviMeshManager::GetInstance().Distance)).c_str());
+		for (int i = 0; i < UNaviMeshManager::GetInstance().GetPlayerNaviData().LinkNaviDataIndex.size(); i++)
 		{
-			ImGui::Text(UNaviMeshManager::GetInstance().GetLocationPlayerNaviData(i).ToString().c_str());
+			ImGui::Text(std::to_string(UNaviMeshManager::GetInstance().GetPlayerNaviData().LinkNaviDataIndex[i]).c_str());
 		}
-		ImGui::Text(std::to_string(UNaviMeshManager::GetInstance().Distance).c_str());
+		//for(int i = 0; i < UNaviMeshManager::GetInstance().GetNaviDataVector().size(); i++)
+		//{
+		//	ImGui::Text(("NaviData" + std::to_string(i + 1)).c_str());
+		//	ImGui::Text("Linked Navi Data");
+		//	for (int j = 0; j < UNaviMeshManager::GetInstance().GetNaviDataByIndex(i).LinkNaviDataIndex.size(); j++)
+		//	{
+		//		ImGui::Text(std::to_string(UNaviMeshManager::GetInstance().GetNaviDataByIndex(i).LinkNaviDataIndex[j]).c_str());
+		//	}
+		//}
+
+		//ImGui::Text(std::to_string(UNaviMeshManager::GetInstance().Distance).c_str());
 
 		std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
 
@@ -51,17 +61,17 @@ ANavMeshGameMode::ANavMeshGameMode()
 	}
 	{
 		PlayerCharacter = GetWorld()->SpawnActor<ANavMeshCharacter>();
-		PlayerCharacter->SetActorLocation(FVector{ -150.0f, 1.0f, 50.0f });
+		PlayerCharacter->SetActorLocation(FVector{ -150.0f, 100.0f, 50.0f });
 	}
 	{
 		TestMap = GetWorld()->SpawnActor<ANavMeshMap>();
 	}
 	{
 		Camera = GetWorld()->GetMainCamera();
-		//Camera->AddActorRelativeLocation({ 0.0f, 80.0f, -500.0f });
-		//Camera->AddActorRotation({ 10.0f, 0.0f, 0.0f });
-		Camera->AddActorRelativeLocation({ 0.0f, 300.0f, 0.0f });
-		Camera->AddActorRotation({ 90.0f, 0.0f, 0.0f });
+		Camera->AddActorRelativeLocation({ 0.0f, 80.0f, -500.0f });
+		Camera->AddActorRotation({ 10.0f, 0.0f, 0.0f });
+		//Camera->AddActorRelativeLocation({ 0.0f, 300.0f, 0.0f });
+		//Camera->AddActorRotation({ 90.0f, 0.0f, 0.0f });
 		Camera->GetCameraComponent()->SetZSort(0, true);
 	}
 
@@ -80,18 +90,7 @@ void ANavMeshGameMode::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
 
-	float Result = UNaviMeshManager::GetInstance().GetPlayerNaviData().Intersect(PlayerCharacter.get(), TestMap.get());
-
-	if(0.1f < Result && 1.0f > Result)
-	{
-		//PlayerCharacter->AddActorLocation({ 0.0f, -0.5f, 0.0f });
-	}
-	else
-	{
-		//PlayerCharacter->AddActorLocation({ 0.0f, -0.5f, 0.0f });
-	}
-
-
+	UNaviMeshManager::GetInstance().Tick(DeltaTime);
 }
 
 void ANavMeshGameMode::LevelChangeStart()
