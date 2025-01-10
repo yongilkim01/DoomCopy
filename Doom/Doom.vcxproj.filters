@@ -55,6 +55,12 @@
     <Filter Include="4_Utils\NavMesh\Component">
       <UniqueIdentifier>{c8d69810-5aee-4987-8278-98d8eb86e7af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="1_GameMode\Editor">
+      <UniqueIdentifier>{d5b5a678-8333-4155-974e-1fabd0733ad5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Actor\1_E1M1\Enemy">
+      <UniqueIdentifier>{2a23d47d-5da7-4305-942f-aa7f5aa8b937}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\DoomGuy\DoomGuy.cpp">
@@ -114,6 +120,12 @@
     <ClCompile Include="Source\Utils\NavMesh\Actor\NaviMeshManager.cpp">
       <Filter>4_Utils\NavMesh</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GameMode\Editor\TileMapGameMode.cpp">
+      <Filter>1_GameMode\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Actor\E1M1\Enemy\EnemyCharacter.cpp">
+      <Filter>2_Actor\1_E1M1\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DoomGuy\DoomGuy.h">
@@ -172,6 +184,12 @@
     </ClInclude>
     <ClInclude Include="Source\Utils\NavMesh\Actor\NaviMeshManager.h">
       <Filter>4_Utils\NavMesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameMode\Editor\TileMapGameMode.h">
+      <Filter>1_GameMode\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Actor\E1M1\Enemy\EnemyCharacter.h">
+      <Filter>2_Actor\1_E1M1\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
