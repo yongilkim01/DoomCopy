@@ -55,7 +55,10 @@ void UNaviMeshManager::Init(AActor* InPlayerActor, AActor* InMapActor, std::stri
 	//LoadModel(ModelPath);
 
 	CheckPlayerNaviDataInit();
-	LinkNaviData();
+	if (false == IsLoadFileExist())
+	{
+		LinkNaviData();
+	}
 }
 
 void UNaviMeshManager::LoadModel(std::string_view ModelPath)

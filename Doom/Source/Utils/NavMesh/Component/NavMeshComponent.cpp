@@ -9,7 +9,7 @@
 
 UNavMeshComponent::UNavMeshComponent()
 {
-	NavMesh = UStaticMesh::Find<UNavMeshResource>("NavMapResource");
+	NavMesh = UNavMeshResource::Find<UNavMeshResource>("NavMapResource");
 
 	for (int i = 0; i < NavMesh->GetNavMeshResourceCount(); i++)
 	{

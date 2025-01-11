@@ -65,6 +65,14 @@ public:
 		return NaviDataVector[CurrentPlayerNaviDataIndex];
 	}
 	FVector GetLocationPlayerNaviData(int Index);
+	bool IsLoadFileExist()
+	{
+		return bLoadedFile;
+	}
+	void SetLoadFileExist(bool Value)
+	{
+		bLoadedFile = Value;
+	}
 
 	float Distance = 0.0f;
 
@@ -80,5 +88,7 @@ private:
 
 	AActor* PlayerActor = nullptr;
 	AActor* MapActor = nullptr;
+
+	bool bLoadedFile = false;
 };
 
