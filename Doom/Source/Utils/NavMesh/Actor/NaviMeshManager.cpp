@@ -19,6 +19,34 @@ UNaviMeshManager::~UNaviMeshManager()
 {
 }
 
+void UNaviMeshManager::CreateNaviData(std::vector<EngineVertex>& VertexVector, std::vector<unsigned int>& IndexVector)
+{
+	if (0 != IndexVector.size() % 3)
+	{
+		MSGASSERT("인덱스 버퍼의 크기가 3개로 떨어지지 않습니다");
+		return;
+	}
+
+	for (int i = 0; i < IndexVector.size(); i += 3)
+	{
+		FNaviData NaviData;
+
+		NaviData.DataVectorIndex = NaviDataVector.size();
+		NaviData.VertexDataVector.reserve(3);
+		
+		NaviData.IndexArray[0] = IndexVector[i];
+		NaviData.IndexArray[1] = IndexVector[i + 1];
+		NaviData.IndexArray[2] = IndexVector[i + 2];
+
+		for (int VertexIndex = 0; VertexIndex < 3; VertexIndex++)
+		{
+			NaviData.VertexDataVector.push_back(VertexVector[NaviData.IndexArray[VertexIndex]]);
+		}
+
+		NaviDataVector.push_back(NaviData);
+	}
+}
+
 void UNaviMeshManager::Init(AActor* InPlayerActor, AActor* InMapActor, std::string_view ModelPath)
 {
 	PlayerActor = InPlayerActor;
@@ -53,122 +81,32 @@ void UNaviMeshManager::LoadModel(std::string_view ModelPath)
 	VertexDataVector.push_back(Vertex7);
 	VertexDataVector.push_back(Vertex8);
 
-	{
-		FNaviData NaviData;
+	IndexDataVector.push_back(0);
+	IndexDataVector.push_back(1);
+	IndexDataVector.push_back(2);
 
-		NaviData.DataVectorIndex = NaviDataVector.size();
-		NaviData.VertexDataVector.reserve(3);
+	IndexDataVector.push_back(1);
+	IndexDataVector.push_back(3);
+	IndexDataVector.push_back(2);
 
-		for (int i = 0; i < 3; i++)
-		{
-			IndexDataVector.push_back(i);
-			NaviData.IndexArray[i] = IndexDataVector[IndexDataVector.size() - 1];
+	IndexDataVector.push_back(0);
+	IndexDataVector.push_back(2);
+	IndexDataVector.push_back(4);
 
-			NaviData.VertexDataVector.push_back(VertexDataVector[NaviData.IndexArray[i]]);
-		}
+	IndexDataVector.push_back(5);
+	IndexDataVector.push_back(0);
+	IndexDataVector.push_back(4);
 
-		NaviDataVector.push_back(NaviData);
-	}
-	{
-		FNaviData NaviData;
-		NaviData.DataVectorIndex = NaviDataVector.size();
-		NaviData.VertexDataVector.reserve(3);
+	IndexDataVector.push_back(6);
+	IndexDataVector.push_back(5);
+	IndexDataVector.push_back(4);
 
-		IndexDataVector.push_back(1);
-		IndexDataVector.push_back(3);
-		IndexDataVector.push_back(2);
+	IndexDataVector.push_back(6);
+	IndexDataVector.push_back(4);
+	IndexDataVector.push_back(7);
 
-		NaviData.IndexArray[0] = IndexDataVector[IndexDataVector.size() - 3];
-		NaviData.IndexArray[1] = IndexDataVector[IndexDataVector.size() - 2];
-		NaviData.IndexArray[2] = IndexDataVector[IndexDataVector.size() - 1];
+	CreateNaviData(VertexDataVector, IndexDataVector);
 
-		for (int i = 0; i < 3; i++)
-		{
-			NaviData.VertexDataVector.push_back(VertexDataVector[NaviData.IndexArray[i]]);
-		}
-
-		NaviDataVector.push_back(NaviData);
-	}
-	{
-		FNaviData NaviData;
-		NaviData.DataVectorIndex = NaviDataVector.size();
-		NaviData.VertexDataVector.reserve(3);
-
-		IndexDataVector.push_back(0);
-		IndexDataVector.push_back(2);
-		IndexDataVector.push_back(4);
-
-		NaviData.IndexArray[0] = IndexDataVector[IndexDataVector.size() - 3];
-		NaviData.IndexArray[1] = IndexDataVector[IndexDataVector.size() - 2];
-		NaviData.IndexArray[2] = IndexDataVector[IndexDataVector.size() - 1];
-
-		for (int i = 0; i < 3; i++)
-		{
-			NaviData.VertexDataVector.push_back(VertexDataVector[NaviData.IndexArray[i]]);
-		}
-
-		NaviDataVector.push_back(NaviData);
-	}
-	{
-		FNaviData NaviData;
-		NaviData.DataVectorIndex = NaviDataVector.size();
-		NaviData.VertexDataVector.reserve(3);
-
-		IndexDataVector.push_back(5);
-		IndexDataVector.push_back(0);
-		IndexDataVector.push_back(4);
-
-		NaviData.IndexArray[0] = IndexDataVector[IndexDataVector.size() - 3];
-		NaviData.IndexArray[1] = IndexDataVector[IndexDataVector.size() - 2];
-		NaviData.IndexArray[2] = IndexDataVector[IndexDataVector.size() - 1];
-
-		for (int i = 0; i < 3; i++)
-		{
-			NaviData.VertexDataVector.push_back(VertexDataVector[NaviData.IndexArray[i]]);
-		}
-
-		NaviDataVector.push_back(NaviData);
-	}
-	{
-		FNaviData NaviData;
-		NaviData.DataVectorIndex = NaviDataVector.size();
-		NaviData.VertexDataVector.reserve(3);
-
-		IndexDataVector.push_back(6);
-		IndexDataVector.push_back(5);
-		IndexDataVector.push_back(4);
-
-		NaviData.IndexArray[0] = IndexDataVector[IndexDataVector.size() - 3];
-		NaviData.IndexArray[1] = IndexDataVector[IndexDataVector.size() - 2];
-		NaviData.IndexArray[2] = IndexDataVector[IndexDataVector.size() - 1];
-
-		for (int i = 0; i < 3; i++)
-		{
-			NaviData.VertexDataVector.push_back(VertexDataVector[NaviData.IndexArray[i]]);
-		}
-
-		NaviDataVector.push_back(NaviData);
-	}
-	{
-		FNaviData NaviData;
-		NaviData.DataVectorIndex = NaviDataVector.size();
-		NaviData.VertexDataVector.reserve(3);
-
-		IndexDataVector.push_back(6);
-		IndexDataVector.push_back(4);
-		IndexDataVector.push_back(7);
-
-		NaviData.IndexArray[0] = IndexDataVector[IndexDataVector.size() - 3];
-		NaviData.IndexArray[1] = IndexDataVector[IndexDataVector.size() - 2];
-		NaviData.IndexArray[2] = IndexDataVector[IndexDataVector.size() - 1];
-
-		for (int i = 0; i < 3; i++)
-		{
-			NaviData.VertexDataVector.push_back(VertexDataVector[NaviData.IndexArray[i]]);
-		}
-
-		NaviDataVector.push_back(NaviData);
-	}
 	int Size = NaviDataVector.size();
 }
 

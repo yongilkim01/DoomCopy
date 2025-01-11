@@ -34,6 +34,7 @@ public:
 	UNaviMeshManager& operator=(const UNaviMeshManager& Other) = delete;
 	UNaviMeshManager& operator=(UNaviMeshManager&& Other) noexcept = delete;
 
+	void CreateNaviData(std::vector<EngineVertex>& VertexVector, std::vector<unsigned int>& IndexVector);
 	void Init(AActor* InPlayerActor, AActor* InMapActor, std::string_view Modelpath);
 	void LoadModel(std::string_view ModelPath);
 	void LinkNaviData();
