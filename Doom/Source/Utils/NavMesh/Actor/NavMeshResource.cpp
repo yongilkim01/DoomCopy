@@ -65,6 +65,76 @@ std::shared_ptr<UMesh> UNavMeshResource::GetMeshByIndex(int Index)
 
 void UNavMeshResource::CreateAsset(std::string_view ModelName)
 {
+	FDirectoryHelper Dir;
+
+	// "Resources" 디렉토리를 찾음
+	if (false == Dir.MoveParentToDirectory("Resources"))
+	{
+		MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+	}
+
+	Dir.Append("Data\\Test2.MapData");
+
+	if (true == Dir.IsExists())
+	{
+		UNaviMeshManager::GetInstance().SetLoadFileExist(true);
+		std::string FilePath = Dir.GetPathToString();
+
+		FFileHelper MapDataFile = Dir.GetFile(FilePath);
+		FArchive Ser;
+
+		MapDataFile.FileOpen("rb");
+
+		MapDataFile.Read(Ser);
+
+		// NaviDataVector 초기화
+		UNaviMeshManager::GetInstance().GetNaviDataVector().clear();
+
+		// NaviDataVector 크기 읽기
+		int NaviDataCount = 0;
+		Ser >> NaviDataCount;
+
+		for (int i = 0; i < NaviDataCount; ++i)
+		{
+			FNaviData NaviData;
+
+			NaviData.DataVectorIndex = i;
+			// DataVectorIndex 읽기
+			//Ser >> NaviData.DataVectorIndex;
+
+			// IndexArray 읽기
+			for (int j = 0; j < 3; j++)
+			{
+				int IndexValue = 0;
+				Ser >> IndexValue;
+				NaviData.IndexArray[j] = IndexValue;
+			}
+
+			// LinkNaviDataIndex 읽기
+			int LinkCount = 0;
+			Ser >> LinkCount;
+			NaviData.LinkNaviDataIndex.resize(LinkCount);
+			for (int& LinkIndex : NaviData.LinkNaviDataIndex)
+			{
+				Ser >> LinkIndex;
+			}
+
+			// VertexDataVector 읽기
+			int VertexCount = 0;
+			Ser >> VertexCount;
+			NaviData.VertexDataVector.resize(VertexCount);
+
+			for (EngineVertex& Vertex : NaviData.VertexDataVector)
+			{
+				Ser >> Vertex.POSITION;
+				Ser >> Vertex.TEXCOORD;
+				Ser >> Vertex.COLOR;
+			}
+
+			// NaviDataVector에 추가
+			UNaviMeshManager::GetInstance().GetNaviDataVector().push_back(NaviData);
+		}
+	}
 
 	LoadModel(ModelName);
 }
@@ -115,85 +185,12 @@ bool UNavMeshResource::LoadModel(std::string_view ModelName)
 	Indexs.push_back(4);
 	Indexs.push_back(7);
 	
+	
+	if(false == UNaviMeshManager::GetInstance().IsLoadFileExist())
 	{
-
-		FDirectoryHelper Dir;
-
-		// "Resources" 디렉토리를 찾음
-		if (false == Dir.MoveParentToDirectory("Resources"))
-		{
-			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-		}
-
-		Dir.Append("Data\\Test2.MapData");
-
-		if (true == Dir.IsExists())
-		{
-			UNaviMeshManager::GetInstance().SetLoadFileExist(true);
-
-			std::string FilePath = Dir.GetPathToString();
-
-			FFileHelper MapDataFile = Dir.GetFile(FilePath);
-			FArchive Ser;
-
-			MapDataFile.FileOpen("rb");
-
-			MapDataFile.Read(Ser);
-
-			// NaviDataVector 초기화
-			UNaviMeshManager::GetInstance().GetNaviDataVector().clear();
-
-			// NaviDataVector 크기 읽기
-			int NaviDataCount = 0;
-			Ser >> NaviDataCount;
-
-			for (int i = 0; i < NaviDataCount; ++i)
-			{
-				FNaviData NaviData;
-
-				NaviData.DataVectorIndex = i;
-				// DataVectorIndex 읽기
-				//Ser >> NaviData.DataVectorIndex;
-
-				// IndexArray 읽기
-				for (int j = 0; j < 3; j++)
-				{
-					int IndexValue = 0;
-					Ser >> IndexValue;
-					NaviData.IndexArray[j] = IndexValue;
-				}
-
-				// LinkNaviDataIndex 읽기
-				int LinkCount = 0;
-				Ser >> LinkCount;
-				NaviData.LinkNaviDataIndex.resize(LinkCount);
-				for (int& LinkIndex : NaviData.LinkNaviDataIndex)
-				{
-					Ser >> LinkIndex;
-				}
-
-				// VertexDataVector 읽기
-				int VertexCount = 0;
-				Ser >> VertexCount;
-				NaviData.VertexDataVector.resize(VertexCount);
-
-				for (EngineVertex& Vertex : NaviData.VertexDataVector)
-				{
-					Ser >> Vertex.POSITION;
-					Ser >> Vertex.TEXCOORD;
-					Ser >> Vertex.COLOR;
-				}
-
-				// NaviDataVector에 추가
-				UNaviMeshManager::GetInstance().GetNaviDataVector().push_back(NaviData);
-			}
-
-		}
-		else
-		{
-			UNaviMeshManager::GetInstance().CreateNaviData(Vertexs, Indexs);
-		}
+		UNaviMeshManager::GetInstance().CreateNaviData(Vertexs, Indexs);
 	}
+	
 
 	FVertexBuffer::Create(ModelName.data() + std::to_string(NavMeshResourceDataVector.size()), Vertexs);
 	FIndexBuffer::Create(ModelName.data() + std::to_string(NavMeshResourceDataVector.size()), Indexs);

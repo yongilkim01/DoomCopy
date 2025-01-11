@@ -76,6 +76,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Source\NavigationSystem\Private\NavigationSystem.cpp" />
     <ClCompile Include="Source\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -174,6 +175,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Source\Interfaces\IContentsCore.h" />
+    <ClInclude Include="Source\NavigationSystem\Public\NavigationSystem.h" />
     <ClInclude Include="Source\pch.h" />
     <ClInclude Include="Source\Platform\Window.h" />
     <ClInclude Include="Source\Rendering\AiMesh.h" />

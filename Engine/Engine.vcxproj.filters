@@ -133,6 +133,15 @@
     <Filter Include="1_Core\Time">
       <UniqueIdentifier>{75073ebe-ffe9-4a22-ab53-ff6b199c29f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="12_NavigationSystem">
+      <UniqueIdentifier>{1a928d45-79d6-4625-8af4-4da6f7a7d89e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="12_NavigationSystem\Public">
+      <UniqueIdentifier>{4339f2b6-a627-42fd-a235-87d7f30ff027}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="12_NavigationSystem\Private">
+      <UniqueIdentifier>{0252fb0e-df7b-42ac-833e-fa343bc20528}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp">
@@ -323,6 +332,9 @@
     </ClCompile>
     <ClCompile Include="Source\Classes\Components\ShapeComponent.cpp">
       <Filter>2_Classes\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NavigationSystem\Private\NavigationSystem.cpp">
+      <Filter>12_NavigationSystem\Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -768,6 +780,9 @@
     </ClInclude>
     <ClInclude Include="Source\Classes\Components\ShapeComponent.h">
       <Filter>2_Classes\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NavigationSystem\Public\NavigationSystem.h">
+      <Filter>12_NavigationSystem\Public</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
