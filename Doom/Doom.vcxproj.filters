@@ -117,14 +117,14 @@
     <ClCompile Include="Source\Utils\NavMesh\Actor\NavMeshResource.cpp">
       <Filter>4_Utils\NavMesh\Actor</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utils\NavMesh\Actor\NaviMeshManager.cpp">
-      <Filter>4_Utils\NavMesh</Filter>
-    </ClCompile>
     <ClCompile Include="Source\GameMode\Editor\TileMapGameMode.cpp">
       <Filter>1_GameMode\Editor</Filter>
     </ClCompile>
     <ClCompile Include="Source\Actor\E1M1\Enemy\EnemyCharacter.cpp">
       <Filter>2_Actor\1_E1M1\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\NavMesh\Actor\NaviMeshManager.cpp">
+      <Filter>4_Utils\NavMesh\Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -182,14 +182,14 @@
     <ClInclude Include="Source\Utils\NavMesh\Actor\NavMeshResource.h">
       <Filter>4_Utils\NavMesh\Actor</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Utils\NavMesh\Actor\NaviMeshManager.h">
-      <Filter>4_Utils\NavMesh</Filter>
-    </ClInclude>
     <ClInclude Include="Source\GameMode\Editor\TileMapGameMode.h">
       <Filter>1_GameMode\Editor</Filter>
     </ClInclude>
     <ClInclude Include="Source\Actor\E1M1\Enemy\EnemyCharacter.h">
       <Filter>2_Actor\1_E1M1\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\NavMesh\Actor\NaviMeshManager.h">
+      <Filter>4_Utils\NavMesh\Actor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

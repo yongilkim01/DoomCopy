@@ -13,6 +13,8 @@
 #include <Rendering/Buffer/VertexBuffer.h>
 #include <Rendering/Buffer/IndexBuffer.h>
 
+#include "Utils/NavMesh/Actor/NaviMeshManager.h"
+
 UNavMeshResource::UNavMeshResource()
 {
 }
@@ -109,6 +111,8 @@ bool UNavMeshResource::LoadModel(std::string_view ModelName)
 	Indexs.push_back(6);
 	Indexs.push_back(4);
 	Indexs.push_back(7);
+
+	UNaviMeshManager::GetInstance().CreateNaviData(Vertexs, Indexs);
 
 	FVertexBuffer::Create(ModelName.data() + std::to_string(NavMeshResourceDataVector.size()), Vertexs);
 	FIndexBuffer::Create(ModelName.data() + std::to_string(NavMeshResourceDataVector.size()), Indexs);

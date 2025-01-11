@@ -52,7 +52,7 @@ void UNaviMeshManager::Init(AActor* InPlayerActor, AActor* InMapActor, std::stri
 	PlayerActor = InPlayerActor;
 	MapActor = InMapActor;
 
-	LoadModel(ModelPath);
+	//LoadModel(ModelPath);
 
 	CheckPlayerNaviDataInit();
 	LinkNaviData();
