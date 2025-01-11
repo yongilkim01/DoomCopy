@@ -5,6 +5,7 @@ class ACameraActor;
 class ANavMeshMap;
 class ANavMeshCharacter;
 class UNaviMeshManager;
+class AE1M1Map;
 
 /**
  *	Ό³Έν
@@ -30,7 +31,8 @@ protected:
 private:
 	std::shared_ptr<ACameraActor> Camera = nullptr;
 	std::shared_ptr<ANavMeshCharacter> PlayerCharacter = nullptr;
-	std::shared_ptr<ANavMeshMap> TestMap = nullptr;
+	std::shared_ptr<AE1M1Map> TestMap = nullptr;
+	//std::shared_ptr<ANavMeshMap> TestMap = nullptr;
 
 	UNaviMeshManager* NaviDataManager = nullptr;
 

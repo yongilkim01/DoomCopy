@@ -1,8 +1,18 @@
 #include "pch.h"
 #include "NavigationSystem/Public/NavigationSystem.h"
 
+#include <Core/Misc/DirectoryHelper.h>
+#include <Core/Misc/FileHelper.h>
+
 #include <GameFramework/Actor.h>
 #include <Rendering/Buffer/EngineVertex.h>
+
+#include "Rendering/TextureLoader.h"
+#include "Rendering/AiMesh.h"
+
+#include <assimp/Importer.hpp>
+#include <assimp/postprocess.h> 
+#include <assimp/scene.h>
 
 FVector UNavigationSystem::GetLocationPlayerNaviData(int Index)
 {
@@ -15,8 +25,43 @@ UNavigationSystem::UNavigationSystem()
 {
 }
 
+UNavigationSystem& UNavigationSystem::GetInstance()
+{
+	static UNavigationSystem Inst = UNavigationSystem();
+	return Inst;
+}
+
 UNavigationSystem::~UNavigationSystem()
 {
+}
+
+void UNavigationSystem::CreateNaviData(std::string_view DirectoryName, std::string_view ObjFileName)
+{
+	FDirectoryHelper DirectoryHelper;
+
+	if (false == DirectoryHelper.MoveParentToDirectory("Resources"))
+	{
+		MSGASSERT("리소스 폴더를 찾기에 실패했습니다");
+		return;
+	}
+
+	DirectoryHelper.Append("Models\\");
+	DirectoryHelper.Append(DirectoryName);
+
+	std::string Path = DirectoryHelper.GetPathToString();
+	std::string ObjPath = Path + "\\" + ObjFileName.data() + +".obj";
+	std::string MtlPath = Path + "\\" + ObjFileName.data() + +".mtl";
+
+	if (true == CheckDataFileExist())
+	{
+		LoadFromDataFile();
+	}
+	else
+	{
+		LoadModel(ObjPath);
+	}
+
+	size_t Size = NaviDataVector.size();
 }
 
 void UNavigationSystem::CreateNaviData(std::vector<EngineVertex>& VertexVector, std::vector<unsigned int>& IndexVector)
@@ -120,6 +165,21 @@ void UNavigationSystem::CheckPlayerNaviDataTick()
 	}
 }
 
+bool UNavigationSystem::CheckDataFileExist()
+{
+	FDirectoryHelper Dir;
+
+	// "Resources" 디렉토리를 찾음
+	if (false == Dir.MoveParentToDirectory("Resources"))
+	{
+		MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+	}
+
+	Dir.Append("Data\\Test2.MapData");
+
+	return Dir.IsExists();
+}
+
 void UNavigationSystem::Tick(float DeltaTime)
 {
 	CheckPlayerNaviDataTick();
@@ -135,6 +195,143 @@ void UNavigationSystem::Tick(float DeltaTime)
 	{
 		PlayerActor->AddActorLocation({ 0.0f, -0.09f, 0.0f });
 
+	}
+}
+
+
+bool UNavigationSystem::LoadModel(std::string_view LoadObjPath)
+{
+	std::string FileName = LoadObjPath.data();
+	Assimp::Importer AssimpImporter;
+
+	const aiScene* pScene = AssimpImporter.ReadFile(FileName, aiProcess_Triangulate | aiProcess_ConvertToLeftHanded);
+
+	if (pScene == nullptr)
+	{
+		return false;
+	}
+
+	DirectoryPath = FileName.substr(0, FileName.find_last_of("/\\"));
+
+	ProcessNode(pScene->mRootNode, pScene);
+
+	return true;
+}
+
+void UNavigationSystem::ProcessNode(aiNode* AssimpNode, const aiScene* AssimpScene)
+{
+	for (UINT i = 0; i < AssimpNode->mNumMeshes; i++)
+	{
+		aiMesh* AssimpMesh = AssimpScene->mMeshes[AssimpNode->mMeshes[i]];
+
+		ProcessMesh(AssimpMesh, AssimpScene);
+	}
+
+	for (UINT i = 0; i < AssimpNode->mNumChildren; i++)
+	{
+		ProcessNode(AssimpNode->mChildren[i], AssimpScene);
+	}
+}
+
+void UNavigationSystem::ProcessMesh(aiMesh* mesh, const aiScene* scene)
+{
+	std::vector<EngineVertex> Vertexs;
+	std::vector<unsigned int> Indexs;
+
+	for (UINT i = 0; i < mesh->mNumVertices; i++)
+	{
+		EngineVertex Vertex = EngineVertex{ FVector(-0.5f, 0.5f, 0.0f), {0.0f , 0.0f }, {1.0f, 1.0f, 1.0f, 1.0f} };
+
+		Vertex.POSITION.X = mesh->mVertices[i].x;
+		Vertex.POSITION.Y = mesh->mVertices[i].y;
+		Vertex.POSITION.Z = mesh->mVertices[i].z;
+		Vertex.POSITION.W = 1.0f;
+
+		Vertexs.push_back(Vertex);
+	}
+
+	for (UINT i = 0; i < mesh->mNumFaces; i++)
+	{
+		aiFace face = mesh->mFaces[i];
+
+		for (UINT j = 0; j < face.mNumIndices; j++)
+		{
+			Indexs.push_back(face.mIndices[j]);
+		}
+	}
+
+	CreateNaviData(Vertexs, Indexs);
+}
+
+void UNavigationSystem::LoadFromDataFile()
+{
+	FDirectoryHelper Dir;
+
+	// "Resources" 디렉토리를 찾음
+	if (false == Dir.MoveParentToDirectory("Resources"))
+	{
+		MSGASSERT("리소스 폴더를 찾지 못했습니다.");
+	}
+
+	Dir.Append("Data\\Test2.MapData");
+
+	SetLoadFileExist(true);
+
+	std::string FilePath = Dir.GetPathToString();
+
+	FFileHelper MapDataFile = Dir.GetFile(FilePath);
+	FArchive Ser;
+
+	MapDataFile.FileOpen("rb");
+
+	MapDataFile.Read(Ser);
+
+	// NaviDataVector 초기화
+	GetNaviDataVector().clear();
+
+	// NaviDataVector 크기 읽기
+	int NaviDataCount = 0;
+	Ser >> NaviDataCount;
+
+	for (int i = 0; i < NaviDataCount; ++i)
+	{
+		FNaviData NaviData;
+
+		NaviData.DataVectorIndex = i;
+		// DataVectorIndex 읽기
+		//Ser >> NaviData.DataVectorIndex;
+
+		// IndexArray 읽기
+		for (int j = 0; j < 3; j++)
+		{
+			int IndexValue = 0;
+			Ser >> IndexValue;
+			NaviData.IndexArray[j] = IndexValue;
+		}
+
+		// LinkNaviDataIndex 읽기
+		int LinkCount = 0;
+		Ser >> LinkCount;
+		NaviData.LinkNaviDataIndex.resize(LinkCount);
+		for (int& LinkIndex : NaviData.LinkNaviDataIndex)
+		{
+			Ser >> LinkIndex;
+		}
+
+		// VertexDataVector 읽기
+		int VertexCount = 0;
+		Ser >> VertexCount;
+		NaviData.VertexDataVector.resize(VertexCount);
+
+		for (EngineVertex& Vertex : NaviData.VertexDataVector)
+		{
+			Ser >> Vertex.POSITION;
+			Ser >> Vertex.TEXCOORD;
+			Ser >> Vertex.COLOR;
+		}
+
+		// NaviDataVector에 추가
+		GetNaviDataVector().push_back(NaviData);
 	}
 }
 

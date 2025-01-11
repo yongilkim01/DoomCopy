@@ -15,7 +15,7 @@
 #include <Rendering/Buffer/VertexBuffer.h>
 #include <Rendering/Buffer/IndexBuffer.h>
 
-#include "Utils/NavMesh/Actor/NaviMeshManager.h"
+#include <NavigationSystem/Public/NavigationSystem.h>
 
 UNavMeshResource::UNavMeshResource()
 {
@@ -77,7 +77,7 @@ void UNavMeshResource::CreateAsset(std::string_view ModelName)
 
 	if (true == Dir.IsExists())
 	{
-		UNaviMeshManager::GetInstance().SetLoadFileExist(true);
+		UNavigationSystem::GetInstance().SetLoadFileExist(true);
 		std::string FilePath = Dir.GetPathToString();
 
 		FFileHelper MapDataFile = Dir.GetFile(FilePath);
@@ -88,7 +88,7 @@ void UNavMeshResource::CreateAsset(std::string_view ModelName)
 		MapDataFile.Read(Ser);
 
 		// NaviDataVector 초기화
-		UNaviMeshManager::GetInstance().GetNaviDataVector().clear();
+		UNavigationSystem::GetInstance().GetNaviDataVector().clear();
 
 		// NaviDataVector 크기 읽기
 		int NaviDataCount = 0;
@@ -132,7 +132,7 @@ void UNavMeshResource::CreateAsset(std::string_view ModelName)
 			}
 
 			// NaviDataVector에 추가
-			UNaviMeshManager::GetInstance().GetNaviDataVector().push_back(NaviData);
+			UNavigationSystem::GetInstance().GetNaviDataVector().push_back(NaviData);
 		}
 	}
 
@@ -186,9 +186,9 @@ bool UNavMeshResource::LoadModel(std::string_view ModelName)
 	Indexs.push_back(7);
 	
 	
-	if(false == UNaviMeshManager::GetInstance().IsLoadFileExist())
+	if(false == UNavigationSystem::GetInstance().IsLoadFileExist())
 	{
-		UNaviMeshManager::GetInstance().CreateNaviData(Vertexs, Indexs);
+		UNavigationSystem::GetInstance().CreateNaviData(Vertexs, Indexs);
 	}
 	
 

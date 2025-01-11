@@ -2,6 +2,22 @@
 #include <Rendering/Buffer/EngineVertex.h>
 
 class AActor;
+
+class AiMesh;
+class UMesh;
+class UTexture;
+
+struct aiNode;
+struct aiScene;
+struct aiMesh;
+struct aiMaterial;
+struct aiTexture;
+struct VERTEX;
+struct TEXTURE;
+
+enum aiTextureType;
+
+
 /**
  *	설명
  */
@@ -20,13 +36,10 @@ struct FNaviData
 class UNavigationSystem
 {
 public:
-	static UNavigationSystem& GetInstance()
-	{
-		static UNavigationSystem Inst = UNavigationSystem();
-		return Inst;
-	}
+	ENGINE_API static UNavigationSystem& GetInstance();
+
 	/** 소멸자 */
-	~UNavigationSystem();
+	ENGINE_API ~UNavigationSystem();
 
 	/** 객체 값 복사 방지 */
 	UNavigationSystem(const UNavigationSystem& Other) = delete;
@@ -34,27 +47,33 @@ public:
 	UNavigationSystem& operator=(const UNavigationSystem& Other) = delete;
 	UNavigationSystem& operator=(UNavigationSystem&& Other) noexcept = delete;
 
-	void CreateNaviData(std::vector<EngineVertex>& VertexVector, std::vector<unsigned int>& IndexVector);
-	void Init(AActor* InPlayerActor, AActor* InMapActor, std::string_view Modelpath);
-	void LinkNaviData();
-	void CheckPlayerNaviDataInit();
-	void CheckPlayerNaviDataTick();
-	void Tick(float DeltaTime);
+	ENGINE_API void CreateNaviData(std::vector<EngineVertex>& VertexVector, std::vector<unsigned int>& IndexVector);
+	ENGINE_API void CreateNaviData(std::string_view DirectoryName, std::string_view ObjFileName);
+	ENGINE_API void Init(AActor* InPlayerActor, AActor* InMapActor, std::string_view Modelpath);
+	ENGINE_API void LinkNaviData();
+	ENGINE_API void CheckPlayerNaviDataInit();
+	ENGINE_API void CheckPlayerNaviDataTick();
+	ENGINE_API bool CheckDataFileExist();
+	ENGINE_API void Tick(float DeltaTime);
+	bool LoadModel(std::string_view LoadObjPath);
+	void ProcessNode(aiNode* node, const aiScene* scene);
+	void ProcessMesh(aiMesh* mesh, const aiScene* scene);
+	void LoadFromDataFile();
 
 	/** 겟, 셋 메소드 */
-	int GetCurNaviDataIndex()
+	ENGINE_API int GetCurNaviDataIndex()
 	{
 		return CurrentPlayerNaviDataIndex;
 	}
-	std::vector<FNaviData>& GetNaviDataVector()
+	ENGINE_API std::vector<FNaviData>& GetNaviDataVector()
 	{
 		return NaviDataVector;
 	}
-	FNaviData& GetNaviDataByIndex(int Index)
+	ENGINE_API FNaviData& GetNaviDataByIndex(int Index)
 	{
 		return NaviDataVector[Index];
 	}
-	FNaviData& GetPlayerNaviData()
+	ENGINE_API FNaviData& GetPlayerNaviData()
 	{
 		if (-1 == CurrentPlayerNaviDataIndex)
 		{
@@ -63,23 +82,29 @@ public:
 
 		return NaviDataVector[CurrentPlayerNaviDataIndex];
 	}
-	FVector GetLocationPlayerNaviData(int Index);
-	bool IsLoadFileExist()
+	ENGINE_API FVector GetLocationPlayerNaviData(int Index);
+	ENGINE_API bool IsLoadFileExist()
 	{
 		return bLoadedFile;
 	}
-	void SetLoadFileExist(bool Value)
+	ENGINE_API void SetLoadFileExist(bool Value)
 	{
 		bLoadedFile = Value;
 	}
-
-	float Distance = 0.0f;
+	ENGINE_API float GetDistance()
+	{
+		return Distance;
+	}
+	ENGINE_API void SetDistance(float NewValue)
+	{
+		Distance = NewValue;
+	}
 
 protected:
 
 private:
 	/** 생성자 */
-	UNavigationSystem();
+	ENGINE_API UNavigationSystem();
 
 	std::vector<FNaviData> NaviDataVector;
 
@@ -89,5 +114,8 @@ private:
 	AActor* MapActor = nullptr;
 
 	bool bLoadedFile = false;
+	float Distance = 0.0f;
+
+	std::string DirectoryPath = "";
 };
 

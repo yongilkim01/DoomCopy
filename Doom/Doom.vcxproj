@@ -173,10 +173,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Source\Utils\NavMesh\Actor\NaviMeshManager.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="Source\Utils\NavMesh\Actor\NavMeshCharacter.cpp">
       <SubType>
       </SubType>
@@ -220,10 +216,6 @@
     <ClInclude Include="Source\GameMode\TitleGameMode.h" />
     <ClInclude Include="Source\pch.h" />
     <ClInclude Include="Source\Utils\GUI\GUIEditor.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Utils\NavMesh\Actor\NaviMeshManager.h">
       <SubType>
       </SubType>
     </ClInclude>

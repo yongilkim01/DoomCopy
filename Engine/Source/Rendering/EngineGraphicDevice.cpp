@@ -16,7 +16,7 @@
 #include "Classes/Engine/Mesh.h"
 #include "Classes/Engine/Texture.h"
 
-
+#include "NavigationSystem/Public/NavigationSystem.h"
 
 UEngineGraphicDevice::UEngineGraphicDevice()
 {
@@ -50,6 +50,9 @@ void UEngineGraphicDevice::InitDefaultResources()
 	InitMaterial();
 	{
 		UStaticMesh::Create("E1M1", "doom_E1M1");
+	}
+	{
+		UNavigationSystem::GetInstance().CreateNaviData("E1M1", "doom_E1M1");
 	}
 }
 
