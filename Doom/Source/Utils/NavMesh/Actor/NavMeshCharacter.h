@@ -37,7 +37,7 @@ private:
 	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
 	std::shared_ptr<UShapeComponent> ShapeComponent = nullptr;
 
-	float Speed = 50.0f;
+	float Speed = 150.0f;
 	float Result = 0.0f;
 };
 

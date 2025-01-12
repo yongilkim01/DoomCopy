@@ -155,7 +155,7 @@ ANavMeshGameMode::ANavMeshGameMode()
 		PlayerCharacter->SetActorLocation(FVector{ -1042.0f, 14.0f, 3548.0f });
 	}
 	{
-		//TestMap = GetWorld()->SpawnActor<AE1M1Map>();
+		TestMap = GetWorld()->SpawnActor<AE1M1Map>();
 		//TestMap->SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
 		//TestMap->SetActorLocation({ 0.0f, 0.0f, 0.0f });
 	}
