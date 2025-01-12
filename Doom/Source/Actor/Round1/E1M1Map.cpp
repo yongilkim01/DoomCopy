@@ -29,14 +29,6 @@ AE1M1Map::AE1M1Map()
 		std::vector<int> GroundModelNumber;
 		GroundModelNumber.reserve(20);
 
-		GroundModelNumber.push_back(1);
-		GroundModelNumber.push_back(5);
-		GroundModelNumber.push_back(12);
-		GroundModelNumber.push_back(16);
-		GroundModelNumber.push_back(19);
-		GroundModelNumber.push_back(20);
-		GroundModelNumber.push_back(23);
-		GroundModelNumber.push_back(25);
 		GroundModelNumber.push_back(35);
 		GroundModelNumber.push_back(36);
 		GroundModelNumber.push_back(37);
@@ -65,24 +57,32 @@ AE1M1Map::AE1M1Map()
 		WallMeshComponent->SetupAttachment(RootComponent);
 
 		std::vector<int> WallModelNumber;
-		WallModelNumber.reserve(40);
+		WallModelNumber.reserve(60);
 
+		WallModelNumber.push_back(1);
 		WallModelNumber.push_back(2);
 		WallModelNumber.push_back(3);
 		WallModelNumber.push_back(4);
+		WallModelNumber.push_back(5);
 		WallModelNumber.push_back(6);
 		WallModelNumber.push_back(7);
 		WallModelNumber.push_back(8);
 		WallModelNumber.push_back(9);
 		WallModelNumber.push_back(10);
 		WallModelNumber.push_back(11);
+		WallModelNumber.push_back(12);
 		WallModelNumber.push_back(13);
-		WallModelNumber.push_back(14);
+		WallModelNumber.push_back(14);	
+		WallModelNumber.push_back(16);	
 		WallModelNumber.push_back(17);
 		WallModelNumber.push_back(18);
+		WallModelNumber.push_back(19);
+		WallModelNumber.push_back(20);
 		WallModelNumber.push_back(21);
 		WallModelNumber.push_back(22);
+		WallModelNumber.push_back(23);
 		WallModelNumber.push_back(24);
+		WallModelNumber.push_back(25);
 		WallModelNumber.push_back(26);
 		WallModelNumber.push_back(27);
 		WallModelNumber.push_back(28);

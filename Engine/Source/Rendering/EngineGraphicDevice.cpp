@@ -52,7 +52,18 @@ void UEngineGraphicDevice::InitDefaultResources()
 		UStaticMesh::Create("E1M1", "doom_E1M1");
 	}
 	{
-		UNavigationSystem::GetInstance().CreateNaviData("E1M1", "doom_E1M1");
+		std::vector<int> GroundModelNumber;
+		GroundModelNumber.reserve(20);
+
+		GroundModelNumber.push_back(35);
+		GroundModelNumber.push_back(36);
+		GroundModelNumber.push_back(37);
+		GroundModelNumber.push_back(41);
+		GroundModelNumber.push_back(45);
+		GroundModelNumber.push_back(51);
+		GroundModelNumber.push_back(52);
+
+		UNavigationSystem::GetInstance().CreateNaviData("E1M1", "doom_E1M1", GroundModelNumber);
 	}
 }
 

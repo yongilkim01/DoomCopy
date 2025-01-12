@@ -134,26 +134,48 @@ ANavMeshGameMode::ANavMeshGameMode()
 		GetWorld()->CreateCollisionProfile("Map");
 		GetWorld()->CreateCollisionProfile("Player");
 	}
+	//{
+	//	PlayerCharacter = GetWorld()->SpawnActor<ANavMeshCharacter>();
+	//	PlayerCharacter->SetActorLocation(FVector{ -150.0f, 100.0f, 50.0f });
+	//}
+	//{
+	//	TestMap = GetWorld()->SpawnActor<AE1M1Map>();
+	//}
+	//{
+	//	Camera = GetWorld()->GetMainCamera();
+	//	Camera->AddActorRelativeLocation({ 0.0f, 80.0f, -500.0f });
+	//	Camera->AddActorRotation({ 10.0f, 0.0f, 0.0f });
+	//	//Camera->AddActorRelativeLocation({ 0.0f, 300.0f, 0.0f });
+	//	//Camera->AddActorRotation({ 90.0f, 0.0f, 0.0f });
+	//	Camera->GetCameraComponent()->SetZSort(0, true);
+	//}
+
 	{
 		PlayerCharacter = GetWorld()->SpawnActor<ANavMeshCharacter>();
-		PlayerCharacter->SetActorLocation(FVector{ -150.0f, 100.0f, 50.0f });
+		PlayerCharacter->SetActorLocation(FVector{ -1042.0f, 14.0f, 3548.0f });
 	}
 	{
-		TestMap = GetWorld()->SpawnActor<AE1M1Map>();
+		//TestMap = GetWorld()->SpawnActor<AE1M1Map>();
+		//TestMap->SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
+		//TestMap->SetActorLocation({ 0.0f, 0.0f, 0.0f });
+	}
+	{
+		NavMap = GetWorld()->SpawnActor<ANavMeshMap>();
+		//TestMap->SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
+		//TestMap->SetActorLocation({ 0.0f, 0.0f, 0.0f });
 	}
 	{
 		Camera = GetWorld()->GetMainCamera();
-		Camera->AddActorRelativeLocation({ 0.0f, 80.0f, -500.0f });
-		Camera->AddActorRotation({ 10.0f, 0.0f, 0.0f });
-		//Camera->AddActorRelativeLocation({ 0.0f, 300.0f, 0.0f });
-		//Camera->AddActorRotation({ 90.0f, 0.0f, 0.0f });
+		//Camera->AddActorLocation({ 10.0f, 0.0f, 0.0f });
+		Camera->AddActorRelativeLocation({ 0.0f, 10.0f, -100.0f });
 		Camera->GetCameraComponent()->SetZSort(0, true);
+		Camera->AttachToActor(PlayerCharacter.get());
 	}
 
 	std::shared_ptr<UNavMeshDebugWindow> Window = UEngineGUI::CreateGUIWindow<UNavMeshDebugWindow>("NavMeshDebugWindow");
 	Window->TestPlayer = PlayerCharacter;
 
-	UNavigationSystem::GetInstance().Init(PlayerCharacter.get(), TestMap.get(), "");
+	UNavigationSystem::GetInstance().Init(PlayerCharacter.get(), NavMap.get(), "");
 
 }
 

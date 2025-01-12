@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "NavMeshComponent.h"
 
+#include <NavigationSystem/Public/NavigationSystem.h>
+
 #include "Classes/Camera/CameraComponent.h"
 #include "Classes/Engine/Texture.h"
 #include "Classes/Engine/StaticMesh.h"
@@ -13,9 +15,15 @@ UNavMeshComponent::UNavMeshComponent()
 
 	for (int i = 0; i < NavMesh->GetNavMeshResourceCount(); i++)
 	{
-		CreateRenderUnit();
-		SetMesh("NavMapResource" + std::to_string(i));
-		SetMaterial("CollisionDebugMaterial");
+		for (int j = 0; j < UNavigationSystem::GetInstance().GetGroundMeshIndexVector().size(); j++)
+		{
+			if (UNavigationSystem::GetInstance().GetGroundMeshIndexVector()[j] == i)
+			{
+				CreateRenderUnit();
+				SetMesh("NavMapResource" + std::to_string(i));
+				SetMaterial("CollisionDebugMaterial");
+			}
+		}
 	}
 
 	//MyColor.Albedo = float4(1.0f, 1.0f, 1.0f, 1.0f);

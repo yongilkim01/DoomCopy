@@ -189,10 +189,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Source\Utils\NavMesh\GameMode\NavMeshGameMode.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
+    <ClCompile Include="Source\Utils\NavMesh\GameMode\NavMeshGameMode.cpp" />
     <ClCompile Include="Source\Utils\WadMap.cpp" />
     <ClCompile Include="Source\Utils\Lump.cpp" />
     <ClCompile Include="Source\Utils\Wad.cpp" />

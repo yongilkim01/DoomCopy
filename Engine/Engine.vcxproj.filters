@@ -142,6 +142,21 @@
     <Filter Include="12_NavigationSystem\Private">
       <UniqueIdentifier>{0252fb0e-df7b-42ac-833e-fa343bc20528}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{43a547fe-3851-4aa6-850a-69fe8f92d364}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Private">
+      <UniqueIdentifier>{f1b3ec75-0075-4652-9d27-6bdc2ba56434}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Private\Components">
+      <UniqueIdentifier>{327168be-c3e2-43b6-beb3-6c2e666c0d7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Classes">
+      <UniqueIdentifier>{1f2c3a24-fa70-4c80-8ee9-4fbc575543ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Classes\Components">
+      <UniqueIdentifier>{a04f112d-f00b-41dc-a241-d99b76360069}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp">

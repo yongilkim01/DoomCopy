@@ -81,3 +81,23 @@ void UStaticMeshComponent::SetModel(std::string_view ModelName, std::vector<int>
 		}
 	}
 }
+
+void UStaticMeshComponent::SetModelDebug(std::string_view ModelName, std::vector<int>& ModelNumber)
+{
+	StaticMesh = UStaticMesh::Find<UStaticMesh>(ModelName);
+
+	for (int i = 0; i < StaticMesh->GetStaticMeshCount(); i++)
+	{
+		for (int j = 0; j < ModelNumber.size(); j++)
+		{
+			if (i == ModelNumber[j])
+			{
+				CreateRenderUnit();
+				SetMesh(StaticMesh->GetMeshNameByIndex(i), MeshCount);
+				SetMaterial("CollisionDebugMaterial", MeshCount);
+
+				MeshCount++;
+			}
+		}
+	}
+}

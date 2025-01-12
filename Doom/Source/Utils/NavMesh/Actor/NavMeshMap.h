@@ -4,6 +4,7 @@
 class UTestComponent;
 class UPaperSpriteComponent;
 class UNavMeshComponent;
+class UStaticMeshComponent;
 
 /**
  *	Ό³Έν
@@ -21,16 +22,17 @@ public:
 	ANavMeshMap& operator=(const ANavMeshMap& Other) = delete;
 	ANavMeshMap& operator=(ANavMeshMap&& Other) noexcept = delete;
 
-	std::shared_ptr<UNavMeshComponent> GetNavMapComponent()
-	{
-		return SpriteComponent;
-	}
+	//std::shared_ptr<UNavMeshComponent> GetNavMapComponent()
+	//{
+	//	return SpriteComponent;
+	//}
 
 protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
 private:
-	std::shared_ptr<UNavMeshComponent> SpriteComponent = nullptr;
+	//std::shared_ptr<UNavMeshComponent> SpriteComponent = nullptr;
+	std::shared_ptr<UStaticMeshComponent> MapComponent = nullptr;
 };
 

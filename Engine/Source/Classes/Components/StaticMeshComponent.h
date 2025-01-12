@@ -23,6 +23,7 @@ public:
 
 	ENGINE_API void SetModel(std::string_view ModelName);
 	ENGINE_API void SetModel(std::string_view ModelName, std::vector<int>& ModelNumber);
+	ENGINE_API void SetModelDebug(std::string_view ModelName, std::vector<int>& ModelNumber);
 	//ENGINE_API void SetModelExceptIndex(std::string_view ModelName, std::vector)
 
 protected:

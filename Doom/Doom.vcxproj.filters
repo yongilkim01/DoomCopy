@@ -102,9 +102,6 @@
     <ClCompile Include="Source\Utils\WadMap.cpp">
       <Filter>4_Utils\WAD</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utils\NavMesh\GameMode\NavMeshGameMode.cpp">
-      <Filter>4_Utils\NavMesh\GameMode</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Utils\NavMesh\Actor\NavMeshMap.cpp">
       <Filter>4_Utils\NavMesh\Actor</Filter>
     </ClCompile>
@@ -122,6 +119,9 @@
     </ClCompile>
     <ClCompile Include="Source\Actor\E1M1\Enemy\EnemyCharacter.cpp">
       <Filter>2_Actor\1_E1M1\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\NavMesh\GameMode\NavMeshGameMode.cpp">
+      <Filter>4_Utils\NavMesh\GameMode</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

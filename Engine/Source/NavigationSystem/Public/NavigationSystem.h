@@ -48,13 +48,15 @@ public:
 	UNavigationSystem& operator=(UNavigationSystem&& Other) noexcept = delete;
 
 	ENGINE_API void CreateNaviData(std::vector<EngineVertex>& VertexVector, std::vector<unsigned int>& IndexVector);
-	ENGINE_API void CreateNaviData(std::string_view DirectoryName, std::string_view ObjFileName);
+	ENGINE_API void CreateNaviData(std::string_view DirectoryName, std::string_view ObjFileName, std::vector<int>& InGroundMeshIndexVector);
 	ENGINE_API void Init(AActor* InPlayerActor, AActor* InMapActor, std::string_view Modelpath);
 	ENGINE_API void LinkNaviData();
 	ENGINE_API void CheckPlayerNaviDataInit();
 	ENGINE_API void CheckPlayerNaviDataTick();
+	ENGINE_API bool CheckGroundMesh();
 	ENGINE_API bool CheckDataFileExist();
 	ENGINE_API void Tick(float DeltaTime);
+
 	bool LoadModel(std::string_view LoadObjPath);
 	void ProcessNode(aiNode* node, const aiScene* scene);
 	void ProcessMesh(aiMesh* mesh, const aiScene* scene);
@@ -99,6 +101,10 @@ public:
 	{
 		Distance = NewValue;
 	}
+	ENGINE_API std::vector<int>& GetGroundMeshIndexVector()
+	{
+		return GroundMeshIndexVector;
+	}
 
 protected:
 
@@ -117,5 +123,8 @@ private:
 	float Distance = 0.0f;
 
 	std::string DirectoryPath = "";
+	std::vector<int> GroundMeshIndexVector;
+
+	int DataCount = 0;
 };
 

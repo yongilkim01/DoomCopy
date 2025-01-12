@@ -35,8 +35,10 @@ UNavigationSystem::~UNavigationSystem()
 {
 }
 
-void UNavigationSystem::CreateNaviData(std::string_view DirectoryName, std::string_view ObjFileName)
+void UNavigationSystem::CreateNaviData(std::string_view DirectoryName, std::string_view ObjFileName, std::vector<int>& InGroundMeshIndexVector)
 {
+	GroundMeshIndexVector = InGroundMeshIndexVector;
+
 	FDirectoryHelper DirectoryHelper;
 
 	if (false == DirectoryHelper.MoveParentToDirectory("Resources"))
@@ -165,6 +167,19 @@ void UNavigationSystem::CheckPlayerNaviDataTick()
 	}
 }
 
+bool UNavigationSystem::CheckGroundMesh()
+{
+	for (int i = 0; i < GroundMeshIndexVector.size(); i++)
+	{
+		if (GroundMeshIndexVector[i] == DataCount)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 bool UNavigationSystem::CheckDataFileExist()
 {
 	FDirectoryHelper Dir;
@@ -185,6 +200,7 @@ void UNavigationSystem::Tick(float DeltaTime)
 	CheckPlayerNaviDataTick();
 
 	float DistancePlayerToMap = NaviDataVector[CurrentPlayerNaviDataIndex].Intersect(PlayerActor, MapActor);
+
 	UEngineDebug::OutPutString("Distance player to map : " + std::to_string(DistancePlayerToMap));
 
 	if (DistancePlayerToMap != 0)
@@ -260,7 +276,11 @@ void UNavigationSystem::ProcessMesh(aiMesh* mesh, const aiScene* scene)
 		}
 	}
 
-	CreateNaviData(Vertexs, Indexs);
+	if (true == CheckGroundMesh())
+	{
+		CreateNaviData(Vertexs, Indexs);
+	}
+	DataCount++;
 }
 
 void UNavigationSystem::LoadFromDataFile()
