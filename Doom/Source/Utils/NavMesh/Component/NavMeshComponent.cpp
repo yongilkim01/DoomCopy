@@ -3,9 +3,9 @@
 
 #include <NavigationSystem/Public/NavigationSystem.h>
 
-#include "Classes/Camera/CameraComponent.h"
-#include "Classes/Engine/Texture.h"
-#include "Classes/Engine/StaticMesh.h"
+#include "Engine/Classes/Camera/CameraComponent.h"
+#include "Engine/Classes/Engine/Texture.h"
+#include "Engine/Classes/Engine/StaticMesh.h"
 
 #include "Utils/NavMesh/Actor/NavMeshResource.h"
 

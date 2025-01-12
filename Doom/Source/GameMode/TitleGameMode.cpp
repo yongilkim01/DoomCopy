@@ -2,8 +2,8 @@
 #include "TitleGameMode.h"
 #include "Actor/TitleLogo.h"
 
-#include <Classes/Camera/CameraActor.h>
-#include <Classes/Components/PaperSpriteComponent.h>
+#include <Engine/Classes/Camera/CameraActor.h>
+#include <Engine/Classes/Components/PaperSpriteComponent.h>
 
 ATitleGameMode::ATitleGameMode()
 {

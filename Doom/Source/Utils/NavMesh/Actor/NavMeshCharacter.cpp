@@ -1,11 +1,11 @@
 #include "pch.h"
 #include "NavMeshCharacter.h"
 
-#include <Classes/Components/PaperSpriteComponent.h>
-#include <Classes/Components/StaticMeshComponent.h>
-#include <Classes/Components/ShapeComponent.h>
-#include <Classes/Camera/CameraActor.h>
-#include <Classes/Camera/CameraComponent.h>
+#include <Engine/Classes/Components/PaperSpriteComponent.h>
+#include <Engine/Classes/Components/StaticMeshComponent.h>
+#include <Engine/Classes/Components/ShapeComponent.h>
+#include <Engine/Classes/Camera/CameraActor.h>
+#include <Engine/Classes/Camera/CameraComponent.h>
 
 #include <Core/Misc/DirectoryHelper.h>
 

@@ -1,10 +1,10 @@
 #include "pch.h"
 #include "NavMeshResource.h"
 
-#include <Classes/Engine/Mesh.h>
-#include <Classes/Engine/Texture.h>
+#include <Engine/Classes/Engine/Mesh.h>
+#include <Engine/Classes/Engine/Texture.h>
 
-#include <Core/Materials/Material.h>
+#include <Engine/Public/Materials/Material.h>
 #include <Core/Serialization/Archive.h>
 #include <Core/Misc/DirectoryHelper.h>
 #include <Core/Misc/FileHelper.h>

@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "E1M1GameMode.h"
 
-#include <Classes/Camera/CameraActor.h>
-#include <Classes/Camera/CameraComponent.h>
-#include <Classes/Components/StaticMeshComponent.h>
+#include <Engine/Classes/Camera/CameraActor.h>
+#include <Engine/Classes/Camera/CameraComponent.h>
+#include <Engine/Classes/Components/StaticMeshComponent.h>
 #include <Input/EngineInput.h>
 
 #include <Tools/DebugGUI/EngineGUI.h>

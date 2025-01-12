@@ -2,7 +2,7 @@
 #include "Rendering/Buffer/EngineConstantBuffer.h"
 #include "Core/Object/Object.h"
 #include "EngineEnums.h"
-#include "Classes/Engine/Texture.h"
+#include "Engine/Classes/Engine/Texture.h"
 #include "Rendering/Sampler/EngineSampler.h"
 
 class UEngineShaderRes

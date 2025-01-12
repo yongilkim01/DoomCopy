@@ -6,7 +6,7 @@
 #include "Rendering/Shader/EnginePixelShader.h"
 #include "Rendering/Sampler/EngineSampler.h"
 
-#include "Classes/Engine/Texture.h"
+#include "Engine/Classes/Engine/Texture.h"
 
 UEngineShader::UEngineShader()
 {

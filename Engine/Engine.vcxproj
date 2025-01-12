@@ -19,59 +19,39 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Asset\AssetLibrary.cpp" />
-    <ClCompile Include="Source\Classes\Camera\CameraActor.cpp" />
-    <ClCompile Include="Source\Classes\Camera\CameraComponent.cpp" />
-    <ClCompile Include="Source\Classes\Components\ActorComponent.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\Classes\Components\PaperSpriteComponent.cpp" />
-    <ClCompile Include="Source\Classes\Components\PrimitiveComponent.cpp" />
-    <ClCompile Include="Source\Classes\Components\SceneComponent.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\Classes\Components\ShapeComponent.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\Classes\Components\StaticMeshComponent.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\Classes\Engine\Mesh.cpp" />
-    <ClCompile Include="Source\Classes\Engine\RenderAsset.cpp" />
-    <ClCompile Include="Source\Classes\Engine\Level.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\Classes\Engine\PaperSprite.cpp" />
-    <ClCompile Include="Source\Classes\Engine\SkeletalMesh.cpp" />
-    <ClCompile Include="Source\Classes\Engine\StaticMesh.cpp" />
-    <ClCompile Include="Source\Classes\Engine\Texture.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="Source\Core\Containers\EngineString.cpp" />
     <ClCompile Include="Source\Core\Delegates\Delegate.cpp" />
     <ClCompile Include="Source\Core\EngineCore.cpp" />
-    <ClCompile Include="Source\Core\Materials\Material.cpp" />
     <ClCompile Include="Source\Core\Math\EngineMath.cpp" />
     <ClCompile Include="Source\Core\Math\EngineRandom.cpp" />
     <ClCompile Include="Source\Core\Misc\DirectoryHelper.cpp" />
     <ClCompile Include="Source\Core\Misc\FileHelper.cpp" />
     <ClCompile Include="Source\Core\Misc\Paths.cpp" />
     <ClCompile Include="Source\Core\Object\Object.cpp" />
+    <ClCompile Include="Source\Core\Private\Time\TimeEvent.cpp" />
+    <ClCompile Include="Source\Core\Private\Time\Timer.cpp" />
     <ClCompile Include="Source\Core\Serialization\Archive.cpp" />
-    <ClCompile Include="Source\Core\Time\TimerManager.cpp" />
-    <ClCompile Include="Source\GameFramework\Actor.cpp" />
-    <ClCompile Include="Source\GameFramework\Character.cpp" />
-    <ClCompile Include="Source\GameFramework\GameMode.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\GameFramework\Pawn.cpp" />
+    <ClCompile Include="Source\Engine\Private\Actor.cpp" />
+    <ClCompile Include="Source\Engine\Private\Camera\CameraActor.cpp" />
+    <ClCompile Include="Source\Engine\Private\Camera\CameraComponent.cpp" />
+    <ClCompile Include="Source\Engine\Private\Character.cpp" />
+    <ClCompile Include="Source\Engine\Private\Components\ActorComponent.cpp" />
+    <ClCompile Include="Source\Engine\Private\Components\PaperSpriteComponent.cpp" />
+    <ClCompile Include="Source\Engine\Private\Components\PrimitiveComponent.cpp" />
+    <ClCompile Include="Source\Engine\Private\Components\SceneComponent.cpp" />
+    <ClCompile Include="Source\Engine\Private\Components\ShapeComponent.cpp" />
+    <ClCompile Include="Source\Engine\Private\Components\StaticMeshComponent.cpp" />
+    <ClCompile Include="Source\Engine\Private\GameMode.cpp" />
+    <ClCompile Include="Source\Engine\Private\Level.cpp" />
+    <ClCompile Include="Source\Engine\Private\Materials\Material.cpp" />
+    <ClCompile Include="Source\Engine\Private\Mesh.cpp" />
+    <ClCompile Include="Source\Engine\Private\PaperSprite.cpp" />
+    <ClCompile Include="Source\Engine\Private\Pawn.cpp" />
+    <ClCompile Include="Source\Engine\Private\RenderAsset.cpp" />
+    <ClCompile Include="Source\Engine\Private\SkeletalMesh.cpp" />
+    <ClCompile Include="Source\Engine\Private\StaticMesh.cpp" />
+    <ClCompile Include="Source\Engine\Private\Texture.cpp" />
+    <ClCompile Include="Source\Engine\Private\TimerManager.cpp" />
     <ClCompile Include="Source\Input\EngineInput.cpp">
       <SubType>
       </SubType>
@@ -108,68 +88,46 @@
     <ClCompile Include="Source\ThirdParty\imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui_tables.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="Source\Time\TimeEvent.cpp" />
-    <ClCompile Include="Source\Time\Timer.cpp" />
     <ClCompile Include="Source\Tools\DebugGUI\EngineGUI.cpp" />
     <ClCompile Include="Source\Tools\DebugGUI\EngineGUIWindow.cpp" />
     <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Asset\AssetLibrary.h" />
-    <ClInclude Include="Source\Classes\Camera\CameraActor.h" />
-    <ClInclude Include="Source\Classes\Camera\CameraComponent.h" />
-    <ClInclude Include="Source\Classes\Components\ActorComponent.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Classes\Components\PaperSpriteComponent.h" />
-    <ClInclude Include="Source\Classes\Components\PrimitiveComponent.h" />
-    <ClInclude Include="Source\Classes\Components\SceneComponent.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Classes\Components\ShapeComponent.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Classes\Components\StaticMeshComponent.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Classes\Engine\Mesh.h" />
-    <ClInclude Include="Source\Classes\Engine\RenderAsset.h" />
-    <ClInclude Include="Source\Classes\Engine\Level.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Classes\Engine\PaperSprite.h" />
-    <ClInclude Include="Source\Classes\Engine\SkeletalMesh.h" />
-    <ClInclude Include="Source\Classes\Engine\StaticMesh.h" />
-    <ClInclude Include="Source\Classes\Engine\Texture.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Source\Core\Containers\EngineString.h" />
     <ClInclude Include="Source\Core\Delegates\Delegate.h" />
     <ClInclude Include="Source\Core\EngineCore.h" />
-    <ClInclude Include="Source\Core\Materials\Material.h" />
     <ClInclude Include="Source\Core\Math\EngineMath.h" />
     <ClInclude Include="Source\Core\Math\EngineRandom.h" />
     <ClInclude Include="Source\Core\Misc\DirectoryHelper.h" />
     <ClInclude Include="Source\Core\Misc\FileHelper.h" />
     <ClInclude Include="Source\Core\Misc\Paths.h" />
     <ClInclude Include="Source\Core\Object\Object.h" />
+    <ClInclude Include="Source\Core\Public\Time\TimeEvent.h" />
+    <ClInclude Include="Source\Core\Public\Time\Timer.h" />
     <ClInclude Include="Source\Core\Serialization\Archive.h" />
-    <ClInclude Include="Source\Core\Time\TimerManager.h" />
     <ClInclude Include="Source\EngineDefine.h" />
     <ClInclude Include="Source\EngineEnums.h" />
-    <ClInclude Include="Source\GameFramework\Actor.h" />
-    <ClInclude Include="Source\GameFramework\Character.h" />
-    <ClInclude Include="Source\GameFramework\GameMode.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\GameFramework\Pawn.h" />
+    <ClInclude Include="Source\Engine\Classes\Camera\CameraActor.h" />
+    <ClInclude Include="Source\Engine\Classes\Camera\CameraComponent.h" />
+    <ClInclude Include="Source\Engine\Classes\Components\ActorComponent.h" />
+    <ClInclude Include="Source\Engine\Classes\Components\PaperSpriteComponent.h" />
+    <ClInclude Include="Source\Engine\Classes\Components\PrimitiveComponent.h" />
+    <ClInclude Include="Source\Engine\Classes\Components\SceneComponent.h" />
+    <ClInclude Include="Source\Engine\Classes\Components\ShapeComponent.h" />
+    <ClInclude Include="Source\Engine\Classes\Components\StaticMeshComponent.h" />
+    <ClInclude Include="Source\Engine\Classes\Engine\Level.h" />
+    <ClInclude Include="Source\Engine\Classes\Engine\Mesh.h" />
+    <ClInclude Include="Source\Engine\Classes\Engine\PaperSprite.h" />
+    <ClInclude Include="Source\Engine\Classes\Engine\RenderAsset.h" />
+    <ClInclude Include="Source\Engine\Classes\Engine\SkeletalMesh.h" />
+    <ClInclude Include="Source\Engine\Classes\Engine\StaticMesh.h" />
+    <ClInclude Include="Source\Engine\Classes\Engine\Texture.h" />
+    <ClInclude Include="Source\Engine\Classes\GameFramework\Actor.h" />
+    <ClInclude Include="Source\Engine\Classes\GameFramework\Character.h" />
+    <ClInclude Include="Source\Engine\Classes\GameFramework\GameMode.h" />
+    <ClInclude Include="Source\Engine\Classes\GameFramework\Pawn.h" />
+    <ClInclude Include="Source\Engine\Public\Materials\Material.h" />
+    <ClInclude Include="Source\Engine\Public\TimerManager.h" />
     <ClInclude Include="Source\Input\EngineInput.h">
       <SubType>
       </SubType>
@@ -287,8 +245,6 @@
     <ClInclude Include="Source\ThirdParty\imgui\imstb_rectpack.h" />
     <ClInclude Include="Source\ThirdParty\imgui\imstb_textedit.h" />
     <ClInclude Include="Source\ThirdParty\imgui\imstb_truetype.h" />
-    <ClInclude Include="Source\Time\TimeEvent.h" />
-    <ClInclude Include="Source\Time\Timer.h" />
     <ClInclude Include="Source\Tools\DebugGUI\EngineGUI.h" />
     <ClInclude Include="Source\Tools\DebugGUI\EngineGUIWindow.h" />
     <ClInclude Include="Source\WorldPartition\DebugHelpers.h" />

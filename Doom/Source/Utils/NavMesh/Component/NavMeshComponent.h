@@ -1,7 +1,7 @@
 #pragma once
-#include "Classes/Components/PrimitiveComponent.h"
-#include "Classes/Engine/StaticMesh.h"
-#include "Classes/Engine/Texture.h"
+#include "Engine/Classes/Components/PrimitiveComponent.h"
+#include "Engine/Classes/Engine/StaticMesh.h"
+#include "Engine/Classes/Engine/Texture.h"
 #include <Rendering/Buffer/EngineVertex.h>
 
 class UNavMeshResource;

@@ -2,8 +2,8 @@
 #include "TitleLogo.h"
 
 #include <Core/Math/EngineMath.h>
-#include <Classes/Components/PaperSpriteComponent.h>
-#include <Classes/Components/SceneComponent.h>
+#include <Engine/Classes/Components/PaperSpriteComponent.h>
+#include <Engine/Classes/Components/SceneComponent.h>
 #include <Input/EngineInput.h>
 
 ATitleLogo::ATitleLogo()

@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "DoomMapComponent.h"
 
-#include <Classes/Camera/CameraComponent.h>
+#include <Engine/Classes/Camera/CameraComponent.h>
 #include <Core/Misc/DirectoryHelper.h>
 #include <Core/Misc/FileHelper.h>
 

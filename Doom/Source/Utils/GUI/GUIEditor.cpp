@@ -3,7 +3,7 @@
 
 #include <Core/EngineCore.h>
 #include <Tools/DebugGUI/EngineGUI.h>
-#include <Classes/Engine/Level.h>
+#include <Engine/Classes/Engine/Level.h>
 
 UGUIEditor::UGUIEditor()
 {

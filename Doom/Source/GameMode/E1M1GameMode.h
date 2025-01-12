@@ -1,5 +1,5 @@
 #pragma once
-#include "GameFramework/GameMode.h"
+#include "Engine/Classes/GameFramework/GameMode.h"
 
 class ADoomGuy;
 class ACameraActor;

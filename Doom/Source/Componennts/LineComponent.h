@@ -1,5 +1,5 @@
 #pragma once
-#include <Classes/Components/PrimitiveComponent.h>
+#include <Engine/Classes/Components/PrimitiveComponent.h>
 #include <Core/Math/EngineMath.h>
 
 struct LineVertex

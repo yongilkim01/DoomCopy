@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "E1M1Map.h"
 
-#include <Classes/Components/StaticMeshComponent.h>
-#include <Classes/Components/ShapeComponent.h>
+#include <Engine/Classes/Components/StaticMeshComponent.h>
+#include <Engine/Classes/Components/ShapeComponent.h>
 #include <Core/Misc/DirectoryHelper.h>
 
 AE1M1Map::AE1M1Map()

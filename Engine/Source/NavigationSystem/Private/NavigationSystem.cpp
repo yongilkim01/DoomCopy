@@ -4,7 +4,7 @@
 #include <Core/Misc/DirectoryHelper.h>
 #include <Core/Misc/FileHelper.h>
 
-#include <GameFramework/Actor.h>
+#include <Engine/Classes/GameFramework/Actor.h>
 #include <Rendering/Buffer/EngineVertex.h>
 
 #include "Rendering/TextureLoader.h"

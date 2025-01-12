@@ -10,11 +10,11 @@
 
 #include "Core/Misc/DirectoryHelper.h"
 #include "Core/Misc/FileHelper.h"
-#include "Core/Materials/Material.h"
+#include "Engine/Public/Materials/Material.h"
 
-#include "Classes/Engine/StaticMesh.h"
-#include "Classes/Engine/Mesh.h"
-#include "Classes/Engine/Texture.h"
+#include "Engine/Classes/Engine/StaticMesh.h"
+#include "Engine/Classes/Engine/Mesh.h"
+#include "Engine/Classes/Engine/Texture.h"
 
 #include "NavigationSystem/Public/NavigationSystem.h"
 

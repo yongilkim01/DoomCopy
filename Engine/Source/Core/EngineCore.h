@@ -3,8 +3,8 @@
 #include "Platform/Window.h"
 #include "Rendering/EngineGraphicDevice.h"
 #include "Interfaces/IContentsCore.h"
-#include "Classes/Engine/Level.h"
-#include "Time/Timer.h"
+#include "Engine/Classes/Engine/Level.h"
+#include "Core/Public/Time/Timer.h"
 #include "Core/Containers/EngineString.h"
 
 #include <memory>

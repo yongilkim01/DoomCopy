@@ -5,9 +5,9 @@
 #include <Core/Misc/DirectoryHelper.h>
 #include <Core/Serialization/Archive.h>
 
-#include <Classes/Camera/CameraActor.h>
-#include <Classes/Camera/CameraComponent.h>
-#include <Classes/Components/StaticMeshComponent.h>
+#include <Engine/Classes/Camera/CameraActor.h>
+#include <Engine/Classes/Camera/CameraComponent.h>
+#include <Engine/Classes/Components/StaticMeshComponent.h>
 #include <Input/EngineInput.h>
 #include <Rendering/Buffer/EngineVertex.h>
 

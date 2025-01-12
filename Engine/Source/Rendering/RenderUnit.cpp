@@ -1,11 +1,11 @@
 #include "pch.h"
 #include "RenderUnit.h"
 
-#include "Classes/Camera/CameraComponent.h"
-#include "Classes/Components/PrimitiveComponent.h"
-#include "Classes/Engine/Mesh.h"
+#include "Engine/Classes/Camera/CameraComponent.h"
+#include "Engine/Classes/Components/PrimitiveComponent.h"
+#include "Engine/Classes/Engine/Mesh.h"
 
-#include "Core/Materials/Material.h"
+#include "Engine/Public/Materials/Material.h"
 
 #include "Rendering/Buffer/EngineInputLayoutInfo.h"
 

@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "NavMeshMap.h"
 
-#include <Classes/Components/PaperSpriteComponent.h>
+#include <Engine/Classes/Components/PaperSpriteComponent.h>
 
-#include <Classes/Components/StaticMeshComponent.h>
+#include <Engine/Classes/Components/StaticMeshComponent.h>
 
 #include "Utils/NavMesh/Component/NavMeshComponent.h"
 

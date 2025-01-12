@@ -12,14 +12,14 @@
 #include <Core/EngineCore.h>
 #include <Core/Misc/DirectoryHelper.h>
 #include <Core/Misc/FileHelper.h>
-#include <Classes/Engine/Level.h>
-#include <Classes/Engine/Texture.h>
-#include <Classes/Engine/PaperSprite.h>
-#include <GameFramework/Actor.h>
+#include <Engine/Classes/Engine/Level.h>
+#include <Engine/Classes/Engine/Texture.h>
+#include <Engine/Classes/Engine/PaperSprite.h>
+#include <Engine/Classes/GameFramework/Actor.h>
 #include <Tools/DebugGUI/EngineGUI.h>
 #include <Tools/DebugGUI/EngineGUIWindow.h>
 #include <Rendering/Shader/EngineShader.h>
-#include <Core/Materials/Material.h>
+#include <Engine/Public/Materials/Material.h>
 
 #include <stdio.h>
 

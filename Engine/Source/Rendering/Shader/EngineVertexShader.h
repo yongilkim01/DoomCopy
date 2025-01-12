@@ -3,7 +3,7 @@
 
 #include "EngineShader.h"
 #include "Rendering/Buffer/EngineInputLayoutInfo.h"
-#include "Classes/Engine/RenderAsset.h"
+#include "Engine/Classes/Engine/RenderAsset.h"
 #include "Core/Misc/Paths.h"
 
 /**

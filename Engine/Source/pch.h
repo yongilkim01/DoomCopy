@@ -12,7 +12,7 @@
 #include <functional>
 
 #include "Core/EngineCore.h"
-#include "GameFramework/Pawn.h"
+#include "Engine/Classes/GameFramework/Pawn.h"
 
 #include "Core/Math/EngineMath.h"
 
