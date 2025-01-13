@@ -1,9 +1,11 @@
 #include "pch.h"
 #include "Engine/Classes/Camera/CameraComponent.h"
-
-#include "Core/EngineCore.h"
 #include "Engine/Classes/Engine/Level.h"
 #include "Engine/Classes/Components/PrimitiveComponent.h"
+
+#include "Rendering/Public/RenderTarget/RenderTarget.h"
+
+#include "Core/EngineCore.h"
 
 UCameraComponent::UCameraComponent()
 {
@@ -25,6 +27,10 @@ void UCameraComponent::BeginPlay()
 	ViewPortInfo.TopLeftY = 0.0f;
 	ViewPortInfo.MinDepth = 0.0f;
 	ViewPortInfo.MaxDepth = 1.0f;
+
+	CameraRenderTarget = std::make_shared<URenderTarget>();
+	CameraRenderTarget->CreateTarget(UEngineCore::GetSceenScale());
+	CameraRenderTarget->CreateDepthStencil();
 }
 
 void UCameraComponent::Tick(float DeltaTime)
@@ -36,6 +42,9 @@ void UCameraComponent::Tick(float DeltaTime)
 void UCameraComponent::Render(float DeltaTime)
 {
 	UEngineCore::GetDevice().GetDeviceContext()->RSSetViewports(1, &ViewPortInfo);
+
+	CameraRenderTarget->Clear();
+	CameraRenderTarget->Setting();
 
 	for (std::pair<const int, std::list<std::shared_ptr<UPrimitiveComponent>>>& RenderGroup : RenderComponentMap)
 	{

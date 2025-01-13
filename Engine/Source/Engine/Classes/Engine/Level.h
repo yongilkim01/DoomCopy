@@ -11,6 +11,7 @@ class ACameraActor;
 class UEngineCore;
 class AGameMode;
 class APawn;
+class URenderTarget;
 
 /**
  *	엔진 레벨 클래스
@@ -144,6 +145,8 @@ private:
 	std::map<std::string, std::list<std::shared_ptr<UShapeComponent>>> ShapeCompMap;
 	std::map<std::string, std::list<std::shared_ptr<UShapeComponent>>> CheckShapeCompMap;
 	std::map<std::string, std::list<std::string>> CollisionLinkMap;
+
+	std::shared_ptr<URenderTarget> FinalRenderTarget;
 
 	AGameMode* GameMode = nullptr;
 	APawn* MainPawn = nullptr;

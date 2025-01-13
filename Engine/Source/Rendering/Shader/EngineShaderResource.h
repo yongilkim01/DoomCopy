@@ -76,6 +76,7 @@ public:
 	void SamplerSetting(std::string_view Name, std::string_view ResourceName);
 	void TextureSetting(std::string_view Name, std::string_view ResourceName);
 	void TextureSetting(std::string_view Name, UTexture* Texture);
+	void TextureSetting(std::string_view Name, std::shared_ptr<UTexture> Texture);
 
 	bool IsSampler(std::string_view Name);
 	bool IsTexture(std::string_view Name);

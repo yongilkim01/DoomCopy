@@ -105,6 +105,23 @@ void URenderUnit::SetTexture(std::string_view TextureName, UTexture* Texture)
 	}
 }
 
+void URenderUnit::SetTexture(std::string_view TextureName, std::shared_ptr<UTexture> InTexture)
+{
+	for (EShaderType i = EShaderType::VS; i < EShaderType::MAX; i = static_cast<EShaderType>(static_cast<int>(i) + 1))
+	{
+		if (false == ShaderResourceMap.contains(i))
+		{
+			continue;
+		}
+		if (false == ShaderResourceMap[i].IsTexture(TextureName))
+		{
+			continue;
+		}
+
+		ShaderResourceMap[i].TextureSetting(TextureName, InTexture);
+	}
+}
+
 void URenderUnit::SetSampler(std::string_view Name, std::string_view AssetName)
 {
 	for (EShaderType i = EShaderType::VS; i < EShaderType::MAX; i = static_cast<EShaderType>(static_cast<int>(i) + 1))

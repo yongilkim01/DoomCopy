@@ -81,14 +81,8 @@
     <ClCompile Include="Source\Actor\TitleLogo.cpp">
       <Filter>2_Actor\0_Title</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Componennts\DoomMapComponent.cpp">
-      <Filter>3_Components</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Actor\Round1\E1M1Map.cpp">
       <Filter>2_Actor\1_E1M1</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Componennts\LineComponent.cpp">
-      <Filter>3_Components</Filter>
     </ClCompile>
     <ClCompile Include="Source\Utils\GUI\GUIEditor.cpp">
       <Filter>4_Utils\GUI</Filter>
@@ -143,14 +137,8 @@
     <ClInclude Include="Source\Actor\TitleLogo.h">
       <Filter>2_Actor\0_Title</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Componennts\DoomMapComponent.h">
-      <Filter>3_Components</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Actor\Round1\E1M1Map.h">
       <Filter>2_Actor\1_E1M1</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Componennts\LineComponent.h">
-      <Filter>3_Components</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utils\GUI\GUIEditor.h">
       <Filter>4_Utils\GUI</Filter>

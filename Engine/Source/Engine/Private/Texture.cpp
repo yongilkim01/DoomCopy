@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Engine/Classes/Engine/Texture.h"
 
+#include "Rendering/Public/RenderTarget/RenderTarget.h"
+
 #include "Core/Misc/Paths.h"
 #include "Core/Misc/FileHelper.h"
 
@@ -53,13 +55,56 @@ void UTexture::CreateAsset(const D3D11_TEXTURE2D_DESC& InitTextureDesc)
 		return;
 	}
 
+	if (TextureDesc.BindFlags & D3D11_BIND_RENDER_TARGET)
+	{
+		CreateShaderResourceView();
+	}
+
+	if (TextureDesc.BindFlags & D3D11_BIND_RENDER_TARGET)
+	{
+		CreateRenderTargetView();
+	}
+
 	if (TextureDesc.BindFlags & D3D11_BIND_DEPTH_STENCIL)
 	{
-		if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateDepthStencilView(Texture2D.Get(), nullptr, &DepthStencilView))
-		{
-			MSGASSERT("깊이 버퍼 생성에 실패했습니다");
-			return;
-		}
+		CreateDepthStencilView();
+	}
+}
+
+void UTexture::CreateAsset(Microsoft::WRL::ComPtr<ID3D11Texture2D> InTexture2D)
+{
+	Texture2D = InTexture2D;
+	Texture2D->GetDesc(&TextureDesc);
+
+	TextureSize.X = static_cast<float>(TextureDesc.Width);
+	TextureSize.Y = static_cast<float>(TextureDesc.Height);
+
+	CreateRenderTargetView();
+}
+
+void UTexture::CreateRenderTargetView()
+{
+	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateRenderTargetView(Texture2D.Get(), nullptr, &RenderTargetView))
+	{
+		MSGASSERT("텍스처 수정권한 획득에 실패했습니다");
+		return;
+	}
+}
+
+void UTexture::CreateShaderResourceView()
+{
+	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateShaderResourceView(Texture2D.Get(), nullptr, &ShaderResourceView))
+	{
+		MSGASSERT("셰이더 리소스 뷰 생성에 실패했습니다");
+		return;
+	}
+}
+
+void UTexture::CreateDepthStencilView()
+{
+	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateDepthStencilView(Texture2D.Get(), nullptr, &DepthStencilView))
+	{
+		MSGASSERT("깊이 버퍼 생성에 실패했습니다");
 	}
 }
 

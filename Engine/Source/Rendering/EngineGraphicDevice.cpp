@@ -7,11 +7,12 @@
 #include "Rendering/EngineBlend.h"
 #include "Rendering/Shader/EngineShader.h"
 #include "Rendering/Buffer/DepthStencilState.h"
+#include "Rendering/Public/RenderTarget/RenderTarget.h"
 
 #include "Core/Misc/DirectoryHelper.h"
 #include "Core/Misc/FileHelper.h"
-#include "Engine/Public/Materials/Material.h"
 
+#include "Engine/Public/Materials/Material.h"
 #include "Engine/Classes/Engine/StaticMesh.h"
 #include "Engine/Classes/Engine/Mesh.h"
 #include "Engine/Classes/Engine/Texture.h"
@@ -31,8 +32,6 @@ UEngineGraphicDevice::~UEngineGraphicDevice()
 void UEngineGraphicDevice::Release()
 {
 	MainAdapter = nullptr;
-	DXBackBufferTexture = nullptr;
-	RenderTargetView = nullptr;
 	SwapChain = nullptr;
 	DeviceContext = nullptr;
 	Device = nullptr;
@@ -136,7 +135,6 @@ void UEngineGraphicDevice::InitMesh()
 
 		UMesh::Create("Rect");
 	}
-
 	{
 		std::vector<EngineVertex> Vertexs;
 
@@ -159,6 +157,20 @@ void UEngineGraphicDevice::InitMesh()
 
 		UMesh::Create("Triangle");
 	}
+	{
+		std::vector<EngineVertex> Vertexs;
+
+		Vertexs.resize(4);
+
+		Vertexs[0] = EngineVertex{ FVector(-1.0f, 1.0f, 0.0f), {0.0f , 0.0f }, {1.0f, 0.0f, 0.0f, 1.0f} };
+		Vertexs[1] = EngineVertex{ FVector(1.0f, 1.0f, 0.0f), {1.0f , 0.0f } , {0.0f, 1.0f, 0.0f, 1.0f} };
+		Vertexs[2] = EngineVertex{ FVector(-1.0f, -1.0f, 0.0f), {0.0f , 1.0f } , {0.0f, 0.0f, 1.0f, 1.0f} };
+		Vertexs[3] = EngineVertex{ FVector(1.0f, -1.0f, 0.0f), {1.0f , 1.0f } , {1.0f, 1.0f, 1.0f, 1.0f} };
+		
+		FVertexBuffer::Create("FullRect", Vertexs);
+
+		UMesh::Create("FullRect", "FullRect", "Rect");
+	}
 }
 
 void UEngineGraphicDevice::InitBlend()
@@ -172,7 +184,7 @@ void UEngineGraphicDevice::InitBlend()
 	BlendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
 	BlendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
 	BlendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
-	BlendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	BlendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_MAX;
 	BlendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
 	BlendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
 
@@ -205,9 +217,15 @@ void UEngineGraphicDevice::InitMaterial()
 		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("CollisionDebugMaterial");
 		Mat->SetVertexShader("CollisionDebugShader.fx");
 		Mat->SetPixelShader("CollisionDebugShader.fx");
-		// 언제나 화면에 나오는 누구도 이녀석의 앞을 가릴수 없어.
 		Mat->SetDepthStencilState("CollisionDebugDepth");
 		Mat->SetRasterizerState("CollisionDebugRas");
+	}
+
+	{
+		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("RenderTargetMaterial");
+		Mat->SetVertexShader("RenderTargetMergeShader.fx");
+		Mat->SetPixelShader("RenderTargetMergeShader.fx");
+		Mat->SetDepthStencilState("RenderTargetMergeDepth");
 	}
 }
 
@@ -251,24 +269,20 @@ void UEngineGraphicDevice::InitDepthStencil()
 		// Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;
 		UDepthStencilState::Create("CollisionDebugDepth", Desc);
 	}
+	{
+		D3D11_DEPTH_STENCIL_DESC Desc = { 0 };
+		Desc.DepthEnable = true;
+		Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+		Desc.DepthFunc = D3D11_COMPARISON_ALWAYS;
+		Desc.StencilEnable = false;
+		UDepthStencilState::Create("RenderTargetMergeDepth", Desc);
+	}
 }
 
 void UEngineGraphicDevice::RenderStart()
 {
-	FVector ClearColor;
-	ClearColor = FVector(0.1f, 0.1f, 0.1f, 1.0f);
-	DeviceContext->ClearRenderTargetView(RenderTargetView.Get(), ClearColor.Arr1D);
-	DeviceContext->ClearDepthStencilView(DepthTexture->GetDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-	// 랜더타겟 랜더타겟 랜더타겟
-	// RTV와 DSV를 합친 개념을 랜더타겟이라고 부른다.
-	// 그걸 n장 사용하게 되면 멀티랜더타겟이라고 부른다.
-	// 여기에다가 다시 그려줘
-	ID3D11RenderTargetView* RTV = UEngineCore::GetDevice().GetRenderTargetView();
-	ID3D11RenderTargetView* ArrRtv[16] = { 0 };
-
-	ArrRtv[0] = RTV; // SV_Target0
-
-	DeviceContext->OMSetRenderTargets(1, &ArrRtv[0], DepthTexture->GetDepthStencilView());
+	BackBufferRenderTarget->Clear();
+	BackBufferRenderTarget->Setting();
 }
 
 void UEngineGraphicDevice::RenderEnd()
@@ -333,31 +347,11 @@ void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& EngineWindow)
 {
 	FVector Size = EngineWindow.GetWindowSize();
 
-	{
-		D3D11_TEXTURE2D_DESC TextureDesc = { 0 };
-
-		TextureDesc.ArraySize = 1;
-		TextureDesc.Width = Size.iX();
-		TextureDesc.Height = Size.iY();
-		TextureDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
-		TextureDesc.SampleDesc.Count = 1;
-		TextureDesc.SampleDesc.Quality = 0;
-		TextureDesc.MipLevels = 1;
-		TextureDesc.Usage = D3D11_USAGE_DEFAULT;
-		TextureDesc.CPUAccessFlags = 0;
-		TextureDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_DEPTH_STENCIL;
-
-		DepthTexture = std::make_shared<UTexture>();
-
-		DepthTexture->CreateAsset(TextureDesc);
-
-	}
-
 	DXGI_SWAP_CHAIN_DESC desc;
 	ZeroMemory(&desc, sizeof(DXGI_SWAP_CHAIN_DESC));
 
 	desc.BufferCount = 2;
-	desc.BufferDesc.Width = Size.iX();
+	desc.BufferDesc.Width = Size.iX(); 
 	desc.BufferDesc.Height = Size.iY();
 	desc.OutputWindow = EngineWindow.GetWindowHandle();
 	desc.Windowed = true;
@@ -385,15 +379,17 @@ void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& EngineWindow)
 		MSGASSERT("스왑체인 제작에 실패했습니다.");
 	}
 
-	if (S_OK != SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), &DXBackBufferTexture))
+	Microsoft::WRL::ComPtr<ID3D11Texture2D> BackBufferTexture = nullptr;
+	
+	if (S_OK != SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), &BackBufferTexture))
 	{
 		MSGASSERT("백버퍼 텍스처 로드 실패");
 	}
+	
+	BackBufferRenderTarget = std::make_shared<URenderTarget>();
+	BackBufferRenderTarget->CreateTarget(BackBufferTexture);
+	BackBufferRenderTarget->CreateDepthStencil();
 
-	if (S_OK != Device->CreateRenderTargetView(DXBackBufferTexture.Get(), nullptr, &RenderTargetView))
-	{
-		MSGASSERT("텍스처 수정권한 할당 실패");
-	}
 }
 
 // 가장 퍼포먼스가 좋은 그래픽 장치 하드웨어를 찾는 메소드

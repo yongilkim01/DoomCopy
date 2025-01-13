@@ -4,16 +4,22 @@
 #include "Engine/Classes/GameFramework/Actor.h"
 #include "Engine/Classes/Components/ShapeComponent.h"
 #include "Engine/Classes/Components/PrimitiveComponent.h"
-#include "Rendering/EngineGraphicDevice.h"
-
 #include "Engine/Classes/Camera/CameraActor.h"
 #include "Engine/Classes/Camera/CameraComponent.h"
+
+#include "Rendering/EngineGraphicDevice.h"
+#include "Rendering/Public/RenderTarget/RenderTarget.h"
 
 #include "Tools/DebugGUI/EngineGUI.h"
 
 ULevel::ULevel()
 {
-	SpawnCamera(0);
+	SpawnCamera(EEngineCameraType::MainCamera);
+	SpawnCamera(EEngineCameraType::UICamera);
+
+	FinalRenderTarget = std::make_shared<URenderTarget>();
+	FinalRenderTarget->CreateTarget(UEngineCore::GetSceenScale());
+	FinalRenderTarget->CreateDepthStencil();
 }
 
 ULevel::~ULevel()
@@ -96,11 +102,17 @@ void ULevel::Render(float DeltaTime)
 {
 	UEngineCore::GetDevice().RenderStart();
 
+	FinalRenderTarget->Clear();
+
 	for (std::pair<const int, std::shared_ptr<ACameraActor>>& Camera : Cameraes)
 	{
 		Camera.second->Tick(DeltaTime);
 		Camera.second->GetCameraComponent()->Render(DeltaTime);
+		Camera.second->GetCameraComponent()->CameraRenderTarget->MergeRenderTarget(FinalRenderTarget);
 	}
+
+	std::shared_ptr<URenderTarget> BackBufferRenderTarget = UEngineCore::GetDevice().GetBackBufferRenderTarget();
+	FinalRenderTarget->MergeRenderTarget(BackBufferRenderTarget);
 
 	{
 		std::shared_ptr<ACameraActor> Camera = GetMainCamera();

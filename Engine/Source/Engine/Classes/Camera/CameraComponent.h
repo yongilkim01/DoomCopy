@@ -9,6 +9,7 @@
 class ULevel;
 class ACameraActor;
 class UPrimitiveComponent;
+class URenderTarget;
 
 /**
  *	카메라 컴포넌트 클래스
@@ -52,6 +53,8 @@ protected:
 
 private:
 	void ChangeRenderGroup(int PrevGroupOrder, std::shared_ptr<UPrimitiveComponent> Renderer);
+
+	std::shared_ptr<URenderTarget> CameraRenderTarget;
 
 	std::map<int, std::list<std::shared_ptr<UPrimitiveComponent>>> RenderComponentMap;
 	std::map<int, bool> RenderComponentZSort;

@@ -35,6 +35,7 @@ public:
 	ENGINE_API void SetMaterial(std::string_view MaterialName);
 	ENGINE_API void SetTexture(std::string_view TextureName, std::string_view AssetName);
 	ENGINE_API void SetTexture(std::string_view TextureName, UTexture* Texture);
+	ENGINE_API void SetTexture(std::string_view TextureName, std::shared_ptr<UTexture> InTexture);
 	ENGINE_API void SetSampler(std::string_view SamplerName, std::string_view AssetName);
 
 	ENGINE_API void SetPrimitiveComponent(UPrimitiveComponent* PrimitiveComponent)
@@ -58,13 +59,13 @@ public:
 		Material = NewMaterial;
 	}
 
+	std::map<EShaderType, UEngineShaderResource> ShaderResourceMap;
 
 protected:
 
 private:
 	void InputLayOutCreate();
 	
-	std::map<EShaderType, UEngineShaderResource> ShaderResourceMap;
 	UPrimitiveComponent* ParentPrimitiveComponent = nullptr;
 
 	/** ·»´õ¸µ ¸â¹ö ÇÊµå */

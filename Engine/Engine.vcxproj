@@ -75,6 +75,7 @@
     <ClCompile Include="Source\Rendering\EngineBlend.cpp" />
     <ClCompile Include="Source\Rendering\EngineGraphicDevice.cpp" />
     <ClCompile Include="Source\Rendering\EngineRasterizerState.cpp" />
+    <ClCompile Include="Source\Rendering\Private\RenderTarget\RenderTarget.cpp" />
     <ClCompile Include="Source\Rendering\RenderUnit.cpp" />
     <ClCompile Include="Source\Rendering\Sampler\EngineSampler.cpp" />
     <ClCompile Include="Source\Rendering\Shader\EnginePixelShader.cpp" />
@@ -150,6 +151,10 @@
     <ClInclude Include="Source\Rendering\EngineBlend.h" />
     <ClInclude Include="Source\Rendering\EngineGraphicDevice.h" />
     <ClInclude Include="Source\Rendering\EngineRasterizerState.h" />
+    <ClInclude Include="Source\Rendering\Public\RenderTarget\RenderTarget.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\Rendering\RenderUnit.h" />
     <ClInclude Include="Source\Rendering\Sampler\EngineSampler.h" />
     <ClInclude Include="Source\Rendering\Shader\EnginePixelShader.h" />
@@ -256,6 +261,7 @@
     <CopyFileToFolders Include="Source\ThirdParty\assimp\bin\Release\assimp-vc143-mt.dll">
       <FileType>Document</FileType>
     </CopyFileToFolders>
+    <None Include="cpp.hint" />
     <None Include="Source\ThirdParty\assimp\include\assimp\.editorconfig" />
     <None Include="Source\ThirdParty\assimp\include\assimp\color4.inl" />
     <None Include="Source\ThirdParty\assimp\include\assimp\config.h.in" />

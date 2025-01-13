@@ -4,12 +4,14 @@
 #include "Core/Misc/Paths.h"
 #include "EngineEnums.h"
 
+class URenderTarget;
 
 /**
  *	설명
  */
 class UTexture : public URenderAsset
 {
+	friend URenderTarget;
 public:
 	/** 생성자, 소멸자 */
 	ENGINE_API UTexture();
@@ -24,6 +26,11 @@ public:
 	void Update(EShaderType ShaderType, UINT BindIndex);
 
 	ENGINE_API void CreateAsset(const D3D11_TEXTURE2D_DESC& InitTextureDesc);
+	ENGINE_API void CreateAsset(Microsoft::WRL::ComPtr<ID3D11Texture2D> InTexture2D);
+
+	ENGINE_API void CreateRenderTargetView();
+	ENGINE_API void CreateShaderResourceView();
+	ENGINE_API void CreateDepthStencilView();
 
 	//static std::shared_ptr<UTexture> LoadToObjFile(aiMaterial* mat, aiTextureType type, std::string typeName, const aiScene* scene, std::string_view LoadTextureFilePath);
 
@@ -38,17 +45,19 @@ public:
 
 	ENGINE_API static std::shared_ptr<UTexture> Load(std::string_view TextureFileName, std::string_view LoadTextureFilePath);
 
+	/** 겟, 셋 메소드 */
 	ID3D11ShaderResourceView* GetShaderResourceView()
 	{
 		return ShaderResourceView.Get();
 	}
-
 	FVector GetTextureSize()
 	{
 		return TextureSize;
 	}
-
-	/** 겟, 셋 메소드 */
+	void SetTextureSize(FVector Value)
+	{
+		TextureSize = Value;
+	}
 	std::string GetTextureType()
 	{
 		return TextureType;
@@ -92,6 +101,7 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> ShaderResourceView = nullptr; // 텍스처를 쉐이더 세팅할수 있는권한
 	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> RenderTargetView = nullptr; // 텍스처를 쉐이더 세팅할수 있는권한
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilView> DepthStencilView = nullptr; // 텍스처를 쉐이더 세팅할수 있는권한
+	
 	D3D11_TEXTURE2D_DESC TextureDesc;
 };
 

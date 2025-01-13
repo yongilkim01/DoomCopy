@@ -18,3 +18,9 @@ enum class EShaderType : uint8
 	CS,
 	MAX,
 };
+
+enum class EEngineCameraType : uint8
+{
+	MainCamera,
+	UICamera = 127,
+};

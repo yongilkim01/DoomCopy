@@ -14,6 +14,7 @@
 #pragma comment(lib, "DXGI") 
 
 class UTexture;
+class URenderTarget;
 
 /**
  *	Ό³Έν
@@ -74,9 +75,9 @@ public:
 	{
 		return DeviceContext.Get();
 	}
-	ENGINE_API ID3D11RenderTargetView* GetRenderTargetView()
+	ENGINE_API std::shared_ptr<URenderTarget> GetBackBufferRenderTarget()
 	{
-		return RenderTargetView.Get();
+		return BackBufferRenderTarget;
 	}
 
 protected:
@@ -86,8 +87,6 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11DeviceContext> DeviceContext = nullptr;
 	Microsoft::WRL::ComPtr<IDXGISwapChain> SwapChain = nullptr;
 	Microsoft::WRL::ComPtr<IDXGIAdapter> MainAdapter = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11Texture2D> DXBackBufferTexture = nullptr;
-	Microsoft::WRL::ComPtr<ID3D11RenderTargetView> RenderTargetView = nullptr;
 
-	std::shared_ptr<UTexture> DepthTexture;
+	std::shared_ptr<URenderTarget> BackBufferRenderTarget;
 };
