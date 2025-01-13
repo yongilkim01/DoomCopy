@@ -559,7 +559,15 @@ public:
 		TVector Result;
 		Result.X = X + Other.X;
 		Result.Y = Y + Other.Y;
+		Result.Z = Z + Other.Z;
 		return Result;
+	}
+	TVector& operator+=(const TVector& Other) const
+	{
+		X += Other.X;
+		Y += Other.Y;
+		Z += Other.Z;
+		return *this;
 	}
 	TVector& operator+=(const TVector& Other)
 	{
@@ -573,6 +581,7 @@ public:
 		TVector Result;
 		Result.X = X - Other.X;
 		Result.Y = Y - Other.Y;
+		Result.Z = Z - Other.Z;
 		return Result;
 	}
 	TVector operator-() const
@@ -587,6 +596,7 @@ public:
 	{
 		X -= Other.X;
 		Y -= Other.Y;
+		Z -= Other.Z;
 		return *this;
 	}
 	TVector& operator/=(const TVector& Other)
@@ -1211,7 +1221,7 @@ public:
 
 	FVector ZAxisCenterLeftTop() const
 	{
-		return Location - Scale.Half();
+		return FVector(Location.X - Scale.Half().X, Location.Y + Scale.Half().Y);
 	}
 
 	FVector ZAxisCenterLeftBottom() const
@@ -1229,20 +1239,20 @@ public:
 
 	float ZAxisCenterTop() const
 	{
-		return Location.Y - Scale.hY();
+		return Location.Y + Scale.hY();
 	}
 
 	FVector ZAxisCenterRightTop() const
 	{
 		FVector Result;
 		Result.X = Location.X + Scale.hX();
-		Result.Y = Location.Y - Scale.hY();
+		Result.Y = Location.Y + Scale.hY();
 		return Result;
 	}
 
 	FVector ZAxisCenterRightBottom() const
 	{
-		return Location + Scale.Half();
+		return FVector(Location.X + Scale.Half().X, Location.Y - Scale.Half().Y);
 	}
 
 	float ZAxisCenterRight() const
@@ -1252,7 +1262,7 @@ public:
 
 	float ZAxisCenterBottom() const
 	{
-		return Location.Y + Scale.hY();
+		return Location.Y - Scale.hY();
 	}
 };
 
