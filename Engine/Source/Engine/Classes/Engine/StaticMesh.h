@@ -3,7 +3,6 @@
 #include "Rendering/Buffer/IndexBuffer.h"
 #include "Rendering/Buffer/VertexBuffer.h"
 
-class AiMesh;
 class UMesh;
 class UTexture;
 
@@ -11,9 +10,6 @@ struct aiNode;
 struct aiScene;
 struct aiMesh;
 struct aiMaterial;
-struct aiTexture;
-struct VERTEX;
-struct TEXTURE;
 
 enum aiTextureType;
 
@@ -45,8 +41,7 @@ public:
 	bool LoadModel(std::string_view LoadObjPath);
 	void ProcessNode(aiNode* node, const aiScene* scene);
 	void ProcessMesh(aiMesh* mesh, const aiScene* scene);
-	std::vector<TEXTURE> LoadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName, const aiScene* scene);
-	ID3D11ShaderResourceView* LoadEmbeddedTexture(const aiTexture* embeddedTexture);
+	std::string LoadTextureName(aiMaterial* mat, aiTextureType type);
 
 	/** °Ù, ¼Â ¸Þ¼Òµå */
 	size_t GetStaticMeshCount()
@@ -64,7 +59,6 @@ protected:
 private:
 	std::vector<FStaticMeshData> StaticMeshDataVector;
 	std::map<int, std::shared_ptr<UTexture>> TextureMap;
-	std::vector<TEXTURE> Textures;
 	std::string MeshName = "";
 	std::string DirectoryPath = "";
 };

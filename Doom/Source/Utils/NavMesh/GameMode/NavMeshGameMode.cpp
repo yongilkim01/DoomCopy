@@ -27,7 +27,7 @@
 class UNavMeshDebugWindow : public UEngineGUIWindow
 {
 public:
-	std::shared_ptr<ANavMeshCharacter> TestPlayer;
+	//std::shared_ptr<ANavMeshCharacter> TestPlayer;
 
 
 	void SaveAndLoad()
@@ -173,7 +173,7 @@ ANavMeshGameMode::ANavMeshGameMode()
 	}
 
 	std::shared_ptr<UNavMeshDebugWindow> Window = UEngineGUI::CreateGUIWindow<UNavMeshDebugWindow>("NavMeshDebugWindow");
-	Window->TestPlayer = PlayerCharacter;
+	//Window->TestPlayer = PlayerCharacter;
 
 	UNavigationSystem::GetInstance().Init(PlayerCharacter.get(), NavMap.get(), "");
 

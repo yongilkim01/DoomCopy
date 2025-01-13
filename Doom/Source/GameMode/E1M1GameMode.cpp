@@ -19,7 +19,7 @@
 class E1M1DebugWindow : public UEngineGUIWindow
 {
 public:
-	std::shared_ptr<ADoomGuy> DoomGuy;
+	//std::shared_ptr<ADoomGuy> DoomGuy;
 
 	void OnGUI() override
 	{
@@ -34,7 +34,7 @@ public:
 			GetWorld()->GetMainCamera()->SwitchFreeCamera();
 		}
 
-		ImGui::Text("Pos : %s", DoomGuy->GetActorLocation().ToString().c_str());
+		//ImGui::Text("Pos : %s", DoomGuy->GetActorLocation().ToString().c_str());
 	}
 };
 
@@ -62,7 +62,7 @@ AE1M1GameMode::AE1M1GameMode()
 	}
 
 	std::shared_ptr<E1M1DebugWindow> Window = UEngineGUI::CreateGUIWindow<E1M1DebugWindow>("E1M1DebugWindow");
-	Window->DoomGuy = DoomGuy;
+	//Window->DoomGuy = DoomGuy;
 }
 
 AE1M1GameMode::~AE1M1GameMode()
