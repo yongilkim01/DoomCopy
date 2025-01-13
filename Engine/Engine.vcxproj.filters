@@ -178,6 +178,21 @@
     <Filter Include="1_Core\1_Private\Time">
       <UniqueIdentifier>{f9976374-1f3d-46a0-be6b-59ff68ccae2c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3_UMG">
+      <UniqueIdentifier>{8609f4c2-58f0-4deb-93ee-fab4c3f45bba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_UMG\0_Public">
+      <UniqueIdentifier>{19234151-3233-4133-a2a9-2d26d0621763}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_UMG\1_Private">
+      <UniqueIdentifier>{95af225c-b75d-4447-b046-7c3b531c1059}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_UMG\0_Public\Components">
+      <UniqueIdentifier>{88a27b3e-b797-428e-9515-62b36e689b1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_UMG\1_Private\Components">
+      <UniqueIdentifier>{4f7b12ff-2c94-445e-97b2-faefd4d8520b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp">
@@ -371,6 +386,12 @@
     </ClCompile>
     <ClCompile Include="Source\Rendering\Private\RenderTarget\RenderTarget.cpp">
       <Filter>4_Rendering\1_Private\RednerTarget</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UMG\Private\Components\Widget.cpp">
+      <Filter>3_UMG\1_Private\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Private\HUD.cpp">
+      <Filter>1_Engine\2_Private</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -819,6 +840,12 @@
     </ClInclude>
     <ClInclude Include="Source\Rendering\Public\RenderTarget\RenderTarget.h">
       <Filter>4_Rendering\0_Public\RenderTarget</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UMG\Public\Components\Widget.h">
+      <Filter>3_UMG\0_Public\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Classes\GameFramework\HUD.h">
+      <Filter>1_Engine\0_Classes\GameFramework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

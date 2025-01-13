@@ -16,6 +16,7 @@
 #include <Engine/Classes/Engine/Texture.h>
 #include <Engine/Classes/Engine/PaperSprite.h>
 #include <Engine/Classes/GameFramework/Actor.h>
+#include <Engine/Classes/GameFramework/HUD.h>
 #include <Tools/DebugGUI/EngineGUI.h>
 #include <Tools/DebugGUI/EngineGUIWindow.h>
 #include <Rendering/Shader/EngineShader.h>
@@ -87,9 +88,9 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 		UPaperSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
 
-	//UEngineCore::CreateLevel<ATitleGameMode, AActor>("TitleLevel");
-	UEngineCore::CreateLevel<AE1M1GameMode, APawn>("E1M1Level");
-	UEngineCore::CreateLevel<ANavMeshGameMode, APawn>("NavMeshLevel");
+	//UEngineCore::CreateLevel<ATitleGameMode, AActor, AHUD>("TitleLevel");
+	UEngineCore::CreateLevel<AE1M1GameMode, APawn, AHUD>("E1M1Level");
+	UEngineCore::CreateLevel<ANavMeshGameMode, APawn, AHUD>("NavMeshLevel");
 	UEngineCore::OpenLevel("NavMeshLevel");
 
 	UEngineGUI::OffAllWindow();

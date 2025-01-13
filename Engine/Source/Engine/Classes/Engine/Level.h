@@ -12,6 +12,8 @@ class UEngineCore;
 class AGameMode;
 class APawn;
 class URenderTarget;
+class AHUD;
+class UWidget;
 
 /**
  *	엔진 레벨 클래스
@@ -136,7 +138,7 @@ public:
 protected:
 
 private:
-	ENGINE_API void InitLevel(AGameMode* InitGameMode, APawn* InitPawn);
+	ENGINE_API void InitLevel(AGameMode* InitGameMode, APawn* InitPawn, AHUD* HUD);
 
 	std::list<std::shared_ptr<AActor>> BeginPlayList;
 	std::list<std::shared_ptr<AActor>> AllActorList;
@@ -150,5 +152,7 @@ private:
 
 	AGameMode* GameMode = nullptr;
 	APawn* MainPawn = nullptr;
+	AHUD* HUD = nullptr;
 
+	std::map<int, std::list<std::shared_ptr<UWidget>>> WidgetMap;
 };

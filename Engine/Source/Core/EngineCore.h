@@ -15,10 +15,6 @@
 class UEngineCore
 {
 public:
-	/** 생성자, 소멸자 */
-	ENGINE_API UEngineCore();
-	ENGINE_API virtual ~UEngineCore() = 0;
-
 	/**
 	 *	엔진 시작 메소드
 	 *  @param Instance: 엔진을 생성할 HINSTANCE 정보를 담고 있는 객체
@@ -34,7 +30,7 @@ public:
 	 *	레벨 생성 메소드
 	 *  @param Name: 생성할 레벨 이름, 레벨 이름은 중복 불가능
 	 */
-	template<typename GameModeType, typename MainPawnType>
+	template<typename GameModeType, typename MainPawnType, typename HUDType>
 	static class std::shared_ptr<ULevel> CreateLevel(std::string_view Name)
 	{
 		std::string UpperLevelName = UEngineString::ToUpper(Name);
@@ -43,8 +39,9 @@ public:
 
 		std::shared_ptr<GameModeType> InitGameMode = NewLevel->SpawnActor<GameModeType>();
 		std::shared_ptr<MainPawnType> InitPawn = NewLevel->SpawnActor<MainPawnType>();
+		std::shared_ptr<HUDType> InitHUD = NewLevel->SpawnActor<HUDType>();
 
-		NewLevel->InitLevel(InitGameMode.get(), InitPawn.get());
+		NewLevel->InitLevel(InitGameMode.get(), InitPawn.get(), InitHUD.get());
 
 		return NewLevel;
 	}
@@ -82,18 +79,21 @@ private:
 	 */
 	static void EngineEnd();
 
-	ENGINE_API static UEngineWindow MainWindow;
-	static HMODULE ContentsDLL;
-	static std::shared_ptr<IContentsCore> Core;
-	static UEngineInitData InitData;
+	UEngineWindow MainWindow;
+	UEngineGraphicDevice Device;
 
-	static UEngineTimer Timer;
+	HMODULE ContentsDLL;
+	std::shared_ptr<IContentsCore> Core;
+	UEngineInitData InitData;
 
-	static std::map<std::string, std::shared_ptr<ULevel>> LevelMap;
-	static std::shared_ptr<ULevel> CurLevel;
-	static std::shared_ptr<ULevel> NextLevel;
+	UEngineTimer Timer;
 
-	ENGINE_API static UEngineGraphicDevice Device;
+	std::map<std::string, std::shared_ptr<ULevel>> LevelMap;
+	std::shared_ptr<ULevel> CurLevel;
+	std::shared_ptr<ULevel> NextLevel;
 
+	ENGINE_API UEngineCore();
+	ENGINE_API virtual ~UEngineCore();
 };
 
+ENGINE_API extern class UEngineCore* GEngine;

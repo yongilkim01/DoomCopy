@@ -42,6 +42,7 @@
     <ClCompile Include="Source\Engine\Private\Components\ShapeComponent.cpp" />
     <ClCompile Include="Source\Engine\Private\Components\StaticMeshComponent.cpp" />
     <ClCompile Include="Source\Engine\Private\GameMode.cpp" />
+    <ClCompile Include="Source\Engine\Private\HUD.cpp" />
     <ClCompile Include="Source\Engine\Private\Level.cpp" />
     <ClCompile Include="Source\Engine\Private\Materials\Material.cpp" />
     <ClCompile Include="Source\Engine\Private\Mesh.cpp" />
@@ -91,6 +92,7 @@
     <ClCompile Include="Source\ThirdParty\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\Tools\DebugGUI\EngineGUI.cpp" />
     <ClCompile Include="Source\Tools\DebugGUI\EngineGUIWindow.cpp" />
+    <ClCompile Include="Source\UMG\Private\Components\Widget.cpp" />
     <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +128,7 @@
     <ClInclude Include="Source\Engine\Classes\GameFramework\Actor.h" />
     <ClInclude Include="Source\Engine\Classes\GameFramework\Character.h" />
     <ClInclude Include="Source\Engine\Classes\GameFramework\GameMode.h" />
+    <ClInclude Include="Source\Engine\Classes\GameFramework\HUD.h" />
     <ClInclude Include="Source\Engine\Classes\GameFramework\Pawn.h" />
     <ClInclude Include="Source\Engine\Public\Materials\Material.h" />
     <ClInclude Include="Source\Engine\Public\TimerManager.h" />
@@ -252,6 +255,10 @@
     <ClInclude Include="Source\ThirdParty\imgui\imstb_truetype.h" />
     <ClInclude Include="Source\Tools\DebugGUI\EngineGUI.h" />
     <ClInclude Include="Source\Tools\DebugGUI\EngineGUIWindow.h" />
+    <ClInclude Include="Source\UMG\Public\Components\Widget.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Source\WorldPartition\DebugHelpers.h" />
   </ItemGroup>
   <ItemGroup>

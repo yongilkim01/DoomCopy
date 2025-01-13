@@ -10,26 +10,16 @@
 #include "Tools/DebugGUI/EngineGUI.h"
 #include "Rendering/Buffer/EngineConstantBuffer.h"
 
-UEngineGraphicDevice UEngineCore::Device;
-UEngineWindow UEngineCore::MainWindow;
-HMODULE UEngineCore::ContentsDLL = nullptr;
-std::shared_ptr<IContentsCore> UEngineCore::Core;
-UEngineInitData UEngineCore::InitData;
-UEngineTimer UEngineCore::Timer;
-
-std::shared_ptr<ULevel> UEngineCore::NextLevel;
-std::shared_ptr<ULevel> UEngineCore::CurLevel = nullptr;
-
-std::map<std::string, std::shared_ptr<class ULevel>> UEngineCore::LevelMap;
+UEngineCore* GEngine = nullptr;
 
 UEngineGraphicDevice& UEngineCore::GetDevice()
 {
-	return Device;
+	return GEngine->Device;
 }
 
 UEngineWindow& UEngineCore::GetMainWindow()
 {
-	return MainWindow;
+	return GEngine->MainWindow;
 }
 
 UEngineCore::UEngineCore()
@@ -45,6 +35,10 @@ void UEngineCore::EngineStart(HINSTANCE Instance, std::string_view DllName)
 {
     UEngineDebug::LeakCheck();
 
+	UEngineCore EngineCore;
+
+	GEngine = &EngineCore;
+
 	WindowInit(Instance);
 
 	LoadContents(DllName);
@@ -53,12 +47,12 @@ void UEngineCore::EngineStart(HINSTANCE Instance, std::string_view DllName)
 		[]()
 		{
 			// 엔진이 시작할 때 하고 싶은것
-			Device.CreateDeviceAndContext();
-			Core->EngineStart(InitData);
+			GEngine->Device.CreateDeviceAndContext();
+			GEngine->Core->EngineStart(GEngine->InitData);
 
-			MainWindow.SetWindowPosAndScale(InitData.WindowPosition, InitData.WindowSize);
+			GEngine->MainWindow.SetWindowPosAndScale(GEngine->InitData.WindowPosition, GEngine->InitData.WindowSize);
 
-			Device.CreateBackBuffer(MainWindow);
+			GEngine->Device.CreateBackBuffer(GEngine->MainWindow);
 
 			UEngineGUI::Init();
 
@@ -78,7 +72,7 @@ void UEngineCore::EngineStart(HINSTANCE Instance, std::string_view DllName)
 void UEngineCore::WindowInit(HINSTANCE Instance)
 {
 	UEngineWindow::EngineWindowInit(Instance);
-	MainWindow.Open("MainWindow");
+	GEngine->MainWindow.Open("MainWindow");
 }
 
 void UEngineCore::LoadContents(std::string_view DllName)
@@ -98,16 +92,16 @@ void UEngineCore::LoadContents(std::string_view DllName)
 
 	std::string FullPath = FileHelper.GetPathToString();
 
-	ContentsDLL = LoadLibraryA(FullPath.c_str());
+	GEngine->ContentsDLL = LoadLibraryA(FullPath.c_str());
 
-	if (nullptr == ContentsDLL)
+	if (nullptr == GEngine->ContentsDLL)
 	{
 		MSGASSERT("컨텐츠 기능을 로드할 수 없습니다.");
 		return;
 	}
 
 	INT_PTR(__stdcall * Ptr)(std::shared_ptr<IContentsCore>&) = 
-		(INT_PTR(__stdcall*)(std::shared_ptr<IContentsCore>&))GetProcAddress(ContentsDLL, "CreateContentsCore");
+		(INT_PTR(__stdcall*)(std::shared_ptr<IContentsCore>&))GetProcAddress(GEngine->ContentsDLL, "CreateContentsCore");
 
 
 	if (nullptr == Ptr)
@@ -116,9 +110,9 @@ void UEngineCore::LoadContents(std::string_view DllName)
 		return;
 	}
 
-	Ptr(Core);
+	Ptr(GEngine->Core);
 
-	if (nullptr == Core)
+	if (nullptr == GEngine->Core)
 	{
 		MSGASSERT("컨텐츠 코어 생성에 실패했습니다.");
 		return;
@@ -127,25 +121,25 @@ void UEngineCore::LoadContents(std::string_view DllName)
 
 void UEngineCore::EngineFrame()
 {
-	if (nullptr != NextLevel)
+	if (nullptr != GEngine->NextLevel)
 	{
-		if (nullptr != CurLevel)
+		if (nullptr != GEngine->CurLevel)
 		{
-			CurLevel->LevelChangeEnd();
+			GEngine->CurLevel->LevelChangeEnd();
 		}
-		CurLevel = NextLevel;
+		GEngine->CurLevel = GEngine->NextLevel;
 
-		CurLevel->LevelChangeStart();
+		GEngine->CurLevel->LevelChangeStart();
 	
-		NextLevel = nullptr;
-		Timer.TimeStart();
+		GEngine->NextLevel = nullptr;
+		GEngine->Timer.TimeStart();
 	}
 
-	Timer.TimeCheck();
+	GEngine->Timer.TimeCheck();
 
-	float DeltaTime = Timer.GetDeltaTime();
+	float DeltaTime = GEngine->Timer.GetDeltaTime();
 
-	if (true == MainWindow.IsFocus())
+	if (true == GEngine->MainWindow.IsFocus())
 	{
 		UEngineInput::KeyCheck(DeltaTime);
 	}
@@ -153,38 +147,38 @@ void UEngineCore::EngineFrame()
 		UEngineInput::KeyReset();
 	}
 
-	CurLevel->Tick(DeltaTime);
-	CurLevel->Render(DeltaTime);
-	CurLevel->Collision(DeltaTime);
-	CurLevel->Release(DeltaTime);
+	GEngine->CurLevel->Tick(DeltaTime);
+	GEngine->CurLevel->Render(DeltaTime);
+	GEngine->CurLevel->Collision(DeltaTime);
+	GEngine->CurLevel->Release(DeltaTime);
 }
 
 void UEngineCore::EngineEnd()
 {
 	UEngineGUI::Release();
 
-	Device.Release();
+	GEngine->Device.Release();
 
 	URenderAsset::Release();
 	UEngineConstantBuffer::Release();
 
-	CurLevel = nullptr;
-	NextLevel = nullptr;
-	LevelMap.clear();
+	GEngine->CurLevel = nullptr;
+	GEngine->NextLevel = nullptr;
+	GEngine->LevelMap.clear();
 
 	UEngineDebug::EndConsole();
 }
 
 FVector UEngineCore::GetSceenScale()
 {
-	return InitData.WindowSize;
+	return GEngine->InitData.WindowSize;
 }
 
 
 // 새로운 레벨을 생성하는 메소드 구현부
 std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string_view Name)
 {
-	if (true == LevelMap.contains(Name.data()))
+	if (true == GEngine->LevelMap.contains(Name.data()))
 	{
 		MSGASSERT("동일한 이름의 레벨이 존재합니다 " + std::string(Name.data()));
 		return nullptr;
@@ -193,7 +187,7 @@ std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string_view Name)
 	std::shared_ptr<ULevel> Ptr = std::make_shared<ULevel>();
 	Ptr->SetName(Name);
 
-	LevelMap.insert({ Name.data(), Ptr });
+	GEngine->LevelMap.insert({ Name.data(), Ptr });
 
 	std::cout << "New level create" << std::endl;
 
@@ -204,16 +198,16 @@ void UEngineCore::OpenLevel(std::string_view LevelName)
 {
 	std::string UpperLevelName = UEngineString::ToUpper(LevelName);
 
-	if (false == LevelMap.contains(UpperLevelName))
+	if (false == GEngine->LevelMap.contains(UpperLevelName))
 	{
 		MSGASSERT("존재하지 않는 레벨입니다. " + std::string(LevelName));
 		return;
 	}
 
-	NextLevel = LevelMap[UpperLevelName];
+	GEngine->NextLevel = GEngine->LevelMap[UpperLevelName];
 }
 
 std::map<std::string, std::shared_ptr<ULevel>> UEngineCore::GetAllLevelMap()
 {
-	return LevelMap;
+	return GEngine->LevelMap;
 }

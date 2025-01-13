@@ -2,6 +2,7 @@
 #include "Engine/Classes/Engine/Level.h"
 
 #include "Engine/Classes/GameFramework/Actor.h"
+#include "Engine/Classes//GameFramework/HUD.h"
 #include "Engine/Classes/Components/ShapeComponent.h"
 #include "Engine/Classes/Components/PrimitiveComponent.h"
 #include "Engine/Classes/Camera/CameraActor.h"
@@ -11,6 +12,8 @@
 #include "Rendering/Public/RenderTarget/RenderTarget.h"
 
 #include "Tools/DebugGUI/EngineGUI.h"
+
+#include "UMG/Public/Components/Widget.h"
 
 ULevel::ULevel()
 {
@@ -106,6 +109,11 @@ void ULevel::Render(float DeltaTime)
 
 	for (std::pair<const int, std::shared_ptr<ACameraActor>>& Camera : Cameraes)
 	{
+		if (Camera.first == static_cast<int>(EEngineCameraType::UICamera))
+		{
+			continue;
+		}
+
 		Camera.second->Tick(DeltaTime);
 		Camera.second->GetCameraComponent()->Render(DeltaTime);
 		Camera.second->GetCameraComponent()->CameraRenderTarget->MergeRenderTarget(FinalRenderTarget);
@@ -236,10 +244,11 @@ std::shared_ptr<ACameraActor> ULevel::SpawnCamera(int CameraOrder)
 	return Camera;
 }
 
-void ULevel::InitLevel(AGameMode* InitGameMode, APawn* InitPawn)
+void ULevel::InitLevel(AGameMode* InitGameMode, APawn* InitPawn, AHUD* InitHUD)
 {
 	GameMode = InitGameMode;
 	MainPawn = InitPawn;
+	HUD = InitHUD;
 }
 
 void ULevel::ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_ptr<UPrimitiveComponent> Renderer)
