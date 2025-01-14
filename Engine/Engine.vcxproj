@@ -110,6 +110,7 @@
     <ClInclude Include="Source\Core\Serialization\Archive.h" />
     <ClInclude Include="Source\EngineDefine.h" />
     <ClInclude Include="Source\EngineEnums.h" />
+    <ClInclude Include="Source\EngineStruct.h" />
     <ClInclude Include="Source\Engine\Classes\Camera\CameraActor.h" />
     <ClInclude Include="Source\Engine\Classes\Camera\CameraComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\ActorComponent.h" />

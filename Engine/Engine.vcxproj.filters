@@ -847,6 +847,7 @@
     <ClInclude Include="Source\Engine\Classes\GameFramework\HUD.h">
       <Filter>1_Engine\0_Classes\GameFramework</Filter>
     </ClInclude>
+    <ClInclude Include="Source\EngineStruct.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl">
