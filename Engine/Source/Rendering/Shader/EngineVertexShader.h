@@ -3,13 +3,13 @@
 
 #include "EngineShader.h"
 #include "Rendering/Buffer/EngineInputLayoutInfo.h"
-#include "Engine/Classes/Engine/RenderAsset.h"
+#include "Engine/Classes/Engine/EngineResource.h"
 #include "Core/Misc/Paths.h"
 
 /**
  *	설명
  */
-class UEngineVertexShader : public URenderAsset, public UEngineShader
+class UEngineVertexShader : public UResource, public UEngineShader
 {
 public:
 	/** 생성자, 소멸자 */

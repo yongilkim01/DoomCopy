@@ -1,12 +1,12 @@
 #pragma once
-#include "Engine/Classes/Engine/RenderAsset.h"
+#include "Engine/Classes/Engine/EngineResource.h"
 #include "Rendering/Buffer/EngineDeviceBuffer.h"
 #include "EngineEnums.h"
 
 /**
  *	설명
  */
-class UEngineConstantBuffer : public URenderAsset, public UEngineDeviceBuffer
+class UEngineConstantBuffer : public UResource, public UEngineDeviceBuffer
 {
 public:
 	/** 생성자, 소멸자 */

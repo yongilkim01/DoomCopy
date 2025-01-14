@@ -1,117 +1,77 @@
 #pragma once
-#include "Core/Object/Object.h"
-#include "Core/Misc/Paths.h"
-#include "Core/Containers/EngineString.h"
+#include "Rendering/Shader/EngineShaderResource.h"
+#include "Engine/Classes/Engine/Mesh.h"
+#include "Engine/Public/Materials/Material.h"
+#include "EngineEnums.h"
 
-enum class ERenderAssetType
-{
-    None,
-    Texture,
-    StaticMesh,
-    SkeletalMesh,
-};
-
+class UCameraComponent;
+class UPrimitiveComponent;
+class UTexture;
 
 /**
- *  설명
+ *	설명
  */
-class URenderAsset : public UObject
+class URenderAsset
 {
 public:
-    /** 생성자, 소멸자 */
-    URenderAsset() {}
-    ~URenderAsset() {}
+	/** 생성자, 소멸자 */
+	ENGINE_API URenderAsset();
+	ENGINE_API ~URenderAsset();
 
-    /** 객체 값 복사 방지 */
-    URenderAsset(const URenderAsset& Other) = delete;
-    URenderAsset(URenderAsset&& Other) noexcept = delete;
-    URenderAsset& operator=(const URenderAsset& Other) = delete;
-    URenderAsset& operator=(URenderAsset&& Other) noexcept = delete;
+	ENGINE_API virtual void Render(UCameraComponent* _Camera, float _DeltaTime);
 
-    /**
-     * 특정 타입의 Asset을 찾는 메소드
-     *
-     * @param AssetName - 찾을 Asset의 이름
-     * @return 찾은 Asset의 공유 포인터
-     */
-    template<typename AssetType>
-    ENGINE_API static std::shared_ptr<AssetType> Find(std::string_view AssetName)
-    {
-        const type_info& Info = typeid(AssetType);
-        return std::dynamic_pointer_cast<AssetType>(Find(Info.name(), AssetName.data()));
-    }
-    /**
-     * 특정 타입과 이름의 Asset을 찾는 메소드
-     *
-     * @param TypeName - Asset의 타입 이름
-     * @param AssetName - Asset의 이름
-     * @return 찾은 Asset의 공유 포인터
-     */
-    ENGINE_API static std::shared_ptr<URenderAsset> Find(std::string_view TypeName, std::string_view AssetName);
-    /**
-     * Asset을 추가하는 메소드
-     *
-     * @param Asset - 추가할 Asset의 공유 포인터
-     * @param AssetName - Asset의 이름
-     * @param AssetPath - Asset의 경로
-     */
-    template<typename AssetType>
-    ENGINE_API static void AddAsset(std::shared_ptr<URenderAsset> Asset, std::string_view AssetName,
-        std::string_view AssetPath)
-    {
-        const type_info& Info = typeid(AssetType);
-        AddAsset(Asset, Info.name(), AssetName, AssetPath);
-    }
-    /**
-     * Asset을 추가하는 메소드
-     *
-     * @param Asset - 추가할 Asset의 공유 포인터
-     * @param TypeName - Asset의 타입 이름
-     * @param AssetName - Asset의 이름
-     * @param AssetPath - Asset의 경로
-     */
-    ENGINE_API static void AddAsset(std::shared_ptr<URenderAsset> Asset, const std::string_view TypeName,
-        std::string_view AssetName, std::string_view AssetPath);
+	ENGINE_API void MaterialResourceCheck();
 
-    /**
-     * 문자열을 대문자로 변환하는 메소드
-     *
-     * @param Name - 변환할 문자열
-     * @return 변환된 대문자 문자열
-     */
-    static std::string ToUpperName(std::string_view Name)
-    {
-        return UEngineString::ToUpper(Name);
-    }
-    /**
-     * Asset이 존재하는지 확인하는 메소드
-     *
-     * @param AssetName - 확인할 Asset의 이름
-     * @return Asset 존재 여부
-     */
-    static bool Contains(std::string_view AssetName)
-    {
-        return AssetMap.contains(AssetName.data());
-    }
-    /**
-     * 모든 Asset을 해제하는 메소드
-     */
-    static void Release()
-    {
-        AssetMap.clear();
-    }
+	template<typename Data>
+	ENGINE_API void ConstantBufferLinkData(std::string_view _Name, Data& _Data)
+	{
+		ConstantBufferLinkData(_Name, reinterpret_cast<void*>(&_Data));
+	}
 
-    /** 겟, 셋 메소드 */
-    ENGINE_API FPaths GetPath()
-    {
-        return Path;
-    }
+	ENGINE_API void ConstantBufferLinkData(std::string_view Name, void* _Data);
+
+	/** 겟, 셋 메소드 */
+	ENGINE_API void SetMesh(std::string_view MeshName);
+	ENGINE_API void SetMaterial(std::string_view MaterialName);
+	ENGINE_API void SetTexture(std::string_view TextureName, std::string_view AssetName);
+	ENGINE_API void SetTexture(std::string_view TextureName, UTexture* Texture);
+	ENGINE_API void SetTexture(std::string_view TextureName, std::shared_ptr<UTexture> InTexture);
+	ENGINE_API void SetSampler(std::string_view SamplerName, std::string_view AssetName);
+
+	ENGINE_API void SetPrimitiveComponent(UPrimitiveComponent* PrimitiveComponent)
+	{
+		ParentPrimitiveComponent = PrimitiveComponent;
+	}
+	ENGINE_API std::shared_ptr<UMesh> GetMesh()
+	{
+		return Mesh;
+	}
+	ENGINE_API void SetMesh(std::shared_ptr<UMesh> NewMesh)
+	{
+		Mesh = NewMesh;
+	}
+	ENGINE_API std::shared_ptr<UEngineMaterial> GetMatrial()
+	{
+		return Material;
+	}
+	ENGINE_API void SetMaterial(std::shared_ptr<UEngineMaterial> NewMaterial)
+	{
+		Material = NewMaterial;
+	}
+
+	std::map<EShaderType, UEngineShaderResource> ShaderResourceMap;
 
 protected:
-    /** Asset의 경로 */
-    FPaths Path;
 
 private:
-    /** Asset을 저장하는 맵 */
-    ENGINE_API static inline std::map<std::string, std::map<std::string, std::shared_ptr<URenderAsset>>> AssetMap;
+	void InputLayOutCreate();
+	
+	UPrimitiveComponent* ParentPrimitiveComponent = nullptr;
+
+	/** 렌더링 멤버 필드 */
+	std::shared_ptr<UMesh> Mesh;
+	std::shared_ptr<UEngineMaterial> Material;
+	Microsoft::WRL::ComPtr<ID3D11InputLayout> InputLayout;
+
 };
+

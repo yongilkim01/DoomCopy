@@ -1,11 +1,11 @@
 #pragma once
 #include "Rendering/Buffer/EngineDeviceBuffer.h"
-#include "Engine/Classes/Engine/RenderAsset.h"
+#include "Engine/Classes/Engine/EngineResource.h"
 
 /**
  *	설명
  */
-class FIndexBuffer : public URenderAsset, public UEngineDeviceBuffer
+class FIndexBuffer : public UResource, public UEngineDeviceBuffer
 {
 public:
 	/** 생성자, 소멸자 */

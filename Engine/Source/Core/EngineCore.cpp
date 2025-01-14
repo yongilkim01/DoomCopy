@@ -5,7 +5,7 @@
 #include "Misc/DirectoryHelper.h"
 #include "Misc/FileHelper.h"
 #include "Engine/Classes/Engine/Level.h"
-#include "Engine/Classes/Engine/RenderAsset.h"
+#include "Engine/Classes/Engine/EngineResource.h"
 #include "Input/EngineInput.h"
 #include "Tools/DebugGUI/EngineGUI.h"
 #include "Rendering/Buffer/EngineConstantBuffer.h"
@@ -159,7 +159,7 @@ void UEngineCore::EngineEnd()
 
 	GEngine->Device.Release();
 
-	URenderAsset::Release();
+	UResource::Release();
 	UEngineConstantBuffer::Release();
 
 	GEngine->CurLevel = nullptr;

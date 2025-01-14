@@ -1,7 +1,7 @@
 #pragma once
 #include "SceneComponent.h"
 #include "Engine/Classes/Engine/PaperSprite.h"
-#include "Rendering/RenderUnit.h"
+#include "Engine/Classes/Engine/RenderAsset.h"
 #include <set>
 
 class UCameraComponent;

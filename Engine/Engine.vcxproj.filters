@@ -252,9 +252,6 @@
     <ClCompile Include="Source\Input\EngineInput.cpp">
       <Filter>6_Input</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Rendering\RenderUnit.cpp">
-      <Filter>4_Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Rendering\EngineGraphicDevice.cpp">
       <Filter>4_Rendering</Filter>
     </ClCompile>
@@ -351,7 +348,7 @@
     <ClCompile Include="Source\Engine\Private\PaperSprite.cpp">
       <Filter>1_Engine\2_Private</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Engine\Private\RenderAsset.cpp">
+    <ClCompile Include="Source\Engine\Private\EngineResource.cpp">
       <Filter>1_Engine\2_Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Private\SkeletalMesh.cpp">
@@ -391,6 +388,9 @@
       <Filter>3_UMG\1_Private\Components</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Private\HUD.cpp">
+      <Filter>1_Engine\2_Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Private\RenderAsset.cpp">
       <Filter>1_Engine\2_Private</Filter>
     </ClCompile>
   </ItemGroup>
@@ -464,9 +464,6 @@
     </ClInclude>
     <ClInclude Include="Source\Input\EngineInput.h">
       <Filter>6_Input</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Rendering\RenderUnit.h">
-      <Filter>4_Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Source\Rendering\EngineGraphicDevice.h">
       <Filter>4_Rendering</Filter>
@@ -805,7 +802,7 @@
     <ClInclude Include="Source\Engine\Classes\Engine\PaperSprite.h">
       <Filter>1_Engine\0_Classes\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Engine\Classes\Engine\RenderAsset.h">
+    <ClInclude Include="Source\Engine\Classes\Engine\EngineResource.h">
       <Filter>1_Engine\0_Classes\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Classes\Engine\SkeletalMesh.h">
@@ -848,6 +845,9 @@
       <Filter>1_Engine\0_Classes\GameFramework</Filter>
     </ClInclude>
     <ClInclude Include="Source\EngineStruct.h" />
+    <ClInclude Include="Source\Engine\Classes\Engine\RenderAsset.h">
+      <Filter>1_Engine\0_Classes\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl">

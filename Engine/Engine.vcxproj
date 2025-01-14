@@ -48,6 +48,7 @@
     <ClCompile Include="Source\Engine\Private\Mesh.cpp" />
     <ClCompile Include="Source\Engine\Private\PaperSprite.cpp" />
     <ClCompile Include="Source\Engine\Private\Pawn.cpp" />
+    <ClCompile Include="Source\Engine\Private\EngineResource.cpp" />
     <ClCompile Include="Source\Engine\Private\RenderAsset.cpp" />
     <ClCompile Include="Source\Engine\Private\SkeletalMesh.cpp" />
     <ClCompile Include="Source\Engine\Private\StaticMesh.cpp" />
@@ -77,7 +78,6 @@
     <ClCompile Include="Source\Rendering\EngineGraphicDevice.cpp" />
     <ClCompile Include="Source\Rendering\EngineRasterizerState.cpp" />
     <ClCompile Include="Source\Rendering\Private\RenderTarget\RenderTarget.cpp" />
-    <ClCompile Include="Source\Rendering\RenderUnit.cpp" />
     <ClCompile Include="Source\Rendering\Sampler\EngineSampler.cpp" />
     <ClCompile Include="Source\Rendering\Shader\EnginePixelShader.cpp" />
     <ClCompile Include="Source\Rendering\Shader\EngineShader.cpp" />
@@ -122,6 +122,7 @@
     <ClInclude Include="Source\Engine\Classes\Engine\Level.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\Mesh.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\PaperSprite.h" />
+    <ClInclude Include="Source\Engine\Classes\Engine\EngineResource.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\RenderAsset.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\SkeletalMesh.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\StaticMesh.h" />
@@ -159,7 +160,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Source\Rendering\RenderUnit.h" />
     <ClInclude Include="Source\Rendering\Sampler\EngineSampler.h" />
     <ClInclude Include="Source\Rendering\Shader\EnginePixelShader.h" />
     <ClInclude Include="Source\Rendering\Shader\EngineShader.h" />

@@ -1,5 +1,5 @@
 #pragma once
-#include "Engine/Classes/Engine/RenderAsset.h"
+#include "Engine/Classes/Engine/EngineResource.h"
 #include "Core/Math/EngineMath.h"
 #include "Core/Misc/DirectoryHelper.h"
 #include "EngineDefine.h"
@@ -16,7 +16,7 @@ struct FPaperSpriteData
 /**
  *	설명
  */
-class UPaperSprite : public URenderAsset
+class UPaperSprite : public UResource
 {
 public:
 	/** 생성자, 소멸자 */

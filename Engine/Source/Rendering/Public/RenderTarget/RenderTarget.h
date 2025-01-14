@@ -1,13 +1,13 @@
 #pragma once
-#include "Engine/Classes/Engine/RenderAsset.h"
+#include "Engine/Classes/Engine/EngineResource.h"
 #include "Engine/Classes/Engine/Texture.h"
 #include "Rendering/EngineGraphicDevice.h"
-#include "Rendering/RenderUnit.h"
+#include "Engine/Classes/Engine/RenderAsset.h"
 
 /**
  *	설명
  */
-class URenderTarget : public URenderAsset
+class URenderTarget : public UResource
 {
 public:
 	/** 생성자, 소멸자 */
@@ -45,6 +45,6 @@ private:
 
 	std::shared_ptr<UTexture> DepthStencilTexture;
 
-	URenderUnit RenderTargetUnit;
+	URenderAsset RenderTargetUnit;
 };
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "Core/Object/Object.h"
-#include "Rendering/RenderUnit.h"
+#include "Engine/Classes/Engine/RenderAsset.h"
 
 class AHUD;
 class UCameraComponent;
@@ -132,7 +132,7 @@ public:
 	{
 		return Transform.WorldScale;
 	}
-	URenderUnit& GetRenderUnit()
+	URenderAsset& GetRenderUnit()
 	{
 		return RenderUnit;
 	}
@@ -148,7 +148,7 @@ private:
 	UWidget* ParentWidget = nullptr;
 	std::list<std::shared_ptr<UWidget>> ChildWidgetList;
 
-	URenderUnit RenderUnit;
+	URenderAsset RenderUnit;
 
 	FWidgetColor WidgetColor;
 	FWidgetUV WidgetUV;

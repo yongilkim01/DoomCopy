@@ -1,5 +1,5 @@
 #pragma once
-#include "Engine/Classes/Engine/RenderAsset.h"
+#include "Engine/Classes/Engine/EngineResource.h"
 #include "Rendering/Buffer/IndexBuffer.h"
 #include "Rendering/Buffer/VertexBuffer.h"
 
@@ -23,7 +23,7 @@ public:
 /**
  *	설명
  */
-class UStaticMesh : public URenderAsset
+class UStaticMesh : public UResource
 {
 public:
 	/** 생성자, 소멸자 */

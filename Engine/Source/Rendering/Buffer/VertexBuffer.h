@@ -1,13 +1,13 @@
 #pragma once
 #include "Rendering/Buffer/EngineDeviceBuffer.h"
-#include "Engine/Classes/Engine/RenderAsset.h"
+#include "Engine/Classes/Engine/EngineResource.h"
 
 class UEngineInputLayoutInfo;
 
 /**
  *	설명
  */
-class FVertexBuffer : public URenderAsset, public UEngineDeviceBuffer
+class FVertexBuffer : public UResource, public UEngineDeviceBuffer
 {
 public:
 	/** 생성자, 소멸자 */

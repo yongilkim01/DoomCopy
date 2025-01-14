@@ -1,5 +1,5 @@
 #pragma once
-#include "Engine/Classes/Engine/RenderAsset.h"
+#include "Engine/Classes/Engine/EngineResource.h"
 #include "Rendering/Shader/EngineVertexShader.h"
 #include "Rendering/Shader/EnginePixelShader.h"
 #include "Rendering/EngineRasterizerState.h"
@@ -9,7 +9,7 @@
 /**
  *	설명
  */
-class UEngineMaterial : public URenderAsset
+class UEngineMaterial : public UResource
 {
 public:
 	/** 생성자, 소멸자 */

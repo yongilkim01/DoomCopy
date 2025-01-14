@@ -1,5 +1,5 @@
 #pragma once
-#include "Engine/Classes/Engine/RenderAsset.h"
+#include "Engine/Classes/Engine/EngineResource.h"
 #include "Rendering/Buffer/IndexBuffer.h"
 #include "Rendering/Buffer/VertexBuffer.h"
 
@@ -13,7 +13,7 @@ struct EVertexData
 /**
  *	설명
  */
-class UMesh : public URenderAsset
+class UMesh : public UResource
 {
 public:
 	/** 생성자, 소멸자 */

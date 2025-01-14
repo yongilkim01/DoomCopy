@@ -1,5 +1,5 @@
 #pragma once
-#include "Engine/Classes/Engine/RenderAsset.h"
+#include "Engine/Classes/Engine/EngineResource.h"
 #include "ThirdParty/DirectXTex/Include/DirectXTex.h"
 #include "Core/Misc/Paths.h"
 #include "EngineEnums.h"
@@ -9,7 +9,7 @@ class URenderTarget;
 /**
  *	Ό³Έν
  */
-class UTexture : public URenderAsset
+class UTexture : public UResource
 {
 	friend URenderTarget;
 public:

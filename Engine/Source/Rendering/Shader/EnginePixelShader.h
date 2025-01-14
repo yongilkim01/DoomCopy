@@ -2,14 +2,14 @@
 #include <Windows.h>
 
 #include "EngineShader.h"
-#include "Engine/Classes/Engine/RenderAsset.h"
+#include "Engine/Classes/Engine/EngineResource.h"
 #include "Core/Misc/Paths.h"
 #include "EngineEnums.h"
 
 /**
  *	설명
  */
-class UEnginePixelShader : public URenderAsset, public UEngineShader
+class UEnginePixelShader : public UResource, public UEngineShader
 {
 public:
 	/** 생성자, 소멸자 */

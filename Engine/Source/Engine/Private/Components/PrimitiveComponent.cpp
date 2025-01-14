@@ -53,27 +53,27 @@ void UPrimitiveComponent::Render(UCameraComponent* CameraComponent, float DeltaT
 
 }
 
-URenderUnit& UPrimitiveComponent::CreateRenderUnit()
+URenderAsset& UPrimitiveComponent::CreateRenderUnit()
 {
-	URenderUnit& NewUnit = RenderUnitVector.emplace_back();
+	URenderAsset& NewUnit = RenderUnitVector.emplace_back();
 	NewUnit.SetPrimitiveComponent(this);
 	return NewUnit;
 }
 
-URenderUnit& UPrimitiveComponent::GetRenderUnit(UINT Index)
+URenderAsset& UPrimitiveComponent::GetRenderUnit(UINT Index)
 {
 	return RenderUnitVector[Index];
 }
 
 void UPrimitiveComponent::SetMesh(std::string_view Name, UINT Index)
 {
-	URenderUnit& RenderUnit = GetRenderUnit(Index);
+	URenderAsset& RenderUnit = GetRenderUnit(Index);
 	RenderUnit.SetMesh(Name);
 }
 
 void UPrimitiveComponent::SetMaterial(std::string_view Name, UINT Index)
 {
-	URenderUnit& RenderUnit = GetRenderUnit(Index);
+	URenderAsset& RenderUnit = GetRenderUnit(Index);
 	RenderUnit.SetMaterial(Name);
 }
 

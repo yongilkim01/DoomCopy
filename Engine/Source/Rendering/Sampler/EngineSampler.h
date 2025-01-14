@@ -1,11 +1,11 @@
 #pragma once
-#include "Engine/Classes/Engine/RenderAsset.h"
+#include "Engine/Classes/Engine/EngineResource.h"
 #include "EngineEnums.h"
 
 /**
  *	설명
  */
-class UEngineSampler : public URenderAsset
+class UEngineSampler : public UResource
 {
 public:
 	/** 생성자, 소멸자 */

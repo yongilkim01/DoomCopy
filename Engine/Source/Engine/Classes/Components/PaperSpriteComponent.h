@@ -4,7 +4,7 @@
 #include "Engine/Classes/Engine/PaperSprite.h"
 
 class UCameraComponent;
-class URenderUnit;
+class URenderAsset;
 
 struct FUVValue
 {
@@ -133,7 +133,7 @@ protected:
 	ENGINE_API virtual void RenderTransformUpdate(UCameraComponent* CameraComponent) override;
 
 private:
-	URenderUnit* MainUnit;
+	URenderAsset* MainUnit;
 
 	int CurIndex = 0;
 	float CurAnimationSpeed = 1.0f;

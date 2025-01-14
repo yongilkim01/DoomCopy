@@ -1,10 +1,10 @@
 #pragma once
-#include "Engine/Classes/Engine/RenderAsset.h"
+#include "Engine/Classes/Engine/EngineResource.h"
 
 /**
  *	설명
  */
-class UEngineBlend : public URenderAsset
+class UEngineBlend : public UResource
 {
 public:
 	/** 생성자, 소멸자 */

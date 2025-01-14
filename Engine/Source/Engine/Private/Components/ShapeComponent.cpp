@@ -3,7 +3,7 @@
 
 #include "Core/Containers/EngineString.h"
 #include "Engine/Classes/Camera/CameraComponent.h"
-#include "Rendering/RenderUnit.h"
+#include "Engine/Classes/Engine/RenderAsset.h"
 
 UShapeComponent::UShapeComponent()
 {
@@ -24,7 +24,7 @@ void UShapeComponent::BeginPlay()
 
 void UShapeComponent::DebugRender(UCameraComponent* CameraComponent, float DeltaTime)
 {
-	URenderUnit RenderUnit;
+	URenderAsset RenderUnit;
 
 	FTransform& CameraTransform = CameraComponent->GetComponentTransformRef();
 	FTransform& ComponentTransform = GetComponentTransformRef();

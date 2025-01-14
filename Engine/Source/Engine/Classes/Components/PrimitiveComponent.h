@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine/Classes/Components/SceneComponent.h"
 #include "Engine/Classes/Engine/PaperSprite.h"
-#include "Rendering/RenderUnit.h"
+#include "Engine/Classes/Engine/RenderAsset.h"
 
 class UCameraComponent;
 
@@ -31,13 +31,13 @@ public:
 	ENGINE_API virtual void SetOrder(int NewOrder) override;
 
 	/** ·»´õ À¯´Ö °ü·Ã ¸Þ¼Òµå */
-	ENGINE_API URenderUnit& CreateRenderUnit();
-	ENGINE_API URenderUnit& GetRenderUnit(UINT Index = 0);
+	ENGINE_API URenderAsset& CreateRenderUnit();
+	ENGINE_API URenderAsset& GetRenderUnit(UINT Index = 0);
 	ENGINE_API void SetMesh(std::string_view Name, UINT Index = 0);
 	ENGINE_API void SetMaterial(std::string_view Name, UINT Index = 0);
 
 	/** °Ù, ¼Â ¸Þ¼Òµå */
-	ENGINE_API std::vector<URenderUnit>& GetRenderUnitVector()
+	ENGINE_API std::vector<URenderAsset>& GetRenderUnitVector()
 	{
 		return RenderUnitVector;
 	}
@@ -45,6 +45,6 @@ public:
 protected:
 
 private:
-	std::vector<URenderUnit> RenderUnitVector;
+	std::vector<URenderAsset> RenderUnitVector;
 
 };
