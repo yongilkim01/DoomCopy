@@ -41,7 +41,7 @@ void UCameraComponent::Tick(float DeltaTime)
 
 void UCameraComponent::Render(float DeltaTime)
 {
-	UGameEngine::GetDevice().GetDeviceContext()->RSSetViewports(1, &ViewPortInfo);
+	UGameEngine::GetDeviceContext()->RSSetViewports(1, &ViewPortInfo);
 
 	CameraRenderTarget->Clear();
 	CameraRenderTarget->Setting();

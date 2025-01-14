@@ -29,7 +29,7 @@ std::shared_ptr<UEngineVertexShader> UEngineVertexShader::Load(std::string_view 
 
 void UEngineVertexShader::Update()
 {
-	UGameEngine::GetDevice().GetDeviceContext()->VSSetShader(ShaderRes.Get(), nullptr, 0);
+	UGameEngine::GetDeviceContext()->VSSetShader(ShaderRes.Get(), nullptr, 0);
 }
 
 void UEngineVertexShader::AssetLoad()
@@ -63,7 +63,7 @@ void UEngineVertexShader::AssetLoad()
 		return;
 	}
 
-	HRESULT Result = UGameEngine::GetDevice().GetDevice()->CreateVertexShader(
+	HRESULT Result = UGameEngine::GetDevice()->CreateVertexShader(
 		ShaderCodeBlob->GetBufferPointer(),
 		ShaderCodeBlob->GetBufferSize(),
 		nullptr,

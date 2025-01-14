@@ -29,7 +29,7 @@ std::shared_ptr<UEnginePixelShader> UEnginePixelShader::Load(std::string_view _N
 
 void UEnginePixelShader::Update()
 {
-	UGameEngine::GetDevice().GetDeviceContext()->PSSetShader(ShaderRes.Get(), nullptr, 0);
+	UGameEngine::GetDeviceContext()->PSSetShader(ShaderRes.Get(), nullptr, 0);
 
 }
 
@@ -64,7 +64,7 @@ void UEnginePixelShader::AssetLoad()
 		return;
 	}
 
-	HRESULT Result = UGameEngine::GetDevice().GetDevice()->CreatePixelShader(
+	HRESULT Result = UGameEngine::GetDevice()->CreatePixelShader(
 		ShaderCodeBlob->GetBufferPointer(),
 		ShaderCodeBlob->GetBufferSize(),
 		nullptr,

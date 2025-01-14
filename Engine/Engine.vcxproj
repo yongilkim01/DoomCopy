@@ -142,7 +142,6 @@
     <ClInclude Include="Source\NavigationSystem\Public\NavigationSystem.h" />
     <ClInclude Include="Source\pch.h" />
     <ClInclude Include="Source\Platform\Window.h" />
-    <ClInclude Include="Source\Rendering\AiMesh.h" />
     <ClInclude Include="Source\Rendering\Buffer\DepthStencilState.h">
       <SubType>
       </SubType>

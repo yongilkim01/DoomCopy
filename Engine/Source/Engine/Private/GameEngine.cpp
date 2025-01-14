@@ -9,12 +9,33 @@
 #include "Input/EngineInput.h"
 #include "Tools/DebugGUI/EngineGUI.h"
 #include "Rendering/Buffer/EngineConstantBuffer.h"
+#include "Rendering/Public/RenderTarget/RenderTarget.h"
 
 UGameEngine* GEngine = nullptr;
 
-UEngineGraphicDevice& UGameEngine::GetDevice()
+ID3D11Device* UGameEngine::GetDevice()
 {
-	return GEngine->Device;
+	return GEngine->Device.GetDevice();
+}
+
+ID3D11DeviceContext* UGameEngine::GetDeviceContext()
+{
+	return GEngine->Device.GetDeviceContext();
+}
+
+void UGameEngine::StartRender()
+{
+	GEngine->Device.RenderStart();
+}
+
+void UGameEngine::EndRender()
+{
+	GEngine->Device.RenderEnd();
+}
+
+std::shared_ptr<URenderTarget> UGameEngine::GetBackBufferRenderTarget()
+{
+	return GEngine->Device.GetBackBufferRenderTarget();
 }
 
 UEngineWindow& UGameEngine::GetMainWindow()

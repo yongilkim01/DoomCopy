@@ -29,7 +29,7 @@ void URenderAsset::Render(UCameraComponent* CameraComponent, float DetlaTime)
 	Mesh->GetIndexBuffer()->Update();
 	Material->UpdatePrimitiveTopology();
 
-	UGameEngine::GetDevice().GetDeviceContext()->IASetInputLayout(InputLayout.Get());
+	UGameEngine::GetDeviceContext()->IASetInputLayout(InputLayout.Get());
 
 	Material->GetRasterizerState()->Update();
 
@@ -39,7 +39,7 @@ void URenderAsset::Render(UCameraComponent* CameraComponent, float DetlaTime)
 
 	Material->GetDepthStencilState()->Update();
 
-	UGameEngine::GetDevice().GetDeviceContext()->DrawIndexed(Mesh->GetIndexBuffer()->GetIndexCount(), 0, 0);
+	UGameEngine::GetDeviceContext()->DrawIndexed(Mesh->GetIndexBuffer()->GetIndexCount(), 0, 0);
 }
 
 void URenderAsset::SetMesh(std::string_view Name)
@@ -194,7 +194,7 @@ void URenderAsset::InputLayOutCreate()
 {
 	Microsoft::WRL::ComPtr<ID3DBlob> Blob = Material->GetVertexShader()->GetShaderCodeBlob();
 	UEngineInputLayoutInfo* InfoPtr = Mesh->GetVertexBuffer()->GetInfoPtr();
-	HRESULT Result = UGameEngine::GetDevice().GetDevice()->CreateInputLayout(
+	HRESULT Result = UGameEngine::GetDevice()->CreateInputLayout(
 		&InfoPtr->InputLayoutData[0],
 		static_cast<unsigned int>(InfoPtr->InputLayoutData.size()),
 		Blob->GetBufferPointer(),

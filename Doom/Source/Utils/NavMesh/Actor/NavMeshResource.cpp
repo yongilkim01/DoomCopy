@@ -9,7 +9,6 @@
 #include <Core/Public/Misc/DirectoryHelper.h>
 #include <Core/Public/Misc/FileHelper.h>
 
-#include <Rendering/AiMesh.h>
 #include <Rendering/Buffer/EngineVertex.h>
 #include <Rendering/Buffer/VertexBuffer.h>
 #include <Rendering/Buffer/IndexBuffer.h>

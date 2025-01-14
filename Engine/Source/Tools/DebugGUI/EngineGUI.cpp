@@ -45,7 +45,7 @@ void UEngineGUI::Init()
     // Setup Platform/Renderer backends
 
     ImGui_ImplWin32_Init(UGameEngine::GetMainWindow().GetWindowHandle());   
-    ImGui_ImplDX11_Init(UGameEngine::GetDevice().GetDevice(), UGameEngine::GetDevice().GetDeviceContext());
+    ImGui_ImplDX11_Init(UGameEngine::GetDevice(), UGameEngine::GetDeviceContext());
 
     // Load Fonts
     // - If no fonts are loaded, dear imgui will use the default font. You can also load multiple fonts and use ImGui::PushFont()/PopFont() to select them.

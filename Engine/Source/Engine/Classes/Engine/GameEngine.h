@@ -26,6 +26,18 @@ public:
 	 */
 	ENGINE_API static void OpenLevel(std::string_view LevelName);
 	/**
+	 *	렌더 시작 메소드
+	 */
+	ENGINE_API static void StartRender();
+	/**
+	 *	렌더 마무리 메소드
+	 */
+	ENGINE_API static void EndRender();
+	/**
+	 *	그래픽 디바이스 백버퍼 렌더타겟 반환 메소드
+	 */
+	ENGINE_API static std::shared_ptr<URenderTarget> GetBackBufferRenderTarget();
+	/**
 	 *	레벨 생성 메소드
 	 *  @param Name: 생성할 레벨 이름, 레벨 이름은 중복 불가능
 	 */
@@ -46,7 +58,8 @@ public:
 	}
 
 	/** 겟, 셋 메소드 */
-	ENGINE_API static UEngineGraphicDevice& GetDevice();
+	ENGINE_API static ID3D11Device* GetDevice();
+	ENGINE_API static ID3D11DeviceContext* GetDeviceContext();
 	ENGINE_API static FVector GetSceenScale();
 	ENGINE_API static UEngineWindow& GetMainWindow();
 	ENGINE_API static std::map<std::string, std::shared_ptr<ULevel>> GetAllLevelMap();

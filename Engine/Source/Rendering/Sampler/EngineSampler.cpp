@@ -16,10 +16,10 @@ void UEngineSampler::Update(EShaderType ShaderType, UINT BindIndex)
 	switch (ShaderType)
 	{
 	case EShaderType::VS:
-		UGameEngine::GetDevice().GetDeviceContext()->VSSetSamplers(BindIndex, 1, ArrPtr);
+		UGameEngine::GetDeviceContext()->VSSetSamplers(BindIndex, 1, ArrPtr);
 		break;
 	case EShaderType::PS:
-		UGameEngine::GetDevice().GetDeviceContext()->PSSetSamplers(BindIndex, 1, ArrPtr);
+		UGameEngine::GetDeviceContext()->PSSetSamplers(BindIndex, 1, ArrPtr);
 		break;
 	case EShaderType::HS:
 	case EShaderType::DS:
@@ -50,7 +50,7 @@ std::shared_ptr<UEngineSampler> UEngineSampler::Create(std::string_view Name, co
 
 void UEngineSampler::AssetCreate(const D3D11_SAMPLER_DESC& SamplerDesc)
 {
-	if (UGameEngine::GetDevice().GetDevice()->CreateSamplerState(&SamplerDesc, &State))
+	if (UGameEngine::GetDevice()->CreateSamplerState(&SamplerDesc, &State))
 	{
 		MSGASSERT("샘플러 생성에 실패했습니다");
 		return;

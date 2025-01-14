@@ -28,7 +28,7 @@ std::shared_ptr<UEngineMaterial> UEngineMaterial::Create(std::string_view _Name)
 
 void UEngineMaterial::UpdatePrimitiveTopology()
 {
-	UGameEngine::GetDevice().GetDeviceContext()->IASetPrimitiveTopology(TOPOLOGY);
+	UGameEngine::GetDeviceContext()->IASetPrimitiveTopology(TOPOLOGY);
 }
 
 void UEngineMaterial::SetVertexShader(std::string_view _Name)

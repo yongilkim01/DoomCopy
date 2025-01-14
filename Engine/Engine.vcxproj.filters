@@ -681,9 +681,6 @@
     <ClInclude Include="Source\ThirdParty\assimp\include\assimp\ZipArchiveIOSystem.h">
       <Filter>10_ThirdParty\assimp\include</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Rendering\AiMesh.h">
-      <Filter>4_Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Source\EngineEnums.h" />
     <ClInclude Include="Source\Rendering\EngineRasterizerState.h">
       <Filter>4_Rendering</Filter>

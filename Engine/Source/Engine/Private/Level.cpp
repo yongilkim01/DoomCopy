@@ -103,7 +103,7 @@ void ULevel::Tick(float DeltaTime)
 
 void ULevel::Render(float DeltaTime)
 {
-	UGameEngine::GetDevice().RenderStart();
+	UGameEngine::StartRender();
 
 	FinalRenderTarget->Clear();
 
@@ -119,7 +119,7 @@ void ULevel::Render(float DeltaTime)
 		Camera.second->GetCameraComponent()->CameraRenderTarget->MergeRenderTarget(FinalRenderTarget);
 	}
 
-	std::shared_ptr<URenderTarget> BackBufferRenderTarget = UGameEngine::GetDevice().GetBackBufferRenderTarget();
+	std::shared_ptr<URenderTarget> BackBufferRenderTarget = UGameEngine::GetBackBufferRenderTarget();
 	FinalRenderTarget->MergeRenderTarget(BackBufferRenderTarget);
 
 	{
@@ -145,7 +145,7 @@ void ULevel::Render(float DeltaTime)
 		UEngineGUI::GUIRender(this);
 	}
 
-	UGameEngine::GetDevice().RenderEnd();
+	UGameEngine::EndRender();
 }
 
 void ULevel::Collision(float DeltaTime)
