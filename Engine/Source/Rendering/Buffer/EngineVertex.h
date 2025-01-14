@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/Math/EngineMath.h"
+#include "Core/Public/Math/EngineMath.h"
 #include "Rendering/Buffer/EngineInputLayoutInfo.h"
 
 class EngineVertexInit;

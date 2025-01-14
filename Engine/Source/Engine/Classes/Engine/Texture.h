@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine/Classes/Engine/EngineResource.h"
 #include "ThirdParty/DirectXTex/Include/DirectXTex.h"
-#include "Core/Misc/Paths.h"
+#include "Core/Public/Misc/Paths.h"
 #include "EngineEnums.h"
 
 class URenderTarget;

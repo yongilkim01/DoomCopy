@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine/Classes/Components/PrimitiveComponent.h"
-#include "Core/Delegates/Delegate.h"
+#include "Core/Public/Delegates/Delegate.h"
 #include "Engine/Classes/Engine/PaperSprite.h"
 
 class UCameraComponent;

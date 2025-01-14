@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Engine/Classes/Components/ShapeComponent.h"
 
-#include "Core/Containers/EngineString.h"
+#include "Core/Public/Containers/EngineString.h"
 #include "Engine/Classes/Camera/CameraComponent.h"
 #include "Engine/Classes/Engine/RenderAsset.h"
 

@@ -11,9 +11,9 @@
 #include <iostream>
 #include <functional>
 
-#include "Core/EngineCore.h"
+#include "Engine/Classes/Engine/GameEngine.h"
 #include "Engine/Classes/GameFramework/Pawn.h"
 
-#include "Core/Math/EngineMath.h"
+#include "Core/Public/Math/EngineMath.h"
 
 #include "EngineDefine.h"

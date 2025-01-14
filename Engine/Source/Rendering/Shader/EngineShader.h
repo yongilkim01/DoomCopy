@@ -1,6 +1,6 @@
 #pragma once
 #include "EngineEnums.h"
-#include "Core/Misc/FileHelper.h"
+#include "Core/Public/Misc/FileHelper.h"
 
 #include "Rendering/Shader/EngineShaderResource.h"
 

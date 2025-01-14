@@ -3,7 +3,7 @@
 
 #include "EngineShader.h"
 #include "Engine/Classes/Engine/EngineResource.h"
-#include "Core/Misc/Paths.h"
+#include "Core/Public/Misc/Paths.h"
 #include "EngineEnums.h"
 
 /**

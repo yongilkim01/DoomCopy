@@ -5,11 +5,10 @@
 #include <Engine/Classes/Engine/Texture.h>
 
 #include <Engine/Public/Materials/Material.h>
-#include <Core/Serialization/Archive.h>
-#include <Core/Misc/DirectoryHelper.h>
-#include <Core/Misc/FileHelper.h>
+#include <Core/Public/Serialization/Archive.h>
+#include <Core/Public/Misc/DirectoryHelper.h>
+#include <Core/Public/Misc/FileHelper.h>
 
-#include <Rendering/TextureLoader.h>
 #include <Rendering/AiMesh.h>
 #include <Rendering/Buffer/EngineVertex.h>
 #include <Rendering/Buffer/VertexBuffer.h>

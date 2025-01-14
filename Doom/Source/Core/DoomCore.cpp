@@ -8,10 +8,10 @@
 #include "Utils/GUI/GUIEditor.h"
 #include "Utils/NavMesh/Actor/NavMeshResource.h"
 
-#include <Core/Math/EngineMath.h>
-#include <Core/EngineCore.h>
-#include <Core/Misc/DirectoryHelper.h>
-#include <Core/Misc/FileHelper.h>
+#include <Core/Public/Math/EngineMath.h>
+#include <Engine/Classes/Engine/GameEngine.h>
+#include <Core/Public/Misc/DirectoryHelper.h>
+#include <Core/Public/Misc/FileHelper.h>
 #include <Engine/Classes/Engine/Level.h>
 #include <Engine/Classes/Engine/Texture.h>
 #include <Engine/Classes/Engine/PaperSprite.h>

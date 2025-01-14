@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Window.h"
 
-#include "WorldPartition/DebugHelpers.h"
+#include "Core/Public/Debugging/DebugMacros.h"
 
 std::function<bool(HWND, UINT, WPARAM, LPARAM)> UEngineWindow::CustomProc = nullptr;
 HINSTANCE UEngineWindow::hInstance = nullptr;

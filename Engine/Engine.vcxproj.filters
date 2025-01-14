@@ -7,24 +7,6 @@
     <Filter Include="1_Core">
       <UniqueIdentifier>{57a416c6-81b6-47aa-beeb-11c6c9d9bbdc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="1_Core\Delegates">
-      <UniqueIdentifier>{ccb54f37-2626-4dcf-9e83-485f44a39467}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="1_Core\Misc">
-      <UniqueIdentifier>{b40d5a80-9a83-4dcd-8a7d-c30d5bed47a3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="1_Core\Serialization">
-      <UniqueIdentifier>{58b534a6-6bf7-4013-bac1-9b7a18357bf1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="1_Core\Containers">
-      <UniqueIdentifier>{10191daa-5a81-48c6-996c-3693cfd16c98}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="1_Core\Object">
-      <UniqueIdentifier>{5e27c38f-bd23-4301-ab35-dff39009bb63}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="1_Core\Math">
-      <UniqueIdentifier>{80529ff4-314e-4cdb-897e-da892e6fa0ed}</UniqueIdentifier>
-    </Filter>
     <Filter Include="4_Rendering">
       <UniqueIdentifier>{b94968ba-83d8-46ff-ae01-76e800b2b99d}</UniqueIdentifier>
     </Filter>
@@ -33,9 +15,6 @@
     </Filter>
     <Filter Include="6_Input">
       <UniqueIdentifier>{f0e2fa6b-2c08-44c8-b97d-9f00460c5c17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="8_WorldPartition">
-      <UniqueIdentifier>{286a5737-4a8f-49a1-a9a2-d4a6ddefe048}</UniqueIdentifier>
     </Filter>
     <Filter Include="9_Interfaces">
       <UniqueIdentifier>{3c0269e8-4b02-4a43-bfec-5e81433fdaca}</UniqueIdentifier>
@@ -105,9 +84,6 @@
     </Filter>
     <Filter Include="11_Tools\DebugGUI">
       <UniqueIdentifier>{6c0051e6-2cb9-49d9-9ef7-98376feb6a7f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="1_Core\Time">
-      <UniqueIdentifier>{75073ebe-ffe9-4a22-ab53-ff6b199c29f1}</UniqueIdentifier>
     </Filter>
     <Filter Include="12_NavigationSystem">
       <UniqueIdentifier>{1a928d45-79d6-4625-8af4-4da6f7a7d89e}</UniqueIdentifier>
@@ -193,43 +169,49 @@
     <Filter Include="3_UMG\1_Private\Components">
       <UniqueIdentifier>{4f7b12ff-2c94-445e-97b2-faefd4d8520b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="1_Core\0_Public\Containers">
+      <UniqueIdentifier>{d8ac0c91-60bf-43c4-b515-69e296bdfdea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\1_Private\Containers">
+      <UniqueIdentifier>{a757b4e9-a431-4032-bb11-fd7876da1428}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\1_Private\Delegates">
+      <UniqueIdentifier>{12182838-2735-4550-8d57-4549702c5bc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\0_Public\Delegates">
+      <UniqueIdentifier>{2571a60f-368e-4b26-8102-e42834ea11a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\0_Public\Misc">
+      <UniqueIdentifier>{9140f164-b5be-4afb-b7de-7e6bb43d8e7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\1_Private\Misc">
+      <UniqueIdentifier>{4b27bb98-8022-4bbb-9fea-2594d234935f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\1_Private\Math">
+      <UniqueIdentifier>{1ed03758-4f76-4046-acdb-adc9a55c69a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\0_Public\Math">
+      <UniqueIdentifier>{3cb754a4-779a-4967-af0a-8e35b81e03a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\1_Private\Serialization">
+      <UniqueIdentifier>{0f9ae8b9-6513-48d4-afd8-982f1352e366}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\0_Public\Serialization">
+      <UniqueIdentifier>{998156d6-5fe4-4a85-afa8-68c3ebf7148f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\0_Public\Debugging">
+      <UniqueIdentifier>{ae19663a-3f92-49b7-91e0-ca75d944b4ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Core\1_Private\Debugging">
+      <UniqueIdentifier>{17ab975b-60d0-4f21-89a8-86ce16c2867c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp">
       <Filter>pch</Filter>
     </ClCompile>
-    <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp">
-      <Filter>8_WorldPartition</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Core\Delegates\Delegate.cpp">
-      <Filter>1_Core\Delegates</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Core\Misc\Paths.cpp">
-      <Filter>1_Core\Misc</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Core\Misc\FileHelper.cpp">
-      <Filter>1_Core\Misc</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Core\Serialization\Archive.cpp">
-      <Filter>1_Core\Serialization</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Core\Misc\DirectoryHelper.cpp">
-      <Filter>1_Core\Misc</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Core\Containers\EngineString.cpp">
-      <Filter>1_Core\Containers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Core\EngineCore.cpp">
-      <Filter>1_Core</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Platform\Window.cpp">
       <Filter>5_Platform</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Core\Object\Object.cpp">
-      <Filter>1_Core\Object</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Core\Math\EngineMath.cpp">
-      <Filter>1_Core\Math</Filter>
     </ClCompile>
     <ClCompile Include="Source\ThirdParty\imgui\imgui_widgets.cpp">
       <Filter>10_ThirdParty\imgui\Private</Filter>
@@ -253,9 +235,6 @@
       <Filter>6_Input</Filter>
     </ClCompile>
     <ClCompile Include="Source\Rendering\EngineGraphicDevice.cpp">
-      <Filter>4_Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\TextureLoader.cpp">
       <Filter>4_Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Source\Rendering\EngineRasterizerState.cpp">
@@ -305,9 +284,6 @@
     </ClCompile>
     <ClCompile Include="Source\Rendering\Buffer\EngineVertex.cpp">
       <Filter>4_Rendering\Buffer</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Core\Math\EngineRandom.cpp">
-      <Filter>1_Core\Math</Filter>
     </ClCompile>
     <ClCompile Include="Source\NavigationSystem\Private\NavigationSystem.cpp">
       <Filter>12_NavigationSystem\Private</Filter>
@@ -393,50 +369,53 @@
     <ClCompile Include="Source\Engine\Private\RenderAsset.cpp">
       <Filter>1_Engine\2_Private</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Engine\Private\Object.cpp">
+      <Filter>1_Engine\2_Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Private\Containers\EngineString.cpp">
+      <Filter>1_Core\1_Private\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Private\Delegates\Delegate.cpp">
+      <Filter>1_Core\1_Private\Delegates</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Private\Misc\DirectoryHelper.cpp">
+      <Filter>1_Core\1_Private\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Private\Misc\FileHelper.cpp">
+      <Filter>1_Core\1_Private\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Private\Misc\Paths.cpp">
+      <Filter>1_Core\1_Private\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Private\Math\EngineMath.cpp">
+      <Filter>1_Core\1_Private\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Private\Math\EngineRandom.cpp">
+      <Filter>1_Core\1_Private\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Private\Serialization\Archive.cpp">
+      <Filter>1_Core\1_Private\Serialization</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Private\GameEngine.cpp">
+      <Filter>1_Engine\2_Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Private\Debugging\DebugMacros.cpp">
+      <Filter>1_Core\1_Private\Debugging</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
       <Filter>pch</Filter>
     </ClInclude>
-    <ClInclude Include="Source\WorldPartition\DebugHelpers.h">
-      <Filter>8_WorldPartition</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Core\Delegates\Delegate.h">
-      <Filter>1_Core\Delegates</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Core\Misc\Paths.h">
-      <Filter>1_Core\Misc</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Core\Misc\FileHelper.h">
-      <Filter>1_Core\Misc</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Core\Serialization\Archive.h">
-      <Filter>1_Core\Serialization</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Core\Misc\DirectoryHelper.h">
-      <Filter>1_Core\Misc</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Core\Containers\EngineString.h">
-      <Filter>1_Core\Containers</Filter>
-    </ClInclude>
     <ClInclude Include="Source\EngineDefine.h" />
-    <ClInclude Include="Source\Core\EngineCore.h">
-      <Filter>1_Core</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Platform\Window.h">
       <Filter>5_Platform</Filter>
     </ClInclude>
     <ClInclude Include="Source\Interfaces\IContentsCore.h">
       <Filter>9_Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Core\Object\Object.h">
-      <Filter>1_Core\Object</Filter>
-    </ClInclude>
     <ClInclude Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.h">
       <Filter>10_ThirdParty\DirectXTex\Include</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Core\Math\EngineMath.h">
-      <Filter>1_Core\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\ThirdParty\imgui\imstb_truetype.h">
       <Filter>10_ThirdParty\imgui\Public</Filter>
@@ -708,9 +687,6 @@
     <ClInclude Include="Source\Rendering\AiMesh.h">
       <Filter>4_Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Rendering\TextureLoader.h">
-      <Filter>4_Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Source\EngineEnums.h" />
     <ClInclude Include="Source\Rendering\EngineRasterizerState.h">
       <Filter>4_Rendering</Filter>
@@ -759,9 +735,6 @@
     </ClInclude>
     <ClInclude Include="Source\Rendering\Buffer\EngineVertex.h">
       <Filter>4_Rendering\Buffer</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Core\Math\EngineRandom.h">
-      <Filter>1_Core\Math</Filter>
     </ClInclude>
     <ClInclude Include="Source\NavigationSystem\Public\NavigationSystem.h">
       <Filter>12_NavigationSystem\Public</Filter>
@@ -847,6 +820,39 @@
     <ClInclude Include="Source\EngineStruct.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\RenderAsset.h">
       <Filter>1_Engine\0_Classes\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Classes\Engine\Object.h">
+      <Filter>1_Engine\0_Classes\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Public\Containers\EngineString.h">
+      <Filter>1_Core\0_Public\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Public\Delegates\Delegate.h">
+      <Filter>1_Core\0_Public\Delegates</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Public\Misc\DirectoryHelper.h">
+      <Filter>1_Core\0_Public\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Public\Misc\FileHelper.h">
+      <Filter>1_Core\0_Public\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Public\Misc\Paths.h">
+      <Filter>1_Core\0_Public\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Public\Math\EngineMath.h">
+      <Filter>1_Core\0_Public\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Public\Math\EngineRandom.h">
+      <Filter>1_Core\0_Public\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Public\Serialization\Archive.h">
+      <Filter>1_Core\0_Public\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Classes\Engine\GameEngine.h">
+      <Filter>1_Engine\0_Classes\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Public\Debugging\DebugMacros.h">
+      <Filter>1_Core\0_Public\Debugging</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

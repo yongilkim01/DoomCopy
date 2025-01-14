@@ -5,8 +5,8 @@
 #include "Utils/Lump.h"
 #include "Utils/WadMap.h"
 
-#include <Core/Misc/DirectoryHelper.h>
-#include <Core/Misc/FileHelper.h>
+#include <Core/Public/Misc/DirectoryHelper.h>
+#include <Core/Public/Misc/FileHelper.h>
 
 #define THINGS_IDX   1
 #define LINEDEFS_IDX 2

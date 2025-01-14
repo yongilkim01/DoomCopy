@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "GUIEditor.h"
 
-#include <Core/EngineCore.h>
+#include <Engine/Classes/Engine/GameEngine.h>
 #include <Tools/DebugGUI/EngineGUI.h>
 #include <Engine/Classes/Engine/Level.h>
 

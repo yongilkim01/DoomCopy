@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Object.h"
+#include "Engine/Classes/Engine/Object.h"
 
 UObject::UObject()
 {

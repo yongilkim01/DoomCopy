@@ -19,18 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Core\Containers\EngineString.cpp" />
-    <ClCompile Include="Source\Core\Delegates\Delegate.cpp" />
-    <ClCompile Include="Source\Core\EngineCore.cpp" />
-    <ClCompile Include="Source\Core\Math\EngineMath.cpp" />
-    <ClCompile Include="Source\Core\Math\EngineRandom.cpp" />
-    <ClCompile Include="Source\Core\Misc\DirectoryHelper.cpp" />
-    <ClCompile Include="Source\Core\Misc\FileHelper.cpp" />
-    <ClCompile Include="Source\Core\Misc\Paths.cpp" />
-    <ClCompile Include="Source\Core\Object\Object.cpp" />
+    <ClCompile Include="Source\Core\Private\Containers\EngineString.cpp" />
+    <ClCompile Include="Source\Core\Private\Debugging\DebugMacros.cpp" />
+    <ClCompile Include="Source\Core\Private\Delegates\Delegate.cpp" />
+    <ClCompile Include="Source\Core\Private\Math\EngineMath.cpp" />
+    <ClCompile Include="Source\Core\Private\Math\EngineRandom.cpp" />
+    <ClCompile Include="Source\Core\Private\Misc\DirectoryHelper.cpp" />
+    <ClCompile Include="Source\Core\Private\Misc\FileHelper.cpp" />
+    <ClCompile Include="Source\Core\Private\Misc\Paths.cpp" />
+    <ClCompile Include="Source\Core\Private\Serialization\Archive.cpp" />
     <ClCompile Include="Source\Core\Private\Time\TimeEvent.cpp" />
     <ClCompile Include="Source\Core\Private\Time\Timer.cpp" />
-    <ClCompile Include="Source\Core\Serialization\Archive.cpp" />
     <ClCompile Include="Source\Engine\Private\Actor.cpp" />
     <ClCompile Include="Source\Engine\Private\Camera\CameraActor.cpp" />
     <ClCompile Include="Source\Engine\Private\Camera\CameraComponent.cpp" />
@@ -41,11 +40,13 @@
     <ClCompile Include="Source\Engine\Private\Components\SceneComponent.cpp" />
     <ClCompile Include="Source\Engine\Private\Components\ShapeComponent.cpp" />
     <ClCompile Include="Source\Engine\Private\Components\StaticMeshComponent.cpp" />
+    <ClCompile Include="Source\Engine\Private\GameEngine.cpp" />
     <ClCompile Include="Source\Engine\Private\GameMode.cpp" />
     <ClCompile Include="Source\Engine\Private\HUD.cpp" />
     <ClCompile Include="Source\Engine\Private\Level.cpp" />
     <ClCompile Include="Source\Engine\Private\Materials\Material.cpp" />
     <ClCompile Include="Source\Engine\Private\Mesh.cpp" />
+    <ClCompile Include="Source\Engine\Private\Object.cpp" />
     <ClCompile Include="Source\Engine\Private\PaperSprite.cpp" />
     <ClCompile Include="Source\Engine\Private\Pawn.cpp" />
     <ClCompile Include="Source\Engine\Private\EngineResource.cpp" />
@@ -83,7 +84,6 @@
     <ClCompile Include="Source\Rendering\Shader\EngineShader.cpp" />
     <ClCompile Include="Source\Rendering\Shader\EngineShaderResource.cpp" />
     <ClCompile Include="Source\Rendering\Shader\EngineVertexShader.cpp" />
-    <ClCompile Include="Source\Rendering\TextureLoader.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui_draw.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui_impl_dx11.cpp" />
@@ -93,21 +93,19 @@
     <ClCompile Include="Source\Tools\DebugGUI\EngineGUI.cpp" />
     <ClCompile Include="Source\Tools\DebugGUI\EngineGUIWindow.cpp" />
     <ClCompile Include="Source\UMG\Private\Components\Widget.cpp" />
-    <ClCompile Include="Source\WorldPartition\DebugHelpers.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Core\Containers\EngineString.h" />
-    <ClInclude Include="Source\Core\Delegates\Delegate.h" />
-    <ClInclude Include="Source\Core\EngineCore.h" />
-    <ClInclude Include="Source\Core\Math\EngineMath.h" />
-    <ClInclude Include="Source\Core\Math\EngineRandom.h" />
-    <ClInclude Include="Source\Core\Misc\DirectoryHelper.h" />
-    <ClInclude Include="Source\Core\Misc\FileHelper.h" />
-    <ClInclude Include="Source\Core\Misc\Paths.h" />
-    <ClInclude Include="Source\Core\Object\Object.h" />
+    <ClInclude Include="Source\Core\Public\Containers\EngineString.h" />
+    <ClInclude Include="Source\Core\Public\Debugging\DebugMacros.h" />
+    <ClInclude Include="Source\Core\Public\Delegates\Delegate.h" />
+    <ClInclude Include="Source\Core\Public\Math\EngineMath.h" />
+    <ClInclude Include="Source\Core\Public\Math\EngineRandom.h" />
+    <ClInclude Include="Source\Core\Public\Misc\DirectoryHelper.h" />
+    <ClInclude Include="Source\Core\Public\Misc\FileHelper.h" />
+    <ClInclude Include="Source\Core\Public\Misc\Paths.h" />
+    <ClInclude Include="Source\Core\Public\Serialization\Archive.h" />
     <ClInclude Include="Source\Core\Public\Time\TimeEvent.h" />
     <ClInclude Include="Source\Core\Public\Time\Timer.h" />
-    <ClInclude Include="Source\Core\Serialization\Archive.h" />
     <ClInclude Include="Source\EngineDefine.h" />
     <ClInclude Include="Source\EngineEnums.h" />
     <ClInclude Include="Source\EngineStruct.h" />
@@ -119,8 +117,10 @@
     <ClInclude Include="Source\Engine\Classes\Components\SceneComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\ShapeComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\StaticMeshComponent.h" />
+    <ClInclude Include="Source\Engine\Classes\Engine\GameEngine.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\Level.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\Mesh.h" />
+    <ClInclude Include="Source\Engine\Classes\Engine\Object.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\PaperSprite.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\EngineResource.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\RenderAsset.h" />
@@ -165,7 +165,6 @@
     <ClInclude Include="Source\Rendering\Shader\EngineShader.h" />
     <ClInclude Include="Source\Rendering\Shader\EngineShaderResource.h" />
     <ClInclude Include="Source\Rendering\Shader\EngineVertexShader.h" />
-    <ClInclude Include="Source\Rendering\TextureLoader.h" />
     <ClInclude Include="Source\ThirdParty\assimp\include\assimp\aabb.h" />
     <ClInclude Include="Source\ThirdParty\assimp\include\assimp\ai_assert.h" />
     <ClInclude Include="Source\ThirdParty\assimp\include\assimp\anim.h" />
@@ -260,7 +259,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Source\WorldPartition\DebugHelpers.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Source\ThirdParty\assimp\bin\Debug\assimp-vc143-mtd.dll">

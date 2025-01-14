@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine/Classes/Components/ActorComponent.h"
-#include "Core/Math/EngineMath.h"
+#include "Core/Public/Math/EngineMath.h"
 
 class AActor;
 

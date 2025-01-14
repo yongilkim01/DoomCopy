@@ -1,7 +1,7 @@
 #include "pch.h"
-#include "FileHelper.h"
-#include "WorldPartition/DebugHelpers.h"
-#include "Core/Serialization/Archive.h"
+#include "Core/Public/Misc/FileHelper.h"
+#include "Core/Public/Debugging/DebugMacros.h"
+#include "Core/Public/Serialization/Archive.h"
 
 FFileHelper::FFileHelper()
 {

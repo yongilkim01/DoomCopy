@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 
-#include "Core/Math/EngineMath.h"
+#include "Core/Public/Math/EngineMath.h"
 
 class IArchiveObject;
 

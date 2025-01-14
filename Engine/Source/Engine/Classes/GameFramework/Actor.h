@@ -1,6 +1,6 @@
 #pragma once
-#include "Core/Object/Object.h"
-#include "WorldPartition/DebugHelpers.h"
+#include "Engine/Classes/Engine/Object.h"
+#include "Core/Public/Debugging/DebugMacros.h"
 #include "EngineDefine.h"
 #include "Engine/Classes/Components/SceneComponent.h"
 

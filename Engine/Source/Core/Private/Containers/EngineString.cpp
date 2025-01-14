@@ -1,6 +1,6 @@
 #include "pch.h"
-#include "EngineString.h"
-#include "WorldPartition/DebugHelpers.h"
+#include "Core/Public/Containers/EngineString.h"
+#include "Core/Public/Debugging/DebugMacros.h"
 
 UEngineString::UEngineString()
 {

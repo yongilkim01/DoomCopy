@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "EngineShaderResource.h"
 #include "Engine/Classes/Engine/Texture.h"
-#include "WorldPartition/DebugHelpers.h"
+#include "Core/Public/Debugging/DebugMacros.h"
 
 UEngineShaderResource::UEngineShaderResource()
 {

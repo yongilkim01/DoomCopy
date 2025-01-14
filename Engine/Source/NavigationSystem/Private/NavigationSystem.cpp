@@ -1,14 +1,11 @@
 #include "pch.h"
 #include "NavigationSystem/Public/NavigationSystem.h"
 
-#include <Core/Misc/DirectoryHelper.h>
-#include <Core/Misc/FileHelper.h>
+#include <Core/Public/Misc/DirectoryHelper.h>
+#include <Core/Public/Misc/FileHelper.h>
 
 #include <Engine/Classes/GameFramework/Actor.h>
 #include <Rendering/Buffer/EngineVertex.h>
-
-#include "Rendering/TextureLoader.h"
-#include "Rendering/AiMesh.h"
 
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h> 

@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "DebugHelpers.h"
+#include "Core/Public/Debugging/DebugMacros.h"
 
 
 namespace UEngineDebug

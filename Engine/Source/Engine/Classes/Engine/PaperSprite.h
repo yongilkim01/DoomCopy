@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine/Classes/Engine/EngineResource.h"
-#include "Core/Math/EngineMath.h"
-#include "Core/Misc/DirectoryHelper.h"
+#include "Core/Public/Math/EngineMath.h"
+#include "Core/Public/Misc/DirectoryHelper.h"
 #include "EngineDefine.h"
 
 class UTexture;

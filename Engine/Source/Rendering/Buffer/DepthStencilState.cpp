@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "DepthStencilState.h"
 
-#include "Core/EngineCore.h"
+#include "Engine/Classes/Engine/GameEngine.h"
 
 UDepthStencilState::UDepthStencilState()
 {

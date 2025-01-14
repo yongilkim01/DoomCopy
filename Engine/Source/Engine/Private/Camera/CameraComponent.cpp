@@ -5,7 +5,7 @@
 
 #include "Rendering/Public/RenderTarget/RenderTarget.h"
 
-#include "Core/EngineCore.h"
+#include "Engine/Classes/Engine/GameEngine.h"
 
 UCameraComponent::UCameraComponent()
 {

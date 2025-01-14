@@ -5,9 +5,8 @@
 #include "Engine/Classes/Engine/Texture.h"
 
 #include "Engine/Public//Materials/Material.h"
-#include "Core/Misc/DirectoryHelper.h"
+#include "Core/Public/Misc/DirectoryHelper.h"
 
-#include "Rendering/TextureLoader.h"
 #include "Rendering/Buffer/EngineVertex.h"
 #include "Rendering/Buffer/VertexBuffer.h"
 #include "Rendering/Buffer/IndexBuffer.h"

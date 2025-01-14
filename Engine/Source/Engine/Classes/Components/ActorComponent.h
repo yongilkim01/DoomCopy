@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/Object/Object.h"
+#include "Engine/Classes/Engine/Object.h"
 
 class AActor;
 class ULevel;

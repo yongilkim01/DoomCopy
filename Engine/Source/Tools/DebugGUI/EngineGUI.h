@@ -3,7 +3,7 @@
 #include "ThirdParty/imgui/imgui_impl_dx11.h"
 #include "ThirdParty/imgui/imgui_impl_win32.h"
 
-#include "Core/Containers/EngineString.h"
+#include "Core/Public/Containers/EngineString.h"
 
 class UEngineGUIWindow;
 

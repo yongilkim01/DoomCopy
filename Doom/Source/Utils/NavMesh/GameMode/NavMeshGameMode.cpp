@@ -1,9 +1,9 @@
 #include "pch.h"
 #include "NavMeshGameMode.h"
 
-#include <Core/Misc/FileHelper.h>
-#include <Core/Misc/DirectoryHelper.h>
-#include <Core/Serialization/Archive.h>
+#include <Core/Public/Misc/FileHelper.h>
+#include <Core/Public/Misc/DirectoryHelper.h>
+#include <Core/Public/Serialization/Archive.h>
 
 #include <Engine/Classes/Camera/CameraActor.h>
 #include <Engine/Classes/Camera/CameraComponent.h>

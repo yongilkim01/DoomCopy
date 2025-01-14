@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "EngineMath.h"
+#include "Core/Public/Math/EngineMath.h"
 
 const FIntPoint FIntPoint::LEFT = { -1, 0 };
 const FIntPoint FIntPoint::RIGHT = { 1, 0 };

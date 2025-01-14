@@ -1,6 +1,6 @@
 #pragma once
 #include "Rendering/Buffer/EngineConstantBuffer.h"
-#include "Core/Object/Object.h"
+#include "Engine/Classes/Engine/Object.h"
 #include "EngineEnums.h"
 #include "Engine/Classes/Engine/Texture.h"
 #include "Rendering/Sampler/EngineSampler.h"

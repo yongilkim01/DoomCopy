@@ -1,5 +1,5 @@
 #pragma once
-#include <WorldPartition/DebugHelpers.h>
+#include <Core/Public/Debugging/DebugMacros.h>
 
 #include <vector>
 #include <functional>

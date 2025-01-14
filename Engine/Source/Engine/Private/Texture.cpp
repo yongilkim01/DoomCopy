@@ -3,8 +3,8 @@
 
 #include "Rendering/Public/RenderTarget/RenderTarget.h"
 
-#include "Core/Misc/Paths.h"
-#include "Core/Misc/FileHelper.h"
+#include "Core/Public/Misc/Paths.h"
+#include "Core/Public/Misc/FileHelper.h"
 
 #ifdef _DEBUG
 	#pragma comment(lib, "DirectXTex_Debug.lib")

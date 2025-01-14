@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "TitleLogo.h"
 
-#include <Core/Math/EngineMath.h>
+#include <Core/Public/Math/EngineMath.h>
 #include <Engine/Classes/Components/PaperSpriteComponent.h>
 #include <Engine/Classes/Components/SceneComponent.h>
 #include <Input/EngineInput.h>

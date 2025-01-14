@@ -1,10 +1,9 @@
 #include "pch.h"
-#include "DirectoryHelper.h"
-#include "FileHelper.h"
+#include "Core/Public/Misc/DirectoryHelper.h"
+#include "Core/Public/Misc/FileHelper.h"
 
-#include "WorldPartition/DebugHelpers.h"
-#include "Core/Misc/FileHelper.h"
-#include "Core/Containers/EngineString.h"
+#include "Core/Public/Debugging/DebugMacros.h"
+#include "Core/Public/Containers/EngineString.h"
 
 FDirectoryHelper::FDirectoryHelper()
 	: FPaths()

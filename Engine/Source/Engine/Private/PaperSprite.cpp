@@ -2,9 +2,9 @@
 #include "Engine/Classes/Engine/PaperSprite.h"
 
 #include "Engine/Classes/Engine/Texture.h"
-#include "WorldPartition/DebugHelpers.h"
-#include "Core/Misc/Paths.h"
-#include "Core/Misc/FileHelper.h"
+#include "Core/Public/Debugging/DebugMacros.h"
+#include "Core/Public/Misc/Paths.h"
+#include "Core/Public/Misc/FileHelper.h"
 
 
 UPaperSprite::UPaperSprite()

@@ -8,7 +8,7 @@
 #include <functional>
 
 // user header
-#include "Core/Math/EngineMath.h"
+#include "Core/Public/Math/EngineMath.h"
 
 
 /** 

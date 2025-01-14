@@ -1,6 +1,6 @@
 #include "pch.h"
-#include "Paths.h"
-#include "WorldPartition/DebugHelpers.h"
+#include "Core/Public/Misc/Paths.h"
+#include "Core/Public/Debugging/DebugMacros.h"
 
 FPaths::FPaths()
 	: Path(std::filesystem::current_path())

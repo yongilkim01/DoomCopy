@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "EngineGUI.h"
 
-#include "Core/EngineCore.h"
+#include "Engine/Classes/Engine/GameEngine.h"
 #include "Platform/Window.h"
 #include "Tools/DebugGUI/EngineGUIWindow.h"
 

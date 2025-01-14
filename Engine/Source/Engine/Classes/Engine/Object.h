@@ -3,7 +3,7 @@
 #include <memory>
 
 #include "EngineDefine.h"
-#include "Core/Serialization/Archive.h"
+#include "Core/Public/Serialization/Archive.h"
 
 /**
  *	엔진 최상위 오브젝트 클래스 

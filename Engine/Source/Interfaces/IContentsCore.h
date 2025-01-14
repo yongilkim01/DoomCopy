@@ -1,6 +1,6 @@
 #pragma once
-#include <Core/Math/EngineMath.h>
-#include <WorldPartition/DebugHelpers.h>
+#include <Core/Public/Math/EngineMath.h>
+#include <Core/Public/Debugging/DebugMacros.h>
 
 class ULevel;
 

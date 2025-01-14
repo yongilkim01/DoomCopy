@@ -1,5 +1,5 @@
-#include <Core/Math/EngineMath.h>
-#include <Core/EngineCore.h>
+#include <Core/Public/Math/EngineMath.h>
+#include <Engine/Classes/Engine/GameEngine.h>
 
 #pragma comment(lib, "Engine.lib")
 

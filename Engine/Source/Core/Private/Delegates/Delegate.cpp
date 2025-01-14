@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "Delegate.h"
+#include "Core/Public/Delegates/Delegate.h"
 
 UDelegate::UDelegate()
 {

@@ -10,10 +10,10 @@
 #include "Rendering/Buffer/EngineVertex.h"
 #include "Rendering/EngineBlend.h"
 
-#include "Core/Misc/DirectoryHelper.h"
-#include "Core/Misc/FileHelper.h"
-#include "Core/Containers/EngineString.h"
-#include "Core/EngineCore.h"
+#include "Core/Public/Misc/DirectoryHelper.h"
+#include "Core/Public/Misc/FileHelper.h"
+#include "Core/Public/Containers/EngineString.h"
+#include "Engine/Classes/Engine/GameEngine.h"
 
 UPrimitiveComponent::UPrimitiveComponent()
 {

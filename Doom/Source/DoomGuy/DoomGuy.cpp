@@ -7,7 +7,7 @@
 #include <Engine/Classes/Camera/CameraActor.h>
 #include <Engine/Classes/Camera/CameraComponent.h>
 
-#include <Core/Misc/DirectoryHelper.h>
+#include <Core/Public/Misc/DirectoryHelper.h>
 
 #include <Input/EngineInput.h>
 

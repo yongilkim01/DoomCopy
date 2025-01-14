@@ -1,7 +1,7 @@
 #pragma once
-#include "Core/Object/Object.h"
-#include "Core/Misc/Paths.h"
-#include "Core/Containers/EngineString.h"
+#include "Engine/Classes/Engine/Object.h"
+#include "Core/Public/Misc/Paths.h"
+#include "Core/Public/Containers/EngineString.h"
 
 enum class ERenderAssetType
 {

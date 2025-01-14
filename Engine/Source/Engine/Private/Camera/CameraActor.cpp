@@ -2,7 +2,7 @@
 #include "Engine/Classes/Camera/CameraActor.h"
 
 #include "Engine/Classes/Camera/CameraComponent.h"
-#include "Core/EngineCore.h"
+#include "Engine/Classes/Engine/GameEngine.h"
 #include "Platform/Window.h"
 #include "Input/EngineInput.h"
 

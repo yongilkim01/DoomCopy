@@ -3,7 +3,7 @@
 
 #include <Engine/Classes/Components/StaticMeshComponent.h>
 #include <Engine/Classes/Components/ShapeComponent.h>
-#include <Core/Misc/DirectoryHelper.h>
+#include <Core/Public/Misc/DirectoryHelper.h>
 
 AE1M1Map::AE1M1Map()
 {

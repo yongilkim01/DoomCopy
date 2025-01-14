@@ -2,7 +2,7 @@
 #include <map>
 #include <list>
 
-#include "Core/Math/EngineMath.h"
+#include "Core/Public/Math/EngineMath.h"
 #include "Engine/Classes/Components/SceneComponent.h"
 #include "EngineEnums.h"
 

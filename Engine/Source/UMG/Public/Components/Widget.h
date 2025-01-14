@@ -1,5 +1,5 @@
 #pragma once
-#include "Core/Object/Object.h"
+#include "Engine/Classes/Engine/Object.h"
 #include "Engine/Classes/Engine/RenderAsset.h"
 
 class AHUD;

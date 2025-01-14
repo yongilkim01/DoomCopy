@@ -9,8 +9,8 @@
 #include "Rendering/Buffer/DepthStencilState.h"
 #include "Rendering/Public/RenderTarget/RenderTarget.h"
 
-#include "Core/Misc/DirectoryHelper.h"
-#include "Core/Misc/FileHelper.h"
+#include "Core/Public/Misc/DirectoryHelper.h"
+#include "Core/Public/Misc/FileHelper.h"
 
 #include "Engine/Public/Materials/Material.h"
 #include "Engine/Classes/Engine/StaticMesh.h"
