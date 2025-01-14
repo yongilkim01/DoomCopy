@@ -16,9 +16,6 @@
     <Filter Include="6_Input">
       <UniqueIdentifier>{f0e2fa6b-2c08-44c8-b97d-9f00460c5c17}</UniqueIdentifier>
     </Filter>
-    <Filter Include="9_Interfaces">
-      <UniqueIdentifier>{3c0269e8-4b02-4a43-bfec-5e81433fdaca}</UniqueIdentifier>
-    </Filter>
     <Filter Include="10_ThirdParty">
       <UniqueIdentifier>{e879a830-1b4f-444e-92af-3dd0388a12a8}</UniqueIdentifier>
     </Filter>
@@ -204,6 +201,9 @@
     </Filter>
     <Filter Include="1_Core\1_Private\Debugging">
       <UniqueIdentifier>{17ab975b-60d0-4f21-89a8-86ce16c2867c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Engine\0_Classes\Interfaces">
+      <UniqueIdentifier>{76da757a-bedb-4bcf-b260-278b1290b31f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -410,9 +410,6 @@
     <ClInclude Include="Source\EngineDefine.h" />
     <ClInclude Include="Source\Platform\Window.h">
       <Filter>5_Platform</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Interfaces\IContentsCore.h">
-      <Filter>9_Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.h">
       <Filter>10_ThirdParty\DirectXTex\Include</Filter>
@@ -853,6 +850,9 @@
     </ClInclude>
     <ClInclude Include="Source\Core\Public\Debugging\DebugMacros.h">
       <Filter>1_Core\0_Public\Debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Classes\Interfaces\IContentsCore.h">
+      <Filter>1_Engine\0_Classes\Interfaces</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

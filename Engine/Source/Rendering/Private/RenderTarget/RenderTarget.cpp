@@ -85,10 +85,10 @@ void URenderTarget::Clear()
 {
 	for (size_t i = 0; i < RenderTargetViewVector.size(); i++)
 	{
-		UEngineCore::GetDevice().GetDeviceContext()->ClearRenderTargetView(
+		UGameEngine::GetDevice().GetDeviceContext()->ClearRenderTargetView(
 			RenderTargetViewVector[i], ClearColor.Arr1D);
 	}
-	UEngineCore::GetDevice().GetDeviceContext()->ClearDepthStencilView(
+	UGameEngine::GetDevice().GetDeviceContext()->ClearDepthStencilView(
 		DepthStencilTexture->GetDepthStencilView(), 
 		D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL,
 		1.0f, 0);
@@ -96,7 +96,7 @@ void URenderTarget::Clear()
 
 void URenderTarget::Setting()
 {
-	UEngineCore::GetDevice().GetDeviceContext()->OMSetRenderTargets(1, &RenderTargetViewVector[0], DepthStencilTexture->GetDepthStencilView());
+	UGameEngine::GetDevice().GetDeviceContext()->OMSetRenderTargets(1, &RenderTargetViewVector[0], DepthStencilTexture->GetDepthStencilView());
 }
 
 void URenderTarget::CopyRenderTarget(std::shared_ptr<URenderTarget> CopyToRenderTarget)

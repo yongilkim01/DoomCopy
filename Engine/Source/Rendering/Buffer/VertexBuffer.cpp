@@ -36,7 +36,7 @@ void FVertexBuffer::Update()
 	UINT Offset = 0;
 	ID3D11Buffer* ArrBuffer[1];
 	ArrBuffer[0] = Buffer.Get();
-	UEngineCore::GetDevice().GetDeviceContext()->IASetVertexBuffers(0, 1, ArrBuffer, &VertexSize, &Offset);
+	UGameEngine::GetDevice().GetDeviceContext()->IASetVertexBuffers(0, 1, ArrBuffer, &VertexSize, &Offset);
 }
 
 void FVertexBuffer::AssetCreate(const void* InitData, size_t InVertexSize, size_t InVertexCount)
@@ -53,7 +53,7 @@ void FVertexBuffer::AssetCreate(const void* InitData, size_t InVertexSize, size_
 
 	Data.pSysMem = InitData;
 
-	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&BufferInfo, &Data, &Buffer))
+	if (S_OK != UGameEngine::GetDevice().GetDevice()->CreateBuffer(&BufferInfo, &Data, &Buffer))
 	{
 		MSGASSERT("버텍스 버퍼 생성에 실패했습니다.");
 		return;

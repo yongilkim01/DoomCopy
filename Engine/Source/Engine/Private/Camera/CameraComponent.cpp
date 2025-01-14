@@ -18,18 +18,18 @@ UCameraComponent::~UCameraComponent()
 
 void UCameraComponent::BeginPlay()
 {
-	FVector ScreenScale = UEngineCore::GetSceenScale();
+	FVector ScreenScale = UGameEngine::GetSceenScale();
 	ProjectionScale = ScreenScale;
 
-	ViewPortInfo.Width = UEngineCore::GetSceenScale().X;
-	ViewPortInfo.Height = UEngineCore::GetSceenScale().Y;
+	ViewPortInfo.Width = UGameEngine::GetSceenScale().X;
+	ViewPortInfo.Height = UGameEngine::GetSceenScale().Y;
 	ViewPortInfo.TopLeftX = 0.0f;
 	ViewPortInfo.TopLeftY = 0.0f;
 	ViewPortInfo.MinDepth = 0.0f;
 	ViewPortInfo.MaxDepth = 1.0f;
 
 	CameraRenderTarget = std::make_shared<URenderTarget>();
-	CameraRenderTarget->CreateTarget(UEngineCore::GetSceenScale());
+	CameraRenderTarget->CreateTarget(UGameEngine::GetSceenScale());
 	CameraRenderTarget->CreateDepthStencil();
 }
 
@@ -41,7 +41,7 @@ void UCameraComponent::Tick(float DeltaTime)
 
 void UCameraComponent::Render(float DeltaTime)
 {
-	UEngineCore::GetDevice().GetDeviceContext()->RSSetViewports(1, &ViewPortInfo);
+	UGameEngine::GetDevice().GetDeviceContext()->RSSetViewports(1, &ViewPortInfo);
 
 	CameraRenderTarget->Clear();
 	CameraRenderTarget->Setting();

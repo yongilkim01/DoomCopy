@@ -132,13 +132,13 @@
     <ClInclude Include="Source\Engine\Classes\GameFramework\GameMode.h" />
     <ClInclude Include="Source\Engine\Classes\GameFramework\HUD.h" />
     <ClInclude Include="Source\Engine\Classes\GameFramework\Pawn.h" />
+    <ClInclude Include="Source\Engine\Classes\Interfaces\IContentsCore.h" />
     <ClInclude Include="Source\Engine\Public\Materials\Material.h" />
     <ClInclude Include="Source\Engine\Public\TimerManager.h" />
     <ClInclude Include="Source\Input\EngineInput.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Source\Interfaces\IContentsCore.h" />
     <ClInclude Include="Source\NavigationSystem\Public\NavigationSystem.h" />
     <ClInclude Include="Source\pch.h" />
     <ClInclude Include="Source\Platform\Window.h" />

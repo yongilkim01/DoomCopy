@@ -27,7 +27,7 @@ void ACameraActor::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
 
-	ScreenPos = UEngineCore::GetMainWindow().GetMousePos();
+	ScreenPos = UGameEngine::GetMainWindow().GetMousePos();
 	FVector ScreenDir = PrevScreenPos - ScreenPos;
 	ScreenDir.Normalize();
 	PrevScreenPos = ScreenPos;
@@ -89,9 +89,9 @@ void ACameraActor::Tick(float DeltaTime)
 
 FVector ACameraActor::ScreenMouseLocationToWorldLocation()
 {
-	FVector Size = UEngineCore::GetMainWindow().GetWindowSize();
+	FVector Size = UGameEngine::GetMainWindow().GetWindowSize();
 
-	FVector MousePos = UEngineCore::GetMainWindow().GetMousePos();
+	FVector MousePos = UGameEngine::GetMainWindow().GetMousePos();
 
 	float4x4 Mat;
 

@@ -30,12 +30,12 @@ std::shared_ptr<UDepthStencilState> UDepthStencilState::Create(std::string_view 
 
 void UDepthStencilState::Update()
 {
-	UEngineCore::GetDevice().GetDeviceContext()->OMSetDepthStencilState(State.Get(), 0);
+	UGameEngine::GetDevice().GetDeviceContext()->OMSetDepthStencilState(State.Get(), 0);
 }
 
 void UDepthStencilState::CreateAsset(const D3D11_DEPTH_STENCIL_DESC& Desc)
 {
-	if (UEngineCore::GetDevice().GetDevice()->CreateDepthStencilState(&Desc, &State))
+	if (UGameEngine::GetDevice().GetDevice()->CreateDepthStencilState(&Desc, &State))
 	{
 		MSGASSERT("깊이 버퍼 생성에 실패했습니다");
 		return;

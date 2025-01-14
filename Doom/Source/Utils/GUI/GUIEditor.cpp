@@ -15,13 +15,13 @@ UGUIEditor::~UGUIEditor()
 
 void UGUIEditor::OnGUI()
 {
-	std::map<std::string, std::shared_ptr<ULevel>> LevelMap = UEngineCore::GetAllLevelMap();
+	std::map<std::string, std::shared_ptr<ULevel>> LevelMap = UGameEngine::GetAllLevelMap();
 
 	for (std::pair<const std::string, std::shared_ptr<ULevel>>& Pair : LevelMap)
 	{
 		if (ImGui::Button(Pair.first.c_str()))
 		{
-			UEngineCore::OpenLevel(Pair.first);
+			UGameEngine::OpenLevel(Pair.first);
 		}
 	}
 }

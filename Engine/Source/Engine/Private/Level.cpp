@@ -21,7 +21,7 @@ ULevel::ULevel()
 	SpawnCamera(EEngineCameraType::UICamera);
 
 	FinalRenderTarget = std::make_shared<URenderTarget>();
-	FinalRenderTarget->CreateTarget(UEngineCore::GetSceenScale());
+	FinalRenderTarget->CreateTarget(UGameEngine::GetSceenScale());
 	FinalRenderTarget->CreateDepthStencil();
 }
 
@@ -103,7 +103,7 @@ void ULevel::Tick(float DeltaTime)
 
 void ULevel::Render(float DeltaTime)
 {
-	UEngineCore::GetDevice().RenderStart();
+	UGameEngine::GetDevice().RenderStart();
 
 	FinalRenderTarget->Clear();
 
@@ -119,7 +119,7 @@ void ULevel::Render(float DeltaTime)
 		Camera.second->GetCameraComponent()->CameraRenderTarget->MergeRenderTarget(FinalRenderTarget);
 	}
 
-	std::shared_ptr<URenderTarget> BackBufferRenderTarget = UEngineCore::GetDevice().GetBackBufferRenderTarget();
+	std::shared_ptr<URenderTarget> BackBufferRenderTarget = UGameEngine::GetDevice().GetBackBufferRenderTarget();
 	FinalRenderTarget->MergeRenderTarget(BackBufferRenderTarget);
 
 	{
@@ -145,7 +145,7 @@ void ULevel::Render(float DeltaTime)
 		UEngineGUI::GUIRender(this);
 	}
 
-	UEngineCore::GetDevice().RenderEnd();
+	UGameEngine::GetDevice().RenderEnd();
 }
 
 void ULevel::Collision(float DeltaTime)

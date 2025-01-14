@@ -28,10 +28,10 @@ void UTexture::Update(EShaderType ShaderType, UINT BindIndex)
 	switch (ShaderType)
 	{
 	case EShaderType::VS:
-		UEngineCore::GetDevice().GetDeviceContext()->VSSetShaderResources(BindIndex, 1, ArrPtr);
+		UGameEngine::GetDevice().GetDeviceContext()->VSSetShaderResources(BindIndex, 1, ArrPtr);
 		break;
 	case EShaderType::PS:
-		UEngineCore::GetDevice().GetDeviceContext()->PSSetShaderResources(BindIndex, 1, ArrPtr);
+		UGameEngine::GetDevice().GetDeviceContext()->PSSetShaderResources(BindIndex, 1, ArrPtr);
 		break;
 	case EShaderType::HS:
 	case EShaderType::DS:
@@ -47,7 +47,7 @@ void UTexture::CreateAsset(const D3D11_TEXTURE2D_DESC& InitTextureDesc)
 {
 	TextureDesc = InitTextureDesc;
 
-	UEngineCore::GetDevice().GetDevice()->CreateTexture2D(&TextureDesc, nullptr, &Texture2D);
+	UGameEngine::GetDevice().GetDevice()->CreateTexture2D(&TextureDesc, nullptr, &Texture2D);
 
 	if (nullptr == Texture2D)
 	{
@@ -84,7 +84,7 @@ void UTexture::CreateAsset(Microsoft::WRL::ComPtr<ID3D11Texture2D> InTexture2D)
 
 void UTexture::CreateRenderTargetView()
 {
-	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateRenderTargetView(Texture2D.Get(), nullptr, &RenderTargetView))
+	if (S_OK != UGameEngine::GetDevice().GetDevice()->CreateRenderTargetView(Texture2D.Get(), nullptr, &RenderTargetView))
 	{
 		MSGASSERT("텍스처 수정권한 획득에 실패했습니다");
 		return;
@@ -93,7 +93,7 @@ void UTexture::CreateRenderTargetView()
 
 void UTexture::CreateShaderResourceView()
 {
-	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateShaderResourceView(Texture2D.Get(), nullptr, &ShaderResourceView))
+	if (S_OK != UGameEngine::GetDevice().GetDevice()->CreateShaderResourceView(Texture2D.Get(), nullptr, &ShaderResourceView))
 	{
 		MSGASSERT("셰이더 리소스 뷰 생성에 실패했습니다");
 		return;
@@ -102,7 +102,7 @@ void UTexture::CreateShaderResourceView()
 
 void UTexture::CreateDepthStencilView()
 {
-	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateDepthStencilView(Texture2D.Get(), nullptr, &DepthStencilView))
+	if (S_OK != UGameEngine::GetDevice().GetDevice()->CreateDepthStencilView(Texture2D.Get(), nullptr, &DepthStencilView))
 	{
 		MSGASSERT("깊이 버퍼 생성에 실패했습니다");
 	}
@@ -171,7 +171,7 @@ void UTexture::AssetLoad()
 
 	// 쉐이더 리소스 뷰 생성
 	if (S_OK != DirectX::CreateShaderResourceView(
-		UEngineCore::GetDevice().GetDevice(),	// 디바이스 객체
+		UGameEngine::GetDevice().GetDevice(),	// 디바이스 객체
 		ImageData.GetImages(),				// 이미지 데이터 배열
 		ImageData.GetImageCount(),			// 이미지 개수
 		ImageData.GetMetadata(),			// 이미지 메타데이터

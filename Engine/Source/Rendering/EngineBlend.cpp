@@ -25,12 +25,12 @@ std::shared_ptr<UEngineBlend> UEngineBlend::Create(std::string_view Name, const 
 
 void UEngineBlend::Update()
 {
-	UEngineCore::GetDevice().GetDeviceContext()->OMSetBlendState(State.Get(), BlendFactor.Arr1D, Mask);
+	UGameEngine::GetDevice().GetDeviceContext()->OMSetBlendState(State.Get(), BlendFactor.Arr1D, Mask);
 }
 
 void UEngineBlend::AssetCreate(const D3D11_BLEND_DESC& BlendDesc)
 {
-	if (UEngineCore::GetDevice().GetDevice()->CreateBlendState(&BlendDesc, &State))
+	if (UGameEngine::GetDevice().GetDevice()->CreateBlendState(&BlendDesc, &State))
 	{
 		MSGASSERT("블랜드 스테이트 생성에 실패했습니다");
 		return;

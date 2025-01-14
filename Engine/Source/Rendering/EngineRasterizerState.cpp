@@ -28,13 +28,13 @@ std::shared_ptr<UEngineRasterizerState> UEngineRasterizerState::Create(std::stri
 
 void UEngineRasterizerState::Update()
 {
-	UEngineCore::GetDevice().GetDeviceContext()->RSSetState(State.Get());
+	UGameEngine::GetDevice().GetDeviceContext()->RSSetState(State.Get());
 
 }
 
 void UEngineRasterizerState::AssetCreate(const D3D11_RASTERIZER_DESC& _Value)
 {
-	if (UEngineCore::GetDevice().GetDevice()->CreateRasterizerState(&_Value, &State))
+	if (UGameEngine::GetDevice().GetDevice()->CreateRasterizerState(&_Value, &State))
 	{
 		MSGASSERT("블랜드 스테이트 생성에 실패했습니다");
 		return;

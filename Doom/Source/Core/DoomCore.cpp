@@ -88,10 +88,10 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 		UPaperSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
 
-	//UEngineCore::CreateLevel<ATitleGameMode, AActor, AHUD>("TitleLevel");
-	UEngineCore::CreateLevel<AE1M1GameMode, APawn, AHUD>("E1M1Level");
-	UEngineCore::CreateLevel<ANavMeshGameMode, APawn, AHUD>("NavMeshLevel");
-	UEngineCore::OpenLevel("NavMeshLevel");
+	//UGameEngine::CreateLevel<ATitleGameMode, AActor, AHUD>("TitleLevel");
+	UGameEngine::CreateLevel<AE1M1GameMode, APawn, AHUD>("E1M1Level");
+	UGameEngine::CreateLevel<ANavMeshGameMode, APawn, AHUD>("NavMeshLevel");
+	UGameEngine::OpenLevel("NavMeshLevel");
 
 	UEngineGUI::OffAllWindow();
 

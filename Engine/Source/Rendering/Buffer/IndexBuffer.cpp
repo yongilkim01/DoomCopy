@@ -31,7 +31,7 @@ std::shared_ptr<FIndexBuffer> FIndexBuffer::Create(std::string_view Name, const 
 void FIndexBuffer::Update()
 {
 	int Offset = 0;
-	UEngineCore::GetDevice().GetDeviceContext()->IASetIndexBuffer(Buffer.Get(), Format, Offset);
+	UGameEngine::GetDevice().GetDeviceContext()->IASetIndexBuffer(Buffer.Get(), Format, Offset);
 }
 
 void FIndexBuffer::AssetCreate(const void* InitData, size_t InIndexSize, size_t InIndexCount)
@@ -61,7 +61,7 @@ void FIndexBuffer::AssetCreate(const void* InitData, size_t InIndexSize, size_t 
 
 	Data.pSysMem = InitData;
 
-	if (S_OK != UEngineCore::GetDevice().GetDevice()->CreateBuffer(&BufferInfo, &Data, &Buffer))
+	if (S_OK != UGameEngine::GetDevice().GetDevice()->CreateBuffer(&BufferInfo, &Data, &Buffer))
 	{
 		MSGASSERT("인덱스 버퍼 생성에 실패했습니다.");
 		return;

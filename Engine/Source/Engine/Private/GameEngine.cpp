@@ -10,32 +10,32 @@
 #include "Tools/DebugGUI/EngineGUI.h"
 #include "Rendering/Buffer/EngineConstantBuffer.h"
 
-UEngineCore* GEngine = nullptr;
+UGameEngine* GEngine = nullptr;
 
-UEngineGraphicDevice& UEngineCore::GetDevice()
+UEngineGraphicDevice& UGameEngine::GetDevice()
 {
 	return GEngine->Device;
 }
 
-UEngineWindow& UEngineCore::GetMainWindow()
+UEngineWindow& UGameEngine::GetMainWindow()
 {
 	return GEngine->MainWindow;
 }
 
-UEngineCore::UEngineCore()
+UGameEngine::UGameEngine()
 {
 }
 
-UEngineCore::~UEngineCore()
+UGameEngine::~UGameEngine()
 {
 }
 
 
-void UEngineCore::EngineStart(HINSTANCE Instance, std::string_view DllName)
+void UGameEngine::EngineStart(HINSTANCE Instance, std::string_view DllName)
 {
     UEngineDebug::LeakCheck();
 
-	UEngineCore EngineCore;
+	UGameEngine EngineCore;
 
 	GEngine = &EngineCore;
 
@@ -69,13 +69,13 @@ void UEngineCore::EngineStart(HINSTANCE Instance, std::string_view DllName)
 		});
 }
 
-void UEngineCore::WindowInit(HINSTANCE Instance)
+void UGameEngine::WindowInit(HINSTANCE Instance)
 {
 	UEngineWindow::EngineWindowInit(Instance);
 	GEngine->MainWindow.Open("MainWindow");
 }
 
-void UEngineCore::LoadContents(std::string_view DllName)
+void UGameEngine::LoadContents(std::string_view DllName)
 {
 	FDirectoryHelper DirectoryHelper;
 
@@ -119,7 +119,7 @@ void UEngineCore::LoadContents(std::string_view DllName)
 	}
 }
 
-void UEngineCore::EngineFrame()
+void UGameEngine::EngineFrame()
 {
 	if (nullptr != GEngine->NextLevel)
 	{
@@ -153,7 +153,7 @@ void UEngineCore::EngineFrame()
 	GEngine->CurLevel->Release(DeltaTime);
 }
 
-void UEngineCore::EngineEnd()
+void UGameEngine::EngineEnd()
 {
 	UEngineGUI::Release();
 
@@ -169,14 +169,14 @@ void UEngineCore::EngineEnd()
 	UEngineDebug::EndConsole();
 }
 
-FVector UEngineCore::GetSceenScale()
+FVector UGameEngine::GetSceenScale()
 {
 	return GEngine->InitData.WindowSize;
 }
 
 
 // 새로운 레벨을 생성하는 메소드 구현부
-std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string_view Name)
+std::shared_ptr<ULevel> UGameEngine::NewLevelCreate(std::string_view Name)
 {
 	if (true == GEngine->LevelMap.contains(Name.data()))
 	{
@@ -194,7 +194,7 @@ std::shared_ptr<ULevel> UEngineCore::NewLevelCreate(std::string_view Name)
 	return Ptr;
 }
 
-void UEngineCore::OpenLevel(std::string_view LevelName)
+void UGameEngine::OpenLevel(std::string_view LevelName)
 {
 	std::string UpperLevelName = UEngineString::ToUpper(LevelName);
 
@@ -207,7 +207,7 @@ void UEngineCore::OpenLevel(std::string_view LevelName)
 	GEngine->NextLevel = GEngine->LevelMap[UpperLevelName];
 }
 
-std::map<std::string, std::shared_ptr<ULevel>> UEngineCore::GetAllLevelMap()
+std::map<std::string, std::shared_ptr<ULevel>> UGameEngine::GetAllLevelMap()
 {
 	return GEngine->LevelMap;
 }

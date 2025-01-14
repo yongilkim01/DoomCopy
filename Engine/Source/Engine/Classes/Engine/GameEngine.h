@@ -2,7 +2,7 @@
 #include "EngineDefine.h"
 #include "Platform/Window.h"
 #include "Rendering/EngineGraphicDevice.h"
-#include "Interfaces/IContentsCore.h"
+#include "Engine/Classes/Interfaces/IContentsCore.h"
 #include "Engine/Classes/Engine/Level.h"
 #include "Core/Public/Time/Timer.h"
 #include "Core/Public/Containers/EngineString.h"
@@ -11,7 +11,7 @@
 /**
  *	엔진 코어 클래스
  */
-class UEngineCore
+class UGameEngine
 {
 public:
 	/**
@@ -91,8 +91,8 @@ private:
 	std::shared_ptr<ULevel> CurLevel;
 	std::shared_ptr<ULevel> NextLevel;
 
-	ENGINE_API UEngineCore();
-	ENGINE_API virtual ~UEngineCore();
+	ENGINE_API UGameEngine();
+	ENGINE_API virtual ~UGameEngine();
 };
 
-ENGINE_API extern class UEngineCore* GEngine;
+ENGINE_API extern class UGameEngine* GEngine;

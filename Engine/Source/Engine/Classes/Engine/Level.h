@@ -8,7 +8,7 @@ class UShapeComponent;
 class UPrimitiveComponent;
 class AActor;
 class ACameraActor;
-class UEngineCore;
+class UGameEngine;
 class AGameMode;
 class APawn;
 class URenderTarget;
@@ -21,7 +21,7 @@ class UWidget;
 class ULevel : public UObject
 {
 	friend UShapeComponent;
-	friend UEngineCore;
+	friend UGameEngine;
 
 public:
 	/** 持失切, 社瑚切 */
