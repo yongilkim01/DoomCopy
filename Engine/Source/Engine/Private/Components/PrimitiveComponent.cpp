@@ -71,7 +71,7 @@ void UPrimitiveComponent::SetMesh(std::string_view Name, UINT Index)
 	RenderUnit.SetMesh(Name);
 }
 
-void UPrimitiveComponent::SetMaterial(std::string_view Name, UINT Index)
+void UPrimitiveComponent::SetMaterial(std::string_view Name, UINT Index/* = 0 */)
 {
 	URenderAsset& RenderUnit = GetRenderUnit(Index);
 	RenderUnit.SetMaterial(Name);

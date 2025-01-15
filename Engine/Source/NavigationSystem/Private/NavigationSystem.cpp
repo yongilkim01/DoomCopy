@@ -202,7 +202,7 @@ void UNavigationSystem::Tick(float DeltaTime)
 
 	if (DistancePlayerToMap != 0)
 	{
-		PlayerActor->SetActorLocation({ PlayerActor->GetActorLocation().X, NaviDataVector[CurrentPlayerNaviDataIndex].VertexDataVector[0].POSITION.Y, PlayerActor->GetActorLocation().Z});
+		PlayerActor->SetActorLocation({ PlayerActor->GetActorLocation().X, NaviDataVector[CurrentPlayerNaviDataIndex].VertexDataVector[0].POSITION.Y + 10.0f, PlayerActor->GetActorLocation().Z});
 	}
 	else
 	{
