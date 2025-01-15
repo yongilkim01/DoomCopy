@@ -61,6 +61,15 @@
     <Filter Include="2_Actor\1_E1M1\Enemy">
       <UniqueIdentifier>{2a23d47d-5da7-4305-942f-aa7f5aa8b937}</UniqueIdentifier>
     </Filter>
+    <Filter Include="5_UI">
+      <UniqueIdentifier>{37c308ae-67d9-47b7-8dc4-a1bfa738566f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_UI\0_Public">
+      <UniqueIdentifier>{4f956f14-8e35-4417-bc02-a888a82f5e60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_UI\1_Private">
+      <UniqueIdentifier>{0a184c84-ab12-451a-9897-34e3e779e088}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\DoomGuy\DoomGuy.cpp">
@@ -117,6 +126,9 @@
     <ClCompile Include="Source\Utils\NavMesh\GameMode\NavMeshGameMode.cpp">
       <Filter>4_Utils\NavMesh\GameMode</Filter>
     </ClCompile>
+    <ClCompile Include="Source\UI\Private\TitleHUD.cpp">
+      <Filter>5_UI\1_Private</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DoomGuy\DoomGuy.h">
@@ -172,6 +184,9 @@
     </ClInclude>
     <ClInclude Include="Source\Actor\E1M1\Enemy\EnemyCharacter.h">
       <Filter>2_Actor\1_E1M1\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI\Public\TitleHUD.h">
+      <Filter>5_UI\0_Public</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
