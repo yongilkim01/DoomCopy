@@ -402,6 +402,9 @@
     <ClCompile Include="Source\Core\Private\Debugging\DebugMacros.cpp">
       <Filter>1_Core\1_Private\Debugging</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Engine\Private\TransformObject.cpp">
+      <Filter>1_Engine\2_Private</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
@@ -850,6 +853,9 @@
     </ClInclude>
     <ClInclude Include="Source\Engine\Classes\Interfaces\IContentsCore.h">
       <Filter>1_Engine\0_Classes\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Classes\Engine\TransformObject.h">
+      <Filter>1_Engine\0_Classes\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

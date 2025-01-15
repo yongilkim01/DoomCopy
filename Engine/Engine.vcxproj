@@ -55,6 +55,7 @@
     <ClCompile Include="Source\Engine\Private\StaticMesh.cpp" />
     <ClCompile Include="Source\Engine\Private\Texture.cpp" />
     <ClCompile Include="Source\Engine\Private\TimerManager.cpp" />
+    <ClCompile Include="Source\Engine\Private\TransformObject.cpp" />
     <ClCompile Include="Source\Input\EngineInput.cpp">
       <SubType>
       </SubType>
@@ -127,6 +128,7 @@
     <ClInclude Include="Source\Engine\Classes\Engine\SkeletalMesh.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\StaticMesh.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\Texture.h" />
+    <ClInclude Include="Source\Engine\Classes\Engine\TransformObject.h" />
     <ClInclude Include="Source\Engine\Classes\GameFramework\Actor.h" />
     <ClInclude Include="Source\Engine\Classes\GameFramework\Character.h" />
     <ClInclude Include="Source\Engine\Classes\GameFramework\GameMode.h" />

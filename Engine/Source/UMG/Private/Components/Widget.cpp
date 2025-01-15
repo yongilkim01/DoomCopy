@@ -22,8 +22,3 @@ ULevel* UWidget::GetWorld()
 {
     return nullptr;
 }
-
-void UWidget::TransformUpdate()
-{
-
-}
