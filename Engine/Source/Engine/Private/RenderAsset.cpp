@@ -171,7 +171,7 @@ void URenderAsset::MaterialResourceCheck()
 				continue;
 			}
 
-			FTransform& Ref = ParentPrimitiveComponent->GetComponentTransformRef();
+			FTransform& Ref = TransformObject->GetComponentTransformRef();
 			ShaderResourceMap[i].ConstantBufferLinkData("FTransform", Ref);
 		}
 

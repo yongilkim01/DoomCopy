@@ -1184,29 +1184,29 @@ public:
 	ENGINE_API static bool Collision(ECollisionType _LeftType, const FTransform& _Left, ECollisionType _RightType, const FTransform& _Right);
 
 	// 완전히 같은 형의 함수죠?
-	static bool PointToCirCle(const FTransform& _Left, const FTransform& _Right);
-	static bool PointToRect(const FTransform& _Left, const FTransform& _Right);
+	ENGINE_API static bool PointToCirCle(const FTransform& _Left, const FTransform& _Right);
+	ENGINE_API static bool PointToRect(const FTransform& _Left, const FTransform& _Right);
 
-	static bool RectToRect(const FTransform& _Left, const FTransform& _Right);
-	static bool RectToCirCle(const FTransform& _Left, const FTransform& _Right);
+	ENGINE_API static bool RectToRect(const FTransform& _Left, const FTransform& _Right);
+	ENGINE_API static bool RectToCirCle(const FTransform& _Left, const FTransform& _Right);
+ 
+	ENGINE_API static bool CirCleToCirCle(const FTransform& _Left, const FTransform& _Right);
+	ENGINE_API static bool CirCleToRect(const FTransform& _Left, const FTransform& _Right);
 
-	static bool CirCleToCirCle(const FTransform& _Left, const FTransform& _Right);
-	static bool CirCleToRect(const FTransform& _Left, const FTransform& _Right);
+	ENGINE_API static bool OBB2DToOBB2D(const FTransform& _Left, const FTransform& _Right);
+	ENGINE_API static bool OBB2DToRect(const FTransform& _Left, const FTransform& _Right);
+	ENGINE_API static bool OBB2DToPoint(const FTransform& _Left, const FTransform& _Right);
+	ENGINE_API static bool OBB2DToCircle(const FTransform& _Left, const FTransform& _Right);
 
-	static bool OBB2DToOBB2D(const FTransform& _Left, const FTransform& _Right);
-	static bool OBB2DToRect(const FTransform& _Left, const FTransform& _Right);
-	static bool OBB2DToPoint(const FTransform& _Left, const FTransform& _Right);
-	static bool OBB2DToCircle(const FTransform& _Left, const FTransform& _Right);
-
-	static bool OBBToSphere(const FTransform& Left, const FTransform& Right);
-	static bool OBBToOBB(const FTransform& Left, const FTransform& Right);
-	static bool OBBToAABB(const FTransform& Left, const FTransform& Right);
-	static bool SphereToSphere(const FTransform& Left, const FTransform& Right);
-	static bool SphereToOBB(const FTransform& Left, const FTransform& Right);
-	static bool SphereToAABB(const FTransform& Left, const FTransform& Right);
-	static bool AABBToSphere(const FTransform& Left, const FTransform& Right);
-	static bool AABBToOBB(const FTransform& Left, const FTransform& Right);
-	static bool AABBToAABB(const FTransform& Left, const FTransform& Right);
+	ENGINE_API static bool OBBToSphere(const FTransform& Left, const FTransform& Right);
+	ENGINE_API static bool OBBToOBB(const FTransform& Left, const FTransform& Right);
+	ENGINE_API static bool OBBToAABB(const FTransform& Left, const FTransform& Right);
+	ENGINE_API static bool SphereToSphere(const FTransform& Left, const FTransform& Right);
+	ENGINE_API static bool SphereToOBB(const FTransform& Left, const FTransform& Right);
+	ENGINE_API static bool SphereToAABB(const FTransform& Left, const FTransform& Right);
+	ENGINE_API static bool AABBToSphere(const FTransform& Left, const FTransform& Right);
+	ENGINE_API static bool AABBToOBB(const FTransform& Left, const FTransform& Right);
+	ENGINE_API static bool AABBToAABB(const FTransform& Left, const FTransform& Right);
 
 	FCollisionData GetCollisionData() const
 	{

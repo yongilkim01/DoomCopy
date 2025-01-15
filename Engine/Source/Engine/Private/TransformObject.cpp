@@ -1,12 +1,24 @@
 #include "pch.h"
 #include "Engine/Classes/Engine/TransformObject.h"
 
+#include "Engine/Classes/Camera/CameraComponent.h"
+
 UTransformObject::UTransformObject()
 {
 }
 
 UTransformObject::~UTransformObject()
 {
+}
+
+void UTransformObject::UpdateCameraTransform(UCameraComponent* CameraComponent)
+{
+	FTransform& CameraTransform = CameraComponent->GetComponentTransformRef();
+	FTransform& MyTransform = GetComponentTransformRef();
+
+	MyTransform.View = CameraTransform.View;
+	MyTransform.Projection = CameraTransform.Projection;
+	MyTransform.WVP = MyTransform.World * MyTransform.View * MyTransform.Projection;
 }
 
 void UTransformObject::TransformUpdate()

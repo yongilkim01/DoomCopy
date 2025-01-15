@@ -23,7 +23,7 @@ public:
 	UPrimitiveComponent& operator=(const UPrimitiveComponent& Other) = delete;
 	UPrimitiveComponent& operator=(UPrimitiveComponent&& Other) noexcept = delete;
 
-	ENGINE_API virtual void RenderTransformUpdate(UCameraComponent* CameraComponent);
+	//ENGINE_API virtual void UpdateCameraTransform(UCameraComponent* CameraComponent) override;
 
 	/** 상속 메소드 */
 	ENGINE_API virtual void BeginPlay() override;

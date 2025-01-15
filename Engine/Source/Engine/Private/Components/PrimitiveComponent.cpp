@@ -24,15 +24,15 @@ UPrimitiveComponent::~UPrimitiveComponent()
 
 }
 
-void UPrimitiveComponent::RenderTransformUpdate(UCameraComponent* CameraComponent)
-{
-	FTransform& CameraTransform = CameraComponent->GetComponentTransformRef();
-	FTransform& ComponentTransform = GetComponentTransformRef();
-
-	ComponentTransform.View = CameraTransform.View;
-	ComponentTransform.Projection = CameraTransform.Projection;
-	ComponentTransform.WVP = ComponentTransform.World * ComponentTransform.View * ComponentTransform.Projection;
-}
+//void UPrimitiveComponent::UpdateCameraTransform(UCameraComponent* CameraComponent)
+//{
+//	FTransform& CameraTransform = CameraComponent->GetComponentTransformRef();
+//	FTransform& ComponentTransform = GetComponentTransformRef();
+//
+//	ComponentTransform.View = CameraTransform.View;
+//	ComponentTransform.Projection = CameraTransform.Projection;
+//	ComponentTransform.WVP = ComponentTransform.World * ComponentTransform.View * ComponentTransform.Projection;
+//}
 
 void UPrimitiveComponent::BeginPlay()
 {
@@ -44,7 +44,7 @@ void UPrimitiveComponent::BeginPlay()
 
 void UPrimitiveComponent::Render(UCameraComponent* CameraComponent, float DeltaTime)
 {
-	this->RenderTransformUpdate(CameraComponent);
+	this->UpdateCameraTransform(CameraComponent);
 
 	for (size_t i = 0; i < RenderUnitVector.size(); i++)
 	{

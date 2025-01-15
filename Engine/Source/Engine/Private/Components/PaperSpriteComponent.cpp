@@ -132,7 +132,7 @@ void UPaperSpriteComponent::Render(UCameraComponent* CameraComponent, float Delt
 
 }
 
-void UPaperSpriteComponent::RenderTransformUpdate(UCameraComponent* CameraComponent)
+void UPaperSpriteComponent::UpdateCameraTransform(UCameraComponent* CameraComponent)
 {
 	FTransform& CameraTransform = CameraComponent->GetComponentTransformRef();
 	FTransform& ComponentTransform = GetComponentTransformRef();

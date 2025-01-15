@@ -22,7 +22,7 @@ public:
 	AHUD& operator=(AHUD&& Other) noexcept = delete;
 
 	template<typename WidgetType>
-	std::shared_ptr<WidgetType> CreateWidget(std::string_view WidgetName = "NONE")
+	std::shared_ptr<WidgetType> CreateWidget(int ZOrder, std::string_view WidgetName = "NONE")
 	{
 		static_assert(std::is_base_of_v<UWidget, WidgetType>, "위젯을 상속받지 않은 클래스를 CreateWidget하려고 했습니다");
 
@@ -43,8 +43,9 @@ public:
 		std::shared_ptr<WidgetType> NewWidgetPtr(NewPtr = new(Memory) WidgetType());
 
 		NewWidgetPtr->SetName(WidgetName);
+		NewWidgetPtr->SetOrder(ZOrder);
 
-		WidgetMap[0].push_back(NewWidgetPtr);
+		WidgetMap[NewWidgetPtr->GetOrder()].push_back(NewWidgetPtr);
 
 		return NewWidgetPtr;
 	}

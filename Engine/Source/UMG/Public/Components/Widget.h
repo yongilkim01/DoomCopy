@@ -5,6 +5,7 @@
 class AHUD;
 class UCameraComponent;
 class ULevel;
+class UPaperSprite;
 
 struct FWidgetUV
 {
@@ -43,7 +44,11 @@ public:
 	UWidget& operator=(const UWidget& Other) = delete;
 	UWidget& operator=(UWidget&& Other) noexcept = delete;
 
-	ENGINE_API void Render(UCameraComponent* CameraComponent, float DeltaTime);
+	void Tick(float DeltaTime);
+	void Render(UCameraComponent* CameraComponent, float DeltaTime);
+
+	ENGINE_API void SetSprite(std::string_view SpriteName, UINT Index = 0);
+	ENGINE_API void SetTexture(std::string_view TextureName, bool bAutoScaleValue = false, float bRatioValue = 1.0f);
 
 	ULevel* GetWorld();
 
@@ -52,8 +57,38 @@ public:
 	{
 		return RenderAsset;
 	}
-
+	bool IsAutoScale()
+	{
+		return bAutoScale;
+	}
+	void SetAutoScale(bool Value)
+	{
+		bAutoScale = Value;
+	}
+	float GetAutoScaleRatio()
+	{
+		return AutoScaleRatio;
+	}
+	void SetAutoScaleRatio(float Value)
+	{
+		AutoScaleRatio = Value;
+	}
+	void SetHoverEventFunction(std::function<void()> Function)
+	{
+		HoverEventFunction = Function;
+	}
+	void SetMouseClickEventFunction(std::function<void()> Function)
+	{
+		MouseClickEventFunction = Function;
+	}
+	void SetMouseUpEventFunction(std::function<void()> Function)
+	{
+		MouseUpEventFunction = Function;
+	}
 protected:
+	FWidgetColor WidgetColor;
+	FWidgetUV WidgetUV;
+	FWidgetData WidgetData;
 
 private:
 	AHUD* HUD = nullptr;
@@ -63,8 +98,13 @@ private:
 
 	URenderAsset RenderAsset;
 
-	FWidgetColor WidgetColor;
-	FWidgetUV WidgetUV;
-	FWidgetData WidgetData;
+	int CurIndex = 0;
+	bool bAutoScale = false;
+	float AutoScaleRatio = 1.0f;
+	UPaperSprite* Sprite = nullptr;
+
+	std::function<void()> HoverEventFunction;
+	std::function<void()> MouseClickEventFunction;
+	std::function<void()> MouseUpEventFunction;
 };
 

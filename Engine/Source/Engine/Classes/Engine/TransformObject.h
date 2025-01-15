@@ -1,5 +1,7 @@
 #pragma once
 
+class UCameraComponent;
+
 /**
  *	Ό³Έν
  */
@@ -15,6 +17,8 @@ public:
 	UTransformObject(UTransformObject&& _Other) noexcept = delete;
 	UTransformObject& operator=(const UTransformObject& _Other) = delete;
 	UTransformObject& operator=(UTransformObject&& _Other) noexcept = delete;
+
+	ENGINE_API virtual void UpdateCameraTransform(UCameraComponent* CameraComponent);
 
 	ENGINE_API void TransformUpdate();
 	ENGINE_API void SetupAttachment(std::shared_ptr<UTransformObject> ParentComponent);
