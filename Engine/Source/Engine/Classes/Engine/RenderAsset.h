@@ -7,6 +7,7 @@
 class UCameraComponent;
 class UPrimitiveComponent;
 class UTexture;
+class UTransformObject;
 
 /**
  *	¼³¸í
@@ -58,6 +59,14 @@ public:
 	{
 		Material = NewMaterial;
 	}
+	ENGINE_API UTransformObject* GetTransformObject()
+	{
+		return TransformObject;
+	}
+	ENGINE_API void SetTransformObject(UTransformObject* InTransformObject)
+	{
+		TransformObject = InTransformObject;
+	}
 
 	std::map<EShaderType, UEngineShaderResource> ShaderResourceMap;
 
@@ -67,6 +76,7 @@ private:
 	void InputLayOutCreate();
 	
 	UPrimitiveComponent* ParentPrimitiveComponent = nullptr;
+	UTransformObject* TransformObject = nullptr;
 
 	/** ·»´õ¸µ ¸â¹ö ÇÊµå */
 	std::shared_ptr<UMesh> Mesh;

@@ -29,7 +29,7 @@ struct FWidgetData
 /**
  *	설명
  */
-class UWidget : public UTransformObject
+class UWidget : public UObject, public UTransformObject
 {
 	friend AHUD;
 public:
@@ -50,7 +50,7 @@ public:
 	/** 겟, 셋 메소드 */
 	URenderAsset& GetRenderUnit()
 	{
-		return RenderUnit;
+		return RenderAsset;
 	}
 
 protected:
@@ -61,7 +61,7 @@ private:
 	UWidget* ParentWidget = nullptr;
 	std::list<std::shared_ptr<UWidget>> ChildWidgetList;
 
-	URenderAsset RenderUnit;
+	URenderAsset RenderAsset;
 
 	FWidgetColor WidgetColor;
 	FWidgetUV WidgetUV;

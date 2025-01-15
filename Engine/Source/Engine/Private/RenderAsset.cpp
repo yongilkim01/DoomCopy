@@ -4,6 +4,7 @@
 #include "Engine/Classes/Camera/CameraComponent.h"
 #include "Engine/Classes/Components/PrimitiveComponent.h"
 #include "Engine/Classes/Engine/Mesh.h"
+#include "Engine/Classes/Engine/TransformObject.h"
 
 #include "Engine/Public/Materials/Material.h"
 
@@ -153,6 +154,11 @@ void URenderAsset::MaterialResourceCheck()
 	ShaderResourceMap[EShaderType::PS] = Material->GetPixelShader()->ShaderResource;
 
 	if (nullptr != ParentPrimitiveComponent)
+	{
+		TransformObject = ParentPrimitiveComponent;
+	}
+
+	if(nullptr != TransformObject)
 	{
 		for (EShaderType i = EShaderType::VS; i < EShaderType::MAX; i = static_cast<EShaderType>(static_cast<int>(i) + 1))
 		{

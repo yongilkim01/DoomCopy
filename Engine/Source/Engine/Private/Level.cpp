@@ -119,6 +119,17 @@ void ULevel::Render(float DeltaTime)
 		Camera.second->GetCameraComponent()->CameraRenderTarget->MergeRenderTarget(FinalRenderTarget);
 	}
 
+	if (true == Cameraes.contains(static_cast<int>(EEngineCameraType::UICamera)))
+	{
+		std::shared_ptr<UCameraComponent> CameraComponent = Cameraes[static_cast<int>(EEngineCameraType::UICamera)]->GetCameraComponent();
+
+		HUD->RenderUI(CameraComponent.get(), DeltaTime);
+	}
+	else
+	{
+		MSGASSERT("UI카메라가 존재하지 않습니다");
+	}
+
 	std::shared_ptr<URenderTarget> BackBufferRenderTarget = UGameEngine::GetBackBufferRenderTarget();
 	FinalRenderTarget->MergeRenderTarget(BackBufferRenderTarget);
 

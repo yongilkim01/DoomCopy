@@ -134,6 +134,10 @@ public:
 	{
 		return MainPawn;
 	}
+	AHUD* GetHUD()
+	{
+		return HUD;
+	}
 
 protected:
 
@@ -153,6 +157,4 @@ private:
 	AGameMode* GameMode = nullptr;
 	APawn* MainPawn = nullptr;
 	AHUD* HUD = nullptr;
-
-	std::map<int, std::list<std::shared_ptr<UWidget>>> WidgetMap;
 };
