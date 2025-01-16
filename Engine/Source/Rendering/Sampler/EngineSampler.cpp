@@ -31,6 +31,28 @@ void UEngineSampler::Update(EShaderType ShaderType, UINT BindIndex)
 	}
 }
 
+void UEngineSampler::Reset(EShaderType ShaderType, UINT BindIndex)
+{
+	ID3D11SamplerState* ArrPtr[1] = { nullptr };
+
+	switch (ShaderType)
+	{
+	case EShaderType::VS:
+		UGameEngine::GetDeviceContext()->VSSetSamplers(BindIndex, 1, ArrPtr);
+		break;
+	case EShaderType::PS:
+		UGameEngine::GetDeviceContext()->PSSetSamplers(BindIndex, 1, ArrPtr);
+		break;
+	case EShaderType::HS:
+	case EShaderType::DS:
+	case EShaderType::GS:
+	case EShaderType::CS:
+	default:
+		MSGASSERT("존재하지 않는 타입의 셰이터를 리셋하려고 했습니다");
+		break;
+	}
+}
+
 std::shared_ptr<UEngineSampler> UEngineSampler::Create(std::string_view Name, const D3D11_SAMPLER_DESC& SamplerDesc)
 {
 	std::string UpperName = ToUpperName(Name);

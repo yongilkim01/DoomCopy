@@ -297,8 +297,12 @@
   <ItemGroup>
     <Library Include="Source\ThirdParty\assimp\lib\Debug\assimp-vc143-mtd.lib" />
     <Library Include="Source\ThirdParty\assimp\lib\Release\assimp-vc143-mt.lib" />
-    <Library Include="Source\ThirdParty\DirectXTex\Debug\DirectXTex_Debug.lib" />
-    <Library Include="Source\ThirdParty\DirectXTex\Release\DirectXTex_Release.lib" />
+    <CopyFileToFolders Include="Source\ThirdParty\DirectXTex\Debug\DirectXTex_Debug.lib">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Source\ThirdParty\DirectXTex\Release\DirectXTex_Release.lib">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
     <Library Include="Source\ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.lib" />
     <Library Include="Source\ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.lib" />
   </ItemGroup>

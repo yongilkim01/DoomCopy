@@ -937,12 +937,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="Source\ThirdParty\DirectXTex\Debug\DirectXTex_Debug.lib">
-      <Filter>10_ThirdParty\DirectXTex\Debug</Filter>
-    </Library>
-    <Library Include="Source\ThirdParty\DirectXTex\Release\DirectXTex_Release.lib">
-      <Filter>10_ThirdParty\DirectXTex\Release</Filter>
-    </Library>
     <Library Include="Source\ThirdParty\assimp\lib\Debug\assimp-vc143-mtd.lib">
       <Filter>10_ThirdParty\assimp\lib\Debug</Filter>
     </Library>
@@ -965,6 +959,12 @@
     </CopyFileToFolders>
     <CopyFileToFolders Include="Source\ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.dll">
       <Filter>10_ThirdParty\FW1FontWrapper\Debug</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Source\ThirdParty\DirectXTex\Release\DirectXTex_Release.lib">
+      <Filter>10_ThirdParty\DirectXTex\Release</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Source\ThirdParty\DirectXTex\Debug\DirectXTex_Debug.lib">
+      <Filter>10_ThirdParty\DirectXTex\Debug</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>

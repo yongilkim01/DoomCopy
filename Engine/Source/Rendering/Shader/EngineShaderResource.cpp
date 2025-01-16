@@ -28,6 +28,19 @@ void UEngineShaderResource::Update()
 	}
 }
 
+void UEngineShaderResource::Reset()
+{
+	for (std::pair<const std::string, UEngineTextureRes>& Res : TextureRes)
+	{
+		Res.second.Reset();
+	}
+
+	for (std::pair<const std::string, UEngineSamplerRes>& Res : SamplerRes)
+	{
+		Res.second.Reset();
+	}
+}
+
 void UEngineShaderResource::CreateConstantBufferRes(std::string_view Name, UEngineConstantBufferRes ConstantBufferResource)
 {
 	std::string UpperString = UEngineString::ToUpper(Name);

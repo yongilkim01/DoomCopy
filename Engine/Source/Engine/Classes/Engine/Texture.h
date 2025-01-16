@@ -24,6 +24,7 @@ public:
 	UTexture& operator=(UTexture&& _Other) noexcept = delete;
 
 	void Update(EShaderType ShaderType, UINT BindIndex);
+	void Reset(EShaderType ShaderType, UINT BindIndex);
 
 	ENGINE_API void CreateAsset(const D3D11_TEXTURE2D_DESC& InitTextureDesc);
 	ENGINE_API void CreateAsset(Microsoft::WRL::ComPtr<ID3D11Texture2D> InTexture2D);

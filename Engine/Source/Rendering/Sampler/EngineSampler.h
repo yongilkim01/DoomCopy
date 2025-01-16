@@ -21,6 +21,7 @@ public:
 	static std::shared_ptr<UEngineSampler> Create(std::string_view Name, const D3D11_SAMPLER_DESC& Value);
 
 	void Update(EShaderType ShaderType, UINT BindIndex);
+	void Reset(EShaderType Type, UINT BindIndex);
 
 protected:
 	void AssetCreate(const D3D11_SAMPLER_DESC& SamplerDesc);

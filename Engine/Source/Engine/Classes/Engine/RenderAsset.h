@@ -31,6 +31,8 @@ public:
 
 	ENGINE_API void ConstantBufferLinkData(std::string_view Name, void* _Data);
 
+	ENGINE_API void Reset();
+
 	/** °Ù, ¼Â ¸Þ¼Òµå */
 	ENGINE_API void SetMesh(std::string_view MeshName);
 	ENGINE_API void SetMaterial(std::string_view MaterialName);

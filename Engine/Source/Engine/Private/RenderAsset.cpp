@@ -196,6 +196,14 @@ void URenderAsset::ConstantBufferLinkData(std::string_view Name, void* _Data)
 	}
 }
 
+void URenderAsset::Reset()
+{
+	for (std::pair<const EShaderType, UEngineShaderResource>& Pair : ShaderResourceMap)
+	{
+		Pair.second.Reset();
+	}
+}
+
 void URenderAsset::InputLayOutCreate()
 {
 	Microsoft::WRL::ComPtr<ID3DBlob> Blob = Material->GetVertexShader()->GetShaderCodeBlob();

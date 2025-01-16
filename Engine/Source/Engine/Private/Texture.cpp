@@ -43,6 +43,34 @@ void UTexture::Update(EShaderType ShaderType, UINT BindIndex)
 	}
 }
 
+void UTexture::Reset(EShaderType ShaderType, UINT BindIndex)
+{
+	ID3D11ShaderResourceView* ArrPtr[1] = { nullptr };
+
+	switch (ShaderType)
+	{
+	case EShaderType::VS:
+		UGameEngine::GetDeviceContext()->VSSetShaderResources(BindIndex, 1, ArrPtr);
+		break;
+	case EShaderType::PS:
+		UGameEngine::GetDeviceContext()->PSSetShaderResources(BindIndex, 1, ArrPtr);
+		break;
+	case EShaderType::HS:
+		break;
+	case EShaderType::DS:
+		break;
+	case EShaderType::GS:
+		break;
+	case EShaderType::CS:
+		break;
+	case EShaderType::MAX:
+		break;
+	default:
+		MSGASSERT("존재 하지 않는 셰이더 타입입니다");
+		break;
+	}
+}
+
 void UTexture::CreateAsset(const D3D11_TEXTURE2D_DESC& InitTextureDesc)
 {
 	TextureDesc = InitTextureDesc;

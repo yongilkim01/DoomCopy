@@ -28,6 +28,11 @@ public:
 		}
 		Res->Update(ShaderType, BindIndex);
 	}
+
+	void Reset()
+	{
+
+	}
 };
 
 class UEngineTextureRes : public UEngineShaderRes
@@ -37,6 +42,11 @@ public:
 	void Update()
 	{
 		Res->Update(ShaderType, BindIndex);
+	}
+
+	void Reset()
+	{
+		Res->Reset(ShaderType, BindIndex);
 	}
 };
 
@@ -50,6 +60,10 @@ public:
 		Res->Update(ShaderType, BindIndex);
 	}
 
+	void Reset()
+	{
+		Res->Update(ShaderType, BindIndex);
+	}
 };
 
 /**
@@ -83,6 +97,8 @@ public:
 	bool IsConstantBuffer(std::string_view Name);
 
 	void Update();
+
+	void Reset();
 
 	int Index = 0;
 protected:

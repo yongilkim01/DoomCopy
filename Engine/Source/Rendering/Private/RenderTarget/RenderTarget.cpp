@@ -111,4 +111,5 @@ void URenderTarget::MergeRenderTarget(std::shared_ptr<URenderTarget> MergeToRend
 
 	RenderTargetUnit.SetTexture("MergeTex", RenderTargetTextureVector[0]);
 	RenderTargetUnit.Render(nullptr, 0.0f);
+	RenderTargetUnit.Reset();
 }
