@@ -16,6 +16,7 @@
 #include "Engine/Classes/Engine/StaticMesh.h"
 #include "Engine/Classes/Engine/Mesh.h"
 #include "Engine/Classes/Engine/Texture.h"
+#include "Engine/Classes/Engine/Font.h"
 
 #include "NavigationSystem/Public/NavigationSystem.h"
 
@@ -47,6 +48,7 @@ void UEngineGraphicDevice::InitDefaultResources()
 	InitRasterizerState();
 	InitShader();
 	InitMaterial();
+	InitFont();
 }
 
 void UEngineGraphicDevice::InitTexture()
@@ -275,6 +277,11 @@ void UEngineGraphicDevice::InitDepthStencil()
 		Desc.StencilEnable = false;
 		UDepthStencilState::Create("RenderTargetMergeDepth", Desc);
 	}
+}
+
+void UEngineGraphicDevice::InitFont()
+{
+	UFont::Load("±Ã¼­", "±Ã¼­");
 }
 
 void UEngineGraphicDevice::RenderStart()

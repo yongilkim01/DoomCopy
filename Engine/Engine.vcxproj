@@ -94,6 +94,8 @@
     <ClCompile Include="Source\ThirdParty\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\Tools\DebugGUI\EngineGUI.cpp" />
     <ClCompile Include="Source\Tools\DebugGUI\EngineGUIWindow.cpp" />
+    <ClCompile Include="Source\UMG\Private\Components\Image.cpp" />
+    <ClCompile Include="Source\UMG\Private\Components\TextBox.cpp" />
     <ClCompile Include="Source\UMG\Private\Components\Widget.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +261,8 @@
     <ClInclude Include="Source\ThirdParty\imgui\imstb_truetype.h" />
     <ClInclude Include="Source\Tools\DebugGUI\EngineGUI.h" />
     <ClInclude Include="Source\Tools\DebugGUI\EngineGUIWindow.h" />
+    <ClInclude Include="Source\UMG\Public\Components\Image.h" />
+    <ClInclude Include="Source\UMG\Public\Components\TextBox.h" />
     <ClInclude Include="Source\UMG\Public\Components\Widget.h">
       <SubType>
       </SubType>
@@ -285,7 +289,9 @@
     <None Include="Source\ThirdParty\assimp\include\assimp\vector2.inl" />
     <None Include="Source\ThirdParty\assimp\include\assimp\vector3.inl" />
     <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl" />
-    <None Include="Source\ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.dll" />
+    <CopyFileToFolders Include="Source\ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
     <None Include="Source\ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.dll" />
   </ItemGroup>
   <ItemGroup>

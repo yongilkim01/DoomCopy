@@ -87,6 +87,12 @@ public:
 	static const TVector FORWARD;
 	static const TVector BACK;
 
+	static const TVector WHITE;
+	static const TVector BLACK;
+	static const TVector RED;
+	static const TVector BLUE;
+	static const TVector GREEN;
+
 public:
 	union
 	{
@@ -645,6 +651,17 @@ template<>
 const TVector<float> TVector<float>::FORWARD = TVector<float>(0.0f, 0.0f, 1.0f, 0.0f);;
 template<>
 const TVector<float> TVector<float>::BACK = TVector<float>(0.0f, 0.0f, -1.0f, 0.0f);;
+
+template<>
+const TVector<float> TVector<float>::WHITE = TVector<float>(1.0f, 1.0f, 1.0f, 1.0f);
+template<>
+const TVector<float> TVector<float>::BLACK = TVector<float>(0.0f, 0.0f, 0.0f, 1.0f);
+template<>
+const TVector<float> TVector<float>::RED = TVector<float>(1.0f, 0.0f, 0.0f, 1.0f);
+template<>
+const TVector<float> TVector<float>::BLUE = TVector<float>(0.0f, 0.0f, 1.0f, 1.0f);
+template<>
+const TVector<float> TVector<float>::GREEN = TVector<float>(0.0f, 1.0f, 0.0f, 1.0f);;
 
 class FQuat
 {

@@ -48,6 +48,33 @@ std::wstring UEngineString::AnsiToUnicode(std::string_view Str)
 	return Result;
 }
 
+std::string UEngineString::UniCodeToUTF8(std::wstring_view Text)
+{
+	int Size = WideCharToMultiByte(CP_UTF8, 0, Text.data(), static_cast<int>(Text.size()), nullptr, 0, nullptr, nullptr);
+	if (0 == Size)
+	{
+		MSGASSERT("문자열 변환에 실패했습니다.");
+		return "";
+	}
+
+	std::string Result;
+	Result.resize(Size);
+	Size = WideCharToMultiByte(CP_UTF8, 0, Text.data(), static_cast<int>(Text.size()), &Result[0], Size, nullptr, nullptr);
+
+	if (0 == Size)
+	{
+		MSGASSERT("문자열 변환에 실패했습니다.");
+		return "";
+	}
+	return Result;
+}
+
+std::string UEngineString::AnsiToUTF8(std::string_view Name)
+{
+	std::wstring WStr = AnsiToUnicode(Name);
+	return UniCodeToUTF8(WStr.c_str());
+}
+
 std::string UEngineString::InterString(const std::string& Str, std::string_view StartStr, std::string_view EndStr, size_t& Offset)
 {
 	size_t DataStart = Str.find(StartStr, Offset);

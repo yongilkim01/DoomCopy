@@ -2,7 +2,8 @@
 #include "Engine/Classes/Engine/Level.h"
 
 #include "Engine/Classes/GameFramework/Actor.h"
-#include "Engine/Classes//GameFramework/HUD.h"
+#include "Engine/Classes/GameFramework/HUD.h"
+#include "Engine/Classes/Engine/Font.h"
 #include "Engine/Classes/Components/ShapeComponent.h"
 #include "Engine/Classes/Components/PrimitiveComponent.h"
 #include "Engine/Classes/Camera/CameraActor.h"

@@ -24,5 +24,9 @@ void UGUIEditor::OnGUI()
 			UGameEngine::OpenLevel(Pair.first);
 		}
 	}
+
+	std::string Txt = UEngineString::AnsiToUTF8("안녕하세요 하하하하 호호호");
+
+	ImGui::Text(Txt.c_str());
 }
 

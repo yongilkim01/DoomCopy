@@ -63,6 +63,7 @@ public:
 	ENGINE_API void InitMaterial();
 	ENGINE_API void InitRasterizerState();
 	ENGINE_API void InitDepthStencil();
+	ENGINE_API void InitFont();
 
 	ENGINE_API void Release();
 

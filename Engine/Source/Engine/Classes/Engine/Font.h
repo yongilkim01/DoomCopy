@@ -19,9 +19,21 @@ public:
 	UFont& operator=(const UFont& Other) = delete;
 	UFont& operator=(UFont&& Other) noexcept = delete;
 
+	ENGINE_API static std::shared_ptr<UFont> Load(std::string_view Name, std::string_view Path);
+
+	void DrawFont(
+		const std::string& TextValue,
+		float FontScale,
+		const FVector& Location,
+		const UColor& Color = UColor::BLACK,
+		FW1_TEXT_FLAG TextFlag = FW1_LEFT);
+
 protected:
 
 private:
+	void LoadAsset(std::string_view Path);
+
+	Microsoft::WRL::ComPtr<IFW1FontWrapper> Font;
 
 };
 

@@ -420,6 +420,12 @@
     <ClCompile Include="Source\Engine\Private\Font.cpp">
       <Filter>1_Engine\2_Private</Filter>
     </ClCompile>
+    <ClCompile Include="Source\UMG\Private\Components\Image.cpp">
+      <Filter>3_UMG\1_Private\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UMG\Private\Components\TextBox.cpp">
+      <Filter>3_UMG\1_Private\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
@@ -878,6 +884,12 @@
     <ClInclude Include="Source\Engine\Classes\Engine\Font.h">
       <Filter>1_Engine\0_Classes\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Source\UMG\Public\Components\Image.h">
+      <Filter>3_UMG\0_Public\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UMG\Public\Components\TextBox.h">
+      <Filter>3_UMG\0_Public\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl">
@@ -920,9 +932,6 @@
       <Filter>10_ThirdParty\assimp\include</Filter>
     </None>
     <None Include="cpp.hint" />
-    <None Include="Source\ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.dll">
-      <Filter>10_ThirdParty\FW1FontWrapper\Debug</Filter>
-    </None>
     <None Include="Source\ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.dll">
       <Filter>10_ThirdParty\FW1FontWrapper\Release</Filter>
     </None>
@@ -953,6 +962,9 @@
     </CopyFileToFolders>
     <CopyFileToFolders Include="Source\ThirdParty\assimp\bin\Release\assimp-vc143-mt.dll">
       <Filter>10_ThirdParty\assimp\bin\Release</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Source\ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.dll">
+      <Filter>10_ThirdParty\FW1FontWrapper\Debug</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>

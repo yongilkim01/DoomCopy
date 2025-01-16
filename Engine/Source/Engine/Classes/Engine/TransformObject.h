@@ -25,6 +25,14 @@ public:
 	ENGINE_API void SetupAttachment(UTransformObject* ParentComponent);
 
 	/**
+	 * 부모 기준으로 컴포넌트의 상대 위치를 반환하는 메소드
+	 *
+	 */
+	FVector GetRelativeLocation()
+	{
+		return Transform.RelativeLocation;
+	}
+	/**
 	 * 부모 기준으로 컴포넌트의 상대 위치를 설정하는 메소드
 	 *
 	 * @param NewLocation - 새로운 상대 위치
@@ -84,6 +92,14 @@ public:
 	{
 		Transform.Scale += DeltaScale;
 		TransformUpdate();
+	}
+	/**
+	 * 월드 기준으로 컴포넌트의 절대 위치를 반환하는 메소드
+	 *
+	 */
+	FVector GetWorldLocation()
+	{
+		return Transform.WorldLocation;
 	}
 	/**
 	 * 월드 기준으로 컴포넌트의 절대 위치를 설정하는 메소드

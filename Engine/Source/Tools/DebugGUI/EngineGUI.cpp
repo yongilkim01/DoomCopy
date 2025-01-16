@@ -1,8 +1,14 @@
 #include "pch.h"
 #include "EngineGUI.h"
 
+#include "Core/Public/Misc/DirectoryHelper.h"
+#include "Core/Public/Misc/FileHelper.h"
+#include "Core/Public/Containers/EngineString.h"
+
 #include "Engine/Classes/Engine/GameEngine.h"
+
 #include "Platform/Window.h"
+
 #include "Tools/DebugGUI/EngineGUIWindow.h"
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -46,6 +52,15 @@ void UEngineGUI::Init()
 
     ImGui_ImplWin32_Init(UGameEngine::GetMainWindow().GetWindowHandle());   
     ImGui_ImplDX11_Init(UGameEngine::GetDevice(), UGameEngine::GetDeviceContext());
+
+    FDirectoryHelper DirectoryHelper;
+    DirectoryHelper.MoveParentToDirectory("Resources", "Engine");
+    DirectoryHelper.Move("Fonts");
+    FFileHelper FileHelper = DirectoryHelper.GetFile("malgun.ttf");
+    FileHelper.GetPathToString();
+    std::string UTF8Path = UEngineString::AnsiToUTF8(FileHelper.GetPathToString());
+
+    io.Fonts->AddFontFromFileTTF(UTF8Path.c_str(), 18.0f, nullptr, io.Fonts->GetGlyphRangesKorean());
 
     // Load Fonts
     // - If no fonts are loaded, dear imgui will use the default font. You can also load multiple fonts and use ImGui::PushFont()/PopFont() to select them.
