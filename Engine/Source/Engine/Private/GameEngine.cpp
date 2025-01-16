@@ -11,7 +11,7 @@
 #include "Rendering/Buffer/EngineConstantBuffer.h"
 #include "Rendering/Public/RenderTarget/RenderTarget.h"
 
-UGameEngine* GEngine = nullptr;
+ENGINE_API UGameEngine* GEngine = nullptr;
 
 ID3D11Device* UGameEngine::GetDevice()
 {
@@ -69,9 +69,14 @@ void UGameEngine::EngineStart(HINSTANCE Instance, std::string_view DllName)
 		{
 			// 엔진이 시작할 때 하고 싶은것
 			GEngine->Device.CreateDeviceAndContext();
-			GEngine->Core->EngineStart(GEngine->InitData);
+
+			GEngine->ContentsCore->EngineStart(GEngine->InitData);
+			GEngine->SetContentsProjectName(GEngine->InitData.ContentsProjectName);
+			GEngine->ContentsCore->EngineAssetLoad();
+			GEngine->ContentsCore->EngineLevelStart();
 
 			GEngine->MainWindow.SetWindowPosAndScale(GEngine->InitData.WindowPosition, GEngine->InitData.WindowSize);
+
 
 			GEngine->Device.CreateBackBuffer(GEngine->MainWindow);
 
@@ -131,9 +136,9 @@ void UGameEngine::LoadContents(std::string_view DllName)
 		return;
 	}
 
-	Ptr(GEngine->Core);
+	Ptr(GEngine->ContentsCore);
 
-	if (nullptr == GEngine->Core)
+	if (nullptr == GEngine->ContentsCore)
 	{
 		MSGASSERT("컨텐츠 코어 생성에 실패했습니다.");
 		return;

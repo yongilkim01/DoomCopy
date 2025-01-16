@@ -27,6 +27,7 @@ public:
 	ENGINE_API void Append(std::string_view _AppendName);
 	ENGINE_API void MoveParent();
 	ENGINE_API bool MoveParentToDirectory(std::string_view _Path);
+	ENGINE_API bool MoveParentToDirectory(std::string_view FindDirectoryName, std::string_view ParentDirectoryName);
 	ENGINE_API bool MoveEngineShaderDirectory();
 	ENGINE_API bool MoveEngineDirectory();
 	ENGINE_API bool MoveSelectDirectory(std::string_view DirectoryName);

@@ -225,6 +225,49 @@ bool FPaths::MoveSelectDirectory(std::string_view DirectoryName)
 	return Result;
 }
 
+bool FPaths::MoveParentToDirectory(std::string_view FindDirectoryName, std::string_view ParentDirectoryName)
+{
+	FPaths DummyPath = FPaths(Path);
+
+	if (false == DummyPath.IsDirectory())
+	{
+		MSGASSERT("디렉토리 경로가 이닙니다");
+		return false;
+	}
+
+	bool Result = false;
+
+	std::filesystem::path CurPath = DummyPath.Path;
+
+	std::filesystem::path Root = CurPath.root_path();
+
+	while (true)
+	{
+		CurPath = DummyPath.Path;
+
+		if (CurPath == Root)
+		{
+			break;
+		}
+
+		std::string FindPath = ParentDirectoryName.data();
+		FindPath.append("\\");
+		FindPath.append(FindDirectoryName);
+
+		CurPath.append(FindPath);
+
+		if (true == std::filesystem::exists(CurPath))
+		{
+			Result = true;
+			Path = CurPath;
+			break;
+		}
+		DummyPath.MoveParent();
+	}
+
+	return Result;
+}
+
 bool FPaths::MoveSelectShaderDirectory(std::string_view DirectoryName)
 {
 	if (true == MoveSelectDirectory(DirectoryName))

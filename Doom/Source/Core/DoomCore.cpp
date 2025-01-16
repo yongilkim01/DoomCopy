@@ -22,6 +22,8 @@
 #include <Tools/DebugGUI/EngineGUIWindow.h>
 #include <Rendering/Shader/EngineShader.h>
 #include <Engine/Public/Materials/Material.h>
+#include <Engine/Classes/Engine/StaticMesh.h>
+#include <NavigationSystem/Public/NavigationSystem.h>
 
 #include <stdio.h>
 
@@ -40,10 +42,14 @@ UDoomCore::~UDoomCore()
 void UDoomCore::EngineStart(UEngineInitData& Data)
 {
 	InitWindowSize(Data);
+	InitContentsInfo(Data);
+}
 
+void UDoomCore::EngineAssetLoad()
+{
 	{
 		FDirectoryHelper DirectoryHelper;
-		if (false == DirectoryHelper.MoveParentToDirectory("Resources"))
+		if (false == DirectoryHelper.MoveParentToDirectory("Resources", "Doom"))
 		{
 			MSGASSERT("리소스 폴더를 찾기에 실패했습니다");
 			return;
@@ -59,27 +65,49 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 			UTexture::Load(FilePath);
 		}
 	}
+	{
+		FDirectoryHelper CurDir;
+		CurDir.MoveSelectShaderDirectory("Doom");
 
-	InitContentsRenderingResource();
+		std::vector<FFileHelper> ShaderFiles = CurDir.GetAllFile(true, { ".fx", ".hlsl" });
+
+		for (size_t i = 0; i < ShaderFiles.size(); i++)
+		{
+			UEngineShader::ReflectionCompile(ShaderFiles[i]);
+		}
+	}
+	{
+		UStaticMesh::Create("E1M1", "doom_E1M1");
+	}
+	{
+		std::vector<int> GroundModelNumber;
+		GroundModelNumber.reserve(20);
+
+		GroundModelNumber.push_back(35);
+		GroundModelNumber.push_back(36);
+		GroundModelNumber.push_back(37);
+		GroundModelNumber.push_back(41);
+		GroundModelNumber.push_back(45);
+		GroundModelNumber.push_back(51);
+		GroundModelNumber.push_back(52);
+
+		UNavigationSystem::GetInstance().CreateNaviData("E1M1", "doom_E1M1", GroundModelNumber);
+	}
+
+	{
+		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("NavMeshTestMaterial");
+		Mat->SetVertexShader("NavMeshTestShader.fx");
+		Mat->SetPixelShader("NavMeshTestShader.fx");
+	}
+	{
+		UNavMeshResource::Create("NavMapResource");
+	}
 
 	UPaperSprite::CreateSpriteToMeta("Player.png", ".sdata");
 
-	//{
-	//	FDirectoryHelper DirectoryHelper;
-	//	if (false == DirectoryHelper.MoveParentToDirectory("Resources"))
-	//	{
-	//		MSGASSERT("리소스 폴더를 찾기에 실패했습니다");
-	//		return;
-	//	}
-
-	//	DirectoryHelper.Append("Images/Textures");
-
-	//	UPaperSprite::CreateSpriteToFolder(DirectoryHelper.GetPathToString());
-	//}
-
 	{
 		FDirectoryHelper Dir;
-		if (false == Dir.MoveParentToDirectory("Resources"))
+		if (false == Dir.MoveParentToDirectory("Resources", "Doom"))
 		{
 			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 			return;
@@ -88,7 +116,10 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 
 		UPaperSprite::CreateSpriteToFolder(Dir.GetPathToString());
 	}
+}
 
+void UDoomCore::EngineLevelStart()
+{
 	//UGameEngine::CreateLevel<ATitleGameMode, AActor, AHUD>("TitleLevel");
 	UGameEngine::CreateLevel<AE1M1GameMode, APawn, AHUD>("E1M1Level");
 	UGameEngine::CreateLevel<ANavMeshGameMode, APawn, ATitleHUD>("NavMeshLevel");
@@ -111,35 +142,7 @@ void UDoomCore::EngineEnd()
 
 void UDoomCore::InitContentsRenderingResource()
 {
-	{
-		FDirectoryHelper CurDir;
-		CurDir.MoveSelectShaderDirectory("Doom");
 
-		std::vector<FFileHelper> ShaderFiles = CurDir.GetAllFile(true, { ".fx", ".hlsl" });
-
-		for (size_t i = 0; i < ShaderFiles.size(); i++)
-		{
-			UEngineShader::ReflectionCompile(ShaderFiles[i]);
-		}
-	}
-
-	{
-		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("NavMeshTestMaterial");
-		Mat->SetVertexShader("NavMeshTestShader.fx");
-		Mat->SetPixelShader("NavMeshTestShader.fx");
-	}
-	{
-		UNavMeshResource::Create("NavMapResource");
-	}
-
-	//{
-	//	std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("MyCollisionDebugMaterial");
-	//	Mat->SetVertexShader("EngineDebugCollisionShader.fx");
-	//	Mat->SetPixelShader("EngineDebugCollisionShader.fx");
-	//	// 언제나 화면에 나오는 누구도 이녀석의 앞을 가릴수 없어.
-	//	Mat->SetDepthStencilState("CollisionDebugDepth");
-	//	Mat->SetRasterizerState("CollisionDebugRas");
-	//}
 }
 
 void UDoomCore::InitWindowSize(UEngineInitData& Data)
@@ -150,4 +153,9 @@ void UDoomCore::InitWindowSize(UEngineInitData& Data)
 	Data.WindowPosition = { width / 2.0f , height / 2.0f };
 
 	Data.WindowSize = { WindowWidth, WindowHeight };
+}
+
+void UDoomCore::InitContentsInfo(UEngineInitData& Data)
+{
+	Data.ContentsProjectName = ContentsName;
 }

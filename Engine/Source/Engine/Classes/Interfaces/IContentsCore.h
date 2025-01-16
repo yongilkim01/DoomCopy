@@ -9,6 +9,7 @@ struct UEngineInitData
 public:
 	FVector WindowPosition;
 	FVector WindowSize;
+	std::string ContentsProjectName;
 };
 
 class IContentsCore
@@ -17,7 +18,9 @@ public:
 	virtual ~IContentsCore() = 0 {};
 
 	virtual void EngineStart(UEngineInitData& Data) = 0 {};
-	virtual void EngineTick(float DeltaTime) {};
+	virtual void EngineAssetLoad() = 0 {};
+	virtual void EngineLevelStart() = 0 {};
+;	virtual void EngineTick(float DeltaTime) {};
 	virtual void EngineEnd() {};
 };
 

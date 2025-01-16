@@ -63,6 +63,14 @@ public:
 	ENGINE_API static FVector GetSceenScale();
 	ENGINE_API static UEngineWindow& GetMainWindow();
 	ENGINE_API static std::map<std::string, std::shared_ptr<ULevel>> GetAllLevelMap();
+	ENGINE_API void SetContentsProjectName(std::string_view Value)
+	{
+		ContentsProjectName = Value;
+	}
+	ENGINE_API std::string GetContentsProjectName()
+	{
+		return ContentsProjectName;
+	}
 
 protected:
 
@@ -95,7 +103,7 @@ private:
 	UEngineGraphicDevice Device;
 
 	HMODULE ContentsDLL;
-	std::shared_ptr<IContentsCore> Core;
+	std::shared_ptr<IContentsCore> ContentsCore;
 	UEngineInitData InitData;
 
 	UEngineTimer Timer;
@@ -103,6 +111,8 @@ private:
 	std::map<std::string, std::shared_ptr<ULevel>> LevelMap;
 	std::shared_ptr<ULevel> CurLevel;
 	std::shared_ptr<ULevel> NextLevel;
+
+	std::string ContentsProjectName = "";
 
 	ENGINE_API UGameEngine();
 	ENGINE_API virtual ~UGameEngine();

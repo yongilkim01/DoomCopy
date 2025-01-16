@@ -4,6 +4,7 @@
 #include <Core/Public/Misc/DirectoryHelper.h>
 #include <Core/Public/Misc/FileHelper.h>
 
+#include <Engine/Classes/Engine/GameEngine.h>
 #include <Engine/Classes/GameFramework/Actor.h>
 #include <Rendering/Buffer/EngineVertex.h>
 
@@ -38,7 +39,7 @@ void UNavigationSystem::CreateNaviData(std::string_view DirectoryName, std::stri
 
 	FDirectoryHelper DirectoryHelper;
 
-	if (false == DirectoryHelper.MoveParentToDirectory("Resources"))
+	if (false == DirectoryHelper.MoveParentToDirectory("Resources", GEngine->GetContentsProjectName()))
 	{
 		MSGASSERT("리소스 폴더를 찾기에 실패했습니다");
 		return;
@@ -182,7 +183,7 @@ bool UNavigationSystem::CheckDataFileExist()
 	FDirectoryHelper Dir;
 
 	// "Resources" 디렉토리를 찾음
-	if (false == Dir.MoveParentToDirectory("Resources"))
+	if (false == Dir.MoveParentToDirectory("Resources", GEngine->GetContentsProjectName()))
 	{
 		MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 	}

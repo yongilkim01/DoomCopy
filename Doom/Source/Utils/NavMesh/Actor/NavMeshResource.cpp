@@ -3,7 +3,7 @@
 
 #include <Engine/Classes/Engine/Mesh.h>
 #include <Engine/Classes/Engine/Texture.h>
-
+#include <Engine/Classes/Engine/GameEngine.h>
 #include <Engine/Public/Materials/Material.h>
 #include <Core/Public/Serialization/Archive.h>
 #include <Core/Public/Misc/DirectoryHelper.h>
@@ -66,7 +66,7 @@ void UNavMeshResource::CreateAsset(std::string_view ModelName)
 	FDirectoryHelper Dir;
 
 	// "Resources" 디렉토리를 찾음
-	if (false == Dir.MoveParentToDirectory("Resources"))
+	if (false == Dir.MoveParentToDirectory("Resources", "Doom"))
 	{
 		MSGASSERT("리소스 폴더를 찾지 못했습니다.");
 	}

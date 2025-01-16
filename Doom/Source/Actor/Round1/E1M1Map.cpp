@@ -12,7 +12,7 @@ AE1M1Map::AE1M1Map()
 
 	FDirectoryHelper DirectoryHelper;
 
-	if (false == DirectoryHelper.MoveParentToDirectory("Resources"))
+	if (false == DirectoryHelper.MoveParentToDirectory("Resources", "Doom"))
 	{
 		MSGASSERT("리소스 폴더를 찾기에 실패했습니다");
 		return;
