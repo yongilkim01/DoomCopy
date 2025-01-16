@@ -192,6 +192,11 @@ void ULevel::Collision(float DeltaTime)
 			{
 				for (std::shared_ptr<UShapeComponent>& RightCollision : RightList)
 				{
+					if (LeftCollision == RightCollision)
+					{
+						continue;
+					}
+
 					if (false == LeftCollision->IsActive())
 					{
 						continue;
@@ -226,12 +231,29 @@ void ULevel::Release(float DeltaTime)
 					++StartIter;
 					continue;
 				}
-
 				StartIter = List.erase(StartIter);
 			}
 		}
 	}
+	{
+		// 충돌체 릴리즈
+		for (std::pair<const std::string, std::list<std::shared_ptr<UShapeComponent>>>& Group : CheckShapeCompMap)
+		{
+			std::list<std::shared_ptr<UShapeComponent>>& List = Group.second;
+			std::list<std::shared_ptr<UShapeComponent>>::iterator StartIter = List.begin();
+			std::list<std::shared_ptr<UShapeComponent>>::iterator EndIter = List.end();
 
+			for (; StartIter != EndIter; )
+			{
+				if (false == (*StartIter)->IsDestroy())
+				{
+					++StartIter;
+					continue;
+				}
+				StartIter = List.erase(StartIter);
+			}
+		}
+	}
 	{
 		std::list<std::shared_ptr<AActor>>& List = AllActorList;
 		std::list<std::shared_ptr<AActor>>::iterator StartIter = List.begin();

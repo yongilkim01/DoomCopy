@@ -27,6 +27,7 @@ public:
 	ENGINE_API bool CollisionCheck(std::string_view OtherName, FVector NextLocation, std::vector<UShapeComponent*>& _Vector);
 	ENGINE_API bool CollisionCheck(std::string_view OtherName, std::vector<UShapeComponent*>& ShapeVector);
 	ENGINE_API void CollisionEventCheck(std::shared_ptr<UShapeComponent> OtherComp);
+	ENGINE_API void Release();
 
 	/** °Ù, ¼Â ¸Þ¼Òµå */
 	ENGINE_API void SetRadius(float Radius);

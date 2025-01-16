@@ -46,11 +46,17 @@ void UWidget::Tick(float DeltaTime)
 		}
 		if (true == UEngineInput::IsDown(VK_LBUTTON))
 		{
-			MouseClickEventFunction();
+			if (nullptr != MouseClickEventFunction)
+			{
+				MouseClickEventFunction();
+			}
 		}
 		if (true == UEngineInput::IsUp(VK_LBUTTON))
 		{
-			MouseUpEventFunction();
+			if (nullptr != MouseUpEventFunction)
+			{
+				MouseUpEventFunction();
+			}
 		}
 	}
 }

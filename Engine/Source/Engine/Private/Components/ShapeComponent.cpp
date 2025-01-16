@@ -11,10 +11,7 @@ UShapeComponent::UShapeComponent()
 
 UShapeComponent::~UShapeComponent()
 {
-	for (UShapeComponent* Other : CollisionCheckSet)
-	{
-		Other->CollisionCheckSet.erase(this);
-	}
+
 }
 
 void UShapeComponent::BeginPlay()
@@ -165,6 +162,14 @@ void UShapeComponent::CollisionEventCheck(std::shared_ptr<UShapeComponent> Other
 			CollisionCheckSet.erase(OtherComp.get());
 			OtherComp->CollisionCheckSet.erase(this);
 		}
+	}
+}
+
+void UShapeComponent::Release()
+{
+	for (UShapeComponent* Other : CollisionCheckSet)
+	{
+		Other->CollisionCheckSet.erase(this);
 	}
 }
 
