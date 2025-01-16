@@ -43,6 +43,8 @@ public:
 			return nullptr;
 		}
 
+		size_t ComponentTypeSize = sizeof(ComponentType);
+
 		char* ComponentMemory = new char[sizeof(ComponentType)];
 
 		UActorComponent* ComponentPtr = reinterpret_cast<ComponentType*>(ComponentMemory);
@@ -51,6 +53,8 @@ public:
 		ComponentType* NewPtr = reinterpret_cast<ComponentType*>(ComponentMemory);
 
 		std::shared_ptr<ComponentType> NewComponent(new(ComponentMemory)ComponentType());
+
+		AllComponentList.push_back(NewComponent);
 
 		/** 컴포넌트가 SceneComponent일 경우 */
 		if (std::is_base_of_v<UActorComponent, ComponentType>
@@ -65,6 +69,22 @@ public:
 		}
 
 		return NewComponent;
+	}
+
+	template<typename ComponentType>
+	std::vector<std::shared_ptr<ComponentType>> GetComponentByClass()
+	{
+		std::vector<std::shared_ptr<ComponentType>> Result;
+
+		for (std::shared_ptr<class UActorComponent> Component : AllComponentList)
+		{
+			std::shared_ptr<ComponentType> Com = std::dynamic_pointer_cast<ComponentType>(Component);
+			if (nullptr != Com)
+			{
+				Result.push_back(Com);
+			}
+		}
+		return Result;
 	}
 
 
@@ -173,6 +193,9 @@ protected:
 private:
 	ULevel* World;
 	std::list<std::shared_ptr<UActorComponent>> ActorComponentList;
+
+	/** 레퍼런스 카운트 유지용 자료구조 */ 
+	std::list<std::shared_ptr<UActorComponent> > AllComponentList;
 
 	AActor* Parent = nullptr;
 	std::list<std::shared_ptr<AActor>> ChildList;

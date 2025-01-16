@@ -183,6 +183,14 @@ public:
 	{
 		return Transform.WorldScale;
 	}
+	UTransformObject* GetParentTransformObject()
+	{
+		return Parent;
+	}
+	void SetParentTransformObject(UTransformObject* Value)
+	{
+		Parent = Value;
+	}
 
 protected:
 	void ParentMatrixCheck();

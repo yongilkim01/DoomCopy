@@ -19,7 +19,9 @@
 ULevel::ULevel()
 {
 	SpawnCamera(EEngineCameraType::MainCamera);
-	SpawnCamera(EEngineCameraType::UICamera);
+
+	std::shared_ptr<ACameraActor> UICamera = SpawnCamera(EEngineCameraType::UICamera);
+	UICamera->GetCameraComponent()->SetProjectionType(EProjectionType::Orthographic);
 
 	FinalRenderTarget = std::make_shared<URenderTarget>();
 	FinalRenderTarget->CreateTarget(UGameEngine::GetSceenScale());

@@ -299,9 +299,13 @@
     <Library Include="Source\ThirdParty\assimp\lib\Release\assimp-vc143-mt.lib" />
     <CopyFileToFolders Include="Source\ThirdParty\DirectXTex\Debug\DirectXTex_Debug.lib">
       <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </CopyFileToFolders>
     <CopyFileToFolders Include="Source\ThirdParty\DirectXTex\Release\DirectXTex_Release.lib">
       <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
     </CopyFileToFolders>
     <Library Include="Source\ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.lib" />
     <Library Include="Source\ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.lib" />

@@ -37,7 +37,7 @@ public:
 		const void* InitData,
 		size_t VertexSize, 
 		size_t VertexCount,
-		UEngineInputLayoutInfo* _InfoPtr = nullptr);
+		UEngineInputLayoutInfo* InfoPtr = nullptr);
 
 	ENGINE_API void Update();
 

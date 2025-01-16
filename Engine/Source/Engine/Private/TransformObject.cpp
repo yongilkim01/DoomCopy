@@ -4,6 +4,7 @@
 #include "Engine/Classes/Camera/CameraComponent.h"
 
 UTransformObject::UTransformObject()
+	: Parent(nullptr)
 {
 }
 
