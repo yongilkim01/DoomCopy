@@ -7,6 +7,7 @@
 #include "Utils/NavMesh/GameMode/NavMeshGameMode.h"
 #include "Utils/GUI/GUIEditor.h"
 #include "Utils/NavMesh/Actor/NavMeshResource.h"
+#include "UI/Public/TitleHUD.h"
 
 #include <Core/Public/Math/EngineMath.h>
 #include <Engine/Classes/Engine/GameEngine.h>
@@ -90,7 +91,7 @@ void UDoomCore::EngineStart(UEngineInitData& Data)
 
 	//UGameEngine::CreateLevel<ATitleGameMode, AActor, AHUD>("TitleLevel");
 	UGameEngine::CreateLevel<AE1M1GameMode, APawn, AHUD>("E1M1Level");
-	UGameEngine::CreateLevel<ANavMeshGameMode, APawn, AHUD>("NavMeshLevel");
+	UGameEngine::CreateLevel<ANavMeshGameMode, APawn, ATitleHUD>("NavMeshLevel");
 	UGameEngine::OpenLevel("NavMeshLevel");
 
 	UEngineGUI::OffAllWindow();

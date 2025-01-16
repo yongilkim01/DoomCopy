@@ -205,6 +205,18 @@
     <Filter Include="1_Engine\0_Classes\Interfaces">
       <UniqueIdentifier>{76da757a-bedb-4bcf-b260-278b1290b31f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="10_ThirdParty\FW1FontWrapper">
+      <UniqueIdentifier>{454831cf-7990-4d8c-98e7-19989eef1acd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10_ThirdParty\FW1FontWrapper\Debug">
+      <UniqueIdentifier>{eb4a9085-909d-4d44-bffa-4c50fa2ac8cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10_ThirdParty\FW1FontWrapper\Inc">
+      <UniqueIdentifier>{8169197f-197e-4461-961f-fee9213da13e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="10_ThirdParty\FW1FontWrapper\Release">
+      <UniqueIdentifier>{37d9b086-bcdc-44f8-88b1-1533c8257cc3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp">
@@ -403,6 +415,9 @@
       <Filter>1_Core\1_Private\Debugging</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Private\TransformObject.cpp">
+      <Filter>1_Engine\2_Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Private\Font.cpp">
       <Filter>1_Engine\2_Private</Filter>
     </ClCompile>
   </ItemGroup>
@@ -857,6 +872,12 @@
     <ClInclude Include="Source\Engine\Classes\Engine\TransformObject.h">
       <Filter>1_Engine\0_Classes\Engine</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h">
+      <Filter>10_ThirdParty\FW1FontWrapper\Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Classes\Engine\Font.h">
+      <Filter>1_Engine\0_Classes\Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl">
@@ -899,6 +920,12 @@
       <Filter>10_ThirdParty\assimp\include</Filter>
     </None>
     <None Include="cpp.hint" />
+    <None Include="Source\ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.dll">
+      <Filter>10_ThirdParty\FW1FontWrapper\Debug</Filter>
+    </None>
+    <None Include="Source\ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.dll">
+      <Filter>10_ThirdParty\FW1FontWrapper\Release</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="Source\ThirdParty\DirectXTex\Debug\DirectXTex_Debug.lib">
@@ -912,6 +939,12 @@
     </Library>
     <Library Include="Source\ThirdParty\assimp\lib\Release\assimp-vc143-mt.lib">
       <Filter>10_ThirdParty\assimp\lib\Release</Filter>
+    </Library>
+    <Library Include="Source\ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.lib">
+      <Filter>10_ThirdParty\FW1FontWrapper\Debug</Filter>
+    </Library>
+    <Library Include="Source\ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.lib">
+      <Filter>10_ThirdParty\FW1FontWrapper\Release</Filter>
     </Library>
   </ItemGroup>
   <ItemGroup>

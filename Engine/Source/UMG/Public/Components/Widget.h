@@ -85,13 +85,17 @@ public:
 	{
 		MouseUpEventFunction = Function;
 	}
+	AHUD* GetHUD()
+	{
+		return HUD;
+	}
 protected:
 	FWidgetColor WidgetColor;
 	FWidgetUV WidgetUV;
 	FWidgetData WidgetData;
 
 private:
-	AHUD* HUD = nullptr;
+	AHUD* HUD;
 
 	UWidget* ParentWidget = nullptr;
 	std::list<std::shared_ptr<UWidget>> ChildWidgetList;

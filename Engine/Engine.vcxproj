@@ -40,6 +40,7 @@
     <ClCompile Include="Source\Engine\Private\Components\SceneComponent.cpp" />
     <ClCompile Include="Source\Engine\Private\Components\ShapeComponent.cpp" />
     <ClCompile Include="Source\Engine\Private\Components\StaticMeshComponent.cpp" />
+    <ClCompile Include="Source\Engine\Private\Font.cpp" />
     <ClCompile Include="Source\Engine\Private\GameEngine.cpp" />
     <ClCompile Include="Source\Engine\Private\GameMode.cpp" />
     <ClCompile Include="Source\Engine\Private\HUD.cpp" />
@@ -118,6 +119,7 @@
     <ClInclude Include="Source\Engine\Classes\Components\SceneComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\ShapeComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\StaticMeshComponent.h" />
+    <ClInclude Include="Source\Engine\Classes\Engine\Font.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\GameEngine.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\Level.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\Mesh.h" />
@@ -246,6 +248,7 @@
     <ClInclude Include="Source\ThirdParty\assimp\include\assimp\XMLTools.h" />
     <ClInclude Include="Source\ThirdParty\assimp\include\assimp\ZipArchiveIOSystem.h" />
     <ClInclude Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.h" />
+    <ClInclude Include="Source\ThirdParty\FW1FontWrapper\Inc\FW1FontWrapper.h" />
     <ClInclude Include="Source\ThirdParty\imgui\imconfig.h" />
     <ClInclude Include="Source\ThirdParty\imgui\imgui.h" />
     <ClInclude Include="Source\ThirdParty\imgui\imgui_impl_dx11.h" />
@@ -282,12 +285,16 @@
     <None Include="Source\ThirdParty\assimp\include\assimp\vector2.inl" />
     <None Include="Source\ThirdParty\assimp\include\assimp\vector3.inl" />
     <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl" />
+    <None Include="Source\ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.dll" />
+    <None Include="Source\ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.dll" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="Source\ThirdParty\assimp\lib\Debug\assimp-vc143-mtd.lib" />
     <Library Include="Source\ThirdParty\assimp\lib\Release\assimp-vc143-mt.lib" />
     <Library Include="Source\ThirdParty\DirectXTex\Debug\DirectXTex_Debug.lib" />
     <Library Include="Source\ThirdParty\DirectXTex\Release\DirectXTex_Release.lib" />
+    <Library Include="Source\ThirdParty\FW1FontWrapper\Debug\FW1FontWrapper.lib" />
+    <Library Include="Source\ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.lib" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

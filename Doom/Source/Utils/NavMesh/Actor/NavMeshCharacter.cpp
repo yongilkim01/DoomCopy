@@ -69,5 +69,10 @@ void ANavMeshCharacter::Tick(float DeltaTime)
 		AddActorRelativeLocation(FVector{ 0.0f, -Speed * DeltaTime, 0.0f, 0.0f });
 
 	}
+
+	if (UEngineInput::IsDown('F'))
+	{
+		GetWorld()->GetCamera(EEngineCameraType::UICamera)->SetActiveSwitch();
+	}
 }
 
