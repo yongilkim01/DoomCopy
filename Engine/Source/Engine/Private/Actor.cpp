@@ -72,6 +72,11 @@ void AActor::AttachToActor(AActor* NewParent)
     RootComponent->SetupAttachment(NewParent->RootComponent);
 }
 
+UGameInstance* AActor::GetGameInstance()
+{
+    return GEngine->GetGameInstance();
+}
+
 FVector AActor::GetActorUpVector()
 {
     if (nullptr == RootComponent)

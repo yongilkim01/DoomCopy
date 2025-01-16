@@ -426,6 +426,9 @@
     <ClCompile Include="Source\UMG\Private\Components\TextBox.cpp">
       <Filter>3_UMG\1_Private\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Engine\Private\GameInstance.cpp">
+      <Filter>1_Engine\2_Private</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
@@ -889,6 +892,9 @@
     </ClInclude>
     <ClInclude Include="Source\UMG\Public\Components\TextBox.h">
       <Filter>3_UMG\0_Public\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Classes\Engine\GameInstance.h">
+      <Filter>1_Engine\0_Classes\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

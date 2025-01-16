@@ -42,6 +42,7 @@
     <ClCompile Include="Source\Engine\Private\Components\StaticMeshComponent.cpp" />
     <ClCompile Include="Source\Engine\Private\Font.cpp" />
     <ClCompile Include="Source\Engine\Private\GameEngine.cpp" />
+    <ClCompile Include="Source\Engine\Private\GameInstance.cpp" />
     <ClCompile Include="Source\Engine\Private\GameMode.cpp" />
     <ClCompile Include="Source\Engine\Private\HUD.cpp" />
     <ClCompile Include="Source\Engine\Private\Level.cpp" />
@@ -123,6 +124,7 @@
     <ClInclude Include="Source\Engine\Classes\Components\StaticMeshComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\Font.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\GameEngine.h" />
+    <ClInclude Include="Source\Engine\Classes\Engine\GameInstance.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\Level.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\Mesh.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\Object.h" />

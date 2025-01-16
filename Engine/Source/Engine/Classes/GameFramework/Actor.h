@@ -1,10 +1,14 @@
 #pragma once
 #include "Engine/Classes/Engine/Object.h"
-#include "Core/Public/Debugging/DebugMacros.h"
-#include "EngineDefine.h"
 #include "Engine/Classes/Components/SceneComponent.h"
+#include "Engine/Classes/Engine/GameEngine.h"
+
+#include "Core/Public/Debugging/DebugMacros.h"
+
+#include "EngineDefine.h"
 
 class UActorComponent;
+class UGameInstance;
 
 /**
  *	액터 정의 클래스 
@@ -87,6 +91,12 @@ public:
 		return Result;
 	}
 
+	template<typename GameInstanceType>
+	GameInstanceType* GetGameInstance()
+	{
+		return dynamic_cast<GameInstanceType*>(GetGameInstance());
+	}
+	UGameInstance* GetGameInstance();
 
 	ENGINE_API FVector GetActorUpVector();
 	ENGINE_API FVector GetActorRightVector();

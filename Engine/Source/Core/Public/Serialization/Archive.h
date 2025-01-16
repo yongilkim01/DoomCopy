@@ -26,6 +26,11 @@ public:
 	ENGINE_API void Write(const void* WriteData, unsigned int Size);
 	ENGINE_API void Read(void* ReadData, unsigned int Size);
 
+	void ResetOffset()
+	{
+		ReadOffset = 0;
+	}
+
 	/** ¿¬»êÀÚ */
 	void operator<<(const std::string& WriteData)
 	{

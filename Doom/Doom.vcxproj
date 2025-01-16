@@ -163,11 +163,13 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Source\GameMode\TitleGameMode.cpp" />
+    <ClCompile Include="Source\Global\DoomStructs.cpp" />
     <ClCompile Include="Source\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source\UI\Private\TitleHUD.cpp" />
+    <ClCompile Include="Source\Utils\GameInstance\DoomGameInstance.cpp" />
     <ClCompile Include="Source\Utils\GUI\GUIEditor.cpp">
       <SubType>
       </SubType>
@@ -208,8 +210,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Source\GameMode\TitleGameMode.h" />
+    <ClInclude Include="Source\Global\DoomStructs.h" />
     <ClInclude Include="Source\pch.h" />
     <ClInclude Include="Source\UI\Public\TitleHUD.h" />
+    <ClInclude Include="Source\Utils\GameInstance\DoomGameInstance.h" />
     <ClInclude Include="Source\Utils\GUI\GUIEditor.h">
       <SubType>
       </SubType>

@@ -130,13 +130,28 @@ public:
 		}
 		return Cameraes[CameraOrder];
 	}
+	template<typename GameModeType>
+	GameModeType* GetGameMode()
+	{
+		return dynamic_cast<GameModeType*>(GameMode);
+	}
 	AGameMode* GetGameMode()
 	{
 		return GameMode;
 	}
+	template<typename PawnType>
+	PawnType* GetMainPawn()
+	{
+		return dynamic_cast<PawnType*>(MainPawn);
+	}
 	APawn* GetMainPawn()
 	{
 		return MainPawn;
+	}
+	template<typename HUDType>
+	HUDType* GetHUD()
+	{
+		return dynamic_cast<HUDType>(HUD);
 	}
 	AHUD* GetHUD()
 	{

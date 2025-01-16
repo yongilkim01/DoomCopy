@@ -8,6 +8,8 @@
 #include "Core/Public/Containers/EngineString.h"
 #include <memory>
 
+class UGameInstance;
+
 /**
  *	엔진 코어 클래스
  */
@@ -56,8 +58,18 @@ public:
 
 		return NewLevel;
 	}
+	/**
+	 *	게임 인스턴스 생성 메소드
+	 *	언리얼 엔진에서는 에디터에서 생성
+	 */
+	template<typename GameInstanceType>
+	static void CreateGameInstance()
+	{
+		GameInstance = std::make_shared<GameInstanceType>();
+	}
 
 	/** 겟, 셋 메소드 */
+	ENGINE_API static UGameInstance* GetGameInstance();
 	ENGINE_API static ID3D11Device* GetDevice();
 	ENGINE_API static ID3D11DeviceContext* GetDeviceContext();
 	ENGINE_API static FVector GetSceenScale();
@@ -113,6 +125,8 @@ private:
 	std::shared_ptr<ULevel> NextLevel;
 
 	std::string ContentsProjectName = "";
+
+	std::shared_ptr<UGameInstance> GameInstance;
 
 	ENGINE_API UGameEngine();
 	ENGINE_API virtual ~UGameEngine();

@@ -1,17 +1,29 @@
 #include "pch.h"
 #include "Engine/Classes/Engine/GameEngine.h"
-#include "Core/Public/Debugging/DebugMacros.h"
-#include "Platform/Window.h"
+
 #include "Core/Public/Misc/DirectoryHelper.h"
 #include "Core/Public/Misc/FileHelper.h"
+#include "Core/Public/Debugging/DebugMacros.h"
+
 #include "Engine/Classes/Engine/Level.h"
 #include "Engine/Classes/Engine/EngineResource.h"
-#include "Input/EngineInput.h"
-#include "Tools/DebugGUI/EngineGUI.h"
+#include "Engine/Classes/Engine/GameInstance.h"
+
 #include "Rendering/Buffer/EngineConstantBuffer.h"
 #include "Rendering/Public/RenderTarget/RenderTarget.h"
 
-ENGINE_API UGameEngine* GEngine = nullptr;
+#include "Platform/Window.h"
+
+#include "Input/EngineInput.h"
+#include "Tools/DebugGUI/EngineGUI.h"
+
+
+UGameEngine* GEngine = nullptr;
+
+UGameInstance* UGameEngine::GetGameInstance()
+{
+	return GEngine->GameInstance.get();
+}
 
 ID3D11Device* UGameEngine::GetDevice()
 {

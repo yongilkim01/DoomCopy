@@ -1,31 +1,34 @@
 #include "pch.h"
 #include "DoomCore.h"
 
+#include <Core/Public/Math/EngineMath.h>
+#include <Core/Public/Misc/DirectoryHelper.h>
+#include <Core/Public/Misc/FileHelper.h>
+
+#include <Engine/Public/Materials/Material.h>
+#include <Engine/Classes/Engine/StaticMesh.h>
+#include <Engine/Classes/Engine/GameEngine.h>
+#include <Engine/Classes/Engine/Level.h>
+#include <Engine/Classes/Engine/Texture.h>
+#include <Engine/Classes/Engine/PaperSprite.h>
+#include <Engine/Classes/GameFramework/Actor.h>
+#include <Engine/Classes/GameFramework/HUD.h>
+
+#include <Tools/DebugGUI/EngineGUI.h>
+#include <Tools/DebugGUI/EngineGUIWindow.h>
+
+#include <Rendering/Shader/EngineShader.h>
+#include <NavigationSystem/Public/NavigationSystem.h>
+
 #include "GameMode/TitleGameMode.h"
 #include "GameMode/E1M1GameMode.h"
 
 #include "Utils/NavMesh/GameMode/NavMeshGameMode.h"
 #include "Utils/GUI/GUIEditor.h"
 #include "Utils/NavMesh/Actor/NavMeshResource.h"
+#include "Utils/GameInstance/DoomGameInstance.h"
 #include "UI/Public/TitleHUD.h"
 
-#include <Core/Public/Math/EngineMath.h>
-#include <Engine/Classes/Engine/GameEngine.h>
-#include <Core/Public/Misc/DirectoryHelper.h>
-#include <Core/Public/Misc/FileHelper.h>
-#include <Engine/Classes/Engine/Level.h>
-#include <Engine/Classes/Engine/Texture.h>
-#include <Engine/Classes/Engine/PaperSprite.h>
-#include <Engine/Classes/GameFramework/Actor.h>
-#include <Engine/Classes/GameFramework/HUD.h>
-#include <Tools/DebugGUI/EngineGUI.h>
-#include <Tools/DebugGUI/EngineGUIWindow.h>
-#include <Rendering/Shader/EngineShader.h>
-#include <Engine/Public/Materials/Material.h>
-#include <Engine/Classes/Engine/StaticMesh.h>
-#include <NavigationSystem/Public/NavigationSystem.h>
-
-#include <stdio.h>
 
 
 CreateContentsCoreDefine(UDoomCore);
@@ -41,6 +44,8 @@ UDoomCore::~UDoomCore()
 
 void UDoomCore::EngineStart(UEngineInitData& Data)
 {
+	GEngine->CreateGameInstance<UDoomGameInstance>();
+
 	InitWindowSize(Data);
 	InitContentsInfo(Data);
 }

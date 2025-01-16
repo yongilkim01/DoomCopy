@@ -22,14 +22,8 @@
     <Filter Include="2_Actor\0_Title">
       <UniqueIdentifier>{d89f4c95-63c6-4f70-9b45-974948ef870e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3_Components">
-      <UniqueIdentifier>{58f93bdb-9a5f-4238-9fcb-1055cf9365d0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="1_GameMode\2_Round1Score">
       <UniqueIdentifier>{f668ac9e-e991-40a3-811a-56e37993a94b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_Utils">
-      <UniqueIdentifier>{080d5ac3-8e3d-4fe7-a700-f17e76e1cc19}</UniqueIdentifier>
     </Filter>
     <Filter Include="1_GameMode\1_E1M1">
       <UniqueIdentifier>{4c6df9d0-05e7-4298-b333-2bb9e2e1a9a9}</UniqueIdentifier>
@@ -37,38 +31,47 @@
     <Filter Include="2_Actor\1_E1M1">
       <UniqueIdentifier>{2548844e-bdba-4fed-8131-a72c2db43c59}</UniqueIdentifier>
     </Filter>
-    <Filter Include="4_Utils\GUI">
-      <UniqueIdentifier>{00cdd054-4c62-4e93-b544-f3d22db0f7d6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_Utils\WAD">
-      <UniqueIdentifier>{47c6402a-ca2e-4a13-a838-94fc1b5eefca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_Utils\NavMesh">
-      <UniqueIdentifier>{66c6bc54-24d9-4a0c-8384-02d5a5afd208}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_Utils\NavMesh\GameMode">
-      <UniqueIdentifier>{c1bbd952-a0e1-4513-9bc0-534cae8fadbd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_Utils\NavMesh\Actor">
-      <UniqueIdentifier>{ec74d8fc-5c8f-4587-b70c-268101b7fbcb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_Utils\NavMesh\Component">
-      <UniqueIdentifier>{c8d69810-5aee-4987-8278-98d8eb86e7af}</UniqueIdentifier>
-    </Filter>
     <Filter Include="1_GameMode\Editor">
       <UniqueIdentifier>{d5b5a678-8333-4155-974e-1fabd0733ad5}</UniqueIdentifier>
     </Filter>
     <Filter Include="2_Actor\1_E1M1\Enemy">
       <UniqueIdentifier>{2a23d47d-5da7-4305-942f-aa7f5aa8b937}</UniqueIdentifier>
     </Filter>
-    <Filter Include="5_UI">
+    <Filter Include="3_Utils">
+      <UniqueIdentifier>{080d5ac3-8e3d-4fe7-a700-f17e76e1cc19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_Utils\GUI">
+      <UniqueIdentifier>{00cdd054-4c62-4e93-b544-f3d22db0f7d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_Utils\WAD">
+      <UniqueIdentifier>{47c6402a-ca2e-4a13-a838-94fc1b5eefca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_Utils\NavMesh">
+      <UniqueIdentifier>{66c6bc54-24d9-4a0c-8384-02d5a5afd208}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_Utils\NavMesh\GameMode">
+      <UniqueIdentifier>{c1bbd952-a0e1-4513-9bc0-534cae8fadbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_Utils\NavMesh\Actor">
+      <UniqueIdentifier>{ec74d8fc-5c8f-4587-b70c-268101b7fbcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_Utils\NavMesh\Component">
+      <UniqueIdentifier>{c8d69810-5aee-4987-8278-98d8eb86e7af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_Utils\GameInstance">
+      <UniqueIdentifier>{fd9eebf4-3ff2-48bb-9e72-e1435c34511d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_UI">
       <UniqueIdentifier>{37c308ae-67d9-47b7-8dc4-a1bfa738566f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="5_UI\0_Public">
+    <Filter Include="4_UI\0_Public">
       <UniqueIdentifier>{4f956f14-8e35-4417-bc02-a888a82f5e60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="5_UI\1_Private">
+    <Filter Include="4_UI\1_Private">
       <UniqueIdentifier>{0a184c84-ab12-451a-9897-34e3e779e088}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_Global">
+      <UniqueIdentifier>{f403c35c-a163-4975-8167-0596ab99586b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -94,28 +97,28 @@
       <Filter>2_Actor\1_E1M1</Filter>
     </ClCompile>
     <ClCompile Include="Source\Utils\GUI\GUIEditor.cpp">
-      <Filter>4_Utils\GUI</Filter>
+      <Filter>3_Utils\GUI</Filter>
     </ClCompile>
     <ClCompile Include="Source\Utils\Lump.cpp">
-      <Filter>4_Utils\WAD</Filter>
+      <Filter>3_Utils\WAD</Filter>
     </ClCompile>
     <ClCompile Include="Source\Utils\Wad.cpp">
-      <Filter>4_Utils\WAD</Filter>
+      <Filter>3_Utils\WAD</Filter>
     </ClCompile>
     <ClCompile Include="Source\Utils\WadMap.cpp">
-      <Filter>4_Utils\WAD</Filter>
+      <Filter>3_Utils\WAD</Filter>
     </ClCompile>
     <ClCompile Include="Source\Utils\NavMesh\Actor\NavMeshMap.cpp">
-      <Filter>4_Utils\NavMesh\Actor</Filter>
+      <Filter>3_Utils\NavMesh\Actor</Filter>
     </ClCompile>
     <ClCompile Include="Source\Utils\NavMesh\Component\NavMeshComponent.cpp">
-      <Filter>4_Utils\NavMesh\Component</Filter>
+      <Filter>3_Utils\NavMesh\Component</Filter>
     </ClCompile>
     <ClCompile Include="Source\Utils\NavMesh\Actor\NavMeshCharacter.cpp">
-      <Filter>4_Utils\NavMesh\Actor</Filter>
+      <Filter>3_Utils\NavMesh\Actor</Filter>
     </ClCompile>
     <ClCompile Include="Source\Utils\NavMesh\Actor\NavMeshResource.cpp">
-      <Filter>4_Utils\NavMesh\Actor</Filter>
+      <Filter>3_Utils\NavMesh\Actor</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameMode\Editor\TileMapGameMode.cpp">
       <Filter>1_GameMode\Editor</Filter>
@@ -124,10 +127,16 @@
       <Filter>2_Actor\1_E1M1\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Source\Utils\NavMesh\GameMode\NavMeshGameMode.cpp">
-      <Filter>4_Utils\NavMesh\GameMode</Filter>
+      <Filter>3_Utils\NavMesh\GameMode</Filter>
     </ClCompile>
     <ClCompile Include="Source\UI\Private\TitleHUD.cpp">
-      <Filter>5_UI\1_Private</Filter>
+      <Filter>4_UI\1_Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utils\GameInstance\DoomGameInstance.cpp">
+      <Filter>3_Utils\GameInstance</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Global\DoomStructs.cpp">
+      <Filter>5_Global</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -153,31 +162,31 @@
       <Filter>2_Actor\1_E1M1</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utils\GUI\GUIEditor.h">
-      <Filter>4_Utils\GUI</Filter>
+      <Filter>3_Utils\GUI</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utils\Lump.h">
-      <Filter>4_Utils\WAD</Filter>
+      <Filter>3_Utils\WAD</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utils\Wad.h">
-      <Filter>4_Utils\WAD</Filter>
+      <Filter>3_Utils\WAD</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utils\WadMap.h">
-      <Filter>4_Utils\WAD</Filter>
+      <Filter>3_Utils\WAD</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utils\NavMesh\GameMode\NavMeshGameMode.h">
-      <Filter>4_Utils\NavMesh\GameMode</Filter>
+      <Filter>3_Utils\NavMesh\GameMode</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utils\NavMesh\Actor\NavMeshMap.h">
-      <Filter>4_Utils\NavMesh\Actor</Filter>
+      <Filter>3_Utils\NavMesh\Actor</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utils\NavMesh\Component\NavMeshComponent.h">
-      <Filter>4_Utils\NavMesh\Component</Filter>
+      <Filter>3_Utils\NavMesh\Component</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utils\NavMesh\Actor\NavMeshCharacter.h">
-      <Filter>4_Utils\NavMesh\Actor</Filter>
+      <Filter>3_Utils\NavMesh\Actor</Filter>
     </ClInclude>
     <ClInclude Include="Source\Utils\NavMesh\Actor\NavMeshResource.h">
-      <Filter>4_Utils\NavMesh\Actor</Filter>
+      <Filter>3_Utils\NavMesh\Actor</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameMode\Editor\TileMapGameMode.h">
       <Filter>1_GameMode\Editor</Filter>
@@ -186,7 +195,13 @@
       <Filter>2_Actor\1_E1M1\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Source\UI\Public\TitleHUD.h">
-      <Filter>5_UI\0_Public</Filter>
+      <Filter>4_UI\0_Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Utils\GameInstance\DoomGameInstance.h">
+      <Filter>3_Utils\GameInstance</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Global\DoomStructs.h">
+      <Filter>5_Global</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
