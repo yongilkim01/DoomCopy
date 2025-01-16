@@ -17,10 +17,10 @@ public:
 	ENGINE_API ~FArchive();
 
 	/** 객체 복사 방지 */
-	FArchive(const FArchive& _Other) = delete;
-	FArchive(FArchive&& _Other) noexcept = delete;
-	FArchive& operator=(const FArchive& _Other) = delete;
-	FArchive& operator=(FArchive&& _Other) noexcept = delete;
+	//FArchive(const FArchive& _Other) = delete;
+	//FArchive(FArchive&& _Other) noexcept = delete;
+	//FArchive& operator=(const FArchive& _Other) = delete;
+	//FArchive& operator=(FArchive&& _Other) noexcept = delete;
 
 	/** 직렬화 메소드 */
 	ENGINE_API void Write(const void* WriteData, unsigned int Size);

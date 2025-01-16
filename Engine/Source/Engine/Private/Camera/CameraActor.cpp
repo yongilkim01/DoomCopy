@@ -111,6 +111,39 @@ FVector ACameraActor::ScreenMouseLocationToWorldLocationWithOutLocation()
 	return FVector();
 }
 
+FVector ACameraActor::ScreenLocationToWorldLocation(FVector Location)
+{
+	FVector Size = UGameEngine::GetMainWindow().GetWindowSize();
+
+	float4x4 ViewPort;
+
+	ViewPort.ViewPort(Size.X, Size.Y, 0.0f, 0.0f, 0.0f, 1.0f);
+
+	FTransform CameraTransform = GetActorTransform();
+
+	Location = Location * ViewPort.InverseReturn();
+	Location = Location * CameraTransform.Projection.InverseReturn();
+	Location = Location * CameraTransform.View.InverseReturn();
+
+	return Location;
+}
+
+FVector ACameraActor::WorldLocationToScreenLocation(FVector Location)
+{
+	FVector Size = UGameEngine::GetMainWindow().GetWindowSize();
+
+	float4x4 ViewPort;
+
+	ViewPort.ViewPort(Size.X, Size.Y, 0.0f, 0.0f, 0.0f, 1.0f);
+
+	FTransform CameraTransform = GetActorTransform();
+
+	Location = Location * CameraTransform.View;
+	Location = Location * CameraTransform.Projection;
+	Location = Location * ViewPort;
+	return Location;;
+}
+
 FVector ACameraActor::GetMouseLocation()
 {
 	FTransform RendererTransform = GetActorTransform();

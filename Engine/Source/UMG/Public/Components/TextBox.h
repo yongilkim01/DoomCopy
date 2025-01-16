@@ -18,6 +18,7 @@ public:
 	UTextBox& operator=(const UTextBox& Other) = delete;
 	UTextBox& operator=(UTextBox&& Other) noexcept = delete;
 
+	virtual void Tick(float DeltaTime) override;
 	virtual void Render(UCameraComponent* CameraComponent, float DeltaTime) override;
 
 	ENGINE_API void SetFont(

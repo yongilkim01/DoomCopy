@@ -23,6 +23,8 @@ public:
 	ENGINE_API FVector ScreenMouseLocationToWorldLocation();
 	// 항상 중심을 0,0 으로 보는 마우스 포스 얻는법
 	ENGINE_API FVector ScreenMouseLocationToWorldLocationWithOutLocation();
+	ENGINE_API FVector ScreenLocationToWorldLocation(FVector Location);
+	ENGINE_API FVector WorldLocationToScreenLocation(FVector Location);
 	ENGINE_API FVector GetMouseLocation();
 	
 	ENGINE_API void OnFreeCamera();

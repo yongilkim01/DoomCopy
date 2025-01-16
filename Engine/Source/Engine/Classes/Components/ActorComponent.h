@@ -26,6 +26,11 @@ public:
 	ENGINE_API virtual void BeginPlay() {}
 	ENGINE_API virtual void ComponentTick(float DeltaTime) {}
 
+	template<typename ConvertType>
+	ConvertType* GetOwner()
+	{
+		return dynamic_cast<ConvertType*>(GetOwner());
+	}
 	ENGINE_API ULevel* GetWorld();
 	ENGINE_API AActor* GetOwner() { return Owner; }
 	ENGINE_API void SetOwner(AActor* NewOwner) { Owner = NewOwner; }
