@@ -167,7 +167,7 @@ ANavMeshGameMode::ANavMeshGameMode()
 	{
 		Camera = GetWorld()->GetMainCamera();
 		//Camera->AddActorLocation({ 10.0f, 0.0f, 0.0f });
-		Camera->AddActorRelativeLocation({ 0.0f, 10.0f, -100.0f });
+		Camera->AddActorRelativeLocation({ 0.0f, 30.0f, -10.0f });
 		Camera->GetCameraComponent()->SetZSort(0, true);
 		Camera->AttachToActor(PlayerCharacter.get());
 	}

@@ -37,7 +37,11 @@ private:
 	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
 	std::shared_ptr<UShapeComponent> ShapeComponent = nullptr;
 
+	FVector CurMouseLocation = FVector::ZERO;
+
 	float Speed = 150.0f;
 	float Result = 0.0f;
+
+	float CameraSpeed = 10.0f;
 };
 

@@ -6,6 +6,8 @@
 
 #include "NavigationSystem/Public/NavigationSystem.h"
 
+#include "Core/Public/Debugging/DebugMacros.h"
+
 UPhysicsCore::UPhysicsCore()
 {
 }
@@ -31,6 +33,8 @@ void UPhysicsCore::Tick(float DeltaTime)
 
 			if (0 != Distance)
 			{
+				Distance = Distance - 110.0f;
+				FinalVector += FVector{ 0.0f, -Distance * 20.0f * DeltaTime, 0.0f };
 				PrimitiveComponent->GetOwner()->SetActorLocation(FinalVector);
 			}
 			

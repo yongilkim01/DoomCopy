@@ -19,9 +19,6 @@ ANavMeshCharacter::ANavMeshCharacter()
 	SpriteComponent = CreateDefaultSubObject<UPaperSpriteComponent>();
 	SpriteComponent->SetupAttachment(RootComponent);
 	SpriteComponent->SetTexture("Test2.png");
-	// Renderer->SetSprite("Test.png", 2);
-	// Renderer->SetAutoScale(true);
-	// Renderer->SetAutoScaleRatio(5.0f);
 	SpriteComponent->SetWorldScale3D({ 20.0f, 20.0f });
 	SpriteComponent->SetEnableGravity(true);
 
@@ -29,6 +26,8 @@ ANavMeshCharacter::ANavMeshCharacter()
 	ShapeComponent->SetupAttachment(RootComponent);
 	ShapeComponent->SetCollisionProfileName("Player");
 	ShapeComponent->SetWorldScale3D({ 20.0f, 20.0f });
+
+	CurMouseLocation = UGameEngine::GetMainWindow().GetMousePos();
 }
 
 ANavMeshCharacter::~ANavMeshCharacter()
@@ -46,38 +45,34 @@ void ANavMeshCharacter::Tick(float DeltaTime)
 
 	if (UEngineInput::IsPress('A'))
 	{
-		//AddActorRelativeLocation(FVector{ -Speed * DeltaTime, 0.0f, 0.0f });
 		PerformMovement += FVector(-Speed * DeltaTime, 0.0f, 0.0f);
 	}
 	if (UEngineInput::IsPress('D'))
 	{
-		//AddActorRelativeLocation(FVector{ Speed * DeltaTime, 0.0f, 0.0f });
-		PerformMovement = FVector(Speed * DeltaTime, 0.0f, 0.0f);
+		PerformMovement += FVector(Speed * DeltaTime, 0.0f, 0.0f);
 	}
 	if (UEngineInput::IsPress('W'))
 	{
-		//AddActorRelativeLocation(FVector{ 0.0f, 0.0f, Speed * DeltaTime, 0.0f });
-		PerformMovement = FVector(0.0f, 0.0f, Speed * DeltaTime, 0.0f);
+		PerformMovement += FVector(0.0f, 0.0f, Speed * DeltaTime);
 	}
 	if (UEngineInput::IsPress('S'))
 	{
-		//AddActorRelativeLocation(FVector{ 0.0f, 0.0f, -Speed * DeltaTime, 0.0f });
-		PerformMovement = FVector(0.0f, 0.0f, -Speed * DeltaTime, 0.0f);
-	}
-	if (UEngineInput::IsPress(VK_UP))
-	{
-		AddActorRelativeLocation(FVector{ 0.0f, Speed * DeltaTime, 0.0f, 0.0f });
-
-	}
-	if (UEngineInput::IsPress(VK_DOWN))
-	{
-		AddActorRelativeLocation(FVector{ 0.0f, -Speed * DeltaTime, 0.0f, 0.0f });
-
+		PerformMovement += FVector(0.0f, 0.0f, -Speed * DeltaTime);
 	}
 
-	if (UEngineInput::IsDown('F'))
-	{
-		GetWorld()->GetCamera(EEngineCameraType::UICamera)->SetActiveSwitch();
-	}
+	PerformMovement.Normalize();
+	PerformMovement *= Speed * DeltaTime;
+
+	FVector PrevMouseLocation = CurMouseLocation;
+
+	CurMouseLocation = UGameEngine::GetMainWindow().GetMousePos();
+
+	AddActorRotation({ 0.0f, CurMouseLocation.X - PrevMouseLocation.X, 0.0f });
+
+	
+
+	UEngineDebug::OutPutString("Mouse Location : " + CurMouseLocation.ToString());
+
+	
 }
 
