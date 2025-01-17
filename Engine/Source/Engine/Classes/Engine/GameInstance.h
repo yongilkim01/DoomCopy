@@ -8,7 +8,7 @@ class UGameInstance
 public:
 	/** 생성자, 소멸자 */
 	ENGINE_API UGameInstance();
-	ENGINE_API ~UGameInstance();
+	ENGINE_API virtual ~UGameInstance();
 
 	/** 객체 값 복사 방지 */
 	UGameInstance(const UGameInstance& Other) = delete;

@@ -96,7 +96,7 @@ public:
 	{
 		return dynamic_cast<GameInstanceType*>(GetGameInstance());
 	}
-	UGameInstance* GetGameInstance();
+	ENGINE_API UGameInstance* GetGameInstance();
 
 	ENGINE_API FVector GetActorUpVector();
 	ENGINE_API FVector GetActorRightVector();

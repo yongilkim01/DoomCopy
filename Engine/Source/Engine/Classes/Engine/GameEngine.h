@@ -6,6 +6,7 @@
 #include "Engine/Classes/Engine/Level.h"
 #include "Core/Public/Time/Timer.h"
 #include "Core/Public/Containers/EngineString.h"
+
 #include <memory>
 
 class UGameInstance;
@@ -63,9 +64,9 @@ public:
 	 *	언리얼 엔진에서는 에디터에서 생성
 	 */
 	template<typename GameInstanceType>
-	static void CreateGameInstance()
+	ENGINE_API static void CreateGameInstance()
 	{
-		GameInstance = std::make_shared<GameInstanceType>();
+		SetGameInstance(std::make_shared<GameInstanceType>());
 	}
 
 	/** 겟, 셋 메소드 */
@@ -130,6 +131,8 @@ private:
 
 	ENGINE_API UGameEngine();
 	ENGINE_API virtual ~UGameEngine();
+
+	ENGINE_API static void SetGameInstance(std::shared_ptr<UGameInstance> Instance);
 };
 
 ENGINE_API extern class UGameEngine* GEngine;

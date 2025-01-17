@@ -63,6 +63,11 @@ UGameEngine::~UGameEngine()
 {
 }
 
+void UGameEngine::SetGameInstance(std::shared_ptr<UGameInstance> Instance)
+{
+	GEngine->GameInstance = Instance;
+}
+
 
 void UGameEngine::EngineStart(HINSTANCE Instance, std::string_view DllName)
 {
