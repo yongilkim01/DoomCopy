@@ -23,6 +23,7 @@ ANavMeshCharacter::ANavMeshCharacter()
 	// Renderer->SetAutoScale(true);
 	// Renderer->SetAutoScaleRatio(5.0f);
 	SpriteComponent->SetWorldScale3D({ 20.0f, 20.0f });
+	SpriteComponent->SetEnableGravity(true);
 
 	ShapeComponent = CreateDefaultSubObject<UShapeComponent>();
 	ShapeComponent->SetupAttachment(RootComponent);
@@ -45,19 +46,23 @@ void ANavMeshCharacter::Tick(float DeltaTime)
 
 	if (UEngineInput::IsPress('A'))
 	{
-		AddActorRelativeLocation(FVector{ -Speed * DeltaTime, 0.0f, 0.0f });
+		//AddActorRelativeLocation(FVector{ -Speed * DeltaTime, 0.0f, 0.0f });
+		PerformMovement += FVector(-Speed * DeltaTime, 0.0f, 0.0f);
 	}
 	if (UEngineInput::IsPress('D'))
 	{
-		AddActorRelativeLocation(FVector{ Speed * DeltaTime, 0.0f, 0.0f });
+		//AddActorRelativeLocation(FVector{ Speed * DeltaTime, 0.0f, 0.0f });
+		PerformMovement = FVector(Speed * DeltaTime, 0.0f, 0.0f);
 	}
 	if (UEngineInput::IsPress('W'))
 	{
-		AddActorRelativeLocation(FVector{ 0.0f, 0.0f, Speed * DeltaTime, 0.0f });
+		//AddActorRelativeLocation(FVector{ 0.0f, 0.0f, Speed * DeltaTime, 0.0f });
+		PerformMovement = FVector(0.0f, 0.0f, Speed * DeltaTime, 0.0f);
 	}
 	if (UEngineInput::IsPress('S'))
 	{
-		AddActorRelativeLocation(FVector{ 0.0f, 0.0f, -Speed * DeltaTime, 0.0f });
+		//AddActorRelativeLocation(FVector{ 0.0f, 0.0f, -Speed * DeltaTime, 0.0f });
+		PerformMovement = FVector(0.0f, 0.0f, -Speed * DeltaTime, 0.0f);
 	}
 	if (UEngineInput::IsPress(VK_UP))
 	{

@@ -17,6 +17,8 @@
 #include "Input/EngineInput.h"
 #include "Tools/DebugGUI/EngineGUI.h"
 
+#include "Physics/Public/PhysicsCore.h"
+
 
 UGameEngine* GEngine = nullptr;
 
@@ -76,7 +78,9 @@ void UGameEngine::EngineStart(HINSTANCE Instance, std::string_view DllName)
 	UGameEngine EngineCore;
 
 	GEngine = &EngineCore;
-
+	
+	GEngine->PhysicsSubSystem = std::make_shared<UPhysicsCore>();
+ 
 	WindowInit(Instance);
 
 	LoadContents(DllName);
@@ -175,6 +179,7 @@ void UGameEngine::EngineFrame()
 		GEngine->CurLevel->LevelChangeStart();
 	
 		GEngine->NextLevel = nullptr;
+
 		GEngine->Timer.TimeStart();
 	}
 
@@ -189,6 +194,8 @@ void UGameEngine::EngineFrame()
 	else {
 		UEngineInput::KeyReset();
 	}
+
+	GEngine->PhysicsSubSystem->Tick(DeltaTime);
 
 	GEngine->CurLevel->Tick(DeltaTime);
 	GEngine->CurLevel->Render(DeltaTime);

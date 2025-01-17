@@ -187,7 +187,7 @@ void ANavMeshGameMode::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
 
-	UNavigationSystem::GetInstance().Tick(DeltaTime);
+	//UNavigationSystem::GetInstance().Tick(DeltaTime);
 }
 
 void ANavMeshGameMode::LevelChangeStart()

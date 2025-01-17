@@ -203,12 +203,41 @@ void UNavigationSystem::Tick(float DeltaTime)
 
 	if (DistancePlayerToMap != 0)
 	{
-		PlayerActor->SetActorLocation({ PlayerActor->GetActorLocation().X, NaviDataVector[CurrentPlayerNaviDataIndex].VertexDataVector[0].POSITION.Y + 10.0f, PlayerActor->GetActorLocation().Z});
+		//PlayerActor->SetActorLocation({ PlayerActor->GetActorLocation().X, NaviDataVector[CurrentPlayerNaviDataIndex].VertexDataVector[0].POSITION.Y + 10.0f, PlayerActor->GetActorLocation().Z});
 	}
 	else
 	{
 		//PlayerActor->AddActorLocation({ 0.0f, -0.09f, 0.0f });
 
+	}
+}
+
+float UNavigationSystem::DistanceToActor(AActor* Actor)
+{
+	CheckPlayerNaviDataInit();
+
+	return NaviDataVector[CurrentPlayerNaviDataIndex].Intersect(Actor, MapActor);
+}
+
+float UNavigationSystem::DistanceToVector(FVector Location)
+{
+	CheckVectorNaviData(Location);
+
+	return NaviDataVector[CurrentPlayerNaviDataIndex].Intersect(Location, MapActor);
+}
+
+void UNavigationSystem::CheckVectorNaviData(FVector Location)
+{
+	for (int i = 0; i < NaviDataVector.size(); i++)
+	{
+		float Result = NaviDataVector[i].Intersect(Location, MapActor);
+
+		if (0.0f != Result)
+		{
+			Distance = Result;
+			CurrentPlayerNaviDataIndex = i;
+			break;
+		}
 	}
 }
 
@@ -355,7 +384,12 @@ void UNavigationSystem::LoadFromDataFile()
 
 float FNaviData::Intersect(AActor* PlayerCharacter, AActor* MapActor)
 {
-	DirectX::XMVECTOR OriginVector = DirectX::XMVectorSet(PlayerCharacter->GetActorLocation().X, PlayerCharacter->GetActorLocation().Y + 100.0f, PlayerCharacter->GetActorLocation().Z, 1.0f);
+	return Intersect(PlayerCharacter->GetActorLocation(), MapActor);
+}
+
+float FNaviData::Intersect(FVector CheckVector, AActor* MapActor)
+{
+	DirectX::XMVECTOR OriginVector = DirectX::XMVectorSet(CheckVector.X, CheckVector.Y + 100.0f, CheckVector.Z, 1.0f);
 	DirectX::XMVECTOR Direction = DirectX::XMVectorSet(0.0f, -1.0f, 0.0f, 0.0f);
 
 	FTransform TestMapTransform = MapActor->GetActorTransform();

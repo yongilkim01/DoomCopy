@@ -5,6 +5,8 @@
 
 #include "Core/Public/Debugging/DebugMacros.h"
 
+#include "Physics/Public/PhysicsCore.h"
+
 #include "EngineDefine.h"
 
 class UActorComponent;
@@ -41,6 +43,7 @@ public:
 		/** 액터 컴포넌트를 상속받았는지 검사 */
 		static_assert(std::is_base_of_v<UActorComponent, ComponentType>, 
 			"액터 컴포넌트를 상속받지 않은 클래스를 CreateDefaultSubObject하려고 시도");
+
 		if (false == std::is_base_of_v<UActorComponent, ComponentType>)
 		{
 			MSGASSERT("액터 컴포넌트를 상속받지 않은 클래스를 CreateDefaultSubObject하려고 시도");
@@ -196,9 +199,29 @@ public:
 		}
 		return RootComponent->Transform.WorldLocation;
 	}
+	ENGINE_API bool IsJumping()
+	{
+		return bIsJumping;
+	}
+	ENGINE_API void SetIsJumping(bool Value)
+	{
+		bIsJumping = Value;
+	}
+	ENGINE_API FVector GetPerformMovement()
+	{
+		return PerformMovement;
+	}
+	ENGINE_API void SetPerformMovement(FVector Value)
+	{
+		PerformMovement = Value;
+	}
 
 protected:
 	std::shared_ptr<USceneComponent> RootComponent = nullptr;
+
+	bool bIsJumping = false;
+
+	FVector PerformMovement = FVector::ZERO;
 
 private:
 	ULevel* World;

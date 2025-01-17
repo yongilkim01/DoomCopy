@@ -28,6 +28,7 @@ struct FNaviData
 	std::vector<int> LinkNaviDataIndex;
 	std::vector<EngineVertex> VertexDataVector;
 	float Intersect(AActor* PlayerCharacter, AActor* MapActor);
+	float Intersect(FVector CheckVector, AActor* MapActor);
 };
 
 /**
@@ -56,6 +57,10 @@ public:
 	ENGINE_API bool CheckGroundMesh();
 	ENGINE_API bool CheckDataFileExist();
 	ENGINE_API void Tick(float DeltaTime);
+	ENGINE_API float DistanceToActor(AActor* Actor);
+	ENGINE_API float DistanceToVector(FVector Location);
+	ENGINE_API void CheckVectorNaviData(FVector Location);
+
 
 	bool LoadModel(std::string_view LoadObjPath);
 	void ProcessNode(aiNode* node, const aiScene* scene);
@@ -105,6 +110,14 @@ public:
 	{
 		return GroundMeshIndexVector;
 	}
+	ENGINE_API float GetCheckDistance()
+	{
+		return CheckDistance;
+	}
+	ENGINE_API void SetCheckDistance(float Value)
+	{
+		CheckDistance = Value;
+	}
 
 protected:
 
@@ -126,5 +139,7 @@ private:
 	std::vector<int> GroundMeshIndexVector;
 
 	int DataCount = 0;
+
+	float CheckDistance = 110.0f;
 };
 

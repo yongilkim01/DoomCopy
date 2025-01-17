@@ -217,6 +217,27 @@
     <Filter Include="10_ThirdParty\FW1FontWrapper\Release">
       <UniqueIdentifier>{37d9b086-bcdc-44f8-88b1-1533c8257cc3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="5_Platform\Public">
+      <UniqueIdentifier>{4d902fe1-a01d-491b-8248-7a47364ccaeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_Platform\Private">
+      <UniqueIdentifier>{e9063f9a-38cb-442e-8638-89c485362937}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_Platform\Public\Thread">
+      <UniqueIdentifier>{96736ac0-16ed-429b-b1da-af580c37d0ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_Platform\Private\Thread">
+      <UniqueIdentifier>{6dcb086c-d51c-48a1-aec7-95eaa5a2f2c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{3c433f12-f128-4197-9f3f-c50d9decc8bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Public">
+      <UniqueIdentifier>{4625584c-ee6a-4713-be23-92aa6149e15b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Private">
+      <UniqueIdentifier>{5ad0a2d4-decb-47f1-8130-a7686b57a3d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\pch.cpp">
@@ -428,6 +449,12 @@
     </ClCompile>
     <ClCompile Include="Source\Engine\Private\GameInstance.cpp">
       <Filter>1_Engine\2_Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Physics\Private\PhysicsCore.cpp">
+      <Filter>Physics\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Private\Components\PhsyicsComponent.cpp">
+      <Filter>1_Engine\2_Private\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -895,6 +922,12 @@
     </ClInclude>
     <ClInclude Include="Source\Engine\Classes\Engine\GameInstance.h">
       <Filter>1_Engine\0_Classes\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Physics\Public\PhysicsCore.h">
+      <Filter>Physics\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Classes\Components\PhsyicsComponent.h">
+      <Filter>1_Engine\0_Classes\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

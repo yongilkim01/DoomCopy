@@ -17,6 +17,7 @@
 
 UPrimitiveComponent::UPrimitiveComponent()
 {
+	GEngine->GetPhysicsSubSystem()->PrimitiveComponentList.push_front(this);
 }
 
 UPrimitiveComponent::~UPrimitiveComponent()

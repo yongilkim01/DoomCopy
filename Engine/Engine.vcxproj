@@ -36,6 +36,7 @@
     <ClCompile Include="Source\Engine\Private\Character.cpp" />
     <ClCompile Include="Source\Engine\Private\Components\ActorComponent.cpp" />
     <ClCompile Include="Source\Engine\Private\Components\PaperSpriteComponent.cpp" />
+    <ClCompile Include="Source\Engine\Private\Components\PhsyicsComponent.cpp" />
     <ClCompile Include="Source\Engine\Private\Components\PrimitiveComponent.cpp" />
     <ClCompile Include="Source\Engine\Private\Components\SceneComponent.cpp" />
     <ClCompile Include="Source\Engine\Private\Components\ShapeComponent.cpp" />
@@ -67,6 +68,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Source\Physics\Private\PhysicsCore.cpp" />
     <ClCompile Include="Source\Platform\Window.cpp" />
     <ClCompile Include="Source\Rendering\Buffer\DepthStencilState.cpp">
       <SubType>
@@ -118,6 +120,7 @@
     <ClInclude Include="Source\Engine\Classes\Camera\CameraComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\ActorComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\PaperSpriteComponent.h" />
+    <ClInclude Include="Source\Engine\Classes\Components\PhsyicsComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\PrimitiveComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\SceneComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\ShapeComponent.h" />
@@ -149,6 +152,7 @@
     </ClInclude>
     <ClInclude Include="Source\NavigationSystem\Public\NavigationSystem.h" />
     <ClInclude Include="Source\pch.h" />
+    <ClInclude Include="Source\Physics\Public\PhysicsCore.h" />
     <ClInclude Include="Source\Platform\Window.h" />
     <ClInclude Include="Source\Rendering\Buffer\DepthStencilState.h">
       <SubType>

@@ -41,10 +41,19 @@ public:
 	{
 		return RenderUnitVector;
 	}
+	ENGINE_API bool IsGravityEnabled()
+	{
+		return bEnableGravity;
+	}
+	ENGINE_API void SetEnableGravity(bool Value)
+	{
+		bEnableGravity = Value;
+	}
 
 protected:
 
 private:
 	std::vector<URenderAsset> RenderUnitVector;
 
+	bool bEnableGravity = false;
 };
