@@ -1,5 +1,5 @@
 #pragma once
-#include "SceneComponent.h"
+#include "Engine/Classes/Components/PrimitiveComponent.h"
 #include "Engine/Classes/Engine/PaperSprite.h"
 #include "Engine/Classes/Engine/RenderAsset.h"
 #include <set>
@@ -9,7 +9,7 @@ class UCameraComponent;
 /**
  *	설명
  */
-class UShapeComponent : public USceneComponent
+class UShapeComponent : public UPrimitiveComponent
 {
 public:
 	/** 생성자, 소멸자 */

@@ -30,6 +30,16 @@ public:
 	ENGINE_API virtual void Render(UCameraComponent* CameraComponent, float DeltaTime);
 	ENGINE_API virtual void SetOrder(int NewOrder) override;
 
+	/** 물리 관련 메소드 */
+	/**
+	 *	물리적 이동, 충돌 처리, 트랜스폼 업데이트를 담당하는 메소드
+	 * 
+	 *	@param Delta - 컴포넌트가 이동할 변위 벡터로 이동 방향과 거리를 나타낸다.
+	 *  @param NewRotation - 이동 후 컴포넌트의 새로운 회전을 나타낸다.
+	 *  @param bSweep - Sweep을 수행할 지 여부를 결정한다, true일 경우 충돌 검사를 활성화하여 이동 경로에서 충돌을 확인한다.
+	 */
+	ENGINE_API bool MoveComponent(const FVector& Delta, const FVector& NewRotation, bool bSweep/*, FHitResult* OutHit, EMoveComponentFlags MoveFlags, ETeleportType Teleport*/);
+
 	/** 렌더 유닛 관련 메소드 */
 	ENGINE_API URenderAsset& CreateRenderUnit();
 	ENGINE_API URenderAsset& GetRenderUnit(UINT Index = 0);

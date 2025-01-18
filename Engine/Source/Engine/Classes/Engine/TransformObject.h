@@ -191,6 +191,10 @@ public:
 	{
 		Parent = Value;
 	}
+	FVector GetComponentRotation()
+	{
+		return Transform.WorldRotation;
+	}
 
 protected:
 	void ParentMatrixCheck();

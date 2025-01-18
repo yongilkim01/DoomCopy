@@ -16,7 +16,7 @@ UShapeComponent::~UShapeComponent()
 
 void UShapeComponent::BeginPlay()
 {
-	USceneComponent::BeginPlay();
+	UPrimitiveComponent::BeginPlay();
 }
 
 void UShapeComponent::DebugRender(UCameraComponent* CameraComponent, float DeltaTime)

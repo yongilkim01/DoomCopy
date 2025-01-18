@@ -13,8 +13,8 @@
 
 ANavMeshCharacter::ANavMeshCharacter()
 {
-	std::shared_ptr<USceneComponent> Default = CreateDefaultSubObject<USceneComponent>();
-	RootComponent = Default;
+	//std::shared_ptr<USceneComponent> Default = CreateDefaultSubObject<USceneComponent>();
+	//RootComponent = Default;
 
 	SpriteComponent = CreateDefaultSubObject<UPaperSpriteComponent>();
 	SpriteComponent->SetupAttachment(RootComponent);
@@ -34,6 +34,26 @@ ANavMeshCharacter::~ANavMeshCharacter()
 {
 }
 
+void ANavMeshCharacter::MoveForward(float Value)
+{
+	if (Value != 0.0f)
+	{
+		FVector Direction = GetActorForwardVector();
+
+		AddMovementInput(Direction, Value);
+	}
+}
+
+void ANavMeshCharacter::MoveRight(float Value)
+{
+	if (Value != 0.0f)
+	{
+		FVector Direction = GetActorRightVector();
+
+		AddMovementInput(Direction, Value);
+	}
+}
+
 void ANavMeshCharacter::BeginPlay()
 {
 	AActor::BeginPlay();
@@ -43,50 +63,35 @@ void ANavMeshCharacter::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
 
-	//if (UEngineInput::IsPress('A'))
-	//{
-	//	PerformMovement += FVector(-Speed * DeltaTime, 0.0f, 0.0f);
-	//}
-	//if (UEngineInput::IsPress('D'))
-	//{
-	//	PerformMovement += FVector(Speed * DeltaTime, 0.0f, 0.0f);
-	//}
-	//if (UEngineInput::IsPress('W'))
-	//{
-	//	PerformMovement += FVector(0.0f, 0.0f, Speed * DeltaTime);
-	//}
-	//if (UEngineInput::IsPress('S'))
-	//{
-	//	PerformMovement += FVector(0.0f, 0.0f, -Speed * DeltaTime);
-	//}
-
 	if (UEngineInput::IsPress('A'))
 	{
-		PerformMovement += -GetActorTransform().GetWorldRight() * DeltaTime * Speed;
+		MoveRight(-Speed);
+		//PerformMovement += -GetActorTransform().GetWorldRight() * DeltaTime * Speed;
 	}
 	if (UEngineInput::IsPress('D'))
 	{
-		PerformMovement += GetActorTransform().GetWorldRight() * DeltaTime * Speed;
+		MoveRight(Speed);
+		//PerformMovement += GetActorTransform().GetWorldRight() * DeltaTime * Speed;
 	}
 	if (UEngineInput::IsPress('W'))
 	{
-		PerformMovement += GetActorTransform().GetWorldFoward() * DeltaTime * Speed;
+		MoveForward(Speed);
+		//PerformMovement += GetActorTransform().GetWorldFoward() * DeltaTime * Speed;
 	}
 	if (UEngineInput::IsPress('S'))
 	{
-		PerformMovement += -GetActorTransform().GetWorldFoward() * DeltaTime * Speed;
+		MoveForward(-Speed);
+		//PerformMovement += -GetActorTransform().GetWorldFoward() * DeltaTime * Speed;
 	}
 
-	PerformMovement.Normalize();
-	PerformMovement *= Speed * DeltaTime;
+	//PerformMovement.Normalize();
+	//PerformMovement *= Speed * DeltaTime;
 
 	FVector PrevMouseLocation = CurMouseLocation;
 
 	CurMouseLocation = UGameEngine::GetMainWindow().GetMousePos();
 
-	PerformRotation = CurMouseLocation - PrevMouseLocation;
-
-	//AddActorRotation({ 0.0f, CurMouseLocation.X - PrevMouseLocation.X, 0.0f });
+	AddActorRotation({ 0.0f, CurMouseLocation.X - PrevMouseLocation.X, 0.0f });
 
 	
 

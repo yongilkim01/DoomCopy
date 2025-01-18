@@ -456,6 +456,15 @@
     <ClCompile Include="Source\Engine\Private\Components\PhsyicsComponent.cpp">
       <Filter>1_Engine\2_Private\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Engine\Private\Components\CharacterMovementComponent.cpp">
+      <Filter>1_Engine\2_Private\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Private\Components\MovementComponent.cpp">
+      <Filter>1_Engine\2_Private\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Private\Components\CapsuleComponent.cpp">
+      <Filter>1_Engine\2_Private\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
@@ -927,6 +936,15 @@
       <Filter>Physics\Public</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Classes\Components\PhsyicsComponent.h">
+      <Filter>1_Engine\0_Classes\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Classes\GameFramework\CharacterMovementComponent.h">
+      <Filter>1_Engine\0_Classes\GameFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Classes\GameFramework\MovementComponent.h">
+      <Filter>1_Engine\0_Classes\GameFramework</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Classes\Components\CapsuleComponent.h">
       <Filter>1_Engine\0_Classes\Components</Filter>
     </ClInclude>
   </ItemGroup>

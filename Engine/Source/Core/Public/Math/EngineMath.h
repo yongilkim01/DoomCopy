@@ -175,6 +175,10 @@ public:
 	{
 		return X == 0.0f || Y == 0.0f;
 	}
+	bool IsZero() const
+	{
+		return X == 0.0f && Y == 0.0f && Z == 0.0f;
+	}
 	/**
 	 *   벡터의 각 요소를 절반으로 줄인 벡터를 반환하는 함수
 	 *
@@ -244,7 +248,19 @@ public:
 		Result.Normalize();
 		return Result;
 	}
+	TVector GetClampedToMaxSize(float MaxSize)
+	{
+		TVector Result = *this;
 
+		float CurrentSize = Result.Length();
+
+		if (CurrentSize > MaxSize)
+		{
+			return Result * (MaxSize / CurrentSize);
+		}
+
+		return Result;
+	}
 	/**
 	 *   두 벡터 사이의 각도를 도 단위로 계산하는 메소드
 	 *

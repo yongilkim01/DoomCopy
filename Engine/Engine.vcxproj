@@ -35,6 +35,9 @@
     <ClCompile Include="Source\Engine\Private\Camera\CameraComponent.cpp" />
     <ClCompile Include="Source\Engine\Private\Character.cpp" />
     <ClCompile Include="Source\Engine\Private\Components\ActorComponent.cpp" />
+    <ClCompile Include="Source\Engine\Private\Components\CapsuleComponent.cpp" />
+    <ClCompile Include="Source\Engine\Private\Components\CharacterMovementComponent.cpp" />
+    <ClCompile Include="Source\Engine\Private\Components\MovementComponent.cpp" />
     <ClCompile Include="Source\Engine\Private\Components\PaperSpriteComponent.cpp" />
     <ClCompile Include="Source\Engine\Private\Components\PhsyicsComponent.cpp" />
     <ClCompile Include="Source\Engine\Private\Components\PrimitiveComponent.cpp" />
@@ -119,6 +122,7 @@
     <ClInclude Include="Source\Engine\Classes\Camera\CameraActor.h" />
     <ClInclude Include="Source\Engine\Classes\Camera\CameraComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\ActorComponent.h" />
+    <ClInclude Include="Source\Engine\Classes\Components\CapsuleComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\PaperSpriteComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\PhsyicsComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\PrimitiveComponent.h" />
@@ -140,8 +144,10 @@
     <ClInclude Include="Source\Engine\Classes\Engine\TransformObject.h" />
     <ClInclude Include="Source\Engine\Classes\GameFramework\Actor.h" />
     <ClInclude Include="Source\Engine\Classes\GameFramework\Character.h" />
+    <ClInclude Include="Source\Engine\Classes\GameFramework\CharacterMovementComponent.h" />
     <ClInclude Include="Source\Engine\Classes\GameFramework\GameMode.h" />
     <ClInclude Include="Source\Engine\Classes\GameFramework\HUD.h" />
+    <ClInclude Include="Source\Engine\Classes\GameFramework\MovementComponent.h" />
     <ClInclude Include="Source\Engine\Classes\GameFramework\Pawn.h" />
     <ClInclude Include="Source\Engine\Classes\Interfaces\IContentsCore.h" />
     <ClInclude Include="Source\Engine\Public\Materials\Material.h" />

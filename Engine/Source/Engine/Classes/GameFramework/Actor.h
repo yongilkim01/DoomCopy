@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine/Classes/Engine/Object.h"
 #include "Engine/Classes/Components/SceneComponent.h"
+#include "Engine/Classes/GameFramework/MovementComponent.h"
 #include "Engine/Classes/Engine/GameEngine.h"
 
 #include "Core/Public/Debugging/DebugMacros.h"
@@ -66,6 +67,12 @@ public:
 		/** 컴포넌트가 SceneComponent일 경우 */
 		if (std::is_base_of_v<UActorComponent, ComponentType>
 			&& !std::is_base_of_v<USceneComponent, ComponentType>)
+		{
+			ActorComponentList.push_back(NewComponent);
+		}
+		else if (std::is_base_of_v<UMovementComponent, ComponentType>
+				 && !std::is_base_of_v<UActorComponent, ComponentType>
+				 && !std::is_base_of_v<USceneComponent, ComponentType>)
 		{
 			ActorComponentList.push_back(NewComponent);
 		}
@@ -232,9 +239,10 @@ protected:
 	FVector PerformMovement = FVector::ZERO;
 	FVector PerformRotation = FVector::ZERO;
 
+	std::list<std::shared_ptr<UActorComponent>> ActorComponentList;
+
 private:
 	ULevel* World;
-	std::list<std::shared_ptr<UActorComponent>> ActorComponentList;
 
 	/** 레퍼런스 카운트 유지용 자료구조 */ 
 	std::list<std::shared_ptr<UActorComponent> > AllComponentList;

@@ -37,22 +37,9 @@ void UPhysicsCore::Tick(float DeltaTime)
 				FinalVector += FVector{ 0.0f, -Distance * 20.0f * DeltaTime, 0.0f };
 
 				PrimitiveComponent->GetOwner()->SetActorLocation(FinalVector);
-				PrimitiveComponent->GetOwner()->AddActorRotation({0.0f, PrimitiveComponent->GetOwner()->GetPerformRotation().X, 0.0f});
 			}
 			
 			PrimitiveComponent->GetOwner()->SetPerformMovement(FVector::ZERO);
-			PrimitiveComponent->GetOwner()->SetPerformRotation(FVector::ZERO);
-
-			//if (true == PrimitiveComponent->GetOwner()->IsJumping())
-			//{
-			//	//P
-			//}
-			////else if(true == PrimitiveComponent->GetOwner()->IsLan)
-
-			//if (UNavigationSystem::GetInstance().GetCheckDistance() < UNavigationSystem::GetInstance().DistanceToActor(PrimitiveComponent->GetOwner()))
-			//{
-			//	//->GetOwner()->AddActorLocation({ 0.0f, -1.0f, 0.0f });
-			//}
 		}
 	}
 }

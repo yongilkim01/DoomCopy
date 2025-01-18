@@ -1,5 +1,5 @@
 #pragma once
-#include <Engine/Classes/GameFramework/Actor.h>
+#include <Engine/Classes/GameFramework/Character.h>
 
 class ACameraActor;
 class UPaperSpriteComponent;
@@ -8,7 +8,7 @@ class UShapeComponent;
 /**
  *	설명
  */
-class ANavMeshCharacter : public AActor
+class ANavMeshCharacter : public ACharacter
 {
 public:
 	/** 생성자, 소멸자 */
@@ -20,6 +20,9 @@ public:
 	ANavMeshCharacter(ANavMeshCharacter&& Other) noexcept = delete;
 	ANavMeshCharacter& operator=(const ANavMeshCharacter& Other) = delete;
 	ANavMeshCharacter& operator=(ANavMeshCharacter&& Other) noexcept = delete;
+
+	void MoveForward(float Value);
+	void MoveRight(float Value);
 
 	float GetResult()
 	{
