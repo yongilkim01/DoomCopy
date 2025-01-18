@@ -35,10 +35,13 @@ void UPhysicsCore::Tick(float DeltaTime)
 			{
 				Distance = Distance - 110.0f;
 				FinalVector += FVector{ 0.0f, -Distance * 20.0f * DeltaTime, 0.0f };
+
 				PrimitiveComponent->GetOwner()->SetActorLocation(FinalVector);
+				PrimitiveComponent->GetOwner()->AddActorRotation({0.0f, PrimitiveComponent->GetOwner()->GetPerformRotation().X, 0.0f});
 			}
 			
 			PrimitiveComponent->GetOwner()->SetPerformMovement(FVector::ZERO);
+			PrimitiveComponent->GetOwner()->SetPerformRotation(FVector::ZERO);
 
 			//if (true == PrimitiveComponent->GetOwner()->IsJumping())
 			//{

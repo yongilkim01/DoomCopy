@@ -215,6 +215,14 @@ public:
 	{
 		PerformMovement = Value;
 	}
+	ENGINE_API FVector GetPerformRotation()
+	{
+		return PerformRotation;
+	}
+	ENGINE_API void SetPerformRotation(FVector Value)
+	{
+		PerformRotation = Value;
+	}
 
 protected:
 	std::shared_ptr<USceneComponent> RootComponent = nullptr;
@@ -222,6 +230,7 @@ protected:
 	bool bIsJumping = false;
 
 	FVector PerformMovement = FVector::ZERO;
+	FVector PerformRotation = FVector::ZERO;
 
 private:
 	ULevel* World;
