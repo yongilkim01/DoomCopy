@@ -22,6 +22,8 @@ public:
 
 	std::list<UPrimitiveComponent*> PrimitiveComponentList;
 
+	FVector SweepComponent(const FVector& Location, const FVector& Delta);
+
 protected:
 
 private:

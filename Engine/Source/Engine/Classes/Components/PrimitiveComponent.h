@@ -39,6 +39,7 @@ public:
 	 *  @param bSweep - Sweep을 수행할 지 여부를 결정한다, true일 경우 충돌 검사를 활성화하여 이동 경로에서 충돌을 확인한다.
 	 */
 	ENGINE_API bool MoveComponent(const FVector& Delta, const FVector& NewRotation, bool bSweep/*, FHitResult* OutHit, EMoveComponentFlags MoveFlags, ETeleportType Teleport*/);
+	ENGINE_API FVector SweepComponent(const FVector& NewLocation, const FVector& Delta/*, const FQuat& NewRotation, FHitResult* OutHit*/);
 
 	/** 렌더 유닛 관련 메소드 */
 	ENGINE_API URenderAsset& CreateRenderUnit();

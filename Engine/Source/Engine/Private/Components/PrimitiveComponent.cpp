@@ -17,7 +17,7 @@
 
 UPrimitiveComponent::UPrimitiveComponent()
 {
-	GEngine->GetPhysicsSubSystem()->PrimitiveComponentList.push_front(this);
+	//GEngine->GetPhysicsSubSystem()->PrimitiveComponentList.push_front(this);
 }
 
 UPrimitiveComponent::~UPrimitiveComponent()
@@ -97,24 +97,33 @@ void UPrimitiveComponent::SetOrder(int NewOrder)
 
 bool UPrimitiveComponent::MoveComponent(const FVector& Delta, const FVector& NewRotation, bool bSweep)
 {
-	// 1. 컴포넌트가 이동할 새 위치를 계산합니다.
-	FVector NewLocation = GetWorldLocation() + Delta;
-
-	// 2. 회전 값이 제공된 경우, 새로운 회전 값을 적용합니다.
+	// 회전 값이 제공된 경우, 새로운 회전 값을 적용
 	if (false == NewRotation.IsZero())
 	{
 		SetWorldRotation(NewRotation);
 	}
 
-	// 3. Sweep이 필요할 경우, SweepCollision을 적용해 충돌을 체크합니다.
-	if (bSweep)
+	// Sweep이 필요할 경우, SweepCollision을 적용해 충돌을 체크
+	if (true == bSweep)
 	{
-		// 컴포넌트 이동 경로에 대해 충돌을 검사합니다.
-		//return SweepComponent(NewLocation, OutHit, MoveFlags, Teleport);
+		// 컴포넌트 이동 경로에 대해 충돌을 검사
+		SetWorldLocation(SweepComponent(GetWorldLocation(), Delta));
+
+		return true;
 	}
+	else
+	{
+		// 컴포넌트가 이동할 새 위치를 계산
+		FVector NewLocation = GetWorldLocation() + Delta;
 
-	// 4. Sweep이 없으면 단순히 위치만 업데이트합니다.
-	SetWorldLocation(NewLocation);
+		// Sweep이 없으면 단순히 위치만 업데이트
+		SetWorldLocation(NewLocation);
 
-	return true;
+		return true;
+	}
+}
+
+FVector UPrimitiveComponent::SweepComponent(const FVector& Location, const FVector& Delta)
+{
+	return GEngine->GetPhysicsSubSystem()->SweepComponent(Location, Delta);
 }

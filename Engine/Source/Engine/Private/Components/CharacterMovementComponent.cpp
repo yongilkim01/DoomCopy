@@ -16,7 +16,6 @@ void UCharacterMovementComponent::BeginPlay()
 
 void UCharacterMovementComponent::ComponentTick(float DeltaTime)
 {
-    UEngineDebug::OutPutString("Pending vector : " + PendingInputVector.ToString());
     // 입력 벡터를 기반으로 가속도 계산
     FVector Acceleration = PendingInputVector.GetClampedToMaxSize(100.0f) * MaxAcceleration;
 

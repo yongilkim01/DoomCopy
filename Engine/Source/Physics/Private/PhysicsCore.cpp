@@ -44,4 +44,20 @@ void UPhysicsCore::Tick(float DeltaTime)
 	}
 }
 
+FVector UPhysicsCore::SweepComponent(const FVector& Location, const FVector& Delta)
+{
+
+		FVector FinalVector = Location + Delta;
+
+		float Distance = UNavigationSystem::GetInstance().DistanceToVector(FinalVector);
+
+		if (0 != Distance)
+		{
+			Distance = Distance - 110.0f;
+			FinalVector += FVector{ 0.0f, -Distance , 0.0f };
+		}
+
+		return FinalVector;
+}
+
 
