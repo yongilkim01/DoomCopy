@@ -13,9 +13,6 @@
 
 ANavMeshCharacter::ANavMeshCharacter()
 {
-	//std::shared_ptr<USceneComponent> Default = CreateDefaultSubObject<USceneComponent>();
-	//RootComponent = Default;
-
 	SpriteComponent = CreateDefaultSubObject<UPaperSpriteComponent>();
 	SpriteComponent->SetupAttachment(RootComponent);
 	SpriteComponent->SetTexture("Test2.png");

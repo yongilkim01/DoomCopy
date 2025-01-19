@@ -14,13 +14,16 @@ void UCharacterMovementComponent::BeginPlay()
 {
 }
 
-void UCharacterMovementComponent::ComponentTick(float DeltaTime)
+void UCharacterMovementComponent::ComponentTick(float DeltaTime)    
 {
     // 입력 벡터를 기반으로 가속도 계산
     Velocity = PendingInputVector;
 
     // 속도 제한
     Velocity = Velocity.GetClampedToMaxSize(MaxWalkSpeed);
+
+    // 중력 추가
+    Velocity.Y -= 500.0f;
 
     // 이동 벡터 계산
     FVector Delta = Velocity * DeltaTime;

@@ -22,11 +22,14 @@ FVector UPhysicsCore::SweepComponent(const FVector& Location, const FVector& Del
 
 		float Distance = UNavigationSystem::GetInstance().DistanceToVector(FinalVector);
 
-		if (0 != Distance)
+		if (110.0f > Distance)
 		{
-			Distance = Distance - 110.0f;
-			FinalVector += FVector{ 0.0f, -Distance , 0.0f };
-
+			float CheckDistance = Distance - 110.0f;
+			FinalVector.Y -= CheckDistance;
+			return FinalVector;
+		}
+		else if(110.0f < Distance)
+		{
 			return FinalVector;
 		}
 

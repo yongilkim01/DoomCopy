@@ -8,9 +8,11 @@
 
 ACharacter::ACharacter()
 {
+    std::shared_ptr<UCapsuleComponent> CapsuleComponent = CreateDefaultSubObject<UCapsuleComponent>();
+    RootComponent = CapsuleComponent;
+
 	CharacterMovement = CreateDefaultSubObject<UCharacterMovementComponent>();
-    RootComponent = CreateDefaultSubObject<UCapsuleComponent>();
-    CharacterMovement->UpdatedComponent = dynamic_cast<UPrimitiveComponent*>(RootComponent.get());
+    CharacterMovement->UpdatedComponent = CapsuleComponent.get();
 }
 
 ACharacter::~ACharacter()
@@ -22,10 +24,6 @@ void ACharacter::Tick(float DeltaTime)
 {
     APawn::Tick(DeltaTime);
 
-    if (nullptr != CharacterMovement)
-    {
-        //CharacterMovement->PerformMovement(DeltaTime);
-    }
 }
 
 void ACharacter::AddMovementInput(const FVector& WorldDirection, float ScaleValue, bool bForce  /*= false*/)
