@@ -214,30 +214,30 @@ public:
 	{
 		bIsJumping = Value;
 	}
-	ENGINE_API FVector GetPerformMovement()
-	{
-		return PerformMovement;
-	}
-	ENGINE_API void SetPerformMovement(FVector Value)
-	{
-		PerformMovement = Value;
-	}
-	ENGINE_API FVector GetPerformRotation()
-	{
-		return PerformRotation;
-	}
-	ENGINE_API void SetPerformRotation(FVector Value)
-	{
-		PerformRotation = Value;
-	}
+	//ENGINE_API FVector GetPerformMovement()
+	//{
+	//	return PerformMovement;
+	//}
+	//ENGINE_API void SetPerformMovement(FVector Value)
+	//{
+	//	PerformMovement = Value;
+	//}
+	//ENGINE_API FVector GetPerformRotation()
+	//{
+	//	return PerformRotation;
+	//}
+	//ENGINE_API void SetPerformRotation(FVector Value)
+	//{
+	//	PerformRotation = Value;
+	//}
 
 protected:
 	std::shared_ptr<USceneComponent> RootComponent = nullptr;
 
 	bool bIsJumping = false;
 
-	FVector PerformMovement = FVector::ZERO;
-	FVector PerformRotation = FVector::ZERO;
+	//FVector PerformMovement = FVector::ZERO;
+	//FVector PerformRotation = FVector::ZERO;
 
 	std::list<std::shared_ptr<UActorComponent>> ActorComponentList;
 

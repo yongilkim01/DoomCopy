@@ -24,7 +24,7 @@ void ACharacter::Tick(float DeltaTime)
 
     if (nullptr != CharacterMovement)
     {
-        CharacterMovement->PerformMovement(DeltaTime);
+        //CharacterMovement->PerformMovement(DeltaTime);
     }
 }
 

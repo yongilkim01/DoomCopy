@@ -66,37 +66,25 @@ void ANavMeshCharacter::Tick(float DeltaTime)
 	if (UEngineInput::IsPress('A'))
 	{
 		MoveRight(-Speed);
-		//PerformMovement += -GetActorTransform().GetWorldRight() * DeltaTime * Speed;
 	}
 	if (UEngineInput::IsPress('D'))
 	{
 		MoveRight(Speed);
-		//PerformMovement += GetActorTransform().GetWorldRight() * DeltaTime * Speed;
 	}
 	if (UEngineInput::IsPress('W'))
 	{
 		MoveForward(Speed);
-		//PerformMovement += GetActorTransform().GetWorldFoward() * DeltaTime * Speed;
 	}
 	if (UEngineInput::IsPress('S'))
 	{
 		MoveForward(-Speed);
-		//PerformMovement += -GetActorTransform().GetWorldFoward() * DeltaTime * Speed;
 	}
-
-	//PerformMovement.Normalize();
-	//PerformMovement *= Speed * DeltaTime;
 
 	FVector PrevMouseLocation = CurMouseLocation;
 
 	CurMouseLocation = UGameEngine::GetMainWindow().GetMousePos();
 
 	AddActorRotation({ 0.0f, CurMouseLocation.X - PrevMouseLocation.X, 0.0f });
-
-	
-
-	UEngineDebug::OutPutString("Mouse Location : " + CurMouseLocation.ToString());
-
 	
 }
 
