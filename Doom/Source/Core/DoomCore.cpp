@@ -127,8 +127,8 @@ void UDoomCore::EngineLevelStart()
 {
 	//UGameEngine::CreateLevel<ATitleGameMode, AActor, AHUD>("TitleLevel");
 	UGameEngine::CreateLevel<AE1M1GameMode, APawn, AHUD>("E1M1Level");
-	UGameEngine::CreateLevel<ANavMeshGameMode, APawn, ATitleHUD>("NavMeshLevel");
-	UGameEngine::OpenLevel("NavMeshLevel");
+	//UGameEngine::CreateLevel<ANavMeshGameMode, APawn, ATitleHUD>("NavMeshLevel");
+	UGameEngine::OpenLevel("E1M1Level");
 
 	UEngineGUI::OffAllWindow();
 

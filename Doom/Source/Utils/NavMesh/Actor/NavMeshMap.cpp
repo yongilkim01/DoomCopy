@@ -26,7 +26,7 @@ ANavMeshMap::ANavMeshMap()
 	GroundModelNumber.push_back(51);
 	GroundModelNumber.push_back(52);
 
-	MapComponent->SetModelDebug("doom_E1M1", GroundModelNumber);
+	///MapComponent->SetModelDebug("doom_E1M1", GroundModelNumber);
 }
 
 ANavMeshMap::~ANavMeshMap()

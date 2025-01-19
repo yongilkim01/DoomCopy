@@ -73,6 +73,24 @@
     <Filter Include="5_Global">
       <UniqueIdentifier>{f403c35c-a163-4975-8167-0596ab99586b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="4_UI\0_Public\Title">
+      <UniqueIdentifier>{9b34c39e-8b39-4e63-b41e-d30b30321d0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_UI\1_Private\Title">
+      <UniqueIdentifier>{56ae2616-5543-47c1-9336-b9f2873378ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_UI\0_Public\E1M1">
+      <UniqueIdentifier>{ec782f79-611d-4f12-b413-e578229f2f17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_UI\1_Private\E1M1">
+      <UniqueIdentifier>{fcdc01e6-cb7c-4925-a4e4-77766914565f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0_DoomGuy\Public">
+      <UniqueIdentifier>{f7472adf-7f48-4227-ba1f-4fc9f7c1fcef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0_DoomGuy\Private">
+      <UniqueIdentifier>{e6e86dca-b3ad-4753-8763-249720797dd3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\DoomGuy\DoomGuy.cpp">
@@ -129,14 +147,14 @@
     <ClCompile Include="Source\Utils\NavMesh\GameMode\NavMeshGameMode.cpp">
       <Filter>3_Utils\NavMesh\GameMode</Filter>
     </ClCompile>
-    <ClCompile Include="Source\UI\Private\TitleHUD.cpp">
-      <Filter>4_UI\1_Private</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Utils\GameInstance\DoomGameInstance.cpp">
       <Filter>3_Utils\GameInstance</Filter>
     </ClCompile>
     <ClCompile Include="Source\Global\DoomStructs.cpp">
       <Filter>5_Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\Private\TitleHUD.cpp">
+      <Filter>4_UI\1_Private\Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -194,14 +212,14 @@
     <ClInclude Include="Source\Actor\E1M1\Enemy\EnemyCharacter.h">
       <Filter>2_Actor\1_E1M1\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Source\UI\Public\TitleHUD.h">
-      <Filter>4_UI\0_Public</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Utils\GameInstance\DoomGameInstance.h">
       <Filter>3_Utils\GameInstance</Filter>
     </ClInclude>
     <ClInclude Include="Source\Global\DoomStructs.h">
       <Filter>5_Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI\Public\TitleHUD.h">
+      <Filter>4_UI\0_Public\Title</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

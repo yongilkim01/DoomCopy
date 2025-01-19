@@ -1,5 +1,5 @@
 #pragma once
-#include <Engine/Classes/GameFramework/Actor.h>
+#include <Engine/Classes/GameFramework/Character.h>
 
 class ACameraActor;
 class UStaticMeshComponent;
@@ -9,18 +9,21 @@ class UPaperSpriteComponent;
 /**
  *	설명
  */
-class ADoomGuy : public AActor
+class ADoomGuyCharacter : public ACharacter
 {
 public:
 	/** 생성자, 소멸자 */
-	ADoomGuy();
-	~ADoomGuy();
+	ADoomGuyCharacter();
+	~ADoomGuyCharacter();
 
 	/** 객체 값 복사 방지 */
-	ADoomGuy(const ADoomGuy& Other) = delete;
-	ADoomGuy(ADoomGuy&& Other) noexcept = delete;
-	ADoomGuy& operator=(const ADoomGuy& Other) = delete;
-	ADoomGuy& operator=(ADoomGuy&& Other) noexcept = delete;
+	ADoomGuyCharacter(const ADoomGuyCharacter& Other) = delete;
+	ADoomGuyCharacter(ADoomGuyCharacter&& Other) noexcept = delete;
+	ADoomGuyCharacter& operator=(const ADoomGuyCharacter& Other) = delete;
+	ADoomGuyCharacter& operator=(ADoomGuyCharacter&& Other) noexcept = delete;
+
+	void MoveForward(float Value);
+	void MoveRight(float Value);
 
 protected:
 	/** 액터 상속 메소드 */
@@ -31,11 +34,13 @@ private:
 	std::shared_ptr<ACameraActor> Camera = nullptr;
 
 	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
-	std::shared_ptr<UStaticMeshComponent> MeshComponent = nullptr;
 	std::shared_ptr<UShapeComponent> ShapeComponent = nullptr;
 	
-	FVector PrevMouseLocation = FVector::ZERO;
+	FVector CurMouseLocation = FVector::ZERO;
 
-	float Speed = 100.0f;
+	float Speed = 150.0f;
+	float Result = 0.0f;
+
+	float CameraSpeed = 10.0f;
 };
 

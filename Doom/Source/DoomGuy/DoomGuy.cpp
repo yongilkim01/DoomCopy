@@ -1,36 +1,28 @@
 #include "pch.h"
 #include "DoomGuy.h"
 
+#include <Engine/Classes/Camera/CameraActor.h>
+#include <Engine/Classes/Camera/CameraComponent.h>
+
 #include <Engine/Classes/Components/PaperSpriteComponent.h>
 #include <Engine/Classes/Components/StaticMeshComponent.h>
 #include <Engine/Classes/Components/ShapeComponent.h>
-#include <Engine/Classes/Camera/CameraActor.h>
-#include <Engine/Classes/Camera/CameraComponent.h>
 
 #include <Core/Public/Misc/DirectoryHelper.h>
 
 #include <Input/EngineInput.h>
 
-ADoomGuy::ADoomGuy()
+ADoomGuyCharacter::ADoomGuyCharacter()
 {
-	std::shared_ptr<USceneComponent> Default = CreateDefaultSubObject<USceneComponent>();
-	RootComponent = Default;
-
 	SpriteComponent = CreateDefaultSubObject<UPaperSpriteComponent>();
 	SpriteComponent->SetupAttachment(RootComponent);
 	SpriteComponent->SetTexture("Test.png");
-	// Renderer->SetSprite("Test.png", 2);
-	// Renderer->SetAutoScale(true);
-	// Renderer->SetAutoScaleRatio(5.0f);
-	SpriteComponent->SetWorldScale3D({ 30.0f, 30.0f });
-	SpriteComponent->AddWorldLocation({ 0.0f, 5.0f, 0.0f });
 	SpriteComponent->OnBillboard();
 
 	ShapeComponent = CreateDefaultSubObject<UShapeComponent>();
 	ShapeComponent->SetupAttachment(RootComponent);
 	ShapeComponent->SetCollisionProfileName("Player");
 	ShapeComponent->SetWorldScale3D({ 30.0f, 30.0f });
-	ShapeComponent->AddWorldLocation({ 0.0f, 5.0f, 0.0f });
 
 	//ShapeComponent->SetCollisionEnter([](UShapeComponent* _This, UShapeComponent* _Other)
 	//	{
@@ -38,44 +30,65 @@ ADoomGuy::ADoomGuy()
 	//		// _Other->Destroy();
 	//		UEngineDebug::OutPutString("Enter");
 	//	});
-
 }
 
-ADoomGuy::~ADoomGuy()
+ADoomGuyCharacter::~ADoomGuyCharacter()
 {
 }
 
-void ADoomGuy::BeginPlay()
+void ADoomGuyCharacter::BeginPlay()
 {
 	AActor::BeginPlay();
 
 	Camera = GetWorld()->GetMainCamera();
 
-	PrevMouseLocation = Camera->ScreenMouseLocationToWorldLocation();
+	CurMouseLocation = UGameEngine::GetMainWindow().GetMousePos();
 }
 
-void ADoomGuy::Tick(float DeltaTime)
+void ADoomGuyCharacter::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
 
-	FVector CurMouseLocation = Camera->ScreenMouseLocationToWorldLocation();
-
-	UEngineDebug::OutPutString(Camera->GetMouseLocation().ToString());
-
 	if (UEngineInput::IsPress('A'))
 	{
-		AddActorLocation(FVector{ -Speed * DeltaTime, 0.0f, 0.0f });
+		MoveRight(-Speed);
 	}
 	if (UEngineInput::IsPress('D'))
 	{
-		AddActorLocation(FVector{ Speed * DeltaTime, 0.0f, 0.0f });
+		MoveRight(Speed);
 	}
 	if (UEngineInput::IsPress('W'))
 	{
-		AddActorLocation(FVector{ 0.0f, 0.0f, Speed * DeltaTime, 0.0f });
+		MoveForward(Speed);
 	}
 	if (UEngineInput::IsPress('S'))
 	{
-		AddActorLocation(FVector{ 0.0f, 0.0f, -Speed * DeltaTime, 0.0f });
+		MoveForward(-Speed);
+	}
+
+	FVector PrevMouseLocation = CurMouseLocation;
+
+	CurMouseLocation = UGameEngine::GetMainWindow().GetMousePos();
+
+	AddActorRotation({ 0.0f, CurMouseLocation.X - PrevMouseLocation.X, 0.0f });
+}
+
+void ADoomGuyCharacter::MoveForward(float Value)
+{
+	if (Value != 0.0f)
+	{
+		FVector Direction = GetActorForwardVector();
+
+		AddMovementInput(Direction, Value);
+	}
+}
+
+void ADoomGuyCharacter::MoveRight(float Value)
+{
+	if (Value != 0.0f)
+	{
+		FVector Direction = GetActorRightVector();
+
+		AddMovementInput(Direction, Value);
 	}
 }

@@ -15,6 +15,8 @@
 #include <Tools/DebugGUI/EngineGUIWindow.h>
 #include <ThirdParty/imgui/imgui.h>
 
+#include "DoomGuy/DoomGuy.h"
+
 #include "Actor/Round1/E1M1Map.h"
 
 #include "Utils/NavMesh/Actor/NavMeshCharacter.h"
@@ -134,48 +136,26 @@ ANavMeshGameMode::ANavMeshGameMode()
 		GetWorld()->CreateCollisionProfile("Map");
 		GetWorld()->CreateCollisionProfile("Player");
 	}
-	//{
-	//	PlayerCharacter = GetWorld()->SpawnActor<ANavMeshCharacter>();
-	//	PlayerCharacter->SetActorLocation(FVector{ -150.0f, 100.0f, 50.0f });
-	//}
-	//{
-	//	TestMap = GetWorld()->SpawnActor<AE1M1Map>();
-	//}
-	//{
-	//	Camera = GetWorld()->GetMainCamera();
-	//	Camera->AddActorRelativeLocation({ 0.0f, 80.0f, -500.0f });
-	//	Camera->AddActorRotation({ 10.0f, 0.0f, 0.0f });
-	//	//Camera->AddActorRelativeLocation({ 0.0f, 300.0f, 0.0f });
-	//	//Camera->AddActorRotation({ 90.0f, 0.0f, 0.0f });
-	//	Camera->GetCameraComponent()->SetZSort(0, true);
-	//}
-
 	{
-		PlayerCharacter = GetWorld()->SpawnActor<ANavMeshCharacter>();
-		PlayerCharacter->SetActorLocation(FVector{ -1042.0f, 14.0f, 3548.0f });
+		DoomGuyCharacter = GetWorld()->SpawnActor<ADoomGuyCharacter>();
+		DoomGuyCharacter->SetActorLocation(FVector{ -1042.0f, 14.0f, 3548.0f });
 	}
 	{
 		TestMap = GetWorld()->SpawnActor<AE1M1Map>();
-		//TestMap->SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
-		//TestMap->SetActorLocation({ 0.0f, 0.0f, 0.0f });
 	}
 	{
 		NavMap = GetWorld()->SpawnActor<ANavMeshMap>();
-		//TestMap->SetActorRelativeScale3D(FVector{ 1.0f, 1.0f, 1.0f });
-		//TestMap->SetActorLocation({ 0.0f, 0.0f, 0.0f });
 	}
 	{
 		Camera = GetWorld()->GetMainCamera();
-		//Camera->AddActorLocation({ 10.0f, 0.0f, 0.0f });
 		Camera->AddActorRelativeLocation({ 0.0f, 30.0f, -10.0f });
 		Camera->GetCameraComponent()->SetZSort(0, true);
-		Camera->AttachToActor(PlayerCharacter.get());
+		Camera->AttachToActor(DoomGuyCharacter.get());
 	}
 
 	std::shared_ptr<UNavMeshDebugWindow> Window = UEngineGUI::CreateGUIWindow<UNavMeshDebugWindow>("NavMeshDebugWindow");
-	//Window->TestPlayer = PlayerCharacter;
 
-	UNavigationSystem::GetInstance().Init(PlayerCharacter.get(), NavMap.get(), "");
+	UNavigationSystem::GetInstance().Init(DoomGuyCharacter.get(), NavMap.get(), "");
 
 }
 
@@ -186,8 +166,6 @@ ANavMeshGameMode::~ANavMeshGameMode()
 void ANavMeshGameMode::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
-
-	//UNavigationSystem::GetInstance().Tick(DeltaTime);
 }
 
 void ANavMeshGameMode::LevelChangeStart()

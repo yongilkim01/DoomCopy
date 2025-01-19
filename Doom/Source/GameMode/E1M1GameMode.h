@@ -1,9 +1,10 @@
 #pragma once
 #include "Engine/Classes/GameFramework/GameMode.h"
 
-class ADoomGuy;
+class ADoomGuyCharacter;
 class ACameraActor;
 class AE1M1Map;
+class ANavMeshMap;
 
 // Ό³Έν :
 class AE1M1GameMode : public AGameMode
@@ -25,8 +26,10 @@ protected:
 	virtual void LevelChangeStart() override;
 
 private:
-	std::shared_ptr<ADoomGuy> DoomGuy = nullptr;
+	std::shared_ptr<ADoomGuyCharacter> DoomGuyCharacter = nullptr;
 	std::shared_ptr<ACameraActor> Camera = nullptr;
 	std::shared_ptr<AE1M1Map> E1M1Map = nullptr;
+	std::shared_ptr<ANavMeshMap> NavMap = nullptr;
+
 };
 

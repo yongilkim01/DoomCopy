@@ -3,7 +3,7 @@
 
 class ACameraActor;
 class ANavMeshMap;
-class ANavMeshCharacter;
+class ADoomGuyCharacter;
 class UNaviMeshManager;
 class AE1M1Map;
 
@@ -30,7 +30,7 @@ protected:
 
 private:
 	std::shared_ptr<ACameraActor> Camera = nullptr;
-	std::shared_ptr<ANavMeshCharacter> PlayerCharacter = nullptr;
+	std::shared_ptr<ADoomGuyCharacter> DoomGuyCharacter = nullptr;
 	std::shared_ptr<AE1M1Map> TestMap = nullptr;
 	std::shared_ptr<ANavMeshMap> NavMap = nullptr;
 
