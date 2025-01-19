@@ -156,6 +156,9 @@
     <ClCompile Include="Source\UI\Private\TitleHUD.cpp">
       <Filter>4_UI\1_Private\Title</Filter>
     </ClCompile>
+    <ClCompile Include="Source\UI\Private\E1M1HUD.cpp">
+      <Filter>4_UI\1_Private\E1M1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DoomGuy\DoomGuy.h">
@@ -220,6 +223,9 @@
     </ClInclude>
     <ClInclude Include="Source\UI\Public\TitleHUD.h">
       <Filter>4_UI\0_Public\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI\Public\E1M1HUD.h">
+      <Filter>4_UI\0_Public\E1M1</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
