@@ -2,22 +2,10 @@
 #include "Engine/Classes/Components/PrimitiveComponent.h"
 #include "Core/Public/Delegates/Delegate.h"
 #include "Engine/Classes/Engine/PaperSprite.h"
+#include "EngineStruct.h"
 
 class UCameraComponent;
 class URenderAsset;
-
-struct FUVValue
-{
-public:
-	float4 PlusUVValue;
-};
-
-struct ResultColor
-{
-public:
-	float4 PlusColor;
-	float4 MulColor;
-};
 
 /**
  *	Ό³Έν
@@ -121,7 +109,7 @@ public:
 		AutoScaleRatio = NewScaleRatio;
 	}
 
-	ResultColor ColorData;
+	FResultColor ColorData;
 	FUVValue UVValue;
 	FPaperSpriteData SpriteData;
 

@@ -42,5 +42,7 @@ private:
 	float Result = 0.0f;
 
 	float CameraSpeed = 10.0f;
+
+	bool bPlayMode = false;
 };
 

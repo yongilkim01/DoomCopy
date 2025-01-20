@@ -3,15 +3,9 @@
 #include "Core/Public/Math/EngineMath.h"
 #include "Core/Public/Misc/DirectoryHelper.h"
 #include "EngineDefine.h"
+#include "EngineStruct.h"
 
 class UTexture;
-
-struct FPaperSpriteData
-{
-	float4 CuttingLocation = { 0.0f, 0.0f };
-	float4 CuttingSize = { 1.0f, 1.0f };
-	float4 Pivot = { 0.5f, 0.5f };
-};
 
 /**
  *	Ό³Έν

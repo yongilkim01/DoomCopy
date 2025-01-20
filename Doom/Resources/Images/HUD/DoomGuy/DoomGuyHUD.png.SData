@@ -1,0 +1,1116 @@
+fileFormatVersion: 2
+guid: e6bb72ca4579cfa49a42f11c16e25814
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8370786676613399984
+    second: DoomGuyHUD_0
+  - first:
+      213: 8465514878019214505
+    second: DoomGuyHUD_1
+  - first:
+      213: -7891821012633944554
+    second: DoomGuyHUD_2
+  - first:
+      213: 8865429874586432206
+    second: DoomGuyHUD_3
+  - first:
+      213: 8520494254166388880
+    second: DoomGuyHUD_4
+  - first:
+      213: -7666141939004378736
+    second: DoomGuyHUD_5
+  - first:
+      213: 229160137438145317
+    second: DoomGuyHUD_6
+  - first:
+      213: -2062473197695555947
+    second: DoomGuyHUD_7
+  - first:
+      213: -8355467066142622851
+    second: DoomGuyHUD_8
+  - first:
+      213: 2195455087960798491
+    second: DoomGuyHUD_9
+  - first:
+      213: 6276869796245003757
+    second: DoomGuyHUD_10
+  - first:
+      213: 5209407543514704845
+    second: DoomGuyHUD_11
+  - first:
+      213: -4616291348891517150
+    second: DoomGuyHUD_12
+  - first:
+      213: -1788388795964909803
+    second: DoomGuyHUD_13
+  - first:
+      213: -3759265991004225678
+    second: DoomGuyHUD_14
+  - first:
+      213: -5877171899851329526
+    second: DoomGuyHUD_15
+  - first:
+      213: 4814714236573592863
+    second: DoomGuyHUD_16
+  - first:
+      213: -8052772509475605005
+    second: DoomGuyHUD_17
+  - first:
+      213: -2974631589637658332
+    second: DoomGuyHUD_18
+  - first:
+      213: 1716935373934713795
+    second: DoomGuyHUD_19
+  - first:
+      213: 1790000189946568054
+    second: DoomGuyHUD_20
+  - first:
+      213: -3055334544516710212
+    second: DoomGuyHUD_21
+  - first:
+      213: -1858209017393315543
+    second: DoomGuyHUD_22
+  - first:
+      213: 3019366043024040133
+    second: DoomGuyHUD_23
+  - first:
+      213: 7865401519954302955
+    second: DoomGuyHUD_24
+  - first:
+      213: 1237935404032565220
+    second: DoomGuyHUD_25
+  - first:
+      213: 767119690550652665
+    second: DoomGuyHUD_26
+  - first:
+      213: -3332788320372677439
+    second: DoomGuyHUD_27
+  - first:
+      213: 2948978668300348286
+    second: DoomGuyHUD_28
+  - first:
+      213: 7247263106965789905
+    second: DoomGuyHUD_29
+  - first:
+      213: -5014560597320449902
+    second: DoomGuyHUD_30
+  - first:
+      213: 7741135199034057714
+    second: DoomGuyHUD_31
+  - first:
+      213: 6353849030455078699
+    second: DoomGuyHUD_32
+  - first:
+      213: -5663451670790519716
+    second: DoomGuyHUD_33
+  - first:
+      213: -1290314959936221832
+    second: DoomGuyHUD_34
+  - first:
+      213: -6497191162300840604
+    second: DoomGuyHUD_35
+  - first:
+      213: -6296781543126969578
+    second: DoomGuyHUD_36
+  - first:
+      213: -4974289119097810802
+    second: DoomGuyHUD_37
+  - first:
+      213: -8218629191758067949
+    second: DoomGuyHUD_38
+  - first:
+      213: -61173013150558879
+    second: DoomGuyHUD_39
+  - first:
+      213: -6695355020241455612
+    second: DoomGuyHUD_40
+  - first:
+      213: -3873910037639414518
+    second: DoomGuyHUD_41
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 100
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DoomGuyHUD_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 340
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b54d1ec1220b2470800000000000000
+      internalID: 8370786676613399984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 340
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ac9e19edec8b7570800000000000000
+      internalID: 8465514878019214505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_2
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 339
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61e7df60a9e9a7290800000000000000
+      internalID: -7891821012633944554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_3
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 341
+        width: 48
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec23cd7ff75580b70800000000000000
+      internalID: 8865429874586432206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_4
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 341
+        width: 48
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09038527160ee3670800000000000000
+      internalID: 8520494254166388880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_5
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 341
+        width: 48
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0917beff5846c9590800000000000000
+      internalID: -7666141939004378736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_6
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 340
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52b2eac4ee32e2300800000000000000
+      internalID: 229160137438145317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_7
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 340
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 596a79cdd8f9063e0800000000000000
+      internalID: -2062473197695555947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_8
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 274
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7bf716f8fa6b0c80800000000000000
+      internalID: -8355467066142622851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_9
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 274
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b153a3e35c2d77e10800000000000000
+      internalID: 2195455087960798491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_10
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 273
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: deddf8ac2dbeb1750800000000000000
+      internalID: 6276869796245003757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_11
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 275
+        width: 48
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcb2f696f888b4840800000000000000
+      internalID: 5209407543514704845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_12
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 275
+        width: 48
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22fbc91f973afefb0800000000000000
+      internalID: -4616291348891517150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_13
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 275
+        width: 48
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51719388ddd5e27e0800000000000000
+      internalID: -1788388795964909803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_14
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 274
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27f7cf5af7764dbc0800000000000000
+      internalID: -3759265991004225678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_15
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 274
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a003471bb47107ea0800000000000000
+      internalID: -5877171899851329526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_16
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 208
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1d2cf5b61d41d240800000000000000
+      internalID: 4814714236573592863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_17
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 208
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f5fcab611ece3090800000000000000
+      internalID: -8052772509475605005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_18
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 207
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 429edf9545cf7b6d0800000000000000
+      internalID: -2974631589637658332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_19
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 208
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cb5ea930a7c3d710800000000000000
+      internalID: 1716935373934713795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_20
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 208
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67d95ad50bb57d810800000000000000
+      internalID: 1790000189946568054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_21
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 208
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb00a1c6b654995d0800000000000000
+      internalID: -3055334544516710212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_22
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 208
+        width: 54
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92108df6eb05636e0800000000000000
+      internalID: -1858209017393315543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_23
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 208
+        width: 54
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c023593b61f6e920800000000000000
+      internalID: 3019366043024040133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_24
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 142
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be791bc7205872d60800000000000000
+      internalID: 7865401519954302955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_25
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 142
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ef9d3ce0b70e2110800000000000000
+      internalID: 1237935404032565220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_26
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 141
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9feaa7f4b4b55aa00800000000000000
+      internalID: 767119690550652665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_27
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 141
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c4ad943eae8fb1d0800000000000000
+      internalID: -3332788320372677439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_28
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 141
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7b2f367970ece820800000000000000
+      internalID: 2948978668300348286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_29
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 141
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dc5d7ce563739460800000000000000
+      internalID: 7247263106965789905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_30
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 141
+        width: 58
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2904b0c74b3b86ab0800000000000000
+      internalID: -5014560597320449902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_31
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 142
+        width: 56
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f3a2b003790e6b60800000000000000
+      internalID: 7741135199034057714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_32
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 76
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2f2cb077086d2850800000000000000
+      internalID: 6353849030455078699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_33
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 76
+        width: 48
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5440ff26b06761b0800000000000000
+      internalID: -5663451670790519716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_34
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 75
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87d01ac5161e71ee0800000000000000
+      internalID: -1290314959936221832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_35
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 75
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 465404dbf0755d5a0800000000000000
+      internalID: -6497191162300840604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_36
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 75
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6135ead5c865d98a0800000000000000
+      internalID: -6296781543126969578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_37
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 75
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e80951ea666c7fab0800000000000000
+      internalID: -4974289119097810802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_38
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 75
+        width: 60
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 317ca945b4091fd80800000000000000
+      internalID: -8218629191758067949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_39
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 76
+        width: 56
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1651259f77ba62ff0800000000000000
+      internalID: -61173013150558879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_40
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 9
+        width: 48
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 406316525125513a0800000000000000
+      internalID: -6695355020241455612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoomGuyHUD_41
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 11
+        width: 48
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0dbeaa785b1d3ac0800000000000000
+      internalID: -3873910037639414518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 60c37cc1c4a812742b987b7d7593b6d6
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

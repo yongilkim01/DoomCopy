@@ -18,21 +18,24 @@ void AE1M1HUD::BeginPlay()
 
 	{
 		std::shared_ptr<UImage> Widget = CreateWidget<UImage>(-1);
-		Widget->SetWorldScale3D({ 100, 100, 1 });
-		Widget->SetWorldLocation({ -200, 300 });
-		Widget->SetTexture("BackGround.png");
+		Widget->SetWorldScale3D({ 1280, 128, 1 });
+		Widget->SetWorldLocation({ 0.0f, -296.0f });
+		Widget->SetTexture("StatusBar.png");
 		Widget->SetMouseClickEventFunction([]()
 			{
-				UEngineDebug::OutPutString("Click~~~~~~~~~");
+				//UEngineDebug::OutPutString("Click~~~~~~~~~");
 			});
 	}
-
 	{
-		std::shared_ptr<UTextBox> Widget = CreateWidget<UTextBox>(1);
-
-		Widget->SetWorldLocation({ 200, 300 });
-		Widget->SetFont("±√º≠");
-		Widget->SetText("æ»≥Á«œººø‰");
+		std::shared_ptr<UImage> DooGuyWidget = CreateWidget<UImage>(-1);
+		DooGuyWidget->SetWorldScale3D({ 110, 120, 1 });
+		DooGuyWidget->SetWorldLocation({ -52.0f, -358.0f });
+		DooGuyWidget->CreateAnimation("DoomGuy100", "DoomGuyHUD.png", 3, 5, 1.0f, true);
+		DooGuyWidget->ChangeAnimation("DoomGuy100");
+		DooGuyWidget->SetMouseClickEventFunction([]()
+			{
+				//UEngineDebug::OutPutString("Click~~~~~~~~~");
+			});
 	}
 }
 

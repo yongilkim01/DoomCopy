@@ -389,7 +389,7 @@ float FNaviData::Intersect(AActor* PlayerCharacter, AActor* MapActor)
 
 float FNaviData::Intersect(FVector CheckVector, AActor* MapActor)
 {
-	DirectX::XMVECTOR OriginVector = DirectX::XMVectorSet(CheckVector.X, CheckVector.Y + 100.0f, CheckVector.Z, 1.0f);
+	DirectX::XMVECTOR OriginVector = DirectX::XMVectorSet(CheckVector.X, CheckVector.Y + 15.0f, CheckVector.Z, 1.0f);
 	DirectX::XMVECTOR Direction = DirectX::XMVectorSet(0.0f, -1.0f, 0.0f, 0.0f);
 
 	FTransform TestMapTransform = MapActor->GetActorTransform();

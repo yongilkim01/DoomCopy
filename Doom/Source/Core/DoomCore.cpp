@@ -28,6 +28,7 @@
 #include "Utils/NavMesh/Actor/NavMeshResource.h"
 #include "Utils/GameInstance/DoomGameInstance.h"
 #include "UI/Public/TitleHUD.h"
+#include "UI/Public/E1M1HUD.h"
 
 
 
@@ -69,6 +70,10 @@ void UDoomCore::EngineAssetLoad()
 			std::string FilePath = ImageFiles[i].GetPathToString();
 			UTexture::Load(FilePath);
 		}
+
+		UPaperSprite::CreateSpriteToMeta("Player.png", ".sdata");
+		UPaperSprite::CreateSpriteToMeta("DoomGuyHUD.png", ".sdata");
+
 	}
 	{
 		FDirectoryHelper CurDir;
@@ -107,26 +112,12 @@ void UDoomCore::EngineAssetLoad()
 	{
 		UNavMeshResource::Create("NavMapResource");
 	}
-
-	UPaperSprite::CreateSpriteToMeta("Player.png", ".sdata");
-
-	{
-		FDirectoryHelper Dir;
-		if (false == Dir.MoveParentToDirectory("Resources", "Doom"))
-		{
-			MSGASSERT("리소스 폴더를 찾지 못했습니다.");
-			return;
-		}
-		Dir.Append("Images/Tevi");
-
-		UPaperSprite::CreateSpriteToFolder(Dir.GetPathToString());
-	}
 }
 
 void UDoomCore::EngineLevelStart()
 {
 	//UGameEngine::CreateLevel<ATitleGameMode, AActor, AHUD>("TitleLevel");
-	UGameEngine::CreateLevel<AE1M1GameMode, APawn, AHUD>("E1M1Level");
+	UGameEngine::CreateLevel<AE1M1GameMode, APawn, AE1M1HUD>("E1M1Level");
 	//UGameEngine::CreateLevel<ANavMeshGameMode, APawn, ATitleHUD>("NavMeshLevel");
 	UGameEngine::OpenLevel("E1M1Level");
 

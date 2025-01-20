@@ -66,11 +66,30 @@ void ADoomGuyCharacter::Tick(float DeltaTime)
 		MoveForward(-Speed);
 	}
 
-	FVector PrevMouseLocation = CurMouseLocation;
+	if (UEngineInput::IsDown('Y'))
+	{
 
-	CurMouseLocation = UGameEngine::GetMainWindow().GetMousePos();
+		bPlayMode = !bPlayMode;
 
-	AddActorRotation({ 0.0f, CurMouseLocation.X - PrevMouseLocation.X, 0.0f });
+	}
+
+	if (true == bPlayMode)
+	{
+
+		FVector PrevMouseLocation = CurMouseLocation;
+
+		CurMouseLocation = UGameEngine::GetMainWindow().GetMousePos();
+
+		UEngineDebug::OutPutString("PrevMouseLocation : " + PrevMouseLocation.ToString());
+		UEngineDebug::OutPutString("CurMouseLocation : " + CurMouseLocation.ToString());
+
+		AddActorRotation({ 0.0f, CurMouseLocation.X - PrevMouseLocation.X, 0.0f });
+
+		//SetCursorPos(960, 540);
+
+		//CurMouseLocation = FVector{ 960, 540 };
+
+	}
 }
 
 void ADoomGuyCharacter::MoveForward(float Value)
