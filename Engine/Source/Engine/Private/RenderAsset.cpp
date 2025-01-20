@@ -29,15 +29,10 @@ void URenderAsset::Render(UCameraComponent* CameraComponent, float DetlaTime)
 	Material->GetVertexShader()->Update();
 	Mesh->GetIndexBuffer()->Update();
 	Material->UpdatePrimitiveTopology();
-
 	UGameEngine::GetDeviceContext()->IASetInputLayout(InputLayout.Get());
-
 	Material->GetRasterizerState()->Update();
-
 	Material->GetPixelShader()->Update();
-
 	Material->GetBlend()->Update();
-
 	Material->GetDepthStencilState()->Update();
 
 	UGameEngine::GetDeviceContext()->DrawIndexed(Mesh->GetIndexBuffer()->GetIndexCount(), 0, 0);

@@ -21,15 +21,27 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual void Render(UCameraComponent* CameraComponent, float DeltaTime) override;
 
+	void InitText(FVector Size, int Count/* = 10*/);
+	void ShowText(float Time);
+	void Reserve(int Count);
+	int ConvertCharInteger(char c);
+	void SetTextCount(int Count);
+	void SetValue(int StrValue);
+	URenderAsset& CreateRenderAsset();
+
 	ENGINE_API void SetFont(
 		std::string_view Value, 
 		float Scale = 20.0f, 
 		UColor Color = UColor::BLACK,
 		FW1_TEXT_FLAG TextFlag = FW1_TEXT_FLAG::FW1_LEFT);
 
-	void SetText(std::string Value)
+	ENGINE_API void SetText(std::string Value)
 	{
 		Text = Value;
+	}
+	ENGINE_API std::string GetString() const
+	{
+		return StrValue;
 	}
 
 protected:
@@ -40,6 +52,10 @@ private:
 	float Scale = 20.0f;
 	UColor Color = UColor::BLACK;
 	FW1_TEXT_FLAG Flag = FW1_TEXT_FLAG::FW1_LEFT;
+
+	std::vector<URenderAsset> TextImageVector;
+
+	std::string StrValue;
 
 };
 
