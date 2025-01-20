@@ -1,0 +1,1548 @@
+fileFormatVersion: 2
+guid: a6f5a3aee2b351a44886afbff9d24e71
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1119118325650412021
+    second: HUDSmallFont_0
+  - first:
+      213: 2204372657819548583
+    second: HUDSmallFont_1
+  - first:
+      213: -2561034076952929891
+    second: HUDSmallFont_2
+  - first:
+      213: -1157921071852964224
+    second: HUDSmallFont_3
+  - first:
+      213: 7091825002861242401
+    second: HUDSmallFont_4
+  - first:
+      213: -5907604363688255127
+    second: HUDSmallFont_5
+  - first:
+      213: -6741714713255860235
+    second: HUDSmallFont_6
+  - first:
+      213: -3802075874146077998
+    second: HUDSmallFont_7
+  - first:
+      213: -2987755796340873058
+    second: HUDSmallFont_8
+  - first:
+      213: -1513675575708450929
+    second: HUDSmallFont_9
+  - first:
+      213: -6010382954672759351
+    second: HUDSmallFont_10
+  - first:
+      213: -3229020455962568351
+    second: HUDSmallFont_11
+  - first:
+      213: 1529748088508881473
+    second: HUDSmallFont_12
+  - first:
+      213: 5793675170231783001
+    second: HUDSmallFont_13
+  - first:
+      213: 6547418940239060369
+    second: HUDSmallFont_14
+  - first:
+      213: 8043250669013667444
+    second: HUDSmallFont_15
+  - first:
+      213: 194338212503317109
+    second: HUDSmallFont_16
+  - first:
+      213: 6451550151735980459
+    second: HUDSmallFont_17
+  - first:
+      213: 1489868220795966473
+    second: HUDSmallFont_18
+  - first:
+      213: -7009565653578376992
+    second: HUDSmallFont_19
+  - first:
+      213: -5453790756100267095
+    second: HUDSmallFont_20
+  - first:
+      213: 782579785401426469
+    second: HUDSmallFont_21
+  - first:
+      213: -8772125406209590113
+    second: HUDSmallFont_22
+  - first:
+      213: -4992937897153703080
+    second: HUDSmallFont_23
+  - first:
+      213: -2238049691684543962
+    second: HUDSmallFont_24
+  - first:
+      213: -3578531161468522306
+    second: HUDSmallFont_25
+  - first:
+      213: 6974045850897506081
+    second: HUDSmallFont_26
+  - first:
+      213: 5961841256277994141
+    second: HUDSmallFont_27
+  - first:
+      213: 1266943523997538164
+    second: HUDSmallFont_28
+  - first:
+      213: 721742959196596893
+    second: HUDSmallFont_29
+  - first:
+      213: -5449537304837144905
+    second: HUDSmallFont_30
+  - first:
+      213: 3727737283322536696
+    second: HUDSmallFont_31
+  - first:
+      213: -36045913050406273
+    second: HUDSmallFont_32
+  - first:
+      213: 3435631047920919050
+    second: HUDSmallFont_33
+  - first:
+      213: -1184367491120005823
+    second: HUDSmallFont_34
+  - first:
+      213: 7784113312205654321
+    second: HUDSmallFont_35
+  - first:
+      213: 2353195697145743179
+    second: HUDSmallFont_36
+  - first:
+      213: -9003395412924502605
+    second: HUDSmallFont_37
+  - first:
+      213: 2415082881056610127
+    second: HUDSmallFont_38
+  - first:
+      213: 7140597936649467717
+    second: HUDSmallFont_39
+  - first:
+      213: 3871057271039422135
+    second: HUDSmallFont_40
+  - first:
+      213: 9112230404085285793
+    second: HUDSmallFont_41
+  - first:
+      213: 6835193853193724988
+    second: HUDSmallFont_42
+  - first:
+      213: -4321082926597192245
+    second: HUDSmallFont_43
+  - first:
+      213: -1693296647737602915
+    second: HUDSmallFont_44
+  - first:
+      213: -6203250343483756962
+    second: HUDSmallFont_45
+  - first:
+      213: 7944625087259295185
+    second: HUDSmallFont_46
+  - first:
+      213: -2320829734667767916
+    second: HUDSmallFont_47
+  - first:
+      213: -784019347978630546
+    second: HUDSmallFont_48
+  - first:
+      213: -6590638591296512360
+    second: HUDSmallFont_49
+  - first:
+      213: 2424813064122125478
+    second: HUDSmallFont_50
+  - first:
+      213: 8062710643043293244
+    second: HUDSmallFont_51
+  - first:
+      213: 6812848067965431694
+    second: HUDSmallFont_52
+  - first:
+      213: -8128967593017867600
+    second: HUDSmallFont_53
+  - first:
+      213: 2361232121038250623
+    second: HUDSmallFont_54
+  - first:
+      213: 3132570063052150203
+    second: HUDSmallFont_55
+  - first:
+      213: -4804690116089459144
+    second: HUDSmallFont_56
+  - first:
+      213: -4250740654308034359
+    second: HUDSmallFont_57
+  - first:
+      213: 5878119296528630731
+    second: HUDSmallFont_58
+  - first:
+      213: 2573514584245304468
+    second: HUDSmallFont_59
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HUDSmallFont_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 26
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f1d5061038e78f00800000000000000
+      internalID: 1119118325650412021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_1
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 26
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7abfae5c041879e10800000000000000
+      internalID: 2204372657819548583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 26
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d99dc817311657cd0800000000000000
+      internalID: -2561034076952929891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_3
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 26
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 086b34a8bec3eefe0800000000000000
+      internalID: -1157921071852964224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_4
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 26
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12827c814493b6260800000000000000
+      internalID: 7091825002861242401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_5
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 26
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96160dc8129f30ea0800000000000000
+      internalID: -5907604363688255127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_6
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 26
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f72c5bff2e9072a0800000000000000
+      internalID: -6741714713255860235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_7
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 26
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d2b07003205c3bc0800000000000000
+      internalID: -3802075874146077998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_8
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 26
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e98ec7bdeeb5986d0800000000000000
+      internalID: -2987755796340873058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_9
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 26
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8f76bc65185efae0800000000000000
+      internalID: -1513675575708450929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 18
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cddaae0c84d69ca0800000000000000
+      internalID: -6010382954672759351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_11
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 18
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16991edd0073033d0800000000000000
+      internalID: -3229020455962568351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_12
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 18
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14a976318c1ca3510800000000000000
+      internalID: 1529748088508881473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_13
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 18
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95e8aa10fd4476050800000000000000
+      internalID: 5793675170231783001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_14
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 18
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19d1d9026da1dda50800000000000000
+      internalID: 6547418940239060369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_15
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 18
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47e8bf55edd5f9f60800000000000000
+      internalID: 8043250669013667444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_16
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 18
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57a6b8a139d62b200800000000000000
+      internalID: 194338212503317109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_17
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 18
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba137d46ea2888950800000000000000
+      internalID: 6451550151735980459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_18
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 18
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 904dfaec0431da410800000000000000
+      internalID: 1489868220795966473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_19
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 18
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e89ea42d2509be90800000000000000
+      internalID: -7009565653578376992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_20
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 18
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a3a557e33e3054b0800000000000000
+      internalID: -5453790756100267095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_21
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 18
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 522e0452b284cda00800000000000000
+      internalID: 782579785401426469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_22
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 18
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9cb2b57b66234680800000000000000
+      internalID: -8772125406209590113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_23
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 18
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 853519eaf6585bab0800000000000000
+      internalID: -4992937897153703080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_24
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 18
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6226871c9a9d0f0e0800000000000000
+      internalID: -2238049691684543962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_25
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 18
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb0b0075ed0865ec0800000000000000
+      internalID: -3578531161468522306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_26
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 17
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12f580650c9c8c060800000000000000
+      internalID: 6974045850897506081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_27
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 18
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9ae7bf0907bcb250800000000000000
+      internalID: 5961841256277994141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_28
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 18
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 477da5a2c66159110800000000000000
+      internalID: 1266943523997538164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_29
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 9
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9a6d0eb565240a00800000000000000
+      internalID: 721742959196596893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_30
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 9
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7be31f2b1ba5f54b0800000000000000
+      internalID: -5449537304837144905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_31
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 9
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f26b6c0f459bb330800000000000000
+      internalID: 3727737283322536696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_32
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 9
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f72a60dde60ff7ff0800000000000000
+      internalID: -36045913050406273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_33
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 9
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0221ae3c30ddaf20800000000000000
+      internalID: 3435631047920919050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_34
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 9
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14d7548ba08409fe0800000000000000
+      internalID: -1184367491120005823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_35
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 9
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1394861c0d9b60c60800000000000000
+      internalID: 7784113312205654321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_36
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 12
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b47895fc40b38a020800000000000000
+      internalID: 2353195697145743179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_37
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 12
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bde040f2938d0380800000000000000
+      internalID: -9003395412924502605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_38
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 9
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f47918ca519148120800000000000000
+      internalID: 2415082881056610127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_39
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 9
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 547f0e9adff781360800000000000000
+      internalID: 7140597936649467717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_40
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 9
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7be6f790412c8b530800000000000000
+      internalID: 3871057271039422135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_41
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 9
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a3840b1645257e70800000000000000
+      internalID: 9112230404085285793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_42
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 11
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c34ab86589c7bde50800000000000000
+      internalID: 6835193853193724988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_43
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 11
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc54b2be8fd6804c0800000000000000
+      internalID: -4321082926597192245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_44
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 9
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9c8d3c9ba33088e0800000000000000
+      internalID: -1693296647737602915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_45
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 9
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5ea4d7cda0a9e9a0800000000000000
+      internalID: -6203250343483756962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_46
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 12
+        width: 7
+        height: 4
+      alignment: 9
+      pivot: {x: 0.5, y: 0.019722939}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dd3fb7ac6af04e60800000000000000
+      internalID: 7944625087259295185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_47
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 9
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49fa6f017a1cacfd0800000000000000
+      internalID: -2320829734667767916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_48
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 8
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6a43b29e8a9e15f0800000000000000
+      internalID: -784019347978630546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_49
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 9
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89e5ac2be195984a0800000000000000
+      internalID: -6590638591296512360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_50
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6acc9b572aaa6a120800000000000000
+      internalID: 2424813064122125478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_51
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 1
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c385b5d9c9084ef60800000000000000
+      internalID: 8062710643043293244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_52
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 1
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8f29c7c8391c8e50800000000000000
+      internalID: 6812848067965431694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_53
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 1
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b202831b0b103f80800000000000000
+      internalID: -8128967593017867600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_54
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 1
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f722abe8a18c4c020800000000000000
+      internalID: 2361232121038250623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_55
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 3
+        width: 7
+        height: 5
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25733384}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb51f3210ef197b20800000000000000
+      internalID: 3132570063052150203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_56
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 1
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83e48a6bbcf425db0800000000000000
+      internalID: -4804690116089459144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_57
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 0
+        width: 18
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c878a375e55205c0800000000000000
+      internalID: -4250740654308034359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_58
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 1
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc345f84b56439150800000000000000
+      internalID: 5878119296528630731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUDSmallFont_59
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 1
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49c7a3a11e5f6b320800000000000000
+      internalID: 2573514584245304468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 8b4af8f07d5f2b8439c44fa7097dce8f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
