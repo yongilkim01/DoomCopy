@@ -22,7 +22,7 @@ public:
 	UCharacterMovementComponent& operator=(UCharacterMovementComponent&& Other) noexcept = delete;
 
 	ENGINE_API virtual void BeginPlay() override;
-	ENGINE_API virtual void ComponentTick(float DeltaTime) override;
+	ENGINE_API virtual void TickComponent(float DeltaTime) override;
 
 	ENGINE_API bool SafeMoveUpdatedComponent(const FVector& Delta, const FVector& NewRotation, bool bSweep);
 	ENGINE_API void AddInputVector(FVector WorldVector, bool bForce = false);

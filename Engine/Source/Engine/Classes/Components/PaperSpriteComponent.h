@@ -128,7 +128,7 @@ public:
 protected:
 	/** USceneComponent method */
 	virtual void BeginPlay() override;
-	virtual void ComponentTick(float DeltaTime) override;
+	virtual void TickComponent(float DeltaTime) override;
 	ENGINE_API virtual void Render(UCameraComponent* CameraComponent, float DeltaTime) override;
 	ENGINE_API virtual void UpdateCameraTransform(UCameraComponent* CameraComponent) override;
 

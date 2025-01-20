@@ -20,9 +20,9 @@ void USceneComponent::BeginPlay()
 	}
 }
 
-void USceneComponent::ComponentTick(float DeltaTime)
+void USceneComponent::TickComponent(float DeltaTime)
 {
-	UActorComponent::ComponentTick(DeltaTime);
+	UActorComponent::TickComponent(DeltaTime);
 
 	for (UTransformObject* Child : Childs)
 	{
@@ -33,6 +33,6 @@ void USceneComponent::ComponentTick(float DeltaTime)
 			continue;
 		}
 
-		SceneComponentChild->ComponentTick(DeltaTime);
+		SceneComponentChild->TickComponent(DeltaTime);
 	}
 }

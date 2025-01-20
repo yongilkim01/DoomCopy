@@ -39,9 +39,9 @@ void UPaperSpriteComponent::BeginPlay()
     UPrimitiveComponent::BeginPlay();
 }
 
-void UPaperSpriteComponent::ComponentTick(float DeltaTime)
+void UPaperSpriteComponent::TickComponent(float DeltaTime)
 {
-    UPrimitiveComponent::ComponentTick(DeltaTime);
+    UPrimitiveComponent::TickComponent(DeltaTime);
 
     if (nullptr != CurAnimation)
     {

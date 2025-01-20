@@ -37,7 +37,7 @@ void UCameraComponent::BeginPlay()
 
 void UCameraComponent::Tick(float DeltaTime)
 {
-	USceneComponent::ComponentTick(DeltaTime);
+	USceneComponent::TickComponent(DeltaTime);
 
 	Transform.View;
 	Transform.Projection;

@@ -14,7 +14,7 @@ void UCharacterMovementComponent::BeginPlay()
 {
 }
 
-void UCharacterMovementComponent::ComponentTick(float DeltaTime)    
+void UCharacterMovementComponent::TickComponent(float DeltaTime)    
 {
     // 입력 벡터를 기반으로 가속도 계산
     Velocity = PendingInputVector;

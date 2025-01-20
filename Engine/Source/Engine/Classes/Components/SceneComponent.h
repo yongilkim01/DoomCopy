@@ -22,7 +22,7 @@ public:
 	USceneComponent& operator=(const USceneComponent& _Other) = delete;
 	USceneComponent& operator=(USceneComponent&& _Other) noexcept = delete;
 
-	ENGINE_API virtual void ComponentTick(float DeltaTime) override;
+	ENGINE_API virtual void TickComponent(float DeltaTime) override;
 
 protected:
 	ENGINE_API virtual void BeginPlay() override;

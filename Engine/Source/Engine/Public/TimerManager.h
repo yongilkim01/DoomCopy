@@ -35,7 +35,7 @@ public:
 
 protected:
 	ENGINE_API void BeginPlay() override;
-	ENGINE_API void ComponentTick(float _DeltaTime) override;
+	ENGINE_API void TickComponent(float _DeltaTime) override;
 
 private:
 	std::list<FTimeEvent> Events;

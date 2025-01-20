@@ -13,9 +13,9 @@ void UTimerManager::BeginPlay()
 {
 }
 
-void UTimerManager::ComponentTick(float DeltaTime)
+void UTimerManager::TickComponent(float DeltaTime)
 {
-	UActorComponent::ComponentTick(DeltaTime);
+	UActorComponent::TickComponent(DeltaTime);
 
 	for (FTimeEvent& TimeEvent : Events)
 	{

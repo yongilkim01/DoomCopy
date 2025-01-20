@@ -28,7 +28,7 @@ void AActor::Tick(float DeltaTime)
 {
     for (std::shared_ptr<AActor>& Actor : ChildList)
     {
-        RootComponent->ComponentTick(DeltaTime);
+        RootComponent->TickComponent(DeltaTime);
 
         Actor->Tick(DeltaTime);
     }
@@ -37,7 +37,7 @@ void AActor::Tick(float DeltaTime)
     {
         if (nullptr != RootComponent)
         {
-            RootComponent->ComponentTick(DeltaTime);
+            RootComponent->TickComponent(DeltaTime);
         }
     }
 
@@ -48,7 +48,7 @@ void AActor::Tick(float DeltaTime)
             continue;
         }
 
-        ActorComponent->ComponentTick(DeltaTime);
+        ActorComponent->TickComponent(DeltaTime);
     }
 }
 

@@ -13,6 +13,6 @@ void UMovementComponent::BeginPlay()
 {
 }
 
-void UMovementComponent::ComponentTick(float DeltaTime)
+void UMovementComponent::TickComponent(float DeltaTime)
 {
 }
