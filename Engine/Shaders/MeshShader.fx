@@ -79,5 +79,5 @@ float4 PixelToWorld_PS(VertexShaderOutPut InVertex) : SV_Target0
         clip(-1);
     }
     
-    return Color;d
+    return Color;
 }
