@@ -23,6 +23,8 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
+	void Reload();
+
 	bool IsMoving() const
 	{
 		return bMoving;
@@ -35,10 +37,6 @@ public:
 	{
 		MovingStartLocation = Value;
 		//SetActorLocation(MovingStartLocation);
-	}
-	void SetWeaponOwner(ACharacter* Value)
-	{
-		//
 	}
 
 private:

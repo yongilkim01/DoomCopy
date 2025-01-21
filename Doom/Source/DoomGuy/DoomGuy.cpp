@@ -80,6 +80,10 @@ void ADoomGuyCharacter::Tick(float DeltaTime)
 	{
 		MoveForward(-Speed);
 	}
+	if (UEngineInput::IsDown(VK_LBUTTON))
+	{
+		BaseWeaponActor->Reload();
+	}
 
 	if (UEngineInput::IsDown('Y'))
 	{

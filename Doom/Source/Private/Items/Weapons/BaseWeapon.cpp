@@ -16,7 +16,17 @@ ABaseWeapon::ABaseWeapon()
     SpriteComponent->SetAutoScale(false);
     
     SpriteComponent->CreateAnimation("ShotGun_Idle", "Shotgun.png", 0, 0, 0.1f, true);
-    SpriteComponent->CreateAnimation("ShotGun_Fire", "Shotgun.png", 1, 5, 0.7f, true);
+    SpriteComponent->CreateAnimation("ShotGun_Fire", "Shotgun.png", 0, 5, 1.0f, false);
+
+    SpriteComponent->SetAnimationEvent("ShotGun_Fire", 1, [this]() {
+        SpriteComponent->AddRelativeLocation({ -3.0f, 1.0f, 0.0f });
+        });
+    SpriteComponent->SetAnimationEvent("ShotGun_Fire", 2, [this]() {
+        SpriteComponent->AddRelativeLocation({ -0.0f, 1.0f, 0.0f });
+        });
+    SpriteComponent->SetAnimationEvent("ShotGun_Fire", 5, [this]() {
+        SpriteComponent->ChangeAnimation("ShotGun_Idle");
+        });
    
     SpriteComponent->ChangeAnimation("ShotGun_Idle");
 
@@ -52,4 +62,9 @@ void ABaseWeapon::Tick(float DeltaTime)
 
         AddActorLocation(FVector{ DeltaWidth, DeltaHeight, 0.0f });
     }
+}
+
+void ABaseWeapon::Reload()
+{
+    SpriteComponent->ChangeAnimation("ShotGun_Fire");
 }
