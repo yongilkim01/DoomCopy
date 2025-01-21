@@ -52,9 +52,6 @@ void ADoomGuyCharacter::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
 
-	UEngineDebug::OutPutString("DoomGuy Location : " + GetActorLocation().ToString());
-
-
 	if (FVector::ZERO == GetVelocity())
 	{
 		BaseWeaponActor->SetMoving(false);
@@ -102,13 +99,29 @@ void ADoomGuyCharacter::Tick(float DeltaTime)
 		//UEngineDebug::OutPutString("PrevMouseLocation : " + PrevMouseLocation.ToString());
 		//UEngineDebug::OutPutString("CurMouseLocation : " + CurMouseLocation.ToString());
 
-		AddActorRotation({ CurMouseLocation.Y - PrevMouseLocation.Y, CurMouseLocation.X - PrevMouseLocation.X, 0.0f });
+		float RotationX = GetActorRotation().X + CurMouseLocation.Y - PrevMouseLocation.Y;
+		float RotationY = GetActorRotation().Y + CurMouseLocation.X - PrevMouseLocation.X;
+
+		if (RotationX < 330.0f)
+		{
+			RotationX = 330.0f;
+		}
+		else if (RotationX > 400.0f)
+		{
+			RotationX = 400.0f;
+		}
+
+		//if(RotationY )
+
+		SetActorRotation({ RotationX, RotationY, 0.0f });
 
 		//SetCursorPos(960, 540);
 
 		//CurMouseLocation = FVector{ 960, 540 };
 
 	}
+
+	UEngineDebug::OutPutString("Doom Guy Rotation : " + GetActorRotation().ToString());
 }
 
 void ADoomGuyCharacter::MoveForward(float Value)

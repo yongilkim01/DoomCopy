@@ -46,7 +46,7 @@ void ABaseWeapon::Tick(float DeltaTime)
 {
     AActor::Tick(DeltaTime);
 
-    UEngineDebug::OutPutString("Weapon Location : " + GetActorLocation().ToString());
+    //UEngineDebug::OutPutString("Weapon Location : " + GetActorLocation().ToString());
 
 
     if (true == bMoving)

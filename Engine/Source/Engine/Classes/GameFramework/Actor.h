@@ -206,6 +206,14 @@ public:
 		}
 		return RootComponent->Transform.WorldLocation;
 	}
+	ENGINE_API FVector GetActorRotation()
+	{
+		if (nullptr == RootComponent)
+		{
+			return FVector();
+		}
+		return RootComponent->Transform.Rotation;
+	}
 	ENGINE_API bool IsJumping()
 	{
 		return bIsJumping;
