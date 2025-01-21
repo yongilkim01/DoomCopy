@@ -196,6 +196,7 @@ void UEngineGraphicDevice::InitMaterial()
 
 		Mat->SetVertexShader("EngineSpriteShader.fx");
 		Mat->SetPixelShader("EngineSpriteShader.fx");
+		Mat->SetBlend("AlphaBlend");
 	}
 	{
 		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("WidgetMaterial");

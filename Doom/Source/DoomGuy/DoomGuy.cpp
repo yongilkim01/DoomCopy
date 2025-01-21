@@ -16,8 +16,10 @@ ADoomGuyCharacter::ADoomGuyCharacter()
 {
 	SpriteComponent = CreateDefaultSubObject<UPaperSpriteComponent>();
 	SpriteComponent->SetupAttachment(RootComponent);
-	SpriteComponent->SetTexture("Test.png");
-	SpriteComponent->OnBillboard();
+	SpriteComponent->SetTexture("Shotgun.png");
+	SpriteComponent->SetRelativeLocation({ 0.0f, 24.5f, 5.0f });
+	SpriteComponent->SetWorldScale3D({ 5.0f, 5.0f });
+	//SpriteComponent->OnBillboard();
 
 	ShapeComponent = CreateDefaultSubObject<UShapeComponent>();
 	ShapeComponent->SetupAttachment(RootComponent);

@@ -73,5 +73,11 @@ SamplerState ImageSampler : register(s0);
 float4 PixelToWorld_PS(VertexShaderOutPut InVertex) : SV_Target0
 {
     float4 Color = ImageTexture.Sample(ImageSampler, InVertex.UV);
-    return Color;
+    
+    if (Color.a == 0)
+    {
+        clip(-1);
+    }
+    
+    return Color;d
 }

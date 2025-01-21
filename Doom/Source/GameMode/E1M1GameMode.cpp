@@ -51,12 +51,12 @@ AE1M1GameMode::AE1M1GameMode()
 		GetWorld()->CreateCollisionProfile("Player");
 	}
 	{
-		DoomGuyCharacter = GetWorld()->SpawnActor<ADoomGuyCharacter>();
-		DoomGuyCharacter->SetActorLocation(FVector{ -1042.0f, 14.0f, 3548.0f });
-	}
-	{
 		E1M1Map = GetWorld()->SpawnActor<AE1M1Map>();
 		NavMap = GetWorld()->SpawnActor<ANavMeshMap>();
+	}
+	{
+		DoomGuyCharacter = GetWorld()->SpawnActor<ADoomGuyCharacter>();
+		DoomGuyCharacter->SetActorLocation(FVector{ -1042.0f, 14.0f, 3548.0f });
 	}
 	{
 		Camera = GetWorld()->GetMainCamera();

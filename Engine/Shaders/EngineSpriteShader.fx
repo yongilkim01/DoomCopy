@@ -125,7 +125,13 @@ float4 PixelToWorld_PS(VertexShaderOutPut _Vertex) : SV_Target0
 {
 	
     float4 Color = ImageTexture.Sample(ImageSampler, _Vertex.UV.xy);
+    
     Color += PlusColor;
     Color *= MulColor;
+    
+    if (Color.a == 0)
+    {
+        clip(-1);
+    }
     return Color;
 };
