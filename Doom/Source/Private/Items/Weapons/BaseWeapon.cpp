@@ -10,9 +10,16 @@ ABaseWeapon::ABaseWeapon()
 
 	SpriteComponent = CreateDefaultSubObject<UPaperSpriteComponent>();
 	SpriteComponent->SetupAttachment(RootComponent);
-	SpriteComponent->SetTexture("Shotgun.png");
-	SpriteComponent->SetRelativeLocation({ 0.0f, 24.5f, 5.0f });
-	SpriteComponent->SetWorldScale3D({ 5.0f, 5.0f });
+    //SpriteComponent->SetTexture("Shotgun_Idle.png");
+    SpriteComponent->SetRelativeLocation({ -12.5f, 17.0f, 20.0f });
+    SpriteComponent->SetRelativeScale3D({ 25.0f, 25.0f });
+    SpriteComponent->SetAutoScale(false);
+    
+    SpriteComponent->CreateAnimation("ShotGun_Idle", "Shotgun.png", 0, 0, 0.1f, true);
+    SpriteComponent->CreateAnimation("ShotGun_Fire", "Shotgun.png", 1, 5, 0.7f, true);
+   
+    SpriteComponent->ChangeAnimation("ShotGun_Idle");
+
 }
 
 ABaseWeapon::~ABaseWeapon()
@@ -38,19 +45,11 @@ void ABaseWeapon::Tick(float DeltaTime)
         RunningTime += DeltaTime;
 
         // 사인파 계산
-        float Amplitude = 0.005f;  // 진폭
+        float Amplitude = 0.01f;  // 진폭
         float Frequency = 1.0f;    // 주파수
-        float DeltaHeight = Amplitude * FMath::Sin(2 * FMath::PI * Frequency * RunningTime);
-        float DeltaWidth = Amplitude * FMath::Sin(2 * FMath::PI * Frequency * RunningTime * 2.0f);
+        float DeltaWidth = Amplitude * FMath::Sin(2 * FMath::PI * Frequency * RunningTime);
+        float DeltaHeight = -Amplitude * FMath::Sin(2 * FMath::PI * Frequency * RunningTime * 2.0f);
 
-        //UEngineDebug::OutPutString("Sin Value : " + std::to_string(DeltaHeight));
-
-        // 기존 위치에 더하기
-        FVector NewLocation = GetActorLocation();
-
-        NewLocation.Y += DeltaHeight;
-
-        //SetActorLocation(NewLocation);
-        AddActorLocation(FVector{DeltaHeight,- DeltaWidth, 0.0f });
+        AddActorLocation(FVector{ DeltaWidth, DeltaHeight, 0.0f });
     }
 }
