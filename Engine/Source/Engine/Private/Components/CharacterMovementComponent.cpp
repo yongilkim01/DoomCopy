@@ -12,6 +12,7 @@ UCharacterMovementComponent::~UCharacterMovementComponent()
 
 void UCharacterMovementComponent::BeginPlay()
 {
+    PendingInputVector = FVector::ZERO;
 }
 
 void UCharacterMovementComponent::TickComponent(float DeltaTime)    
@@ -30,6 +31,8 @@ void UCharacterMovementComponent::TickComponent(float DeltaTime)
 
     // Ä¸½¶ ÄÄÆ÷³ÍÆ® ÀÌµ¿ ¹× Ãæµ¹ Ã³¸®
     SafeMoveUpdatedComponent(Delta, UpdatedComponent->GetComponentRotation(), true); 
+
+    Velocity.Y += 500.0f;
 }
 
 bool UCharacterMovementComponent::SafeMoveUpdatedComponent(const FVector& Delta, const FVector& NewRotation, bool bSweep)

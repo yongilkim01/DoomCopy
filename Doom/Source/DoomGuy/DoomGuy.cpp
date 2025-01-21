@@ -4,6 +4,8 @@
 #include <Engine/Classes/Camera/CameraActor.h>
 #include <Engine/Classes/Camera/CameraComponent.h>
 
+#include <Engine/Classes/GameFramework/Actor.h>
+
 #include <Engine/Classes/Components/PaperSpriteComponent.h>
 #include <Engine/Classes/Components/StaticMeshComponent.h>
 #include <Engine/Classes/Components/ShapeComponent.h>
@@ -12,15 +14,10 @@
 
 #include <Input/EngineInput.h>
 
+#include "Public/Items/Weapons/BaseWeapon.h"
+
 ADoomGuyCharacter::ADoomGuyCharacter()
 {
-	SpriteComponent = CreateDefaultSubObject<UPaperSpriteComponent>();
-	SpriteComponent->SetupAttachment(RootComponent);
-	SpriteComponent->SetTexture("Shotgun.png");
-	SpriteComponent->SetRelativeLocation({ 0.0f, 24.5f, 5.0f });
-	SpriteComponent->SetWorldScale3D({ 5.0f, 5.0f });
-	//SpriteComponent->OnBillboard();
-
 	ShapeComponent = CreateDefaultSubObject<UShapeComponent>();
 	ShapeComponent->SetupAttachment(RootComponent);
 	ShapeComponent->SetCollisionProfileName("Player");
@@ -45,11 +42,27 @@ void ADoomGuyCharacter::BeginPlay()
 	Camera = GetWorld()->GetMainCamera();
 
 	CurMouseLocation = UGameEngine::GetMainWindow().GetMousePos();
+
+	BaseWeaponActor = GetWorld()->SpawnActor<ABaseWeapon>();
+	BaseWeaponActor->AttachToActor(this);
+	BaseWeaponActor->SetMovingStartLocation(GetActorLocation());
 }
 
 void ADoomGuyCharacter::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
+
+	UEngineDebug::OutPutString("DoomGuy Location : " + GetActorLocation().ToString());
+
+
+	if (FVector::ZERO == GetVelocity())
+	{
+		BaseWeaponActor->SetMoving(false);
+	}
+	else
+	{
+		BaseWeaponActor->SetMoving(true);
+	}
 
 	if (UEngineInput::IsPress('A'))
 	{
@@ -82,10 +95,10 @@ void ADoomGuyCharacter::Tick(float DeltaTime)
 
 		CurMouseLocation = UGameEngine::GetMainWindow().GetMousePos();
 
-		UEngineDebug::OutPutString("PrevMouseLocation : " + PrevMouseLocation.ToString());
-		UEngineDebug::OutPutString("CurMouseLocation : " + CurMouseLocation.ToString());
+		//UEngineDebug::OutPutString("PrevMouseLocation : " + PrevMouseLocation.ToString());
+		//UEngineDebug::OutPutString("CurMouseLocation : " + CurMouseLocation.ToString());
 
-		AddActorRotation({ 0.0f, CurMouseLocation.X - PrevMouseLocation.X, 0.0f });
+		AddActorRotation({ CurMouseLocation.Y - PrevMouseLocation.Y, CurMouseLocation.X - PrevMouseLocation.X, 0.0f });
 
 		//SetCursorPos(960, 540);
 

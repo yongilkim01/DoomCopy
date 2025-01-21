@@ -33,12 +33,12 @@ public:
 		//ImGui::SameLine(); // ÇÑ°£ ¶ç±â
 		//ImGui::Text("test");
 
-		//std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
+		std::shared_ptr<ACameraActor> Camera = GetWorld()->GetMainCamera();
 
-		//if (true == ImGui::Button("FreeCameraOn"))
-		//{
-		//	GetWorld()->GetMainCamera()->SwitchFreeCamera();
-		//}
+		if (true == ImGui::Button("FreeCameraOn"))
+		{
+			GetWorld()->GetMainCamera()->SwitchFreeCamera();
+		}
 
 		////ImGui::Text("Pos : %s", DoomGuy->GetActorLocation().ToString().c_str());
 	}

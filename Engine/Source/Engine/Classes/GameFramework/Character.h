@@ -31,6 +31,7 @@ public:
 	{
 		return CharacterMovement.get();
 	}
+	ENGINE_API FVector GetVelocity() const;
 
 protected:
 	std::shared_ptr<UCharacterMovementComponent> CharacterMovement;

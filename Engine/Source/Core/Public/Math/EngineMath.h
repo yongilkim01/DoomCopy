@@ -72,6 +72,14 @@ public:
 	{
 		return A * (1 - Alpha) + B * Alpha;
 	}
+	static float Sin(float Radians)
+	{
+		return std::sin(Radians);
+	}
+	static float Cos(float Radians)
+	{
+		return std::cos(Radians);
+	}
 };
 
 template<typename ValueType>

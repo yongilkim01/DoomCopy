@@ -8,7 +8,7 @@ struct EngineVertex
 struct VertexShaderOutPut
 {
     float4 SVPOSITION : SV_POSITION; // 뷰포트행렬이 곱해지는 포지션입니다.
-    float4 UV : TEXCOORD; // 
+    float2 UV : TEXCOORD; // 
     float4 COLOR : COLOR;
 };
 
@@ -60,7 +60,8 @@ VertexShaderOutPut VertexToWorld_VS(EngineVertex _Vertex)
 	
     OutPut.SVPOSITION = mul(_Vertex.POSITION, WVP);
 	
-    OutPut.UV = _Vertex.UV;
+    OutPut.UV.x = _Vertex.UV.x;
+    OutPut.UV.y = _Vertex.UV.y;
     
     OutPut.COLOR = _Vertex.COLOR;
     

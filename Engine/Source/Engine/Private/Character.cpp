@@ -63,3 +63,8 @@ bool ACharacter::CanJump() const
 {
 	return false;
 }
+
+FVector ACharacter::GetVelocity() const
+{
+    return CharacterMovement->Velocity;
+}

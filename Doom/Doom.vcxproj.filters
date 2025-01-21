@@ -91,6 +91,33 @@
     <Filter Include="0_DoomGuy\Private">
       <UniqueIdentifier>{e6e86dca-b3ad-4753-8763-249720797dd3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2_Actor\1_E1M1\Weapon">
+      <UniqueIdentifier>{d25503c0-b69e-47b8-8995-d93b6fd6b0a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Actor\Public">
+      <UniqueIdentifier>{bb4ea966-66e0-4c5e-9ae9-31fe07adc30a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Actor\Private">
+      <UniqueIdentifier>{f36846d1-a7d7-4e67-8c9e-55b86fde0787}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public">
+      <UniqueIdentifier>{dee55028-a92a-4942-a422-353cf61f74d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private">
+      <UniqueIdentifier>{39d1ba30-179d-4148-bbf3-c4e9720da58e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Items">
+      <UniqueIdentifier>{1aca6faf-7940-4a3d-97a5-566e2d468d76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Items">
+      <UniqueIdentifier>{22fefc9e-4794-49b1-93bc-95009e43c1a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Items\Weapons">
+      <UniqueIdentifier>{8010238d-5659-4cb3-87e6-4b73d82d68dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Items\Weapons">
+      <UniqueIdentifier>{c0ccf9f1-e05f-45d5-a2de-26fd5d76adb5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\DoomGuy\DoomGuy.cpp">
@@ -159,6 +186,9 @@
     <ClCompile Include="Source\UI\Private\E1M1HUD.cpp">
       <Filter>4_UI\1_Private\E1M1</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Private\Items\Weapons\BaseWeapon.cpp">
+      <Filter>Private\Items\Weapons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DoomGuy\DoomGuy.h">
@@ -226,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="Source\UI\Public\E1M1HUD.h">
       <Filter>4_UI\0_Public\E1M1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Items\Weapons\BaseWeapon.h">
+      <Filter>Public\Items\Weapons</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
