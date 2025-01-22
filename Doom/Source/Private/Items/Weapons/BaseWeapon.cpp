@@ -11,19 +11,13 @@ ABaseWeapon::ABaseWeapon()
 	SpriteComponent = CreateDefaultSubObject<UPaperSpriteComponent>();
 	SpriteComponent->SetupAttachment(RootComponent);
     //SpriteComponent->SetTexture("Shotgun_Idle.png");
-    SpriteComponent->SetRelativeLocation({ -12.5f, 17.0f, 20.0f });
+    SpriteComponent->SetRelativeLocation({ 0.0f, 30.0f, 20.0f });
     SpriteComponent->SetRelativeScale3D({ 25.0f, 25.0f });
     SpriteComponent->SetAutoScale(false);
     
     SpriteComponent->CreateAnimation("ShotGun_Idle", "Shotgun.png", 0, 0, 0.1f, true);
-    SpriteComponent->CreateAnimation("ShotGun_Fire", "Shotgun.png", 0, 5, 1.0f, false);
+    SpriteComponent->CreateAnimation("ShotGun_Fire", "Shotgun.png", 1, 5, 0.5f, false);
 
-    SpriteComponent->SetAnimationEvent("ShotGun_Fire", 1, [this]() {
-        SpriteComponent->AddRelativeLocation({ -3.0f, 1.0f, 0.0f });
-        });
-    SpriteComponent->SetAnimationEvent("ShotGun_Fire", 2, [this]() {
-        SpriteComponent->AddRelativeLocation({ -0.0f, 1.0f, 0.0f });
-        });
     SpriteComponent->SetAnimationEvent("ShotGun_Fire", 5, [this]() {
         SpriteComponent->ChangeAnimation("ShotGun_Idle");
         });

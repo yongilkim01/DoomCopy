@@ -291,7 +291,6 @@
     <CopyFileToFolders Include="Source\ThirdParty\assimp\bin\Release\assimp-vc143-mt.dll">
       <FileType>Document</FileType>
     </CopyFileToFolders>
-    <None Include="cpp.hint" />
     <None Include="Source\ThirdParty\assimp\include\assimp\.editorconfig" />
     <None Include="Source\ThirdParty\assimp\include\assimp\color4.inl" />
     <None Include="Source\ThirdParty\assimp\include\assimp\config.h.in" />

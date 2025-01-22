@@ -130,7 +130,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shotgun_4
+      name: Shotgun_1
       rect:
         serializedVersion: 2
         x: 768
@@ -151,7 +151,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shotgun_1
+      name: Shotgun_2
       rect:
         serializedVersion: 2
         x: 192
@@ -172,7 +172,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shotgun_2
+      name: Shotgun_3
       rect:
         serializedVersion: 2
         x: 384
@@ -193,7 +193,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shotgun_3
+      name: Shotgun_4
       rect:
         serializedVersion: 2
         x: 576

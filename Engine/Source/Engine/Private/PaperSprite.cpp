@@ -55,6 +55,42 @@ std::shared_ptr<UPaperSprite> UPaperSprite::CreateSpriteToFolder(std::string_vie
 	return NewRes;
 }
 
+std::shared_ptr<UPaperSprite> UPaperSprite::CreateSpriteToCount(std::string_view Name, int X, int Y, FVector Pivot)
+{
+	std::string UpperName = UEngineString::ToUpper(Name);
+	std::shared_ptr<UPaperSprite> NewRes = std::make_shared<UPaperSprite>();
+	AddAsset<UPaperSprite>(NewRes, Name, "");
+
+	std::shared_ptr<UTexture> Texture = UTexture::Find<UTexture>(UpperName);
+
+	if (nullptr == Texture)
+	{
+		MSGASSERT("텍스처를 먼저 로드하고 스프라이트를 만들어 주세요 " + UpperName);
+		return nullptr;
+	}
+
+	FVector TextureSize = Texture->GetTextureSize();
+	FVector Scale = { 1.0f / static_cast<float>( X),  1.0f / static_cast<float>(Y) };
+	FVector StartPos = { 0.0f, 0.0f };
+
+	for (size_t y = 0; y < Y; y++)
+	{
+		for (size_t x = 0; x < X; x++)
+		{
+			NewRes->TextureVector.push_back(Texture.get());
+			FPaperSpriteData SpriteData;
+			SpriteData.CuttingLocation = StartPos;
+			SpriteData.CuttingSize = Scale;
+			SpriteData.Pivot = Pivot;
+			NewRes->SpriteDataVector.push_back(SpriteData);
+			StartPos.X += Scale.X;
+		}
+		StartPos.X = 0.0f;
+		StartPos.Y += Scale.Y;
+	}
+	return NewRes;
+}
+
 
 std::shared_ptr<UPaperSprite> UPaperSprite::CreateSpriteToMeta(std::string_view _Name, std::string_view _DataFileExt)
 {

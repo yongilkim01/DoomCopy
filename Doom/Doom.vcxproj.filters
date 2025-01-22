@@ -189,6 +189,9 @@
     <ClCompile Include="Source\Private\Items\Weapons\BaseWeapon.cpp">
       <Filter>Private\Items\Weapons</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Private\Items\Weapons\Bullet.cpp">
+      <Filter>Private\Items\Weapons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\DoomGuy\DoomGuy.h">
@@ -258,6 +261,9 @@
       <Filter>4_UI\0_Public\E1M1</Filter>
     </ClInclude>
     <ClInclude Include="Source\Public\Items\Weapons\BaseWeapon.h">
+      <Filter>Public\Items\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Items\Weapons\Bullet.h">
       <Filter>Public\Items\Weapons</Filter>
     </ClInclude>
   </ItemGroup>
