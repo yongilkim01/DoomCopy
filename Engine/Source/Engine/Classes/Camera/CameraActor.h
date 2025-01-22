@@ -45,9 +45,13 @@ public:
 		return bFreeCameraValue;
 	}
 	// #ifdef _DEBUG
-	ENGINE_API void SetFreeCameraSpeed(float NewSpeed)
+	ENGINE_API void SetFreeCameraSpeed(float Value)
 	{
-		FreeSpeed = NewSpeed;
+		FreeSpeed = Value;
+	}
+	ENGINE_API void SetFreeCameraRotSpeed(float Value)
+	{
+		RotSpeed = Value;
 	}
 	// #endif
 

@@ -24,5 +24,14 @@ std::shared_ptr<UMesh> UMesh::Create(std::string_view Name, std::string_view Ver
 	NewAsset->VertexBuffer = FVertexBuffer::Find<FVertexBuffer>(VertexBuffer);
 	NewAsset->IndexBuffer = FIndexBuffer::Find<FIndexBuffer>(IndexBuffer);
 
+	if (nullptr == NewAsset->VertexBuffer)
+	{
+		MSGASSERT("메시의 버텍스 버퍼가 nullptr입니다");
+	}
+	if (nullptr == NewAsset->IndexBuffer)
+	{
+		MSGASSERT("메시의 인덱스 버퍼가 nullptr입니다");
+	}
+
 	return NewAsset;
 }

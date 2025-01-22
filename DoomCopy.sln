@@ -29,6 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{802B0D
 		Engine\Shaders\CollisionDebugShader.fx = Engine\Shaders\CollisionDebugShader.fx
 		Engine\Shaders\DefaultShader.fx = Engine\Shaders\DefaultShader.fx
 		Engine\Shaders\EngineSpriteShader.fx = Engine\Shaders\EngineSpriteShader.fx
+		Engine\Shaders\MeshLightShader.fx = Engine\Shaders\MeshLightShader.fx
 		Engine\Shaders\MeshShader.fx = Engine\Shaders\MeshShader.fx
 		Engine\Shaders\RenderTargetMergeShader.fx = Engine\Shaders\RenderTargetMergeShader.fx
 		Engine\Shaders\SpriteShader.fx = Engine\Shaders\SpriteShader.fx

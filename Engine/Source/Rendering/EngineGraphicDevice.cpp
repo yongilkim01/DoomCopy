@@ -156,6 +156,185 @@ void UEngineGraphicDevice::InitMesh()
 
 		UMesh::Create("FullRect", "FullRect", "Rect");
 	}
+
+	{
+		std::vector<EngineVertex> Vertex;
+		Vertex.resize(24);
+		// 앞면
+		Vertex[0] = { float4(-0.5f, 0.5f, 0.5f) , float4(0.0f, 0.0f), float4::RED, float4(0.0f, 0.0f, 1.0f) };
+		Vertex[1] = { float4(0.5f, 0.5f, 0.5f)  , float4(1.0f, 0.0f), float4::RED, float4(0.0f, 0.0f, 1.0f) };
+		Vertex[2] = { float4(0.5f, -0.5f, 0.5f) , float4(1.0f, 1.0f), float4::RED, float4(0.0f, 0.0f, 1.0f) };
+		Vertex[3] = { float4(-0.5f, -0.5f, 0.5f), float4(0.0f, 1.0f), float4::RED, float4(0.0f, 0.0f, 1.0f) };
+		// 뒷면
+		Vertex[4] = { float4(-0.5f, 0.5f, 0.5f).RotationXDegReturn(180) , float4(0.0f, 0.0f), float4::RED, float4(0.0f, 0.0f, -1.0f) };
+		Vertex[5] = { float4(0.5f, 0.5f, 0.5f).RotationXDegReturn(180)  , float4(1.0f, 0.0f), float4::RED, float4(0.0f, 0.0f, -1.0f) };
+		Vertex[6] = { float4(0.5f, -0.5f, 0.5f).RotationXDegReturn(180) , float4(1.0f, 1.0f), float4::RED, float4(0.0f, 0.0f, -1.0f) };
+		Vertex[7] = { float4(-0.5f, -0.5f, 0.5f).RotationXDegReturn(180), float4(0.0f, 1.0f), float4::RED, float4(0.0f, 0.0f, -1.0f) };
+		// 왼쪽
+		Vertex[8] = { float4(-0.5f, 0.5f, 0.5f).RotationYDegReturn(-90) , float4(0.0f, 0.0f), float4::RED, float4(1.0f, 0.0f, 0.0f) };
+		Vertex[9] = { float4(0.5f, 0.5f, 0.5f).RotationYDegReturn(-90)  , float4(1.0f, 0.0f), float4::RED, float4(1.0f, 0.0f, 0.0f) };
+		Vertex[10] = { float4(0.5f, -0.5f, 0.5f).RotationYDegReturn(-90) , float4(1.0f, 1.0f), float4::RED, float4(1.0f, 0.0f, 0.0f) };
+		Vertex[11] = { float4(-0.5f, -0.5f, 0.5f).RotationYDegReturn(-90), float4(0.0f, 1.0f), float4::RED, float4(1.0f, 0.0f, 0.0f) };
+		// 오른쪽
+		Vertex[12] = { float4(-0.5f, 0.5f, 0.5f).RotationYDegReturn(90) , float4(0.0f, 0.0f), float4::RED, float4(-1.0f, 0.0f, 0.0f) };
+		Vertex[13] = { float4(0.5f, 0.5f, 0.5f).RotationYDegReturn(90)  , float4(1.0f, 0.0f), float4::RED, float4(-1.0f, 0.0f, 0.0f) };
+		Vertex[14] = { float4(0.5f, -0.5f, 0.5f).RotationYDegReturn(90) , float4(1.0f, 1.0f), float4::RED, float4(-1.0f, 0.0f, 0.0f) };
+		Vertex[15] = { float4(-0.5f, -0.5f, 0.5f).RotationYDegReturn(90), float4(0.0f, 1.0f), float4::RED, float4(-1.0f, 0.0f, 0.0f) };
+		// 위
+		Vertex[16] = { float4(-0.5f, 0.5f, 0.5f).RotationXDegReturn(-90) , float4(0.0f, 0.0f), float4::RED, float4(0.0f, 1.0f, 0.0f) };
+		Vertex[17] = { float4(0.5f, 0.5f, 0.5f).RotationXDegReturn(-90)  , float4(1.0f, 0.0f), float4::RED, float4(0.0f, 1.0f, 0.0f) };
+		Vertex[18] = { float4(0.5f, -0.5f, 0.5f).RotationXDegReturn(-90) , float4(1.0f, 1.0f), float4::RED, float4(0.0f, 1.0f, 0.0f) };
+		Vertex[19] = { float4(-0.5f, -0.5f, 0.5f).RotationXDegReturn(-90), float4(0.0f, 1.0f), float4::RED, float4(0.0f, 1.0f, 0.0f) };
+		// 아래
+		Vertex[20] = { float4(-0.5f, 0.5f, 0.5f).RotationXDegReturn(90) , float4(0.0f, 0.0f), float4::RED, float4(1.0f, -1.0f, 0.0f) };
+		Vertex[21] = { float4(0.5f, 0.5f, 0.5f).RotationXDegReturn(90)  , float4(1.0f, 0.0f), float4::RED, float4(1.0f, -1.0f, 0.0f) };
+		Vertex[22] = { float4(0.5f, -0.5f, 0.5f).RotationXDegReturn(90) , float4(1.0f, 1.0f), float4::RED, float4(1.0f, -1.0f, 0.0f) };
+		Vertex[23] = { float4(-0.5f, -0.5f, 0.5f).RotationXDegReturn(90), float4(0.0f, 1.0f), float4::RED, float4(1.0f, -1.0f, 0.0f) };
+		
+		FVertexBuffer::Create("Box", Vertex);
+
+		std::vector<int> Index;
+		// Index.resize(36);
+		for (int i = 0; i < 6; i++)
+		{
+			Index.push_back(i * 4 + 2);
+			Index.push_back(i * 4 + 1);
+			Index.push_back(i * 4 + 0);
+			Index.push_back(i * 4 + 3);
+			Index.push_back(i * 4 + 2);
+			Index.push_back(i * 4 + 0);
+		}
+
+		FIndexBuffer::Create("Box", Index);
+		UMesh::Create("Box", "Box", "Box");
+	}
+
+	// Sphere
+	{
+		EngineVertex VertexData; // 정점을 정의하기 위한 구조체
+		std::vector<EngineVertex> VBVector; // 정점 데이터를 저장하는 벡터
+		std::vector<UINT> IBVector; // 인덱스 데이터를 저장하는 벡터
+		float Radius = 0.5f; // 구의 반지름
+
+		// 북극점 (구의 가장 윗부분)의 정점 데이터를 생성합니다.
+		VertexData.POSITION = float4(0.0f, Radius, 0.0f, 1.0f); // 위치 설정 (y축으로 반지름만큼 떨어짐)
+		VertexData.TEXCOORD = float4(0.5f, 0.0f); // 텍스처 좌표 설정 (중앙 위쪽)
+
+		// 법선 벡터를 설정 (면에 수직으로 빛 반사를 계산하기 위함)
+		VertexData.NORMAL = float4(0.0f, Radius, 0.0f, 1.0f);
+		VertexData.NORMAL.Normalize(); // 벡터를 정규화 (길이를 1로 만듦)
+		VertexData.NORMAL.W = 0.0f; // W 성분은 0으로 설정 (위치와 구분)
+
+		// 접선 벡터와 비노말 벡터를 설정 (법선과 수직인 벡터들로 표면 디테일을 표현하기 위함)
+		VertexData.TANGENT = float4(1.0f, 0.0f, 0.0f, 0.0f); // 접선 벡터
+		VertexData.BINORMAL = float4(0.0f, 0.0f, 1.0f, 0.0f); // 비노말 벡터
+
+		VBVector.push_back(VertexData); // 정점 데이터를 벡터에 추가
+
+		// 스택과 슬라이스의 개수를 설정 (구를 분할하는 세로 및 가로 개수)
+		UINT iStackCount = 16; // 수직 분할 개수
+		UINT iSliceCount = 16; // 수평 분할 개수
+
+		// 각 스택과 슬라이스 사이의 회전 각도를 계산
+		float yRotAngle = FMath::PI / (float)iStackCount; // 세로 방향 회전 간격
+		float zRotAngle = FMath::PI2 / (float)iSliceCount; // 가로 방향 회전 간격
+
+		// UV 텍스처 좌표의 간격을 계산
+		float yUvRatio = 1.0f / (float)iStackCount;
+		float zUvRatio = 1.0f / (float)iSliceCount;
+
+		// 북극에서 남극까지 정점 데이터를 생성
+		for (UINT y = 1; y < iStackCount; ++y) // 북극과 남극 제외
+		{
+			float phi = y * yRotAngle; // 현재 스택의 세로 방향 각도
+			for (UINT z = 0; z < iSliceCount + 1; ++z) // 슬라이스 개수만큼
+			{
+				float theta = z * zRotAngle; // 현재 슬라이스의 가로 방향 각도
+
+				// 현재 위치를 계산 (구면 좌표)
+				VertexData.POSITION = float4{
+					Radius * sinf(phi) * cosf(theta),
+					Radius * cosf(phi),
+					Radius * sinf(phi) * sinf(theta),
+					1.0f
+				};
+
+				// 텍스처 좌표를 설정
+				VertexData.TEXCOORD = float4(yUvRatio * z, zUvRatio * y);
+
+				// 법선 벡터를 정규화
+				VertexData.NORMAL = VertexData.POSITION.NormalizeReturn();
+				VertexData.NORMAL.W = 0.0f;
+
+				// 접선 벡터 설정
+				VertexData.TANGENT.X = -Radius * sinf(phi) * sinf(theta);
+				VertexData.TANGENT.Y = 0.0f;
+				VertexData.TANGENT.Z = Radius * sinf(phi) * cosf(theta);
+				VertexData.TANGENT = VertexData.TANGENT.NormalizeReturn();
+				VertexData.TANGENT.W = 0.0f;
+
+				// 비노말 벡터 설정
+				VertexData.BINORMAL = float4::Cross(VertexData.TANGENT, VertexData.NORMAL);
+				VertexData.BINORMAL = VertexData.BINORMAL.NormalizeReturn();
+				VertexData.BINORMAL.W = 0.0f;
+
+				// 생성된 정점을 벡터에 추가
+				VBVector.push_back(VertexData);
+			}
+		}
+
+		// 남극점 (구의 가장 아래 부분)의 정점 데이터를 생성
+		VertexData.POSITION = float4(0.0f, -Radius, 0.0f, 1.0f); // 위치 설정 (y축으로 반지름만큼 아래)
+		VertexData.TEXCOORD = float4(0.5f, 1.0f); // 텍스처 좌표 설정 (중앙 아래쪽)
+		VertexData.NORMAL = float4(0.0f, -Radius, 0.0f, 1.0f);
+		VertexData.NORMAL.Normalize();
+		VertexData.NORMAL.W = 0.0f;
+		VertexData.TANGENT = float4(-1.0f, 0.0f, 0.0f, 0.0f);
+		VertexData.BINORMAL = float4(0.0f, 0.0f, -1.0f, 0.0f);
+		VBVector.push_back(VertexData);
+
+		// 인덱스 데이터를 생성하여 삼각형 면을 정의
+		IBVector.clear();
+
+		// 북극점을 기준으로 삼각형 정의
+		for (UINT i = 0; i < iSliceCount; i++)
+		{
+			IBVector.push_back(0); // 북극점
+			IBVector.push_back(i + 2); // 현재 슬라이스의 점
+			IBVector.push_back(i + 1); // 이전 슬라이스의 점
+		}
+
+		// 스택 사이의 사각형 면을 두 개의 삼각형으로 정의
+		for (UINT y = 0; y < iStackCount - 2; y++)
+		{
+			for (UINT z = 0; z < iSliceCount; z++)
+			{
+				IBVector.push_back((iSliceCount + 1) * y + z + 1);
+				IBVector.push_back((iSliceCount + 1) * (y + 1) + (z + 1) + 1);
+				IBVector.push_back((iSliceCount + 1) * (y + 1) + z + 1);
+
+				IBVector.push_back((iSliceCount + 1) * y + z + 1);
+				IBVector.push_back((iSliceCount + 1) * y + (z + 1) + 1);
+				IBVector.push_back((iSliceCount + 1) * (y + 1) + (z + 1) + 1);
+			}
+		}
+
+		// 남극점을 기준으로 삼각형 정의
+		UINT iBotIndex = (UINT)VBVector.size() - 1; // 남극점의 인덱스
+		for (UINT i = 0; i < iSliceCount; i++)
+		{
+			IBVector.push_back(iBotIndex); // 남극점
+			IBVector.push_back(iBotIndex - (i + 2)); // 현재 슬라이스의 점
+			IBVector.push_back(iBotIndex - (i + 1)); // 이전 슬라이스의 점
+		}
+
+		// 생성된 정점 버퍼와 인덱스 버퍼를 활용해 구를 생성
+		FVertexBuffer::Create("Sphere", VBVector);
+		FIndexBuffer::Create("Sphere", IBVector);
+		UMesh::Create("Sphere");
+	}
+
+
 }
 
 void UEngineGraphicDevice::InitBlend()

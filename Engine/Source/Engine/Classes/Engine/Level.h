@@ -14,6 +14,7 @@ class APawn;
 class URenderTarget;
 class AHUD;
 class UWidget;
+class ALight;
 
 /**
  *	엔진 레벨 클래스
@@ -170,6 +171,7 @@ private:
 	std::map<std::string, std::list<std::shared_ptr<UShapeComponent>>> ShapeCompMap;
 	std::map<std::string, std::list<std::shared_ptr<UShapeComponent>>> CheckShapeCompMap;
 	std::map<std::string, std::list<std::string>> CollisionLinkMap;
+	std::vector<std::shared_ptr<ALight>> LightActorVector;
 
 	std::shared_ptr<URenderTarget> FinalRenderTarget;
 

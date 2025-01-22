@@ -30,6 +30,7 @@
     <ClCompile Include="Source\Core\Private\Serialization\Archive.cpp" />
     <ClCompile Include="Source\Core\Private\Time\TimeEvent.cpp" />
     <ClCompile Include="Source\Core\Private\Time\Timer.cpp" />
+    <ClCompile Include="Source\Engine\Classes\Components\LightComponent.cpp" />
     <ClCompile Include="Source\Engine\Private\Actor.cpp" />
     <ClCompile Include="Source\Engine\Private\Camera\CameraActor.cpp" />
     <ClCompile Include="Source\Engine\Private\Camera\CameraComponent.cpp" />
@@ -50,6 +51,7 @@
     <ClCompile Include="Source\Engine\Private\GameMode.cpp" />
     <ClCompile Include="Source\Engine\Private\HUD.cpp" />
     <ClCompile Include="Source\Engine\Private\Level.cpp" />
+    <ClCompile Include="Source\Engine\Private\Light.cpp" />
     <ClCompile Include="Source\Engine\Private\Materials\Material.cpp" />
     <ClCompile Include="Source\Engine\Private\Mesh.cpp" />
     <ClCompile Include="Source\Engine\Private\Object.cpp" />
@@ -123,6 +125,7 @@
     <ClInclude Include="Source\Engine\Classes\Camera\CameraComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\ActorComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\CapsuleComponent.h" />
+    <ClInclude Include="Source\Engine\Classes\Components\LightComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\PaperSpriteComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\PhsyicsComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\PrimitiveComponent.h" />
@@ -133,6 +136,7 @@
     <ClInclude Include="Source\Engine\Classes\Engine\GameEngine.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\GameInstance.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\Level.h" />
+    <ClInclude Include="Source\Engine\Classes\Engine\Light.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\Mesh.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\Object.h" />
     <ClInclude Include="Source\Engine\Classes\Engine\PaperSprite.h" />

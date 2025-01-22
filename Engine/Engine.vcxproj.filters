@@ -465,6 +465,12 @@
     <ClCompile Include="Source\Engine\Private\Components\CapsuleComponent.cpp">
       <Filter>1_Engine\2_Private\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Engine\Private\Light.cpp">
+      <Filter>1_Engine\2_Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine\Classes\Components\LightComponent.cpp">
+      <Filter>1_Engine\2_Private\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\pch.h">
@@ -945,6 +951,12 @@
       <Filter>1_Engine\0_Classes\GameFramework</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Classes\Components\CapsuleComponent.h">
+      <Filter>1_Engine\0_Classes\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Classes\Engine\Light.h">
+      <Filter>1_Engine\0_Classes\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Classes\Components\LightComponent.h">
       <Filter>1_Engine\0_Classes\Components</Filter>
     </ClInclude>
   </ItemGroup>
