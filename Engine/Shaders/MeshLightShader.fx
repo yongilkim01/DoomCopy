@@ -54,50 +54,27 @@ cbuffer FTransform : register(b0)
     float4x4 Projection;
     float4x4 WVP;
 };
-//struct FTransform 
-//{
-//	// transformupdate는 
-//	// 아래의 값들을 다 적용해서
-//	// WVP를 만들어내는 함수이다.
-//	// 변환용 벨류
-//	float4 Scale;
-//	float4 Rotation;
-//	float4 Qut;
-//	float4 Location;
-//	// 릴리에티브 로컬
-//	float4 RelativeScale;
-//	float4 RelativeRotation;
-//	float4 RelativeQut;
-//	float4 RelativeLocation;
-//	// 월드
-//	float4 WorldScale;
-//	float4 WorldRotation;
-//	float4 WorldQuat;
-//	float4 WorldLocation;
-//	float4x4 ScaleMat;
-//	float4x4 RotationMat;
-//	float4x4 LocationMat;
-//	float4x4 RevolveMat;
-//	float4x4 ParentMat;
-//	float4x4 LocalWorld;
-//	float4x4 World;
-//	float4x4 View;
-//	float4x4 Projection;
-//	float4x4 WVP;
-//};
-// 새로운 리소스가 하나더 생긴겁니다.
-// StructuredBuffer<FTransform> 이녀석은 텍스처 기반입니다.
-// 상수버퍼는 아무것도 세팅해주지 않으면 기본값이 0으로 채워집니다.
-cbuffer FSpriteData : register(b1)
+
+struct FLightData
 {
-    float4 CuttingPos;
-    float4 CuttingSize;
-    float4 Pivot; // 0.5 0.0f
+    float4 LightPos; // 빛의 위치
+    float4 LightDir; // 빛의 Forward
+    float4 LightRevDir; // 빛의 반대방향이 < L!!!!! <= 
+    float4 LightColor;
+    float4 AmbientLight;
+    float4 ViewLightPos;
+    float4 ViewLightDir;
+    float4 ViewLightRevDir;
+    float4 CameraPosition;
 };
-// 버텍스쉐이더를 다 만들었다.
-// 한번에 100개를 그린다면. _DataIndex 이녀석이 100개의 그려지는 애들중 5번째 클래스야 등등을 만들수가 있습니다.
-// 0~99 
-VertexShaderOutPut TileMap_VS(EngineVertex _Vertex /*, int _DataIndex*/)
+
+cbuffer FLightDatas : register(b11)
+{
+    int Count;
+    FLightData Arr[256];
+};
+
+VertexShaderOutPut MeshLight_VS(EngineVertex _Vertex /*, int _DataIndex*/)
 {
     VertexShaderOutPut OutPut;
 	
@@ -114,29 +91,13 @@ VertexShaderOutPut TileMap_VS(EngineVertex _Vertex /*, int _DataIndex*/)
 	
     return OutPut;
 }
-Texture2D TileMapTex : register(t0);
-// 샘플러 1개가 필요합니다.
-SamplerState ImageSampler : register(s0);
-// 쉐이더끼리는 상수버퍼 인덱스 겹쳐도 상관 없다.
-// ex) 버텍스쉐이더에서 0번 상수버퍼를 썼어도
-// ex) 픽셀쉐이더에서는 0번 을 쓸수 있다.
-cbuffer ResultColor : register(b0)
+
+cbuffer MeshColor : register(b0)
 {
-    float4 PlusColor;
-    float4 MulColor;
+    float4 Color;
 };
-// 이미지를 샘플링해서 이미지를 보이게 만들고
-float4 TileMap_PS(VertexShaderOutPut _Vertex) : SV_Target0
+
+float4 MeshLight_PS(VertexShaderOutPut _Vertex) : SV_Target0
 {
-    float4 Color = TileMapTex.Sample(ImageSampler, _Vertex.TEXCOORD.xy);
-	
-    if (0.0f >= Color.a)
-    {
-		// 픽셀쉐이더에서 아웃풋 머저로 넘기지 않는다.
-        clip(-1);
-    }
-	
-    Color += PlusColor;
-    Color *= MulColor;
     return Color;
 };

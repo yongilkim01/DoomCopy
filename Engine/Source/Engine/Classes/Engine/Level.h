@@ -2,7 +2,7 @@
 
 #include "Engine/Classes/Engine/Object.h"
 #include "Core/Public/Debugging/DebugMacros.h"
-//#include "GameFramework/Actor.h"
+#include "Engine/Classes/Components/LightComponent.h"
 
 class UShapeComponent;
 class UPrimitiveComponent;
@@ -23,7 +23,7 @@ class ULevel : public UObject
 {
 	friend UShapeComponent;
 	friend UGameEngine;
-
+	friend ULightComponent;
 public:
 	/** 持失切, 社瑚切 */
 	ENGINE_API ULevel();
@@ -44,11 +44,11 @@ public:
 	void Release(float DeltaTime);
 
 	ENGINE_API void ChangeRenderGroup(int CameraOrder, int PrevGroupOrder, std::shared_ptr<UPrimitiveComponent> Renderer);
-
 	ENGINE_API void CreateCollisionProfile(std::string_view ProfileName);
 	ENGINE_API void PushCollisionProfileName(std::shared_ptr<UPrimitiveComponent> PrComp);
 	ENGINE_API void LinkCollisionProfile(std::string_view LeftProfileName, std::string_view RightProfileName);
 	ENGINE_API void ChangeCollisionProfileName(std::string_view ProfileName, std::string_view PrevProfileName, std::shared_ptr<UShapeComponent> ShapeComponent);
+	ENGINE_API void PushLight(std::shared_ptr<ULightComponent> LightComponent);
 	
 	template<typename ActorType>
 	std::shared_ptr<ActorType> SpawnActor(std::string_view ActorName = "")
@@ -171,7 +171,8 @@ private:
 	std::map<std::string, std::list<std::shared_ptr<UShapeComponent>>> ShapeCompMap;
 	std::map<std::string, std::list<std::shared_ptr<UShapeComponent>>> CheckShapeCompMap;
 	std::map<std::string, std::list<std::string>> CollisionLinkMap;
-	std::vector<std::shared_ptr<ALight>> LightActorVector;
+	std::vector<std::shared_ptr<ULightComponent>> LightComponentVector;
+	FLightDatas LightDatas;
 
 	std::shared_ptr<URenderTarget> FinalRenderTarget;
 

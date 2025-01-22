@@ -12,8 +12,3 @@ ALight::ALight()
 ALight::~ALight()
 {
 }
-
-void ALight::UpdateLight(UCameraComponent* CameraComponent, float DeltaTime)
-{
-
-}

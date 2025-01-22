@@ -24,8 +24,6 @@ public:
 protected:
 
 private:
-	void UpdateLight(UCameraComponent* CameraComponent, float DeltaTime);
-
 	std::shared_ptr<ULightComponent> LightComponent = nullptr;
 
 };

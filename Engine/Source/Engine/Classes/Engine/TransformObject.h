@@ -195,6 +195,10 @@ public:
 	{
 		return Transform.WorldRotation;
 	}
+	FVector GetWorldForwardVector()
+	{
+		return Transform.GetWorldFoward();
+	}
 
 protected:
 	void ParentMatrixCheck();

@@ -6,6 +6,7 @@
 #include "Engine/Classes/Engine/Font.h"
 #include "Engine/Classes/Components/ShapeComponent.h"
 #include "Engine/Classes/Components/PrimitiveComponent.h"
+#include "Engine/Classes/Components/LightComponent.h"
 #include "Engine/Classes/Camera/CameraActor.h"
 #include "Engine/Classes/Camera/CameraComponent.h"
 
@@ -120,6 +121,15 @@ void ULevel::Render(float DeltaTime)
 		if (false == Camera.second->IsActive())
 		{
 			continue;
+		}
+
+		LightDatas.Count = 0;
+
+		for (size_t i = 0; i < LightComponentVector.size(); i++)
+		{
+			LightComponentVector[i]->UpdateLight(Camera.second->GetCameraComponent().get(), DeltaTime);
+			++LightDatas.Count;
+			LightDatas.LightDataArr[i] = LightComponentVector[i]->LightData;
 		}
 
 		Camera.second->Tick(DeltaTime);
@@ -356,6 +366,11 @@ void ULevel::ChangeCollisionProfileName(std::string_view ProfileName, std::strin
 	std::list<std::shared_ptr<UShapeComponent>>& ShapeCompList = ShapeCompMap[UpperName];
 
 	ShapeCompList.push_back(ShapeComponent);
+}
+
+void ULevel::PushLight(std::shared_ptr<ULightComponent> LightComponent)
+{
+	LightComponentVector.push_back(LightComponent);
 }
 
 void ULevel::CreateCollisionProfile(std::string_view ProfileName)
