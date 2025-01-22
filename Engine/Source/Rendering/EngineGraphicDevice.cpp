@@ -397,6 +397,11 @@ void UEngineGraphicDevice::InitMaterial()
 		Mat->SetPixelShader("RenderTargetMergeShader.fx");
 		Mat->SetDepthStencilState("RenderTargetMergeDepth");
 	}
+	{
+		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("LightMaterial");
+		Mat->SetVertexShader("MeshLightShader.fx");
+		Mat->SetPixelShader("MeshLightShader.fx");
+	}
 }
 
 void UEngineGraphicDevice::InitRasterizerState()

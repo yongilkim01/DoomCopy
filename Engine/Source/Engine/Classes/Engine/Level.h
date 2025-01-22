@@ -14,6 +14,7 @@ class APawn;
 class URenderTarget;
 class AHUD;
 class UWidget;
+class URenderAsset;
 class ALight;
 
 /**
@@ -24,6 +25,7 @@ class ULevel : public UObject
 	friend UShapeComponent;
 	friend UGameEngine;
 	friend ULightComponent;
+	friend URenderAsset;
 public:
 	/** 持失切, 社瑚切 */
 	ENGINE_API ULevel();
@@ -157,6 +159,10 @@ public:
 	AHUD* GetHUD()
 	{
 		return HUD;
+	}
+	FLightDatas& GetLightDatasRef()
+	{
+		return LightDatas;
 	}
 
 protected:

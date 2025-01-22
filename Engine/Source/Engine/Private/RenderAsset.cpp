@@ -170,6 +170,20 @@ void URenderAsset::MaterialResourceCheck()
 			ShaderResourceMap[i].ConstantBufferLinkData("FTransform", Ref);
 		}
 
+		for (EShaderType i = EShaderType::VS; i < EShaderType::MAX; i = static_cast<EShaderType>(static_cast<int>(i) + 1))
+		{
+			if (false == ShaderResourceMap.contains(i))
+			{
+				continue;
+			}
+			if (false == ShaderResourceMap[i].IsConstantBuffer("FLightDatas"))
+			{
+				continue;
+			}
+			FLightDatas& Data = ParentPrimitiveComponent->GetWorld()->GetLightDatasRef();
+			ShaderResourceMap[i].ConstantBufferLinkData("FLightDatas", Data);
+		}
+
 	}
 
 }

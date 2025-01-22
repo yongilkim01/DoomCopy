@@ -16,7 +16,7 @@ struct FLightData
      * 빛의 색상 및 강도 (R, G, B, 강도).
      * 초기값은 흰색 (1, 1, 1)으로 설정
      */
-    float4 LightColor = float4(1.0f, 1.0f, 1.0f, 0.0f);
+    float4 LightColor = float4(1.0f, 1.0f, 1.0f, 1.0f);
     /**
      * 주변광(Ambient Light) 색상 및 강도 (R, G, B, 강도).
      * 기본적으로 은은한 회색빛

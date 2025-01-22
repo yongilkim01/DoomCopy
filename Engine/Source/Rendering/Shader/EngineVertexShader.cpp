@@ -47,7 +47,7 @@ void UEngineVertexShader::AssetLoad()
 	D3DCompileFromFile(
 		WPath.c_str(),
 		nullptr, // Define TEST 등으로 전처리기를 넣을수.
-		nullptr,
+		D3D_COMPILE_STANDARD_FILE_INCLUDE,
 		EntryName.c_str(),
 		version.c_str(),
 		Flag0,
