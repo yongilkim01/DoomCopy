@@ -18,8 +18,9 @@ ABaseWeapon::ABaseWeapon()
     SpriteComponent->CreateAnimation("ShotGun_Idle", "Shotgun.png", 0, 0, 0.1f, true);
     SpriteComponent->CreateAnimation("ShotGun_Fire", "Shotgun.png", 1, 5, 0.5f, false);
 
-    SpriteComponent->SetAnimationEvent("ShotGun_Fire", 5, [this]() {
-        SpriteComponent->ChangeAnimation("ShotGun_Idle");
+    SpriteComponent->SetAnimationEvent("ShotGun_Fire", 5, [this]() 
+        {
+            SpriteComponent->ChangeAnimation("ShotGun_Idle");
         });
    
     SpriteComponent->ChangeAnimation("ShotGun_Idle");
@@ -41,6 +42,8 @@ void ABaseWeapon::Tick(float DeltaTime)
     AActor::Tick(DeltaTime);
 
     //UEngineDebug::OutPutString("Weapon Location : " + GetActorLocation().ToString());
+
+    BulletStartLocation = GetActorLocation() + FVector{0.0f, SpriteComponent->GetRelativeLocation().Y, GetActorForwardVector().Z * 10};
 
 
     if (true == bMoving)

@@ -331,6 +331,7 @@ void UEngineGraphicDevice::InitMesh()
 		// 생성된 정점 버퍼와 인덱스 버퍼를 활용해 구를 생성
 		FVertexBuffer::Create("Sphere", VBVector);
 		FIndexBuffer::Create("Sphere", IBVector);
+
 		UMesh::Create("Sphere");
 	}
 

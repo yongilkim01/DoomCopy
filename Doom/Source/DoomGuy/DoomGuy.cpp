@@ -15,6 +15,7 @@
 #include <Input/EngineInput.h>
 
 #include "Public/Items/Weapons/BaseWeapon.h"
+#include "Public/Items/Weapons/Bullet.h"
 
 ADoomGuyCharacter::ADoomGuyCharacter()
 {
@@ -80,6 +81,10 @@ void ADoomGuyCharacter::Tick(float DeltaTime)
 	if (UEngineInput::IsDown(VK_LBUTTON))
 	{
 		BaseWeaponActor->Reload();
+		std::shared_ptr<ABullet> Bullet = GetWorld()->SpawnActor<ABullet>();
+		FVector BulletLocation = GetActorLocation() + (GetActorForwardVector() * 50.0f) + (GetActorUpVector() * 30.0f);
+		Bullet->SetActorLocation(BulletLocation);
+		Bullet->SetBulletDirection(GetActorForwardVector());
 	}
 
 	if (UEngineInput::IsDown('Y'))

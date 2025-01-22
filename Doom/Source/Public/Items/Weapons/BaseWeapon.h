@@ -38,9 +38,19 @@ public:
 		MovingStartLocation = Value;
 		//SetActorLocation(MovingStartLocation);
 	}
+	FVector GetBulletStartLocation()
+	{
+		return BulletStartLocation;
+	}
+	void SetBulletStartLocation(FVector Value)
+	{
+		BulletStartLocation = Value;
+	}
 
 private:
 	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
+
+	FVector BulletStartLocation = FVector::ZERO;
 
 	/** º“¿Ø¡÷ */
 	std::weak_ptr<ACharacter> Owner;

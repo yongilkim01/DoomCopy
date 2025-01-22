@@ -2,6 +2,8 @@
 #include <Engine/Classes/GameFramework/Actor.h>
 
 class ACharacter;
+class UPrimitiveComponent;
+class UPaperSpriteComponent;
 
 /**
  *	설명
@@ -22,7 +24,17 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
+	void SetBulletDirection(FVector Value)
+	{
+		Direction = Value;
+	}
+
 private:
 	/** 소유주 */
 	std::weak_ptr<ACharacter> Owner;
+	std::shared_ptr<UPrimitiveComponent> MeshComponent = nullptr;
+	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
+
+	FVector Direction = FVector::ZERO;
+
 };
