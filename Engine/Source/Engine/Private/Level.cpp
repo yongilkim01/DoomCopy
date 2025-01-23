@@ -26,6 +26,7 @@ ULevel::ULevel()
 
 	FinalRenderTarget = std::make_shared<URenderTarget>();
 	FinalRenderTarget->CreateTarget(UGameEngine::GetSceenScale());
+	FinalRenderTarget->SetClearColor({ 0.0f, 0.0f, 0.0f, 0.0f });
 	FinalRenderTarget->CreateDepthStencil();
 }
 
@@ -134,7 +135,8 @@ void ULevel::Render(float DeltaTime)
 
 		Camera.second->Tick(DeltaTime);
 		Camera.second->GetCameraComponent()->Render(DeltaTime);
-		Camera.second->GetCameraComponent()->CameraRenderTarget->MergeRenderTarget(FinalRenderTarget);
+
+		// Camera.second->GetCameraComponent()->CameraRenderTarget->MergeRenderTarget(FinalRenderTarget);
 	}
 
 	if (true == Cameraes.contains(static_cast<int>(EEngineCameraType::UICamera)))
@@ -152,13 +154,16 @@ void ULevel::Render(float DeltaTime)
 
 			HUD->RenderUI(CameraComponent.get(), DeltaTime);
 
-			CameraComponent->CameraRenderTarget->MergeRenderTarget(FinalRenderTarget);
+			// CameraComponent->CameraRenderTarget->MergeRenderTarget(FinalRenderTarget);
 		}
 	}
 	else
 	{
 		MSGASSERT("UI카메라가 존재하지 않습니다");
 	}
+
+	Cameraes[static_cast<int>(EEngineCameraType::MainCamera)]->GetCameraComponent()->CameraRenderTarget->MergeRenderTarget(FinalRenderTarget);
+	Cameraes[static_cast<int>(EEngineCameraType::UICamera)]->GetCameraComponent()->CameraRenderTarget->MergeRenderTarget(FinalRenderTarget);
 
 	std::shared_ptr<URenderTarget> BackBufferRenderTarget = UGameEngine::GetBackBufferRenderTarget();
 	FinalRenderTarget->MergeRenderTarget(BackBufferRenderTarget);
