@@ -51,5 +51,5 @@ void ULightComponent::UpdateLight(UCameraComponent* CameraComponent, float Delta
     LightData.ViewLightRevDir = LightData.LightRevDir * View;
 
     // 카메라의 위치를 뷰 공간에서 계산
-    LightData.CameraPosition = CameraComponent->GetWorldLocation() * View;
+    LightData.CameraPosition = CameraComponent->GetWorldLocation();
 }

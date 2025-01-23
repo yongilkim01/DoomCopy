@@ -17,7 +17,7 @@ struct FLightData
 // Count는 빛의 총 개수를 나타내며, LightArr는 최대 256개의 빛 데이터를 저장
 cbuffer FLightDatas : register(b11)
 {
-    int Count; // 현재 처리할 빛의 개수
+    int LightCount; // 현재 처리할 빛의 개수
     FLightData LightArr[256]; // 최대 256개의 빛 데이터를 저장할 배열
 };
 
@@ -43,7 +43,7 @@ float4 CalSpacularLight(float4 ViewPosition, float4 ViewNormal, FLightData Light
     float3 Reflection = normalize(2.0f * N.xyz * dot(L.xyz, N.xyz) - L.xyz);
     
     // 카메라(눈) 방향 벡터를 정규화 (Normalize the eye direction vector)
-    float3 Eye = normalize(ViewPosition.xyz - LightData.CameraPosition.xyz);
+    float3 Eye = normalize(LightData.CameraPosition.xyz - ViewPosition.xyz);
     
     // 반사 벡터와 카메라(눈) 방향 벡터의 내적을 계산 (Dot product of reflection and eye direction)
     // 이 값은 스페큘러 조명의 강도를 결정

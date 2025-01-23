@@ -60,14 +60,21 @@ float4 MeshLight_PS(VertexShaderOutPut Vertex) : SV_Target0
     float4 ResultColor;
     ResultColor = SettingColor; // 기본 색상 초기화
 
-    // 확산 조명 계산
-    float4 DiffuseColor = CalDiffusLight(Vertex.NORMAL, LightArr[0]);
+    // 확산 조명
+    float4 DiffuseColor;
+    // 스페큘러 조명
+    float4 SpacularLight;
     
-    // 스페큘러 조명 계산
-    float4 SpacularLight = CalSpacularLight(Vertex.VIEWPOS, Vertex.NORMAL, LightArr[0]);
+    float4 AmbiantLight = (0.1f, 0.1f, 0.1f, 0.1f);
 
-    // 결과 색상에 조명 효과 적용
-    ResultColor.xyz *= (DiffuseColor + SpacularLight);
+    for (int i = 0; i < LightCount; ++i)
+    {
+        DiffuseColor += CalDiffusLight(Vertex.NORMAL, LightArr[i]);
+        SpacularLight += CalSpacularLight(Vertex.VIEWPOS, Vertex.NORMAL, LightArr[i]);
+    }
+	
+    ResultColor.xyz *= (DiffuseColor.xyz + SpacularLight.xyz + AmbiantLight.xyz);
+    
     ResultColor.a = 1.0f; // 알파값 설정
 
     return ResultColor;
