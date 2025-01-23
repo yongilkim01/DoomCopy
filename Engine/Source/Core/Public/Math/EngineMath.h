@@ -612,6 +612,7 @@ public:
 		Result.X = X - Other.X;
 		Result.Y = Y - Other.Y;
 		Result.Z = Z - Other.Z;
+		Result.W = W;
 		return Result;
 	}
 	TVector operator-() const

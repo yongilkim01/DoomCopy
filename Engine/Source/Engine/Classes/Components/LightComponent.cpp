@@ -23,13 +23,33 @@ void ULightComponent::BeginPlay()
 
 void ULightComponent::UpdateLight(UCameraComponent* CameraComponent, float DeltaTime)
 {
-    LightData.LightPos = GetWorldLocation(); // 빛의 위치
-    LightData.LightDir = GetWorldForwardVector(); // 빛의 Forward
-    LightData.LightRevDir = -LightData.LightDir; // 빛의 반대방향
+    // 빛의 위치를 설정 (월드 좌표계에서의 위치)
+    LightData.LightPos = GetWorldLocation();
+
+    // 빛의 방향을 설정 (월드 좌표계에서의 Forward 벡터)
+    LightData.LightDir = GetWorldForwardVector();
+
+    // 빛의 역방향(반대 방향) 벡터를 계산
+    LightData.LightRevDir = LightData.LightDir.operator-();
+
+    // 빛의 색상을 기본값(흰색)으로 설정
     LightData.LightColor = float4(1.0f, 1.0f, 1.0f, 1.0f);
+
+    // 앰비언트 라이트(주변광) 색상 설정
     LightData.AmbientLight = float4(0.1f, 0.1f, 0.1f, 1.0f);
-    LightData.ViewLightPos = LightData.LightPos * CameraComponent->GetComponentTransformRef().View;
-    LightData.ViewLightDir = LightData.LightDir * CameraComponent->GetComponentTransformRef().View;
-    LightData.ViewLightRevDir = LightData.LightRevDir * CameraComponent->GetComponentTransformRef().View;
-    LightData.CameraPosition = CameraComponent->GetWorldLocation() * CameraComponent->GetComponentTransformRef().View;
+
+    // 카메라의 뷰 행렬을 가져옴
+    float4x4 View = CameraComponent->GetComponentTransformRef().View;
+
+    // 뷰 공간에서의 빛의 위치를 계산
+    LightData.ViewLightPos = LightData.LightPos * View;
+
+    // 뷰 공간에서의 빛의 방향 벡터를 계산
+    LightData.ViewLightDir = LightData.LightDir * View;
+
+    // 뷰 공간에서의 빛의 역방향 벡터를 계산
+    LightData.ViewLightRevDir = LightData.LightRevDir * View;
+
+    // 카메라의 위치를 뷰 공간에서 계산
+    LightData.CameraPosition = CameraComponent->GetWorldLocation() * View;
 }
