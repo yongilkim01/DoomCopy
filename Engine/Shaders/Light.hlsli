@@ -33,10 +33,10 @@ float4 CalSpacularLight(float4 ViewPosition, float4 ViewNormal, FLightData Light
     float ResultLight = 0.0f;
     
     // 법선 벡터를 정규화 (Normalize the normal vector)
-    float4 N = normalize(ViewNormal);
+    float3 N = normalize(ViewNormal.xyz);
     
     // 빛의 반대 방향 벡터를 정규화 (Normalize the light reverse direction vector)
-    float4 L = normalize(LightData.ViewLightRevDir);
+    float3 L = normalize(LightData.ViewLightRevDir.xyz);
     
     // 반사 벡터를 계산 (Reflection vector calculation)
     // 반사 벡터 = 2 * (N · L) * N - L
@@ -50,7 +50,7 @@ float4 CalSpacularLight(float4 ViewPosition, float4 ViewNormal, FLightData Light
     ResultLight = max(0.0f, dot(Reflection.xyz, Eye.xyz));
     
     // 스페큘러 조명을 더 강렬하게 만들기 위해 지수 승을 적용 (Exponent to control the shininess)
-    ResultLight = pow(ResultLight, 30.0f);
+    ResultLight = pow(ResultLight, 60.0f);
 
     // 최종 스페큘러 조명 값을 반환
     return ResultLight;
