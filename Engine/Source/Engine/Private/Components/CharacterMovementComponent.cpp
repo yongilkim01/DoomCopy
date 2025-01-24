@@ -2,6 +2,8 @@
 #include "Engine/Classes/GameFramework/CharacterMovementComponent.h"
 #include "Engine/Classes/Components/PrimitiveComponent.h"
 
+#include "Core/Public/Debugging/DebugMacros.h"
+
 UCharacterMovementComponent::UCharacterMovementComponent()
 {
 }
@@ -32,7 +34,9 @@ void UCharacterMovementComponent::TickComponent(float DeltaTime)
     // Ä¸½¶ ÄÄÆ÷³ÍÆ® ÀÌµ¿ ¹× Ãæµ¹ Ã³¸®
     SafeMoveUpdatedComponent(Delta, UpdatedComponent->GetComponentRotation(), true); 
 
-    Velocity.Y += 500.0f;
+    Velocity.Y = 0.0f;
+
+    UEngineDebug::OutPutString("Player Velocity : " + Velocity.ToString());
 }
 
 bool UCharacterMovementComponent::SafeMoveUpdatedComponent(const FVector& Delta, const FVector& NewRotation, bool bSweep)

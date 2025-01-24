@@ -27,6 +27,7 @@ public:
 
 	/** 상속 메소드 */
 	ENGINE_API virtual void BeginPlay() override;
+	ENGINE_API virtual void TickComponent(float DeltaTime) override;
 	ENGINE_API virtual void Render(UCameraComponent* CameraComponent, float DeltaTime);
 	ENGINE_API virtual void SetOrder(int NewOrder) override;
 
@@ -38,8 +39,9 @@ public:
 	 *  @param NewRotation - 이동 후 컴포넌트의 새로운 회전을 나타낸다.
 	 *  @param bSweep - Sweep을 수행할 지 여부를 결정한다, true일 경우 충돌 검사를 활성화하여 이동 경로에서 충돌을 확인한다.
 	 */
-	ENGINE_API bool MoveComponent(const FVector& Delta, const FVector& NewRotation, bool bSweep/*, FHitResult* OutHit, EMoveComponentFlags MoveFlags, ETeleportType Teleport*/);
-	ENGINE_API FVector SweepComponent(const FVector& NewLocation, const FVector& Delta/*, const FQuat& NewRotation, FHitResult* OutHit*/);
+	ENGINE_API bool MoveComponent(const FVector& Delta, const FVector& NewRotation = FVector::ZERO, bool bSweep = true/*, FHitResult* OutHit, EMoveComponentFlags MoveFlags, ETeleportType Teleport*/);
+	ENGINE_API FVector SweepCollision(const FVector& NewLocation, const FVector& Delta/*, const FQuat& NewRotation, FHitResult* OutHit*/);
+	ENGINE_API FVector NormalComponent(const FVector& NewLocation, const FVector& Delta/*, const FQuat& NewRotation, FHitResult* OutHit*/);
 
 	/** 렌더 유닛 관련 메소드 */
 	ENGINE_API URenderAsset& CreateRenderUnit();
@@ -60,6 +62,10 @@ public:
 	{
 		bEnableGravity = Value;
 	}
+	ENGINE_API void AddForce(FVector Force)
+	{
+		Velocity = Force;
+	}
 
 protected:
 
@@ -67,4 +73,6 @@ private:
 	std::vector<URenderAsset> RenderUnitVector;
 
 	bool bEnableGravity = false;
+
+	FVector Velocity = FVector::ZERO;
 };

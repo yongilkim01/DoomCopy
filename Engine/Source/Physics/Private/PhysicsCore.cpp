@@ -16,14 +16,12 @@ UPhysicsCore::~UPhysicsCore()
 {
 }
 
-FVector UPhysicsCore::SweepComponent(const FVector& Location, const FVector& Delta)
+FVector UPhysicsCore::SweepCollision(const FVector& Location, const FVector& Delta)
 {
 		FVector FinalVector = Location + Delta;
 
 		float Distance = UNavigationSystem::GetInstance().DistanceToVector(FinalVector);
 		
-		//UEngineDebug::OutPutString("Distance : " + std::to_string(Distance));
-
 		if (0.0f == Distance)
 		{
 			return Location;
@@ -43,4 +41,17 @@ FVector UPhysicsCore::SweepComponent(const FVector& Location, const FVector& Del
 		return Location;
 }
 
+FVector UPhysicsCore::NormalComponent(const FVector& Location, const FVector& Delta)
+{
+	FVector FinalVector = Location + Delta;
+
+	float Distance = UNavigationSystem::GetInstance().DistanceToVector(FinalVector);
+
+	if (0.0f == Distance)
+	{
+		return Location;
+	}
+
+	return Location;
+}
 

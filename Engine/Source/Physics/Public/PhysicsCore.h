@@ -18,7 +18,8 @@ public:
 	UPhysicsCore& operator=(const UPhysicsCore& Other) = delete;
 	UPhysicsCore& operator=(UPhysicsCore&& Other) noexcept = delete;
 
-	FVector SweepComponent(const FVector& Location, const FVector& Delta);
+	FVector SweepCollision(const FVector& Location, const FVector& Delta);
+	FVector NormalComponent(const FVector& Location, const FVector& Delta);
 
 protected:
 

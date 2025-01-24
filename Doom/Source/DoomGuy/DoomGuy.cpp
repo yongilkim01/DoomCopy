@@ -101,9 +101,6 @@ void ADoomGuyCharacter::Tick(float DeltaTime)
 
 		CurMouseLocation = UGameEngine::GetMainWindow().GetMousePos();
 
-		//UEngineDebug::OutPutString("PrevMouseLocation : " + PrevMouseLocation.ToString());
-		//UEngineDebug::OutPutString("CurMouseLocation : " + CurMouseLocation.ToString());
-
 		float RotationX = GetActorRotation().X + CurMouseLocation.Y - PrevMouseLocation.Y;
 		float RotationY = GetActorRotation().Y + CurMouseLocation.X - PrevMouseLocation.X;
 
@@ -116,17 +113,8 @@ void ADoomGuyCharacter::Tick(float DeltaTime)
 			RotationX = 400.0f;
 		}
 
-		//if(RotationY )
-
 		SetActorRotation({ RotationX, RotationY, 0.0f });
-
-		//SetCursorPos(960, 540);
-
-		//CurMouseLocation = FVector{ 960, 540 };
-
 	}
-
-	UEngineDebug::OutPutString("Doom Guy Rotation : " + GetActorRotation().ToString());
 }
 
 void ADoomGuyCharacter::MoveForward(float Value)

@@ -43,6 +43,16 @@ void UPrimitiveComponent::BeginPlay()
 
 }
 
+void UPrimitiveComponent::TickComponent(float DeltaTime)
+{
+	USceneComponent::TickComponent(DeltaTime);
+
+	if (FVector::ZERO != Velocity)
+	{
+		MoveComponent(Velocity * DeltaTime);
+	}
+}
+
 void UPrimitiveComponent::Render(UCameraComponent* CameraComponent, float DeltaTime)
 {
 	this->UpdateCameraTransform(CameraComponent);
@@ -95,7 +105,7 @@ void UPrimitiveComponent::SetOrder(int NewOrder)
 	Level->ChangeRenderGroup(0, PrevOrder, RendererPtr);
 }
 
-bool UPrimitiveComponent::MoveComponent(const FVector& Delta, const FVector& NewRotation, bool bSweep)
+bool UPrimitiveComponent::MoveComponent(const FVector& Delta, const FVector& NewRotation/* = FVector::ZERO */, bool bSweep/* = true */)
 {
 	// 회전 값이 제공된 경우, 새로운 회전 값을 적용
 	if (false == NewRotation.IsZero())
@@ -107,7 +117,7 @@ bool UPrimitiveComponent::MoveComponent(const FVector& Delta, const FVector& New
 	if (true == bSweep)
 	{
 		// 컴포넌트 이동 경로에 대해 충돌을 검사
-		SetWorldLocation(SweepComponent(GetWorldLocation(), Delta));
+		SetWorldLocation(SweepCollision(GetWorldLocation(), Delta));
 
 		return true;
 	}
@@ -117,13 +127,18 @@ bool UPrimitiveComponent::MoveComponent(const FVector& Delta, const FVector& New
 		FVector NewLocation = GetWorldLocation() + Delta;
 
 		// Sweep이 없으면 단순히 위치만 업데이트
-		SetWorldLocation(NewLocation);
+		SetWorldLocation(NormalComponent(GetWorldLocation(), Delta));
 
 		return true;
 	}
 }
 
-FVector UPrimitiveComponent::SweepComponent(const FVector& Location, const FVector& Delta)
+FVector UPrimitiveComponent::SweepCollision(const FVector& Location, const FVector& Delta)
 {
-	return GEngine->GetPhysicsSubSystem()->SweepComponent(Location, Delta);
+	return GEngine->GetPhysicsSubSystem()->SweepCollision(Location, Delta);
+}
+
+FVector UPrimitiveComponent::NormalComponent(const FVector& Location, const FVector& Delta)
+{
+	return GEngine->GetPhysicsSubSystem()->NormalComponent(Location, Delta);
 }
