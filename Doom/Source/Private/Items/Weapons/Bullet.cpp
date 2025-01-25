@@ -38,6 +38,6 @@ void ABullet::Tick(float DeltaTime)
 
 	if (Direction != FVector::ZERO)
 	{
-		MeshComponent->AddForce(Direction * 10000.0f);
+		MeshComponent->AddForce(Direction * 1000.0f);
 	}
 }

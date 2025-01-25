@@ -198,7 +198,7 @@ void UGameEngine::EngineFrame()
 	GEngine->CurLevel->Tick(DeltaTime);
 	//GEngine->PhysicsSubSystem->Tick(DeltaTime);
 	GEngine->CurLevel->Render(DeltaTime);
-	GEngine->CurLevel->Collision(DeltaTime);
+	//GEngine->CurLevel->Collision(DeltaTime);
 	GEngine->CurLevel->Release(DeltaTime);
 }
 
