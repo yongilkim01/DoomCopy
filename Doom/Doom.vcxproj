@@ -116,7 +116,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)Engine\Source\ThirdParty\assimp\include;..\;$(SolutionDir)$(ProjectName)\Source;..\Engine\Source\</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>Doom.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -137,7 +137,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)Engine\Source\ThirdParty\assimp\include;..\;$(SolutionDir)$(ProjectName)\Source;..\Engine\Source\</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>Doom.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,104 +149,59 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Actor\E1M1\Enemy\EnemyCharacter.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\Actor\Round1\E1M1Map.cpp" />
-    <ClCompile Include="Source\Actor\TitleLogo.cpp" />
     <ClCompile Include="Source\DoomCore.cpp" />
-    <ClCompile Include="Source\GameMode\E1M1GameMode.cpp" />
-    <ClCompile Include="Source\GameMode\Editor\TileMapGameMode.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\GameMode\TitleGameMode.cpp" />
-    <ClCompile Include="Source\Global\DoomStructs.cpp" />
-    <ClCompile Include="Source\pch.cpp">
+    <ClCompile Include="Source\Doom.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source\Private\Characters\DoomGuy.cpp" />
+    <ClCompile Include="Source\Private\Characters\Enemy\EnemyCharacter.cpp" />
+    <ClCompile Include="Source\Private\Editor\GUIEditor.cpp" />
+    <ClCompile Include="Source\Private\GameModes\E1M1GameMode.cpp" />
+    <ClCompile Include="Source\Private\GameModes\NavMeshGameMode.cpp" />
+    <ClCompile Include="Source\Private\GameModes\TileMapGameMode.cpp" />
+    <ClCompile Include="Source\Private\GameModes\TitleGameMode.cpp" />
+    <ClCompile Include="Source\Private\Global\DoomStructs.cpp" />
+    <ClCompile Include="Source\Private\Global\GameInstance\DoomGameInstance.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\BaseWeapon.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\Bullet.cpp" />
-    <ClCompile Include="Source\UI\Private\E1M1HUD.cpp" />
-    <ClCompile Include="Source\UI\Private\TitleHUD.cpp" />
-    <ClCompile Include="Source\Utils\GameInstance\DoomGameInstance.cpp" />
-    <ClCompile Include="Source\Utils\GUI\GUIEditor.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\NavMesh\Actor\NavMeshCharacter.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\NavMesh\Actor\NavMeshMap.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\NavMesh\Actor\NavMeshResource.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\NavMesh\Component\NavMeshComponent.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\Utils\NavMesh\GameMode\NavMeshGameMode.cpp" />
-    <ClCompile Include="Source\Utils\WadMap.cpp" />
-    <ClCompile Include="Source\Utils\Lump.cpp" />
-    <ClCompile Include="Source\Utils\Wad.cpp" />
+    <ClCompile Include="Source\Private\Maps\E1M1Map.cpp" />
+    <ClCompile Include="Source\Private\NavigationSystem\NavMeshCharacter.cpp" />
+    <ClCompile Include="Source\Private\NavigationSystem\NavMeshComponent.cpp" />
+    <ClCompile Include="Source\Private\NavigationSystem\NavMeshMap.cpp" />
+    <ClCompile Include="Source\Private\NavigationSystem\NavMeshResource.cpp" />
+    <ClCompile Include="Source\Private\UI\HUD\E1M1HUD.cpp" />
+    <ClCompile Include="Source\Private\UI\HUD\TitleHUD.cpp" />
+    <ClCompile Include="Source\Private\UI\Widget\TitleLogo.cpp" />
+    <ClCompile Include="Source\Private\WAD\Lump.cpp" />
+    <ClCompile Include="Source\Private\WAD\Wad.cpp" />
+    <ClCompile Include="Source\Private\WAD\WadMap.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Actor\E1M1\Enemy\EnemyCharacter.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Actor\Round1\E1M1Map.h" />
-    <ClInclude Include="Source\Actor\TitleLogo.h" />
     <ClInclude Include="Source\DoomCore.h" />
-    <ClInclude Include="Source\GameMode\E1M1GameMode.h" />
-    <ClInclude Include="Source\GameMode\Editor\TileMapGameMode.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\GameMode\TitleGameMode.h" />
-    <ClInclude Include="Source\Global\DoomStructs.h" />
-    <ClInclude Include="Source\pch.h" />
+    <ClInclude Include="Source\Doom.h" />
     <ClInclude Include="Source\Public\Characters\DoomGuy.h" />
+    <ClInclude Include="Source\Public\Characters\Enemy\EnemyCharacter.h" />
+    <ClInclude Include="Source\Public\Editor\GUIEditor.h" />
+    <ClInclude Include="Source\Public\GameModes\E1M1GameMode.h" />
+    <ClInclude Include="Source\Public\GameModes\NavMeshGameMode.h" />
+    <ClInclude Include="Source\Public\GameModes\TileMapGameMode.h" />
+    <ClInclude Include="Source\Public\GameModes\TitleGameMode.h" />
+    <ClInclude Include="Source\Public\Global\DoomStructs.h" />
+    <ClInclude Include="Source\Public\Global\GameInstance\DoomGameInstance.h" />
     <ClInclude Include="Source\Public\Items\Weapons\BaseWeapon.h" />
     <ClInclude Include="Source\Public\Items\Weapons\Bullet.h" />
-    <ClInclude Include="Source\UI\Public\E1M1HUD.h" />
-    <ClInclude Include="Source\UI\Public\TitleHUD.h" />
-    <ClInclude Include="Source\Utils\GameInstance\DoomGameInstance.h" />
-    <ClInclude Include="Source\Utils\GUI\GUIEditor.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Utils\NavMesh\Actor\NavMeshCharacter.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Utils\NavMesh\Actor\NavMeshMap.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Utils\NavMesh\Actor\NavMeshResource.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Utils\NavMesh\Component\NavMeshComponent.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Utils\NavMesh\GameMode\NavMeshGameMode.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Utils\WadMap.h" />
-    <ClInclude Include="Source\Utils\Lump.h" />
-    <ClInclude Include="Source\Utils\Wad.h" />
+    <ClInclude Include="Source\Public\Maps\E1M1Map.h" />
+    <ClInclude Include="Source\Public\NavigationSystem\NavMeshCharacter.h" />
+    <ClInclude Include="Source\Public\NavigationSystem\NavMeshComponent.h" />
+    <ClInclude Include="Source\Public\NavigationSystem\NavMeshMap.h" />
+    <ClInclude Include="Source\Public\NavigationSystem\NavMeshResource.h" />
+    <ClInclude Include="Source\Public\UI\HUD\E1M1HUD.h" />
+    <ClInclude Include="Source\Public\UI\HUD\TitleHUD.h" />
+    <ClInclude Include="Source\Public\UI\Widget\TitleLogo.h" />
+    <ClInclude Include="Source\Public\WAD\Lump.h" />
+    <ClInclude Include="Source\Public\WAD\Wad.h" />
+    <ClInclude Include="Source\Public\WAD\WadMap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

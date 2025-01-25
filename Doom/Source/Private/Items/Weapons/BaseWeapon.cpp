@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "Doom.h"
 #include "Public/Items/Weapons/BaseWeapon.h"
 
 #include <Engine/Classes/Components/PaperSpriteComponent.h>

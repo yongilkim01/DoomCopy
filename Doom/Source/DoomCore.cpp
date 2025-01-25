@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "Doom.h"
 #include "DoomCore.h"
 
 #include <Core/Public/Math/EngineMath.h>
@@ -20,16 +20,15 @@
 #include <Rendering/Shader/EngineShader.h>
 #include <NavigationSystem/Public/NavigationSystem.h>
 
-#include "GameMode/TitleGameMode.h"
-#include "GameMode/E1M1GameMode.h"
+#include "Public/GameModes//TitleGameMode.h"
+#include "Public/GameModes//E1M1GameMode.h"
+#include "Public/GameModes/NavMeshGameMode.h"
 
-#include "Utils/NavMesh/GameMode/NavMeshGameMode.h"
-#include "Utils/GUI/GUIEditor.h"
-#include "Utils/NavMesh/Actor/NavMeshResource.h"
-#include "Utils/GameInstance/DoomGameInstance.h"
-#include "UI/Public/TitleHUD.h"
-#include "UI/Public/E1M1HUD.h"
-
+#include "Public/Editor/GUIEditor.h"
+#include "Public/NavigationSystem/NavMeshResource.h"
+#include "Public/Global/GameInstance/DoomGameInstance.h"
+#include "Public/UI/HUD/TitleHUD.h"
+#include "Public/UI/HUD/E1M1HUD.h"
 
 
 CreateContentsCoreDefine(UDoomCore);
