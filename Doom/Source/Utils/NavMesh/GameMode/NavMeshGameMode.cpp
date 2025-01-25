@@ -15,7 +15,7 @@
 #include <Tools/DebugGUI/EngineGUIWindow.h>
 #include <ThirdParty/imgui/imgui.h>
 
-#include "DoomGuy/DoomGuy.h"
+#include "Public/Characters/DoomGuy.h"
 
 #include "Actor/Round1/E1M1Map.h"
 

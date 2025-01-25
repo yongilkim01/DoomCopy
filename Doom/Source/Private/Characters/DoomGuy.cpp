@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "DoomGuy.h"
+#include "Public/Characters/DoomGuy.h"
 
 #include <Engine/Classes/Camera/CameraActor.h>
 #include <Engine/Classes/Camera/CameraComponent.h>

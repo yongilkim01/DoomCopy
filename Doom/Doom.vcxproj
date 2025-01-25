@@ -155,8 +155,7 @@
     </ClCompile>
     <ClCompile Include="Source\Actor\Round1\E1M1Map.cpp" />
     <ClCompile Include="Source\Actor\TitleLogo.cpp" />
-    <ClCompile Include="Source\Core\DoomCore.cpp" />
-    <ClCompile Include="Source\DoomGuy\DoomGuy.cpp" />
+    <ClCompile Include="Source\DoomCore.cpp" />
     <ClCompile Include="Source\GameMode\E1M1GameMode.cpp" />
     <ClCompile Include="Source\GameMode\Editor\TileMapGameMode.cpp">
       <SubType>
@@ -168,6 +167,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Source\Private\Characters\DoomGuy.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\BaseWeapon.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\Bullet.cpp" />
     <ClCompile Include="Source\UI\Private\E1M1HUD.cpp" />
@@ -205,8 +205,7 @@
     </ClInclude>
     <ClInclude Include="Source\Actor\Round1\E1M1Map.h" />
     <ClInclude Include="Source\Actor\TitleLogo.h" />
-    <ClInclude Include="Source\Core\DoomCore.h" />
-    <ClInclude Include="Source\DoomGuy\DoomGuy.h" />
+    <ClInclude Include="Source\DoomCore.h" />
     <ClInclude Include="Source\GameMode\E1M1GameMode.h" />
     <ClInclude Include="Source\GameMode\Editor\TileMapGameMode.h">
       <SubType>
@@ -215,6 +214,7 @@
     <ClInclude Include="Source\GameMode\TitleGameMode.h" />
     <ClInclude Include="Source\Global\DoomStructs.h" />
     <ClInclude Include="Source\pch.h" />
+    <ClInclude Include="Source\Public\Characters\DoomGuy.h" />
     <ClInclude Include="Source\Public\Items\Weapons\BaseWeapon.h" />
     <ClInclude Include="Source\Public\Items\Weapons\Bullet.h" />
     <ClInclude Include="Source\UI\Public\E1M1HUD.h" />

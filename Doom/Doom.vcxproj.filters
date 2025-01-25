@@ -4,12 +4,6 @@
     <Filter Include="pch">
       <UniqueIdentifier>{814e1042-457f-4c86-8a6e-900ca2e63916}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0_DoomGuy">
-      <UniqueIdentifier>{aaea3ddf-772c-45d7-be20-3d7282abeae6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core">
-      <UniqueIdentifier>{65b975fc-6ad6-4121-a08c-ba27e55a248d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="1_GameMode">
       <UniqueIdentifier>{4187ed8d-8c2c-45a3-8072-dc8f31dcb832}</UniqueIdentifier>
     </Filter>
@@ -85,12 +79,6 @@
     <Filter Include="4_UI\1_Private\E1M1">
       <UniqueIdentifier>{fcdc01e6-cb7c-4925-a4e4-77766914565f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0_DoomGuy\Public">
-      <UniqueIdentifier>{f7472adf-7f48-4227-ba1f-4fc9f7c1fcef}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="0_DoomGuy\Private">
-      <UniqueIdentifier>{e6e86dca-b3ad-4753-8763-249720797dd3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="2_Actor\1_E1M1\Weapon">
       <UniqueIdentifier>{d25503c0-b69e-47b8-8995-d93b6fd6b0a7}</UniqueIdentifier>
     </Filter>
@@ -118,16 +106,16 @@
     <Filter Include="Public\Items\Weapons">
       <UniqueIdentifier>{c0ccf9f1-e05f-45d5-a2de-26fd5d76adb5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Private\Characters">
+      <UniqueIdentifier>{1f917852-01cb-46b8-80b4-a85c0832ecaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Characters">
+      <UniqueIdentifier>{8ed035a0-2ef1-40b2-afb8-065ef475d0db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\DoomGuy\DoomGuy.cpp">
-      <Filter>0_DoomGuy</Filter>
-    </ClCompile>
     <ClCompile Include="Source\pch.cpp">
       <Filter>pch</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Core\DoomCore.cpp">
-      <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameMode\E1M1GameMode.cpp">
       <Filter>1_GameMode\1_E1M1</Filter>
@@ -192,16 +180,14 @@
     <ClCompile Include="Source\Private\Items\Weapons\Bullet.cpp">
       <Filter>Private\Items\Weapons</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Private\Characters\DoomGuy.cpp">
+      <Filter>Private\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DoomCore.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\DoomGuy\DoomGuy.h">
-      <Filter>0_DoomGuy</Filter>
-    </ClInclude>
     <ClInclude Include="Source\pch.h">
       <Filter>pch</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Core\DoomCore.h">
-      <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameMode\E1M1GameMode.h">
       <Filter>1_GameMode\1_E1M1</Filter>
@@ -266,5 +252,9 @@
     <ClInclude Include="Source\Public\Items\Weapons\Bullet.h">
       <Filter>Public\Items\Weapons</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Public\Characters\DoomGuy.h">
+      <Filter>Public\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DoomCore.h" />
   </ItemGroup>
 </Project>
