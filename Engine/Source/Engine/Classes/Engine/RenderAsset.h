@@ -2,7 +2,7 @@
 #include "Rendering/Public/Shader/EngineShaderResource.h"
 #include "Engine/Classes/Engine/Mesh.h"
 #include "Engine/Public/Materials/Material.h"
-#include "EngineEnums.h"
+#include "Engine/Public/Global/EngineEnums.h"
 
 class UCameraComponent;
 class UPrimitiveComponent;

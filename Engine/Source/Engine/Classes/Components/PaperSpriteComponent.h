@@ -1,8 +1,9 @@
 #pragma once
 #include "Engine/Classes/Components/PrimitiveComponent.h"
-#include "Core/Public/Delegates/Delegate.h"
 #include "Engine/Classes/Engine/PaperSprite.h"
-#include "EngineStruct.h"
+#include "Engine/Public/Global/EngineStruct.h"
+
+#include "Core/Public/Delegates/Delegate.h"
 
 class UCameraComponent;
 class URenderAsset;

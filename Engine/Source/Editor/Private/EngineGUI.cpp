@@ -1,5 +1,7 @@
-#include "pch.h"
-#include "EngineGUI.h"
+#include "Engine.h"
+#include "Editor/Public/EngineGUI.h"
+
+#include "Editor/Public/EngineGUIWindow.h"
 
 #include "Core/Public/Misc/DirectoryHelper.h"
 #include "Core/Public/Misc/FileHelper.h"
@@ -8,8 +10,6 @@
 #include "Engine/Classes/Engine/GameEngine.h"
 
 #include "Platform/Public/Window/Window.h"
-
-#include "Tools/DebugGUI/EngineGUIWindow.h"
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 

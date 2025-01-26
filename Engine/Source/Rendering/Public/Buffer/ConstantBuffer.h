@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine/Classes/Engine/EngineResource.h"
 #include "Rendering/Public/Buffer/Buffer.h"
-#include "EngineEnums.h"
+#include "Engine/Public/Global/EngineEnums.h"
 
 /**
  *	Ό³Έν

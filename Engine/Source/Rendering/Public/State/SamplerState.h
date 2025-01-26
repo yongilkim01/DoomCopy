@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine/Classes/Engine/EngineResource.h"
-#include "EngineEnums.h"
+#include "Engine/Public/Global/EngineEnums.h"
 
 /**
  *	Ό³Έν

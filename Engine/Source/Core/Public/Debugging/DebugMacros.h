@@ -1,7 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <assert.h>
-#include "EngineDefine.h"
+#include  "Engine/Public/Global/EngineDefine.h"
 
 // MessageBoxA: https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-messageboxa
 // assert: https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/assert-macro-assert-wassert?view=msvc-170

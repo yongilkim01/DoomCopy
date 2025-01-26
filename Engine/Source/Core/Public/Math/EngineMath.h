@@ -6,7 +6,7 @@
 #include <DirectXMath.h>
 #include <DirectXCollision.h>
 
-#include "EngineDefine.h"
+#include "Engine/Public/Global/EngineDefine.h"
 
 enum class ECollisionType
 {

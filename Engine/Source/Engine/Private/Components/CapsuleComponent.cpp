@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "Engine.h"
 #include "Engine/Classes/Components/CapsuleComponent.h"
 
 UCapsuleComponent::UCapsuleComponent()

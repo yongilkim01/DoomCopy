@@ -1,7 +1,7 @@
 #pragma once
 #include "Rendering/Public/Buffer/ConstantBuffer.h"
 #include "Engine/Classes/Engine/Object.h"
-#include "EngineEnums.h"
+#include "Engine/Public/Global/EngineEnums.h"
 #include "Engine/Classes/Engine/Texture.h"
 #include "Rendering/Public/State/SamplerState.h"
 

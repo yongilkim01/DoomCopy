@@ -1,5 +1,5 @@
 #pragma once
-#include "EngineEnums.h"
+#include "Engine/Public/Global/EngineEnums.h"
 #include "Core/Public/Misc/FileHelper.h"
 
 #include "Rendering/Public/Shader/EngineShaderResource.h"

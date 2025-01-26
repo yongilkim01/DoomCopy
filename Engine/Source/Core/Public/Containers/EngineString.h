@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-#include "EngineDefine.h"
+#include "Engine/Public/Global/EngineDefine.h"
 
 /**
  *	엔진에서 사용하는 문자열 관련 기능 클래스

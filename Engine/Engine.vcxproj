@@ -30,6 +30,8 @@
     <ClCompile Include="Source\Core\Private\Serialization\Archive.cpp" />
     <ClCompile Include="Source\Core\Private\Time\TimeEvent.cpp" />
     <ClCompile Include="Source\Core\Private\Time\Timer.cpp" />
+    <ClCompile Include="Source\Editor\Private\EngineGUI.cpp" />
+    <ClCompile Include="Source\Editor\Private\EngineGUIWindow.cpp" />
     <ClCompile Include="Source\Engine\Classes\Components\LightComponent.cpp" />
     <ClCompile Include="Source\Engine\Private\Actor.cpp" />
     <ClCompile Include="Source\Engine\Private\Camera\CameraActor.cpp" />
@@ -65,7 +67,7 @@
     <ClCompile Include="Source\Engine\Private\TimerManager.cpp" />
     <ClCompile Include="Source\Engine\Private\TransformObject.cpp" />
     <ClCompile Include="Source\NavigationSystem\Private\NavigationSystem.cpp" />
-    <ClCompile Include="Source\pch.cpp">
+    <ClCompile Include="Source\Engine.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
@@ -94,8 +96,6 @@
     <ClCompile Include="Source\ThirdParty\imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui_tables.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="Source\Tools\DebugGUI\EngineGUI.cpp" />
-    <ClCompile Include="Source\Tools\DebugGUI\EngineGUIWindow.cpp" />
     <ClCompile Include="Source\UI\Private\Widget\Image.cpp" />
     <ClCompile Include="Source\UI\Private\Widget\TextBox.cpp" />
     <ClCompile Include="Source\UI\Private\Widget\Widget.cpp" />
@@ -112,9 +112,8 @@
     <ClInclude Include="Source\Core\Public\Serialization\Archive.h" />
     <ClInclude Include="Source\Core\Public\Time\TimeEvent.h" />
     <ClInclude Include="Source\Core\Public\Time\Timer.h" />
-    <ClInclude Include="Source\EngineDefine.h" />
-    <ClInclude Include="Source\EngineEnums.h" />
-    <ClInclude Include="Source\EngineStruct.h" />
+    <ClInclude Include="Source\Editor\Public\EngineGUI.h" />
+    <ClInclude Include="Source\Editor\Public\EngineGUIWindow.h" />
     <ClInclude Include="Source\Engine\Classes\Camera\CameraActor.h" />
     <ClInclude Include="Source\Engine\Classes\Camera\CameraComponent.h" />
     <ClInclude Include="Source\Engine\Classes\Components\ActorComponent.h" />
@@ -148,10 +147,13 @@
     <ClInclude Include="Source\Engine\Classes\GameFramework\MovementComponent.h" />
     <ClInclude Include="Source\Engine\Classes\GameFramework\Pawn.h" />
     <ClInclude Include="Source\Engine\Classes\Interfaces\IContentsCore.h" />
+    <ClInclude Include="Source\Engine\Public\Global\EngineDefine.h" />
+    <ClInclude Include="Source\Engine\Public\Global\EngineEnums.h" />
+    <ClInclude Include="Source\Engine\Public\Global\EngineStruct.h" />
     <ClInclude Include="Source\Engine\Public\Materials\Material.h" />
     <ClInclude Include="Source\Engine\Public\TimerManager.h" />
     <ClInclude Include="Source\NavigationSystem\Public\NavigationSystem.h" />
-    <ClInclude Include="Source\pch.h" />
+    <ClInclude Include="Source\Engine.h" />
     <ClInclude Include="Source\Physics\Public\PhysicsCore.h" />
     <ClInclude Include="Source\Platform\Public\Input\EngineInput.h" />
     <ClInclude Include="Source\Platform\Public\Window\Window.h" />
@@ -263,8 +265,6 @@
     <ClInclude Include="Source\ThirdParty\imgui\imstb_rectpack.h" />
     <ClInclude Include="Source\ThirdParty\imgui\imstb_textedit.h" />
     <ClInclude Include="Source\ThirdParty\imgui\imstb_truetype.h" />
-    <ClInclude Include="Source\Tools\DebugGUI\EngineGUI.h" />
-    <ClInclude Include="Source\Tools\DebugGUI\EngineGUIWindow.h" />
     <ClInclude Include="Source\UI\Public\Widget\Image.h" />
     <ClInclude Include="Source\UI\Public\Widget\TextBox.h" />
     <ClInclude Include="Source\UI\Public\Widget\Widget.h" />
@@ -407,7 +407,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\Source;$(SolutionDir)$(ProjectName)\Source\ThirdParty\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -428,7 +428,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>Engine.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)$(ProjectName)\Source;$(SolutionDir)$(ProjectName)\Source\ThirdParty\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>

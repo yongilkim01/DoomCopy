@@ -1,5 +1,5 @@
-#include "pch.h"
-#include "EngineGUIWindow.h"
+#include "Engine.h"
+#include "Editor/Public/EngineGUIWindow.h"
 
 UEngineGUIWindow::UEngineGUIWindow()
 {

@@ -1,14 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="pch">
-      <UniqueIdentifier>{479f833a-7ec7-477e-bafc-db0db95811d8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="1_Core">
       <UniqueIdentifier>{57a416c6-81b6-47aa-beeb-11c6c9d9bbdc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Global">
-      <UniqueIdentifier>{679f564e-65f9-4861-99c5-1e037c3e5c1b}</UniqueIdentifier>
     </Filter>
     <Filter Include="ThirdParty">
       <UniqueIdentifier>{e879a830-1b4f-444e-92af-3dd0388a12a8}</UniqueIdentifier>
@@ -69,21 +63,6 @@
     </Filter>
     <Filter Include="ThirdParty\FW1FontWrapper\Release">
       <UniqueIdentifier>{37d9b086-bcdc-44f8-88b1-1533c8257cc3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="6_Physics">
-      <UniqueIdentifier>{3c433f12-f128-4197-9f3f-c50d9decc8bd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="6_Physics\Public">
-      <UniqueIdentifier>{4625584c-ee6a-4713-be23-92aa6149e15b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="6_Physics\Private">
-      <UniqueIdentifier>{5ad0a2d4-decb-47f1-8130-a7686b57a3d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="8_Tools">
-      <UniqueIdentifier>{bb9b1b8f-c1b0-4f27-93be-6e340e17888c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="8_Tools\DebugGUI">
-      <UniqueIdentifier>{6c0051e6-2cb9-49d9-9ef7-98376feb6a7f}</UniqueIdentifier>
     </Filter>
     <Filter Include="7_NavigationSystem">
       <UniqueIdentifier>{1a928d45-79d6-4625-8af4-4da6f7a7d89e}</UniqueIdentifier>
@@ -175,48 +154,6 @@
     <Filter Include="3_Rendering\Private\Shader">
       <UniqueIdentifier>{c2ce4f9a-1ea3-4182-a391-5f948cc56dd1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="5_UI">
-      <UniqueIdentifier>{8609f4c2-58f0-4deb-93ee-fab4c3f45bba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="5_UI\Public">
-      <UniqueIdentifier>{19234151-3233-4133-a2a9-2d26d0621763}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="5_UI\Public\Widget">
-      <UniqueIdentifier>{88a27b3e-b797-428e-9515-62b36e689b1e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="5_UI\Private">
-      <UniqueIdentifier>{95af225c-b75d-4447-b046-7c3b531c1059}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="5_UI\Private\Widget">
-      <UniqueIdentifier>{4f7b12ff-2c94-445e-97b2-faefd4d8520b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_Platform">
-      <UniqueIdentifier>{69093daa-6f31-42e2-acaf-15f1ece144fa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_Platform\Public">
-      <UniqueIdentifier>{4d902fe1-a01d-491b-8248-7a47364ccaeb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_Platform\Public\Thread">
-      <UniqueIdentifier>{96736ac0-16ed-429b-b1da-af580c37d0ba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_Platform\Private">
-      <UniqueIdentifier>{e9063f9a-38cb-442e-8638-89c485362937}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_Platform\Private\Thread">
-      <UniqueIdentifier>{6dcb086c-d51c-48a1-aec7-95eaa5a2f2c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_Platform\Private\Input">
-      <UniqueIdentifier>{13850270-3db1-4555-adeb-8ccc4f8555fd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_Platform\Public\Input">
-      <UniqueIdentifier>{d052c0f8-ae18-46a8-8161-c46123bd1c8c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_Platform\Private\Window">
-      <UniqueIdentifier>{c061c29b-4569-4d78-a2f8-11fe0e8809b1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4_Platform\Public\Window">
-      <UniqueIdentifier>{ed3f959e-f35c-4141-b8d6-b3a9cf1bf527}</UniqueIdentifier>
-    </Filter>
     <Filter Include="2_Engine">
       <UniqueIdentifier>{43a547fe-3851-4aa6-850a-69fe8f92d364}</UniqueIdentifier>
     </Filter>
@@ -256,11 +193,71 @@
     <Filter Include="2_Engine\Private\Materials">
       <UniqueIdentifier>{84dbd6a7-2d4e-40f6-8b99-2d6546ba8d60}</UniqueIdentifier>
     </Filter>
+    <Filter Include="4_Physics">
+      <UniqueIdentifier>{3c433f12-f128-4197-9f3f-c50d9decc8bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_Physics\Public">
+      <UniqueIdentifier>{4625584c-ee6a-4713-be23-92aa6149e15b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4_Physics\Private">
+      <UniqueIdentifier>{5ad0a2d4-decb-47f1-8130-a7686b57a3d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_Platform">
+      <UniqueIdentifier>{69093daa-6f31-42e2-acaf-15f1ece144fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_Platform\Public">
+      <UniqueIdentifier>{4d902fe1-a01d-491b-8248-7a47364ccaeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_Platform\Public\Thread">
+      <UniqueIdentifier>{96736ac0-16ed-429b-b1da-af580c37d0ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_Platform\Public\Input">
+      <UniqueIdentifier>{d052c0f8-ae18-46a8-8161-c46123bd1c8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_Platform\Public\Window">
+      <UniqueIdentifier>{ed3f959e-f35c-4141-b8d6-b3a9cf1bf527}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_Platform\Private">
+      <UniqueIdentifier>{e9063f9a-38cb-442e-8638-89c485362937}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_Platform\Private\Thread">
+      <UniqueIdentifier>{6dcb086c-d51c-48a1-aec7-95eaa5a2f2c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_Platform\Private\Input">
+      <UniqueIdentifier>{13850270-3db1-4555-adeb-8ccc4f8555fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5_Platform\Private\Window">
+      <UniqueIdentifier>{c061c29b-4569-4d78-a2f8-11fe0e8809b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6_UI">
+      <UniqueIdentifier>{8609f4c2-58f0-4deb-93ee-fab4c3f45bba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6_UI\Public">
+      <UniqueIdentifier>{19234151-3233-4133-a2a9-2d26d0621763}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6_UI\Public\Widget">
+      <UniqueIdentifier>{88a27b3e-b797-428e-9515-62b36e689b1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6_UI\Private">
+      <UniqueIdentifier>{95af225c-b75d-4447-b046-7c3b531c1059}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6_UI\Private\Widget">
+      <UniqueIdentifier>{4f7b12ff-2c94-445e-97b2-faefd4d8520b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="8_Editor">
+      <UniqueIdentifier>{bb9b1b8f-c1b0-4f27-93be-6e340e17888c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="8_Editor\Public">
+      <UniqueIdentifier>{ec5606c5-c70b-4d92-8a9a-9b4f1313a76e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="8_Editor\Private">
+      <UniqueIdentifier>{59207b29-49d3-4be7-9a24-a74372b03ac3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Engine\Public\Global">
+      <UniqueIdentifier>{6c92ecac-4822-4801-90b7-7aee0e281377}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\pch.cpp">
-      <Filter>pch</Filter>
-    </ClCompile>
     <ClCompile Include="Source\ThirdParty\imgui\imgui_widgets.cpp">
       <Filter>ThirdParty\imgui\Private</Filter>
     </ClCompile>
@@ -281,12 +278,6 @@
     </ClCompile>
     <ClCompile Include="Source\Rendering\EngineGraphicDevice.cpp">
       <Filter>3_Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tools\DebugGUI\EngineGUI.cpp">
-      <Filter>8_Tools\DebugGUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Tools\DebugGUI\EngineGUIWindow.cpp">
-      <Filter>8_Tools\DebugGUI</Filter>
     </ClCompile>
     <ClCompile Include="Source\NavigationSystem\Private\NavigationSystem.cpp">
       <Filter>7_NavigationSystem\Private</Filter>
@@ -412,7 +403,7 @@
       <Filter>2_Engine\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Physics\Private\PhysicsCore.cpp">
-      <Filter>6_Physics\Private</Filter>
+      <Filter>4_Physics\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Private\Components\PhsyicsComponent.cpp">
       <Filter>2_Engine\Private\Components</Filter>
@@ -475,25 +466,29 @@
       <Filter>3_Rendering\Private\Shader</Filter>
     </ClCompile>
     <ClCompile Include="Source\UI\Private\Widget\Image.cpp">
-      <Filter>5_UI\Private\Widget</Filter>
+      <Filter>6_UI\Private\Widget</Filter>
     </ClCompile>
     <ClCompile Include="Source\UI\Private\Widget\TextBox.cpp">
-      <Filter>5_UI\Private\Widget</Filter>
+      <Filter>6_UI\Private\Widget</Filter>
     </ClCompile>
     <ClCompile Include="Source\UI\Private\Widget\Widget.cpp">
-      <Filter>5_UI\Private\Widget</Filter>
+      <Filter>6_UI\Private\Widget</Filter>
     </ClCompile>
     <ClCompile Include="Source\Platform\Private\Input\EngineInput.cpp">
-      <Filter>4_Platform\Private\Input</Filter>
+      <Filter>5_Platform\Private\Input</Filter>
     </ClCompile>
     <ClCompile Include="Source\Platform\Private\Window\Window.cpp">
-      <Filter>4_Platform\Private\Window</Filter>
+      <Filter>5_Platform\Private\Window</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Editor\Private\EngineGUI.cpp">
+      <Filter>8_Editor\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Editor\Private\EngineGUIWindow.cpp">
+      <Filter>8_Editor\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Engine.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\pch.h">
-      <Filter>pch</Filter>
-    </ClInclude>
     <ClInclude Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.h">
       <Filter>ThirdParty\DirectXTex\Include</Filter>
     </ClInclude>
@@ -761,12 +756,6 @@
     <ClInclude Include="Source\ThirdParty\assimp\include\assimp\ZipArchiveIOSystem.h">
       <Filter>ThirdParty\assimp\include</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Tools\DebugGUI\EngineGUI.h">
-      <Filter>8_Tools\DebugGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Tools\DebugGUI\EngineGUIWindow.h">
-      <Filter>8_Tools\DebugGUI</Filter>
-    </ClInclude>
     <ClInclude Include="Source\NavigationSystem\Public\NavigationSystem.h">
       <Filter>7_NavigationSystem\Public</Filter>
     </ClInclude>
@@ -897,7 +886,7 @@
       <Filter>2_Engine\Classes\Engine</Filter>
     </ClInclude>
     <ClInclude Include="Source\Physics\Public\PhysicsCore.h">
-      <Filter>6_Physics\Public</Filter>
+      <Filter>4_Physics\Public</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Classes\Components\PhsyicsComponent.h">
       <Filter>2_Engine\Classes\Components</Filter>
@@ -916,15 +905,6 @@
     </ClInclude>
     <ClInclude Include="Source\Engine\Classes\Components\LightComponent.h">
       <Filter>2_Engine\Classes\Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EngineDefine.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EngineEnums.h">
-      <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EngineStruct.h">
-      <Filter>Global</Filter>
     </ClInclude>
     <ClInclude Include="Source\Rendering\Public\State\DepthStencilState.h">
       <Filter>3_Rendering\Public\State</Filter>
@@ -969,20 +949,36 @@
       <Filter>3_Rendering\Public\Shader</Filter>
     </ClInclude>
     <ClInclude Include="Source\UI\Public\Widget\Image.h">
-      <Filter>5_UI\Public\Widget</Filter>
+      <Filter>6_UI\Public\Widget</Filter>
     </ClInclude>
     <ClInclude Include="Source\UI\Public\Widget\TextBox.h">
-      <Filter>5_UI\Public\Widget</Filter>
+      <Filter>6_UI\Public\Widget</Filter>
     </ClInclude>
     <ClInclude Include="Source\UI\Public\Widget\Widget.h">
-      <Filter>5_UI\Public\Widget</Filter>
+      <Filter>6_UI\Public\Widget</Filter>
     </ClInclude>
     <ClInclude Include="Source\Platform\Public\Window\Window.h">
-      <Filter>4_Platform\Public\Window</Filter>
+      <Filter>5_Platform\Public\Window</Filter>
     </ClInclude>
     <ClInclude Include="Source\Platform\Public\Input\EngineInput.h">
-      <Filter>4_Platform\Public\Input</Filter>
+      <Filter>5_Platform\Public\Input</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Editor\Public\EngineGUI.h">
+      <Filter>8_Editor\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Editor\Public\EngineGUIWindow.h">
+      <Filter>8_Editor\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Public\Global\EngineDefine.h">
+      <Filter>2_Engine\Public\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Public\Global\EngineEnums.h">
+      <Filter>2_Engine\Public\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine\Public\Global\EngineStruct.h">
+      <Filter>2_Engine\Public\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Engine.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl">

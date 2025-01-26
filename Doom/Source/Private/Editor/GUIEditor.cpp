@@ -2,7 +2,7 @@
 #include "Public/Editor/GUIEditor.h"
 
 #include <Engine/Classes/Engine/GameEngine.h>
-#include <Tools/DebugGUI/EngineGUI.h>
+#include <Editor/Public/EngineGUI.h>
 #include <Engine/Classes/Engine/Level.h>
 
 UGUIEditor::UGUIEditor()

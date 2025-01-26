@@ -2,8 +2,8 @@
 #include "Engine/Classes/Engine/EngineResource.h"
 #include "Core/Public/Math/EngineMath.h"
 #include "Core/Public/Misc/DirectoryHelper.h"
-#include "EngineDefine.h"
-#include "EngineStruct.h"
+#include "Engine/Public/Global/EngineDefine.h"
+#include "Engine/Public/Global/EngineStruct.h"
 
 class UTexture;
 

@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "Engine.h"
 #include "Engine/Classes/Engine/Level.h"
 
 #include "Engine/Classes/GameFramework/Actor.h"
@@ -13,7 +13,7 @@
 #include "Rendering/EngineGraphicDevice.h"
 #include "Rendering/Public/RenderTarget/RenderTarget.h"
 
-#include "Tools/DebugGUI/EngineGUI.h"
+#include "Editor/Public/EngineGUI.h"
 
 #include "UI/Public/Widget/Widget.h"
 

@@ -1,4 +1,4 @@
-#include "pch.h"
+#include "Engine.h"
 #include "Engine/Classes/Engine/GameEngine.h"
 
 #include "Core/Public/Misc/DirectoryHelper.h"
@@ -15,7 +15,7 @@
 #include "Platform/Public/Window/Window.h"
 #include "Platform/Public/Input/EngineInput.h"
 
-#include "Tools/DebugGUI/EngineGUI.h"
+#include "Editor/Public/EngineGUI.h"
 
 #include "Physics/Public/PhysicsCore.h"
 

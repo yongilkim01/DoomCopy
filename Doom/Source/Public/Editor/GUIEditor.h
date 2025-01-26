@@ -1,5 +1,5 @@
 #pragma once
-#include <Tools/DebugGUI/EngineGUIWindow.h>
+#include <Editor/Public/EngineGUIWindow.h>
 
 /**
  *	Ό³Έν

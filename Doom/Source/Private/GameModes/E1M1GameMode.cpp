@@ -12,8 +12,8 @@
 #include <Rendering/Public/Buffer/EngineVertex.h>
 
 #include <NavigationSystem/Public/NavigationSystem.h>
-#include <Tools/DebugGUI/EngineGUI.h>
-#include <Tools/DebugGUI/EngineGUIWindow.h>
+#include <Editor/Public/EngineGUI.h>
+#include <Editor/Public/EngineGUIWindow.h>
 #include <ThirdParty/imgui/imgui.h>
 
 #include "Public/Characters/DoomGuy.h"

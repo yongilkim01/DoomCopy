@@ -4,7 +4,7 @@
 
 #include "Core/Public/Math/EngineMath.h"
 #include "Engine/Classes/Components/SceneComponent.h"
-#include "EngineEnums.h"
+#include "Engine/Public/Global/EngineEnums.h"
 
 class ULevel;
 class ACameraActor;

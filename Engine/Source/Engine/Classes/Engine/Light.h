@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine/Classes/GameFramework/Actor.h"
-#include "EngineEnums.h"
+#include "Engine/Public/Global/EngineEnums.h"
 
 class ULightComponent;
 class UCameraComponent;

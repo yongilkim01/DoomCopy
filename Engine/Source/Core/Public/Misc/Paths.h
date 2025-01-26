@@ -1,7 +1,7 @@
 #pragma once
 #include <filesystem>
 
-#include "EngineDefine.h"
+#include "Engine/Public/Global/EngineDefine.h"
 
 /**
  * 파일 경로를 객체화한 클래스

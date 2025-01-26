@@ -14,8 +14,8 @@
 #include <Engine/Classes/GameFramework/Actor.h>
 #include <Engine/Classes/GameFramework/HUD.h>
 
-#include <Tools/DebugGUI/EngineGUI.h>
-#include <Tools/DebugGUI/EngineGUIWindow.h>
+#include <Editor/Public/EngineGUI.h>
+#include <Editor/Public/EngineGUIWindow.h>
 
 #include <Rendering/Public/Shader/EngineShader.h>
 #include <NavigationSystem/Public/NavigationSystem.h>

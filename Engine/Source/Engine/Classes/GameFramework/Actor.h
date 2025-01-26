@@ -8,7 +8,7 @@
 
 #include "Physics/Public/PhysicsCore.h"
 
-#include "EngineDefine.h"
+#include "Engine/Public/Global/EngineDefine.h"
 
 class UActorComponent;
 class UGameInstance;

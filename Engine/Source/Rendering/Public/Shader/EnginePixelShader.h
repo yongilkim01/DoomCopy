@@ -1,10 +1,10 @@
 #pragma once
 #include <Windows.h>
 
-#include "EngineShader.h"
+#include "Rendering/Public/Shader/EngineShader.h"
 #include "Engine/Classes/Engine/EngineResource.h"
 #include "Core/Public/Misc/Paths.h"
-#include "EngineEnums.h"
+#include "Engine/Public/Global/EngineEnums.h"
 
 /**
  *	Ό³Έν

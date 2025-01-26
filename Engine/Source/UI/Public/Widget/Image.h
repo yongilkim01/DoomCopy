@@ -2,7 +2,7 @@
 #include "UI/Public/Widget/Widget.h"
 #include "Engine/Classes/Engine/PaperSprite.h"
 #include "Core/Public/Delegates/Delegate.h"
-#include "EngineStruct.h"
+#include "Engine/Public/Global/EngineStruct.h"
 
 /**
  *	Ό³Έν

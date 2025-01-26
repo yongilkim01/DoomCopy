@@ -4,6 +4,8 @@
 #include "Core/Public/Debugging/DebugMacros.h"
 #include "Engine/Classes/Components/LightComponent.h"
 
+#include <map>
+
 class UShapeComponent;
 class UPrimitiveComponent;
 class AActor;
