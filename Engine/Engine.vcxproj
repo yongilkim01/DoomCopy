@@ -74,13 +74,13 @@
     <ClCompile Include="Source\Physics\Private\PhysicsCore.cpp" />
     <ClCompile Include="Source\Platform\Private\Input\EngineInput.cpp" />
     <ClCompile Include="Source\Platform\Private\Window\Window.cpp" />
-    <ClCompile Include="Source\Rendering\EngineGraphicDevice.cpp" />
     <ClCompile Include="Source\Rendering\Private\Buffer\ConstantBuffer.cpp" />
     <ClCompile Include="Source\Rendering\Private\Buffer\Buffer.cpp" />
     <ClCompile Include="Source\Rendering\Private\Buffer\InputLayoutInfo.cpp" />
     <ClCompile Include="Source\Rendering\Private\Buffer\EngineVertex.cpp" />
     <ClCompile Include="Source\Rendering\Private\Buffer\IndexBuffer.cpp" />
     <ClCompile Include="Source\Rendering\Private\Buffer\VertexBuffer.cpp" />
+    <ClCompile Include="Source\Rendering\Private\Device\GraphicDevice.cpp" />
     <ClCompile Include="Source\Rendering\Private\RenderTarget\RenderTarget.cpp" />
     <ClCompile Include="Source\Rendering\Private\Shader\EnginePixelShader.cpp" />
     <ClCompile Include="Source\Rendering\Private\Shader\EngineShader.cpp" />
@@ -157,17 +157,14 @@
     <ClInclude Include="Source\Physics\Public\PhysicsCore.h" />
     <ClInclude Include="Source\Platform\Public\Input\EngineInput.h" />
     <ClInclude Include="Source\Platform\Public\Window\Window.h" />
-    <ClInclude Include="Source\Rendering\EngineGraphicDevice.h" />
     <ClInclude Include="Source\Rendering\Public\Buffer\ConstantBuffer.h" />
     <ClInclude Include="Source\Rendering\Public\Buffer\Buffer.h" />
     <ClInclude Include="Source\Rendering\Public\Buffer\InputLayoutInfo.h" />
     <ClInclude Include="Source\Rendering\Public\Buffer\EngineVertex.h" />
     <ClInclude Include="Source\Rendering\Public\Buffer\IndexBuffer.h" />
     <ClInclude Include="Source\Rendering\Public\Buffer\VertexBuffer.h" />
-    <ClInclude Include="Source\Rendering\Public\RenderTarget\RenderTarget.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
+    <ClInclude Include="Source\Rendering\Public\Device\GraphicDevice.h" />
+    <ClInclude Include="Source\Rendering\Public\RenderTarget\RenderTarget.h" />
     <ClInclude Include="Source\Rendering\Public\Shader\EnginePixelShader.h" />
     <ClInclude Include="Source\Rendering\Public\Shader\EngineShader.h" />
     <ClInclude Include="Source\Rendering\Public\Shader\EngineShaderResource.h" />

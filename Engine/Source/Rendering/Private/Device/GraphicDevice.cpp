@@ -1,5 +1,5 @@
 #include "Engine.h"
-#include "EngineGraphicDevice.h"
+#include "Rendering/Public/Device/GraphicDevice.h"
 
 #include "Rendering/Public/Buffer/EngineVertex.h"
 #include "Rendering/Public/Buffer/VertexBuffer.h"
@@ -20,17 +20,17 @@
 
 #include "NavigationSystem/Public/NavigationSystem.h"
 
-UEngineGraphicDevice::UEngineGraphicDevice()
+UGraphicDevice::UGraphicDevice()
 {
 }
 
-UEngineGraphicDevice::~UEngineGraphicDevice()
+UGraphicDevice::~UGraphicDevice()
 {
 
 	Release();
 }
 
-void UEngineGraphicDevice::Release()
+void UGraphicDevice::Release()
 {
 	MainAdapter = nullptr;
 	SwapChain = nullptr;
@@ -39,7 +39,7 @@ void UEngineGraphicDevice::Release()
 }
 
 
-void UEngineGraphicDevice::InitDefaultResources()
+void UGraphicDevice::InitDefaultResources()
 {
 	InitDepthStencil();
 	InitTexture();
@@ -51,7 +51,7 @@ void UEngineGraphicDevice::InitDefaultResources()
 	InitFont();
 }
 
-void UEngineGraphicDevice::InitTexture()
+void UGraphicDevice::InitTexture()
 {
 	// Sampler 초기화 및 생성
 	{
@@ -93,7 +93,7 @@ void UEngineGraphicDevice::InitTexture()
 	}
 }
 
-void UEngineGraphicDevice::InitMesh()
+void UGraphicDevice::InitMesh()
 {
 	{
 		std::vector<EngineVertex> Vertexs;
@@ -338,7 +338,7 @@ void UEngineGraphicDevice::InitMesh()
 
 }
 
-void UEngineGraphicDevice::InitBlend()
+void UGraphicDevice::InitBlend()
 {
 	{
 		D3D11_BLEND_DESC Desc = { 0 };
@@ -358,7 +358,7 @@ void UEngineGraphicDevice::InitBlend()
 	}
 }
 
-void UEngineGraphicDevice::InitShader()
+void UGraphicDevice::InitShader()
 {
 	FDirectoryHelper CurDir;
 	CurDir.MoveEngineShaderDirectory();
@@ -371,7 +371,7 @@ void UEngineGraphicDevice::InitShader()
 	}
 }
 
-void UEngineGraphicDevice::InitMaterial()
+void UGraphicDevice::InitMaterial()
 {
 	{
 		std::shared_ptr<UEngineMaterial> Mat = UEngineMaterial::Create("SpriteMaterial");
@@ -407,7 +407,7 @@ void UEngineGraphicDevice::InitMaterial()
 	}
 }
 
-void UEngineGraphicDevice::InitRasterizerState()
+void UGraphicDevice::InitRasterizerState()
 {
 	{
 		D3D11_RASTERIZER_DESC Desc = {};
@@ -425,7 +425,7 @@ void UEngineGraphicDevice::InitRasterizerState()
 	}
 }
 
-void UEngineGraphicDevice::InitDepthStencil()
+void UGraphicDevice::InitDepthStencil()
 {
 	{
 		D3D11_DEPTH_STENCIL_DESC Desc = { 0 };
@@ -467,18 +467,18 @@ void UEngineGraphicDevice::InitDepthStencil()
 	}
 }
 
-void UEngineGraphicDevice::InitFont()
+void UGraphicDevice::InitFont()
 {
 	UFont::Load("궁서", "궁서");
 }
 
-void UEngineGraphicDevice::RenderStart()
+void UGraphicDevice::RenderStart()
 {
 	BackBufferRenderTarget->Clear();
 	BackBufferRenderTarget->Setting();
 }
 
-void UEngineGraphicDevice::RenderEnd()
+void UGraphicDevice::RenderEnd()
 {
 	HRESULT hr = SwapChain->Present(0, 0);
 
@@ -489,7 +489,7 @@ void UEngineGraphicDevice::RenderEnd()
 	}
 }
 
-void UEngineGraphicDevice::CreateDeviceAndContext()
+void UGraphicDevice::CreateDeviceAndContext()
 {
 	MainAdapter = GetHighPerformanceAdapter();
 
@@ -536,7 +536,7 @@ void UEngineGraphicDevice::CreateDeviceAndContext()
 	InitDefaultResources();
 }
 
-void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& EngineWindow)
+void UGraphicDevice::CreateBackBuffer(const UEngineWindow& EngineWindow)
 {
 	FVector Size = EngineWindow.GetWindowSize();
 
@@ -586,7 +586,7 @@ void UEngineGraphicDevice::CreateBackBuffer(const UEngineWindow& EngineWindow)
 }
 
 // 가장 퍼포먼스가 좋은 그래픽 장치 하드웨어를 찾는 메소드
-IDXGIAdapter* UEngineGraphicDevice::GetHighPerformanceAdapter()
+IDXGIAdapter* UGraphicDevice::GetHighPerformanceAdapter()
 {
 	IDXGIFactory* Factory = nullptr;
 	IDXGIAdapter* ResultAdapter = nullptr;

@@ -127,9 +127,6 @@
     <Filter Include="3_Rendering\Public">
       <UniqueIdentifier>{43f81dd3-e790-400b-b5b6-7a8dd518d1ae}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3_Rendering\Public\RenderTarget">
-      <UniqueIdentifier>{62c98e34-24b9-49ae-bc1d-bd9147eb0ce0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3_Rendering\Public\State">
       <UniqueIdentifier>{6095f8a2-edaa-4c79-b1a1-7fbf3256e6a2}</UniqueIdentifier>
     </Filter>
@@ -141,9 +138,6 @@
     </Filter>
     <Filter Include="3_Rendering\Private">
       <UniqueIdentifier>{e2227a69-9756-4425-9523-186c87be7b7a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3_Rendering\Private\RednerTarget">
-      <UniqueIdentifier>{59247490-f07f-413d-a5ed-ffc316a4bcc5}</UniqueIdentifier>
     </Filter>
     <Filter Include="3_Rendering\Private\State">
       <UniqueIdentifier>{9d60ed27-044f-4819-83d6-4d7429be1559}</UniqueIdentifier>
@@ -256,6 +250,18 @@
     <Filter Include="2_Engine\Public\Global">
       <UniqueIdentifier>{6c92ecac-4822-4801-90b7-7aee0e281377}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3_Rendering\Public\RenderTarget">
+      <UniqueIdentifier>{62c98e34-24b9-49ae-bc1d-bd9147eb0ce0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_Rendering\Private\RenderTarget">
+      <UniqueIdentifier>{59247490-f07f-413d-a5ed-ffc316a4bcc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_Rendering\Public\Device">
+      <UniqueIdentifier>{b5435fc4-7d48-4c25-8f60-d46efb8d0516}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3_Rendering\Private\Device">
+      <UniqueIdentifier>{bc67890f-8633-4e24-be23-33a627dec8da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\ThirdParty\imgui\imgui_widgets.cpp">
@@ -275,9 +281,6 @@
     </ClCompile>
     <ClCompile Include="Source\ThirdParty\imgui\imgui.cpp">
       <Filter>ThirdParty\imgui\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\EngineGraphicDevice.cpp">
-      <Filter>3_Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Source\NavigationSystem\Private\NavigationSystem.cpp">
       <Filter>7_NavigationSystem\Private</Filter>
@@ -350,9 +353,6 @@
     </ClCompile>
     <ClCompile Include="Source\Core\Private\Time\Timer.cpp">
       <Filter>1_Core\Private\Time</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\Private\RenderTarget\RenderTarget.cpp">
-      <Filter>3_Rendering\Private\RednerTarget</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Private\HUD.cpp">
       <Filter>2_Engine\Private</Filter>
@@ -487,6 +487,12 @@
       <Filter>8_Editor\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine.cpp" />
+    <ClCompile Include="Source\Rendering\Private\RenderTarget\RenderTarget.cpp">
+      <Filter>3_Rendering\Private\RenderTarget</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Private\Device\GraphicDevice.cpp">
+      <Filter>3_Rendering\Private\Device</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.h">
@@ -515,9 +521,6 @@
     </ClInclude>
     <ClInclude Include="Source\ThirdParty\imgui\imconfig.h">
       <Filter>ThirdParty\imgui\Public</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Rendering\EngineGraphicDevice.h">
-      <Filter>3_Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Source\ThirdParty\assimp\include\assimp\aabb.h">
       <Filter>ThirdParty\assimp\include</Filter>
@@ -828,9 +831,6 @@
     <ClInclude Include="Source\Core\Public\Time\Timer.h">
       <Filter>1_Core\Public\Time</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Rendering\Public\RenderTarget\RenderTarget.h">
-      <Filter>3_Rendering\Public\RenderTarget</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Engine\Classes\GameFramework\HUD.h">
       <Filter>2_Engine\Classes\GameFramework</Filter>
     </ClInclude>
@@ -979,6 +979,12 @@
       <Filter>2_Engine\Public\Global</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine.h" />
+    <ClInclude Include="Source\Rendering\Public\RenderTarget\RenderTarget.h">
+      <Filter>3_Rendering\Public\RenderTarget</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rendering\Public\Device\GraphicDevice.h">
+      <Filter>3_Rendering\Public\Device</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Source\ThirdParty\DirectXTex\Include\DirectXTex.inl">

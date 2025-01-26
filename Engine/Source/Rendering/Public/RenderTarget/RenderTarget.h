@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine/Classes/Engine/EngineResource.h"
 #include "Engine/Classes/Engine/Texture.h"
-#include "Rendering/EngineGraphicDevice.h"
+#include "Rendering/Public/Device/GraphicDevice.h"
 #include "Engine/Classes/Engine/RenderAsset.h"
 
 /**

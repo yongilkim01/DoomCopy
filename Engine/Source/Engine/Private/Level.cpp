@@ -10,7 +10,7 @@
 #include "Engine/Classes/Camera/CameraActor.h"
 #include "Engine/Classes/Camera/CameraComponent.h"
 
-#include "Rendering/EngineGraphicDevice.h"
+#include "Rendering/Public/Device/GraphicDevice.h"
 #include "Rendering/Public/RenderTarget/RenderTarget.h"
 
 #include "Editor/Public/EngineGUI.h"

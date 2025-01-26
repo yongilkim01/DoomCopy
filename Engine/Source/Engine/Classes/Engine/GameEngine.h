@@ -6,7 +6,7 @@
 #include "Engine/Classes/Interfaces/IContentsCore.h"
 #include "Engine/Classes/Engine/Level.h"
 
-#include "Rendering/EngineGraphicDevice.h"
+#include "Rendering/Public/Device/GraphicDevice.h"
 
 #include "Platform/Public/Window/Window.h"
 
@@ -123,7 +123,7 @@ private:
 	static void EngineEnd();
 
 	UEngineWindow MainWindow;
-	UEngineGraphicDevice Device;
+	UGraphicDevice Device;
 
 	HMODULE ContentsDLL;
 	std::shared_ptr<IContentsCore> ContentsCore;

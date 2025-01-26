@@ -18,18 +18,18 @@ class URenderTarget;
 /**
  *	설명
  */
-class UEngineGraphicDevice
+class UGraphicDevice
 {
 public:
 	/** 생성자, 소멸자 */
-	ENGINE_API UEngineGraphicDevice();
-	ENGINE_API ~UEngineGraphicDevice();
+	ENGINE_API UGraphicDevice();
+	ENGINE_API ~UGraphicDevice();
 
 	/** 객체 값 복사 방지 */
-	UEngineGraphicDevice(const UEngineGraphicDevice& Other) = delete;
-	UEngineGraphicDevice(UEngineGraphicDevice&& Other) noexcept = delete;
-	UEngineGraphicDevice& operator=(const UEngineGraphicDevice& Other) = delete;
-	UEngineGraphicDevice& operator=(UEngineGraphicDevice&& Other) noexcept = delete;
+	UGraphicDevice(const UGraphicDevice& Other) = delete;
+	UGraphicDevice(UGraphicDevice&& Other) noexcept = delete;
+	UGraphicDevice& operator=(const UGraphicDevice& Other) = delete;
+	UGraphicDevice& operator=(UGraphicDevice&& Other) noexcept = delete;
 
 	/**
 	 *	Device, DeviceContext 초기화 메소드
