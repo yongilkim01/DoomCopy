@@ -1,8 +1,8 @@
 #pragma once
 #include <Engine/Classes/Engine/EngineResource.h>
-#include <Rendering/Buffer/IndexBuffer.h>
-#include <Rendering/Buffer/VertexBuffer.h>
-#include <Rendering/Buffer/EngineVertex.h>
+#include <Rendering/Public/Buffer/IndexBuffer.h>
+#include <Rendering/Public/Buffer/VertexBuffer.h>
+#include <Rendering/Public/Buffer/EngineVertex.h>
 
 class UMesh;
 class UTexture;

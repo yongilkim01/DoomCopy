@@ -9,7 +9,7 @@
 
 #include <Core/Public/Misc/DirectoryHelper.h>
 
-#include <Input/EngineInput.h>
+#include <Platform/Public/Input/EngineInput.h>
 
 ANavMeshCharacter::ANavMeshCharacter()
 {

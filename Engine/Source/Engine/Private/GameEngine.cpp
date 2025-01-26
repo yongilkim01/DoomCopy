@@ -9,12 +9,12 @@
 #include "Engine/Classes/Engine/EngineResource.h"
 #include "Engine/Classes/Engine/GameInstance.h"
 
-#include "Rendering/Buffer/EngineConstantBuffer.h"
+#include "Rendering/Public/Buffer/ConstantBuffer.h"
 #include "Rendering/Public/RenderTarget/RenderTarget.h"
 
-#include "Platform/Window.h"
+#include "Platform/Public/Window/Window.h"
+#include "Platform/Public/Input/EngineInput.h"
 
-#include "Input/EngineInput.h"
 #include "Tools/DebugGUI/EngineGUI.h"
 
 #include "Physics/Public/PhysicsCore.h"

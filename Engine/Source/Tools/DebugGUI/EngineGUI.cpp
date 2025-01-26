@@ -7,7 +7,7 @@
 
 #include "Engine/Classes/Engine/GameEngine.h"
 
-#include "Platform/Window.h"
+#include "Platform/Public/Window/Window.h"
 
 #include "Tools/DebugGUI/EngineGUIWindow.h"
 

@@ -64,36 +64,30 @@
     <ClCompile Include="Source\Engine\Private\Texture.cpp" />
     <ClCompile Include="Source\Engine\Private\TimerManager.cpp" />
     <ClCompile Include="Source\Engine\Private\TransformObject.cpp" />
-    <ClCompile Include="Source\Input\EngineInput.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="Source\NavigationSystem\Private\NavigationSystem.cpp" />
     <ClCompile Include="Source\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source\Physics\Private\PhysicsCore.cpp" />
-    <ClCompile Include="Source\Platform\Window.cpp" />
-    <ClCompile Include="Source\Rendering\Buffer\DepthStencilState.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Source\Rendering\Buffer\EngineConstantBuffer.cpp" />
-    <ClCompile Include="Source\Rendering\Buffer\EngineDeviceBuffer.cpp" />
-    <ClCompile Include="Source\Rendering\Buffer\EngineInputLayoutInfo.cpp" />
-    <ClCompile Include="Source\Rendering\Buffer\EngineVertex.cpp" />
-    <ClCompile Include="Source\Rendering\Buffer\IndexBuffer.cpp" />
-    <ClCompile Include="Source\Rendering\Buffer\VertexBuffer.cpp" />
-    <ClCompile Include="Source\Rendering\EngineBlend.cpp" />
+    <ClCompile Include="Source\Platform\Private\Input\EngineInput.cpp" />
+    <ClCompile Include="Source\Platform\Private\Window\Window.cpp" />
     <ClCompile Include="Source\Rendering\EngineGraphicDevice.cpp" />
-    <ClCompile Include="Source\Rendering\EngineRasterizerState.cpp" />
+    <ClCompile Include="Source\Rendering\Private\Buffer\ConstantBuffer.cpp" />
+    <ClCompile Include="Source\Rendering\Private\Buffer\Buffer.cpp" />
+    <ClCompile Include="Source\Rendering\Private\Buffer\InputLayoutInfo.cpp" />
+    <ClCompile Include="Source\Rendering\Private\Buffer\EngineVertex.cpp" />
+    <ClCompile Include="Source\Rendering\Private\Buffer\IndexBuffer.cpp" />
+    <ClCompile Include="Source\Rendering\Private\Buffer\VertexBuffer.cpp" />
     <ClCompile Include="Source\Rendering\Private\RenderTarget\RenderTarget.cpp" />
-    <ClCompile Include="Source\Rendering\Sampler\EngineSampler.cpp" />
-    <ClCompile Include="Source\Rendering\Shader\EnginePixelShader.cpp" />
-    <ClCompile Include="Source\Rendering\Shader\EngineShader.cpp" />
-    <ClCompile Include="Source\Rendering\Shader\EngineShaderResource.cpp" />
-    <ClCompile Include="Source\Rendering\Shader\EngineVertexShader.cpp" />
+    <ClCompile Include="Source\Rendering\Private\Shader\EnginePixelShader.cpp" />
+    <ClCompile Include="Source\Rendering\Private\Shader\EngineShader.cpp" />
+    <ClCompile Include="Source\Rendering\Private\Shader\EngineShaderResource.cpp" />
+    <ClCompile Include="Source\Rendering\Private\Shader\EngineVertexShader.cpp" />
+    <ClCompile Include="Source\Rendering\Private\State\DepthStencilState.cpp" />
+    <ClCompile Include="Source\Rendering\Private\State\BlendState.cpp" />
+    <ClCompile Include="Source\Rendering\Private\State\RasterizerState.cpp" />
+    <ClCompile Include="Source\Rendering\Private\State\SamplerState.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui_draw.cpp" />
     <ClCompile Include="Source\ThirdParty\imgui\imgui_impl_dx11.cpp" />
@@ -102,9 +96,9 @@
     <ClCompile Include="Source\ThirdParty\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\Tools\DebugGUI\EngineGUI.cpp" />
     <ClCompile Include="Source\Tools\DebugGUI\EngineGUIWindow.cpp" />
-    <ClCompile Include="Source\UMG\Private\Components\Image.cpp" />
-    <ClCompile Include="Source\UMG\Private\Components\TextBox.cpp" />
-    <ClCompile Include="Source\UMG\Private\Components\Widget.cpp" />
+    <ClCompile Include="Source\UI\Private\Widget\Image.cpp" />
+    <ClCompile Include="Source\UI\Private\Widget\TextBox.cpp" />
+    <ClCompile Include="Source\UI\Private\Widget\Widget.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core\Public\Containers\EngineString.h" />
@@ -156,36 +150,30 @@
     <ClInclude Include="Source\Engine\Classes\Interfaces\IContentsCore.h" />
     <ClInclude Include="Source\Engine\Public\Materials\Material.h" />
     <ClInclude Include="Source\Engine\Public\TimerManager.h" />
-    <ClInclude Include="Source\Input\EngineInput.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Source\NavigationSystem\Public\NavigationSystem.h" />
     <ClInclude Include="Source\pch.h" />
     <ClInclude Include="Source\Physics\Public\PhysicsCore.h" />
-    <ClInclude Include="Source\Platform\Window.h" />
-    <ClInclude Include="Source\Rendering\Buffer\DepthStencilState.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="Source\Rendering\Buffer\EngineConstantBuffer.h" />
-    <ClInclude Include="Source\Rendering\Buffer\EngineDeviceBuffer.h" />
-    <ClInclude Include="Source\Rendering\Buffer\EngineInputLayoutInfo.h" />
-    <ClInclude Include="Source\Rendering\Buffer\EngineVertex.h" />
-    <ClInclude Include="Source\Rendering\Buffer\IndexBuffer.h" />
-    <ClInclude Include="Source\Rendering\Buffer\VertexBuffer.h" />
-    <ClInclude Include="Source\Rendering\EngineBlend.h" />
+    <ClInclude Include="Source\Platform\Public\Input\EngineInput.h" />
+    <ClInclude Include="Source\Platform\Public\Window\Window.h" />
     <ClInclude Include="Source\Rendering\EngineGraphicDevice.h" />
-    <ClInclude Include="Source\Rendering\EngineRasterizerState.h" />
+    <ClInclude Include="Source\Rendering\Public\Buffer\ConstantBuffer.h" />
+    <ClInclude Include="Source\Rendering\Public\Buffer\Buffer.h" />
+    <ClInclude Include="Source\Rendering\Public\Buffer\InputLayoutInfo.h" />
+    <ClInclude Include="Source\Rendering\Public\Buffer\EngineVertex.h" />
+    <ClInclude Include="Source\Rendering\Public\Buffer\IndexBuffer.h" />
+    <ClInclude Include="Source\Rendering\Public\Buffer\VertexBuffer.h" />
     <ClInclude Include="Source\Rendering\Public\RenderTarget\RenderTarget.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Source\Rendering\Sampler\EngineSampler.h" />
-    <ClInclude Include="Source\Rendering\Shader\EnginePixelShader.h" />
-    <ClInclude Include="Source\Rendering\Shader\EngineShader.h" />
-    <ClInclude Include="Source\Rendering\Shader\EngineShaderResource.h" />
-    <ClInclude Include="Source\Rendering\Shader\EngineVertexShader.h" />
+    <ClInclude Include="Source\Rendering\Public\Shader\EnginePixelShader.h" />
+    <ClInclude Include="Source\Rendering\Public\Shader\EngineShader.h" />
+    <ClInclude Include="Source\Rendering\Public\Shader\EngineShaderResource.h" />
+    <ClInclude Include="Source\Rendering\Public\Shader\EngineVertexShader.h" />
+    <ClInclude Include="Source\Rendering\Public\State\DepthStencilState.h" />
+    <ClInclude Include="Source\Rendering\Public\State\BlendState.h" />
+    <ClInclude Include="Source\Rendering\Public\State\RasterizerState.h" />
+    <ClInclude Include="Source\Rendering\Public\State\SamplerState.h" />
     <ClInclude Include="Source\ThirdParty\assimp\include\assimp\aabb.h" />
     <ClInclude Include="Source\ThirdParty\assimp\include\assimp\ai_assert.h" />
     <ClInclude Include="Source\ThirdParty\assimp\include\assimp\anim.h" />
@@ -277,12 +265,9 @@
     <ClInclude Include="Source\ThirdParty\imgui\imstb_truetype.h" />
     <ClInclude Include="Source\Tools\DebugGUI\EngineGUI.h" />
     <ClInclude Include="Source\Tools\DebugGUI\EngineGUIWindow.h" />
-    <ClInclude Include="Source\UMG\Public\Components\Image.h" />
-    <ClInclude Include="Source\UMG\Public\Components\TextBox.h" />
-    <ClInclude Include="Source\UMG\Public\Components\Widget.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
+    <ClInclude Include="Source\UI\Public\Widget\Image.h" />
+    <ClInclude Include="Source\UI\Public\Widget\TextBox.h" />
+    <ClInclude Include="Source\UI\Public\Widget\Widget.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Source\ThirdParty\assimp\bin\Debug\assimp-vc143-mtd.dll">

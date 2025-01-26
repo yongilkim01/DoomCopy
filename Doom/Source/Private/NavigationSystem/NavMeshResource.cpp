@@ -9,9 +9,9 @@
 #include <Core/Public/Misc/DirectoryHelper.h>
 #include <Core/Public/Misc/FileHelper.h>
 
-#include <Rendering/Buffer/EngineVertex.h>
-#include <Rendering/Buffer/VertexBuffer.h>
-#include <Rendering/Buffer/IndexBuffer.h>
+#include <Rendering/Public/Buffer/EngineVertex.h>
+#include <Rendering/Public/Buffer/VertexBuffer.h>
+#include <Rendering/Public/Buffer/IndexBuffer.h>
 
 #include <NavigationSystem/Public/NavigationSystem.h>
 

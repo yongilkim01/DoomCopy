@@ -15,7 +15,7 @@
 
 #include "Tools/DebugGUI/EngineGUI.h"
 
-#include "UMG/Public/Components/Widget.h"
+#include "UI/Public/Widget/Widget.h"
 
 ULevel::ULevel()
 {

@@ -91,6 +91,12 @@
     <Filter Include="Private\NavigationSystem">
       <UniqueIdentifier>{73d69a0a-ac5e-4c3e-96e4-6098e4f5787e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Private\Core">
+      <UniqueIdentifier>{430422b7-adda-4e96-a8c2-5169c0d0bbf9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Core">
+      <UniqueIdentifier>{34477e50-8263-4b48-ba91-578b2270f276}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Private\Items\Weapons\BaseWeapon.cpp">
@@ -102,7 +108,6 @@
     <ClCompile Include="Source\Private\Characters\DoomGuy.cpp">
       <Filter>Private\Characters</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DoomCore.cpp" />
     <ClCompile Include="Source\Private\GameModes\E1M1GameMode.cpp">
       <Filter>Private\GameModes</Filter>
     </ClCompile>
@@ -118,7 +123,6 @@
     <ClCompile Include="Source\Private\Global\DoomStructs.cpp">
       <Filter>Private\Global</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Doom.cpp" />
     <ClCompile Include="Source\Private\UI\Widget\TitleLogo.cpp">
       <Filter>Private\UI\Widget</Filter>
     </ClCompile>
@@ -161,6 +165,10 @@
     <ClCompile Include="Source\Private\NavigationSystem\NavMeshResource.cpp">
       <Filter>Private\NavigationSystem</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Private\Core\DoomCore.cpp">
+      <Filter>Private\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Doom.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Public\Items\Weapons\BaseWeapon.h">
@@ -172,7 +180,6 @@
     <ClInclude Include="Source\Public\Characters\DoomGuy.h">
       <Filter>Public\Characters</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DoomCore.h" />
     <ClInclude Include="Source\Public\GameModes\E1M1GameMode.h">
       <Filter>Public\GameModes</Filter>
     </ClInclude>
@@ -188,7 +195,6 @@
     <ClInclude Include="Source\Public\Global\DoomStructs.h">
       <Filter>Public\Global</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Doom.h" />
     <ClInclude Include="Source\Public\UI\Widget\TitleLogo.h">
       <Filter>Public\UI\Widget</Filter>
     </ClInclude>
@@ -231,5 +237,9 @@
     <ClInclude Include="Source\Public\NavigationSystem\NavMeshResource.h">
       <Filter>Public\NavigationSystem</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Public\Core\DoomCore.h">
+      <Filter>Public\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Doom.h" />
   </ItemGroup>
 </Project>

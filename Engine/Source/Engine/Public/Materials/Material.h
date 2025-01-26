@@ -1,10 +1,10 @@
 #pragma once
 #include "Engine/Classes/Engine/EngineResource.h"
-#include "Rendering/Shader/EngineVertexShader.h"
-#include "Rendering/Shader/EnginePixelShader.h"
-#include "Rendering/EngineRasterizerState.h"
-#include "Rendering/EngineBlend.h"
-#include "Rendering/Buffer/DepthStencilState.h"
+#include "Rendering/Public/Shader/EngineVertexShader.h"
+#include "Rendering/Public/Shader/EnginePixelShader.h"
+#include "Rendering/Public/State/RasterizerState.h"
+#include "Rendering/Public/State/BlendState.h"
+#include "Rendering/Public/State/DepthStencilState.h"
 
 /**
  *	Ό³Έν
@@ -35,7 +35,7 @@ public:
 		return PixelShader;
 	}
 	ENGINE_API void SetPixelShader(std::string_view _Name);
-	ENGINE_API std::shared_ptr<UEngineRasterizerState> GetRasterizerState()
+	ENGINE_API std::shared_ptr<URasterizerState> GetRasterizerState()
 	{
 		return RasterizerState;
 	}
@@ -56,7 +56,7 @@ protected:
 private:
 	std::shared_ptr<UEngineVertexShader> VertexShader;
 	std::shared_ptr<UEnginePixelShader> PixelShader;
-	std::shared_ptr<UEngineRasterizerState> RasterizerState;
+	std::shared_ptr<URasterizerState> RasterizerState;
 	std::shared_ptr<UEngineBlend> Blend;
 	std::shared_ptr<UDepthStencilState> DepthState;
 

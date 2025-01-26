@@ -7,9 +7,9 @@
 #include "Engine/Public//Materials/Material.h"
 #include "Core/Public/Misc/DirectoryHelper.h"
 
-#include "Rendering/Buffer/EngineVertex.h"
-#include "Rendering/Buffer/VertexBuffer.h"
-#include "Rendering/Buffer/IndexBuffer.h"
+#include "Rendering/Public/Buffer/EngineVertex.h"
+#include "Rendering/Public/Buffer/VertexBuffer.h"
+#include "Rendering/Public/Buffer/IndexBuffer.h"
 
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h> 

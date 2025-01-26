@@ -8,8 +8,8 @@
 #include <Engine/Classes/Camera/CameraActor.h>
 #include <Engine/Classes/Camera/CameraComponent.h>
 #include <Engine/Classes/Components/StaticMeshComponent.h>
-#include <Input/EngineInput.h>
-#include <Rendering/Buffer/EngineVertex.h>
+#include <Platform/Public/Input/EngineInput.h>
+#include <Rendering/Public/Buffer/EngineVertex.h>
 
 #include <Tools/DebugGUI/EngineGUI.h>
 #include <Tools/DebugGUI/EngineGUIWindow.h>

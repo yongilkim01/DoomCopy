@@ -1,8 +1,8 @@
 #include "Doom.h"
 #include "Public/UI/HUD/E1M1HUD.h"
 
-#include <UMG/Public/Components/Image.h>
-#include <UMG/Public/Components/TextBox.h>
+#include <UI/Public/Widget/Image.h>
+#include <UI/Public/Widget/TextBox.h>
 
 AE1M1HUD::AE1M1HUD()
 {

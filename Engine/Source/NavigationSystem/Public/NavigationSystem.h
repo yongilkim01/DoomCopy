@@ -1,5 +1,5 @@
 #pragma once
-#include <Rendering/Buffer/EngineVertex.h>
+#include <Rendering/Public/Buffer/EngineVertex.h>
 
 class AActor;
 

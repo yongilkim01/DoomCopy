@@ -2,7 +2,7 @@
 #include "Engine/Classes/Components/PrimitiveComponent.h"
 #include "Engine/Classes/Engine/StaticMesh.h"
 #include "Engine/Classes/Engine/Texture.h"
-#include <Rendering/Buffer/EngineVertex.h>
+#include <Rendering/Public/Buffer/EngineVertex.h>
 
 class UNavMeshResource;
 

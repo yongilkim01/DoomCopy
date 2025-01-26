@@ -149,13 +149,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\DoomCore.cpp" />
     <ClCompile Include="Source\Doom.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source\Private\Characters\DoomGuy.cpp" />
     <ClCompile Include="Source\Private\Characters\Enemy\EnemyCharacter.cpp" />
+    <ClCompile Include="Source\Private\Core\DoomCore.cpp" />
     <ClCompile Include="Source\Private\Editor\GUIEditor.cpp" />
     <ClCompile Include="Source\Private\GameModes\E1M1GameMode.cpp" />
     <ClCompile Include="Source\Private\GameModes\NavMeshGameMode.cpp" />
@@ -178,10 +178,10 @@
     <ClCompile Include="Source\Private\WAD\WadMap.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\DoomCore.h" />
     <ClInclude Include="Source\Doom.h" />
     <ClInclude Include="Source\Public\Characters\DoomGuy.h" />
     <ClInclude Include="Source\Public\Characters\Enemy\EnemyCharacter.h" />
+    <ClInclude Include="Source\Public\Core\DoomCore.h" />
     <ClInclude Include="Source\Public\Editor\GUIEditor.h" />
     <ClInclude Include="Source\Public\GameModes\E1M1GameMode.h" />
     <ClInclude Include="Source\Public\GameModes\NavMeshGameMode.h" />

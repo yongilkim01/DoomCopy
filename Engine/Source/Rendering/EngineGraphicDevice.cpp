@@ -1,12 +1,12 @@
 #include "pch.h"
 #include "EngineGraphicDevice.h"
 
-#include "Rendering/Buffer/EngineVertex.h"
-#include "Rendering/Buffer/VertexBuffer.h"
-#include "Rendering/Buffer/IndexBuffer.h"
-#include "Rendering/EngineBlend.h"
-#include "Rendering/Shader/EngineShader.h"
-#include "Rendering/Buffer/DepthStencilState.h"
+#include "Rendering/Public/Buffer/EngineVertex.h"
+#include "Rendering/Public/Buffer/VertexBuffer.h"
+#include "Rendering/Public/Buffer/IndexBuffer.h"
+#include "Rendering/Public/State/BlendState.h"
+#include "Rendering/Public/Shader/EngineShader.h"
+#include "Rendering/Public/State/DepthStencilState.h"
 #include "Rendering/Public/RenderTarget/RenderTarget.h"
 
 #include "Core/Public/Misc/DirectoryHelper.h"
@@ -68,7 +68,7 @@ void UEngineGraphicDevice::InitTexture()
 		// SampInfo.MaxLOD = 0.0f;
 		// SampInfo.MinLOD = 0.0f;
 
-		UEngineSampler::Create("WRAPSampler", SampInfo);
+		USamplerState::Create("WRAPSampler", SampInfo);
 	}
 
 	// 엔진 기본 텍스쳐 생성
@@ -413,7 +413,7 @@ void UEngineGraphicDevice::InitRasterizerState()
 		D3D11_RASTERIZER_DESC Desc = {};
 		Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
 		Desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
-		UEngineRasterizerState::Create("EngineBase", Desc);
+		URasterizerState::Create("EngineBase", Desc);
 	}
 
 	{
@@ -421,7 +421,7 @@ void UEngineGraphicDevice::InitRasterizerState()
 		Desc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
 		Desc.FillMode = D3D11_FILL_MODE::D3D11_FILL_WIREFRAME;
 
-		UEngineRasterizerState::Create("CollisionDebugRas", Desc);
+		URasterizerState::Create("CollisionDebugRas", Desc);
 	}
 }
 

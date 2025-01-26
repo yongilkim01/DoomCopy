@@ -5,8 +5,8 @@
 #include "Engine/Classes/Camera/CameraComponent.h"
 #include "Engine/Classes/Engine/Texture.h"
 #include "Engine/Classes/Engine/Mesh.h"
-#include "Rendering/Buffer/EngineVertex.h"
-#include "Rendering/EngineBlend.h"
+#include "Rendering/Public/Buffer/EngineVertex.h"
+#include "Rendering/Public/State/BlendState.h"
 
 ULightComponent::ULightComponent()
 {

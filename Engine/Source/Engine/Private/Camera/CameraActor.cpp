@@ -3,8 +3,8 @@
 
 #include "Engine/Classes/Camera/CameraComponent.h"
 #include "Engine/Classes/Engine/GameEngine.h"
-#include "Platform/Window.h"
-#include "Input/EngineInput.h"
+#include "Platform/Public/Window/Window.h"
+#include "Platform/Public/Input/EngineInput.h"
 
 ACameraActor::ACameraActor()
 {

@@ -6,7 +6,7 @@
 
 #include <Engine/Classes/Engine/GameEngine.h>
 #include <Engine/Classes/GameFramework/Actor.h>
-#include <Rendering/Buffer/EngineVertex.h>
+#include <Rendering/Public/Buffer/EngineVertex.h>
 
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h> 

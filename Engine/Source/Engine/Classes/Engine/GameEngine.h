@@ -1,6 +1,6 @@
 #pragma once
 #include "EngineDefine.h"
-#include "Platform/Window.h"
+#include "Platform/Public/Window/Window.h"
 #include "Rendering/EngineGraphicDevice.h"
 #include "Engine/Classes/Interfaces/IContentsCore.h"
 #include "Engine/Classes/Engine/Level.h"

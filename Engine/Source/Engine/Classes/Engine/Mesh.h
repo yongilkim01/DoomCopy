@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine/Classes/Engine/EngineResource.h"
-#include "Rendering/Buffer/IndexBuffer.h"
-#include "Rendering/Buffer/VertexBuffer.h"
+#include "Rendering/Public/Buffer/IndexBuffer.h"
+#include "Rendering/Public/Buffer/VertexBuffer.h"
 
 struct EVertexData
 {

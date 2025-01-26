@@ -8,7 +8,7 @@
 
 #include "Engine/Public/Materials/Material.h"
 
-#include "Rendering/Buffer/EngineInputLayoutInfo.h"
+#include "Rendering/Public/Buffer/InputLayoutInfo.h"
 
 URenderAsset::URenderAsset()
 {

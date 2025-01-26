@@ -1,12 +1,11 @@
 #pragma once
 #include "EngineDefine.h"
-#include "Platform/Window.h"
+#include "Platform/Public/Window//Window.h"
 
 #include <memory>
 #include <wrl.h>
 #include <d3d11_4.h>
 #include <d3dcompiler.h>
-#include "Platform/Window.h"
 
 #pragma comment(lib, "d3d11")
 #pragma comment(lib, "d3dcompiler") 

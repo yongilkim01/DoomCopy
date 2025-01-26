@@ -12,7 +12,7 @@
 
 #include <Core/Public/Misc/DirectoryHelper.h>
 
-#include <Input/EngineInput.h>
+#include <Platform/Public/Input/EngineInput.h>
 
 #include "Public/Items/Weapons/BaseWeapon.h"
 #include "Public/Items/Weapons/Bullet.h"

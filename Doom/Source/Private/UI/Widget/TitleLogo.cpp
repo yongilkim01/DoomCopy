@@ -4,7 +4,7 @@
 #include <Core/Public/Math/EngineMath.h>
 #include <Engine/Classes/Components/PaperSpriteComponent.h>
 #include <Engine/Classes/Components/SceneComponent.h>
-#include <Input/EngineInput.h>
+#include <Platform/Public/Input/EngineInput.h>
 
 ATitleLogo::ATitleLogo()
 {

@@ -1,8 +1,8 @@
 #include "Doom.h"
 #include "Public/UI/HUD/TitleHUD.h"
 
-#include <UMG/Public/Components/Image.h>
-#include <UMG/Public/Components/TextBox.h>
+#include <UI/Public/Widget/Image.h>
+#include <UI/Public/Widget/TextBox.h>
 
 ATitleHUD::ATitleHUD()
 {

@@ -2,7 +2,7 @@
 #include "Engine/Classes/GameFramework/HUD.h"
 #include "Engine/Classes/Camera/CameraComponent.h"
 
-#include "UMG/Public/Components/Widget.h"
+#include "UI/Public/Widget/Widget.h"
 
 AHUD::AHUD()
 {
