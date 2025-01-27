@@ -31,7 +31,7 @@ public:
 	 *	오브젝트 객체가 몇 초 뒤에 파괴되는 메소드
 	 *	@param Time: 오브젝트 객체가 파괴되는 딜레이 타임
 	 */
-	void Destroy(float Time = 0.0f);
+	ENGINE_API void Destroy(float Time = 0.0f);
 	/**
 	 *	오브젝트 객체가 파괴되기까지 시간을 체크하는 메소드
 	 *	@param DeltaTime: 엔진 델타타임

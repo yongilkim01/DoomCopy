@@ -31,7 +31,6 @@ protected:
 	virtual void Tick(float DeltaTime) override;
 
 private:
-	std::shared_ptr<UTimeEventComponent> TimeEventComponent = nullptr;
 	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
 	std::shared_ptr<UShapeComponent> ShapeComponent = nullptr;
 

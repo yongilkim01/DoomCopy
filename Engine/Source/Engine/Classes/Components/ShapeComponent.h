@@ -23,6 +23,12 @@ public:
 	UShapeComponent& operator=(UShapeComponent&& Other) noexcept = delete;
 
 	ENGINE_API virtual void BeginPlay() override;
+	ENGINE_API virtual void TickComponent(float DeltaTime) override;
+	ENGINE_API virtual void Render(UCameraComponent* CameraComponent, float DeltaTime) override;
+
+	ENGINE_API void SetCollisionEnter(std::function<void(UShapeComponent*, UShapeComponent*)> EventFunc);
+	ENGINE_API void SetCollisionStay(std::function<void(UShapeComponent*, UShapeComponent*)> EventFunc);
+	ENGINE_API void SetCollisionEnd(std::function<void(UShapeComponent*, UShapeComponent*)> EventFunc);
 	ENGINE_API void DebugRender(UCameraComponent* CameraComponent, float DeltaTime);
 	ENGINE_API bool CollisionCheck(std::string_view OtherName, FVector NextLocation, std::vector<UShapeComponent*>& _Vector);
 	ENGINE_API bool CollisionCheck(std::string_view OtherName, std::vector<UShapeComponent*>& ShapeVector);
@@ -44,9 +50,6 @@ public:
 protected:
 
 private:
-	ENGINE_API void SetCollisionEnter(std::function<void(UShapeComponent*, UShapeComponent*)> EventFunc);
-	ENGINE_API void SetCollisionStay(std::function<void(UShapeComponent*, UShapeComponent*)> EventFunc);
-	ENGINE_API void SetCollisionEnd(std::function<void(UShapeComponent*, UShapeComponent*)> EventFunc);
 
 	std::string ProfileName = "NONE";
 	ECollisionType CollisionType = ECollisionType::OBB2D;
@@ -58,5 +61,7 @@ private:
 	std::function<void(UShapeComponent*, UShapeComponent*)> Stay;
 	// Ãæµ¹ ³¡.
 	std::function<void(UShapeComponent*, UShapeComponent*)> End;
+
+	FDebugColor ColorData;
 };
 

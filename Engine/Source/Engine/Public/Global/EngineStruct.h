@@ -1,5 +1,11 @@
 #pragma once
 
+struct FDebugColor
+{
+public:
+	float4 Color;
+};
+
 struct FPaperSpriteData
 {
 	float4 CuttingLocation = { 0.0f, 0.0f };

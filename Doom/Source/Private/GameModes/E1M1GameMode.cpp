@@ -20,6 +20,7 @@
 #include "Public/Maps/E1M1Map.h"
 #include "Public/Editor/GUIEditor.h"
 #include "Public/NavigationSystem/NavMeshMap.h"
+#include "Public/Characters/Enemy/EnemyCharacter.h"
 
 
 class E1M1DebugWindow : public UEngineGUIWindow
@@ -47,8 +48,9 @@ public:
 AE1M1GameMode::AE1M1GameMode()
 {
 	{
-		GetWorld()->CreateCollisionProfile("Monster");
+		GetWorld()->CreateCollisionProfile("Enemy");
 		GetWorld()->CreateCollisionProfile("Player");
+		GetWorld()->LinkCollisionProfile("Player", "Enemy");
 	}
 	{
 		E1M1Map = GetWorld()->SpawnActor<AE1M1Map>();
@@ -57,6 +59,10 @@ AE1M1GameMode::AE1M1GameMode()
 	{
 		DoomGuyCharacter = GetWorld()->SpawnActor<ADoomGuyCharacter>();
 		DoomGuyCharacter->SetActorLocation(FVector{ -1042.0f, 14.0f, 3548.0f });
+	}
+	{
+		std::shared_ptr<UEnemyCharacter> EnemyCharacter = GetWorld()->SpawnActor<UEnemyCharacter>();
+		EnemyCharacter->SetActorLocation(FVector{ -1042.0f, 14.0f, 3550.0f });
 	}
 	{
 		Camera = GetWorld()->GetMainCamera();

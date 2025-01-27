@@ -352,26 +352,37 @@ void ULevel::LinkCollisionProfile(std::string_view LeftProfileName, std::string_
 
 void ULevel::ChangeCollisionProfileName(std::string_view ProfileName, std::string_view PrevProfileName, std::shared_ptr<UShapeComponent> ShapeComponent)
 {
+	// 1. ProfileName이 ShapeCompMap에 존재하는지 확인
 	if (false == ShapeCompMap.contains(ProfileName.data()))
 	{
+		// ProfileName이 존재하지 않을 경우 경고 메시지를 출력하고 작업 중단
 		MSGASSERT("존재하지 않는 콜리전 그룹입니다");
 		return;
 	}
 
+	// 2. 이전 콜리전 프로파일 이름을 대문자로 변환
 	std::string PrevUpperName = UEngineString::ToUpper(ProfileName);
 
-
+	// 3. 이전 프로파일 이름(PrevProfileName)이 비어 있지 않은 경우
 	if (PrevProfileName != "")
 	{
+		// 3.1 이전 프로파일 이름에 해당하는 ShapeComponent 리스트를 가져옴
 		std::list<std::shared_ptr<UShapeComponent>>& PrevShapeCompList = ShapeCompMap[PrevUpperName];
+
+		// 3.2 이전 리스트에서 현재 ShapeComponent를 제거
 		PrevShapeCompList.remove(ShapeComponent);
 	}
 
+	// 4. 새로운 콜리전 프로파일 이름을 대문자로 변환
 	std::string UpperName = UEngineString::ToUpper(ProfileName);
+
+	// 5. 새로운 프로파일 이름에 해당하는 ShapeComponent 리스트를 가져옴
 	std::list<std::shared_ptr<UShapeComponent>>& ShapeCompList = ShapeCompMap[UpperName];
 
+	// 6. 새로운 리스트에 현재 ShapeComponent를 추가
 	ShapeCompList.push_back(ShapeComponent);
 }
+
 
 void ULevel::PushLight(std::shared_ptr<ULightComponent> LightComponent)
 {

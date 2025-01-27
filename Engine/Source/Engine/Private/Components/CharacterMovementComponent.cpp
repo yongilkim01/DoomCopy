@@ -36,7 +36,7 @@ void UCharacterMovementComponent::TickComponent(float DeltaTime)
 
     Velocity.Y = 0.0f;
 
-    UEngineDebug::OutPutString("Player Velocity : " + Velocity.ToString());
+    //UEngineDebug::OutPutString("Player Velocity : " + Velocity.ToString());
 }
 
 bool UCharacterMovementComponent::SafeMoveUpdatedComponent(const FVector& Delta, const FVector& NewRotation, bool bSweep)
