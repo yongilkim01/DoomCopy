@@ -3,7 +3,7 @@
 
 class ACharacter;
 class UPrimitiveComponent;
-class UPaperSpriteComponent;
+class UShapeComponent;
 
 /**
  *	설명
@@ -33,7 +33,8 @@ private:
 	/** 소유주 */
 	std::weak_ptr<ACharacter> Owner;
 	std::shared_ptr<UPrimitiveComponent> MeshComponent = nullptr;
-	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
+	std::shared_ptr<UShapeComponent> ShapeComponent = nullptr;
+
 
 	FVector Direction = FVector::ZERO;
 

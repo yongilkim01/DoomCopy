@@ -34,5 +34,6 @@ private:
 	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
 	std::shared_ptr<UShapeComponent> ShapeComponent = nullptr;
 
+	float RunningTime = 0.0f;
 };
 

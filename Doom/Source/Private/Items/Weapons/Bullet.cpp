@@ -3,23 +3,33 @@
 
 #include <Engine/Classes/Components/SceneComponent.h>
 #include <Engine/Classes/Components/StaticMeshComponent.h>
-#include <Engine/Classes/Components/PrimitiveComponent.h>
-#include <Engine/Classes/Components/PaperSpriteComponent.h>
+#include <Engine/Classes/Components/ShapeComponent.h>
+
 #include <Engine/Classes/Engine/RenderAsset.h>
 
 ABullet::ABullet()
 {
-	std::shared_ptr<USceneComponent> SceneComponent = CreateDefaultSubObject<USceneComponent>();
-	RootComponent = SceneComponent;
-		
 	MeshComponent = CreateDefaultSubObject<UPrimitiveComponent>();
-	MeshComponent->SetupAttachment(RootComponent);
+	RootComponent = MeshComponent;
 	MeshComponent->SetRelativeScale3D({ 3.0f, 3.0f, 3.0f });
 
 	MeshComponent->CreateRenderUnit();
 	URenderAsset& Unit = MeshComponent->GetRenderUnit();
 	Unit.SetMesh("Sphere");
 	Unit.SetMaterial("LightMaterial");
+
+	ShapeComponent = CreateDefaultSubObject<UShapeComponent>();
+	ShapeComponent->SetupAttachment(RootComponent);
+	ShapeComponent->SetCollisionProfileName("PlayerAttack");
+	ShapeComponent->SetCollisionType(ECollisionType::Sphere);
+	ShapeComponent->SetRelativeScale3D({ 3.0f, 3.0f, 3.0f });
+
+	ShapeComponent->SetCollisionEnter([](UShapeComponent* _This, UShapeComponent* _Other)
+		{
+			//_Other->GetOwner()->Destroy();
+			// _Other->Destroy();
+			UEngineDebug::OutPutString("Enter");
+		});
 
 }
 

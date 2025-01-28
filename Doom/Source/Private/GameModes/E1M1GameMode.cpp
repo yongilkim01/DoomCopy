@@ -48,9 +48,13 @@ public:
 AE1M1GameMode::AE1M1GameMode()
 {
 	{
-		GetWorld()->CreateCollisionProfile("Enemy");
-		GetWorld()->CreateCollisionProfile("Player");
-		GetWorld()->LinkCollisionProfile("Player", "Enemy");
+		GetWorld()->CreateCollisionProfile("PlayerBody");
+		GetWorld()->CreateCollisionProfile("PlayerAttack");
+		GetWorld()->CreateCollisionProfile("EnemyBody");
+		GetWorld()->CreateCollisionProfile("EnemyAttack");
+
+		GetWorld()->LinkCollisionProfile("PlayerAttack", "EnemyBody");
+		GetWorld()->LinkCollisionProfile("EnemyAttack", "PlayerBody");
 	}
 	{
 		E1M1Map = GetWorld()->SpawnActor<AE1M1Map>();

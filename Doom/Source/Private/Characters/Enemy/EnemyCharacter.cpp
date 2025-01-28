@@ -18,7 +18,7 @@ UEnemyCharacter::UEnemyCharacter()
 	ShapeComponent = CreateDefaultSubObject<UShapeComponent>();
 	ShapeComponent->SetupAttachment(RootComponent);
 	ShapeComponent->SetRelativeScale3D({ 30.0f, 30.0f, 30.0f });
-	ShapeComponent->SetCollisionProfileName("Enemy");
+	ShapeComponent->SetCollisionProfileName("EnemyBody");
 	ShapeComponent->SetCollisionType(ECollisionType::Sphere);
 
 	//ShapeComponent->SetCollisionEnter([](UShapeComponent* _This, UShapeComponent* _Other)
@@ -41,5 +41,15 @@ void UEnemyCharacter::BeginPlay()
 void UEnemyCharacter::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
+
+	RunningTime += DeltaTime;
+
+	// 사인파 계산
+	float Amplitude = 0.01f;  // 진폭
+	float Frequency = 1.0f;    // 주파수
+	float DeltaWidth = Amplitude * FMath::Sin(2 * FMath::PI * Frequency * RunningTime);
+	float DeltaHeight = -Amplitude * FMath::Sin(2 * FMath::PI * Frequency * RunningTime * 2.0f);
+
+	AddActorLocation(FVector{ DeltaWidth, DeltaHeight, 0.0f });
 }
 

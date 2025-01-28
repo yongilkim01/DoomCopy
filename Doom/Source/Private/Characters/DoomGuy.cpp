@@ -21,16 +21,16 @@ ADoomGuyCharacter::ADoomGuyCharacter()
 {
 	ShapeComponent = CreateDefaultSubObject<UShapeComponent>();
 	ShapeComponent->SetupAttachment(RootComponent);
-	ShapeComponent->SetCollisionProfileName("Player");
+	ShapeComponent->SetCollisionProfileName("PlayerBody");
 	ShapeComponent->SetCollisionType(ECollisionType::Sphere);
 	ShapeComponent->SetRelativeScale3D({ 30.0f, 30.0f, 30.0f });
 
-	ShapeComponent->SetCollisionEnter([](UShapeComponent* _This, UShapeComponent* _Other)
-		{
-			//_Other->GetOwner()->Destroy();
-			// _Other->Destroy();
-			UEngineDebug::OutPutString("Enter");
-		});
+	//ShapeComponent->SetCollisionEnter([](UShapeComponent* _This, UShapeComponent* _Other)
+	//	{
+	//		//_Other->GetOwner()->Destroy();
+	//		// _Other->Destroy();
+	//		UEngineDebug::OutPutString("Enter");
+	//	});
 }
 
 ADoomGuyCharacter::~ADoomGuyCharacter()
