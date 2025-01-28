@@ -196,36 +196,49 @@ void ULevel::Render(float DeltaTime)
 
 void ULevel::Collision(float DeltaTime)
 {
+	// 1. CollisionLinkMap을 순회하며 충돌 검사 대상이 되는 프로파일 간의 관계를 확인
+	//    - CollisionLinkMap: 충돌해야 할 콜리전 프로파일 쌍(LeftProfile ↔ RightProfile)을 관리
 	for (std::pair<const std::string, std::list<std::string>>& Links : CollisionLinkMap)
 	{
+		// LeftProfile: 검사 대상이 되는 첫 번째 콜리전 프로파일 이름
 		const std::string& LeftProfile = Links.first;
+
+		// LinkSecond: LeftProfile과 충돌 관계에 있는 다른 프로파일 이름들의 리스트
 		std::list<std::string>& LinkSecond = Links.second;
 
+		// 2. LeftProfile에 연결된 모든 RightProfile을 순회
 		for (std::string& RightProfile : LinkSecond)
 		{
-			std::list<std::shared_ptr<UShapeComponent>>& LeftList = CheckShapeCompMap[LeftProfile];
-			std::list<std::shared_ptr<UShapeComponent>>& RightList = CheckShapeCompMap[RightProfile];
+			// LeftProfile과 RightProfile에 속하는 ShapeComponent 리스트를 가져옴
+			std::list<std::shared_ptr<UShapeComponent>>& LeftList = ShapeCompMap[LeftProfile];
+			std::list<std::shared_ptr<UShapeComponent>>& RightList = ShapeCompMap[RightProfile];
 
+			// 3. LeftList와 RightList의 모든 컴포넌트 간에 충돌 검사 수행
 			for (std::shared_ptr<UShapeComponent>& LeftCollision : LeftList)
 			{
 				for (std::shared_ptr<UShapeComponent>& RightCollision : RightList)
 				{
+					// 3.1 동일한 컴포넌트라면 충돌 검사 생략
 					if (LeftCollision == RightCollision)
 					{
 						continue;
 					}
 
+					// 3.2 LeftCollision이 비활성 상태라면 충돌 검사 생략
 					if (false == LeftCollision->IsActive())
 					{
 						continue;
 					}
 
+					// 3.3 LeftCollision과 RightCollision의 충돌 여부를 검사하고 이벤트 처리
+					//     - CollisionEventCheck를 호출하여 충돌 진입(Enter), 지속(Stay), 종료(End) 처리
 					LeftCollision->CollisionEventCheck(RightCollision);
 				}
 			}
 		}
 	}
 }
+
 
 void ULevel::Release(float DeltaTime)
 {

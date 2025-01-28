@@ -27,7 +27,7 @@ ADoomGuyCharacter::ADoomGuyCharacter()
 
 	ShapeComponent->SetCollisionEnter([](UShapeComponent* _This, UShapeComponent* _Other)
 		{
-			_Other->GetOwner()->Destroy();
+			//_Other->GetOwner()->Destroy();
 			// _Other->Destroy();
 			UEngineDebug::OutPutString("Enter");
 		});
