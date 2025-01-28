@@ -74,6 +74,7 @@ void UDoomCore::EngineAssetLoad()
 		UPaperSprite::CreateSpriteToMeta("DoomGuyHUD.png", ".sdata");
 		//UPaperSprite::CreateSpriteToMeta("Shotgun.png", ".sdata");
 		UPaperSprite::CreateSpriteToCount("Shotgun.png", 6, 1);
+		UPaperSprite::CreateSpriteToCount("DoomZombie.png", 6, 9);
 
 	}
 	{

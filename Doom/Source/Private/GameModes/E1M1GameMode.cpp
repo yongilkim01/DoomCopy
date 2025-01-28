@@ -66,7 +66,7 @@ AE1M1GameMode::AE1M1GameMode()
 	}
 	{
 		std::shared_ptr<UEnemyCharacter> EnemyCharacter = GetWorld()->SpawnActor<UEnemyCharacter>();
-		EnemyCharacter->SetActorLocation(FVector{ -1042.0f, 14.0f, 3550.0f });
+		EnemyCharacter->SetActorLocation(FVector{ -1042.0f, 27.0f, 3550.0f });
 	}
 	{
 		Camera = GetWorld()->GetMainCamera();
