@@ -4,17 +4,13 @@
 #include <Engine/Classes/Camera/CameraActor.h>
 #include <Engine/Classes/Camera/CameraComponent.h>
 
-#include <Engine/Classes/GameFramework/Actor.h>
-
 #include <Engine/Classes/Components/PaperSpriteComponent.h>
-#include <Engine/Classes/Components/StaticMeshComponent.h>
 #include <Engine/Classes/Components/ShapeComponent.h>
-
-#include <Core/Public/Misc/DirectoryHelper.h>
 
 #include <Platform/Public/Input/EngineInput.h>
 
 #include "Public/Items/Weapons/GunWeapon.h"
+#include "Public/Items/Weapons/ShotgunWeapon.h"
 #include "Public/Items/Weapons/Bullet.h"
 
 ADoomGuyCharacter::ADoomGuyCharacter()
@@ -38,7 +34,7 @@ void ADoomGuyCharacter::BeginPlay()
 
 	CurMouseLocation = UGameEngine::GetMainWindow().GetMousePos();
 
-	GunActor = GetWorld()->SpawnActor<AGunWeapon>();
+	GunActor = GetWorld()->SpawnActor<AShotgunWeapon>();
 	GunActor->AttachToActor(this);
 }
 
@@ -73,18 +69,11 @@ void ADoomGuyCharacter::Tick(float DeltaTime)
 	}
 	if (UEngineInput::IsDown(VK_LBUTTON))
 	{
-		GunActor->Reload();
-		std::shared_ptr<ABullet> Bullet = GetWorld()->SpawnActor<ABullet>();
-		FVector BulletLocation = GetActorLocation() + (GetActorForwardVector() * 50.0f) + (GetActorUpVector() * 30.0f);
-		Bullet->SetActorLocation(BulletLocation);
-		Bullet->SetBulletDirection(GetActorForwardVector());
+		GunActor->Fire();
 	}
-
 	if (UEngineInput::IsDown('Y'))
 	{
-
 		bPlayMode = !bPlayMode;
-
 	}
 
 	if (true == bPlayMode)

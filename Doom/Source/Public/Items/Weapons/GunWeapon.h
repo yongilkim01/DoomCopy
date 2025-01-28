@@ -30,7 +30,8 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
-	void Reload();
+	virtual void Fire();
+	virtual void Reload();
 
 	bool IsMoving() const
 	{
@@ -57,17 +58,19 @@ public:
 		GunType = NewGunType;
 	}
 
+protected:
+	/** 이동 관련 멤버 변수 */
+	bool bMoving = false;
+	float RunningTime = 0.0f;
+	FVector BulletStartLocation = FVector::ZERO;
+
 private:
 	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
 
 	/** AGunWeapon 세팅 멤버 변수 */
-	FVector BulletStartLocation = FVector::ZERO;
 	EGunType GunType = EGunType::NONE;
 
 	/** 소유주 */
 	std::weak_ptr<ACharacter> Owner;
 
-	/** 이동 관련 멤버 변수 */
-	bool bMoving = false;
-	float RunningTime = 0.0f;
 };

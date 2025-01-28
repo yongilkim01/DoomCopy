@@ -172,6 +172,9 @@
     <ClCompile Include="Source\Private\Items\Weapons\GunWeapon.cpp">
       <Filter>Private\Items\Weapons</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Private\Items\Weapons\ShotgunWeapon.cpp">
+      <Filter>Private\Items\Weapons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Public\Items\Weapons\BaseWeapon.h">
@@ -245,6 +248,9 @@
     </ClInclude>
     <ClInclude Include="Source\Doom.h" />
     <ClInclude Include="Source\Public\Items\Weapons\GunWeapon.h">
+      <Filter>Public\Items\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Items\Weapons\ShotgunWeapon.h">
       <Filter>Public\Items\Weapons</Filter>
     </ClInclude>
   </ItemGroup>

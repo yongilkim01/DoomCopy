@@ -36,8 +36,7 @@ private:
 
 	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
 	std::shared_ptr<UShapeComponent> ShapeComponent = nullptr;
-
-	std::shared_ptr<AGunWeapon> GunActor;
+	std::shared_ptr<AGunWeapon> GunActor = nullptr;
 	
 	FVector CurMouseLocation = FVector::ZERO;
 
