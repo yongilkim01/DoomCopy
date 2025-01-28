@@ -155,6 +155,9 @@
     </ClCompile>
     <ClCompile Include="Source\Private\Characters\DoomGuy.cpp" />
     <ClCompile Include="Source\Private\Characters\Enemy\EnemyCharacter.cpp" />
+    <ClCompile Include="Source\Private\Characters\Enemy\ImpCharacter.cpp" />
+    <ClCompile Include="Source\Private\Characters\Enemy\ZombieCharacter.cpp" />
+    <ClCompile Include="Source\Private\Characters\Enemy\ZombieSgtCharacter.cpp" />
     <ClCompile Include="Source\Private\Core\DoomCore.cpp" />
     <ClCompile Include="Source\Private\Editor\GUIEditor.cpp" />
     <ClCompile Include="Source\Private\GameModes\E1M1GameMode.cpp" />
@@ -183,6 +186,9 @@
     <ClInclude Include="Source\Doom.h" />
     <ClInclude Include="Source\Public\Characters\DoomGuy.h" />
     <ClInclude Include="Source\Public\Characters\Enemy\EnemyCharacter.h" />
+    <ClInclude Include="Source\Public\Characters\Enemy\ImpCharacter.h" />
+    <ClInclude Include="Source\Public\Characters\Enemy\ZombieCharacter.h" />
+    <ClInclude Include="Source\Public\Characters\Enemy\ZombieSgtCharacter.h" />
     <ClInclude Include="Source\Public\Core\DoomCore.h" />
     <ClInclude Include="Source\Public\Editor\GUIEditor.h" />
     <ClInclude Include="Source\Public\GameModes\E1M1GameMode.h" />

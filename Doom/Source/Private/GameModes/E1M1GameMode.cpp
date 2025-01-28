@@ -20,7 +20,10 @@
 #include "Public/Maps/E1M1Map.h"
 #include "Public/Editor/GUIEditor.h"
 #include "Public/NavigationSystem/NavMeshMap.h"
-#include "Public/Characters/Enemy/EnemyCharacter.h"
+
+#include "Public/Characters/Enemy/ImpCharacter.h"
+#include "Public/Characters/Enemy/ZombieCharacter.h"
+#include "Public/Characters/Enemy/ZombieSgtCharacter.h"
 
 
 class E1M1DebugWindow : public UEngineGUIWindow
@@ -65,8 +68,14 @@ AE1M1GameMode::AE1M1GameMode()
 		DoomGuyCharacter->SetActorLocation(FVector{ -1042.0f, 14.0f, 3548.0f });
 	}
 	{
-		std::shared_ptr<UEnemyCharacter> EnemyCharacter = GetWorld()->SpawnActor<UEnemyCharacter>();
-		EnemyCharacter->SetActorLocation(FVector{ -1042.0f, 27.0f, 3550.0f });
+		std::shared_ptr<AZombieCharacter> ZombieCharacter = GetWorld()->SpawnActor<AZombieCharacter>();
+		ZombieCharacter->SetActorLocation(FVector{ -1012.0f, 27.0f, 3555.0f });
+
+		std::shared_ptr<AZombieSgtCharacter> ZombieSgtCharacter = GetWorld()->SpawnActor<AZombieSgtCharacter>();
+		ZombieSgtCharacter->SetActorLocation(FVector{ -1052.0f, 27.0f, 3555.0f });
+
+		std::shared_ptr<AImpCharacter> ImpCharacter = GetWorld()->SpawnActor<AImpCharacter>();
+		ImpCharacter->SetActorLocation(FVector{ -1092.0f, 27.0f, 3555.0f });
 	}
 	{
 		Camera = GetWorld()->GetMainCamera();
