@@ -24,11 +24,12 @@ ABullet::ABullet()
 	ShapeComponent->SetCollisionType(ECollisionType::Sphere);
 	ShapeComponent->SetRelativeScale3D({ 3.0f, 3.0f, 3.0f });
 
-	ShapeComponent->SetCollisionEnter([](UShapeComponent* _This, UShapeComponent* _Other)
+	ShapeComponent->SetCollisionEnter([](UShapeComponent* This, UShapeComponent* Other)
 		{
-			//_Other->GetOwner()->Destroy();
-			// _Other->Destroy();
+			This->GetOwner()->Destroy();
+			Other->GetOwner()->Destroy();
 			UEngineDebug::OutPutString("Enter");
+			
 		});
 
 }

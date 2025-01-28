@@ -14,7 +14,7 @@
 
 #include <Platform/Public/Input/EngineInput.h>
 
-#include "Public/Items/Weapons/BaseWeapon.h"
+#include "Public/Items/Weapons/GunWeapon.h"
 #include "Public/Items/Weapons/Bullet.h"
 
 ADoomGuyCharacter::ADoomGuyCharacter()
@@ -24,13 +24,6 @@ ADoomGuyCharacter::ADoomGuyCharacter()
 	ShapeComponent->SetCollisionProfileName("PlayerBody");
 	ShapeComponent->SetCollisionType(ECollisionType::Sphere);
 	ShapeComponent->SetRelativeScale3D({ 30.0f, 30.0f, 30.0f });
-
-	//ShapeComponent->SetCollisionEnter([](UShapeComponent* _This, UShapeComponent* _Other)
-	//	{
-	//		//_Other->GetOwner()->Destroy();
-	//		// _Other->Destroy();
-	//		UEngineDebug::OutPutString("Enter");
-	//	});
 }
 
 ADoomGuyCharacter::~ADoomGuyCharacter()
@@ -45,9 +38,8 @@ void ADoomGuyCharacter::BeginPlay()
 
 	CurMouseLocation = UGameEngine::GetMainWindow().GetMousePos();
 
-	BaseWeaponActor = GetWorld()->SpawnActor<ABaseWeapon>();
-	BaseWeaponActor->AttachToActor(this);
-	BaseWeaponActor->SetMovingStartLocation(GetActorLocation());
+	GunActor = GetWorld()->SpawnActor<AGunWeapon>();
+	GunActor->AttachToActor(this);
 }
 
 void ADoomGuyCharacter::Tick(float DeltaTime)
@@ -56,11 +48,11 @@ void ADoomGuyCharacter::Tick(float DeltaTime)
 
 	if (FVector::ZERO == GetVelocity())
 	{
-		BaseWeaponActor->SetMoving(false);
+		GunActor->SetMoving(false);
 	}
 	else
 	{
-		BaseWeaponActor->SetMoving(true);
+		GunActor->SetMoving(true);
 	}
 
 	if (UEngineInput::IsPress('A'))
@@ -81,7 +73,7 @@ void ADoomGuyCharacter::Tick(float DeltaTime)
 	}
 	if (UEngineInput::IsDown(VK_LBUTTON))
 	{
-		BaseWeaponActor->Reload();
+		GunActor->Reload();
 		std::shared_ptr<ABullet> Bullet = GetWorld()->SpawnActor<ABullet>();
 		FVector BulletLocation = GetActorLocation() + (GetActorForwardVector() * 50.0f) + (GetActorUpVector() * 30.0f);
 		Bullet->SetActorLocation(BulletLocation);

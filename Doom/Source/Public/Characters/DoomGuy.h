@@ -5,7 +5,7 @@ class ACameraActor;
 class UStaticMeshComponent;
 class UShapeComponent;
 class UPaperSpriteComponent;
-class ABaseWeapon;
+class AGunWeapon;
 
 /**
  *	Ό³Έν
@@ -37,7 +37,7 @@ private:
 	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
 	std::shared_ptr<UShapeComponent> ShapeComponent = nullptr;
 
-	std::shared_ptr<ABaseWeapon> BaseWeaponActor;
+	std::shared_ptr<AGunWeapon> GunActor;
 	
 	FVector CurMouseLocation = FVector::ZERO;
 

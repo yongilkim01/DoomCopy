@@ -23,40 +23,7 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
-	void Reload();
-
-	bool IsMoving() const
-	{
-		return bMoving;
-	}
-	void SetMoving(bool Value)
-	{
-		bMoving = Value;
-	}
-	void SetMovingStartLocation(FVector Value)
-	{
-		MovingStartLocation = Value;
-		//SetActorLocation(MovingStartLocation);
-	}
-	FVector GetBulletStartLocation()
-	{
-		return BulletStartLocation;
-	}
-	void SetBulletStartLocation(FVector Value)
-	{
-		BulletStartLocation = Value;
-	}
-
 private:
-	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
-
-	FVector BulletStartLocation = FVector::ZERO;
-
 	/** 소유주 */
 	std::weak_ptr<ACharacter> Owner;
-
-	/** 이동 관련 멤버 변수 */
-	bool bMoving = false;
-	FVector MovingStartLocation = FVector::ZERO;
-	float RunningTime = 0.0f;
 };

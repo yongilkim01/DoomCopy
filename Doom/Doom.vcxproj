@@ -165,6 +165,7 @@
     <ClCompile Include="Source\Private\Global\GameInstance\DoomGameInstance.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\BaseWeapon.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\Bullet.cpp" />
+    <ClCompile Include="Source\Private\Items\Weapons\GunWeapon.cpp" />
     <ClCompile Include="Source\Private\Maps\E1M1Map.cpp" />
     <ClCompile Include="Source\Private\NavigationSystem\NavMeshCharacter.cpp" />
     <ClCompile Include="Source\Private\NavigationSystem\NavMeshComponent.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="Source\Public\Global\GameInstance\DoomGameInstance.h" />
     <ClInclude Include="Source\Public\Items\Weapons\BaseWeapon.h" />
     <ClInclude Include="Source\Public\Items\Weapons\Bullet.h" />
+    <ClInclude Include="Source\Public\Items\Weapons\GunWeapon.h" />
     <ClInclude Include="Source\Public\Maps\E1M1Map.h" />
     <ClInclude Include="Source\Public\NavigationSystem\NavMeshCharacter.h" />
     <ClInclude Include="Source\Public\NavigationSystem\NavMeshComponent.h" />
