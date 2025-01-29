@@ -21,7 +21,7 @@ AZombieCharacter::AZombieCharacter()
 	ShapeComponent->SetCollisionProfileName("EnemyBody");
 	ShapeComponent->SetCollisionType(ECollisionType::Sphere);
 
-	CapsuleComponent->SetCapsuleSize(10.0f, 41.0f);
+	CapsuleComponent->SetCapsuleSize(5.0f, 41.0f);
 }
 
 AZombieCharacter::~AZombieCharacter()

@@ -22,7 +22,7 @@ ADoomGuyCharacter::ADoomGuyCharacter()
 	ShapeComponent->SetCollisionType(ECollisionType::Sphere);
 	ShapeComponent->SetRelativeScale3D({ 30.0f, 30.0f, 30.0f });
 
-	CapsuleComponent->SetCapsuleSize(10.0f, 25.0f);
+	CapsuleComponent->SetCapsuleSize(30.0f, 25.0f);
 }
 
 ADoomGuyCharacter::~ADoomGuyCharacter()
