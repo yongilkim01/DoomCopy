@@ -109,6 +109,7 @@ FVector UPhysicsEngine::SweepCollision(const FVector& Location, const FVector& D
 
     FVector AdjustedFinalVector = FinalVector;
     bool bCollisionDetected = false;
+    FVector PushVector = FVector::ZERO;
     int SafeDirections = 0;
 
     for (const FVector& Offset : OffsetDirections)
@@ -121,8 +122,9 @@ FVector UPhysicsEngine::SweepCollision(const FVector& Location, const FVector& D
         if (IntersectResult == 0.0f) // 충돌 발생
         {
             bCollisionDetected = true;
+            PushVector -= Offset; // 충돌한 방향을 반대로 밀어주기
         }
-        else if (IntersectResult >= InHalfHeight) // 이동 가능 방향
+        else if (IntersectResult >= InHalfHeight) // 이동 가능한 방향
         {
             SafeDirections++;
         }
@@ -130,27 +132,12 @@ FVector UPhysicsEngine::SweepCollision(const FVector& Location, const FVector& D
 
     UEngineDebug::OutPutString(" ");
 
-    if (true == bCollisionDetected)
+    if (bCollisionDetected)
     {
-        FVector PushVector = FVector::ZERO;
-
-        for (const FVector& Offset : OffsetDirections)
-        {
-            FVector CheckVector = FinalVector + Offset;
-            float IntersectResult = UNavigationSystem::GetInstance().DistanceToVector(CheckVector);
-
-            if (IntersectResult != 0.0f) // 이동할 수 있는 방향 찾기
-            {
-                PushVector += Offset;
-            }
-        }
-
-        PushVector.Normalize();
-
-        // 이동 가능한 방향이 있다면 그쪽으로 이동
         if (!PushVector.IsZero())
         {
-            AdjustedFinalVector += PushVector * 1.0; // 살짝 밀어줌
+            PushVector.Normalize();
+            AdjustedFinalVector += PushVector * 1.0f; // 충분히 밀어줌
         }
         else
         {
@@ -175,7 +162,6 @@ FVector UPhysicsEngine::SweepCollision(const FVector& Location, const FVector& D
 
     return AdjustedFinalVector;
 }
-
 
 
 FVector UPhysicsEngine::NormalComponent(const FVector& Location, const FVector& Delta)
