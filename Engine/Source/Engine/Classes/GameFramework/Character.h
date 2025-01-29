@@ -2,7 +2,7 @@
 #include "Pawn.h"
 
 class UCharacterMovementComponent;
-
+class UCapsuleComponent;
 /**
  *	Ό³Έν
  */
@@ -34,6 +34,7 @@ public:
 	ENGINE_API FVector GetVelocity() const;
 
 protected:
+	std::shared_ptr<UCapsuleComponent> CapsuleComponent;
 	std::shared_ptr<UCharacterMovementComponent> CharacterMovement;
 
 	bool bPressedJump = false;

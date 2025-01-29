@@ -1,6 +1,6 @@
 #include "Engine.h"
 #include "Engine/Classes/GameFramework/CharacterMovementComponent.h"
-#include "Engine/Classes/Components/PrimitiveComponent.h"
+#include "Engine/Classes/Components/CapsuleComponent.h"
 
 #include "Core/Public/Debugging/DebugMacros.h"
 

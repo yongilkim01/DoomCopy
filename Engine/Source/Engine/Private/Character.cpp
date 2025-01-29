@@ -8,7 +8,7 @@
 
 ACharacter::ACharacter()
 {
-    std::shared_ptr<UCapsuleComponent> CapsuleComponent = CreateDefaultSubObject<UCapsuleComponent>();
+    CapsuleComponent = CreateDefaultSubObject<UCapsuleComponent>();
     RootComponent = CapsuleComponent;
 
 	CharacterMovement = CreateDefaultSubObject<UCharacterMovementComponent>();

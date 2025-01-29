@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine/Classes/Components/ActorComponent.h"
 
-class UPrimitiveComponent;
+class UCapsuleComponent;
 class ACharacter;
 
 /**
@@ -40,7 +40,7 @@ protected:
 private:
 	FVector PendingInputVector = FVector::ZERO;
 	FVector Velocity = FVector::ZERO;
-	UPrimitiveComponent* UpdatedComponent = nullptr;
+	UCapsuleComponent* UpdatedComponent = nullptr;
 	float JumpZVelocity = 600.0f;
 	float Gravity = 0.0f;
 	float GravityScale = 0.0f;

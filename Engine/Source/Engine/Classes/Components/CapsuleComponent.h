@@ -21,9 +21,16 @@ public:
 
 	ENGINE_API virtual void BeginPlay() override;
 
+	ENGINE_API void SetCapsuleSize(float InRadius, float InHalfHeight)
+	{
+		CapsuleRadius = InRadius;
+		CapsuleHalfHeight = InHalfHeight;
+	}
+
 protected:
 
 private:
-
+	float CapsuleHalfHeight;
+	float CapsuleRadius;
 };
 
