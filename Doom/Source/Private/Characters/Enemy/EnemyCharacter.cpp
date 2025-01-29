@@ -7,8 +7,6 @@
 
 AEnemyCharacter::AEnemyCharacter()
 {
-	std::shared_ptr<USceneComponent> SceneComponent = CreateDefaultSubObject<USceneComponent>();
-	RootComponent = SceneComponent;
 }
 
 AEnemyCharacter::~AEnemyCharacter()
@@ -17,12 +15,31 @@ AEnemyCharacter::~AEnemyCharacter()
 
 void AEnemyCharacter::BeginPlay()
 {
-	AActor::BeginPlay();
+	ACharacter::BeginPlay();
 }
 
 void AEnemyCharacter::Tick(float DeltaTime)
 {
-	AActor::Tick(DeltaTime);
+	ACharacter::Tick(DeltaTime);
 
 }
 
+void AEnemyCharacter::MoveForward(float Value)
+{
+	if (Value != 0.0f)
+	{
+		FVector Direction = GetActorForwardVector();
+
+		AddMovementInput(Direction, Value);
+	}
+}
+
+void AEnemyCharacter::MoveRight(float Value)
+{
+	if (Value != 0.0f)
+	{
+		FVector Direction = GetActorRightVector();
+
+		AddMovementInput(Direction, Value);
+	}
+}

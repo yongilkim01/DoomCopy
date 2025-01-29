@@ -169,6 +169,7 @@ void ULevel::Render(float DeltaTime)
 	std::shared_ptr<URenderTarget> BackBufferRenderTarget = UGameEngine::GetBackBufferRenderTarget();
 	FinalRenderTarget->MergeRenderTarget(BackBufferRenderTarget);
 
+#ifdef _DEBUG
 	{
 		std::shared_ptr<ACameraActor> Camera = GetMainCamera();
 		// 충돌체 릴리즈
@@ -185,6 +186,7 @@ void ULevel::Render(float DeltaTime)
 			}
 		}
 	}
+#endif
 
 
 	if (true == UEngineWindow::IsApplicationOn())

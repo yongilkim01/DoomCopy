@@ -1,5 +1,5 @@
 #pragma once
-#include <Engine/Classes/GameFramework/Actor.h>
+#include <Engine/Classes/GameFramework/Character.h>
 
 class UPaperSpriteComponent;
 class UTimeEventComponent;
@@ -8,7 +8,7 @@ class UShapeComponent;
 /**
  *	설명
  */
-class AEnemyCharacter : public AActor
+class AEnemyCharacter : public ACharacter
 {
 public:
 	/** 생성자, 소멸자 */
@@ -26,12 +26,17 @@ public:
 		return SpriteComponent;
 	}
 
+	void MoveForward(float Value);
+	void MoveRight(float Value);
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
 	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
 	std::shared_ptr<UShapeComponent> ShapeComponent = nullptr;
+
+	float Speed = 100.0f;
 
 private:
 

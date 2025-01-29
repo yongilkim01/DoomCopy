@@ -33,4 +33,6 @@ void AZombieCharacter::BeginPlay()
 void AZombieCharacter::Tick(float DeltaTime)
 {
 	AEnemyCharacter::Tick(DeltaTime);
+
+	MoveRight(-Speed);
 }
