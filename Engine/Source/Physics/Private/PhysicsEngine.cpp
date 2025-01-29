@@ -118,21 +118,46 @@ FVector UPhysicsEngine::SweepCollision(const FVector& Location, const FVector& D
 
         UEngineDebug::OutPutString("Distance : " + std::to_string(IntersectResult));
 
-        if (IntersectResult == 0.0f) // 충돌이 발생했을 경우
+        if (IntersectResult == 0.0f) // 충돌 발생
         {
-            AdjustedFinalVector = Location; // 충돌 시 원래 위치로 되돌림
             bCollisionDetected = true;
-            break;
         }
-        else if (IntersectResult >= InHalfHeight)
+        else if (IntersectResult >= InHalfHeight) // 이동 가능 방향
         {
-            SafeDirections++; // 충돌이 감지된 방향
+            SafeDirections++;
         }
     }
 
     UEngineDebug::OutPutString(" ");
 
-    if (false == bCollisionDetected)
+    if (true == bCollisionDetected)
+    {
+        FVector PushVector = FVector::ZERO;
+
+        for (const FVector& Offset : OffsetDirections)
+        {
+            FVector CheckVector = FinalVector + Offset;
+            float IntersectResult = UNavigationSystem::GetInstance().DistanceToVector(CheckVector);
+
+            if (IntersectResult != 0.0f) // 이동할 수 있는 방향 찾기
+            {
+                PushVector += Offset;
+            }
+        }
+
+        PushVector.Normalize();
+
+        // 이동 가능한 방향이 있다면 그쪽으로 이동
+        if (!PushVector.IsZero())
+        {
+            AdjustedFinalVector += PushVector * 1.0; // 살짝 밀어줌
+        }
+        else
+        {
+            AdjustedFinalVector = Location; // 모든 방향 막혀있으면 원래 위치 유지
+        }
+    }
+    else
     {
         // 모든 방향이 공중이면 낙하 허용 (Delta 자체에 중력이 적용되어 있음)
         if (SafeDirections == 4)
@@ -147,8 +172,10 @@ FVector UPhysicsEngine::SweepCollision(const FVector& Location, const FVector& D
             AdjustedFinalVector.Y -= CheckDistance;
         }
     }
+
     return AdjustedFinalVector;
 }
+
 
 
 FVector UPhysicsEngine::NormalComponent(const FVector& Location, const FVector& Delta)
