@@ -71,7 +71,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Source\Physics\Private\PhysicsCore.cpp" />
+    <ClCompile Include="Source\Physics\Private\PhysicsEngine.cpp" />
     <ClCompile Include="Source\Platform\Private\Input\EngineInput.cpp" />
     <ClCompile Include="Source\Platform\Private\Window\Window.cpp" />
     <ClCompile Include="Source\Rendering\Private\Buffer\ConstantBuffer.cpp" />
@@ -154,7 +154,7 @@
     <ClInclude Include="Source\Engine\Public\TimerManager.h" />
     <ClInclude Include="Source\NavigationSystem\Public\NavigationSystem.h" />
     <ClInclude Include="Source\Engine.h" />
-    <ClInclude Include="Source\Physics\Public\PhysicsCore.h" />
+    <ClInclude Include="Source\Physics\Public\PhysicsEngine.h" />
     <ClInclude Include="Source\Platform\Public\Input\EngineInput.h" />
     <ClInclude Include="Source\Platform\Public\Window\Window.h" />
     <ClInclude Include="Source\Rendering\Public\Buffer\ConstantBuffer.h" />

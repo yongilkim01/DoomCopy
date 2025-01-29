@@ -1,5 +1,5 @@
 #include "Engine.h"
-#include "Physics/Public/PhysicsCore.h"
+#include "Physics/Public/PhysicsEngine.h"
 
 #include "Engine/Classes/Components/PrimitiveComponent.h"
 #include "Engine/Classes/GameFramework/Actor.h"
@@ -8,15 +8,15 @@
 
 #include "Core/Public/Debugging/DebugMacros.h"
 
-UPhysicsCore::UPhysicsCore()
+UPhysicsEngine::UPhysicsEngine()
 {
 }
 
-UPhysicsCore::~UPhysicsCore()
+UPhysicsEngine::~UPhysicsEngine()
 {
 }
 
-FVector UPhysicsCore::SweepCollision(const FVector& Location, const FVector& Delta)
+FVector UPhysicsEngine::SweepCollision(const FVector& Location, const FVector& Delta)
 {
 		FVector FinalVector = Location + Delta;
 
@@ -41,7 +41,32 @@ FVector UPhysicsCore::SweepCollision(const FVector& Location, const FVector& Del
 		return Location;
 }
 
-FVector UPhysicsCore::NormalComponent(const FVector& Location, const FVector& Delta)
+FVector UPhysicsEngine::SweepCollision(const FVector& Location, const FVector& Delta, float InHalfHeight, float InRadius)
+{
+	FVector FinalVector = Location + Delta;
+
+	float Distance = UNavigationSystem::GetInstance().DistanceToVector(FinalVector);
+
+	if (0.0f == Distance)
+	{
+		return Location;
+	}
+	else if (InHalfHeight > Distance)
+	{
+		float CheckDistance = Distance - InHalfHeight;
+		FinalVector.Y -= CheckDistance;
+
+		return FinalVector;
+	}
+	else if (InHalfHeight < Distance)
+	{
+		return FinalVector;
+	}
+
+	return Location;
+}
+
+FVector UPhysicsEngine::NormalComponent(const FVector& Location, const FVector& Delta)
 {
 	FVector FinalVector = Location + Delta;
 
@@ -54,4 +79,3 @@ FVector UPhysicsCore::NormalComponent(const FVector& Location, const FVector& De
 
 	return Location;
 }
-

@@ -20,6 +20,9 @@ public:
 	UCapsuleComponent& operator=(UCapsuleComponent&& Other) noexcept = delete;
 
 	ENGINE_API virtual void BeginPlay() override;
+	ENGINE_API virtual bool MoveComponent(const FVector& Delta, const FVector& NewRotation = FVector::ZERO, bool bSweep = true) override;
+	ENGINE_API virtual FVector SweepCollision(const FVector& NewLocation, const FVector& Delta) override;
+
 
 	ENGINE_API void SetCapsuleSize(float InRadius, float InHalfHeight)
 	{

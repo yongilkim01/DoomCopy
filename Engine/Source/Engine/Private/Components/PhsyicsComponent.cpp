@@ -3,7 +3,7 @@
 
 #include "Engine/Classes/Engine/GameEngine.h"
 
-#include "Physics/Public/PhysicsCore.h"
+#include "Physics/Public/PhysicsEngine.h"
 
 UPhsyicsComponent::UPhsyicsComponent()
 {

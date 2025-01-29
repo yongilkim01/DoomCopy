@@ -14,7 +14,7 @@
 #include <memory>
 
 class UGameInstance;
-class UPhysicsCore;
+class UPhysicsEngine;
 
 /**
  *	엔진 코어 클래스
@@ -90,7 +90,7 @@ public:
 		return ContentsProjectName;
 	}
 
-	ENGINE_API std::shared_ptr<UPhysicsCore> GetPhysicsSubSystem()
+	ENGINE_API std::shared_ptr<UPhysicsEngine> GetPhysicsSubSystem()
 	{
 		return PhysicsSubSystem;
 	}
@@ -134,7 +134,7 @@ private:
 	std::map<std::string, std::shared_ptr<ULevel>> LevelMap;
 	std::shared_ptr<ULevel> CurLevel;
 	std::shared_ptr<ULevel> NextLevel;
-	std::shared_ptr<UPhysicsCore> PhysicsSubSystem;
+	std::shared_ptr<UPhysicsEngine> PhysicsSubSystem;
 
 	std::string ContentsProjectName = "";
 

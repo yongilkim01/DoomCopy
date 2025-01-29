@@ -39,9 +39,9 @@ public:
 	 *  @param NewRotation - 이동 후 컴포넌트의 새로운 회전을 나타낸다.
 	 *  @param bSweep - Sweep을 수행할 지 여부를 결정한다, true일 경우 충돌 검사를 활성화하여 이동 경로에서 충돌을 확인한다.
 	 */
-	ENGINE_API bool MoveComponent(const FVector& Delta, const FVector& NewRotation = FVector::ZERO, bool bSweep = true/*, FHitResult* OutHit, EMoveComponentFlags MoveFlags, ETeleportType Teleport*/);
-	ENGINE_API FVector SweepCollision(const FVector& NewLocation, const FVector& Delta/*, const FQuat& NewRotation, FHitResult* OutHit*/);
-	ENGINE_API FVector NormalComponent(const FVector& NewLocation, const FVector& Delta/*, const FQuat& NewRotation, FHitResult* OutHit*/);
+	ENGINE_API virtual bool MoveComponent(const FVector& Delta, const FVector& NewRotation = FVector::ZERO, bool bSweep = true/*, FHitResult* OutHit, EMoveComponentFlags MoveFlags, ETeleportType Teleport*/);
+	ENGINE_API virtual FVector SweepCollision(const FVector& NewLocation, const FVector& Delta/*, const FQuat& NewRotation, FHitResult* OutHit*/);
+	ENGINE_API virtual FVector NormalComponent(const FVector& NewLocation, const FVector& Delta/*, const FQuat& NewRotation, FHitResult* OutHit*/);
 
 	/** 렌더 유닛 관련 메소드 */
 	ENGINE_API URenderAsset& CreateRenderUnit();

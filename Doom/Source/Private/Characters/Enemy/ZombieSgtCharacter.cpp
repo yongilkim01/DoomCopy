@@ -3,6 +3,7 @@
 
 #include <Engine/Classes/Components/PaperSpriteComponent.h>
 #include <Engine/Classes/Components/ShapeComponent.h>
+#include <Engine/Classes/Components/CapsuleComponent.h>
 
 AZombieSgtCharacter::AZombieSgtCharacter()
 {
@@ -19,6 +20,8 @@ AZombieSgtCharacter::AZombieSgtCharacter()
 	ShapeComponent->SetRelativeScale3D({ 30.0f, 30.0f, 30.0f });
 	ShapeComponent->SetCollisionProfileName("EnemyBody");
 	ShapeComponent->SetCollisionType(ECollisionType::Sphere);
+
+	CapsuleComponent->SetCapsuleSize(10.0f, 41.0f);
 }
 
 AZombieSgtCharacter::~AZombieSgtCharacter()

@@ -17,7 +17,7 @@
 
 #include "Editor/Public/EngineGUI.h"
 
-#include "Physics/Public/PhysicsCore.h"
+#include "Physics/Public/PhysicsEngine.h"
 
 
 UGameEngine* GEngine = nullptr;
@@ -79,7 +79,7 @@ void UGameEngine::EngineStart(HINSTANCE Instance, std::string_view DllName)
 
 	GEngine = &EngineCore;
 	
-	GEngine->PhysicsSubSystem = std::make_shared<UPhysicsCore>();
+	GEngine->PhysicsSubSystem = std::make_shared<UPhysicsEngine>();
  
 	WindowInit(Instance);
 

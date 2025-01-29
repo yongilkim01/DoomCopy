@@ -6,7 +6,7 @@
 
 #include "Core/Public/Debugging/DebugMacros.h"
 
-#include "Physics/Public/PhysicsCore.h"
+#include "Physics/Public/PhysicsEngine.h"
 
 #include "Engine/Public/Global/EngineDefine.h"
 

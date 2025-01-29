@@ -6,6 +6,7 @@
 
 #include <Engine/Classes/Components/PaperSpriteComponent.h>
 #include <Engine/Classes/Components/ShapeComponent.h>
+#include <Engine/Classes/Components/CapsuleComponent.h>
 
 #include <Platform/Public/Input/EngineInput.h>
 
@@ -20,6 +21,8 @@ ADoomGuyCharacter::ADoomGuyCharacter()
 	ShapeComponent->SetCollisionProfileName("PlayerBody");
 	ShapeComponent->SetCollisionType(ECollisionType::Sphere);
 	ShapeComponent->SetRelativeScale3D({ 30.0f, 30.0f, 30.0f });
+
+	CapsuleComponent->SetCapsuleSize(10.0f, 25.0f);
 }
 
 ADoomGuyCharacter::~ADoomGuyCharacter()

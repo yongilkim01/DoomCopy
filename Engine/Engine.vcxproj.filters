@@ -402,7 +402,7 @@
     <ClCompile Include="Source\Engine\Private\GameInstance.cpp">
       <Filter>2_Engine\Private</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Physics\Private\PhysicsCore.cpp">
+    <ClCompile Include="Source\Physics\Private\PhysicsEngine.cpp">
       <Filter>4_Physics\Private</Filter>
     </ClCompile>
     <ClCompile Include="Source\Engine\Private\Components\PhsyicsComponent.cpp">
@@ -885,7 +885,7 @@
     <ClInclude Include="Source\Engine\Classes\Engine\GameInstance.h">
       <Filter>2_Engine\Classes\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Physics\Public\PhysicsCore.h">
+    <ClInclude Include="Source\Physics\Public\PhysicsEngine.h">
       <Filter>4_Physics\Public</Filter>
     </ClInclude>
     <ClInclude Include="Source\Engine\Classes\Components\PhsyicsComponent.h">
