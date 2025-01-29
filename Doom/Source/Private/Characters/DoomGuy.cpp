@@ -31,11 +31,17 @@ void ADoomGuyCharacter::BeginPlay()
 	AActor::BeginPlay();
 
 	Camera = GetWorld()->GetMainCamera();
+	Camera->AddActorRelativeLocation({ 0.0f, 30.0f, -10.0f });
+	Camera->GetCameraComponent()->SetZSort(0, true);
+	Camera->AttachToActor(this);
 
 	CurMouseLocation = UGameEngine::GetMainWindow().GetMousePos();
 
 	GunActor = GetWorld()->SpawnActor<AShotgunWeapon>();
 	GunActor->AttachToActor(this);
+
+	SetActorLocation(FVector{ -1042.0f, 14.0f, 3548.0f });
+
 }
 
 void ADoomGuyCharacter::Tick(float DeltaTime)

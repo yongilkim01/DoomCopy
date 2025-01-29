@@ -8,3 +8,13 @@ AGameMode::AGameMode()
 AGameMode::~AGameMode()
 {
 }
+
+void AGameMode::BeginPlay()
+{
+	AActor::BeginPlay();
+}
+
+void AGameMode::Tick(float DeltaTime)
+{
+	AActor::Tick(DeltaTime);
+}

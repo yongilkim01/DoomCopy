@@ -29,7 +29,7 @@
 class E1M1DebugWindow : public UEngineGUIWindow
 {
 public:
-	//std::shared_ptr<ADoomGuy> DoomGuy;
+	//std::shared_ptr<ADoomGuyCharacter> DoomGuy;
 
 	void OnGUI() override
 	{
@@ -44,7 +44,7 @@ public:
 			GetWorld()->GetMainCamera()->SwitchFreeCamera();
 		}
 
-		////ImGui::Text("Pos : %s", DoomGuy->GetActorLocation().ToString().c_str());
+		ImGui::Text("Player : %s", GetWorld()->GetMainPawn()->GetActorLocation().ToString().c_str());
 	}
 };
 
@@ -64,10 +64,6 @@ AE1M1GameMode::AE1M1GameMode()
 		NavMap = GetWorld()->SpawnActor<ANavMeshMap>();
 	}
 	{
-		DoomGuyCharacter = GetWorld()->SpawnActor<ADoomGuyCharacter>();
-		DoomGuyCharacter->SetActorLocation(FVector{ -1042.0f, 14.0f, 3548.0f });
-	}
-	{
 		std::shared_ptr<AZombieCharacter> ZombieCharacter = GetWorld()->SpawnActor<AZombieCharacter>();
 		ZombieCharacter->SetActorLocation(FVector{ -1012.0f, 27.0f, 3555.0f });
 
@@ -77,25 +73,30 @@ AE1M1GameMode::AE1M1GameMode()
 		std::shared_ptr<AImpCharacter> ImpCharacter = GetWorld()->SpawnActor<AImpCharacter>();
 		ImpCharacter->SetActorLocation(FVector{ -1092.0f, 27.0f, 3555.0f });
 	}
-	{
-		Camera = GetWorld()->GetMainCamera();
-		Camera->AddActorRelativeLocation({ 0.0f, 30.0f, -10.0f });
-		Camera->GetCameraComponent()->SetZSort(0, true);
-		Camera->AttachToActor(DoomGuyCharacter.get());
-	}
+	//{
+	//	Camera = GetWorld()->GetMainCamera();
+	//	Camera->AddActorRelativeLocation({ 0.0f, 30.0f, -10.0f });
+	//	Camera->GetCameraComponent()->SetZSort(0, true);
+	//	Camera->AttachToActor(GetWorld()->GetMainPawn());
+	//}
 
 	std::shared_ptr<E1M1DebugWindow> Window = UEngineGUI::CreateGUIWindow<E1M1DebugWindow>("E1M1DebugWindow");
-
-	UNavigationSystem::GetInstance().Init(DoomGuyCharacter.get(), NavMap.get(), "");
 }
 
 AE1M1GameMode::~AE1M1GameMode()
 {
 }
 
+void AE1M1GameMode::BeginPlay()
+{
+	AGameMode::BeginPlay();
+
+	UNavigationSystem::GetInstance().Init(GetWorld()->GetMainPawn(), NavMap.get(), "");
+}
+
 void AE1M1GameMode::Tick(float DeltaTime)
 {
-	AActor::Tick(DeltaTime);
+	AGameMode::Tick(DeltaTime);
 
 }
 

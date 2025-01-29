@@ -38,4 +38,6 @@ private:
 
 	FVector Direction = FVector::ZERO;
 
+	float CurLifeTime = 0.0f;
+	float LifeTime = 1.0f;
 };

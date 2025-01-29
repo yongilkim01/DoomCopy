@@ -245,6 +245,41 @@ bool FTransform::AABBToAABB(const FTransform& Left, const FTransform& Right)
 	return LeftCol.AABB.Intersects(RightCol.AABB);
 }
 
+bool FTransform::CapsuleToCapsule(const FTransform& Left, const FTransform& Right)
+{
+	FCollisionData LeftCol = Left.GetCollisionData();
+	FCollisionData RightCol = Right.GetCollisionData();
+
+	BoundingCapsule LeftCapsule = LeftCol.Capsule;
+	BoundingCapsule RightCapsule = RightCol.Capsule;
+
+	// 캡슐의 중심선 (P1, P2) 계산
+	FVector P1A = LeftCapsule.Center - FVector(0, LeftCapsule.HalfHeight, 0);
+	FVector P2A = LeftCapsule.Center + FVector(0, LeftCapsule.HalfHeight, 0);
+
+	FVector P1B = RightCapsule.Center - FVector(0, RightCapsule.HalfHeight, 0);
+	FVector P2B = RightCapsule.Center + FVector(0, RightCapsule.HalfHeight, 0);
+
+	// 두 선분 간 최단 거리 계산
+	float distanceSquared = FVector::ClosestPointBetweenSegments(P1A, P2A, P1B, P2B).Length();
+
+	// 캡슐 반지름의 합
+	float radiusSum = LeftCapsule.Radius + RightCapsule.Radius;
+
+	// 충돌 여부 판정
+	return distanceSquared <= (radiusSum * radiusSum);
+}
+
+bool FTransform::CapsuleToSphere(const FTransform& Left, const FTransform& Right)
+{
+	return false;
+}
+
+bool FTransform::SphereToCapsule(const FTransform& Left, const FTransform& Right)
+{
+	return false;
+}
+
 bool FTransform::OBB2DToPoint(const FTransform& _Left, const FTransform& _Right)
 {
 	FCollisionData LeftCol = _Left.GetCollisionData();
@@ -296,6 +331,63 @@ FVector FVector::TransformVectorNormal(const TVector& InVector, const FMatrix& I
 	CopyVector.W = 0.0f;
 
 	return CopyVector * InMatrix;
+}
+
+template<>
+FVector TVector<float>::ClosestPointBetweenSegments(TVector P1, TVector P2, TVector Q1, TVector Q2)
+{
+	FVector d1 = P2 - P1; // 첫 번째 선분 방향 벡터
+	FVector d2 = Q2 - Q1; // 두 번째 선분 방향 벡터
+	FVector r = P1 - Q1;  // 시작점 간 차이 벡터
+
+	float a = d1.Dot(d1); // ||d1||^2
+	float e = d2.Dot(d2); // ||d2||^2
+	float f = d2.Dot(r);
+
+	float s, t;
+
+	if (a <= FLT_EPSILON && e <= FLT_EPSILON)
+	{
+		return P1; // 두 선분이 사실상 점이라면, P1 반환
+	}
+
+	if (a <= FLT_EPSILON)
+	{
+		s = 0.0f;
+		t = f / e;
+	}
+	else
+	{
+		float c = d1.Dot(r);
+		if (e <= FLT_EPSILON)
+		{
+			t = 0.0f;
+			s = c / a;
+		}
+		else
+		{
+			float b = d1.Dot(d2);
+			float denom = a * e - b * b;
+
+			if (denom != 0.0f)
+			{
+				s = (b * f - c * e) / denom;
+			}
+			else
+			{
+				s = 0.0f;
+			}
+		}
+	}
+
+	// s, t를 0~1 범위로 클램프
+	s = std::clamp(s, 0.0f, 1.0f);
+	t = std::clamp(t, 0.0f, 1.0f);
+
+	FVector closestPoint1 = P1 + d1 * s;
+	FVector closestPoint2 = Q1 + d2 * t;
+
+	return closestPoint1 - closestPoint2; // 두 점 간 거리 벡터 반환
 }
 
 template<>

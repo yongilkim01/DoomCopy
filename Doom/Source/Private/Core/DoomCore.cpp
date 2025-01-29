@@ -24,6 +24,7 @@
 #include "Public/GameModes//E1M1GameMode.h"
 #include "Public/GameModes/NavMeshGameMode.h"
 
+#include "Public/Characters/DoomGuy.h"
 #include "Public/Editor/GUIEditor.h"
 #include "Public/NavigationSystem/NavMeshResource.h"
 #include "Public/Global/GameInstance/DoomGameInstance.h"
@@ -122,7 +123,7 @@ void UDoomCore::EngineAssetLoad()
 void UDoomCore::EngineLevelStart()
 {
 	//UGameEngine::CreateLevel<ATitleGameMode, AActor, AHUD>("TitleLevel");
-	UGameEngine::CreateLevel<AE1M1GameMode, APawn, AE1M1HUD>("E1M1Level");
+	UGameEngine::CreateLevel<AE1M1GameMode, ADoomGuyCharacter, AE1M1HUD>("E1M1Level");
 	//UGameEngine::CreateLevel<ANavMeshGameMode, APawn, ATitleHUD>("NavMeshLevel");
 	UGameEngine::OpenLevel("E1M1Level");
 

@@ -269,6 +269,7 @@ public:
 
 		return Result;
 	}
+	static TVector ClosestPointBetweenSegments(TVector P1, TVector P2, TVector Q1, TVector Q2);
 	/**
 	 *   두 벡터 사이의 각도를 도 단위로 계산하는 메소드
 	 *
@@ -1137,6 +1138,18 @@ public:
 
 using float4x4 = FMatrix;
 
+struct BoundingCapsule
+{
+	FVector Center;   // 중심 좌표
+	float HalfHeight; // 반높이 (캡슐 길이의 절반)
+	float Radius;     // 반지름
+
+	BoundingCapsule() : Center(0, 0, 0), HalfHeight(1.0f), Radius(1.0f) {}
+	BoundingCapsule(const FVector& center, float halfHeight, float radius)
+		: Center(center), HalfHeight(halfHeight), Radius(radius) {}
+};
+
+
 struct FCollisionData
 {
 	union
@@ -1145,6 +1158,7 @@ struct FCollisionData
 		DirectX::BoundingSphere Sphere;
 		DirectX::BoundingBox AABB;
 		DirectX::BoundingOrientedBox OBB;
+		BoundingCapsule Capsule;
 	};
 
 	FCollisionData()
@@ -1249,6 +1263,10 @@ public:
 	ENGINE_API static bool AABBToSphere(const FTransform& Left, const FTransform& Right);
 	ENGINE_API static bool AABBToOBB(const FTransform& Left, const FTransform& Right);
 	ENGINE_API static bool AABBToAABB(const FTransform& Left, const FTransform& Right);
+
+	ENGINE_API static bool CapsuleToCapsule(const FTransform& Left, const FTransform& Right);
+	ENGINE_API static bool CapsuleToSphere(const FTransform& Left, const FTransform& Right);
+	ENGINE_API static bool SphereToCapsule(const FTransform& Left, const FTransform& Right);
 
 	FCollisionData GetCollisionData() const
 	{

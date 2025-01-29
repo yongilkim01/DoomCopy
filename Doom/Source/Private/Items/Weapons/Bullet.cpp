@@ -47,6 +47,13 @@ void ABullet::Tick(float DeltaTime)
 {
     AActor::Tick(DeltaTime);
 
+	CurLifeTime += DeltaTime;
+
+	if (CurLifeTime > LifeTime)
+	{
+		Destroy();
+	}
+
 	if (Direction != FVector::ZERO)
 	{
 		MeshComponent->AddForce(Direction * 1000.0f);

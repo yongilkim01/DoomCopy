@@ -20,7 +20,8 @@ public:
 	AE1M1GameMode& operator=(const AE1M1GameMode& Other) = delete;
 	AE1M1GameMode& operator=(AE1M1GameMode&& Other) noexcept = delete;
 
-	void Tick(float DeltaTime);
+	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
 
 protected:
 	virtual void LevelChangeStart() override;

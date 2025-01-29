@@ -2,6 +2,7 @@
 #include "Engine/Classes/Engine/Level.h"
 
 #include "Engine/Classes/GameFramework/Actor.h"
+#include "Engine/Classes/GameFramework/Pawn.h"
 #include "Engine/Classes/GameFramework/HUD.h"
 #include "Engine/Classes/Engine/Font.h"
 #include "Engine/Classes/Components/ShapeComponent.h"
