@@ -13,6 +13,10 @@ AZombieCharacter::AZombieCharacter()
 	SpriteComponent->SetAutoScale(false);
 	SpriteComponent->OnBillboard();
 	SpriteComponent->CreateAnimation("Patrol_Forward", "DoomZombie.png", 0, 3, 0.5f, true);
+	SpriteComponent->CreateAnimation("Patrol_Left", "DoomZombie.png", 12, 15, 0.5f, true);
+	SpriteComponent->CreateAnimation("Patrol_Right", "DoomZombie.png", 30, 33, 0.5f, true);
+	SpriteComponent->CreateAnimation("Patrol_Back", "DoomZombie.png", 42, 45, 0.5f, true);
+
 	SpriteComponent->ChangeAnimation("Patrol_Forward");
 
 	ShapeComponent = CreateDefaultSubObject<UShapeComponent>();
@@ -46,7 +50,7 @@ void AZombieCharacter::Tick(float DeltaTime)
 
     //MoveRight(-100.0f);
 
-    UEngineDebug::OutPutString("Cur turning index : " + std::to_string(CurTurningIndex));
+    UEngineDebug::OutPutString("Cur Direction : " + GetCurDirection().ToString());
 
 }
 
@@ -69,7 +73,7 @@ void AZombieCharacter::EntryDeath()
 
 void AZombieCharacter::Patrol(float DeltaTime)
 {
-    float TestDistance = FVector::Dist(GetActorLocation(), TurningLocations[CurTurningIndex]);
+    //float TestDistance = FVector::Dist(GetActorLocation(), TurningLocations[CurTurningIndex]);
     if (FVector::Dist(GetActorLocation(), TurningLocations[CurTurningIndex]) < 5.0f)
     {
         // 다음 타겟 위치 설정
@@ -84,10 +88,11 @@ void AZombieCharacter::Patrol(float DeltaTime)
 
         // 현재 이동 방향 업데이트
         SetCurDirection(GetDirectionToTargetLocation(TurningLocations[CurTurningIndex]));
-        //ChangeMoveAnimation(GetCurDirection());  // 애니메이션 변경 (필요 시)
+        ChangeAnimation(GetCurDirection());  // 애니메이션 변경 (필요 시)
     }
     else
     {
+        ChangeAnimation(GetCurDirection());  // 애니메이션 변경 (필요 시)
         FVector CurEnemyLocation = GetActorLocation();
         FVector TurningLocation = this->TurningLocations[CurTurningIndex];
 
@@ -127,4 +132,37 @@ void AZombieCharacter::Trace(float DeltaTime)
 
 void AZombieCharacter::Death(float DeltaTime)
 {
+}
+
+void AZombieCharacter::ChangeAnimation(FVector Direction)
+{
+    switch (CurEnemyState)
+    {
+    case EEnemyState::PATROL:
+        if (Direction.iX() == 1)
+        {
+            SpriteComponent->ChangeAnimation("Patrol_Back");
+        }
+        else if (Direction.iX() == -1)
+        {
+            SpriteComponent->ChangeAnimation("Patrol_Forward");
+        }
+        else if (Direction.iZ() == 1)
+        {
+            SpriteComponent->ChangeAnimation("Patrol_Left");
+        }
+        else if (Direction.iZ() == -1)
+        {
+            SpriteComponent->ChangeAnimation("Patrol_Right");
+        }
+        break;
+    case EEnemyState::ATTACK:
+        break;
+    case EEnemyState::TRACE:
+        break;
+    case EEnemyState::DEATH:
+        break;
+    default:
+        break;
+    }
 }

@@ -27,6 +27,8 @@ public:
 	virtual void Trace(float DeltaTime) override;
 	virtual void Death(float DeltaTime) override;
 
+	virtual void ChangeAnimation(FVector Direction) override;
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;

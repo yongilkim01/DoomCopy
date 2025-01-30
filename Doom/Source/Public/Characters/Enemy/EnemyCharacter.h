@@ -41,6 +41,7 @@ public:
 	virtual void Death(float DeltaTime) {};
 
 	void ChangeState(EEnemyState State);
+	virtual void ChangeAnimation(FVector Direction) {};
 
 	/** 이동 관련 메소드 */
 	void MoveForward(float Value);
