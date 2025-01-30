@@ -77,7 +77,7 @@ FVector UPhysicsEngine::SweepCollision(const FVector& Location, const FVector& D
     }
 
     // 바닥이 감지된 경우, Y 위치 조정 (기존 코드 유지)
-    if (InHalfHeight > Distance && Distance != 0.0f)
+    if (InHalfHeight > Distance)
     {
         float CheckDistance = Distance - InHalfHeight;
         AdjustedFinalVector.Y -= CheckDistance;
