@@ -31,11 +31,100 @@ AZombieCharacter::~AZombieCharacter()
 void AZombieCharacter::BeginPlay()
 {
 	AEnemyCharacter::BeginPlay();
+
+	TurningLocations.push_back(FVector{ 30.0f, 130.0f, 3179.0f });
+	TurningLocations.push_back(FVector{ 30.0f, 130.0f, 3300.0f });
+	TurningLocations.push_back(FVector{ 130.0f, 130.0f, 3300.0f });
+	TurningLocations.push_back(FVector{ 130.0f, 130.0f, 3179.0f });
+
+	ChangeState(EEnemyState::PATROL);
 }
 
 void AZombieCharacter::Tick(float DeltaTime)
 {
 	AEnemyCharacter::Tick(DeltaTime);
 
-	MoveRight(-Speed);
+    //MoveRight(-100.0f);
+
+    UEngineDebug::OutPutString("Cur turning index : " + std::to_string(CurTurningIndex));
+
+}
+
+void AZombieCharacter::EntryPatrol()
+{
+	SetSpeed(100.0f);
+}
+
+void AZombieCharacter::EntryAttack()
+{
+}
+
+void AZombieCharacter::EntryTrace()
+{
+}
+
+void AZombieCharacter::EntryDeath()
+{
+}
+
+void AZombieCharacter::Patrol(float DeltaTime)
+{
+    float TestDistance = FVector::Dist(GetActorLocation(), TurningLocations[CurTurningIndex]);
+    if (FVector::Dist(GetActorLocation(), TurningLocations[CurTurningIndex]) < 5.0f)
+    {
+        // 다음 타겟 위치 설정
+        if (CurTurningIndex == TurningLocations.size() - 1)
+        {
+            CurTurningIndex = 0;
+        }
+        else
+        {
+            CurTurningIndex++;
+        }
+
+        // 현재 이동 방향 업데이트
+        SetCurDirection(GetDirectionToTargetLocation(TurningLocations[CurTurningIndex]));
+        //ChangeMoveAnimation(GetCurDirection());  // 애니메이션 변경 (필요 시)
+    }
+    else
+    {
+        FVector CurEnemyLocation = GetActorLocation();
+        FVector TurningLocation = this->TurningLocations[CurTurningIndex];
+
+        FVector MoveDir = TurningLocation - CurEnemyLocation;
+        MoveDir.Normalize();
+
+        // 전진 또는 후진
+        if (MoveDir.Z > 0)
+        {
+            MoveForward(Speed);  // 전진
+        }
+        else
+        {
+            MoveForward(-Speed); // 후진
+        }
+
+        // 좌측 또는 우측 이동
+        if (MoveDir.X > 0)
+        {
+            MoveRight(Speed);  // 우측 이동
+        }
+        else
+        {
+            MoveRight(-Speed); // 좌측 이동
+        }
+        
+    }
+}
+
+void AZombieCharacter::Attack(float DeltaTime)
+{
+}
+
+void AZombieCharacter::Trace(float DeltaTime)
+{
+}
+
+void AZombieCharacter::Death(float DeltaTime)
+{
 }

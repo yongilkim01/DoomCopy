@@ -17,6 +17,16 @@ public:
 	AZombieCharacter& operator=(const AZombieCharacter& Other) = delete;
 	AZombieCharacter& operator=(AZombieCharacter&& Other) noexcept = delete;
 
+	/** 상태 머신 오버라이드 메소드 */
+	virtual void EntryPatrol() override;
+	virtual void EntryAttack() override;
+	virtual void EntryTrace() override;
+	virtual void EntryDeath() override;
+	virtual void Patrol(float DeltaTime) override;
+	virtual void Attack(float DeltaTime) override;
+	virtual void Trace(float DeltaTime) override;
+	virtual void Death(float DeltaTime) override;
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;

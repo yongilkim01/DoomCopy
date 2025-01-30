@@ -66,7 +66,6 @@ public:
 			return Value;
 		}
 	}
-
 	template <typename DataType>
 	static DataType Lerp(DataType A, DataType B, DataType Alpha)
 	{
@@ -79,6 +78,15 @@ public:
 	static float Cos(float Radians)
 	{
 		return std::cos(Radians);
+	}
+
+	static int Abs(int Value)
+	{
+		return std::abs(Value);
+	}
+	static float Abs(float Value)
+	{
+		return std::abs(Value);
 	}
 };
 
@@ -402,6 +410,14 @@ public:
 	 */
 	static TVector TransformVectorNormal(const TVector& InVector, const class FMatrix& InMatrix);
 
+	ENGINE_API static float Dist(const TVector& StartLocation, const TVector& EndLocation)
+	{
+		float DistanceX = EndLocation.X - StartLocation.X;
+		float DistanceY = EndLocation.Y - StartLocation.Y;
+		float DistanceZ = EndLocation.Z - StartLocation.Z;
+
+		return std::sqrt(DistanceX * DistanceX + DistanceY * DistanceY + DistanceZ * DistanceZ);
+	}
 
 	/**
 	 *   X 축을 기준으로 벡터를 각도(도 단위)만큼 회전시키는 함수

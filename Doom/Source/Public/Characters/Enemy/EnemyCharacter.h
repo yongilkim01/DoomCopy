@@ -5,6 +5,15 @@ class UPaperSpriteComponent;
 class UTimeEventComponent;
 class UShapeComponent;
 
+enum class EEnemyState
+{
+	NONE,
+	PATROL,
+	ATTACK,
+	TRACE,
+	DEATH,
+};
+
 /**
  *	설명
  */
@@ -21,13 +30,30 @@ public:
 	AEnemyCharacter& operator=(const AEnemyCharacter& Other) = delete;
 	AEnemyCharacter& operator=(AEnemyCharacter&& Other) noexcept = delete;
 
-	std::shared_ptr<UPaperSpriteComponent> GetSpriteComponent()
-	{
-		return SpriteComponent;
-	}
+	/** 상태 머신 메소드 */
+	virtual void EntryPatrol() {};
+	virtual void EntryAttack() {};
+	virtual void EntryTrace() {};
+	virtual void EntryDeath() {};
+	virtual void Patrol(float DeltaTime) {};
+	virtual void Attack(float DeltaTime) {};
+	virtual void Trace(float DeltaTime) {};
+	virtual void Death(float DeltaTime) {};
 
+	void ChangeState(EEnemyState State);
+
+	/** 이동 관련 메소드 */
 	void MoveForward(float Value);
 	void MoveRight(float Value);
+
+	std::shared_ptr<UPaperSpriteComponent> GetSpriteComponent() { return SpriteComponent; }
+	EEnemyState GetCurEnemyState() { return this->CurEnemyState; }
+	void SetCurEnemyState(EEnemyState EnemyState) { this->CurEnemyState = EnemyState; }
+	void SetSpeed(float InSpeed) { Speed = InSpeed; }
+	void SetCurDirection(FVector Direction) { CurDirection = Direction; }
+	FVector GetCurDirection() { return CurDirection; }
+	FVector GetDirectionToTargetLocation(FVector TargetLocation);
+
 
 protected:
 	virtual void BeginPlay() override;
@@ -37,6 +63,13 @@ protected:
 	std::shared_ptr<UShapeComponent> ShapeComponent = nullptr;
 
 	float Speed = 100.0f;
+
+	EEnemyState CurEnemyState = EEnemyState::NONE;
+	EEnemyState PrevEnemyState = EEnemyState::NONE;
+
+	std::vector<FVector> TurningLocations;
+	int CurTurningIndex = 0;
+	FVector CurDirection = FVector::ZERO;
 
 private:
 

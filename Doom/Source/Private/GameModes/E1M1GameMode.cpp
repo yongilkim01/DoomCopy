@@ -65,7 +65,7 @@ AE1M1GameMode::AE1M1GameMode()
 	}
 	{
 		std::shared_ptr<AZombieCharacter> ZombieCharacter = GetWorld()->SpawnActor<AZombieCharacter>();
-		ZombieCharacter->SetActorLocation(FVector{ 95.0f, 115.0f, 3175.0f });
+		ZombieCharacter->SetActorLocation(FVector{ 30.0f, 115.0f, 3179.0f });
 
 		std::shared_ptr<AZombieSgtCharacter> ZombieSgtCharacter = GetWorld()->SpawnActor<AZombieSgtCharacter>();
 		ZombieSgtCharacter->SetActorLocation(FVector{ -1052.0f, 27.0f, 3555.0f });
