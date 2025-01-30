@@ -42,6 +42,7 @@ public:
 	ENGINE_API virtual bool MoveComponent(const FVector& Delta, const FVector& NewRotation = FVector::ZERO, bool bSweep = true/*, FHitResult* OutHit, EMoveComponentFlags MoveFlags, ETeleportType Teleport*/);
 	ENGINE_API virtual FVector SweepCollision(const FVector& NewLocation, const FVector& Delta/*, const FQuat& NewRotation, FHitResult* OutHit*/);
 	ENGINE_API virtual FVector NormalComponent(const FVector& NewLocation, const FVector& Delta/*, const FQuat& NewRotation, FHitResult* OutHit*/);
+	ENGINE_API virtual void SetSimulatePhysics(bool bSimulate);
 
 	/** ·»´õ À¯´Ö °ü·Ã ¸Þ¼Òµå */
 	ENGINE_API URenderAsset& CreateRenderUnit();
@@ -73,6 +74,7 @@ private:
 	std::vector<URenderAsset> RenderUnitVector;
 
 	bool bEnableGravity = false;
+	bool bSimulatePhysics = true;
 
 	FVector Velocity = FVector::ZERO;
 };

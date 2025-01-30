@@ -12,6 +12,7 @@ ABullet::ABullet()
 	MeshComponent = CreateDefaultSubObject<UPrimitiveComponent>();
 	RootComponent = MeshComponent;
 	MeshComponent->SetRelativeScale3D({ 3.0f, 3.0f, 3.0f });
+	MeshComponent->SetSimulatePhysics(false);
 
 	MeshComponent->CreateRenderUnit();
 	URenderAsset& Unit = MeshComponent->GetRenderUnit();

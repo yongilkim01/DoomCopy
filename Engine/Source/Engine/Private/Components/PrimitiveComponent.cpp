@@ -49,7 +49,7 @@ void UPrimitiveComponent::TickComponent(float DeltaTime)
 
 	if (FVector::ZERO != Velocity)
 	{
-		MoveComponent(Velocity * DeltaTime);
+		MoveComponent(Velocity * DeltaTime, FVector::ZERO, bSimulatePhysics);
 	}
 }
 
@@ -123,9 +123,6 @@ bool UPrimitiveComponent::MoveComponent(const FVector& Delta, const FVector& New
 	}
 	else
 	{
-		// 컴포넌트가 이동할 새 위치를 계산
-		FVector NewLocation = GetWorldLocation() + Delta;
-
 		// Sweep이 없으면 단순히 위치만 업데이트
 		SetWorldLocation(NormalComponent(GetWorldLocation(), Delta));
 
@@ -141,4 +138,9 @@ FVector UPrimitiveComponent::SweepCollision(const FVector& Location, const FVect
 FVector UPrimitiveComponent::NormalComponent(const FVector& Location, const FVector& Delta)
 {
 	return GEngine->GetPhysicsSubSystem()->NormalComponent(Location, Delta);
+}
+
+void UPrimitiveComponent::SetSimulatePhysics(bool bSimulate)
+{
+	bSimulatePhysics = bSimulate;
 }
