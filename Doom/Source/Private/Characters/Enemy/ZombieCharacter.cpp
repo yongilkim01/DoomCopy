@@ -5,6 +5,8 @@
 #include <Engine/Classes/Components/ShapeComponent.h>
 #include <Engine/Classes/Components/CapsuleComponent.h>
 
+#include "Public/Items/Weapons/EnemyProjectile.h"
+
 AZombieCharacter::AZombieCharacter()
 {
 	SpriteComponent = CreateDefaultSubObject<UPaperSpriteComponent>();
@@ -67,6 +69,11 @@ void AZombieCharacter::EntryAttack()
 {
     ChangeAnimation();
     CurAttackCoolTime = 0.0f;
+
+    std::shared_ptr<AEnemyProjectile> Bullet = GetWorld()->SpawnActor<AEnemyProjectile>();
+    FVector BulletLocation = GetActorLocation() + GetCurDirection();
+    Bullet->SetActorLocation(BulletLocation);
+    Bullet->SetEnemyProjectileDirection(GetWorld()->GetMainPawn()->GetActorLocation() - GetActorLocation());
 }
 
 void AZombieCharacter::EntryTrace()
