@@ -34,14 +34,17 @@ AZombieCharacter::~AZombieCharacter()
 
 void AZombieCharacter::BeginPlay()
 {
-	AEnemyCharacter::BeginPlay();
+    AEnemyCharacter::BeginPlay();
 
-	TurningLocations.push_back(FVector{ 30.0f, 130.0f, 3179.0f });
-	TurningLocations.push_back(FVector{ 30.0f, 130.0f, 3300.0f });
-	TurningLocations.push_back(FVector{ 130.0f, 130.0f, 3300.0f });
-	TurningLocations.push_back(FVector{ 130.0f, 130.0f, 3179.0f });
+    TurningLocations.push_back(FVector{ 30.0f, 130.0f, 3179.0f });
+    TurningLocations.push_back(FVector{ 30.0f, 130.0f, 3300.0f });
+    TurningLocations.push_back(FVector{ 130.0f, 130.0f, 3300.0f });
+    TurningLocations.push_back(FVector{ 130.0f, 130.0f, 3179.0f });
 
-	ChangeState(EEnemyState::PATROL);
+    ChangeState(EEnemyState::PATROL);
+
+    SetCurDirection(FVector{ -1.0f, 0.0f, 0.0f });
+    ChangeAnimation(GetCurDirection());
 }
 
 void AZombieCharacter::Tick(float DeltaTime)
@@ -50,7 +53,7 @@ void AZombieCharacter::Tick(float DeltaTime)
 
     //MoveRight(-100.0f);
 
-    UEngineDebug::OutPutString("Cur Direction : " + GetCurDirection().ToString());
+    //UEngineDebug::OutPutString("Cur Direction : " + GetCurDirection().ToString());
 
 }
 
@@ -73,7 +76,9 @@ void AZombieCharacter::EntryDeath()
 
 void AZombieCharacter::Patrol(float DeltaTime)
 {
-    //float TestDistance = FVector::Dist(GetActorLocation(), TurningLocations[CurTurningIndex]);
+    float DotDegree = FVector::GetVectorAngleDeg(GetCurDirection(), (GetWorld()->GetMainPawn()->GetActorLocation() - GetActorLocation()));
+
+    float TestDistance = FVector::Dist(GetActorLocation(), TurningLocations[CurTurningIndex]);
     if (FVector::Dist(GetActorLocation(), TurningLocations[CurTurningIndex]) < 5.0f)
     {
         // 다음 타겟 위치 설정
@@ -88,11 +93,11 @@ void AZombieCharacter::Patrol(float DeltaTime)
 
         // 현재 이동 방향 업데이트
         SetCurDirection(GetDirectionToTargetLocation(TurningLocations[CurTurningIndex]));
-        ChangeAnimation(GetCurDirection());  // 애니메이션 변경 (필요 시)
     }
     else
     {
-        ChangeAnimation(GetCurDirection());  // 애니메이션 변경 (필요 시)
+        ChangeAnimationBasedOnPlayer(DotDegree);
+
         FVector CurEnemyLocation = GetActorLocation();
         FVector TurningLocation = this->TurningLocations[CurTurningIndex];
 
@@ -139,19 +144,19 @@ void AZombieCharacter::ChangeAnimation(FVector Direction)
     switch (CurEnemyState)
     {
     case EEnemyState::PATROL:
-        if (Direction.iX() == 1)
+        if (Direction.iX() > 0)
         {
             SpriteComponent->ChangeAnimation("Patrol_Back");
         }
-        else if (Direction.iX() == -1)
+        else if (Direction.iX() < 0)
         {
             SpriteComponent->ChangeAnimation("Patrol_Forward");
         }
-        else if (Direction.iZ() == 1)
+        else if (Direction.iZ() > 0)
         {
             SpriteComponent->ChangeAnimation("Patrol_Left");
         }
-        else if (Direction.iZ() == -1)
+        else if (Direction.iZ() < 0)
         {
             SpriteComponent->ChangeAnimation("Patrol_Right");
         }
@@ -165,4 +170,37 @@ void AZombieCharacter::ChangeAnimation(FVector Direction)
     default:
         break;
     }
+}
+
+void AZombieCharacter::ChangeAnimationBasedOnPlayer(float Degree)
+{
+    FVector ToPlayerDirection = GetWorld()->GetMainPawn()->GetActorLocation() - GetActorLocation();
+    FVector CrossVector = FVector::Cross(GetCurDirection(), ToPlayerDirection);
+
+    std::string AnimationName;
+
+    if (45.0f <= Degree && Degree < 135.0f)
+    {
+        if (CrossVector.Y < 0.0f)
+        {
+            AnimationName = "Patrol_Left";
+        }
+        else
+        {
+            AnimationName = "Patrol_Right";
+        }
+
+    }
+    else if (135.0f <= Degree && Degree < 225.0f)
+    {
+        AnimationName = "Patrol_Back";
+    }
+    else
+    {
+        AnimationName = "Patrol_Forward";
+    }
+
+
+    // 최종 애니메이션 적용
+    SpriteComponent->ChangeAnimation(AnimationName);
 }
