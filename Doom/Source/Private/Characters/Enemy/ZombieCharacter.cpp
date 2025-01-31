@@ -17,6 +17,11 @@ AZombieCharacter::AZombieCharacter()
 	SpriteComponent->CreateAnimation("Move_Right", "DoomZombie.png", 30, 33, 0.5f, true);
 	SpriteComponent->CreateAnimation("Move_Back", "DoomZombie.png", 42, 45, 0.5f, true);
 
+    SpriteComponent->CreateAnimation("Attack_Forward", "DoomZombie.png", 4, 5, 0.5f, false);
+    SpriteComponent->CreateAnimation("Attack_Left", "DoomZombie.png", 16, 17, 0.5f, false);
+    SpriteComponent->CreateAnimation("Attack_Right", "DoomZombie.png", 34, 35, 0.5f, false);
+    SpriteComponent->CreateAnimation("Attack_Back", "DoomZombie.png", 46, 47, 0.5f, false);
+
 	SpriteComponent->ChangeAnimation("Move_Forward");
 
 	ShapeComponent = CreateDefaultSubObject<UShapeComponent>();
@@ -42,6 +47,8 @@ void AZombieCharacter::BeginPlay()
     TurningLocations.push_back(FVector{ 130.0f, 130.0f, 3179.0f });
 
     ChangeState(EEnemyState::PATROL);
+
+    DetectRange = 800.0f;
 }
 
 void AZombieCharacter::Tick(float DeltaTime)
@@ -58,10 +65,14 @@ void AZombieCharacter::EntryPatrol()
 
 void AZombieCharacter::EntryAttack()
 {
+    ChangeAnimation();
+    CurAttackCoolTime = 0.0f;
 }
 
 void AZombieCharacter::EntryTrace()
 {
+    ChangeAnimation();
+    CurAttackCoolTime = 0.0f;
 }
 
 void AZombieCharacter::EntryDeath()
@@ -84,11 +95,12 @@ void AZombieCharacter::Patrol(float DeltaTime)
 
         // 현재 이동 방향 업데이트
         SetCurDirection(GetDirectionToTargetLocation(TurningLocations[CurTurningIndex]));
+        ChangeAnimation();
+
     }
     else
     {
-        float DotDegree = FVector::GetVectorAngleDeg(GetCurDirection(), (GetWorld()->GetMainPawn()->GetActorLocation() - GetActorLocation()));
-        ChangeAnimation(DotDegree);
+        ChangeAnimation();
 
         FVector TurningLocation = this->TurningLocations[CurTurningIndex];
 
@@ -126,35 +138,57 @@ void AZombieCharacter::Patrol(float DeltaTime)
 
 void AZombieCharacter::Attack(float DeltaTime)
 {
+    CurAttackCoolTime += DeltaTime;
+
+    if (AttackCoolTime < CurAttackCoolTime)
+    {
+        ChangeState(EEnemyState::TRACE);
+    }
 }
+
 
 void AZombieCharacter::Trace(float DeltaTime)
 {
+    FVector TargetLocation = GetWorld()->GetMainPawn()->GetActorLocation();
+
+    FVector MoveDir = TargetLocation - GetActorLocation();
+    MoveDir.Normalize();
+
+    // 전진 또는 후진
+    if (MoveDir.Z > 0)
+    {
+        MoveForward(Speed);  // 전진
+    }
+    else
+    {
+        MoveForward(-Speed); // 후진
+    }
+
+    // 좌측 또는 우측 이동
+    if (MoveDir.X > 0)
+    {
+        MoveRight(Speed);  // 우측 이동
+    }
+    else
+    {
+        MoveRight(-Speed); // 좌측 이동
+    }
+
+    CurAttackCoolTime += DeltaTime;
+
+    if (AttackCoolTime < CurAttackCoolTime)
+    {
+        ChangeState(EEnemyState::ATTACK);
+    }
 }
 
 void AZombieCharacter::Death(float DeltaTime)
 {
 }
 
-void AZombieCharacter::ChangeAnimation(FVector Direction)
+void AZombieCharacter::ChangeAnimation()
 {
-    switch (CurEnemyState)
-    {
-    case EEnemyState::PATROL:
-        break;
-    case EEnemyState::ATTACK:
-        break;
-    case EEnemyState::TRACE:
-        break;
-    case EEnemyState::DEATH:
-        break;
-    default:
-        break;
-    }
-}
-
-void AZombieCharacter::ChangeAnimation(float Degree)
-{
+    float DotDegree = FVector::GetVectorAngleDeg(GetCurDirection(), (GetWorld()->GetMainPawn()->GetActorLocation() - GetActorLocation()));
     FVector ToPlayerDirection = GetWorld()->GetMainPawn()->GetActorLocation() - GetActorLocation();
     FVector CrossVector = FVector::Cross(GetCurDirection(), ToPlayerDirection);
 
@@ -167,7 +201,7 @@ void AZombieCharacter::ChangeAnimation(float Degree)
         AnimationName = "Move_";
         break;
     case EEnemyState::ATTACK:
-        AnimationName = "Attack";
+        AnimationName = "Attack_";
         break;
     case EEnemyState::DEATH:
         AnimationName = "Death_";
@@ -177,7 +211,7 @@ void AZombieCharacter::ChangeAnimation(float Degree)
     }
 
 
-    if (45.0f <= Degree && Degree < 135.0f)
+    if (45.0f <= DotDegree && DotDegree < 135.0f)
     {
         if (CrossVector.Y < 0.0f)
         {
@@ -189,7 +223,7 @@ void AZombieCharacter::ChangeAnimation(float Degree)
         }
 
     }
-    else if (135.0f <= Degree && Degree < 225.0f)
+    else if (135.0f <= DotDegree && DotDegree < 225.0f)
     {
         AnimationName += "Back";
     }

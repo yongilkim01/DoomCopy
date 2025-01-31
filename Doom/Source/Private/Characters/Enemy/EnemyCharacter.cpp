@@ -68,13 +68,16 @@ void AEnemyCharacter::Tick(float DeltaTime)
 
 void AEnemyCharacter::ChangeState(EEnemyState State)
 {
+	PrevEnemyState = CurEnemyState;
+	CurEnemyState = State;
+
 	switch (State)
 	{
 	case EEnemyState::PATROL:
 		EntryPatrol();
 		break;
 	case EEnemyState::ATTACK:
-		EntryPatrol();
+		EntryAttack();
 		break;
 	case EEnemyState::TRACE:
 		EntryTrace();
@@ -86,8 +89,6 @@ void AEnemyCharacter::ChangeState(EEnemyState State)
 		break;
 	}
 
-	PrevEnemyState = CurEnemyState;
-	CurEnemyState = State;
 }
 
 bool AEnemyCharacter::CheckActorInRange(AActor* TargetActor)
@@ -100,7 +101,7 @@ bool AEnemyCharacter::CheckActorInRange(AActor* TargetActor)
 
 	if (0 < DotDegree && DotDegree < 30.0f)
 	{
-		if (Distance < 700.0f)
+		if (Distance < DetectRange)
 		{
 			//UEngineDebug::OutPutString("Player Detected!!");
 			return true;

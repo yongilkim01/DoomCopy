@@ -43,7 +43,7 @@ public:
 	void ChangeState(EEnemyState State);
 	bool CheckActorInRange(AActor* TargetActor);
 	virtual void ChangeAnimation(FVector Direction) {};
-	virtual void ChangeAnimation(float Degree) {};
+	virtual void ChangeAnimation() {};
 
 	/** 이동 관련 메소드 */
 	void MoveForward(float Value);
@@ -73,6 +73,9 @@ protected:
 	int CurTurningIndex = 0;
 	FVector CurDirection = FVector::ZERO;
 
+	float DetectRange = 600.0f;
+	float AttackCoolTime = 1.5f;
+	float CurAttackCoolTime = 0.0f;
 private:
 
 };
