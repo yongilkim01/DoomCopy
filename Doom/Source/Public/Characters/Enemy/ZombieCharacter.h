@@ -28,7 +28,7 @@ public:
 	virtual void Death(float DeltaTime) override;
 
 	virtual void ChangeAnimation(FVector Direction) override;
-	void ChangeAnimationBasedOnPlayer(float Degree);
+	virtual void ChangeAnimation(float Degree) override;
 
 protected:
 	virtual void BeginPlay() override;

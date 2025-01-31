@@ -41,7 +41,9 @@ public:
 	virtual void Death(float DeltaTime) {};
 
 	void ChangeState(EEnemyState State);
+	bool CheckActorInRange(AActor* TargetActor);
 	virtual void ChangeAnimation(FVector Direction) {};
+	virtual void ChangeAnimation(float Degree) {};
 
 	/** 이동 관련 메소드 */
 	void MoveForward(float Value);
@@ -54,7 +56,6 @@ public:
 	void SetCurDirection(FVector Direction) { CurDirection = Direction; }
 	FVector GetCurDirection() { return CurDirection; }
 	FVector GetDirectionToTargetLocation(FVector TargetLocation);
-
 
 protected:
 	virtual void BeginPlay() override;

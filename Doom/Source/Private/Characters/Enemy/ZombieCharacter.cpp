@@ -12,12 +12,12 @@ AZombieCharacter::AZombieCharacter()
 	SpriteComponent->SetRelativeScale3D({ 120.0f, 120.0f });
 	SpriteComponent->SetAutoScale(false);
 	SpriteComponent->OnBillboard();
-	SpriteComponent->CreateAnimation("Patrol_Forward", "DoomZombie.png", 0, 3, 0.5f, true);
-	SpriteComponent->CreateAnimation("Patrol_Left", "DoomZombie.png", 12, 15, 0.5f, true);
-	SpriteComponent->CreateAnimation("Patrol_Right", "DoomZombie.png", 30, 33, 0.5f, true);
-	SpriteComponent->CreateAnimation("Patrol_Back", "DoomZombie.png", 42, 45, 0.5f, true);
+	SpriteComponent->CreateAnimation("Move_Forward", "DoomZombie.png", 0, 3, 0.5f, true);
+	SpriteComponent->CreateAnimation("Move_Left", "DoomZombie.png", 12, 15, 0.5f, true);
+	SpriteComponent->CreateAnimation("Move_Right", "DoomZombie.png", 30, 33, 0.5f, true);
+	SpriteComponent->CreateAnimation("Move_Back", "DoomZombie.png", 42, 45, 0.5f, true);
 
-	SpriteComponent->ChangeAnimation("Patrol_Forward");
+	SpriteComponent->ChangeAnimation("Move_Forward");
 
 	ShapeComponent = CreateDefaultSubObject<UShapeComponent>();
 	ShapeComponent->SetupAttachment(RootComponent);
@@ -42,18 +42,12 @@ void AZombieCharacter::BeginPlay()
     TurningLocations.push_back(FVector{ 130.0f, 130.0f, 3179.0f });
 
     ChangeState(EEnemyState::PATROL);
-
-    SetCurDirection(FVector{ -1.0f, 0.0f, 0.0f });
-    ChangeAnimation(GetCurDirection());
 }
 
 void AZombieCharacter::Tick(float DeltaTime)
 {
 	AEnemyCharacter::Tick(DeltaTime);
 
-    //MoveRight(-100.0f);
-
-    //UEngineDebug::OutPutString("Cur Direction : " + GetCurDirection().ToString());
 
 }
 
@@ -76,9 +70,6 @@ void AZombieCharacter::EntryDeath()
 
 void AZombieCharacter::Patrol(float DeltaTime)
 {
-    float DotDegree = FVector::GetVectorAngleDeg(GetCurDirection(), (GetWorld()->GetMainPawn()->GetActorLocation() - GetActorLocation()));
-
-    float TestDistance = FVector::Dist(GetActorLocation(), TurningLocations[CurTurningIndex]);
     if (FVector::Dist(GetActorLocation(), TurningLocations[CurTurningIndex]) < 5.0f)
     {
         // 다음 타겟 위치 설정
@@ -96,12 +87,12 @@ void AZombieCharacter::Patrol(float DeltaTime)
     }
     else
     {
-        ChangeAnimationBasedOnPlayer(DotDegree);
+        float DotDegree = FVector::GetVectorAngleDeg(GetCurDirection(), (GetWorld()->GetMainPawn()->GetActorLocation() - GetActorLocation()));
+        ChangeAnimation(DotDegree);
 
-        FVector CurEnemyLocation = GetActorLocation();
         FVector TurningLocation = this->TurningLocations[CurTurningIndex];
 
-        FVector MoveDir = TurningLocation - CurEnemyLocation;
+        FVector MoveDir = TurningLocation - GetActorLocation();
         MoveDir.Normalize();
 
         // 전진 또는 후진
@@ -125,6 +116,12 @@ void AZombieCharacter::Patrol(float DeltaTime)
         }
         
     }
+
+    // 상태 머신 변경 메소드
+    if (true == CheckActorInRange(GetWorld()->GetMainPawn()))
+    {
+        ChangeState(EEnemyState::ATTACK);
+    }
 }
 
 void AZombieCharacter::Attack(float DeltaTime)
@@ -144,22 +141,6 @@ void AZombieCharacter::ChangeAnimation(FVector Direction)
     switch (CurEnemyState)
     {
     case EEnemyState::PATROL:
-        if (Direction.iX() > 0)
-        {
-            SpriteComponent->ChangeAnimation("Patrol_Back");
-        }
-        else if (Direction.iX() < 0)
-        {
-            SpriteComponent->ChangeAnimation("Patrol_Forward");
-        }
-        else if (Direction.iZ() > 0)
-        {
-            SpriteComponent->ChangeAnimation("Patrol_Left");
-        }
-        else if (Direction.iZ() < 0)
-        {
-            SpriteComponent->ChangeAnimation("Patrol_Right");
-        }
         break;
     case EEnemyState::ATTACK:
         break;
@@ -172,32 +153,49 @@ void AZombieCharacter::ChangeAnimation(FVector Direction)
     }
 }
 
-void AZombieCharacter::ChangeAnimationBasedOnPlayer(float Degree)
+void AZombieCharacter::ChangeAnimation(float Degree)
 {
     FVector ToPlayerDirection = GetWorld()->GetMainPawn()->GetActorLocation() - GetActorLocation();
     FVector CrossVector = FVector::Cross(GetCurDirection(), ToPlayerDirection);
 
     std::string AnimationName;
 
+    switch (CurEnemyState)
+    {
+    case EEnemyState::PATROL:
+    case EEnemyState::TRACE:
+        AnimationName = "Move_";
+        break;
+    case EEnemyState::ATTACK:
+        AnimationName = "Attack";
+        break;
+    case EEnemyState::DEATH:
+        AnimationName = "Death_";
+        break;
+    default:
+        break;
+    }
+
+
     if (45.0f <= Degree && Degree < 135.0f)
     {
         if (CrossVector.Y < 0.0f)
         {
-            AnimationName = "Patrol_Left";
+            AnimationName += "Left";
         }
         else
         {
-            AnimationName = "Patrol_Right";
+            AnimationName += "Right";
         }
 
     }
     else if (135.0f <= Degree && Degree < 225.0f)
     {
-        AnimationName = "Patrol_Back";
+        AnimationName += "Back";
     }
     else
     {
-        AnimationName = "Patrol_Forward";
+        AnimationName += "Forward";
     }
 
 

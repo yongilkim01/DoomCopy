@@ -90,6 +90,26 @@ void AEnemyCharacter::ChangeState(EEnemyState State)
 	CurEnemyState = State;
 }
 
+bool AEnemyCharacter::CheckActorInRange(AActor* TargetActor)
+{
+	FVector ToTargetVector = TargetActor->GetActorLocation() - GetActorLocation();
+	float DotDegree = FVector::GetVectorAngleDeg(GetCurDirection(), ToTargetVector);
+	float Distance = FVector::Dist(GetActorLocation(), TargetActor->GetActorLocation());
+
+	//UEngineDebug::OutPutString("Distance : " + std::to_string(Distance));
+
+	if (0 < DotDegree && DotDegree < 30.0f)
+	{
+		if (Distance < 700.0f)
+		{
+			//UEngineDebug::OutPutString("Player Detected!!");
+			return true;
+		}
+	}
+
+	return false;
+}
+
 void AEnemyCharacter::MoveForward(float Value)
 {
 	if (Value != 0.0f)
