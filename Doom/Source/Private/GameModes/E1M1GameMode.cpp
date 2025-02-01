@@ -64,14 +64,27 @@ AE1M1GameMode::AE1M1GameMode()
 		NavMap = GetWorld()->SpawnActor<ANavMeshMap>();
 	}
 	{
-		std::shared_ptr<AZombieCharacter> ZombieCharacter = GetWorld()->SpawnActor<AZombieCharacter>();
-		ZombieCharacter->SetActorLocation(FVector{ 30.0f, 115.0f, 3179.0f });
-
 		std::shared_ptr<AZombieSgtCharacter> ZombieSgtCharacter = GetWorld()->SpawnActor<AZombieSgtCharacter>();
-		ZombieSgtCharacter->SetActorLocation(FVector{ -1052.0f, 27.0f, 3555.0f });
+		ZombieSgtCharacter->SetActorLocation(FVector{ 30.0f, 130.0f, 3179.0f });
 
-		std::shared_ptr<AImpCharacter> ImpCharacter = GetWorld()->SpawnActor<AImpCharacter>();
-		ImpCharacter->SetActorLocation(FVector{ -1092.0f, 27.0f, 3555.0f });
+		ZombieSgtCharacter->AddTurningLocation(FVector{ 30.0f, 130.0f, 3179.0f });
+		ZombieSgtCharacter->AddTurningLocation(FVector{ 30.0f, 130.0f, 3300.0f });
+		ZombieSgtCharacter->AddTurningLocation(FVector{ 130.0f, 130.0f, 3300.0f });
+		ZombieSgtCharacter->AddTurningLocation(FVector{ 130.0f, 130.0f, 3179.0f });
+
+		std::shared_ptr<AZombieSgtCharacter> ZombieSgtCharacter2 = GetWorld()->SpawnActor<AZombieSgtCharacter>();
+		ZombieSgtCharacter2->SetActorLocation(FVector{ 130.0f, 130.0f, 3300.0f });
+
+		ZombieSgtCharacter2->AddTurningLocation(FVector{ 30.0f, 130.0f, 3300.0f });
+		ZombieSgtCharacter2->AddTurningLocation(FVector{ 130.0f, 130.0f, 3300.0f });
+		ZombieSgtCharacter2->AddTurningLocation(FVector{ 130.0f, 130.0f, 3179.0f });
+	}
+	{
+		//std::shared_ptr<AZombieCharacter> ZombieCharacter = GetWorld()->SpawnActor<AZombieCharacter>();
+		//ZombieCharacter->SetActorLocation(FVector{ 30.0f, 115.0f, 3179.0f });
+
+		//std::shared_ptr<AImpCharacter> ImpCharacter = GetWorld()->SpawnActor<AImpCharacter>();
+		//ImpCharacter->SetActorLocation(FVector{ -1092.0f, 27.0f, 3555.0f });
 	}
 	//{
 	//	Camera = GetWorld()->GetMainCamera();

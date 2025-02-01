@@ -7,6 +7,8 @@
 
 #include <Engine/Classes/Engine/RenderAsset.h>
 
+#include "Public/Characters/Enemy/EnemyCharacter.h"
+
 ABullet::ABullet()
 {
 	MeshComponent = CreateDefaultSubObject<UPrimitiveComponent>();
@@ -28,8 +30,12 @@ ABullet::ABullet()
 	ShapeComponent->SetCollisionEnter([](UShapeComponent* This, UShapeComponent* Other)
 		{
 			This->GetOwner()->Destroy();
-			Other->GetOwner()->Destroy();
-			UEngineDebug::OutPutString("Enter");
+			AEnemyCharacter* EnemyCharacter = dynamic_cast<AEnemyCharacter*>(Other->GetOwner());
+			
+			if (nullptr != EnemyCharacter)
+			{
+				EnemyCharacter->TakeDamage(30);
+			}
 			
 		});
 

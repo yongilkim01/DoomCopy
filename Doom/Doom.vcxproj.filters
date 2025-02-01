@@ -184,7 +184,7 @@
     <ClCompile Include="Source\Private\Characters\Enemy\ImpCharacter.cpp">
       <Filter>Private\Characters\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Private\Items\Weapons\EnemyProjectile.cpp">
+    <ClCompile Include="Source\Private\Items\Weapons\ZombieBullet.cpp">
       <Filter>Private\Items\Weapons</Filter>
     </ClCompile>
   </ItemGroup>
@@ -274,7 +274,7 @@
     <ClInclude Include="Source\Public\Characters\Enemy\ImpCharacter.h">
       <Filter>Public\Characters\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Public\Items\Weapons\EnemyProjectile.h">
+    <ClInclude Include="Source\Public\Items\Weapons\ZombieBullet.h">
       <Filter>Public\Items\Weapons</Filter>
     </ClInclude>
   </ItemGroup>

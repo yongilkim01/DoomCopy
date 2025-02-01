@@ -61,6 +61,9 @@ void AEnemyCharacter::Tick(float DeltaTime)
 	case EEnemyState::DEATH:
 		Death(DeltaTime);
 		break;
+	case EEnemyState::EXP_DEATH:
+		ExpDeath(DeltaTime);
+		break;
 	default:
 		break;
 	}
@@ -84,6 +87,9 @@ void AEnemyCharacter::ChangeState(EEnemyState State)
 		break;
 	case EEnemyState::DEATH:
 		EntryDeath();
+		break;
+	case EEnemyState::EXP_DEATH:
+		EntryExpDeath();
 		break;
 	default:
 		break;

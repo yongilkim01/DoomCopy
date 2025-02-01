@@ -1,5 +1,5 @@
 #include "Doom.h"
-#include "Public/Items/Weapons/EnemyProjectile.h"
+#include "Public/Items/Weapons/ZombieBullet.h"
 
 #include <Engine/Classes/Components/SceneComponent.h>
 #include <Engine/Classes/Components/StaticMeshComponent.h>
@@ -7,7 +7,7 @@
 
 #include <Engine/Classes/Engine/RenderAsset.h>
 
-AEnemyProjectile::AEnemyProjectile()
+AZombieBullet::AZombieBullet()
 {
 	MeshComponent = CreateDefaultSubObject<UPrimitiveComponent>();
 	RootComponent = MeshComponent;
@@ -35,16 +35,16 @@ AEnemyProjectile::AEnemyProjectile()
 
 }
 
-AEnemyProjectile::~AEnemyProjectile()
+AZombieBullet::~AZombieBullet()
 {
 }
 
-void AEnemyProjectile::BeginPlay()
+void AZombieBullet::BeginPlay()
 {
 	AActor::BeginPlay();
 }
 
-void AEnemyProjectile::Tick(float DeltaTime)
+void AZombieBullet::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
 

@@ -5,7 +5,7 @@
 #include <Engine/Classes/Components/ShapeComponent.h>
 #include <Engine/Classes/Components/CapsuleComponent.h>
 
-#include "Public/Items/Weapons/EnemyProjectile.h"
+#include "Public/Items/Weapons/ZombieBullet.h"
 
 AZombieCharacter::AZombieCharacter()
 {
@@ -23,6 +23,17 @@ AZombieCharacter::AZombieCharacter()
     SpriteComponent->CreateAnimation("Attack_Left", "DoomZombie.png", 16, 17, 0.5f, false);
     SpriteComponent->CreateAnimation("Attack_Right", "DoomZombie.png", 34, 35, 0.5f, false);
     SpriteComponent->CreateAnimation("Attack_Back", "DoomZombie.png", 46, 47, 0.5f, false);
+
+    SpriteComponent->CreateAnimation("ExpDeath_Forward", "DoomZombie.png", 58, 66, 0.1f, false);
+    SpriteComponent->CreateAnimation("ExpDeath_Left", "DoomZombie.png", 58, 66, 0.1f, false);
+    SpriteComponent->CreateAnimation("ExpDeath_Right", "DoomZombie.png", 58, 66, 0.1f, false);
+    SpriteComponent->CreateAnimation("ExpDeath_Back", "DoomZombie.png", 58, 66, 0.1f, false);
+
+    SpriteComponent->CreateAnimation("Death_Forward", "DoomZombie.png", 53, 57, 0.1f, false);
+    SpriteComponent->CreateAnimation("Death_Left", "DoomZombie.png", 53, 57, 0.1f, false);
+    SpriteComponent->CreateAnimation("Death_Right", "DoomZombie.png", 53, 57, 0.1f, false);
+    SpriteComponent->CreateAnimation("Death_Back", "DoomZombie.png", 53, 57, 0.1f, false);
+
 
 	SpriteComponent->ChangeAnimation("Move_Forward");
 
@@ -63,14 +74,15 @@ void AZombieCharacter::Tick(float DeltaTime)
 void AZombieCharacter::EntryPatrol()
 {
 	SetSpeed(100.0f);
+    CheckTime = 0.0f;
 }
 
 void AZombieCharacter::EntryAttack()
 {
     ChangeAnimation();
-    CurAttackCoolTime = 0.0f;
+    CheckTime = 0.0f;
 
-    std::shared_ptr<AEnemyProjectile> Bullet = GetWorld()->SpawnActor<AEnemyProjectile>();
+    std::shared_ptr<AZombieBullet> Bullet = GetWorld()->SpawnActor<AZombieBullet>();
     FVector BulletLocation = GetActorLocation() + GetCurDirection();
     Bullet->SetActorLocation(BulletLocation);
     Bullet->SetEnemyProjectileDirection(GetWorld()->GetMainPawn()->GetActorLocation() - GetActorLocation());
@@ -79,11 +91,19 @@ void AZombieCharacter::EntryAttack()
 void AZombieCharacter::EntryTrace()
 {
     ChangeAnimation();
-    CurAttackCoolTime = 0.0f;
+    CheckTime = 0.0f;
 }
 
 void AZombieCharacter::EntryDeath()
 {
+    ChangeAnimation();
+    CheckTime = 0.0f;
+}
+
+void AZombieCharacter::EntryExpDeath()
+{
+    ChangeAnimation();
+    CheckTime = 0.0f;
 }
 
 void AZombieCharacter::Patrol(float DeltaTime)
@@ -145,9 +165,9 @@ void AZombieCharacter::Patrol(float DeltaTime)
 
 void AZombieCharacter::Attack(float DeltaTime)
 {
-    CurAttackCoolTime += DeltaTime;
+    CheckTime += DeltaTime;
 
-    if (AttackCoolTime < CurAttackCoolTime)
+    if (CheckTimeLimit < CheckTime)
     {
         ChangeState(EEnemyState::TRACE);
     }
@@ -181,9 +201,9 @@ void AZombieCharacter::Trace(float DeltaTime)
         MoveRight(-Speed); // 좌측 이동
     }
 
-    CurAttackCoolTime += DeltaTime;
+    CheckTime += DeltaTime;
 
-    if (AttackCoolTime < CurAttackCoolTime)
+    if (CheckTimeLimit < CheckTime)
     {
         ChangeState(EEnemyState::ATTACK);
     }
@@ -191,6 +211,22 @@ void AZombieCharacter::Trace(float DeltaTime)
 
 void AZombieCharacter::Death(float DeltaTime)
 {
+    CheckTime += DeltaTime;
+
+    if (CheckTime > CheckTimeLimit * 10.0f)
+    {
+        Destroy();
+    }
+}
+
+void AZombieCharacter::ExpDeath(float DeltaTime)
+{
+    CheckTime += DeltaTime;
+
+    if (CheckTime > CheckTimeLimit * 10.0f)
+    {
+        Destroy();
+    }
 }
 
 void AZombieCharacter::ChangeAnimation()
@@ -212,6 +248,9 @@ void AZombieCharacter::ChangeAnimation()
         break;
     case EEnemyState::DEATH:
         AnimationName = "Death_";
+        break;
+    case EEnemyState::EXP_DEATH:
+        AnimationName = "ExpDeath_";
         break;
     default:
         break;
@@ -242,4 +281,14 @@ void AZombieCharacter::ChangeAnimation()
 
     // 최종 애니메이션 적용
     SpriteComponent->ChangeAnimation(AnimationName);
+}
+
+void AZombieCharacter::TakeDamage(int Damage)
+{
+    AddHP(-Damage);
+
+    if (0 > GetHP())
+    {
+        ChangeState(EEnemyState::DEATH);
+    }
 }

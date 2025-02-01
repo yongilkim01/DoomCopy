@@ -12,6 +12,7 @@ enum class EEnemyState
 	ATTACK,
 	TRACE,
 	DEATH,
+	EXP_DEATH,
 };
 
 /**
@@ -35,15 +36,19 @@ public:
 	virtual void EntryAttack() {};
 	virtual void EntryTrace() {};
 	virtual void EntryDeath() {};
+	virtual void EntryExpDeath() {};
 	virtual void Patrol(float DeltaTime) {};
 	virtual void Attack(float DeltaTime) {};
 	virtual void Trace(float DeltaTime) {};
 	virtual void Death(float DeltaTime) {};
+	virtual void ExpDeath(float DeltaTime) {};
+
+	virtual void ChangeAnimation(FVector Direction) {};
+	virtual void ChangeAnimation() {};
 
 	void ChangeState(EEnemyState State);
 	bool CheckActorInRange(AActor* TargetActor);
-	virtual void ChangeAnimation(FVector Direction) {};
-	virtual void ChangeAnimation() {};
+	virtual void TakeDamage(int Damage) {};
 
 	/** 이동 관련 메소드 */
 	void MoveForward(float Value);
@@ -56,14 +61,21 @@ public:
 	void SetCurDirection(FVector Direction) { CurDirection = Direction; }
 	FVector GetCurDirection() { return CurDirection; }
 	FVector GetDirectionToTargetLocation(FVector TargetLocation);
+	int GetHP() { return CurHP; }
+	void SetHP(int HP) { CurHP = HP; }
+	void AddHP(int HP) { CurHP += HP; }
+	void AddTurningLocation(FVector TurningLocation) { TurningLocations.push_back(TurningLocation); }
 
 protected:
+	/** 액터 상속 메소드 */
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
 	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
 	std::shared_ptr<UShapeComponent> ShapeComponent = nullptr;
 
+	int MaxHP = 100;
+	int CurHP = 100;
 	float Speed = 100.0f;
 
 	EEnemyState CurEnemyState = EEnemyState::NONE;
@@ -74,8 +86,9 @@ protected:
 	FVector CurDirection = FVector::ZERO;
 
 	float DetectRange = 600.0f;
-	float AttackCoolTime = 1.5f;
-	float CurAttackCoolTime = 0.0f;
+	float CheckTimeLimit = 1.5f;
+	float CheckTime = 0.0f;
+
 private:
 
 };

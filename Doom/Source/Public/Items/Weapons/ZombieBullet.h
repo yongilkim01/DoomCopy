@@ -8,18 +8,18 @@ class UShapeComponent;
 /**
  *	설명
  */
-class AEnemyProjectile : public AActor
+class AZombieBullet : public AActor
 {
 public:
 	/** 생성자, 소멸자 */
-	AEnemyProjectile();
-	~AEnemyProjectile();
+	AZombieBullet();
+	~AZombieBullet();
 
 	/** 객체 값 복사 방지 */
-	AEnemyProjectile(const AEnemyProjectile& Other) = delete;
-	AEnemyProjectile(AEnemyProjectile&& Other) noexcept = delete;
-	AEnemyProjectile& operator=(const AEnemyProjectile& Other) = delete;
-	AEnemyProjectile& operator=(AEnemyProjectile&& Other) noexcept = delete;
+	AZombieBullet(const AZombieBullet& Other) = delete;
+	AZombieBullet(AZombieBullet&& Other) noexcept = delete;
+	AZombieBullet& operator=(const AZombieBullet& Other) = delete;
+	AZombieBullet& operator=(AZombieBullet&& Other) noexcept = delete;
 
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
