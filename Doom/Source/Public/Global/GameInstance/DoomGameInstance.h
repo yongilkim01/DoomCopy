@@ -20,9 +20,62 @@ public:
 
 	FDoomStatus DoomGuyStatus;
 
+	int GetDoomGuyHealth() { return DoomGuyHealth; }
+	void SetDoomGuyHealth(int Health) { DoomGuyHealth = Health; }
+	void AddDoomGuyHealth(int Health) 
+	{ 
+		DoomGuyHealth += Health; 
+		if (DoomGuyHealth < 0) DoomGuyHealth = 0;
+		
+	}
+	int GetDoomGuyBullet() { return DoomGuyBullet; }
+	void SetDoomGuyBullet(int Bullet) { DoomGuyBullet = Bullet; }
+	void AddDoomGuyBullet(int Bullet) 
+	{
+		DoomGuyBullet += Bullet;
+		if (DoomGuyBullet < 0) DoomGuyBullet = 0;
+	}
+
+	int GetDoomGuyShell() { return DoomGuyShell; }
+	void SetDoomGuyShell(int Shell) { DoomGuyShell = Shell; }
+	void AddDoomGuyShell(int Shell) 
+	{
+		DoomGuyShell += Shell;
+		if (DoomGuyShell < 0) DoomGuyShell = 0;
+	}
+
+	int GetDoomGuyRocket() { return DoomGuyRocket; }
+	void SetDoomGuyRocket(int Rocket) { DoomGuyRocket = Rocket; }
+	void AddDoomGuyRocket(int Rocket) 
+	{
+		DoomGuyRocket += Rocket;
+		if (DoomGuyRocket < 0) DoomGuyRocket = 0;
+	}
+
+	int GetDoomGuyCell() { return DoomGuyCell; }
+	void SetDoomGuyCell(int Cell) { DoomGuyCell = Cell; }
+	void AddDoomGuyCell(int Cell) 
+	{
+		DoomGuyCell += Cell;
+		if (DoomGuyCell < 0) DoomGuyCell = 0;
+	}
+
+	int GetDoomGuyArmor() { return DoomGuyArmor; }
+	void SetDoomGuyArmor(int Armor) { DoomGuyArmor = Armor; }
+	void AddDoomGuyArmor(int Armor)
+	{
+		DoomGuyArmor += Armor;
+		if (DoomGuyArmor < 0) DoomGuyArmor = 0;
+	}
+
 protected:
 
 private:
-
+	int DoomGuyHealth = 100;
+	int DoomGuyBullet = 50;
+	int DoomGuyShell = 20;
+	int DoomGuyRocket = 0;
+	int DoomGuyCell = 0;
+	int DoomGuyArmor = 0;
 };
 

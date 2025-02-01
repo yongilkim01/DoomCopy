@@ -14,6 +14,8 @@
 #include "Public/Items/Weapons/ShotgunWeapon.h"
 #include "Public/Items/Weapons/Bullet.h"
 
+#include "Public/Global/GameInstance/DoomGameInstance.h"
+
 ADoomGuyCharacter::ADoomGuyCharacter()
 {
 	ShapeComponent = CreateDefaultSubObject<UShapeComponent>();
@@ -83,6 +85,14 @@ void ADoomGuyCharacter::Tick(float DeltaTime)
 	if (UEngineInput::IsDown('Y'))
 	{
 		bPlayMode = !bPlayMode;
+	}
+	if (UEngineInput::IsDown(VK_UP))
+	{
+		GetGameInstance<UDoomGameInstance>()->AddDoomGuyHealth(1);
+	}
+	if (UEngineInput::IsDown(VK_DOWN))
+	{
+		GetGameInstance<UDoomGameInstance>()->AddDoomGuyHealth(-1);
 	}
 
 	if (true == bPlayMode)

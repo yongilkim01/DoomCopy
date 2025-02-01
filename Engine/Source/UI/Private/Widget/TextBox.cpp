@@ -65,7 +65,7 @@ void UTextBox::InitText(FVector Size, int Count /* = 10*/)
 
 	for (size_t i = 0; i < Count; i++)
 	{
-		//TextSprites[i]->AddComponentLocation(FVector2D(-Padding, 0.0f));
+		//TextImageVector[i]-
 	}
 }
 
