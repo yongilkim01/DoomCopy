@@ -5,6 +5,8 @@
 
 #include "Public/Items/Weapons/Bullet.h"
 
+#include "Public/Global/GameInstance/DoomGameInstance.h"
+
 APistolWeapon::APistolWeapon()
 {
     SpriteComponent = CreateDefaultSubObject<UPaperSpriteComponent>();
@@ -49,6 +51,7 @@ void APistolWeapon::FireGun()
         return;
     }
 
+    GetGameInstance<UDoomGameInstance>()->AddDoomGuyBullet(-1);
     ChangeState(EGunState::FIRE);
 }
 
