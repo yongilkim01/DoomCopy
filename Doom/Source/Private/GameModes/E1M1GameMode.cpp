@@ -64,12 +64,14 @@ AE1M1GameMode::AE1M1GameMode()
 		GetWorld()->CreateCollisionProfile("DropItem");
 		GetWorld()->CreateCollisionProfile("EnvBody");
 		GetWorld()->CreateCollisionProfile("EnvAttack");
+		GetWorld()->CreateCollisionProfile("DoorInteraction");
 
 		GetWorld()->LinkCollisionProfile("PlayerAttack", "EnemyBody");
 		GetWorld()->LinkCollisionProfile("EnemyAttack", "PlayerBody");
 		GetWorld()->LinkCollisionProfile("DropItem", "PlayerBody");
 		GetWorld()->LinkCollisionProfile("PlayerAttack", "EnvBody");
 		GetWorld()->LinkCollisionProfile("EnvAttack", "PlayerBody");
+		GetWorld()->LinkCollisionProfile("DoorInteraction", "PlayerBody");
 	}
 	{
 		E1M1Map = GetWorld()->SpawnActor<AE1M1Map>();
@@ -78,12 +80,13 @@ AE1M1GameMode::AE1M1GameMode()
 	{
 		std::shared_ptr<ADoor> Door1 = GetWorld()->SpawnActor<ADoor>();
 		Door1->SetModel("doom_E1M1", 15);
+		Door1->SetShapeComponentLocation(FVector{ -1541, 10, 2494 });
 
-		std::shared_ptr<ADoor> Door2 = GetWorld()->SpawnActor<ADoor>();
-		Door2->SetModel("doom_E1M1", 32);
+		//std::shared_ptr<ADoor> Door2 = GetWorld()->SpawnActor<ADoor>();
+		//Door2->SetModel("doom_E1M1", 32);
 
-		std::shared_ptr<ADoor> Door3 = GetWorld()->SpawnActor<ADoor>();
-		Door3->SetModel("doom_E1M1", 34);
+		//std::shared_ptr<ADoor> Door3 = GetWorld()->SpawnActor<ADoor>();
+		//Door3->SetModel("doom_E1M1", 34);
 	}
 	{
 		std::shared_ptr<AZombieSgtCharacter> ZombieSgtCharacter = GetWorld()->SpawnActor<AZombieSgtCharacter>();
