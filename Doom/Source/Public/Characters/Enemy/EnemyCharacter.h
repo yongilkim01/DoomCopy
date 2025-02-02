@@ -1,5 +1,6 @@
 #pragma once
 #include <Engine/Classes/GameFramework/Character.h>
+#include "Public/Global/DoomEnums.h"
 
 class UPaperSpriteComponent;
 class UTimeEventComponent;
@@ -49,6 +50,7 @@ public:
 	void ChangeState(EEnemyState State);
 	bool CheckActorInRange(AActor* TargetActor);
 	virtual void TakeDamage(int Damage) {};
+	virtual void DropItem();
 
 	/** 이동 관련 메소드 */
 	void MoveForward(float Value);
@@ -65,6 +67,12 @@ public:
 	void SetHP(int HP) { CurHP = HP; }
 	void AddHP(int HP) { CurHP += HP; }
 	void AddTurningLocation(FVector TurningLocation) { TurningLocations.push_back(TurningLocation); }
+	float GetDetectRange() { return DetectRange; }
+	void SetDetectRange(float Range) { DetectRange = Range; }
+	void SetDropItemType(EDropItemType ItemType)
+	{
+		DropItemType = ItemType;
+	}
 
 protected:
 	/** 액터 상속 메소드 */
@@ -80,12 +88,13 @@ protected:
 
 	EEnemyState CurEnemyState = EEnemyState::NONE;
 	EEnemyState PrevEnemyState = EEnemyState::NONE;
+	EDropItemType DropItemType = EDropItemType::NONE;
 
 	std::vector<FVector> TurningLocations;
 	int CurTurningIndex = 0;
 	FVector CurDirection = FVector::ZERO;
 
-	float DetectRange = 600.0f;
+	float DetectRange = 300.0f;
 	float CheckTimeLimit = 1.5f;
 	float CheckTime = 0.0f;
 

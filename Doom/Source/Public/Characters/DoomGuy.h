@@ -35,6 +35,7 @@ private:
 	std::shared_ptr<ACameraActor> Camera = nullptr;
 
 	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
+	std::shared_ptr<UPaperSpriteComponent> AimingPointSpriteComponent = nullptr;
 	std::shared_ptr<UShapeComponent> ShapeComponent = nullptr;
 	std::shared_ptr<AGunWeapon> GunActor = nullptr;
 	

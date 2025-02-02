@@ -11,7 +11,7 @@ AZombieCharacter::AZombieCharacter()
 {
 	SpriteComponent = CreateDefaultSubObject<UPaperSpriteComponent>();
 	SpriteComponent->SetupAttachment(RootComponent);
-	SpriteComponent->SetRelativeScale3D({ 120.0f, 120.0f });
+	SpriteComponent->SetRelativeScale3D({ 120.0f, 120.0f});
 	SpriteComponent->SetAutoScale(false);
 	SpriteComponent->OnBillboard();
 	SpriteComponent->CreateAnimation("Move_Forward", "DoomZombie.png", 0, 3, 0.5f, true);
@@ -43,7 +43,7 @@ AZombieCharacter::AZombieCharacter()
 	ShapeComponent->SetCollisionProfileName("EnemyBody");
 	ShapeComponent->SetCollisionType(ECollisionType::Sphere);
 
-	CapsuleComponent->SetCapsuleSize(5.0f, 41.0f);
+	CapsuleComponent->SetCapsuleSize(1.0f, 41.0f);
 }
 
 AZombieCharacter::~AZombieCharacter()
@@ -54,11 +54,6 @@ void AZombieCharacter::BeginPlay()
 {
     AEnemyCharacter::BeginPlay();
 
-    TurningLocations.push_back(FVector{ 30.0f, 130.0f, 3179.0f });
-    TurningLocations.push_back(FVector{ 30.0f, 130.0f, 3300.0f });
-    TurningLocations.push_back(FVector{ 130.0f, 130.0f, 3300.0f });
-    TurningLocations.push_back(FVector{ 130.0f, 130.0f, 3179.0f });
-
     ChangeState(EEnemyState::PATROL);
 
     DetectRange = 800.0f;
@@ -67,6 +62,31 @@ void AZombieCharacter::BeginPlay()
 void AZombieCharacter::Tick(float DeltaTime)
 {
 	AEnemyCharacter::Tick(DeltaTime);
+
+    std::string DebugMsg = "Current Enemy State : ";
+
+    switch (CurEnemyState)
+    {
+    case EEnemyState::PATROL:
+        DebugMsg += "PATROL";
+        break;
+    case EEnemyState::ATTACK:
+        DebugMsg += "ATTACK";
+        break;
+    case EEnemyState::TRACE:
+        DebugMsg += "TRACE";
+        break;
+    case EEnemyState::DEATH:
+        DebugMsg += "DEATH";
+        break;
+    case EEnemyState::EXP_DEATH:
+        DebugMsg += "EXP_DEATH";
+        break;
+    default:
+        break;
+    }
+
+    UEngineDebug::OutPutString(DebugMsg);
 
 
 }
@@ -108,7 +128,7 @@ void AZombieCharacter::EntryExpDeath()
 
 void AZombieCharacter::Patrol(float DeltaTime)
 {
-    if (FVector::Dist(GetActorLocation(), TurningLocations[CurTurningIndex]) < 5.0f)
+    if (FVector::DistXZ(GetActorLocation(), TurningLocations[CurTurningIndex]) < 10.0f)
     {
         // 다음 타겟 위치 설정
         if (CurTurningIndex == TurningLocations.size() - 1)

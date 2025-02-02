@@ -101,7 +101,7 @@ bool AEnemyCharacter::CheckActorInRange(AActor* TargetActor)
 {
 	FVector ToTargetVector = TargetActor->GetActorLocation() - GetActorLocation();
 	float DotDegree = FVector::GetVectorAngleDeg(GetCurDirection(), ToTargetVector);
-	float Distance = FVector::Dist(GetActorLocation(), TargetActor->GetActorLocation());
+	float Distance = FVector::DistXZ(GetActorLocation(), TargetActor->GetActorLocation());
 
 	//UEngineDebug::OutPutString("Distance : " + std::to_string(Distance));
 
@@ -109,12 +109,24 @@ bool AEnemyCharacter::CheckActorInRange(AActor* TargetActor)
 	{
 		if (Distance < DetectRange)
 		{
-			//UEngineDebug::OutPutString("Player Detected!!");
+			UEngineDebug::OutPutString("Player Detected!!");
 			return true;
 		}
 	}
 
 	return false;
+}
+
+void AEnemyCharacter::DropItem()
+{
+	switch (DropItemType)
+	{
+	case EDropItemType::SHOTGUN:
+		
+		break;
+	default:
+		break;
+	}
 }
 
 void AEnemyCharacter::MoveForward(float Value)

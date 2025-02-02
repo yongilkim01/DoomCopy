@@ -14,9 +14,9 @@ AShotgunWeapon::AShotgunWeapon()
     SpriteComponent->SetAutoScale(false);
 
     SpriteComponent->CreateAnimation("ShotGun_Idle", "Shotgun.png", 0, 0, 0.1f, true);
-    SpriteComponent->CreateAnimation("ShotGun_Fire", "Shotgun.png", 1, 5, 0.5f, false);
+    SpriteComponent->CreateAnimation("ShotGun_Fire", "Shotgun.png", 1, 7, 0.3f, false);
 
-    SpriteComponent->SetAnimationEvent("ShotGun_Fire", 5, [this]()
+    SpriteComponent->SetAnimationEvent("ShotGun_Fire", 7, [this]()
         {
             ChangeState(EGunState::MOVE);
         });
@@ -33,7 +33,7 @@ void AShotgunWeapon::BeginPlay()
 {
     AGunWeapon::BeginPlay();
 
-    GunMoveAmplitude = 0.01f;  // ÁøÆø
+    GunMoveAmplitude = 0.005f;  // ÁøÆø
     GunMoveFrequency = 1.0f;    // ÁÖÆÄ¼ö
 }
 
@@ -59,9 +59,9 @@ void AShotgunWeapon::EntryMove()
 
 void AShotgunWeapon::EntryFire()
 {
-    float BulletStartValue = -10.0f;
+    float BulletStartValue = -20.0f;
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 10; i++)
     {
         std::shared_ptr<ABullet> Bullet = GetWorld()->SpawnActor<ABullet>();
         FVector BulletLocation = GetActorLocation() + (GetActorForwardVector() * 50.0f) + (GetActorUpVector() * 30.0f) + (GetActorRightVector() * BulletStartValue);

@@ -13,7 +13,7 @@ ABullet::ABullet()
 {
 	MeshComponent = CreateDefaultSubObject<UPrimitiveComponent>();
 	RootComponent = MeshComponent;
-	MeshComponent->SetRelativeScale3D({ 3.0f, 3.0f, 3.0f });
+	MeshComponent->SetRelativeScale3D({ 0.0f, 0.0f, 0.0f });
 	MeshComponent->SetSimulatePhysics(false);
 
 	MeshComponent->CreateRenderUnit();
@@ -63,6 +63,6 @@ void ABullet::Tick(float DeltaTime)
 
 	if (Direction != FVector::ZERO)
 	{
-		MeshComponent->AddForce(Direction * 1000.0f);
+		MeshComponent->AddForce(Direction * 10000.0f);
 	}
 }

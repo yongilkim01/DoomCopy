@@ -3,6 +3,8 @@
 #include "Public/Global/DoomEnums.h"
 
 class ADoomGuyCharacter;
+class UPaperSpriteComponent;
+class UShapeComponent;
 
 /**
  *	Ό³Έν
@@ -56,10 +58,14 @@ public:
 	}
 
 protected:
-
-private:
 	EDropItemType CurDropItemType = EDropItemType::NONE;
 	EDropItemState CurDropItemState = EDropItemState::NONE;
 	ADoomGuyCharacter* DoomGuyCharacter = nullptr;
+
+	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
+	std::shared_ptr<UShapeComponent> ShapeComponent = nullptr;
+
+private:
+
 };
 

@@ -43,7 +43,7 @@ AZombieSgtCharacter::AZombieSgtCharacter()
     ShapeComponent->SetCollisionProfileName("EnemyBody");
     ShapeComponent->SetCollisionType(ECollisionType::Sphere);
 
-    CapsuleComponent->SetCapsuleSize(5.0f, 41.0f);
+    CapsuleComponent->SetCapsuleSize(0.0f, 41.0f);
 }
 
 AZombieSgtCharacter::~AZombieSgtCharacter()
@@ -63,6 +63,31 @@ void AZombieSgtCharacter::Tick(float DeltaTime)
 {
     AEnemyCharacter::Tick(DeltaTime);
 
+    std::string DebugMsg = "Current Enemy State : ";
+
+    switch (CurEnemyState)
+    {
+    case EEnemyState::PATROL:
+        DebugMsg += "PATROL";
+        break;
+    case EEnemyState::ATTACK:
+        DebugMsg += "ATTACK";
+        break;
+    case EEnemyState::TRACE:
+        DebugMsg += "TRACE";
+        break;
+    case EEnemyState::DEATH:
+        DebugMsg += "DEATH";
+        break;
+    case EEnemyState::EXP_DEATH:
+        DebugMsg += "EXP_DEATH";
+        break;
+    default:
+        break;
+    }
+
+    UEngineDebug::OutPutString(DebugMsg);
+    UEngineDebug::OutPutString("Cur Index : " + std::to_string(CurTurningIndex));
 
 }
 
@@ -103,7 +128,7 @@ void AZombieSgtCharacter::EntryExpDeath()
 
 void AZombieSgtCharacter::Patrol(float DeltaTime)
 {
-    if (FVector::Dist(GetActorLocation(), TurningLocations[CurTurningIndex]) < 5.0f)
+    if (FVector::DistXZ(GetActorLocation(), TurningLocations[CurTurningIndex]) < 10.0f)
     {
         // 다음 타겟 위치 설정
         if (CurTurningIndex == TurningLocations.size() - 1)

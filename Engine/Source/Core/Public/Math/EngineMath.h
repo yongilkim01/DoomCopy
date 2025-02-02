@@ -422,6 +422,13 @@ public:
 
 		return std::sqrt(DistanceX * DistanceX + DistanceY * DistanceY + DistanceZ * DistanceZ);
 	}
+	ENGINE_API static float DistXZ(const TVector& StartLocation, const TVector& EndLocation)
+	{
+		float DistanceX = EndLocation.X - StartLocation.X;
+		float DistanceZ = EndLocation.Z - StartLocation.Z;
+
+		return std::sqrt(DistanceX * DistanceX + DistanceZ * DistanceZ);
+	}
 
 	/**
 	 *   X 축을 기준으로 벡터를 각도(도 단위)만큼 회전시키는 함수

@@ -17,13 +17,15 @@
 #include <ThirdParty/imgui/imgui.h>
 
 #include "Public/Characters/DoomGuy.h"
-#include "Public/Maps/E1M1Map.h"
-#include "Public/Editor/GUIEditor.h"
-#include "Public/NavigationSystem/NavMeshMap.h"
-
 #include "Public/Characters/Enemy/ImpCharacter.h"
 #include "Public/Characters/Enemy/ZombieCharacter.h"
 #include "Public/Characters/Enemy/ZombieSgtCharacter.h"
+
+#include "Public/Items/DropItems/DropPotion.h"
+
+#include "Public/Maps/E1M1Map.h"
+#include "Public/Editor/GUIEditor.h"
+#include "Public/NavigationSystem/NavMeshMap.h"
 
 
 class E1M1DebugWindow : public UEngineGUIWindow
@@ -55,9 +57,11 @@ AE1M1GameMode::AE1M1GameMode()
 		GetWorld()->CreateCollisionProfile("PlayerAttack");
 		GetWorld()->CreateCollisionProfile("EnemyBody");
 		GetWorld()->CreateCollisionProfile("EnemyAttack");
+		GetWorld()->CreateCollisionProfile("DropItem");
 
 		GetWorld()->LinkCollisionProfile("PlayerAttack", "EnemyBody");
 		GetWorld()->LinkCollisionProfile("EnemyAttack", "PlayerBody");
+		GetWorld()->LinkCollisionProfile("DropItem", "PlayerBody");
 	}
 	{
 		E1M1Map = GetWorld()->SpawnActor<AE1M1Map>();
@@ -78,13 +82,62 @@ AE1M1GameMode::AE1M1GameMode()
 		ZombieSgtCharacter2->AddTurningLocation(FVector{ 30.0f, 130.0f, 3300.0f });
 		ZombieSgtCharacter2->AddTurningLocation(FVector{ 130.0f, 130.0f, 3300.0f });
 		ZombieSgtCharacter2->AddTurningLocation(FVector{ 130.0f, 130.0f, 3179.0f });
+
+		std::shared_ptr<AZombieSgtCharacter> ZombieSgtCharacter3 = GetWorld()->SpawnActor<AZombieSgtCharacter>();
+		ZombieSgtCharacter3->SetActorLocation(FVector{ -2252, 40, 2503 });
+
+		ZombieSgtCharacter3->AddTurningLocation(FVector{ -2252, 40, 2503 });
+		ZombieSgtCharacter3->AddTurningLocation(FVector{ -2100, 30, 2503 });
+		ZombieSgtCharacter3->AddTurningLocation(FVector{ -2100, 30, 2362 });
+		ZombieSgtCharacter3->AddTurningLocation(FVector{ -2252, 40, 2362 });
+
+		std::shared_ptr<AZombieSgtCharacter> ZombieSgtCharacter4 = GetWorld()->SpawnActor<AZombieSgtCharacter>();
+		ZombieSgtCharacter4->SetActorLocation(FVector{ -2417, 10, 2516 });
+
+		ZombieSgtCharacter4->AddTurningLocation(FVector{ -2417, 10, 2322 });
+		ZombieSgtCharacter4->AddTurningLocation(FVector{ -2417, 10, 2516 });
+
 	}
 	{
-		//std::shared_ptr<AZombieCharacter> ZombieCharacter = GetWorld()->SpawnActor<AZombieCharacter>();
-		//ZombieCharacter->SetActorLocation(FVector{ 30.0f, 115.0f, 3179.0f });
+		// -2252, 35, 2503
+		// -2252, 35, 2362
+	}
+	{
+		std::shared_ptr<AZombieCharacter> ZombieCharacter1 = GetWorld()->SpawnActor<AZombieCharacter>();
+		ZombieCharacter1->SetActorLocation(FVector{ -2252, 40, 2362 });
+
+		ZombieCharacter1->AddTurningLocation(FVector{ -2252, 40, 2362 });
+		ZombieCharacter1->AddTurningLocation(FVector{ -2252, 40, 2503 });
+		ZombieCharacter1->AddTurningLocation(FVector{ -2100, 30, 2503 });
+		ZombieCharacter1->AddTurningLocation(FVector{ -2100, 30, 2362 });
+
+		std::shared_ptr<AZombieCharacter> ZombieCharacter2 = GetWorld()->SpawnActor<AZombieCharacter>();
+		ZombieCharacter2->SetActorLocation(FVector{ -2232, 40, 2402 });
+
+		ZombieCharacter2->AddTurningLocation(FVector{ -2232, 40, 2402 });
+		ZombieCharacter2->AddTurningLocation(FVector{ -2182, 35, 2402 });
+		ZombieCharacter2->AddTurningLocation(FVector{ -2182, 35, 2480 });
+		ZombieCharacter2->AddTurningLocation(FVector{ -2232, 40, 2480 });
+
+		std::shared_ptr<AZombieCharacter> ZombieCharacter3 = GetWorld()->SpawnActor<AZombieCharacter>();
+		ZombieCharacter3->SetActorLocation(FVector{ -2978, 20, 2938 });
+
+		ZombieCharacter3->AddTurningLocation(FVector{ -2978, 20, 2938 });
+		ZombieCharacter3->AddTurningLocation(FVector{ -2869, 20, 2757 });
+		//ZombieCharacter3->SetDetectRange(100.0f);
 
 		//std::shared_ptr<AImpCharacter> ImpCharacter = GetWorld()->SpawnActor<AImpCharacter>();
 		//ImpCharacter->SetActorLocation(FVector{ -1092.0f, 27.0f, 3555.0f });
+	}
+	{
+		std::shared_ptr<ADropPotion> Potion1 = GetWorld()->SpawnActor<ADropPotion>();
+		Potion1->SetActorLocation(FVector{ -741, 10, 3524 });
+		// -752, 10, 3520
+	}
+	{
+		std::shared_ptr<ADropPotion> Armor = GetWorld()->SpawnActor<ADropPotion>();
+		Armor->SetActorLocation(FVector{ 237, 138, 3235 });
+		// -752, 10, 3520
 	}
 	//{
 	//	Camera = GetWorld()->GetMainCamera();

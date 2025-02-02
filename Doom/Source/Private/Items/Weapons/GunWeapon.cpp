@@ -69,8 +69,8 @@ void AGunWeapon::Move(float DeltaTime)
     {
         RunningTime += DeltaTime;
 
-        float DeltaWidth = GunMoveAmplitude * FMath::Sin(2 * FMath::PI * GunMoveFrequency * RunningTime);
-        float DeltaHeight = -GunMoveAmplitude * FMath::Sin(2 * FMath::PI * GunMoveFrequency * RunningTime * 2.0f);
+        float DeltaWidth = GunMoveAmplitude * FMath::Sin(3 * FMath::PI * GunMoveFrequency * RunningTime);
+        float DeltaHeight = -GunMoveAmplitude * FMath::Sin(3 * FMath::PI * GunMoveFrequency * RunningTime * 2.0f);
 
         AddActorLocation(FVector{ DeltaWidth, DeltaHeight, 0.0f });
     }

@@ -19,6 +19,13 @@
 
 ADoomGuyCharacter::ADoomGuyCharacter()
 {
+	AimingPointSpriteComponent = CreateDefaultSubObject<UPaperSpriteComponent>();
+	AimingPointSpriteComponent->SetupAttachment(RootComponent);
+	AimingPointSpriteComponent->SetTexture("AimingPoint.png");
+	AimingPointSpriteComponent->SetRelativeLocation({ 0.0f, 30.0f, 20.0f });
+	AimingPointSpriteComponent->SetRelativeScale3D({ 1.0f, 1.0f });
+	AimingPointSpriteComponent->SetAutoScale(false);
+
 	ShapeComponent = CreateDefaultSubObject<UShapeComponent>();
 	ShapeComponent->SetupAttachment(RootComponent);
 	ShapeComponent->SetCollisionProfileName("PlayerBody");
@@ -43,11 +50,12 @@ void ADoomGuyCharacter::BeginPlay()
 
 	CurMouseLocation = UGameEngine::GetMainWindow().GetMousePos();
 
-	GunActor = GetWorld()->SpawnActor<AShotgunWeapon>();
+	GunActor = GetWorld()->SpawnActor<APistolWeapon>();
 	GunActor->AttachToActor(this);
 
 	SetActorLocation(FVector{ -1042.0f, 14.0f, 3548.0f });
-
+	AddActorRotation(FVector{ 0.0f, 180.0f, 0.0f });
+	//SetActorLocation(FVector{ -1755.0f, 14.0f, 2497.0f });
 }
 
 void ADoomGuyCharacter::Tick(float DeltaTime)
