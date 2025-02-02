@@ -6,6 +6,9 @@ class UStaticMeshComponent;
 class UShapeComponent;
 class UPaperSpriteComponent;
 class AGunWeapon;
+class APistolWeapon;
+class AShotgunWeapon;
+
 
 /**
  *	설명
@@ -26,6 +29,8 @@ public:
 	void MoveForward(float Value);
 	void MoveRight(float Value);
 
+	void ChangeWeapon(int WeaponIndex);
+
 protected:
 	/** 액터 상속 메소드 */
 	void BeginPlay() override;
@@ -37,7 +42,9 @@ private:
 	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
 	std::shared_ptr<UPaperSpriteComponent> AimingPointSpriteComponent = nullptr;
 	std::shared_ptr<UShapeComponent> ShapeComponent = nullptr;
-	std::shared_ptr<AGunWeapon> GunActor = nullptr;
+	AGunWeapon* GunActor = nullptr;
+	std::shared_ptr<APistolWeapon> PistolActor = nullptr;
+	std::shared_ptr<AShotgunWeapon> ShotgunActor = nullptr;
 	
 	FVector CurMouseLocation = FVector::ZERO;
 

@@ -50,8 +50,15 @@ void ADoomGuyCharacter::BeginPlay()
 
 	CurMouseLocation = UGameEngine::GetMainWindow().GetMousePos();
 
-	GunActor = GetWorld()->SpawnActor<APistolWeapon>();
-	GunActor->AttachToActor(this);
+	PistolActor = GetWorld()->SpawnActor<APistolWeapon>();
+	ShotgunActor = GetWorld()->SpawnActor<AShotgunWeapon>();
+
+	PistolActor->AttachToActor(this);
+	ShotgunActor->AttachToActor(this);
+
+	ShotgunActor->SetActive(false);
+
+	GunActor = PistolActor.get();
 
 	SetActorLocation(FVector{ -1042.0f, 14.0f, 3548.0f });
 	AddActorRotation(FVector{ 0.0f, 180.0f, 0.0f });
@@ -94,6 +101,14 @@ void ADoomGuyCharacter::Tick(float DeltaTime)
 	if (UEngineInput::IsDown('Y'))
 	{
 		bPlayMode = !bPlayMode;
+	}
+	if (UEngineInput::IsDown('2'))
+	{
+		ChangeWeapon(2);
+	}
+	if (UEngineInput::IsDown('3'))
+	{
+		ChangeWeapon(3);
 	}
 	if (UEngineInput::IsDown(VK_UP))
 	{
@@ -144,5 +159,30 @@ void ADoomGuyCharacter::MoveRight(float Value)
 		FVector Direction = GetActorRightVector();
 
 		AddMovementInput(Direction, Value);
+	}
+}
+
+void ADoomGuyCharacter::ChangeWeapon(int WeaponIndex)
+{
+	int DoomGuyWeaponCount = GetGameInstance<UDoomGameInstance>()->GetDoomGuyWeaponCount();
+
+	if (DoomGuyWeaponCount + 1 < WeaponIndex)
+	{
+		return;
+	}
+
+	if (2 == WeaponIndex)
+	{
+		ShotgunActor->SetActive(false);
+		PistolActor->SetActive(true);
+
+		GunActor = PistolActor.get();
+	}
+	else if (3 == WeaponIndex)
+	{
+		ShotgunActor->SetActive(true);
+		PistolActor->SetActive(false);
+
+		GunActor = ShotgunActor.get();
 	}
 }
