@@ -166,6 +166,10 @@
     <ClCompile Include="Source\Private\GameModes\TitleGameMode.cpp" />
     <ClCompile Include="Source\Private\Global\DoomStructs.cpp" />
     <ClCompile Include="Source\Private\Global\GameInstance\DoomGameInstance.cpp" />
+    <ClCompile Include="Source\Private\Items\DropItems\DropArmor.cpp" />
+    <ClCompile Include="Source\Private\Items\DropItems\DropItem.cpp" />
+    <ClCompile Include="Source\Private\Items\DropItems\DropPotion.cpp" />
+    <ClCompile Include="Source\Private\Items\DropItems\DropShotgun.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\BaseWeapon.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\Bullet.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\ZombieBullet.cpp" />
@@ -196,8 +200,13 @@
     <ClInclude Include="Source\Public\GameModes\NavMeshGameMode.h" />
     <ClInclude Include="Source\Public\GameModes\TileMapGameMode.h" />
     <ClInclude Include="Source\Public\GameModes\TitleGameMode.h" />
+    <ClInclude Include="Source\Public\Global\DoomEnums.h" />
     <ClInclude Include="Source\Public\Global\DoomStructs.h" />
     <ClInclude Include="Source\Public\Global\GameInstance\DoomGameInstance.h" />
+    <ClInclude Include="Source\Public\Items\DropItems\DropArmor.h" />
+    <ClInclude Include="Source\Public\Items\DropItems\DropItem.h" />
+    <ClInclude Include="Source\Public\Items\DropItems\DropPotion.h" />
+    <ClInclude Include="Source\Public\Items\DropItems\DropShotgun.h" />
     <ClInclude Include="Source\Public\Items\Weapons\BaseWeapon.h" />
     <ClInclude Include="Source\Public\Items\Weapons\Bullet.h" />
     <ClInclude Include="Source\Public\Items\Weapons\ZombieBullet.h" />

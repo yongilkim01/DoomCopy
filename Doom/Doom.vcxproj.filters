@@ -97,6 +97,12 @@
     <Filter Include="Public\Core">
       <UniqueIdentifier>{34477e50-8263-4b48-ba91-578b2270f276}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Private\Items\DropItems">
+      <UniqueIdentifier>{b00c9660-ef89-47ff-9041-405f899156df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Public\Items\DropItems">
+      <UniqueIdentifier>{1648d81b-5017-4571-807b-2733984fd73e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Private\Items\Weapons\BaseWeapon.cpp">
@@ -187,6 +193,18 @@
     <ClCompile Include="Source\Private\Items\Weapons\ZombieBullet.cpp">
       <Filter>Private\Items\Weapons</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Private\Items\DropItems\DropItem.cpp">
+      <Filter>Private\Items\DropItems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\Items\DropItems\DropShotgun.cpp">
+      <Filter>Private\Items\DropItems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\Items\DropItems\DropArmor.cpp">
+      <Filter>Private\Items\DropItems</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\Items\DropItems\DropPotion.cpp">
+      <Filter>Private\Items\DropItems</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Public\Items\Weapons\BaseWeapon.h">
@@ -276,6 +294,21 @@
     </ClInclude>
     <ClInclude Include="Source\Public\Items\Weapons\ZombieBullet.h">
       <Filter>Public\Items\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Items\DropItems\DropItem.h">
+      <Filter>Public\Items\DropItems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Global\DoomEnums.h">
+      <Filter>Public\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Items\DropItems\DropShotgun.h">
+      <Filter>Public\Items\DropItems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Items\DropItems\DropArmor.h">
+      <Filter>Public\Items\DropItems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Items\DropItems\DropPotion.h">
+      <Filter>Public\Items\DropItems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
