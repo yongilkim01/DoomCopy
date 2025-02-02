@@ -205,6 +205,9 @@
     <ClCompile Include="Source\Private\Items\DropItems\DropPotion.cpp">
       <Filter>Private\Items\DropItems</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Private\Items\Weapons\PistolWeapon.cpp">
+      <Filter>Private\Items\Weapons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Public\Items\Weapons\BaseWeapon.h">
@@ -309,6 +312,9 @@
     </ClInclude>
     <ClInclude Include="Source\Public\Items\DropItems\DropPotion.h">
       <Filter>Public\Items\DropItems</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Items\Weapons\PistolWeapon.h">
+      <Filter>Public\Items\Weapons</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

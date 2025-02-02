@@ -18,7 +18,7 @@ AShotgunWeapon::AShotgunWeapon()
 
     SpriteComponent->SetAnimationEvent("ShotGun_Fire", 5, [this]()
         {
-            SpriteComponent->ChangeAnimation("ShotGun_Idle");
+            ChangeState(EGunState::MOVE);
         });
 
     SpriteComponent->ChangeAnimation("ShotGun_Idle");
@@ -32,17 +32,32 @@ AShotgunWeapon::~AShotgunWeapon()
 void AShotgunWeapon::BeginPlay()
 {
     AGunWeapon::BeginPlay();
+
+    GunMoveAmplitude = 0.01f;  // ÁøÆø
+    GunMoveFrequency = 1.0f;    // ÁÖÆÄ¼ö
 }
 
 void AShotgunWeapon::Tick(float DeltaTime)
 {
     AGunWeapon::Tick(DeltaTime);
-
-    BulletStartLocation = GetActorLocation() + FVector{ 0.0f, SpriteComponent->GetRelativeLocation().Y, GetActorForwardVector().Z * 10 };
-
 }
 
-void AShotgunWeapon::Fire()
+void AShotgunWeapon::FireGun()
+{
+    if (EGunState::MOVE != CurGunState)
+    {
+        return;
+    }
+
+    ChangeState(EGunState::FIRE);
+}
+
+void AShotgunWeapon::EntryMove()
+{
+    SpriteComponent->ChangeAnimation("ShotGun_Idle");
+}
+
+void AShotgunWeapon::EntryFire()
 {
     float BulletStartValue = -10.0f;
 
@@ -55,12 +70,26 @@ void AShotgunWeapon::Fire()
 
         BulletStartValue += 5.0f;
     }
-
-
-    Reload();
 }
 
-void AShotgunWeapon::Reload()
+void AShotgunWeapon::EntryReload()
 {
     SpriteComponent->ChangeAnimation("ShotGun_Fire");
+
+}
+
+void AShotgunWeapon::Move(float DeltaTime)
+{
+    AGunWeapon::Move(DeltaTime);
+
+    BulletStartLocation = GetActorLocation() + FVector{ 0.0f, SpriteComponent->GetRelativeLocation().Y, GetActorForwardVector().Z * 10 };
+}
+
+void AShotgunWeapon::Fire(float DeltaTime)
+{
+    ChangeState(EGunState::RELOAD);
+}
+
+void AShotgunWeapon::Reload(float DeltaTime)
+{
 }

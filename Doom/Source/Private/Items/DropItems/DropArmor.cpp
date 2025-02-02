@@ -12,6 +12,7 @@ ADropArmor::~ADropArmor()
 void ADropArmor::BeginPlay()
 {
 	ADropItem::BeginPlay();
+
 }
 
 void ADropArmor::Tick(float DeltaTime)

@@ -1,15 +1,9 @@
 #pragma once
 #include "Public/Items/Weapons/BaseWeapon.h"
+#include "Public/Global/DoomEnums.h"
 
 class UPaperSpriteComponent;
 class ACharacter;
-
-enum class EGunType : uint8
-{
-	NONE,
-	PISTOL,
-	SHOTGUN,
-};
 
 /**
  *	설명
@@ -30,8 +24,17 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
-	virtual void Fire();
-	virtual void Reload();
+	virtual void FireGun();
+
+	virtual void EntryMove();
+	virtual void EntryFire();
+	virtual void EntryReload();
+
+	virtual void Move(float DeltaTime);
+	virtual void Fire(float DeltaTime);
+	virtual void Reload(float DeltaTime);
+
+	void ChangeState(EGunState GunState);
 
 	bool IsMoving() const
 	{
@@ -59,16 +62,21 @@ public:
 	}
 
 protected:
+	/** AGunWeapon 세팅 멤버 변수 */
+	EGunType GunType = EGunType::NONE;
+	EGunState CurGunState = EGunState::NONE;
+
 	/** 이동 관련 멤버 변수 */
 	bool bMoving = false;
 	float RunningTime = 0.0f;
+
+	float GunMoveAmplitude = 0.01f;  // 진폭
+	float GunMoveFrequency = 1.0f;    // 주파수
+
 	FVector BulletStartLocation = FVector::ZERO;
 
 private:
 	std::shared_ptr<UPaperSpriteComponent> SpriteComponent = nullptr;
-
-	/** AGunWeapon 세팅 멤버 변수 */
-	EGunType GunType = EGunType::NONE;
 
 	/** 소유주 */
 	std::weak_ptr<ACharacter> Owner;

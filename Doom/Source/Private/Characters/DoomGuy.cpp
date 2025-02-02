@@ -11,6 +11,7 @@
 #include <Platform/Public/Input/EngineInput.h>
 
 #include "Public/Items/Weapons/GunWeapon.h"
+#include "Public/Items/Weapons/PistolWeapon.h"
 #include "Public/Items/Weapons/ShotgunWeapon.h"
 #include "Public/Items/Weapons/Bullet.h"
 
@@ -80,7 +81,7 @@ void ADoomGuyCharacter::Tick(float DeltaTime)
 	}
 	if (UEngineInput::IsDown(VK_LBUTTON))
 	{
-		GunActor->Fire();
+		GunActor->FireGun();
 	}
 	if (UEngineInput::IsDown('Y'))
 	{

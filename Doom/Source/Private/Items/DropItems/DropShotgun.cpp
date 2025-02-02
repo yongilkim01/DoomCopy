@@ -11,10 +11,13 @@ ADropShotgun::~ADropShotgun()
 
 void ADropShotgun::BeginPlay()
 {
+	ADropItem::BeginPlay();
 }
 
 void ADropShotgun::Tick(float DeltaTime)
 {
+	ADropItem::Tick(DeltaTime);
+
 }
 
 void ADropShotgun::EntryDrop()

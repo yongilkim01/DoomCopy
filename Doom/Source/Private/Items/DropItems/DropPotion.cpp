@@ -11,10 +11,14 @@ ADropPotion::~ADropPotion()
 
 void ADropPotion::BeginPlay()
 {
+	ADropItem::BeginPlay();
+
 }
 
 void ADropPotion::Tick(float DeltaTime)
 {
+	ADropItem::Tick(DeltaTime);
+
 }
 
 void ADropPotion::EntryDrop()
