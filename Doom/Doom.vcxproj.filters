@@ -103,6 +103,12 @@
     <Filter Include="Public\Items\DropItems">
       <UniqueIdentifier>{1648d81b-5017-4571-807b-2733984fd73e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Public\Items\Environment">
+      <UniqueIdentifier>{217da266-d2b8-48ad-a896-c42d0f5a1284}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private\Items\Environment">
+      <UniqueIdentifier>{df143689-f989-42ea-a300-cafe6dd0d929}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Private\Items\Weapons\BaseWeapon.cpp">
@@ -207,6 +213,9 @@
     </ClCompile>
     <ClCompile Include="Source\Private\Items\Weapons\PistolWeapon.cpp">
       <Filter>Private\Items\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Private\Items\Environment\DrumContainer.cpp">
+      <Filter>Private\Items\Environment</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -315,6 +324,9 @@
     </ClInclude>
     <ClInclude Include="Source\Public\Items\Weapons\PistolWeapon.h">
       <Filter>Public\Items\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Items\Environment\DrumContainer.h">
+      <Filter>Public\Items\Environment</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

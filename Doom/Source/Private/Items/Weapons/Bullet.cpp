@@ -9,6 +9,8 @@
 
 #include "Public/Characters/Enemy/EnemyCharacter.h"
 
+#include "Public/Items/Environment/DrumContainer.h"
+
 ABullet::ABullet()
 {
 	MeshComponent = CreateDefaultSubObject<UPrimitiveComponent>();
@@ -35,6 +37,15 @@ ABullet::ABullet()
 			if (nullptr != EnemyCharacter)
 			{
 				EnemyCharacter->TakeDamage(100);
+			}
+			else
+			{
+				ADrumContainer* DrumContainer = dynamic_cast<ADrumContainer*>(Other->GetOwner());
+
+				if (nullptr != DrumContainer)
+				{
+					DrumContainer->Bomb();
+				}
 			}
 			
 		});

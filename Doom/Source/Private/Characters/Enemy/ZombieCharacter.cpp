@@ -63,30 +63,30 @@ void AZombieCharacter::Tick(float DeltaTime)
 {
 	AEnemyCharacter::Tick(DeltaTime);
 
-    std::string DebugMsg = "Current Enemy State : ";
+    //std::string DebugMsg = "Current Enemy State : ";
 
-    switch (CurEnemyState)
-    {
-    case EEnemyState::PATROL:
-        DebugMsg += "PATROL";
-        break;
-    case EEnemyState::ATTACK:
-        DebugMsg += "ATTACK";
-        break;
-    case EEnemyState::TRACE:
-        DebugMsg += "TRACE";
-        break;
-    case EEnemyState::DEATH:
-        DebugMsg += "DEATH";
-        break;
-    case EEnemyState::EXP_DEATH:
-        DebugMsg += "EXP_DEATH";
-        break;
-    default:
-        break;
-    }
+    //switch (CurEnemyState)
+    //{
+    //case EEnemyState::PATROL:
+    //    DebugMsg += "PATROL";
+    //    break;
+    //case EEnemyState::ATTACK:
+    //    DebugMsg += "ATTACK";
+    //    break;
+    //case EEnemyState::TRACE:
+    //    DebugMsg += "TRACE";
+    //    break;
+    //case EEnemyState::DEATH:
+    //    DebugMsg += "DEATH";
+    //    break;
+    //case EEnemyState::EXP_DEATH:
+    //    DebugMsg += "EXP_DEATH";
+    //    break;
+    //default:
+    //    break;
+    //}
 
-    UEngineDebug::OutPutString(DebugMsg);
+    //UEngineDebug::OutPutString(DebugMsg);
 
 
 }

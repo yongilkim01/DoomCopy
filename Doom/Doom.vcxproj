@@ -170,6 +170,7 @@
     <ClCompile Include="Source\Private\Items\DropItems\DropItem.cpp" />
     <ClCompile Include="Source\Private\Items\DropItems\DropPotion.cpp" />
     <ClCompile Include="Source\Private\Items\DropItems\DropShotgun.cpp" />
+    <ClCompile Include="Source\Private\Items\Environment\DrumContainer.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\BaseWeapon.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\Bullet.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\PistolWeapon.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="Source\Public\Items\DropItems\DropItem.h" />
     <ClInclude Include="Source\Public\Items\DropItems\DropPotion.h" />
     <ClInclude Include="Source\Public\Items\DropItems\DropShotgun.h" />
+    <ClInclude Include="Source\Public\Items\Environment\DrumContainer.h" />
     <ClInclude Include="Source\Public\Items\Weapons\BaseWeapon.h" />
     <ClInclude Include="Source\Public\Items\Weapons\Bullet.h" />
     <ClInclude Include="Source\Public\Items\Weapons\PistolWeapon.h" />

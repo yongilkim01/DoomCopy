@@ -23,6 +23,7 @@
 
 #include "Public/Items/DropItems/DropPotion.h"
 #include "Public/Items/DropItems/DropArmor.h"
+#include "Public/Items/Environment/DrumContainer.h"
 
 #include "Public/Maps/E1M1Map.h"
 #include "Public/Editor/GUIEditor.h"
@@ -59,10 +60,14 @@ AE1M1GameMode::AE1M1GameMode()
 		GetWorld()->CreateCollisionProfile("EnemyBody");
 		GetWorld()->CreateCollisionProfile("EnemyAttack");
 		GetWorld()->CreateCollisionProfile("DropItem");
+		GetWorld()->CreateCollisionProfile("EnvBody");
+		GetWorld()->CreateCollisionProfile("EnvAttack");
 
 		GetWorld()->LinkCollisionProfile("PlayerAttack", "EnemyBody");
 		GetWorld()->LinkCollisionProfile("EnemyAttack", "PlayerBody");
 		GetWorld()->LinkCollisionProfile("DropItem", "PlayerBody");
+		GetWorld()->LinkCollisionProfile("PlayerAttack", "EnvBody");
+		GetWorld()->LinkCollisionProfile("EnvAttack", "PlayerBody");
 	}
 	{
 		E1M1Map = GetWorld()->SpawnActor<AE1M1Map>();
@@ -146,6 +151,10 @@ AE1M1GameMode::AE1M1GameMode()
 		std::shared_ptr<ADropArmor> Armor = GetWorld()->SpawnActor<ADropArmor>();
 		Armor->SetActorLocation(FVector{ 221, 138, 3227 });
 		// -752, 10, 3520
+	}
+	{
+		std::shared_ptr<ADrumContainer> DrumContainer1 = GetWorld()->SpawnActor<ADrumContainer>();
+		DrumContainer1->SetActorLocation(FVector{ -1116, 17, 2932 });
 	}
 	//{
 	//	Camera = GetWorld()->GetMainCamera();
