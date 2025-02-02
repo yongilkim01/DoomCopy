@@ -5,6 +5,7 @@ class ADoomGuyCharacter;
 class ACameraActor;
 class AE1M1Map;
 class ANavMeshMap;
+class ADoor;
 
 // Ό³Έν :
 class AE1M1GameMode : public AGameMode
@@ -31,6 +32,7 @@ private:
 	std::shared_ptr<ACameraActor> Camera = nullptr;
 	std::shared_ptr<AE1M1Map> E1M1Map = nullptr;
 	std::shared_ptr<ANavMeshMap> NavMap = nullptr;
+	std::vector<std::shared_ptr<ADoor>> DoorVector;
 
 };
 

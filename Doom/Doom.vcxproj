@@ -177,6 +177,7 @@
     <ClCompile Include="Source\Private\Items\Weapons\ZombieBullet.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\GunWeapon.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\ShotgunWeapon.cpp" />
+    <ClCompile Include="Source\Private\Maps\Door.cpp" />
     <ClCompile Include="Source\Private\Maps\E1M1Map.cpp" />
     <ClCompile Include="Source\Private\NavigationSystem\NavMeshCharacter.cpp" />
     <ClCompile Include="Source\Private\NavigationSystem\NavMeshComponent.cpp" />
@@ -216,6 +217,7 @@
     <ClInclude Include="Source\Public\Items\Weapons\ZombieBullet.h" />
     <ClInclude Include="Source\Public\Items\Weapons\GunWeapon.h" />
     <ClInclude Include="Source\Public\Items\Weapons\ShotgunWeapon.h" />
+    <ClInclude Include="Source\Public\Maps\Door.h" />
     <ClInclude Include="Source\Public\Maps\E1M1Map.h" />
     <ClInclude Include="Source\Public\NavigationSystem\NavMeshCharacter.h" />
     <ClInclude Include="Source\Public\NavigationSystem\NavMeshComponent.h" />

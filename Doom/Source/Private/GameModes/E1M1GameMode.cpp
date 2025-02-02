@@ -26,6 +26,8 @@
 #include "Public/Items/Environment/DrumContainer.h"
 
 #include "Public/Maps/E1M1Map.h"
+#include "Public/Maps/Door.h"
+
 #include "Public/Editor/GUIEditor.h"
 #include "Public/NavigationSystem/NavMeshMap.h"
 
@@ -72,6 +74,16 @@ AE1M1GameMode::AE1M1GameMode()
 	{
 		E1M1Map = GetWorld()->SpawnActor<AE1M1Map>();
 		NavMap = GetWorld()->SpawnActor<ANavMeshMap>();
+	}
+	{
+		std::shared_ptr<ADoor> Door1 = GetWorld()->SpawnActor<ADoor>();
+		Door1->SetModel("doom_E1M1", 15);
+
+		std::shared_ptr<ADoor> Door2 = GetWorld()->SpawnActor<ADoor>();
+		Door2->SetModel("doom_E1M1", 32);
+
+		std::shared_ptr<ADoor> Door3 = GetWorld()->SpawnActor<ADoor>();
+		Door3->SetModel("doom_E1M1", 34);
 	}
 	{
 		std::shared_ptr<AZombieSgtCharacter> ZombieSgtCharacter = GetWorld()->SpawnActor<AZombieSgtCharacter>();
