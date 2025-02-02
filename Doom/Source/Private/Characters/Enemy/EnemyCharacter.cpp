@@ -3,7 +3,9 @@
 
 #include <Engine/Classes/Components/SceneComponent.h>
 #include <Engine/Classes/Components/PaperSpriteComponent.h>
-#include <Engine/Classes/Components/ShapeComponent.h>
+#include <Engine/Classes/Components/ShapeComponent.h>\
+
+#include "Public/Items/DropItems/DropShotgun.h"
 
 AEnemyCharacter::AEnemyCharacter()
 {
@@ -119,11 +121,20 @@ bool AEnemyCharacter::CheckActorInRange(AActor* TargetActor)
 
 void AEnemyCharacter::DropItem()
 {
+	if (EDropItemType::NONE == DropItemType)
+	{
+		return;
+	}
+
 	switch (DropItemType)
 	{
 	case EDropItemType::SHOTGUN:
-		
+	{
+		std::shared_ptr<ADropShotgun> Armor = GetWorld()->SpawnActor<ADropShotgun>();
+		Armor->SetActorLocation(GetActorLocation() + (GetCurDirection() * 15.0f));
+		Armor->AddActorLocation(FVector{ 0.0f, -20.0f, 0.0f });
 		break;
+	}
 	default:
 		break;
 	}

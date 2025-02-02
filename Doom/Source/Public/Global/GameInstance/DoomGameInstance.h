@@ -68,6 +68,15 @@ public:
 		if (DoomGuyArmor < 0) DoomGuyArmor = 0;
 	}
 
+	int GetDoomGuyWeaponCount() { return DoomGuyWeaponCount; }
+	void SetDoomGuyWeaponCount(int WeaponCount) { DoomGuyWeaponCount = WeaponCount; }
+	void AddDoomGuyWeaponCount(int WeaponCount)
+	{
+		DoomGuyWeaponCount += WeaponCount;
+		if (DoomGuyWeaponCount < 0) DoomGuyWeaponCount = 0;
+		else if (DoomGuyWeaponCount > 2) DoomGuyWeaponCount = 2;
+	}
+
 protected:
 
 private:
@@ -77,5 +86,6 @@ private:
 	int DoomGuyRocket = 0;
 	int DoomGuyCell = 0;
 	int DoomGuyArmor = 0;
+	int DoomGuyWeaponCount = 1;
 };
 

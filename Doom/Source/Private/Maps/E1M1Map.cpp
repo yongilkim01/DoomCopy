@@ -39,19 +39,19 @@ AE1M1Map::AE1M1Map()
 
 		GroundMeshComponent->SetModel("doom_E1M1", GroundModelNumber);
 	}
-	{
-		DoorMeshComponent = CreateDefaultSubObject<UStaticMeshComponent>();
-		DoorMeshComponent->SetupAttachment(RootComponent);
+	//{
+	//	DoorMeshComponent = CreateDefaultSubObject<UStaticMeshComponent>();
+	//	DoorMeshComponent->SetupAttachment(RootComponent);
 
-		std::vector<int> DoorModelNumber;
-		DoorModelNumber.reserve(5);
+	//	std::vector<int> DoorModelNumber;
+	//	DoorModelNumber.reserve(5);
 
-		DoorModelNumber.push_back(15);
-		DoorModelNumber.push_back(32);
-		DoorModelNumber.push_back(34);
+	//	DoorModelNumber.push_back(15);
+	//	DoorModelNumber.push_back(32);
+	//	DoorModelNumber.push_back(34);
 
-		DoorMeshComponent->SetModel("doom_E1M1", DoorModelNumber);
-	}
+	//	DoorMeshComponent->SetModel("doom_E1M1", DoorModelNumber);
+	//}
 	{
 		WallMeshComponent = CreateDefaultSubObject<UStaticMeshComponent>();
 		WallMeshComponent->SetupAttachment(RootComponent);

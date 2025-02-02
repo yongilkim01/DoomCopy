@@ -45,6 +45,7 @@ void AE1M1HUD::Tick(float DeltaTime)
 	TickAmmoWidget();
 	TickArmorWidget();
 	TickAmmoStateWidget();
+	TickStateWidget();
 }
 
 std::vector<int> AE1M1HUD::SlitDigits(int Number)
@@ -65,13 +66,22 @@ void AE1M1HUD::BeginPlayStateWidget()
 	MainStateWidget->SetWorldLocation({ 0.0f, -296.0f });
 	MainStateWidget->SetTexture("StatusBar.png");
 
+	int DoomGuyWeaponCount = GetGameInstance<UDoomGameInstance>()->GetDoomGuyWeaponCount();
+	std::string ArmsStateWidgetName = "ArmsStatus_" + std::to_string(DoomGuyWeaponCount) + ".png";
+
 	std::shared_ptr<UImage> ArmsStateWidget = CreateWidget<UImage>(-1);
 	ArmsStateWidget->SetWorldScale3D({ 160, 128, 1 });
 	ArmsStateWidget->SetWorldLocation({ -144.0f, -296.0f });
-	ArmsStateWidget->SetTexture("ArmsStatus.png");
+	ArmsStateWidget->SetTexture(ArmsStateWidgetName);
+
+	StateWidgetVector.push_back(ArmsStateWidget);
 }
 void AE1M1HUD::TickStateWidget()
 {
+	int DoomGuyWeaponCount = GetGameInstance<UDoomGameInstance>()->GetDoomGuyWeaponCount();
+	std::string ArmsStateWidgetName = "ArmsStatus_" + std::to_string(DoomGuyWeaponCount) + ".png";
+	StateWidgetVector[0]->SetTexture(ArmsStateWidgetName);
+
 }
 
 void AE1M1HUD::BeginPlayHealthWidget()

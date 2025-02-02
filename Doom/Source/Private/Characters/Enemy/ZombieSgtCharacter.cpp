@@ -118,12 +118,14 @@ void AZombieSgtCharacter::EntryDeath()
 {
     ChangeAnimation();
     CheckTime = 0.0f;
+    DropItem();
 }
 
 void AZombieSgtCharacter::EntryExpDeath()
 {
     ChangeAnimation();
     CheckTime = 0.0f;
+    DropItem();
 }
 
 void AZombieSgtCharacter::Patrol(float DeltaTime)

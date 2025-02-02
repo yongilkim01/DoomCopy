@@ -13,7 +13,7 @@ ABullet::ABullet()
 {
 	MeshComponent = CreateDefaultSubObject<UPrimitiveComponent>();
 	RootComponent = MeshComponent;
-	MeshComponent->SetRelativeScale3D({ 0.0f, 0.0f, 0.0f });
+	MeshComponent->SetRelativeScale3D({ 5.0f, 5.0f, 5.0f });
 	MeshComponent->SetSimulatePhysics(false);
 
 	MeshComponent->CreateRenderUnit();
@@ -25,7 +25,7 @@ ABullet::ABullet()
 	ShapeComponent->SetupAttachment(RootComponent);
 	ShapeComponent->SetCollisionProfileName("PlayerAttack");
 	ShapeComponent->SetCollisionType(ECollisionType::Sphere);
-	ShapeComponent->SetRelativeScale3D({ 3.0f, 3.0f, 3.0f });
+	ShapeComponent->SetRelativeScale3D({ 15.0f, 15.0f, 15.0f });
 
 	ShapeComponent->SetCollisionEnter([](UShapeComponent* This, UShapeComponent* Other)
 		{
@@ -34,7 +34,7 @@ ABullet::ABullet()
 			
 			if (nullptr != EnemyCharacter)
 			{
-				EnemyCharacter->TakeDamage(30);
+				EnemyCharacter->TakeDamage(100);
 			}
 			
 		});

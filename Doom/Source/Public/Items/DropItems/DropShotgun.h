@@ -27,6 +27,8 @@ public:
 	virtual void Drop(float DeltaTime) override;
 	virtual void Pickup(float DeltaTime) override;
 
+	void ActiveDropItem();
+
 protected:
 
 private:

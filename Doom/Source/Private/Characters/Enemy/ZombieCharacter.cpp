@@ -118,6 +118,7 @@ void AZombieCharacter::EntryDeath()
 {
     ChangeAnimation();
     CheckTime = 0.0f;
+    ShapeComponent->SetActive(false);
 }
 
 void AZombieCharacter::EntryExpDeath()

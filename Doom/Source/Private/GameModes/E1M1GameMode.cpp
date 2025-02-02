@@ -22,6 +22,7 @@
 #include "Public/Characters/Enemy/ZombieSgtCharacter.h"
 
 #include "Public/Items/DropItems/DropPotion.h"
+#include "Public/Items/DropItems/DropArmor.h"
 
 #include "Public/Maps/E1M1Map.h"
 #include "Public/Editor/GUIEditor.h"
@@ -97,6 +98,13 @@ AE1M1GameMode::AE1M1GameMode()
 		ZombieSgtCharacter4->AddTurningLocation(FVector{ -2417, 10, 2322 });
 		ZombieSgtCharacter4->AddTurningLocation(FVector{ -2417, 10, 2516 });
 
+		std::shared_ptr<AZombieSgtCharacter> ZombieSgtCharacter5 = GetWorld()->SpawnActor<AZombieSgtCharacter>();
+		ZombieSgtCharacter5->SetActorLocation(FVector{ -140, 5, 3386 });
+
+		ZombieSgtCharacter5->AddTurningLocation(FVector{ -140, 5, 3386 });
+		ZombieSgtCharacter5->AddTurningLocation(FVector{ -185, 10, 3331 });
+		ZombieSgtCharacter5->SetDropItemType(EDropItemType::SHOTGUN);
+
 	}
 	{
 		// -2252, 35, 2503
@@ -135,8 +143,8 @@ AE1M1GameMode::AE1M1GameMode()
 		// -752, 10, 3520
 	}
 	{
-		std::shared_ptr<ADropPotion> Armor = GetWorld()->SpawnActor<ADropPotion>();
-		Armor->SetActorLocation(FVector{ 237, 138, 3235 });
+		std::shared_ptr<ADropArmor> Armor = GetWorld()->SpawnActor<ADropArmor>();
+		Armor->SetActorLocation(FVector{ 221, 138, 3227 });
 		// -752, 10, 3520
 	}
 	//{

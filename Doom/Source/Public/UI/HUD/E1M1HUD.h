@@ -46,4 +46,6 @@ private:
 	std::vector<std::shared_ptr<UImage>> CurBulletWidgetVector;
 	std::vector<std::shared_ptr<UImage>> CurShellWidgetVector;
 
+	std::vector<std::shared_ptr<UImage>> StateWidgetVector;
+
 };
