@@ -82,11 +82,15 @@ AE1M1GameMode::AE1M1GameMode()
 		Door1->SetModel("doom_E1M1", 15);
 		Door1->SetShapeComponentLocation(FVector{ -1541, 10, 2494 });
 
-		//std::shared_ptr<ADoor> Door2 = GetWorld()->SpawnActor<ADoor>();
-		//Door2->SetModel("doom_E1M1", 32);
+		std::shared_ptr<ADoor> Door2 = GetWorld()->SpawnActor<ADoor>();
+		Door2->SetModel("doom_E1M1", 32);
+		Door2->SetShapeComponentLocation(FVector{ -3005, -14, 4636 });
 
-		//std::shared_ptr<ADoor> Door3 = GetWorld()->SpawnActor<ADoor>();
-		//Door3->SetModel("doom_E1M1", 34);
+
+		std::shared_ptr<ADoor> Door3 = GetWorld()->SpawnActor<ADoor>();
+		Door3->SetModel("doom_E1M1", 34);
+		Door3->SetShapeComponentLocation(FVector{ -3010, -14, 4027 });
+
 	}
 	{
 		std::shared_ptr<AZombieSgtCharacter> ZombieSgtCharacter = GetWorld()->SpawnActor<AZombieSgtCharacter>();
