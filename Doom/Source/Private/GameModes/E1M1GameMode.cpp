@@ -162,6 +162,13 @@ AE1M1GameMode::AE1M1GameMode()
 		//ImpCharacter->SetActorLocation(FVector{ -1092.0f, 27.0f, 3555.0f });
 	}
 	{
+		std::shared_ptr<AImpCharacter> ImpCharacter = GetWorld()->SpawnActor<AImpCharacter>();
+		ImpCharacter->SetActorLocation(FVector{ -3009, -14, 4436 });
+
+		ImpCharacter->AddTurningLocation(FVector{ -3009, -14, 4436 });
+		ImpCharacter->AddTurningLocation(FVector{ -3009, -14, 4352 });
+	}
+	{
 		std::shared_ptr<ADropPotion> Potion1 = GetWorld()->SpawnActor<ADropPotion>();
 		Potion1->SetActorLocation(FVector{ -741, 10, 3524 });
 		// -752, 10, 3520
