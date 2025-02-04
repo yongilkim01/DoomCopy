@@ -220,6 +220,9 @@
     <ClCompile Include="Source\Private\Maps\Door.cpp">
       <Filter>Private\Maps</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Private\Items\Weapons\ImpFire.cpp">
+      <Filter>Private\Items\Weapons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Public\Items\Weapons\BaseWeapon.h">
@@ -333,6 +336,9 @@
     </ClInclude>
     <ClInclude Include="Source\Public\Maps\Door.h">
       <Filter>Public\Maps</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Public\Items\Weapons\ImpFire.h">
+      <Filter>Public\Items\Weapons</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

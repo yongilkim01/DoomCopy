@@ -80,11 +80,11 @@ void UDoomCore::EngineAssetLoad()
 		UPaperSprite::CreateSpriteToCount("NormalArmor.png", 2, 1);
 		UPaperSprite::CreateSpriteToCount("Weapons.png", 7, 1);
 		UPaperSprite::CreateSpriteToCount("DrumContainer.png", 7, 1);
+		UPaperSprite::CreateSpriteToCount("DoomImpFire.png", 5, 1);
 
 		UPaperSprite::CreateSpriteToCount("DoomZombie.png", 6, 12);
 		UPaperSprite::CreateSpriteToCount("DoomZombieSgt.png", 6, 12);
 		UPaperSprite::CreateSpriteToCount("DoomImp.png", 7, 11);
-		UPaperSprite::CreateSpriteToCount("DoomImpFire.png", 5, 1);
 
 	}
 	{

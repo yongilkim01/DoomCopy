@@ -105,13 +105,16 @@ bool AEnemyCharacter::CheckActorInRange(AActor* TargetActor)
 	float DotDegree = FVector::GetVectorAngleDeg(GetCurDirection(), ToTargetVector);
 	float Distance = FVector::DistXZ(GetActorLocation(), TargetActor->GetActorLocation());
 
-	//UEngineDebug::OutPutString("Distance : " + std::to_string(Distance));
+	//UEngineDebug::OutPutString("DotDegree : " + std::to_string(DotDegree));
+	UEngineDebug::OutPutString("Distance : " + std::to_string(Distance));
 
-	if (0 < DotDegree && DotDegree < 30.0f)
+	if (0 < DotDegree && DotDegree < 50.0f)
 	{
 		if (Distance < DetectRange)
 		{
-			UEngineDebug::OutPutString("Player Detected!!");
+			//UEngineDebug::OutPutString("Player Detected!!");
+			//this;
+			//TargetActor;
 			return true;
 		}
 	}

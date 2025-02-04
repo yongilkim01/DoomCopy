@@ -43,24 +43,24 @@ void ADoor::Tick(float DeltaTime)
 {
 	AActor::Tick(DeltaTime);
 
-	std::string DebugMsg = "Door State : ";
+	//std::string DebugMsg = "Door State : ";
 
-	switch (CurDoorState)
-	{
-	case EDoorState::STAY:
-		DebugMsg += "Stay";
-		break;
-	case EDoorState::OPEN:
-		DebugMsg += "Open";
-		break;
-	case EDoorState::CLOSE:
-		DebugMsg += "Close";
-		break;
-	default:
-		break;
-	}
+	//switch (CurDoorState)
+	//{
+	//case EDoorState::STAY:
+	//	DebugMsg += "Stay";
+	//	break;
+	//case EDoorState::OPEN:
+	//	DebugMsg += "Open";
+	//	break;
+	//case EDoorState::CLOSE:
+	//	DebugMsg += "Close";
+	//	break;
+	//default:
+	//	break;
+	//}
 
-	UEngineDebug::OutPutString(DebugMsg);
+	//UEngineDebug::OutPutString(DebugMsg);
 
 	switch (CurDoorState)
 	{

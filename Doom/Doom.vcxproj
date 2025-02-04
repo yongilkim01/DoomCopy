@@ -173,6 +173,7 @@
     <ClCompile Include="Source\Private\Items\Environment\DrumContainer.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\BaseWeapon.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\Bullet.cpp" />
+    <ClCompile Include="Source\Private\Items\Weapons\ImpFire.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\PistolWeapon.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\ZombieBullet.cpp" />
     <ClCompile Include="Source\Private\Items\Weapons\GunWeapon.cpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="Source\Public\Items\Environment\DrumContainer.h" />
     <ClInclude Include="Source\Public\Items\Weapons\BaseWeapon.h" />
     <ClInclude Include="Source\Public\Items\Weapons\Bullet.h" />
+    <ClInclude Include="Source\Public\Items\Weapons\ImpFire.h" />
     <ClInclude Include="Source\Public\Items\Weapons\PistolWeapon.h" />
     <ClInclude Include="Source\Public\Items\Weapons\ZombieBullet.h" />
     <ClInclude Include="Source\Public\Items\Weapons\GunWeapon.h" />

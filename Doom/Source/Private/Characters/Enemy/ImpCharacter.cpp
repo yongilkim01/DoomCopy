@@ -5,7 +5,7 @@
 #include <Engine/Classes/Components/ShapeComponent.h>
 #include <Engine/Classes/Components/CapsuleComponent.h>
 
-#include "Public/Items/Weapons/ZombieBullet.h"
+#include "Public/Items/Weapons/ImpFire.h"
 
 AImpCharacter::AImpCharacter()
 {
@@ -19,10 +19,10 @@ AImpCharacter::AImpCharacter()
     SpriteComponent->CreateAnimation("Move_Right", "DoomImp.png", 35, 38, 0.5f, true);
     SpriteComponent->CreateAnimation("Move_Back", "DoomImp.png", 49, 52, 0.5f, true);
 
-    SpriteComponent->CreateAnimation("Attack_Forward", "DoomImp.png", 4, 6, 0.5f, false);
-    SpriteComponent->CreateAnimation("Attack_Left", "DoomImp.png", 17, 19, 0.5f, false);
-    SpriteComponent->CreateAnimation("Attack_Right", "DoomImp.png", 39, 41, 0.5f, false);
-    SpriteComponent->CreateAnimation("Attack_Back", "DoomImp.png", 53, 55, 0.5f, false);
+    SpriteComponent->CreateAnimation("Attack_Forward", "DoomImp.png", 4, 6, 0.2f, false);
+    SpriteComponent->CreateAnimation("Attack_Left", "DoomImp.png", 17, 19, 0.2f, false);
+    SpriteComponent->CreateAnimation("Attack_Right", "DoomImp.png", 39, 41, 0.2f, false);
+    SpriteComponent->CreateAnimation("Attack_Back", "DoomImp.png", 53, 55, 0.2f, false);
 
     SpriteComponent->CreateAnimation("ExpDeath_Forward", "DoomImp.png", 66, 73, 0.1f, false);
     SpriteComponent->CreateAnimation("ExpDeath_Left", "DoomImp.png", 66, 73, 0.1f, false);
@@ -34,6 +34,49 @@ AImpCharacter::AImpCharacter()
     SpriteComponent->CreateAnimation("Death_Right", "DoomImp.png", 63, 65, 0.1f, false);
     SpriteComponent->CreateAnimation("Death_Back", "DoomImp.png", 63, 65, 0.1f, false);
 
+    SpriteComponent->SetAnimationEvent("Attack_Forward", 6, [this]()
+        {
+            std::shared_ptr<AImpFire> Fire = GetWorld()->SpawnActor<AImpFire>();
+            FVector BulletLocation = GetActorLocation() + GetCurDirection();
+            Fire->SetActorLocation(BulletLocation);
+            Fire->SetEnemyProjectileDirection(GetWorld()->GetMainPawn()->GetActorLocation() - GetActorLocation());
+
+            ChangeState(EEnemyState::TRACE);
+
+        });
+
+    SpriteComponent->SetAnimationEvent("Attack_Left", 19, [this]()
+        {
+            std::shared_ptr<AImpFire> Fire = GetWorld()->SpawnActor<AImpFire>();
+            FVector BulletLocation = GetActorLocation() + GetCurDirection();
+            Fire->SetActorLocation(BulletLocation);
+            Fire->SetEnemyProjectileDirection(GetWorld()->GetMainPawn()->GetActorLocation() - GetActorLocation());
+
+            ChangeState(EEnemyState::TRACE);
+
+        });
+
+    SpriteComponent->SetAnimationEvent("Attack_Right", 41, [this]()
+        {
+            std::shared_ptr<AImpFire> Fire = GetWorld()->SpawnActor<AImpFire>();
+            FVector BulletLocation = GetActorLocation() + GetCurDirection();
+            Fire->SetActorLocation(BulletLocation);
+            Fire->SetEnemyProjectileDirection(GetWorld()->GetMainPawn()->GetActorLocation() - GetActorLocation());
+
+            ChangeState(EEnemyState::TRACE);
+
+        });
+
+    SpriteComponent->SetAnimationEvent("Attack_Back", 55, [this]()
+        {
+            std::shared_ptr<AImpFire> Fire = GetWorld()->SpawnActor<AImpFire>();
+            FVector BulletLocation = GetActorLocation() + GetCurDirection();
+            Fire->SetActorLocation(BulletLocation);
+            Fire->SetEnemyProjectileDirection(GetWorld()->GetMainPawn()->GetActorLocation() - GetActorLocation());
+
+            ChangeState(EEnemyState::TRACE);
+
+        });
 
     SpriteComponent->ChangeAnimation("Move_Forward");
 
@@ -55,8 +98,6 @@ void AImpCharacter::BeginPlay()
     AEnemyCharacter::BeginPlay();
 
     ChangeState(EEnemyState::PATROL);
-
-    DetectRange = 800.0f;
 }
 
 void AImpCharacter::Tick(float DeltaTime)
@@ -89,6 +130,17 @@ void AImpCharacter::Tick(float DeltaTime)
     //UEngineDebug::OutPutString(DebugMsg);
     //UEngineDebug::OutPutString("Cur Index : " + std::to_string(CurTurningIndex));
 
+    if (true == CheckActorInRange(GetWorld()->GetMainPawn()))
+    {
+        //UEngineDebug::OutPutString("True");
+
+    }
+    else
+    {
+        //UEngineDebug::OutPutString("False");
+
+    }
+
 }
 
 void AImpCharacter::EntryPatrol()
@@ -101,11 +153,6 @@ void AImpCharacter::EntryAttack()
 {
     ChangeAnimation();
     CheckTime = 0.0f;
-
-    std::shared_ptr<AZombieBullet> Bullet = GetWorld()->SpawnActor<AZombieBullet>();
-    FVector BulletLocation = GetActorLocation() + GetCurDirection();
-    Bullet->SetActorLocation(BulletLocation);
-    Bullet->SetEnemyProjectileDirection(GetWorld()->GetMainPawn()->GetActorLocation() - GetActorLocation());
 }
 
 void AImpCharacter::EntryTrace()
@@ -181,8 +228,7 @@ void AImpCharacter::Patrol(float DeltaTime)
     CheckTime += DeltaTime;
 
     // 상태 머신 변경 메소드
-    if (true == CheckActorInRange(GetWorld()->GetMainPawn())
-        && CheckTime > CheckTimeLimit * 5.0f)
+    if (true == CheckActorInRange(GetWorld()->GetMainPawn()))
     {
         ChangeState(EEnemyState::ATTACK);
     }
@@ -191,11 +237,6 @@ void AImpCharacter::Patrol(float DeltaTime)
 void AImpCharacter::Attack(float DeltaTime)
 {
     CheckTime += DeltaTime;
-
-    if (CheckTimeLimit < CheckTime)
-    {
-        ChangeState(EEnemyState::TRACE);
-    }
 }
 
 
