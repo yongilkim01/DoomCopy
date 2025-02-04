@@ -62,7 +62,7 @@ private:
 	FVector ProjectionScale = { 0.0f, 0.0f };
 
 	float Near = 1.0f;
-	float Far = 5000.0f;
+	float Far = 4000.0f;
 
 	float FOV = 60.0f;
 	EProjectionType ProjectionType = EProjectionType::Perspective;
