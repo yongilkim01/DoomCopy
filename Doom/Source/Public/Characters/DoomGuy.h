@@ -48,7 +48,7 @@ private:
 	
 	FVector CurMouseLocation = FVector::ZERO;
 
-	float Speed = 150.0f;
+	float Speed = 2750.0f;
 	float Result = 0.0f;
 
 	float CameraSpeed = 10.0f;
