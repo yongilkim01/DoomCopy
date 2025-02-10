@@ -45,6 +45,6 @@ private:
 	float Gravity = 0.0f;
 	float GravityScale = 0.0f;
 	float MaxAcceleration = 1.0f;
-	float MaxWalkSpeed = 200.0f;
+	float MaxWalkSpeed = 500.0f;
 };
 

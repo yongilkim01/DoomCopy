@@ -92,7 +92,7 @@ AE1M1Map::AE1M1Map()
 		WallModelNumber.push_back(33);
 		WallModelNumber.push_back(38);
 		WallModelNumber.push_back(39);
-		WallModelNumber.push_back(40);
+		//WallModelNumber.push_back(40);
 		WallModelNumber.push_back(42);
 		WallModelNumber.push_back(43);
 		WallModelNumber.push_back(44);

@@ -62,7 +62,9 @@ void ADoomGuyCharacter::BeginPlay()
 
 	SetActorLocation(FVector{ -1042.0f, 14.0f, 3548.0f });
 	AddActorRotation(FVector{ 0.0f, 180.0f, 0.0f });
+	
 	//SetActorLocation(FVector{ -1755.0f, 14.0f, 2497.0f });
+	
 	//SetActorLocation(FVector{ -3009, -14, 3801 });
 	//AddActorRotation(FVector{ 0.0f, 0.0f, 0.0f });
 }
